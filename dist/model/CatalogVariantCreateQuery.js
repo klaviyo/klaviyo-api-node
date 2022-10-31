@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantCreateQuery model module.
  * @module model/CatalogVariantCreateQuery
  * @version 2022-10-17
- */var CatalogVariantCreateQuery = /*#__PURE__*/function () {
+ */
+var CatalogVariantCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantCreateQuery</code>.
    * @alias module:model/CatalogVariantCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantCreateQuery;
-}(); /**
-      * @member {module:model/CatalogVariantCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/CatalogVariantCreateQueryAsSubResource} data
+ */
 exports.CatalogVariantCreateQuery = CatalogVariantCreateQuery;
 CatalogVariantCreateQuery.prototype.data = undefined;

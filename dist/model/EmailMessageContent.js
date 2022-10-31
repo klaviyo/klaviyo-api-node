@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The EmailMessageContent model module.
  * @module model/EmailMessageContent
  * @version 2022-10-17
- */var EmailMessageContent = /*#__PURE__*/function () {
+ */
+var EmailMessageContent = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>EmailMessageContent</code>.
    * @alias module:model/EmailMessageContent
@@ -51,9 +52,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return EmailMessageContent;
-}(); /**
-      * @member {String} subject
-      */
+}();
+/**
+ * @member {String} subject
+ */
 exports.EmailMessageContent = EmailMessageContent;
 EmailMessageContent.prototype.subject = undefined;
 

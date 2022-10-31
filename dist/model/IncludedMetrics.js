@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedMetrics model module.
  * @module model/IncludedMetrics
  * @version 2022-10-17
- */var IncludedMetrics = /*#__PURE__*/function () {
+ */
+var IncludedMetrics = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedMetrics</code>.
    * @alias module:model/IncludedMetrics
@@ -53,11 +54,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedMetrics;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.IncludedMetrics = IncludedMetrics;
 IncludedMetrics.TypeEnum = {
   /**

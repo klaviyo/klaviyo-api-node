@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListDeleteQueryAsSubResource model module.
  * @module model/ListDeleteQueryAsSubResource
  * @version 2022-10-17
- */var ListDeleteQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var ListDeleteQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListDeleteQueryAsSubResource</code>.
    * @alias module:model/ListDeleteQueryAsSubResource
@@ -45,11 +46,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListDeleteQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.ListDeleteQueryAsSubResource = ListDeleteQueryAsSubResource;
 ListDeleteQueryAsSubResource.TypeEnum = {
   /**

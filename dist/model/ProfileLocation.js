@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ProfileLocation model module.
  * @module model/ProfileLocation
  * @version 2022-10-17
- */var ProfileLocation = /*#__PURE__*/function () {
+ */
+var ProfileLocation = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ProfileLocation</code>.
    * @alias module:model/ProfileLocation
@@ -48,9 +49,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ProfileLocation;
-}(); /**
-      * @member {String} address1
-      */
+}();
+/**
+ * @member {String} address1
+ */
 exports.ProfileLocation = ProfileLocation;
 ProfileLocation.prototype.address1 = undefined;
 

@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryCreateJobCreateQueryAsSubResource model module.
  * @module model/CatalogCategoryCreateJobCreateQueryAsSubResource
  * @version 2022-10-17
- */var CatalogCategoryCreateJobCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var CatalogCategoryCreateJobCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryCreateJobCreateQueryAsSubResource</code>.
    * @alias module:model/CatalogCategoryCreateJobCreateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryCreateJobCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.CatalogCategoryCreateJobCreateQueryAsSubResource = CatalogCategoryCreateJobCreateQueryAsSubResource;
 CatalogCategoryCreateJobCreateQueryAsSubResource.TypeEnum = {
   /**

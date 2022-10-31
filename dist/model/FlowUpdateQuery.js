@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The FlowUpdateQuery model module.
  * @module model/FlowUpdateQuery
  * @version 2022-10-17
- */var FlowUpdateQuery = /*#__PURE__*/function () {
+ */
+var FlowUpdateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>FlowUpdateQuery</code>.
    * @alias module:model/FlowUpdateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return FlowUpdateQuery;
-}(); /**
-      * @member {module:model/FlowUpdateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/FlowUpdateQueryAsSubResource} data
+ */
 exports.FlowUpdateQuery = FlowUpdateQuery;
 FlowUpdateQuery.prototype.data = undefined;

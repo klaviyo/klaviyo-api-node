@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SMSTrackingOptions model module.
  * @module model/SMSTrackingOptions
  * @version 2022-10-17
- */var SMSTrackingOptions = /*#__PURE__*/function () {
+ */
+var SMSTrackingOptions = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SMSTrackingOptions</code>.
    * @alias module:model/SMSTrackingOptions
@@ -46,9 +47,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SMSTrackingOptions;
-}(); /**
-      * @member {Boolean} addUtm
-      */
+}();
+/**
+ * @member {Boolean} addUtm
+ */
 exports.SMSTrackingOptions = SMSTrackingOptions;
 SMSTrackingOptions.prototype.addUtm = undefined;
 

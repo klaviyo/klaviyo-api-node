@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SMSMessageContent model module.
  * @module model/SMSMessageContent
  * @version 2022-10-17
- */var SMSMessageContent = /*#__PURE__*/function () {
+ */
+var SMSMessageContent = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SMSMessageContent</code>.
    * @alias module:model/SMSMessageContent
@@ -45,9 +46,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SMSMessageContent;
-}(); /**
-      * @member {String} body
-      */
+}();
+/**
+ * @member {String} body
+ */
 exports.SMSMessageContent = SMSMessageContent;
 SMSMessageContent.prototype.body = undefined;
 

@@ -214,7 +214,7 @@ export class EventsApi {
 
     /**
      * Get Event Relationships
-     * Get metrics or profile [relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#relationships) for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Read&#x60; &#x60;Profiles Read&#x60;
+     * Get metrics or profile [relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#relationships) for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Read&#x60; &#x60;Metrics Read&#x60; &#x60;Profiles Read&#x60;
      * @param {<&vendorExtensions.x-jsdoc-type>} id 
      * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}

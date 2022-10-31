@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The Suppression model module.
  * @module model/Suppression
  * @version 2022-10-17
- */var Suppression = /*#__PURE__*/function () {
+ */
+var Suppression = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>Suppression</code>.
    * @alias module:model/Suppression
@@ -42,8 +43,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return Suppression;
-}(); /**
-      * @member {String} email
-      */
+}();
+/**
+ * @member {String} email
+ */
 exports.Suppression = Suppression;
 Suppression.prototype.email = undefined;

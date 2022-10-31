@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedVariantsLinks model module.
  * @module model/IncludedVariantsLinks
  * @version 2022-10-17
- */var IncludedVariantsLinks = /*#__PURE__*/function () {
+ */
+var IncludedVariantsLinks = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedVariantsLinks</code>.
    * @alias module:model/IncludedVariantsLinks
@@ -42,8 +43,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedVariantsLinks;
-}(); /**
-      * @member {String} self
-      */
+}();
+/**
+ * @member {String} self
+ */
 exports.IncludedVariantsLinks = IncludedVariantsLinks;
 IncludedVariantsLinks.prototype.self = undefined;

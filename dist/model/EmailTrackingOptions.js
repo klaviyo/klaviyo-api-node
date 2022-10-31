@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The EmailTrackingOptions model module.
  * @module model/EmailTrackingOptions
  * @version 2022-10-17
- */var EmailTrackingOptions = /*#__PURE__*/function () {
+ */
+var EmailTrackingOptions = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>EmailTrackingOptions</code>.
    * @alias module:model/EmailTrackingOptions
@@ -52,9 +53,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return EmailTrackingOptions;
-}(); /**
-      * @member {Boolean} addUtm
-      */
+}();
+/**
+ * @member {Boolean} addUtm
+ */
 exports.EmailTrackingOptions = EmailTrackingOptions;
 EmailTrackingOptions.prototype.addUtm = undefined;
 

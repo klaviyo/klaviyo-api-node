@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListMembersDeleteQuery model module.
  * @module model/ListMembersDeleteQuery
  * @version 2022-10-17
- */var ListMembersDeleteQuery = /*#__PURE__*/function () {
+ */
+var ListMembersDeleteQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListMembersDeleteQuery</code>.
    * @alias module:model/ListMembersDeleteQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListMembersDeleteQuery;
-}(); /**
-      * @member {Array.<module:model/ListMembersAddQueryData>} data
-      */
+}();
+/**
+ * @member {Array.<module:model/ListMembersAddQueryData>} data
+ */
 exports.ListMembersDeleteQuery = ListMembersDeleteQuery;
 ListMembersDeleteQuery.prototype.data = undefined;

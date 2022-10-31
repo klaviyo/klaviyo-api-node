@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListCreateQueryAsSubResource model module.
  * @module model/ListCreateQueryAsSubResource
  * @version 2022-10-17
- */var ListCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var ListCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListCreateQueryAsSubResource</code>.
    * @alias module:model/ListCreateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.ListCreateQueryAsSubResource = ListCreateQueryAsSubResource;
 ListCreateQueryAsSubResource.TypeEnum = {
   /**

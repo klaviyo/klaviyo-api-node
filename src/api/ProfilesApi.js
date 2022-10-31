@@ -170,7 +170,7 @@ export class ProfilesApi {
 
     /**
      * Get Profile Relationships
-     * Get list membership or segment membership relationships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60; &#x60;Segments Read&#x60;
+     * Get list membership or segment membership relationships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Lists Read&#x60; &#x60;Profiles Read&#x60; &#x60;Segments Read&#x60;
      * @param {<&vendorExtensions.x-jsdoc-type>} id 
      * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}

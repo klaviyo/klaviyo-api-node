@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogItemUpdateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogItemUpdateJobCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var CatalogItemUpdateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var CatalogItemUpdateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogItemUpdateJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogItemUpdateJobCreateQueryAsSubResourceAttributes
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogItemUpdateJobCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {Array.<module:model/CatalogItemUpdateQueryAsSubResource>} items
-      */
+}();
+/**
+ * @member {Array.<module:model/CatalogItemUpdateQueryAsSubResource>} items
+ */
 exports.CatalogItemUpdateJobCreateQueryAsSubResourceAttributes = CatalogItemUpdateJobCreateQueryAsSubResourceAttributes;
 CatalogItemUpdateJobCreateQueryAsSubResourceAttributes.prototype.items = undefined;

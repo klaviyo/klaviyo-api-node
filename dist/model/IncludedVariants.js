@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedVariants model module.
  * @module model/IncludedVariants
  * @version 2022-10-17
- */var IncludedVariants = /*#__PURE__*/function () {
+ */
+var IncludedVariants = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedVariants</code>.
    * @alias module:model/IncludedVariants
@@ -53,11 +54,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedVariants;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.IncludedVariants = IncludedVariants;
 IncludedVariants.TypeEnum = {
   /**

@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantCreateQueryAsSubResourceRelationshipsItems model module.
  * @module model/CatalogVariantCreateQueryAsSubResourceRelationshipsItems
  * @version 2022-10-17
- */var CatalogVariantCreateQueryAsSubResourceRelationshipsItems = /*#__PURE__*/function () {
+ */
+var CatalogVariantCreateQueryAsSubResourceRelationshipsItems = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantCreateQueryAsSubResourceRelationshipsItems</code>.
    * @alias module:model/CatalogVariantCreateQueryAsSubResourceRelationshipsItems
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantCreateQueryAsSubResourceRelationshipsItems;
-}(); /**
-      * @member {Array.<module:model/CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData>} data
-      */
+}();
+/**
+ * @member {Array.<module:model/CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData>} data
+ */
 exports.CatalogVariantCreateQueryAsSubResourceRelationshipsItems = CatalogVariantCreateQueryAsSubResourceRelationshipsItems;
 CatalogVariantCreateQueryAsSubResourceRelationshipsItems.prototype.data = undefined;

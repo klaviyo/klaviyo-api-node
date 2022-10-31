@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedFlowMessagesAttributes model module.
  * @module model/IncludedFlowMessagesAttributes
  * @version 2022-10-17
- */var IncludedFlowMessagesAttributes = /*#__PURE__*/function () {
+ */
+var IncludedFlowMessagesAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedFlowMessagesAttributes</code>.
    * @alias module:model/IncludedFlowMessagesAttributes
@@ -50,9 +51,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedFlowMessagesAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.IncludedFlowMessagesAttributes = IncludedFlowMessagesAttributes;
 IncludedFlowMessagesAttributes.prototype.name = undefined;
 

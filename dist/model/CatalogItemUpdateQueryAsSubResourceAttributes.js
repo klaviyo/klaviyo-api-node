@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogItemUpdateQueryAsSubResourceAttributes model module.
  * @module model/CatalogItemUpdateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var CatalogItemUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var CatalogItemUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogItemUpdateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogItemUpdateQueryAsSubResourceAttributes
@@ -47,9 +48,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogItemUpdateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} title
-      */
+}();
+/**
+ * @member {String} title
+ */
 exports.CatalogItemUpdateQueryAsSubResourceAttributes = CatalogItemUpdateQueryAsSubResourceAttributes;
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.title = undefined;
 

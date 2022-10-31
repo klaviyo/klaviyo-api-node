@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SubscriptionCreateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/SubscriptionCreateJobCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var SubscriptionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var SubscriptionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SubscriptionCreateJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/SubscriptionCreateJobCreateQueryAsSubResourceAttributes
@@ -47,9 +48,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SubscriptionCreateJobCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} listId
-      */
+}();
+/**
+ * @member {String} listId
+ */
 exports.SubscriptionCreateJobCreateQueryAsSubResourceAttributes = SubscriptionCreateJobCreateQueryAsSubResourceAttributes;
 SubscriptionCreateJobCreateQueryAsSubResourceAttributes.prototype.listId = undefined;
 

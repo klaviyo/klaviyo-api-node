@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantCreateQueryAsSubResource model module.
  * @module model/CatalogVariantCreateQueryAsSubResource
  * @version 2022-10-17
- */var CatalogVariantCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var CatalogVariantCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantCreateQueryAsSubResource</code>.
    * @alias module:model/CatalogVariantCreateQueryAsSubResource
@@ -48,11 +49,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.CatalogVariantCreateQueryAsSubResource = CatalogVariantCreateQueryAsSubResource;
 CatalogVariantCreateQueryAsSubResource.TypeEnum = {
   /**

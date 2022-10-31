@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SegmentPartialUpdateQuery model module.
  * @module model/SegmentPartialUpdateQuery
  * @version 2022-10-17
- */var SegmentPartialUpdateQuery = /*#__PURE__*/function () {
+ */
+var SegmentPartialUpdateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SegmentPartialUpdateQuery</code>.
    * @alias module:model/SegmentPartialUpdateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SegmentPartialUpdateQuery;
-}(); /**
-      * @member {module:model/SegmentPartialUpdateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/SegmentPartialUpdateQueryAsSubResource} data
+ */
 exports.SegmentPartialUpdateQuery = SegmentPartialUpdateQuery;
 SegmentPartialUpdateQuery.prototype.data = undefined;

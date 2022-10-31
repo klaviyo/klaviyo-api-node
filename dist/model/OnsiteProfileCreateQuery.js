@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OnsiteProfileCreateQuery model module.
  * @module model/OnsiteProfileCreateQuery
  * @version 2022-10-17
- */var OnsiteProfileCreateQuery = /*#__PURE__*/function () {
+ */
+var OnsiteProfileCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteProfileCreateQuery</code>.
    * @alias module:model/OnsiteProfileCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return OnsiteProfileCreateQuery;
-}(); /**
-      * @member {module:model/OnsiteProfileCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/OnsiteProfileCreateQueryAsSubResource} data
+ */
 exports.OnsiteProfileCreateQuery = OnsiteProfileCreateQuery;
 OnsiteProfileCreateQuery.prototype.data = undefined;

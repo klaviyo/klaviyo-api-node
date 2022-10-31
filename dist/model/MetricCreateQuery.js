@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The MetricCreateQuery model module.
  * @module model/MetricCreateQuery
  * @version 2022-10-17
- */var MetricCreateQuery = /*#__PURE__*/function () {
+ */
+var MetricCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricCreateQuery</code>.
    * @alias module:model/MetricCreateQuery
@@ -43,9 +44,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return MetricCreateQuery;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.MetricCreateQuery = MetricCreateQuery;
 MetricCreateQuery.prototype.name = undefined;
 

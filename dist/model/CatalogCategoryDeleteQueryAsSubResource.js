@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryDeleteQueryAsSubResource model module.
  * @module model/CatalogCategoryDeleteQueryAsSubResource
  * @version 2022-10-17
- */var CatalogCategoryDeleteQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var CatalogCategoryDeleteQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryDeleteQueryAsSubResource</code>.
    * @alias module:model/CatalogCategoryDeleteQueryAsSubResource
@@ -45,11 +46,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryDeleteQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.CatalogCategoryDeleteQueryAsSubResource = CatalogCategoryDeleteQueryAsSubResource;
 CatalogCategoryDeleteQueryAsSubResource.TypeEnum = {
   /**

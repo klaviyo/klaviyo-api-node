@@ -52,7 +52,7 @@ var ApiClient = /*#__PURE__*/function () {
      */
     this.defaultHeaders = {
       revision: "2022-10-17",
-      "User-Agent": "klaviyo-api-node/1.0.0"
+      "User-Agent": "klaviyo-api-node/1.0.1"
     };
 
     /**
@@ -542,10 +542,11 @@ var ApiClient = /*#__PURE__*/function () {
     }
   }]);
   return ApiClient;
-}(); /**
-     * The default API client implementation.
-     * @type {module:ApiClient}
-     */
+}();
+/**
+* The default API client implementation.
+* @type {module:ApiClient}
+*/
 exports.ApiClient = ApiClient;
 _defineProperty(ApiClient, "CollectionFormatEnum", {
   /**

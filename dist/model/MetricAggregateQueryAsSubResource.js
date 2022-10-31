@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The MetricAggregateQueryAsSubResource model module.
  * @module model/MetricAggregateQueryAsSubResource
  * @version 2022-10-17
- */var MetricAggregateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var MetricAggregateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricAggregateQueryAsSubResource</code>.
    * @alias module:model/MetricAggregateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return MetricAggregateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.MetricAggregateQueryAsSubResource = MetricAggregateQueryAsSubResource;
 MetricAggregateQueryAsSubResource.TypeEnum = {
   /**

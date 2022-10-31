@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SendOptions model module.
  * @module model/SendOptions
  * @version 2022-10-17
- */var SendOptions = /*#__PURE__*/function () {
+ */
+var SendOptions = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SendOptions</code>.
    * @alias module:model/SendOptions
@@ -45,9 +46,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SendOptions;
-}(); /**
-      * @member {Boolean} useSmartSending
-      */
+}();
+/**
+ * @member {Boolean} useSmartSending
+ */
 exports.SendOptions = SendOptions;
 SendOptions.prototype.useSmartSending = undefined;
 

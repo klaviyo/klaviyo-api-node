@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OneOfIncludedFlowActionsAttributesTrackingOptions model module.
  * @module model/OneOfIncludedFlowActionsAttributesTrackingOptions
  * @version 2022-10-17
- */var OneOfIncludedFlowActionsAttributesTrackingOptions = /*#__PURE__*/function () {
+ */
+var OneOfIncludedFlowActionsAttributesTrackingOptions = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OneOfIncludedFlowActionsAttributesTrackingOptions</code>.
    * @alias module:model/OneOfIncludedFlowActionsAttributesTrackingOptions

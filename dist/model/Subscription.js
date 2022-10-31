@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The Subscription model module.
  * @module model/Subscription
  * @version 2022-10-17
- */var Subscription = /*#__PURE__*/function () {
+ */
+var Subscription = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>Subscription</code>.
    * @alias module:model/Subscription
@@ -41,9 +42,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return Subscription;
-}(); /**
-      * @member {String} email
-      */
+}();
+/**
+ * @member {String} email
+ */
 exports.Subscription = Subscription;
 Subscription.prototype.email = undefined;
 

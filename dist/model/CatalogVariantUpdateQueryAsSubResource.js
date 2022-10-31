@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantUpdateQueryAsSubResource model module.
  * @module model/CatalogVariantUpdateQueryAsSubResource
  * @version 2022-10-17
- */var CatalogVariantUpdateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var CatalogVariantUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantUpdateQueryAsSubResource</code>.
    * @alias module:model/CatalogVariantUpdateQueryAsSubResource
@@ -49,11 +50,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantUpdateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.CatalogVariantUpdateQueryAsSubResource = CatalogVariantUpdateQueryAsSubResource;
 CatalogVariantUpdateQueryAsSubResource.TypeEnum = {
   /**

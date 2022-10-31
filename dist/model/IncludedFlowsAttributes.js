@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedFlowsAttributes model module.
  * @module model/IncludedFlowsAttributes
  * @version 2022-10-17
- */var IncludedFlowsAttributes = /*#__PURE__*/function () {
+ */
+var IncludedFlowsAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedFlowsAttributes</code>.
    * @alias module:model/IncludedFlowsAttributes
@@ -45,9 +46,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedFlowsAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.IncludedFlowsAttributes = IncludedFlowsAttributes;
 IncludedFlowsAttributes.prototype.name = undefined;
 

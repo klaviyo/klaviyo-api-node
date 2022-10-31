@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SuppressionCreateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/SuppressionCreateJobCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var SuppressionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var SuppressionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SuppressionCreateJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/SuppressionCreateJobCreateQueryAsSubResourceAttributes
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SuppressionCreateJobCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {Array.<module:model/Suppression>} suppressions
-      */
+}();
+/**
+ * @member {Array.<module:model/Suppression>} suppressions
+ */
 exports.SuppressionCreateJobCreateQueryAsSubResourceAttributes = SuppressionCreateJobCreateQueryAsSubResourceAttributes;
 SuppressionCreateJobCreateQueryAsSubResourceAttributes.prototype.suppressions = undefined;

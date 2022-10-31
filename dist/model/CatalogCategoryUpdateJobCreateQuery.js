@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryUpdateJobCreateQuery model module.
  * @module model/CatalogCategoryUpdateJobCreateQuery
  * @version 2022-10-17
- */var CatalogCategoryUpdateJobCreateQuery = /*#__PURE__*/function () {
+ */
+var CatalogCategoryUpdateJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryUpdateJobCreateQuery</code>.
    * @alias module:model/CatalogCategoryUpdateJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryUpdateJobCreateQuery;
-}(); /**
-      * @member {module:model/CatalogCategoryUpdateJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/CatalogCategoryUpdateJobCreateQueryAsSubResource} data
+ */
 exports.CatalogCategoryUpdateJobCreateQuery = CatalogCategoryUpdateJobCreateQuery;
 CatalogCategoryUpdateJobCreateQuery.prototype.data = undefined;

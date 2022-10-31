@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The MetricAggregateQuery model module.
  * @module model/MetricAggregateQuery
  * @version 2022-10-17
- */var MetricAggregateQuery = /*#__PURE__*/function () {
+ */
+var MetricAggregateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricAggregateQuery</code>.
    * @alias module:model/MetricAggregateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return MetricAggregateQuery;
-}(); /**
-      * @member {module:model/MetricAggregateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/MetricAggregateQueryAsSubResource} data
+ */
 exports.MetricAggregateQuery = MetricAggregateQuery;
 MetricAggregateQuery.prototype.data = undefined;

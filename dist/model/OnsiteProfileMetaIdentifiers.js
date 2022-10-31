@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OnsiteProfileMetaIdentifiers model module.
  * @module model/OnsiteProfileMetaIdentifiers
  * @version 2022-10-17
- */var OnsiteProfileMetaIdentifiers = /*#__PURE__*/function () {
+ */
+var OnsiteProfileMetaIdentifiers = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteProfileMetaIdentifiers</code>.
    * @alias module:model/OnsiteProfileMetaIdentifiers
@@ -45,9 +46,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return OnsiteProfileMetaIdentifiers;
-}(); /**
-      * @member {String} id
-      */
+}();
+/**
+ * @member {String} id
+ */
 exports.OnsiteProfileMetaIdentifiers = OnsiteProfileMetaIdentifiers;
 OnsiteProfileMetaIdentifiers.prototype.id = undefined;
 

@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryDeleteJobCreateQuery model module.
  * @module model/CatalogCategoryDeleteJobCreateQuery
  * @version 2022-10-17
- */var CatalogCategoryDeleteJobCreateQuery = /*#__PURE__*/function () {
+ */
+var CatalogCategoryDeleteJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryDeleteJobCreateQuery</code>.
    * @alias module:model/CatalogCategoryDeleteJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryDeleteJobCreateQuery;
-}(); /**
-      * @member {module:model/CatalogCategoryDeleteJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/CatalogCategoryDeleteJobCreateQueryAsSubResource} data
+ */
 exports.CatalogCategoryDeleteJobCreateQuery = CatalogCategoryDeleteJobCreateQuery;
 CatalogCategoryDeleteJobCreateQuery.prototype.data = undefined;

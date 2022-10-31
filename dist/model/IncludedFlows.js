@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedFlows model module.
  * @module model/IncludedFlows
  * @version 2022-10-17
- */var IncludedFlows = /*#__PURE__*/function () {
+ */
+var IncludedFlows = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedFlows</code>.
    * @alias module:model/IncludedFlows
@@ -53,11 +54,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedFlows;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.IncludedFlows = IncludedFlows;
 IncludedFlows.TypeEnum = {
   /**

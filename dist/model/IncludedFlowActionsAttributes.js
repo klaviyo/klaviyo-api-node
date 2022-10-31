@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedFlowActionsAttributes model module.
  * @module model/IncludedFlowActionsAttributes
  * @version 2022-10-17
- */var IncludedFlowActionsAttributes = /*#__PURE__*/function () {
+ */
+var IncludedFlowActionsAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedFlowActionsAttributes</code>.
    * @alias module:model/IncludedFlowActionsAttributes
@@ -49,9 +50,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedFlowActionsAttributes;
-}(); /**
-      * @member {String} actionType
-      */
+}();
+/**
+ * @member {String} actionType
+ */
 exports.IncludedFlowActionsAttributes = IncludedFlowActionsAttributes;
 IncludedFlowActionsAttributes.prototype.actionType = undefined;
 

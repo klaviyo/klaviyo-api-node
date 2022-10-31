@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ProfileCreateQueryAsSubResource model module.
  * @module model/ProfileCreateQueryAsSubResource
  * @version 2022-10-17
- */var ProfileCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var ProfileCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ProfileCreateQueryAsSubResource</code>.
    * @alias module:model/ProfileCreateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ProfileCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.ProfileCreateQueryAsSubResource = ProfileCreateQueryAsSubResource;
 ProfileCreateQueryAsSubResource.TypeEnum = {
   /**

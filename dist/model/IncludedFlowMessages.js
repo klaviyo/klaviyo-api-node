@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedFlowMessages model module.
  * @module model/IncludedFlowMessages
  * @version 2022-10-17
- */var IncludedFlowMessages = /*#__PURE__*/function () {
+ */
+var IncludedFlowMessages = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedFlowMessages</code>.
    * @alias module:model/IncludedFlowMessages
@@ -53,11 +54,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedFlowMessages;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.IncludedFlowMessages = IncludedFlowMessages;
 IncludedFlowMessages.TypeEnum = {
   /**

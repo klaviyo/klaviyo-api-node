@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The EventCreateQueryAsSubResourceAttributes model module.
  * @module model/EventCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var EventCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var EventCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>EventCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/EventCreateQueryAsSubResourceAttributes
@@ -52,9 +53,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return EventCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {Object} profile
-      */
+}();
+/**
+ * @member {Object} profile
+ */
 exports.EventCreateQueryAsSubResourceAttributes = EventCreateQueryAsSubResourceAttributes;
 EventCreateQueryAsSubResourceAttributes.prototype.profile = undefined;
 

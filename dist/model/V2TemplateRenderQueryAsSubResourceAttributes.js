@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The V2TemplateRenderQueryAsSubResourceAttributes model module.
  * @module model/V2TemplateRenderQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var V2TemplateRenderQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var V2TemplateRenderQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>V2TemplateRenderQueryAsSubResourceAttributes</code>.
    * @alias module:model/V2TemplateRenderQueryAsSubResourceAttributes
@@ -43,9 +44,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return V2TemplateRenderQueryAsSubResourceAttributes;
-}(); /**
-      * @member {Object} context
-      */
+}();
+/**
+ * @member {Object} context
+ */
 exports.V2TemplateRenderQueryAsSubResourceAttributes = V2TemplateRenderQueryAsSubResourceAttributes;
 V2TemplateRenderQueryAsSubResourceAttributes.prototype.context = undefined;
 

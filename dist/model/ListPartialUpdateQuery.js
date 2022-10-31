@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListPartialUpdateQuery model module.
  * @module model/ListPartialUpdateQuery
  * @version 2022-10-17
- */var ListPartialUpdateQuery = /*#__PURE__*/function () {
+ */
+var ListPartialUpdateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListPartialUpdateQuery</code>.
    * @alias module:model/ListPartialUpdateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListPartialUpdateQuery;
-}(); /**
-      * @member {module:model/ListPartialUpdateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/ListPartialUpdateQueryAsSubResource} data
+ */
 exports.ListPartialUpdateQuery = ListPartialUpdateQuery;
 ListPartialUpdateQuery.prototype.data = undefined;

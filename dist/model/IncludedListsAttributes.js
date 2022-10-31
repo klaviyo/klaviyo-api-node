@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedListsAttributes model module.
  * @module model/IncludedListsAttributes
  * @version 2022-10-17
- */var IncludedListsAttributes = /*#__PURE__*/function () {
+ */
+var IncludedListsAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedListsAttributes</code>.
    * @alias module:model/IncludedListsAttributes
@@ -42,9 +43,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedListsAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.IncludedListsAttributes = IncludedListsAttributes;
 IncludedListsAttributes.prototype.name = undefined;
 

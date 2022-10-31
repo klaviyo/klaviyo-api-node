@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {Array.<module:model/CatalogVariantDeleteQueryAsSubResource>} variants
-      */
+}();
+/**
+ * @member {Array.<module:model/CatalogVariantDeleteQueryAsSubResource>} variants
+ */
 exports.CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes = CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes;
 CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes.prototype.variants = undefined;

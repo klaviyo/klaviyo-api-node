@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData model module.
  * @module model/CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData
  * @version 2022-10-17
- */var CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData = /*#__PURE__*/function () {
+ */
+var CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData</code>.
    * @alias module:model/CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData
@@ -45,11 +46,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData = CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData;
 CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData.TypeEnum = {
   /**

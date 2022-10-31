@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogItemUpdateQuery model module.
  * @module model/CatalogItemUpdateQuery
  * @version 2022-10-17
- */var CatalogItemUpdateQuery = /*#__PURE__*/function () {
+ */
+var CatalogItemUpdateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogItemUpdateQuery</code>.
    * @alias module:model/CatalogItemUpdateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogItemUpdateQuery;
-}(); /**
-      * @member {module:model/CatalogItemUpdateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/CatalogItemUpdateQueryAsSubResource} data
+ */
 exports.CatalogItemUpdateQuery = CatalogItemUpdateQuery;
 CatalogItemUpdateQuery.prototype.data = undefined;

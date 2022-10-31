@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedItems model module.
  * @module model/IncludedItems
  * @version 2022-10-17
- */var IncludedItems = /*#__PURE__*/function () {
+ */
+var IncludedItems = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedItems</code>.
    * @alias module:model/IncludedItems
@@ -53,11 +54,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedItems;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.IncludedItems = IncludedItems;
 IncludedItems.TypeEnum = {
   /**

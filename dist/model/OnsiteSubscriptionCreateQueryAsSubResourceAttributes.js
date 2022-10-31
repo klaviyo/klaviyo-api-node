@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OnsiteSubscriptionCreateQueryAsSubResourceAttributes model module.
  * @module model/OnsiteSubscriptionCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var OnsiteSubscriptionCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var OnsiteSubscriptionCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteSubscriptionCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/OnsiteSubscriptionCreateQueryAsSubResourceAttributes
@@ -46,9 +47,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return OnsiteSubscriptionCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} listId
-      */
+}();
+/**
+ * @member {String} listId
+ */
 exports.OnsiteSubscriptionCreateQueryAsSubResourceAttributes = OnsiteSubscriptionCreateQueryAsSubResourceAttributes;
 OnsiteSubscriptionCreateQueryAsSubResourceAttributes.prototype.listId = undefined;
 

@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedMetricsAttributes model module.
  * @module model/IncludedMetricsAttributes
  * @version 2022-10-17
- */var IncludedMetricsAttributes = /*#__PURE__*/function () {
+ */
+var IncludedMetricsAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedMetricsAttributes</code>.
    * @alias module:model/IncludedMetricsAttributes
@@ -43,9 +44,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedMetricsAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.IncludedMetricsAttributes = IncludedMetricsAttributes;
 IncludedMetricsAttributes.prototype.name = undefined;
 

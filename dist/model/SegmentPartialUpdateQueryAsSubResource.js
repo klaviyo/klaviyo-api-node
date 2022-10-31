@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SegmentPartialUpdateQueryAsSubResource model module.
  * @module model/SegmentPartialUpdateQueryAsSubResource
  * @version 2022-10-17
- */var SegmentPartialUpdateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var SegmentPartialUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SegmentPartialUpdateQueryAsSubResource</code>.
    * @alias module:model/SegmentPartialUpdateQueryAsSubResource
@@ -49,11 +50,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SegmentPartialUpdateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.SegmentPartialUpdateQueryAsSubResource = SegmentPartialUpdateQueryAsSubResource;
 SegmentPartialUpdateQueryAsSubResource.TypeEnum = {
   /**

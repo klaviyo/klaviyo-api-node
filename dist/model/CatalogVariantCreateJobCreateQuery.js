@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantCreateJobCreateQuery model module.
  * @module model/CatalogVariantCreateJobCreateQuery
  * @version 2022-10-17
- */var CatalogVariantCreateJobCreateQuery = /*#__PURE__*/function () {
+ */
+var CatalogVariantCreateJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantCreateJobCreateQuery</code>.
    * @alias module:model/CatalogVariantCreateJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantCreateJobCreateQuery;
-}(); /**
-      * @member {module:model/CatalogVariantCreateJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/CatalogVariantCreateJobCreateQueryAsSubResource} data
+ */
 exports.CatalogVariantCreateJobCreateQuery = CatalogVariantCreateJobCreateQuery;
 CatalogVariantCreateJobCreateQuery.prototype.data = undefined;

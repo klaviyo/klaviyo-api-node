@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedProfiles model module.
  * @module model/IncludedProfiles
  * @version 2022-10-17
- */var IncludedProfiles = /*#__PURE__*/function () {
+ */
+var IncludedProfiles = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedProfiles</code>.
    * @alias module:model/IncludedProfiles
@@ -53,11 +54,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedProfiles;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.IncludedProfiles = IncludedProfiles;
 IncludedProfiles.TypeEnum = {
   /**

@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SMSRenderOptions model module.
  * @module model/SMSRenderOptions
  * @version 2022-10-17
- */var SMSRenderOptions = /*#__PURE__*/function () {
+ */
+var SMSRenderOptions = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SMSRenderOptions</code>.
    * @alias module:model/SMSRenderOptions
@@ -51,9 +52,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SMSRenderOptions;
-}(); /**
-      * @member {Boolean} shortenLinks
-      */
+}();
+/**
+ * @member {Boolean} shortenLinks
+ */
 exports.SMSRenderOptions = SMSRenderOptions;
 SMSRenderOptions.prototype.shortenLinks = undefined;
 

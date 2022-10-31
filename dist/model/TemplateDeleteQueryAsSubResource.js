@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The TemplateDeleteQueryAsSubResource model module.
  * @module model/TemplateDeleteQueryAsSubResource
  * @version 2022-10-17
- */var TemplateDeleteQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var TemplateDeleteQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateDeleteQueryAsSubResource</code>.
    * @alias module:model/TemplateDeleteQueryAsSubResource
@@ -45,11 +46,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return TemplateDeleteQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.TemplateDeleteQueryAsSubResource = TemplateDeleteQueryAsSubResource;
 TemplateDeleteQueryAsSubResource.TypeEnum = {
   /**

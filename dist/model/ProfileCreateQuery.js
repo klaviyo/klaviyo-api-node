@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ProfileCreateQuery model module.
  * @module model/ProfileCreateQuery
  * @version 2022-10-17
- */var ProfileCreateQuery = /*#__PURE__*/function () {
+ */
+var ProfileCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ProfileCreateQuery</code>.
    * @alias module:model/ProfileCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ProfileCreateQuery;
-}(); /**
-      * @member {module:model/ProfileCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/ProfileCreateQueryAsSubResource} data
+ */
 exports.ProfileCreateQuery = ProfileCreateQuery;
 ProfileCreateQuery.prototype.data = undefined;

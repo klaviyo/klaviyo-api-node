@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {Array.<module:model/CatalogCategoryDeleteQueryAsSubResource>} categories
-      */
+}();
+/**
+ * @member {Array.<module:model/CatalogCategoryDeleteQueryAsSubResource>} categories
+ */
 exports.CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes = CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes;
 CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes.prototype.categories = undefined;

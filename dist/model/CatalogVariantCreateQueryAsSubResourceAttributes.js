@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogVariantCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var CatalogVariantCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var CatalogVariantCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogVariantCreateQueryAsSubResourceAttributes
@@ -70,9 +71,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} externalId
-      */
+}();
+/**
+ * @member {String} externalId
+ */
 exports.CatalogVariantCreateQueryAsSubResourceAttributes = CatalogVariantCreateQueryAsSubResourceAttributes;
 CatalogVariantCreateQueryAsSubResourceAttributes.prototype.externalId = undefined;
 

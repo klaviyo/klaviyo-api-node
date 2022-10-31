@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The FlowUpdateQueryAsSubResourceAttributes model module.
  * @module model/FlowUpdateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var FlowUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var FlowUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>FlowUpdateQueryAsSubResourceAttributes</code>.
    * @alias module:model/FlowUpdateQueryAsSubResourceAttributes
@@ -42,8 +43,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return FlowUpdateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} status
-      */
+}();
+/**
+ * @member {String} status
+ */
 exports.FlowUpdateQueryAsSubResourceAttributes = FlowUpdateQueryAsSubResourceAttributes;
 FlowUpdateQueryAsSubResourceAttributes.prototype.status = undefined;

@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OneOfIncludedFlowMessagesAttributesContent model module.
  * @module model/OneOfIncludedFlowMessagesAttributesContent
  * @version 2022-10-17
- */var OneOfIncludedFlowMessagesAttributesContent = /*#__PURE__*/function () {
+ */
+var OneOfIncludedFlowMessagesAttributesContent = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OneOfIncludedFlowMessagesAttributesContent</code>.
    * @alias module:model/OneOfIncludedFlowMessagesAttributesContent

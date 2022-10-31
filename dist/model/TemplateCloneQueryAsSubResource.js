@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The TemplateCloneQueryAsSubResource model module.
  * @module model/TemplateCloneQueryAsSubResource
  * @version 2022-10-17
- */var TemplateCloneQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var TemplateCloneQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateCloneQueryAsSubResource</code>.
    * @alias module:model/TemplateCloneQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return TemplateCloneQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.TemplateCloneQueryAsSubResource = TemplateCloneQueryAsSubResource;
 TemplateCloneQueryAsSubResource.TypeEnum = {
   /**

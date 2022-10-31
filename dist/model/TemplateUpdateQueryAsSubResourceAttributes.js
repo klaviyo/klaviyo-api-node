@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The TemplateUpdateQueryAsSubResourceAttributes model module.
  * @module model/TemplateUpdateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var TemplateUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var TemplateUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateUpdateQueryAsSubResourceAttributes</code>.
    * @alias module:model/TemplateUpdateQueryAsSubResourceAttributes
@@ -43,9 +44,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return TemplateUpdateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.TemplateUpdateQueryAsSubResourceAttributes = TemplateUpdateQueryAsSubResourceAttributes;
 TemplateUpdateQueryAsSubResourceAttributes.prototype.name = undefined;
 

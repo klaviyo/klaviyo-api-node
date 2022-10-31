@@ -52,7 +52,7 @@ export class ApiClient {
          */
         this.defaultHeaders = { 
             revision: "2022-10-17",
-            "User-Agent": "klaviyo-api-node/1.0.0",
+            "User-Agent": "klaviyo-api-node/1.0.1",
         };
 
         /**

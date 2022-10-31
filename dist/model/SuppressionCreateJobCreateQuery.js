@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SuppressionCreateJobCreateQuery model module.
  * @module model/SuppressionCreateJobCreateQuery
  * @version 2022-10-17
- */var SuppressionCreateJobCreateQuery = /*#__PURE__*/function () {
+ */
+var SuppressionCreateJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SuppressionCreateJobCreateQuery</code>.
    * @alias module:model/SuppressionCreateJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SuppressionCreateJobCreateQuery;
-}(); /**
-      * @member {module:model/SuppressionCreateJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/SuppressionCreateJobCreateQueryAsSubResource} data
+ */
 exports.SuppressionCreateJobCreateQuery = SuppressionCreateJobCreateQuery;
 SuppressionCreateJobCreateQuery.prototype.data = undefined;

@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryUpdateQueryAsSubResourceAttributes model module.
  * @module model/CatalogCategoryUpdateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var CatalogCategoryUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var CatalogCategoryUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryUpdateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogCategoryUpdateQueryAsSubResourceAttributes
@@ -40,8 +41,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryUpdateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.CatalogCategoryUpdateQueryAsSubResourceAttributes = CatalogCategoryUpdateQueryAsSubResourceAttributes;
 CatalogCategoryUpdateQueryAsSubResourceAttributes.prototype.name = undefined;

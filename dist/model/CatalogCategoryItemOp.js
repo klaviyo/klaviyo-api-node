@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryItemOp model module.
  * @module model/CatalogCategoryItemOp
  * @version 2022-10-17
- */var CatalogCategoryItemOp = /*#__PURE__*/function () {
+ */
+var CatalogCategoryItemOp = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryItemOp</code>.
    * @alias module:model/CatalogCategoryItemOp
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryItemOp;
-}(); /**
-      * @member {Array.<module:model/CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData>} data
-      */
+}();
+/**
+ * @member {Array.<module:model/CatalogVariantCreateQueryAsSubResourceRelationshipsItemsData>} data
+ */
 exports.CatalogCategoryItemOp = CatalogCategoryItemOp;
 CatalogCategoryItemOp.prototype.data = undefined;

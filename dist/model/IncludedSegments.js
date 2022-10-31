@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedSegments model module.
  * @module model/IncludedSegments
  * @version 2022-10-17
- */var IncludedSegments = /*#__PURE__*/function () {
+ */
+var IncludedSegments = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedSegments</code>.
    * @alias module:model/IncludedSegments
@@ -53,11 +54,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedSegments;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.IncludedSegments = IncludedSegments;
 IncludedSegments.TypeEnum = {
   /**

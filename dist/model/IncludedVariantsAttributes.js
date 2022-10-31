@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedVariantsAttributes model module.
  * @module model/IncludedVariantsAttributes
  * @version 2022-10-17
- */var IncludedVariantsAttributes = /*#__PURE__*/function () {
+ */
+var IncludedVariantsAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedVariantsAttributes</code>.
    * @alias module:model/IncludedVariantsAttributes
@@ -54,9 +55,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedVariantsAttributes;
-}(); /**
-      * @member {String} externalId
-      */
+}();
+/**
+ * @member {String} externalId
+ */
 exports.IncludedVariantsAttributes = IncludedVariantsAttributes;
 IncludedVariantsAttributes.prototype.externalId = undefined;
 

@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The MetricAggregateRowDTO model module.
  * @module model/MetricAggregateRowDTO
  * @version 2022-10-17
- */var MetricAggregateRowDTO = /*#__PURE__*/function () {
+ */
+var MetricAggregateRowDTO = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricAggregateRowDTO</code>.
    * @alias module:model/MetricAggregateRowDTO
@@ -45,9 +46,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return MetricAggregateRowDTO;
-}(); /**
-      * @member {Array.<String>} dimensions
-      */
+}();
+/**
+ * @member {Array.<String>} dimensions
+ */
 exports.MetricAggregateRowDTO = MetricAggregateRowDTO;
 MetricAggregateRowDTO.prototype.dimensions = undefined;
 

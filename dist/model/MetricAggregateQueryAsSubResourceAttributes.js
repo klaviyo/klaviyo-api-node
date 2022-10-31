@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The MetricAggregateQueryAsSubResourceAttributes model module.
  * @module model/MetricAggregateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricAggregateQueryAsSubResourceAttributes</code>.
    * @alias module:model/MetricAggregateQueryAsSubResourceAttributes
@@ -59,9 +60,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return MetricAggregateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} metricId
-      */
+}();
+/**
+ * @member {String} metricId
+ */
 exports.MetricAggregateQueryAsSubResourceAttributes = MetricAggregateQueryAsSubResourceAttributes;
 MetricAggregateQueryAsSubResourceAttributes.prototype.metricId = undefined;
 

@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The TemplateCloneQueryAsSubResourceAttributes model module.
  * @module model/TemplateCloneQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var TemplateCloneQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var TemplateCloneQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateCloneQueryAsSubResourceAttributes</code>.
    * @alias module:model/TemplateCloneQueryAsSubResourceAttributes
@@ -41,9 +42,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return TemplateCloneQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.TemplateCloneQueryAsSubResourceAttributes = TemplateCloneQueryAsSubResourceAttributes;
 TemplateCloneQueryAsSubResourceAttributes.prototype.name = undefined;
 

@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The InlineResponse4XX model module.
  * @module model/InlineResponse4XX
  * @version 2022-10-17
- */var InlineResponse4XX = /*#__PURE__*/function () {
+ */
+var InlineResponse4XX = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>InlineResponse4XX</code>.
    * @alias module:model/InlineResponse4XX
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return InlineResponse4XX;
-}(); /**
-      * @member {Array.<module:model/InlineResponse4XXErrors>} errors
-      */
+}();
+/**
+ * @member {Array.<module:model/InlineResponse4XXErrors>} errors
+ */
 exports.InlineResponse4XX = InlineResponse4XX;
 InlineResponse4XX.prototype.errors = undefined;

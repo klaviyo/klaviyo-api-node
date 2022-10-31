@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantDeleteJobCreateQuery model module.
  * @module model/CatalogVariantDeleteJobCreateQuery
  * @version 2022-10-17
- */var CatalogVariantDeleteJobCreateQuery = /*#__PURE__*/function () {
+ */
+var CatalogVariantDeleteJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantDeleteJobCreateQuery</code>.
    * @alias module:model/CatalogVariantDeleteJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantDeleteJobCreateQuery;
-}(); /**
-      * @member {module:model/CatalogVariantDeleteJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/CatalogVariantDeleteJobCreateQueryAsSubResource} data
+ */
 exports.CatalogVariantDeleteJobCreateQuery = CatalogVariantDeleteJobCreateQuery;
 CatalogVariantDeleteJobCreateQuery.prototype.data = undefined;

@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The EventCreateQueryAsSubResource model module.
  * @module model/EventCreateQueryAsSubResource
  * @version 2022-10-17
- */var EventCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var EventCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>EventCreateQueryAsSubResource</code>.
    * @alias module:model/EventCreateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return EventCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.EventCreateQueryAsSubResource = EventCreateQueryAsSubResource;
 EventCreateQueryAsSubResource.TypeEnum = {
   /**

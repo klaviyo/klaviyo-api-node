@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogVariantDeleteJobCreateQueryAsSubResource model module.
  * @module model/CatalogVariantDeleteJobCreateQueryAsSubResource
  * @version 2022-10-17
- */var CatalogVariantDeleteJobCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var CatalogVariantDeleteJobCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantDeleteJobCreateQueryAsSubResource</code>.
    * @alias module:model/CatalogVariantDeleteJobCreateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogVariantDeleteJobCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.CatalogVariantDeleteJobCreateQueryAsSubResource = CatalogVariantDeleteJobCreateQueryAsSubResource;
 CatalogVariantDeleteJobCreateQueryAsSubResource.TypeEnum = {
   /**

@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OnsiteSubscriptionCreateQuery model module.
  * @module model/OnsiteSubscriptionCreateQuery
  * @version 2022-10-17
- */var OnsiteSubscriptionCreateQuery = /*#__PURE__*/function () {
+ */
+var OnsiteSubscriptionCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteSubscriptionCreateQuery</code>.
    * @alias module:model/OnsiteSubscriptionCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return OnsiteSubscriptionCreateQuery;
-}(); /**
-      * @member {module:model/OnsiteSubscriptionCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/OnsiteSubscriptionCreateQueryAsSubResource} data
+ */
 exports.OnsiteSubscriptionCreateQuery = OnsiteSubscriptionCreateQuery;
 OnsiteSubscriptionCreateQuery.prototype.data = undefined;

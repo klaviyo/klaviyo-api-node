@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ProfileCreateQueryAsSubResourceAttributes model module.
  * @module model/ProfileCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var ProfileCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var ProfileCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ProfileCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/ProfileCreateQueryAsSubResourceAttributes
@@ -51,9 +52,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ProfileCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} email
-      */
+}();
+/**
+ * @member {String} email
+ */
 exports.ProfileCreateQueryAsSubResourceAttributes = ProfileCreateQueryAsSubResourceAttributes;
 ProfileCreateQueryAsSubResourceAttributes.prototype.email = undefined;
 

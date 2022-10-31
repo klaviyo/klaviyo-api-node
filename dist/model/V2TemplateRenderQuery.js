@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The V2TemplateRenderQuery model module.
  * @module model/V2TemplateRenderQuery
  * @version 2022-10-17
- */var V2TemplateRenderQuery = /*#__PURE__*/function () {
+ */
+var V2TemplateRenderQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>V2TemplateRenderQuery</code>.
    * @alias module:model/V2TemplateRenderQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return V2TemplateRenderQuery;
-}(); /**
-      * @member {module:model/V2TemplateRenderQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/V2TemplateRenderQueryAsSubResource} data
+ */
 exports.V2TemplateRenderQuery = V2TemplateRenderQuery;
 V2TemplateRenderQuery.prototype.data = undefined;

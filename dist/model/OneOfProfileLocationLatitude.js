@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OneOfProfileLocationLatitude model module.
  * @module model/OneOfProfileLocationLatitude
  * @version 2022-10-17
- */var OneOfProfileLocationLatitude = /*#__PURE__*/function () {
+ */
+var OneOfProfileLocationLatitude = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OneOfProfileLocationLatitude</code>.
    * @alias module:model/OneOfProfileLocationLatitude

@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The UtmParamInfo model module.
  * @module model/UtmParamInfo
  * @version 2022-10-17
- */var UtmParamInfo = /*#__PURE__*/function () {
+ */
+var UtmParamInfo = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>UtmParamInfo</code>.
    * @alias module:model/UtmParamInfo
@@ -45,9 +46,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return UtmParamInfo;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.UtmParamInfo = UtmParamInfo;
 UtmParamInfo.prototype.name = undefined;
 

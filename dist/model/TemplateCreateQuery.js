@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The TemplateCreateQuery model module.
  * @module model/TemplateCreateQuery
  * @version 2022-10-17
- */var TemplateCreateQuery = /*#__PURE__*/function () {
+ */
+var TemplateCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateCreateQuery</code>.
    * @alias module:model/TemplateCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return TemplateCreateQuery;
-}(); /**
-      * @member {module:model/TemplateCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/TemplateCreateQueryAsSubResource} data
+ */
 exports.TemplateCreateQuery = TemplateCreateQuery;
 TemplateCreateQuery.prototype.data = undefined;

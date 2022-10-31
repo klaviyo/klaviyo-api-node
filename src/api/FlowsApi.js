@@ -83,7 +83,7 @@ export class FlowsApi {
 
     /**
      * Get Flow Action
-     * Get a flow action from a flow with the given flow action ID. Include parameters can be provided to get the following related resource data: &#x27;flows&#x27;, &#x27;flow-messages&#x27;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+     * Get a flow action from a flow with the given flow action ID. Include parameters can be provided to get the following related resource data: &#x60;flows&#x60;, &#x60;flow-messages&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
      * @param {<&vendorExtensions.x-jsdoc-type>} id 
      * @param {Object} opts Optional parameters
      * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2022-10-17/reference/api-overview#sparse-fieldsets
@@ -174,7 +174,7 @@ export class FlowsApi {
 
     /**
      * Get Messages For Flow Action
-     * Get all flow messages associated with the given action ID. Flow messages can be sorted by the following fields, in ascending and descending order: &#x27;id&#x27;,  &#x27;name&#x27;, &#x27;created&#x27;, &#x27;updated&#x27; Use filters to narrow your results. Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#sparse-fieldsets). Returns a maximum of 50 flows per request, which can be paginated with [offset pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination). Offset pagination uses the following parameters: &#x60;page[size]&#x60; and &#x60;page[number]&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+     * Get all flow messages associated with the given action ID.  Flow messages can be sorted by the following fields, in ascending and descending order:  ascending: &#x60;id&#x60;,  &#x60;name&#x60;, &#x60;created&#x60;, &#x60;updated&#x60; descending: &#x60;-id&#x60;,  &#x60;-name&#x60;, &#x60;-created&#x60;, &#x60;-updated&#x60;  Use filters to narrow your results. Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#sparse-fieldsets).  Returns a maximum of 50 flows per request, which can be paginated with [offset pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination). Offset pagination uses the following parameters: &#x60;page[size]&#x60; and &#x60;page[number]&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
      * @param {<&vendorExtensions.x-jsdoc-type>} actionId 
      * @param {Object} opts Optional parameters
      * @param {Array.<module:model/String>} opts.fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2022-10-17/reference/api-overview#sparse-fieldsets
@@ -220,7 +220,7 @@ export class FlowsApi {
 
     /**
      * Get Flow Action Relationships
-     * Get all [relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#relationships) for flow messages associated with the given flow action ID. Flow message relationships can be sorted by the following fields, in ascending and descending order: &#x27;id&#x27;,  &#x27;name&#x27;, &#x27;created&#x27;, &#x27;updated&#x27; Use filters to narrow your results. Returns a maximum of 50 flow message relationships per request, which can be paginated with [offset pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination). Offset pagination uses the following parameters: &#x60;page[size]&#x60; and &#x60;page[number]&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+     * Get all [relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#relationships) for flow messages associated with the given flow action ID.  Flow message relationships can be sorted by the following fields, in ascending and descending order:  &#x60;id&#x60;,  &#x60;name&#x60;, &#x60;created&#x60;, &#x60;updated&#x60;  Use filters to narrow your results.  Returns a maximum of 50 flow message relationships per request, which can be paginated with [offset pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination). Offset pagination uses the following parameters: &#x60;page[size]&#x60; and &#x60;page[number]&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
      * @param {<&vendorExtensions.x-jsdoc-type>} id 
      * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
      * @param {Object} opts Optional parameters

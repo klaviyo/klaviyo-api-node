@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedCategoriesAttributes model module.
  * @module model/IncludedCategoriesAttributes
  * @version 2022-10-17
- */var IncludedCategoriesAttributes = /*#__PURE__*/function () {
+ */
+var IncludedCategoriesAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedCategoriesAttributes</code>.
    * @alias module:model/IncludedCategoriesAttributes
@@ -42,9 +43,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedCategoriesAttributes;
-}(); /**
-      * @member {String} externalId
-      */
+}();
+/**
+ * @member {String} externalId
+ */
 exports.IncludedCategoriesAttributes = IncludedCategoriesAttributes;
 IncludedCategoriesAttributes.prototype.externalId = undefined;
 

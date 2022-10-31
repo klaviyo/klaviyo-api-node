@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ProfilePartialUpdateQuery model module.
  * @module model/ProfilePartialUpdateQuery
  * @version 2022-10-17
- */var ProfilePartialUpdateQuery = /*#__PURE__*/function () {
+ */
+var ProfilePartialUpdateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ProfilePartialUpdateQuery</code>.
    * @alias module:model/ProfilePartialUpdateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ProfilePartialUpdateQuery;
-}(); /**
-      * @member {module:model/ProfilePartialUpdateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/ProfilePartialUpdateQueryAsSubResource} data
+ */
 exports.ProfilePartialUpdateQuery = ProfilePartialUpdateQuery;
 ProfilePartialUpdateQuery.prototype.data = undefined;

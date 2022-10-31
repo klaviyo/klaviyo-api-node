@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The IncludedProfilesAttributes model module.
  * @module model/IncludedProfilesAttributes
  * @version 2022-10-17
- */var IncludedProfilesAttributes = /*#__PURE__*/function () {
+ */
+var IncludedProfilesAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>IncludedProfilesAttributes</code>.
    * @alias module:model/IncludedProfilesAttributes
@@ -54,9 +55,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return IncludedProfilesAttributes;
-}(); /**
-      * @member {String} email
-      */
+}();
+/**
+ * @member {String} email
+ */
 exports.IncludedProfilesAttributes = IncludedProfilesAttributes;
 IncludedProfilesAttributes.prototype.email = undefined;
 

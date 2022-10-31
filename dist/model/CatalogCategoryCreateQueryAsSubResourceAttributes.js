@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogCategoryCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogCategoryCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var CatalogCategoryCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var CatalogCategoryCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogCategoryCreateQueryAsSubResourceAttributes
@@ -47,9 +48,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogCategoryCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} externalId
-      */
+}();
+/**
+ * @member {String} externalId
+ */
 exports.CatalogCategoryCreateQueryAsSubResourceAttributes = CatalogCategoryCreateQueryAsSubResourceAttributes;
 CatalogCategoryCreateQueryAsSubResourceAttributes.prototype.externalId = undefined;
 

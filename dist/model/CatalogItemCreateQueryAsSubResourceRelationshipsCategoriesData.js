@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData model module.
  * @module model/CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData
  * @version 2022-10-17
- */var CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData = /*#__PURE__*/function () {
+ */
+var CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData</code>.
    * @alias module:model/CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData
@@ -45,11 +46,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData = CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData;
 CatalogItemCreateQueryAsSubResourceRelationshipsCategoriesData.TypeEnum = {
   /**

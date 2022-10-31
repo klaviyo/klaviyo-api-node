@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ErrorSource model module.
  * @module model/ErrorSource
  * @version 2022-10-17
- */var ErrorSource = /*#__PURE__*/function () {
+ */
+var ErrorSource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ErrorSource</code>.
    * @alias module:model/ErrorSource
@@ -42,8 +43,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ErrorSource;
-}(); /**
-      * @member {String} pointer
-      */
+}();
+/**
+ * @member {String} pointer
+ */
 exports.ErrorSource = ErrorSource;
 ErrorSource.prototype.pointer = undefined;

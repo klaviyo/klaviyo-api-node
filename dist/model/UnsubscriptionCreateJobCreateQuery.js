@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The UnsubscriptionCreateJobCreateQuery model module.
  * @module model/UnsubscriptionCreateJobCreateQuery
  * @version 2022-10-17
- */var UnsubscriptionCreateJobCreateQuery = /*#__PURE__*/function () {
+ */
+var UnsubscriptionCreateJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>UnsubscriptionCreateJobCreateQuery</code>.
    * @alias module:model/UnsubscriptionCreateJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return UnsubscriptionCreateJobCreateQuery;
-}(); /**
-      * @member {module:model/UnsubscriptionCreateJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/UnsubscriptionCreateJobCreateQueryAsSubResource} data
+ */
 exports.UnsubscriptionCreateJobCreateQuery = UnsubscriptionCreateJobCreateQuery;
 UnsubscriptionCreateJobCreateQuery.prototype.data = undefined;

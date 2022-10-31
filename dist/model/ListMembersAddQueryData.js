@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListMembersAddQueryData model module.
  * @module model/ListMembersAddQueryData
  * @version 2022-10-17
- */var ListMembersAddQueryData = /*#__PURE__*/function () {
+ */
+var ListMembersAddQueryData = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListMembersAddQueryData</code>.
    * @alias module:model/ListMembersAddQueryData
@@ -45,11 +46,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListMembersAddQueryData;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.ListMembersAddQueryData = ListMembersAddQueryData;
 ListMembersAddQueryData.TypeEnum = {
   /**

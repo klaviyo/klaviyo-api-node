@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ProfilePartialUpdateQueryAsSubResource model module.
  * @module model/ProfilePartialUpdateQueryAsSubResource
  * @version 2022-10-17
- */var ProfilePartialUpdateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var ProfilePartialUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ProfilePartialUpdateQueryAsSubResource</code>.
    * @alias module:model/ProfilePartialUpdateQueryAsSubResource
@@ -49,11 +50,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ProfilePartialUpdateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.ProfilePartialUpdateQueryAsSubResource = ProfilePartialUpdateQueryAsSubResource;
 ProfilePartialUpdateQueryAsSubResource.TypeEnum = {
   /**

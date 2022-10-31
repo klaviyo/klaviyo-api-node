@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The FlowUpdateQueryAsSubResource model module.
  * @module model/FlowUpdateQueryAsSubResource
  * @version 2022-10-17
- */var FlowUpdateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var FlowUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>FlowUpdateQueryAsSubResource</code>.
    * @alias module:model/FlowUpdateQueryAsSubResource
@@ -49,11 +50,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return FlowUpdateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.FlowUpdateQueryAsSubResource = FlowUpdateQueryAsSubResource;
 FlowUpdateQueryAsSubResource.TypeEnum = {
   /**

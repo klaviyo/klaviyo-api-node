@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The EventCreateQuery model module.
  * @module model/EventCreateQuery
  * @version 2022-10-17
- */var EventCreateQuery = /*#__PURE__*/function () {
+ */
+var EventCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>EventCreateQuery</code>.
    * @alias module:model/EventCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return EventCreateQuery;
-}(); /**
-      * @member {module:model/EventCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/EventCreateQueryAsSubResource} data
+ */
 exports.EventCreateQuery = EventCreateQuery;
 EventCreateQuery.prototype.data = undefined;

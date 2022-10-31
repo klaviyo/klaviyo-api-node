@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OnsiteProfileMeta model module.
  * @module model/OnsiteProfileMeta
  * @version 2022-10-17
- */var OnsiteProfileMeta = /*#__PURE__*/function () {
+ */
+var OnsiteProfileMeta = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteProfileMeta</code>.
    * @alias module:model/OnsiteProfileMeta
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return OnsiteProfileMeta;
-}(); /**
-      * @member {module:model/OnsiteProfileMetaIdentifiers} identifiers
-      */
+}();
+/**
+ * @member {module:model/OnsiteProfileMetaIdentifiers} identifiers
+ */
 exports.OnsiteProfileMeta = OnsiteProfileMeta;
 OnsiteProfileMeta.prototype.identifiers = undefined;

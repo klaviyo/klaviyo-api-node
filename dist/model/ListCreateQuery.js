@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListCreateQuery model module.
  * @module model/ListCreateQuery
  * @version 2022-10-17
- */var ListCreateQuery = /*#__PURE__*/function () {
+ */
+var ListCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListCreateQuery</code>.
    * @alias module:model/ListCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListCreateQuery;
-}(); /**
-      * @member {module:model/ListCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/ListCreateQueryAsSubResource} data
+ */
 exports.ListCreateQuery = ListCreateQuery;
 ListCreateQuery.prototype.data = undefined;

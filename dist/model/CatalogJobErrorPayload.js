@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The CatalogJobErrorPayload model module.
  * @module model/CatalogJobErrorPayload
  * @version 2022-10-17
- */var CatalogJobErrorPayload = /*#__PURE__*/function () {
+ */
+var CatalogJobErrorPayload = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogJobErrorPayload</code>.
    * @alias module:model/CatalogJobErrorPayload
@@ -55,9 +56,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return CatalogJobErrorPayload;
-}(); /**
-      * @member {String} id
-      */
+}();
+/**
+ * @member {String} id
+ */
 exports.CatalogJobErrorPayload = CatalogJobErrorPayload;
 CatalogJobErrorPayload.prototype.id = undefined;
 

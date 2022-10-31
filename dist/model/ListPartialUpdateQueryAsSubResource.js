@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListPartialUpdateQueryAsSubResource model module.
  * @module model/ListPartialUpdateQueryAsSubResource
  * @version 2022-10-17
- */var ListPartialUpdateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var ListPartialUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListPartialUpdateQueryAsSubResource</code>.
    * @alias module:model/ListPartialUpdateQueryAsSubResource
@@ -49,11 +50,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListPartialUpdateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.ListPartialUpdateQueryAsSubResource = ListPartialUpdateQueryAsSubResource;
 ListPartialUpdateQueryAsSubResource.TypeEnum = {
   /**

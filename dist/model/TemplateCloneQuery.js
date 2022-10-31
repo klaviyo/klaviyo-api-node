@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The TemplateCloneQuery model module.
  * @module model/TemplateCloneQuery
  * @version 2022-10-17
- */var TemplateCloneQuery = /*#__PURE__*/function () {
+ */
+var TemplateCloneQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateCloneQuery</code>.
    * @alias module:model/TemplateCloneQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return TemplateCloneQuery;
-}(); /**
-      * @member {module:model/TemplateCloneQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/TemplateCloneQueryAsSubResource} data
+ */
 exports.TemplateCloneQuery = TemplateCloneQuery;
 TemplateCloneQuery.prototype.data = undefined;

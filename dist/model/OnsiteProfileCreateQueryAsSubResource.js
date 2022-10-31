@@ -14,7 +14,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OnsiteProfileCreateQueryAsSubResource model module.
  * @module model/OnsiteProfileCreateQueryAsSubResource
  * @version 2022-10-17
- */var OnsiteProfileCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var OnsiteProfileCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteProfileCreateQueryAsSubResource</code>.
    * @alias module:model/OnsiteProfileCreateQueryAsSubResource
@@ -48,11 +49,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return OnsiteProfileCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.OnsiteProfileCreateQueryAsSubResource = OnsiteProfileCreateQueryAsSubResource;
 OnsiteProfileCreateQueryAsSubResource.TypeEnum = {
   /**

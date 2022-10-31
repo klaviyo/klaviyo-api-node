@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListCreateQueryAsSubResourceAttributes model module.
  * @module model/ListCreateQueryAsSubResourceAttributes
  * @version 2022-10-17
- */var ListCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
+ */
+var ListCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/ListCreateQueryAsSubResourceAttributes
@@ -42,8 +43,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListCreateQueryAsSubResourceAttributes;
-}(); /**
-      * @member {String} name
-      */
+}();
+/**
+ * @member {String} name
+ */
 exports.ListCreateQueryAsSubResourceAttributes = ListCreateQueryAsSubResourceAttributes;
 ListCreateQueryAsSubResourceAttributes.prototype.name = undefined;

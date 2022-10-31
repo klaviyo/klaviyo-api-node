@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The SubscriptionCreateJobCreateQuery model module.
  * @module model/SubscriptionCreateJobCreateQuery
  * @version 2022-10-17
- */var SubscriptionCreateJobCreateQuery = /*#__PURE__*/function () {
+ */
+var SubscriptionCreateJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SubscriptionCreateJobCreateQuery</code>.
    * @alias module:model/SubscriptionCreateJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return SubscriptionCreateJobCreateQuery;
-}(); /**
-      * @member {module:model/SubscriptionCreateJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/SubscriptionCreateJobCreateQueryAsSubResource} data
+ */
 exports.SubscriptionCreateJobCreateQuery = SubscriptionCreateJobCreateQuery;
 SubscriptionCreateJobCreateQuery.prototype.data = undefined;

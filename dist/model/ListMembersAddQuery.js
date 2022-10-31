@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The ListMembersAddQuery model module.
  * @module model/ListMembersAddQuery
  * @version 2022-10-17
- */var ListMembersAddQuery = /*#__PURE__*/function () {
+ */
+var ListMembersAddQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListMembersAddQuery</code>.
    * @alias module:model/ListMembersAddQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return ListMembersAddQuery;
-}(); /**
-      * @member {Array.<module:model/ListMembersAddQueryData>} data
-      */
+}();
+/**
+ * @member {Array.<module:model/ListMembersAddQueryData>} data
+ */
 exports.ListMembersAddQuery = ListMembersAddQuery;
 ListMembersAddQuery.prototype.data = undefined;

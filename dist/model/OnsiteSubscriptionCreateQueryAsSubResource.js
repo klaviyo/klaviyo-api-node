@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The OnsiteSubscriptionCreateQueryAsSubResource model module.
  * @module model/OnsiteSubscriptionCreateQueryAsSubResource
  * @version 2022-10-17
- */var OnsiteSubscriptionCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var OnsiteSubscriptionCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteSubscriptionCreateQueryAsSubResource</code>.
    * @alias module:model/OnsiteSubscriptionCreateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return OnsiteSubscriptionCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.OnsiteSubscriptionCreateQueryAsSubResource = OnsiteSubscriptionCreateQueryAsSubResource;
 OnsiteSubscriptionCreateQueryAsSubResource.TypeEnum = {
   /**

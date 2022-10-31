@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The V2TemplateRenderQueryAsSubResource model module.
  * @module model/V2TemplateRenderQueryAsSubResource
  * @version 2022-10-17
- */var V2TemplateRenderQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var V2TemplateRenderQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>V2TemplateRenderQueryAsSubResource</code>.
    * @alias module:model/V2TemplateRenderQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return V2TemplateRenderQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.V2TemplateRenderQueryAsSubResource = V2TemplateRenderQueryAsSubResource;
 V2TemplateRenderQueryAsSubResource.TypeEnum = {
   /**

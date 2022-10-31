@@ -12,7 +12,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The InlineResponse4XXSource model module.
  * @module model/InlineResponse4XXSource
  * @version 2022-10-17
- */var InlineResponse4XXSource = /*#__PURE__*/function () {
+ */
+var InlineResponse4XXSource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>InlineResponse4XXSource</code>.
    * @alias module:model/InlineResponse4XXSource
@@ -41,9 +42,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return InlineResponse4XXSource;
-}(); /**
-      * @member {String} pointer
-      */
+}();
+/**
+ * @member {String} pointer
+ */
 exports.InlineResponse4XXSource = InlineResponse4XXSource;
 InlineResponse4XXSource.prototype.pointer = undefined;
 

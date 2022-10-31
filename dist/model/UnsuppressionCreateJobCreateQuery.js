@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The UnsuppressionCreateJobCreateQuery model module.
  * @module model/UnsuppressionCreateJobCreateQuery
  * @version 2022-10-17
- */var UnsuppressionCreateJobCreateQuery = /*#__PURE__*/function () {
+ */
+var UnsuppressionCreateJobCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>UnsuppressionCreateJobCreateQuery</code>.
    * @alias module:model/UnsuppressionCreateJobCreateQuery
@@ -43,8 +44,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return UnsuppressionCreateJobCreateQuery;
-}(); /**
-      * @member {module:model/UnsuppressionCreateJobCreateQueryAsSubResource} data
-      */
+}();
+/**
+ * @member {module:model/UnsuppressionCreateJobCreateQueryAsSubResource} data
+ */
 exports.UnsuppressionCreateJobCreateQuery = UnsuppressionCreateJobCreateQuery;
 UnsuppressionCreateJobCreateQuery.prototype.data = undefined;

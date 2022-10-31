@@ -13,7 +13,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * The UnsubscriptionCreateJobCreateQueryAsSubResource model module.
  * @module model/UnsubscriptionCreateJobCreateQueryAsSubResource
  * @version 2022-10-17
- */var UnsubscriptionCreateJobCreateQueryAsSubResource = /*#__PURE__*/function () {
+ */
+var UnsubscriptionCreateJobCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>UnsubscriptionCreateJobCreateQueryAsSubResource</code>.
    * @alias module:model/UnsubscriptionCreateJobCreateQueryAsSubResource
@@ -46,11 +47,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }
   }]);
   return UnsubscriptionCreateJobCreateQueryAsSubResource;
-}(); /**
-      * Allowed values for the <code>type</code> property.
-      * @enum {String}
-      * @readonly
-      */
+}();
+/**
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
+ */
 exports.UnsubscriptionCreateJobCreateQueryAsSubResource = UnsubscriptionCreateJobCreateQueryAsSubResource;
 UnsubscriptionCreateJobCreateQueryAsSubResource.TypeEnum = {
   /**
