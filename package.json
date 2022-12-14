@@ -24,11 +24,11 @@
     "url": "git+https://github.com/klaviyo/klaviyo-api-node"
   },
   "dependencies": {
-    "@babel/cli": "^7.16.8",
     "superagent": "^7.1.1",
     "exponential-backoff": "^3.1.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.12",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.16.7",
