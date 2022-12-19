@@ -52,7 +52,7 @@ export class ApiClient {
          */
         this.defaultHeaders = { 
             revision: "2022-10-17",
-            "User-Agent": "klaviyo-api-node/1.0.1",
+            "User-Agent": "klaviyo-api-node/1.0.2",
         };
 
         /**
@@ -381,6 +381,11 @@ export class ApiClient {
     callApi(path, httpMethod, pathParams,
         queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts,
         returnType) {
+
+        if (queryParams && queryParams['page[cursor]'] && queryParams['page[cursor]'].includes("https://")) {
+            const params = new URLSearchParams(decodeURI(queryParams['page[cursor]'].split('?')[1]))
+            queryParams['page[cursor]'] = params.get('page[cursor]')
+        }
 
         var url = this.buildUrl(path, pathParams);
         var request = superagent(httpMethod, url);

@@ -1,6 +1,6 @@
 # Klaviyo JavaScript SDK
 
-- SDK version: 1.0.1
+- SDK version: 1.0.2
 
 - Revision: 2022-10-17
 
@@ -131,14 +131,30 @@ const r = await catalogApi.createCatalogCategory(body)
 
 Different endpoint include specific optional parameters. Here is a few examples how to use these and what they look like
 
+more often than not the info that can go into the `opts` param are the optional headers.
+These are formatted in js a bit different from the docs, headers names have variables that make bad names like
+page[cursor] are transformed to `pageCursor`. (Remove the weird characters and append words with camelCase)
+
+```javascript
+const opts = {
+    pageCursor: "page_cursor", // page[cursor]
+    fieldsList: ["list", "of", "wanted", "attributes"] // fields[list]
+    include: ["resource_to_include"] // include
+}
+```
+
+
 #### Cursor based Pagination
 
 Obtain the cursor value from the call you want to get the next page for, then pass it under the `pageCursor` optional parameter
 
 ```javascript
-const nextPageCursor = 'WzE2NDA5OTUyMDAsICIzYzRjeXdGTndadyIsIHRydWVd'
+// page cursor looks like 'WzE2NDA5OTUyMDAsICIzYzRjeXdGTndadyIsIHRydWVd'
+// next.link returns the entire url of the next call but the sdk will accept the entire link and use only the relevant cursor
 
-await Events.getEvents({pageCursor: nextPageCursor})
+const response = await Profiles.getProfiles();
+const opts = {pageCursor: response.links.next}
+const response2 = await Profiles.getProfiles(opts);
 ```
 
 #### Filtering

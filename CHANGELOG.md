@@ -1,7 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2022-10-19
+## [1.0.2] - revision: 2022-10-19 (update: 2022-12-19)
+
+### Changes
+- fix `babel/cli` location in `package.json` to be in devDependencies
+- when passing pageCursor the returned link.next url will be automatically parsed for the page cursor
+
+## [1.0.0] - revision: 2022-10-19
+
 ### Added
 - Initial release
 
