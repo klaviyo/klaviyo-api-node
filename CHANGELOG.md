@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
     - Get Flow Tags
     - Get List Tags
     - Get Segment Tags
-- Reworked the response object from api
+- Reworked the response object returned by SDK methods
   - instead of only returning the response payload, the status code and headers are now also returned
   - The API response payload is now nested under `body` within the API response returned by SDK methods. You can get the `id` of the returned resource by calling `response.body.data.id` instead of `response.data.id` from previous releases. You can get response headers and status with `response.headers` and `response.status` respectively.
 
