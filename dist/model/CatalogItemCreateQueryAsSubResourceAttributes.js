@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogItemCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogItemCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var CatalogItemCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -94,8 +94,9 @@ CatalogItemCreateQueryAsSubResourceAttributes.prototype.title = undefined;
 
 /**
  * @member {String} catalogType
+ * @default '$default'
  */
-CatalogItemCreateQueryAsSubResourceAttributes.prototype.catalogType = undefined;
+CatalogItemCreateQueryAsSubResourceAttributes.prototype.catalogType = '$default';
 
 /**
  * @member {String} description
@@ -129,5 +130,6 @@ CatalogItemCreateQueryAsSubResourceAttributes.prototype.customMetadata = undefin
 
 /**
  * @member {Boolean} published
+ * @default true
  */
-CatalogItemCreateQueryAsSubResourceAttributes.prototype.published = undefined;
+CatalogItemCreateQueryAsSubResourceAttributes.prototype.published = true;

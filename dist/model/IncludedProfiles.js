@@ -16,7 +16,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedProfiles model module.
  * @module model/IncludedProfiles
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var IncludedProfiles = /*#__PURE__*/function () {
   /**

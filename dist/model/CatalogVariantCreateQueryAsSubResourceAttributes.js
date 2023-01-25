@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogVariantCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogVariantCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var CatalogVariantCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -83,8 +83,9 @@ CatalogVariantCreateQueryAsSubResourceAttributes.prototype.externalId = undefine
 
 /**
  * @member {String} catalogType
+ * @default '$default'
  */
-CatalogVariantCreateQueryAsSubResourceAttributes.prototype.catalogType = undefined;
+CatalogVariantCreateQueryAsSubResourceAttributes.prototype.catalogType = '$default';
 
 /**
  * Allowed values for the <code>integrationType</code> property.
@@ -184,5 +185,6 @@ CatalogVariantCreateQueryAsSubResourceAttributes.prototype.customMetadata = unde
 
 /**
  * @member {Boolean} published
+ * @default true
  */
-CatalogVariantCreateQueryAsSubResourceAttributes.prototype.published = undefined;
+CatalogVariantCreateQueryAsSubResourceAttributes.prototype.published = true;

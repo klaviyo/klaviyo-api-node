@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.UnsuppressionCreateJobCreateQueryAsSubResource = void 0;
 var _ApiClient = require("../ApiClient.js");
-var _SuppressionCreateJobCreateQueryAsSubResourceAttributes = require("./SuppressionCreateJobCreateQueryAsSubResourceAttributes.js");
+var _UnsuppressionCreateJobCreateQueryAsSubResourceAttributes = require("./UnsuppressionCreateJobCreateQueryAsSubResourceAttributes.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The UnsuppressionCreateJobCreateQueryAsSubResource model module.
  * @module model/UnsuppressionCreateJobCreateQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var UnsuppressionCreateJobCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**
@@ -23,7 +23,7 @@ var UnsuppressionCreateJobCreateQueryAsSubResource = /*#__PURE__*/function () {
    * @alias module:model/UnsuppressionCreateJobCreateQueryAsSubResource
    * @class
    * @param type {module:model/UnsuppressionCreateJobCreateQueryAsSubResource.TypeEnum} 
-   * @param attributes {module:model/SuppressionCreateJobCreateQueryAsSubResourceAttributes} 
+   * @param attributes {module:model/UnsuppressionCreateJobCreateQueryAsSubResourceAttributes} 
    */
   function UnsuppressionCreateJobCreateQueryAsSubResource(type, attributes) {
     _classCallCheck(this, UnsuppressionCreateJobCreateQueryAsSubResource);
@@ -44,7 +44,7 @@ var UnsuppressionCreateJobCreateQueryAsSubResource = /*#__PURE__*/function () {
       if (data) {
         obj = obj || new UnsuppressionCreateJobCreateQueryAsSubResource();
         if (data.hasOwnProperty('type')) obj.type = _ApiClient.ApiClient.convertToType(data['type'], 'String');
-        if (data.hasOwnProperty('attributes')) obj.attributes = _SuppressionCreateJobCreateQueryAsSubResourceAttributes.SuppressionCreateJobCreateQueryAsSubResourceAttributes.constructFromObject(data['attributes']);
+        if (data.hasOwnProperty('attributes')) obj.attributes = _UnsuppressionCreateJobCreateQueryAsSubResourceAttributes.UnsuppressionCreateJobCreateQueryAsSubResourceAttributes.constructFromObject(data['attributes']);
       }
       return obj;
     }
@@ -70,6 +70,6 @@ UnsuppressionCreateJobCreateQueryAsSubResource.TypeEnum = {
 UnsuppressionCreateJobCreateQueryAsSubResource.prototype.type = undefined;
 
 /**
- * @member {module:model/SuppressionCreateJobCreateQueryAsSubResourceAttributes} attributes
+ * @member {module:model/UnsuppressionCreateJobCreateQueryAsSubResourceAttributes} attributes
  */
 UnsuppressionCreateJobCreateQueryAsSubResource.prototype.attributes = undefined;

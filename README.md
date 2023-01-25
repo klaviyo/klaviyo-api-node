@@ -1,8 +1,8 @@
 # Klaviyo JavaScript SDK
 
-- SDK version: 1.0.2
+- SDK version: 2.0.0
 
-- Revision: 2022-10-17
+- Revision: 2023-01-24
 
 ## Helpful Resources
 
@@ -22,12 +22,14 @@ This SDK is organized into the following resources:
 
  - Catalogs
  - Client
+ - DataPrivacy
  - Events
  - Flows
  - Lists
  - Metrics
  - Profiles
  - Segments
+ - Tags
  - Templates
 
 # Installation
@@ -118,6 +120,33 @@ KaviyoSdk.Profiles.getProfile(profileId, opts)
     .catch(error => 'An error was thrown check the HTTP code with error.status');
 ```
 
+### What the response looks like
+
+The response is an object with three parts: status, headers, and body
+
+```JavaScript
+import {Profiles} from 'klaviyo-api';
+
+const opts = {};
+
+// how to get your request information
+try {
+    response = await Profiles.getProfiles(opts)
+    const response_body = response.body
+    // first index id
+    const id = response_body.data[0].id
+    // getting the next page cursor
+    const next_page_cursor = response_body.links.next
+    // rest of the response information
+    const status = response.status
+    const headers = response.headers
+} catch (e) {
+    console.log(error);
+}
+```
+
+### Multiple stores
+
 if you need to use multiple api keys, you can forgo the wrapped api classes and make you own
 
 ```JavaScript
@@ -153,7 +182,7 @@ Obtain the cursor value from the call you want to get the next page for, then pa
 // next.link returns the entire url of the next call but the sdk will accept the entire link and use only the relevant cursor
 
 const response = await Profiles.getProfiles();
-const opts = {pageCursor: response.links.next}
+const opts = {pageCursor: response.body.links.next}
 const response2 = await Profiles.getProfiles(opts);
 ```
 
@@ -208,7 +237,7 @@ _**NOTE:**_
 ## CatalogsApi
 
 
-#### [Create Catalog Category](https://developers.klaviyo.com/en/v2022-10-17/reference/create_catalog_category)
+#### [Create Catalog Category](https://developers.klaviyo.com/en/v2023-01-24/reference/create_catalog_category)
 
 ```JavaScript
 const Catalogs.createCatalogCategory(body)
@@ -217,7 +246,7 @@ const Catalogs.createCatalogCategory(body)
 
 
 
-#### [Create Catalog Category Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/create_catalog_category_relationships)
+#### [Create Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/create_catalog_category_relationships)
 
 ```JavaScript
 const Catalogs.createCatalogCategoryRelationships(body, id, relatedResource)
@@ -226,7 +255,7 @@ const Catalogs.createCatalogCategoryRelationships(body, id, relatedResource)
 
 
 
-#### [Create Catalog Item](https://developers.klaviyo.com/en/v2022-10-17/reference/create_catalog_item)
+#### [Create Catalog Item](https://developers.klaviyo.com/en/v2023-01-24/reference/create_catalog_item)
 
 ```JavaScript
 const Catalogs.createCatalogItem(body)
@@ -235,7 +264,7 @@ const Catalogs.createCatalogItem(body)
 
 
 
-#### [Create Catalog Item Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/create_catalog_item_relationships)
+#### [Create Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/create_catalog_item_relationships)
 
 ```JavaScript
 const Catalogs.createCatalogItemRelationships(body, id, relatedResource)
@@ -244,7 +273,7 @@ const Catalogs.createCatalogItemRelationships(body, id, relatedResource)
 
 
 
-#### [Create Catalog Variant](https://developers.klaviyo.com/en/v2022-10-17/reference/create_catalog_variant)
+#### [Create Catalog Variant](https://developers.klaviyo.com/en/v2023-01-24/reference/create_catalog_variant)
 
 ```JavaScript
 const Catalogs.createCatalogVariant(body)
@@ -253,7 +282,7 @@ const Catalogs.createCatalogVariant(body)
 
 
 
-#### [Delete Catalog Category](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_catalog_category)
+#### [Delete Catalog Category](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_catalog_category)
 
 ```JavaScript
 const Catalogs.deleteCatalogCategory(id)
@@ -262,7 +291,7 @@ const Catalogs.deleteCatalogCategory(id)
 
 
 
-#### [Delete Catalog Category Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_catalog_category_relationships)
+#### [Delete Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_catalog_category_relationships)
 
 ```JavaScript
 const Catalogs.deleteCatalogCategoryRelationships(body, id, relatedResource)
@@ -271,7 +300,7 @@ const Catalogs.deleteCatalogCategoryRelationships(body, id, relatedResource)
 
 
 
-#### [Delete Catalog Item](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_catalog_item)
+#### [Delete Catalog Item](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_catalog_item)
 
 ```JavaScript
 const Catalogs.deleteCatalogItem(id)
@@ -280,7 +309,7 @@ const Catalogs.deleteCatalogItem(id)
 
 
 
-#### [Delete Catalog Item Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_catalog_item_relationships)
+#### [Delete Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_catalog_item_relationships)
 
 ```JavaScript
 const Catalogs.deleteCatalogItemRelationships(body, id, relatedResource)
@@ -289,7 +318,7 @@ const Catalogs.deleteCatalogItemRelationships(body, id, relatedResource)
 
 
 
-#### [Delete Catalog Variant](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_catalog_variant)
+#### [Delete Catalog Variant](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_catalog_variant)
 
 ```JavaScript
 const Catalogs.deleteCatalogVariant(id)
@@ -298,7 +327,7 @@ const Catalogs.deleteCatalogVariant(id)
 
 
 
-#### [Get Catalog Categories](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_categories)
+#### [Get Catalog Categories](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_categories)
 
 ```JavaScript
 const Catalogs.getCatalogCategories(opts)
@@ -307,7 +336,7 @@ const Catalogs.getCatalogCategories(opts)
 
 
 
-#### [Get Catalog Category](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_category)
+#### [Get Catalog Category](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_category)
 
 ```JavaScript
 const Catalogs.getCatalogCategory(id, opts)
@@ -316,7 +345,7 @@ const Catalogs.getCatalogCategory(id, opts)
 
 
 
-#### [Get Catalog Category Items](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_category_items)
+#### [Get Catalog Category Items](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_category_items)
 
 ```JavaScript
 const Catalogs.getCatalogCategoryItems(categoryId, opts)
@@ -325,7 +354,7 @@ const Catalogs.getCatalogCategoryItems(categoryId, opts)
 
 
 
-#### [Get Catalog Category Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_category_relationships)
+#### [Get Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_category_relationships)
 
 ```JavaScript
 const Catalogs.getCatalogCategoryRelationships(id, relatedResource, opts)
@@ -334,7 +363,7 @@ const Catalogs.getCatalogCategoryRelationships(id, relatedResource, opts)
 
 
 
-#### [Get Catalog Item](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_item)
+#### [Get Catalog Item](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_item)
 
 ```JavaScript
 const Catalogs.getCatalogItem(id, opts)
@@ -343,7 +372,7 @@ const Catalogs.getCatalogItem(id, opts)
 
 
 
-#### [Get Catalog Item Categories](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_item_categories)
+#### [Get Catalog Item Categories](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_item_categories)
 
 ```JavaScript
 const Catalogs.getCatalogItemCategories(itemId, opts)
@@ -352,7 +381,7 @@ const Catalogs.getCatalogItemCategories(itemId, opts)
 
 
 
-#### [Get Catalog Item Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_item_relationships)
+#### [Get Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_item_relationships)
 
 ```JavaScript
 const Catalogs.getCatalogItemRelationships(id, relatedResource, opts)
@@ -361,7 +390,7 @@ const Catalogs.getCatalogItemRelationships(id, relatedResource, opts)
 
 
 
-#### [Get Catalog Item Variants](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_item_variants)
+#### [Get Catalog Item Variants](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_item_variants)
 
 ```JavaScript
 const Catalogs.getCatalogItemVariants(itemId, opts)
@@ -370,7 +399,7 @@ const Catalogs.getCatalogItemVariants(itemId, opts)
 
 
 
-#### [Get Catalog Items](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_items)
+#### [Get Catalog Items](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_items)
 
 ```JavaScript
 const Catalogs.getCatalogItems(opts)
@@ -379,7 +408,7 @@ const Catalogs.getCatalogItems(opts)
 
 
 
-#### [Get Catalog Variant](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_variant)
+#### [Get Catalog Variant](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_variant)
 
 ```JavaScript
 const Catalogs.getCatalogVariant(id, opts)
@@ -388,7 +417,7 @@ const Catalogs.getCatalogVariant(id, opts)
 
 
 
-#### [Get Catalog Variants](https://developers.klaviyo.com/en/v2022-10-17/reference/get_catalog_variants)
+#### [Get Catalog Variants](https://developers.klaviyo.com/en/v2023-01-24/reference/get_catalog_variants)
 
 ```JavaScript
 const Catalogs.getCatalogVariants(opts)
@@ -397,7 +426,7 @@ const Catalogs.getCatalogVariants(opts)
 
 
 
-#### [Get Create Categories Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_create_categories_job)
+#### [Get Create Categories Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_create_categories_job)
 
 ```JavaScript
 const Catalogs.getCreateCategoriesJob(jobId, opts)
@@ -406,7 +435,7 @@ const Catalogs.getCreateCategoriesJob(jobId, opts)
 
 
 
-#### [Get Create Categories Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_create_categories_jobs)
+#### [Get Create Categories Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_create_categories_jobs)
 
 ```JavaScript
 const Catalogs.getCreateCategoriesJobs(opts)
@@ -415,7 +444,7 @@ const Catalogs.getCreateCategoriesJobs(opts)
 
 
 
-#### [Get Create Items Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_create_items_job)
+#### [Get Create Items Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_create_items_job)
 
 ```JavaScript
 const Catalogs.getCreateItemsJob(jobId, opts)
@@ -424,7 +453,7 @@ const Catalogs.getCreateItemsJob(jobId, opts)
 
 
 
-#### [Get Create Items Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_create_items_jobs)
+#### [Get Create Items Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_create_items_jobs)
 
 ```JavaScript
 const Catalogs.getCreateItemsJobs(opts)
@@ -433,7 +462,7 @@ const Catalogs.getCreateItemsJobs(opts)
 
 
 
-#### [Get Create Variants Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_create_variants_job)
+#### [Get Create Variants Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_create_variants_job)
 
 ```JavaScript
 const Catalogs.getCreateVariantsJob(jobId, opts)
@@ -442,7 +471,7 @@ const Catalogs.getCreateVariantsJob(jobId, opts)
 
 
 
-#### [Get Create Variants Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_create_variants_jobs)
+#### [Get Create Variants Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_create_variants_jobs)
 
 ```JavaScript
 const Catalogs.getCreateVariantsJobs(opts)
@@ -451,7 +480,7 @@ const Catalogs.getCreateVariantsJobs(opts)
 
 
 
-#### [Get Delete Categories Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_delete_categories_job)
+#### [Get Delete Categories Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_delete_categories_job)
 
 ```JavaScript
 const Catalogs.getDeleteCategoriesJob(jobId, opts)
@@ -460,7 +489,7 @@ const Catalogs.getDeleteCategoriesJob(jobId, opts)
 
 
 
-#### [Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_delete_categories_jobs)
+#### [Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_delete_categories_jobs)
 
 ```JavaScript
 const Catalogs.getDeleteCategoriesJobs(opts)
@@ -469,7 +498,7 @@ const Catalogs.getDeleteCategoriesJobs(opts)
 
 
 
-#### [Get Delete Items Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_delete_items_job)
+#### [Get Delete Items Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_delete_items_job)
 
 ```JavaScript
 const Catalogs.getDeleteItemsJob(jobId, opts)
@@ -478,7 +507,7 @@ const Catalogs.getDeleteItemsJob(jobId, opts)
 
 
 
-#### [Get Delete Items Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_delete_items_jobs)
+#### [Get Delete Items Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_delete_items_jobs)
 
 ```JavaScript
 const Catalogs.getDeleteItemsJobs(opts)
@@ -487,7 +516,7 @@ const Catalogs.getDeleteItemsJobs(opts)
 
 
 
-#### [Get Delete Variants Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_delete_variants_job)
+#### [Get Delete Variants Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_delete_variants_job)
 
 ```JavaScript
 const Catalogs.getDeleteVariantsJob(jobId, opts)
@@ -496,7 +525,7 @@ const Catalogs.getDeleteVariantsJob(jobId, opts)
 
 
 
-#### [Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_delete_variants_jobs)
+#### [Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_delete_variants_jobs)
 
 ```JavaScript
 const Catalogs.getDeleteVariantsJobs(opts)
@@ -505,7 +534,7 @@ const Catalogs.getDeleteVariantsJobs(opts)
 
 
 
-#### [Get Update Categories Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_update_categories_job)
+#### [Get Update Categories Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_update_categories_job)
 
 ```JavaScript
 const Catalogs.getUpdateCategoriesJob(jobId, opts)
@@ -514,7 +543,7 @@ const Catalogs.getUpdateCategoriesJob(jobId, opts)
 
 
 
-#### [Get Update Categories Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_update_categories_jobs)
+#### [Get Update Categories Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_update_categories_jobs)
 
 ```JavaScript
 const Catalogs.getUpdateCategoriesJobs(opts)
@@ -523,7 +552,7 @@ const Catalogs.getUpdateCategoriesJobs(opts)
 
 
 
-#### [Get Update Items Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_update_items_job)
+#### [Get Update Items Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_update_items_job)
 
 ```JavaScript
 const Catalogs.getUpdateItemsJob(jobId, opts)
@@ -532,7 +561,7 @@ const Catalogs.getUpdateItemsJob(jobId, opts)
 
 
 
-#### [Get Update Items Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_update_items_jobs)
+#### [Get Update Items Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_update_items_jobs)
 
 ```JavaScript
 const Catalogs.getUpdateItemsJobs(opts)
@@ -541,7 +570,7 @@ const Catalogs.getUpdateItemsJobs(opts)
 
 
 
-#### [Get Update Variants Job](https://developers.klaviyo.com/en/v2022-10-17/reference/get_update_variants_job)
+#### [Get Update Variants Job](https://developers.klaviyo.com/en/v2023-01-24/reference/get_update_variants_job)
 
 ```JavaScript
 const Catalogs.getUpdateVariantsJob(jobId, opts)
@@ -550,7 +579,7 @@ const Catalogs.getUpdateVariantsJob(jobId, opts)
 
 
 
-#### [Get Update Variants Jobs](https://developers.klaviyo.com/en/v2022-10-17/reference/get_update_variants_jobs)
+#### [Get Update Variants Jobs](https://developers.klaviyo.com/en/v2023-01-24/reference/get_update_variants_jobs)
 
 ```JavaScript
 const Catalogs.getUpdateVariantsJobs(opts)
@@ -559,7 +588,7 @@ const Catalogs.getUpdateVariantsJobs(opts)
 
 
 
-#### [Spawn Create Categories Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_create_categories_job)
+#### [Spawn Create Categories Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_create_categories_job)
 
 ```JavaScript
 const Catalogs.spawnCreateCategoriesJob(body)
@@ -568,7 +597,7 @@ const Catalogs.spawnCreateCategoriesJob(body)
 
 
 
-#### [Spawn Create Items Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_create_items_job)
+#### [Spawn Create Items Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_create_items_job)
 
 ```JavaScript
 const Catalogs.spawnCreateItemsJob(body)
@@ -577,7 +606,7 @@ const Catalogs.spawnCreateItemsJob(body)
 
 
 
-#### [Spawn Create Variants Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_create_variants_job)
+#### [Spawn Create Variants Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_create_variants_job)
 
 ```JavaScript
 const Catalogs.spawnCreateVariantsJob(body)
@@ -586,7 +615,7 @@ const Catalogs.spawnCreateVariantsJob(body)
 
 
 
-#### [Spawn Delete Categories Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_delete_categories_job)
+#### [Spawn Delete Categories Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_delete_categories_job)
 
 ```JavaScript
 const Catalogs.spawnDeleteCategoriesJob(body)
@@ -595,7 +624,7 @@ const Catalogs.spawnDeleteCategoriesJob(body)
 
 
 
-#### [Spawn Delete Items Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_delete_items_job)
+#### [Spawn Delete Items Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_delete_items_job)
 
 ```JavaScript
 const Catalogs.spawnDeleteItemsJob(body)
@@ -604,7 +633,7 @@ const Catalogs.spawnDeleteItemsJob(body)
 
 
 
-#### [Spawn Delete Variants Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_delete_variants_job)
+#### [Spawn Delete Variants Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_delete_variants_job)
 
 ```JavaScript
 const Catalogs.spawnDeleteVariantsJob(body)
@@ -613,7 +642,7 @@ const Catalogs.spawnDeleteVariantsJob(body)
 
 
 
-#### [Spawn Update Categories Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_update_categories_job)
+#### [Spawn Update Categories Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_update_categories_job)
 
 ```JavaScript
 const Catalogs.spawnUpdateCategoriesJob(body)
@@ -622,7 +651,7 @@ const Catalogs.spawnUpdateCategoriesJob(body)
 
 
 
-#### [Spawn Update Items Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_update_items_job)
+#### [Spawn Update Items Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_update_items_job)
 
 ```JavaScript
 const Catalogs.spawnUpdateItemsJob(body)
@@ -631,7 +660,7 @@ const Catalogs.spawnUpdateItemsJob(body)
 
 
 
-#### [Spawn Update Variants Job](https://developers.klaviyo.com/en/v2022-10-17/reference/spawn_update_variants_job)
+#### [Spawn Update Variants Job](https://developers.klaviyo.com/en/v2023-01-24/reference/spawn_update_variants_job)
 
 ```JavaScript
 const Catalogs.spawnUpdateVariantsJob(body)
@@ -640,7 +669,7 @@ const Catalogs.spawnUpdateVariantsJob(body)
 
 
 
-#### [Update Catalog Category](https://developers.klaviyo.com/en/v2022-10-17/reference/update_catalog_category)
+#### [Update Catalog Category](https://developers.klaviyo.com/en/v2023-01-24/reference/update_catalog_category)
 
 ```JavaScript
 const Catalogs.updateCatalogCategory(body, id)
@@ -649,7 +678,7 @@ const Catalogs.updateCatalogCategory(body, id)
 
 
 
-#### [Update Catalog Category Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/update_catalog_category_relationships)
+#### [Update Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/update_catalog_category_relationships)
 
 ```JavaScript
 const Catalogs.updateCatalogCategoryRelationships(body, id, relatedResource)
@@ -658,7 +687,7 @@ const Catalogs.updateCatalogCategoryRelationships(body, id, relatedResource)
 
 
 
-#### [Update Catalog Item](https://developers.klaviyo.com/en/v2022-10-17/reference/update_catalog_item)
+#### [Update Catalog Item](https://developers.klaviyo.com/en/v2023-01-24/reference/update_catalog_item)
 
 ```JavaScript
 const Catalogs.updateCatalogItem(body, id)
@@ -667,7 +696,7 @@ const Catalogs.updateCatalogItem(body, id)
 
 
 
-#### [Update Catalog Item Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/update_catalog_item_relationships)
+#### [Update Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/update_catalog_item_relationships)
 
 ```JavaScript
 const Catalogs.updateCatalogItemRelationships(body, id, relatedResource)
@@ -676,7 +705,7 @@ const Catalogs.updateCatalogItemRelationships(body, id, relatedResource)
 
 
 
-#### [Update Catalog Variant](https://developers.klaviyo.com/en/v2022-10-17/reference/update_catalog_variant)
+#### [Update Catalog Variant](https://developers.klaviyo.com/en/v2023-01-24/reference/update_catalog_variant)
 
 ```JavaScript
 const Catalogs.updateCatalogVariant(body, id)
@@ -687,7 +716,7 @@ const Catalogs.updateCatalogVariant(body, id)
 ## ClientApi
 
 
-#### [Create Client Event](https://developers.klaviyo.com/en/v2022-10-17/reference/create_client_event)
+#### [Create Client Event](https://developers.klaviyo.com/en/v2023-01-24/reference/create_client_event)
 
 ```JavaScript
 const Client.createClientEvent(body, companyId)
@@ -696,7 +725,7 @@ const Client.createClientEvent(body, companyId)
 
 
 
-#### [Create Client Profile](https://developers.klaviyo.com/en/v2022-10-17/reference/create_client_profile)
+#### [Create or Update Client Profile](https://developers.klaviyo.com/en/v2023-01-24/reference/create_client_profile)
 
 ```JavaScript
 const Client.createClientProfile(body, companyId)
@@ -705,7 +734,7 @@ const Client.createClientProfile(body, companyId)
 
 
 
-#### [Create Client Subscription](https://developers.klaviyo.com/en/v2022-10-17/reference/create_client_subscription)
+#### [Create Client Subscription](https://developers.klaviyo.com/en/v2023-01-24/reference/create_client_subscription)
 
 ```JavaScript
 const Client.createClientSubscription(body, companyId)
@@ -713,10 +742,21 @@ const Client.createClientSubscription(body, companyId)
 
 
 
+## DataPrivacyApi
+
+
+#### [Request Profile Deletion](https://developers.klaviyo.com/en/v2023-01-24/reference/request_profile_deletion)
+
+```JavaScript
+const DataPrivacy.requestProfileDeletion(body)
+```
+
+
+
 ## EventsApi
 
 
-#### [Create Event](https://developers.klaviyo.com/en/v2022-10-17/reference/create_event)
+#### [Create Event](https://developers.klaviyo.com/en/v2023-01-24/reference/create_event)
 
 ```JavaScript
 const Events.createEvent(body)
@@ -725,7 +765,7 @@ const Events.createEvent(body)
 
 
 
-#### [Get Event](https://developers.klaviyo.com/en/v2022-10-17/reference/get_event)
+#### [Get Event](https://developers.klaviyo.com/en/v2023-01-24/reference/get_event)
 
 ```JavaScript
 const Events.getEvent(id, opts)
@@ -734,7 +774,7 @@ const Events.getEvent(id, opts)
 
 
 
-#### [Get Event Metrics](https://developers.klaviyo.com/en/v2022-10-17/reference/get_event_metrics)
+#### [Get Event Metrics](https://developers.klaviyo.com/en/v2023-01-24/reference/get_event_metrics)
 
 ```JavaScript
 const Events.getEventMetrics(id, opts)
@@ -743,7 +783,7 @@ const Events.getEventMetrics(id, opts)
 
 
 
-#### [Get Event Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/get_event_profiles)
+#### [Get Event Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/get_event_profiles)
 
 ```JavaScript
 const Events.getEventProfiles(id, opts)
@@ -752,7 +792,7 @@ const Events.getEventProfiles(id, opts)
 
 
 
-#### [Get Event Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_event_relationships)
+#### [Get Event Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_event_relationships)
 
 ```JavaScript
 const Events.getEventRelationships(id, relatedResource)
@@ -761,7 +801,7 @@ const Events.getEventRelationships(id, relatedResource)
 
 
 
-#### [Get Events](https://developers.klaviyo.com/en/v2022-10-17/reference/get_events)
+#### [Get Events](https://developers.klaviyo.com/en/v2023-01-24/reference/get_events)
 
 ```JavaScript
 const Events.getEvents(opts)
@@ -772,7 +812,7 @@ const Events.getEvents(opts)
 ## FlowsApi
 
 
-#### [Get Flow](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow)
+#### [Get Flow](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow)
 
 ```JavaScript
 const Flows.getFlow(id, opts)
@@ -781,7 +821,7 @@ const Flows.getFlow(id, opts)
 
 
 
-#### [Get Flow Action](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_action)
+#### [Get Flow Action](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_action)
 
 ```JavaScript
 const Flows.getFlowAction(id, opts)
@@ -790,7 +830,7 @@ const Flows.getFlowAction(id, opts)
 
 
 
-#### [Get Flow For Flow Action](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_action_flow)
+#### [Get Flow For Flow Action](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_action_flow)
 
 ```JavaScript
 const Flows.getFlowActionFlow(actionId, opts)
@@ -799,7 +839,7 @@ const Flows.getFlowActionFlow(actionId, opts)
 
 
 
-#### [Get Messages For Flow Action](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_action_messages)
+#### [Get Messages For Flow Action](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_action_messages)
 
 ```JavaScript
 const Flows.getFlowActionMessages(actionId, opts)
@@ -808,7 +848,7 @@ const Flows.getFlowActionMessages(actionId, opts)
 
 
 
-#### [Get Flow Action Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_action_relationships)
+#### [Get Flow Action Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_action_relationships)
 
 ```JavaScript
 const Flows.getFlowActionRelationships(id, relatedResource, opts)
@@ -817,7 +857,7 @@ const Flows.getFlowActionRelationships(id, relatedResource, opts)
 
 
 
-#### [Get Flow Actions For Flow](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_flow_actions)
+#### [Get Flow Actions For Flow](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_flow_actions)
 
 ```JavaScript
 const Flows.getFlowFlowActions(flowId, opts)
@@ -826,7 +866,7 @@ const Flows.getFlowFlowActions(flowId, opts)
 
 
 
-#### [Get Flow Message](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_message)
+#### [Get Flow Message](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_message)
 
 ```JavaScript
 const Flows.getFlowMessage(id, opts)
@@ -835,7 +875,7 @@ const Flows.getFlowMessage(id, opts)
 
 
 
-#### [Get Flow Action For Message](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_message_action)
+#### [Get Flow Action For Message](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_message_action)
 
 ```JavaScript
 const Flows.getFlowMessageAction(messageId, opts)
@@ -844,7 +884,7 @@ const Flows.getFlowMessageAction(messageId, opts)
 
 
 
-#### [Get Flow Message Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_message_relationships)
+#### [Get Flow Message Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_message_relationships)
 
 ```JavaScript
 const Flows.getFlowMessageRelationships(id, relatedResource)
@@ -853,16 +893,25 @@ const Flows.getFlowMessageRelationships(id, relatedResource)
 
 
 
-#### [Get Flow Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flow_relationships)
+#### [Get Flow Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_relationships)
 
 ```JavaScript
-const Flows.getFlowRelationships(id, relatedResource, opts)
+const Flows.getFlowRelationships(id, relatedResource)
 ```
 
 
 
 
-#### [Get Flows](https://developers.klaviyo.com/en/v2022-10-17/reference/get_flows)
+#### [Get Flow Tags](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flow_tags)
+
+```JavaScript
+const Flows.getFlowTags(flowId, opts)
+```
+
+
+
+
+#### [Get Flows](https://developers.klaviyo.com/en/v2023-01-24/reference/get_flows)
 
 ```JavaScript
 const Flows.getFlows(opts)
@@ -871,7 +920,7 @@ const Flows.getFlows(opts)
 
 
 
-#### [Update Flow Status](https://developers.klaviyo.com/en/v2022-10-17/reference/update_flow)
+#### [Update Flow Status](https://developers.klaviyo.com/en/v2023-01-24/reference/update_flow)
 
 ```JavaScript
 const Flows.updateFlow(body, id)
@@ -882,7 +931,7 @@ const Flows.updateFlow(body, id)
 ## ListsApi
 
 
-#### [Create List](https://developers.klaviyo.com/en/v2022-10-17/reference/create_list)
+#### [Create List](https://developers.klaviyo.com/en/v2023-01-24/reference/create_list)
 
 ```JavaScript
 const Lists.createList(body)
@@ -891,7 +940,7 @@ const Lists.createList(body)
 
 
 
-#### [Add Profile to List](https://developers.klaviyo.com/en/v2022-10-17/reference/create_list_relationships)
+#### [Add Profile to List](https://developers.klaviyo.com/en/v2023-01-24/reference/create_list_relationships)
 
 ```JavaScript
 const Lists.createListRelationships(body, id, relatedResource)
@@ -900,7 +949,7 @@ const Lists.createListRelationships(body, id, relatedResource)
 
 
 
-#### [Delete List](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_list)
+#### [Delete List](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_list)
 
 ```JavaScript
 const Lists.deleteList(id)
@@ -909,7 +958,7 @@ const Lists.deleteList(id)
 
 
 
-#### [Remove Profile from List](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_list_relationships)
+#### [Remove Profile from List](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_list_relationships)
 
 ```JavaScript
 const Lists.deleteListRelationships(body, id, relatedResource)
@@ -918,7 +967,7 @@ const Lists.deleteListRelationships(body, id, relatedResource)
 
 
 
-#### [Get List](https://developers.klaviyo.com/en/v2022-10-17/reference/get_list)
+#### [Get List](https://developers.klaviyo.com/en/v2023-01-24/reference/get_list)
 
 ```JavaScript
 const Lists.getList(id, opts)
@@ -927,7 +976,7 @@ const Lists.getList(id, opts)
 
 
 
-#### [Get List Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/get_list_profiles)
+#### [Get List Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/get_list_profiles)
 
 ```JavaScript
 const Lists.getListProfiles(listId, opts)
@@ -936,7 +985,7 @@ const Lists.getListProfiles(listId, opts)
 
 
 
-#### [Get List Profile Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_list_relationships)
+#### [Get List Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_list_relationships)
 
 ```JavaScript
 const Lists.getListRelationships(id, relatedResource, opts)
@@ -945,7 +994,16 @@ const Lists.getListRelationships(id, relatedResource, opts)
 
 
 
-#### [Get Lists](https://developers.klaviyo.com/en/v2022-10-17/reference/get_lists)
+#### [Get List Tags](https://developers.klaviyo.com/en/v2023-01-24/reference/get_list_tags)
+
+```JavaScript
+const Lists.getListTags(listId, opts)
+```
+
+
+
+
+#### [Get Lists](https://developers.klaviyo.com/en/v2023-01-24/reference/get_lists)
 
 ```JavaScript
 const Lists.getLists(opts)
@@ -954,7 +1012,7 @@ const Lists.getLists(opts)
 
 
 
-#### [Update List](https://developers.klaviyo.com/en/v2022-10-17/reference/update_list)
+#### [Update List](https://developers.klaviyo.com/en/v2023-01-24/reference/update_list)
 
 ```JavaScript
 const Lists.updateList(body, id)
@@ -965,7 +1023,7 @@ const Lists.updateList(body, id)
 ## MetricsApi
 
 
-#### [Get Metric](https://developers.klaviyo.com/en/v2022-10-17/reference/get_metric)
+#### [Get Metric](https://developers.klaviyo.com/en/v2023-01-24/reference/get_metric)
 
 ```JavaScript
 const Metrics.getMetric(id, opts)
@@ -974,7 +1032,7 @@ const Metrics.getMetric(id, opts)
 
 
 
-#### [Get Metrics](https://developers.klaviyo.com/en/v2022-10-17/reference/get_metrics)
+#### [Get Metrics](https://developers.klaviyo.com/en/v2023-01-24/reference/get_metrics)
 
 ```JavaScript
 const Metrics.getMetrics(opts)
@@ -983,7 +1041,7 @@ const Metrics.getMetrics(opts)
 
 
 
-#### [Query Metric Aggregates](https://developers.klaviyo.com/en/v2022-10-17/reference/query_metric_aggregates)
+#### [Query Metric Aggregates](https://developers.klaviyo.com/en/v2023-01-24/reference/query_metric_aggregates)
 
 ```JavaScript
 const Metrics.queryMetricAggregates(body)
@@ -994,7 +1052,7 @@ const Metrics.queryMetricAggregates(body)
 ## ProfilesApi
 
 
-#### [Create Profile](https://developers.klaviyo.com/en/v2022-10-17/reference/create_profile)
+#### [Create Profile](https://developers.klaviyo.com/en/v2023-01-24/reference/create_profile)
 
 ```JavaScript
 const Profiles.createProfile(body)
@@ -1003,7 +1061,7 @@ const Profiles.createProfile(body)
 
 
 
-#### [Get Profile](https://developers.klaviyo.com/en/v2022-10-17/reference/get_profile)
+#### [Get Profile](https://developers.klaviyo.com/en/v2023-01-24/reference/get_profile)
 
 ```JavaScript
 const Profiles.getProfile(id, opts)
@@ -1012,7 +1070,7 @@ const Profiles.getProfile(id, opts)
 
 
 
-#### [Get Profile Lists](https://developers.klaviyo.com/en/v2022-10-17/reference/get_profile_lists)
+#### [Get Profile Lists](https://developers.klaviyo.com/en/v2023-01-24/reference/get_profile_lists)
 
 ```JavaScript
 const Profiles.getProfileLists(profileId, opts)
@@ -1021,7 +1079,7 @@ const Profiles.getProfileLists(profileId, opts)
 
 
 
-#### [Get Profile Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_profile_relationships)
+#### [Get Profile Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_profile_relationships)
 
 ```JavaScript
 const Profiles.getProfileRelationships(id, relatedResource)
@@ -1030,7 +1088,7 @@ const Profiles.getProfileRelationships(id, relatedResource)
 
 
 
-#### [Get Profile Segments](https://developers.klaviyo.com/en/v2022-10-17/reference/get_profile_segments)
+#### [Get Profile Segments](https://developers.klaviyo.com/en/v2023-01-24/reference/get_profile_segments)
 
 ```JavaScript
 const Profiles.getProfileSegments(profileId, opts)
@@ -1039,7 +1097,7 @@ const Profiles.getProfileSegments(profileId, opts)
 
 
 
-#### [Get Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/get_profiles)
+#### [Get Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/get_profiles)
 
 ```JavaScript
 const Profiles.getProfiles(opts)
@@ -1048,7 +1106,7 @@ const Profiles.getProfiles(opts)
 
 
 
-#### [Subscribe Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/subscribe_profiles)
+#### [Subscribe Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/subscribe_profiles)
 
 ```JavaScript
 const Profiles.subscribeProfiles(body)
@@ -1057,7 +1115,7 @@ const Profiles.subscribeProfiles(body)
 
 
 
-#### [Suppress Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/suppress_profiles)
+#### [Suppress Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/suppress_profiles)
 
 ```JavaScript
 const Profiles.suppressProfiles(body)
@@ -1066,7 +1124,7 @@ const Profiles.suppressProfiles(body)
 
 
 
-#### [Unsubscribe Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/unsubscribe_profiles)
+#### [Unsubscribe Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/unsubscribe_profiles)
 
 ```JavaScript
 const Profiles.unsubscribeProfiles(body)
@@ -1075,7 +1133,7 @@ const Profiles.unsubscribeProfiles(body)
 
 
 
-#### [Unsuppress Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/unsuppress_profiles)
+#### [Unsuppress Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/unsuppress_profiles)
 
 ```JavaScript
 const Profiles.unsuppressProfiles(body)
@@ -1084,7 +1142,7 @@ const Profiles.unsuppressProfiles(body)
 
 
 
-#### [Update Profile](https://developers.klaviyo.com/en/v2022-10-17/reference/update_profile)
+#### [Update Profile](https://developers.klaviyo.com/en/v2023-01-24/reference/update_profile)
 
 ```JavaScript
 const Profiles.updateProfile(body, id)
@@ -1095,7 +1153,7 @@ const Profiles.updateProfile(body, id)
 ## SegmentsApi
 
 
-#### [Get Segment](https://developers.klaviyo.com/en/v2022-10-17/reference/get_segment)
+#### [Get Segment](https://developers.klaviyo.com/en/v2023-01-24/reference/get_segment)
 
 ```JavaScript
 const Segments.getSegment(id, opts)
@@ -1104,7 +1162,7 @@ const Segments.getSegment(id, opts)
 
 
 
-#### [Get Segment Profiles](https://developers.klaviyo.com/en/v2022-10-17/reference/get_segment_profiles)
+#### [Get Segment Profiles](https://developers.klaviyo.com/en/v2023-01-24/reference/get_segment_profiles)
 
 ```JavaScript
 const Segments.getSegmentProfiles(segmentId, opts)
@@ -1113,7 +1171,7 @@ const Segments.getSegmentProfiles(segmentId, opts)
 
 
 
-#### [Get Segment Relationships](https://developers.klaviyo.com/en/v2022-10-17/reference/get_segment_relationships)
+#### [Get Segment Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_segment_relationships)
 
 ```JavaScript
 const Segments.getSegmentRelationships(id, relatedResource, opts)
@@ -1122,7 +1180,16 @@ const Segments.getSegmentRelationships(id, relatedResource, opts)
 
 
 
-#### [Get Segments](https://developers.klaviyo.com/en/v2022-10-17/reference/get_segments)
+#### [Get Segment Tags](https://developers.klaviyo.com/en/v2023-01-24/reference/get_segment_tags)
+
+```JavaScript
+const Segments.getSegmentTags(segmentId, opts)
+```
+
+
+
+
+#### [Get Segments](https://developers.klaviyo.com/en/v2023-01-24/reference/get_segments)
 
 ```JavaScript
 const Segments.getSegments(opts)
@@ -1131,7 +1198,7 @@ const Segments.getSegments(opts)
 
 
 
-#### [Update Segment](https://developers.klaviyo.com/en/v2022-10-17/reference/update_segment)
+#### [Update Segment](https://developers.klaviyo.com/en/v2023-01-24/reference/update_segment)
 
 ```JavaScript
 const Segments.updateSegment(body, id)
@@ -1139,10 +1206,156 @@ const Segments.updateSegment(body, id)
 
 
 
+## TagsApi
+
+
+#### [Create Tag](https://developers.klaviyo.com/en/v2023-01-24/reference/create_tag)
+
+```JavaScript
+const Tags.createTag(body)
+```
+
+
+
+
+#### [Create Tag Group](https://developers.klaviyo.com/en/v2023-01-24/reference/create_tag_group)
+
+```JavaScript
+const Tags.createTagGroup(body)
+```
+
+
+
+
+#### [Create Tag Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/create_tag_relationships)
+
+```JavaScript
+const Tags.createTagRelationships(body, id, relatedResource)
+```
+
+
+
+
+#### [Delete Tag](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_tag)
+
+```JavaScript
+const Tags.deleteTag(id)
+```
+
+
+
+
+#### [Delete Tag Group](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_tag_group)
+
+```JavaScript
+const Tags.deleteTagGroup(id)
+```
+
+
+
+
+#### [Delete Tag Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_tag_relationships)
+
+```JavaScript
+const Tags.deleteTagRelationships(body, id, relatedResource)
+```
+
+
+
+
+#### [Get Tag](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tag)
+
+```JavaScript
+const Tags.getTag(id, opts)
+```
+
+
+
+
+#### [Get Tag Group](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tag_group)
+
+```JavaScript
+const Tags.getTagGroup(id, opts)
+```
+
+
+
+
+#### [Get Tag Group Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tag_group_relationships)
+
+```JavaScript
+const Tags.getTagGroupRelationships(id, relatedResource)
+```
+
+
+
+
+#### [Get Tag Group Tags](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tag_group_tags)
+
+```JavaScript
+const Tags.getTagGroupTags(id, opts)
+```
+
+
+
+
+#### [Get Tag Groups](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tag_groups)
+
+```JavaScript
+const Tags.getTagGroups(opts)
+```
+
+
+
+
+#### [Get Tag Relationships](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tag_relationships)
+
+```JavaScript
+const Tags.getTagRelationships(id, relatedResource)
+```
+
+
+
+
+#### [Get Tag Tag Group](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tag_tag_group)
+
+```JavaScript
+const Tags.getTagTagGroup(id, opts)
+```
+
+
+
+
+#### [Get Tags](https://developers.klaviyo.com/en/v2023-01-24/reference/get_tags)
+
+```JavaScript
+const Tags.getTags(opts)
+```
+
+
+
+
+#### [Update Tag](https://developers.klaviyo.com/en/v2023-01-24/reference/update_tag)
+
+```JavaScript
+const Tags.updateTag(body, id)
+```
+
+
+
+
+#### [Update Tag Group](https://developers.klaviyo.com/en/v2023-01-24/reference/update_tag_group)
+
+```JavaScript
+const Tags.updateTagGroup(body, id)
+```
+
+
+
 ## TemplatesApi
 
 
-#### [Create Template](https://developers.klaviyo.com/en/v2022-10-17/reference/create_template)
+#### [Create Template](https://developers.klaviyo.com/en/v2023-01-24/reference/create_template)
 
 ```JavaScript
 const Templates.createTemplate(body)
@@ -1151,25 +1364,25 @@ const Templates.createTemplate(body)
 
 
 
-#### [Create Template Clone](https://developers.klaviyo.com/en/v2022-10-17/reference/create_template_clone)
+#### [Create Template Clone](https://developers.klaviyo.com/en/v2023-01-24/reference/create_template_clone)
 
 ```JavaScript
-const Templates.createTemplateClone(body, id)
+const Templates.createTemplateClone(body)
 ```
 
 
 
 
-#### [Create Template Render](https://developers.klaviyo.com/en/v2022-10-17/reference/create_template_render)
+#### [Create Template Render](https://developers.klaviyo.com/en/v2023-01-24/reference/create_template_render)
 
 ```JavaScript
-const Templates.createTemplateRender(body, id)
+const Templates.createTemplateRender(body)
 ```
 
 
 
 
-#### [Delete Template](https://developers.klaviyo.com/en/v2022-10-17/reference/delete_template)
+#### [Delete Template](https://developers.klaviyo.com/en/v2023-01-24/reference/delete_template)
 
 ```JavaScript
 const Templates.deleteTemplate(id)
@@ -1178,7 +1391,7 @@ const Templates.deleteTemplate(id)
 
 
 
-#### [Get Template](https://developers.klaviyo.com/en/v2022-10-17/reference/get_template)
+#### [Get Template](https://developers.klaviyo.com/en/v2023-01-24/reference/get_template)
 
 ```JavaScript
 const Templates.getTemplate(id, opts)
@@ -1187,7 +1400,7 @@ const Templates.getTemplate(id, opts)
 
 
 
-#### [Get Templates](https://developers.klaviyo.com/en/v2022-10-17/reference/get_templates)
+#### [Get Templates](https://developers.klaviyo.com/en/v2023-01-24/reference/get_templates)
 
 ```JavaScript
 const Templates.getTemplates(opts)
@@ -1196,7 +1409,7 @@ const Templates.getTemplates(opts)
 
 
 
-#### [Update Template](https://developers.klaviyo.com/en/v2022-10-17/reference/update_template)
+#### [Update Template](https://developers.klaviyo.com/en/v2023-01-24/reference/update_template)
 
 ```JavaScript
 const Templates.updateTemplate(body, id)
@@ -1217,7 +1430,7 @@ const Templates.updateTemplate(body, id)
 try {
     await YOUR_CALL
 } catch e {
-    print(e.status, e.reason, e.body, e.headers)
+    print(e.status, e.body, e.headers)
 }
 ```
 

@@ -14,14 +14,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The Suppression model module.
  * @module model/Suppression
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var Suppression = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>Suppression</code>.
    * @alias module:model/Suppression
    * @class
-   * @param email {String} 
+   * @param email {String} The email of the profile to suppress / unsuppress.
    */
   function Suppression(email) {
     _classCallCheck(this, Suppression);
@@ -48,6 +48,7 @@ var Suppression = /*#__PURE__*/function () {
   return Suppression;
 }();
 /**
+ * The email of the profile to suppress / unsuppress.
  * @member {String} email
  */
 exports.Suppression = Suppression;

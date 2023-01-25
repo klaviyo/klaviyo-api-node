@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The MetricAggregateQueryAsSubResource model module.
  * @module model/MetricAggregateQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var MetricAggregateQueryAsSubResource = /*#__PURE__*/function () {
   /**

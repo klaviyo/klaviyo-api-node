@@ -15,15 +15,15 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The SubscriptionCreateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/SubscriptionCreateJobCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var SubscriptionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SubscriptionCreateJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/SubscriptionCreateJobCreateQueryAsSubResourceAttributes
    * @class
-   * @param listId {String} 
-   * @param subscriptions {Array.<module:model/Subscription>} 
+   * @param listId {String} The list to add the newly subscribed profiles to
+   * @param subscriptions {Array.<module:model/Subscription>} One or more subscriptions to be created.
    */
   function SubscriptionCreateJobCreateQueryAsSubResourceAttributes(listId, subscriptions) {
     _classCallCheck(this, SubscriptionCreateJobCreateQueryAsSubResourceAttributes);
@@ -53,17 +53,20 @@ var SubscriptionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/funct
   return SubscriptionCreateJobCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * The list to add the newly subscribed profiles to
  * @member {String} listId
  */
 exports.SubscriptionCreateJobCreateQueryAsSubResourceAttributes = SubscriptionCreateJobCreateQueryAsSubResourceAttributes;
 SubscriptionCreateJobCreateQueryAsSubResourceAttributes.prototype.listId = undefined;
 
 /**
+ * A custom method detail or source to store on the consent records.
  * @member {String} customSource
  */
 SubscriptionCreateJobCreateQueryAsSubResourceAttributes.prototype.customSource = undefined;
 
 /**
+ * One or more subscriptions to be created.
  * @member {Array.<module:model/Subscription>} subscriptions
  */
 SubscriptionCreateJobCreateQueryAsSubResourceAttributes.prototype.subscriptions = undefined;

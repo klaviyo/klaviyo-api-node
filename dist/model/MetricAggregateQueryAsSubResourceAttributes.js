@@ -14,26 +14,24 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The MetricAggregateQueryAsSubResourceAttributes model module.
  * @module model/MetricAggregateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricAggregateQueryAsSubResourceAttributes</code>.
    * @alias module:model/MetricAggregateQueryAsSubResourceAttributes
    * @class
-   * @param metricId {String} 
-   * @param measurements {Array.<module:model/MetricAggregateQueryAsSubResourceAttributes.MeasurementsEnum>} 
-   * @param interval {module:model/MetricAggregateQueryAsSubResourceAttributes.IntervalEnum} Supported intervals for bucketing query results by time
-   * @param filter {Array.<String>} 
-   * @param timezone {String} 
+   * @param metricId {String} The metric ID used in the aggregation.
+   * @param measurements {Array.<module:model/MetricAggregateQueryAsSubResourceAttributes.MeasurementsEnum>} Measurement key, e.g. `unique`, `sum_value`, `count`
+   * @param interval {module:model/MetricAggregateQueryAsSubResourceAttributes.IntervalEnum} Aggregation interval, e.g. \"hour\", \"day\", \"week\", \"month\"
+   * @param filter {Array.<String>} List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).             These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.             The time range can be filtered by providing a `greater_or_equal` and a `less-than` filter on the `datetime` field.
    */
-  function MetricAggregateQueryAsSubResourceAttributes(metricId, measurements, interval, filter, timezone) {
+  function MetricAggregateQueryAsSubResourceAttributes(metricId, measurements, interval, filter) {
     _classCallCheck(this, MetricAggregateQueryAsSubResourceAttributes);
     this.metricId = metricId;
     this.measurements = measurements;
     this.interval = interval;
     this.filter = filter;
-    this.timezone = timezone;
   }
 
   /**
@@ -65,6 +63,7 @@ var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return MetricAggregateQueryAsSubResourceAttributes;
 }();
 /**
+ * The metric ID used in the aggregation.
  * @member {String} metricId
  */
 exports.MetricAggregateQueryAsSubResourceAttributes = MetricAggregateQueryAsSubResourceAttributes;
@@ -93,6 +92,7 @@ MetricAggregateQueryAsSubResourceAttributes.MeasurementsEnum = {
   unique: "unique"
 };
 /**
+ * Measurement key, e.g. `unique`, `sum_value`, `count`
  * @member {Array.<module:model/MetricAggregateQueryAsSubResourceAttributes.MeasurementsEnum>} measurements
  */
 MetricAggregateQueryAsSubResourceAttributes.prototype.measurements = undefined;
@@ -125,15 +125,17 @@ MetricAggregateQueryAsSubResourceAttributes.IntervalEnum = {
   week: "week"
 };
 /**
- * Supported intervals for bucketing query results by time
+ * Aggregation interval, e.g. \"hour\", \"day\", \"week\", \"month\"
  * @member {module:model/MetricAggregateQueryAsSubResourceAttributes.IntervalEnum} interval
  */
 MetricAggregateQueryAsSubResourceAttributes.prototype.interval = undefined;
 
 /**
+ * Alter the maximum number of returned rows in a single page of aggregation results
  * @member {Number} pageSize
+ * @default 500
  */
-MetricAggregateQueryAsSubResourceAttributes.prototype.pageSize = undefined;
+MetricAggregateQueryAsSubResourceAttributes.prototype.pageSize = 500;
 
 /**
  * Allowed values for the <code>by</code> property.
@@ -293,24 +295,29 @@ MetricAggregateQueryAsSubResourceAttributes.ByEnum = {
   formId: "form_id"
 };
 /**
+ * Optional attribute(s) used for partitioning by the aggregation function
  * @member {Array.<module:model/MetricAggregateQueryAsSubResourceAttributes.ByEnum>} by
  */
 MetricAggregateQueryAsSubResourceAttributes.prototype.by = undefined;
 
 /**
+ * Provide fields to limit the returned data
  * @member {Array.<String>} returnFields
  */
 MetricAggregateQueryAsSubResourceAttributes.prototype.returnFields = undefined;
 
 /**
+ * List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).             These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.             The time range can be filtered by providing a `greater_or_equal` and a `less-than` filter on the `datetime` field.
  * @member {Array.<String>} filter
  */
 MetricAggregateQueryAsSubResourceAttributes.prototype.filter = undefined;
 
 /**
+ * The timezone used for processing the query, e.g. `'America/New_York'`.             This field is validated against a list of common timezones from the [IANA Time Zone Database](https://www.iana.org/time-zones).             While most are supported, a few notable exceptions are `Factory`, `Europe/Kyiv` and `Pacific/Kanton`. This field is case-sensitive.
  * @member {String} timezone
+ * @default 'UTC'
  */
-MetricAggregateQueryAsSubResourceAttributes.prototype.timezone = undefined;
+MetricAggregateQueryAsSubResourceAttributes.prototype.timezone = 'UTC';
 
 /**
  * Allowed values for the <code>sort</code> property.

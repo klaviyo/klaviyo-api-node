@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The OnsiteProfileMeta model module.
  * @module model/OnsiteProfileMeta
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var OnsiteProfileMeta = /*#__PURE__*/function () {
   /**

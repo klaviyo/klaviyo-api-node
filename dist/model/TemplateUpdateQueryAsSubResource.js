@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateUpdateQueryAsSubResource model module.
  * @module model/TemplateUpdateQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var TemplateUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**
@@ -23,7 +23,7 @@ var TemplateUpdateQueryAsSubResource = /*#__PURE__*/function () {
    * @alias module:model/TemplateUpdateQueryAsSubResource
    * @class
    * @param type {module:model/TemplateUpdateQueryAsSubResource.TypeEnum} 
-   * @param id {String} 
+   * @param id {String} The ID of template
    * @param attributes {module:model/TemplateUpdateQueryAsSubResourceAttributes} 
    */
   function TemplateUpdateQueryAsSubResource(type, id, attributes) {
@@ -73,6 +73,7 @@ TemplateUpdateQueryAsSubResource.TypeEnum = {
 TemplateUpdateQueryAsSubResource.prototype.type = undefined;
 
 /**
+ * The ID of template
  * @member {String} id
  */
 TemplateUpdateQueryAsSubResource.prototype.id = undefined;

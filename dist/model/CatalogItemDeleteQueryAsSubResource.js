@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogItemDeleteQueryAsSubResource model module.
  * @module model/CatalogItemDeleteQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var CatalogItemDeleteQueryAsSubResource = /*#__PURE__*/function () {
   /**
@@ -22,7 +22,7 @@ var CatalogItemDeleteQueryAsSubResource = /*#__PURE__*/function () {
    * @alias module:model/CatalogItemDeleteQueryAsSubResource
    * @class
    * @param type {module:model/CatalogItemDeleteQueryAsSubResource.TypeEnum} 
-   * @param id {String} 
+   * @param id {String} The catalog item ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`, but support for multiple catalogs  & non-custom integrations is forthcoming.
    */
   function CatalogItemDeleteQueryAsSubResource(type, id) {
     _classCallCheck(this, CatalogItemDeleteQueryAsSubResource);
@@ -69,6 +69,7 @@ CatalogItemDeleteQueryAsSubResource.TypeEnum = {
 CatalogItemDeleteQueryAsSubResource.prototype.type = undefined;
 
 /**
+ * The catalog item ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`, but support for multiple catalogs  & non-custom integrations is forthcoming.
  * @member {String} id
  */
 CatalogItemDeleteQueryAsSubResource.prototype.id = undefined;

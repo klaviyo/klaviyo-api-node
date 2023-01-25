@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogJobErrorPayload model module.
  * @module model/CatalogJobErrorPayload
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var CatalogJobErrorPayload = /*#__PURE__*/function () {
   /**

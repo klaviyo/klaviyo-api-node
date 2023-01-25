@@ -14,16 +14,18 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateCloneQueryAsSubResourceAttributes model module.
  * @module model/TemplateCloneQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var TemplateCloneQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateCloneQueryAsSubResourceAttributes</code>.
    * @alias module:model/TemplateCloneQueryAsSubResourceAttributes
    * @class
+   * @param id {String} The ID of template to be cloned
    */
-  function TemplateCloneQueryAsSubResourceAttributes() {
+  function TemplateCloneQueryAsSubResourceAttributes(id) {
     _classCallCheck(this, TemplateCloneQueryAsSubResourceAttributes);
+    this.id = id;
   }
 
   /**
@@ -38,6 +40,7 @@ var TemplateCloneQueryAsSubResourceAttributes = /*#__PURE__*/function () {
     value: function constructFromObject(data, obj) {
       if (data) {
         obj = obj || new TemplateCloneQueryAsSubResourceAttributes();
+        if (data.hasOwnProperty('id')) obj.id = _ApiClient.ApiClient.convertToType(data['id'], 'String');
         if (data.hasOwnProperty('name')) obj.name = _ApiClient.ApiClient.convertToType(data['name'], 'String');
         if (data.hasOwnProperty('return_fields')) obj.returnFields = _ApiClient.ApiClient.convertToType(data['return_fields'], ['String']);
       }
@@ -47,12 +50,20 @@ var TemplateCloneQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return TemplateCloneQueryAsSubResourceAttributes;
 }();
 /**
- * @member {String} name
+ * The ID of template to be cloned
+ * @member {String} id
  */
 exports.TemplateCloneQueryAsSubResourceAttributes = TemplateCloneQueryAsSubResourceAttributes;
+TemplateCloneQueryAsSubResourceAttributes.prototype.id = undefined;
+
+/**
+ * The name of the template
+ * @member {String} name
+ */
 TemplateCloneQueryAsSubResourceAttributes.prototype.name = undefined;
 
 /**
+ * Any subset of TemplateResponse fields
  * @member {Array.<String>} returnFields
  */
 TemplateCloneQueryAsSubResourceAttributes.prototype.returnFields = undefined;

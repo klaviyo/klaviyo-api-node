@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The SegmentPartialUpdateQueryAsSubResource model module.
  * @module model/SegmentPartialUpdateQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var SegmentPartialUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**

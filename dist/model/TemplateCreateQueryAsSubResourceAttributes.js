@@ -14,15 +14,15 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateCreateQueryAsSubResourceAttributes model module.
  * @module model/TemplateCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var TemplateCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>TemplateCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/TemplateCreateQueryAsSubResourceAttributes
    * @class
-   * @param name {String} 
-   * @param editorType {String} 
+   * @param name {String} The name of the template
+   * @param editorType {String} Restricted to CODE
    */
   function TemplateCreateQueryAsSubResourceAttributes(name, editorType) {
     _classCallCheck(this, TemplateCreateQueryAsSubResourceAttributes);
@@ -54,27 +54,32 @@ var TemplateCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return TemplateCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * The name of the template
  * @member {String} name
  */
 exports.TemplateCreateQueryAsSubResourceAttributes = TemplateCreateQueryAsSubResourceAttributes;
 TemplateCreateQueryAsSubResourceAttributes.prototype.name = undefined;
 
 /**
+ * Restricted to CODE
  * @member {String} editorType
  */
 TemplateCreateQueryAsSubResourceAttributes.prototype.editorType = undefined;
 
 /**
+ * The HTML contents of the template
  * @member {String} html
  */
 TemplateCreateQueryAsSubResourceAttributes.prototype.html = undefined;
 
 /**
+ * The plaintext version of the template
  * @member {String} text
  */
 TemplateCreateQueryAsSubResourceAttributes.prototype.text = undefined;
 
 /**
+ * Provide fields to limit the returned data
  * @member {Array.<String>} returnFields
  */
 TemplateCreateQueryAsSubResourceAttributes.prototype.returnFields = undefined;
