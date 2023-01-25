@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedMetricsAttributes model module.
  * @module model/IncludedMetricsAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var IncludedMetricsAttributes = /*#__PURE__*/function () {
   /**
@@ -49,22 +49,26 @@ var IncludedMetricsAttributes = /*#__PURE__*/function () {
   return IncludedMetricsAttributes;
 }();
 /**
+ * The name of the metric
  * @member {String} name
  */
 exports.IncludedMetricsAttributes = IncludedMetricsAttributes;
 IncludedMetricsAttributes.prototype.name = undefined;
 
 /**
+ * Creation time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
  * @member {String} created
  */
 IncludedMetricsAttributes.prototype.created = undefined;
 
 /**
+ * Last updated time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
  * @member {String} updated
  */
 IncludedMetricsAttributes.prototype.updated = undefined;
 
 /**
+ * The integration associated with the event
  * @member {Object} integration
  */
 IncludedMetricsAttributes.prototype.integration = undefined;

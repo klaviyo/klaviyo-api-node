@@ -16,7 +16,7 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /**
 * @module ApiClient
-* @version 2022-10-17
+* @version 2023-01-24
 */
 /**
 * Manages low level client-server communications, parameter marshalling, etc. There should not be any need for an
@@ -53,8 +53,8 @@ var ApiClient = /*#__PURE__*/function () {
      * @default {}
      */
     this.defaultHeaders = {
-      revision: "2022-10-17",
-      "User-Agent": "klaviyo-api-node/1.0.2"
+      revision: "2023-01-24",
+      "User-Agent": "klaviyo-api-node/2.0.0"
     };
 
     /**

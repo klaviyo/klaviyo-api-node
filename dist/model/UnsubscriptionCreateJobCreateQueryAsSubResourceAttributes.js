@@ -14,18 +14,16 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes
    * @class
-   * @param listId {String} 
    */
-  function UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes(listId) {
+  function UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes() {
     _classCallCheck(this, UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes);
-    this.listId = listId;
   }
 
   /**
@@ -50,17 +48,20 @@ var UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/fun
   return UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * Optional, the list to remove the profiles from
  * @member {String} listId
  */
 exports.UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes = UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes;
 UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes.prototype.listId = undefined;
 
 /**
+ * The emails to unsubscribe if any.
  * @member {Array.<String>} emails
  */
 UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes.prototype.emails = undefined;
 
 /**
+ * The phone numbers to unsubscribe if any.
  * @member {Array.<String>} phoneNumbers
  */
 UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes.prototype.phoneNumbers = undefined;

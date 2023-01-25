@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The ProfileCreateQueryAsSubResource model module.
  * @module model/ProfileCreateQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var ProfileCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**

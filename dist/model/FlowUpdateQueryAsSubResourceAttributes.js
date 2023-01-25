@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The FlowUpdateQueryAsSubResourceAttributes model module.
  * @module model/FlowUpdateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var FlowUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**

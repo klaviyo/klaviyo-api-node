@@ -14,14 +14,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The OnsiteSubscriptionCreateQueryAsSubResourceAttributes model module.
  * @module model/OnsiteSubscriptionCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var OnsiteSubscriptionCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>OnsiteSubscriptionCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/OnsiteSubscriptionCreateQueryAsSubResourceAttributes
    * @class
-   * @param listId {String} 
+   * @param listId {String} The list ID to add the newly subscribed profile to.
    */
   function OnsiteSubscriptionCreateQueryAsSubResourceAttributes(listId) {
     _classCallCheck(this, OnsiteSubscriptionCreateQueryAsSubResourceAttributes);
@@ -52,27 +52,32 @@ var OnsiteSubscriptionCreateQueryAsSubResourceAttributes = /*#__PURE__*/function
   return OnsiteSubscriptionCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * The list ID to add the newly subscribed profile to.
  * @member {String} listId
  */
 exports.OnsiteSubscriptionCreateQueryAsSubResourceAttributes = OnsiteSubscriptionCreateQueryAsSubResourceAttributes;
 OnsiteSubscriptionCreateQueryAsSubResourceAttributes.prototype.listId = undefined;
 
 /**
+ * A custom method detail or source to store on the consent records for this subscription.
  * @member {String} customSource
  */
 OnsiteSubscriptionCreateQueryAsSubResourceAttributes.prototype.customSource = undefined;
 
 /**
+ * Email address to create subscription and email consent record for.
  * @member {String} email
  */
 OnsiteSubscriptionCreateQueryAsSubResourceAttributes.prototype.email = undefined;
 
 /**
+ * Phone number to create subscription and SMS consent record for, in E.164 format.
  * @member {String} phoneNumber
  */
 OnsiteSubscriptionCreateQueryAsSubResourceAttributes.prototype.phoneNumber = undefined;
 
 /**
+ * Profile properties to set on the newly subscribed profile.
  * @member {Object} properties
  */
 OnsiteSubscriptionCreateQueryAsSubResourceAttributes.prototype.properties = undefined;

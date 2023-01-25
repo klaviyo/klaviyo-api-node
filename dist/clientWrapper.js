@@ -3,16 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Templates = exports.Segments = exports.Profiles = exports.Metrics = exports.Lists = exports.Flows = exports.Events = exports.ConfigWrapper = exports.Client = exports.Catalogs = void 0;
+exports.Templates = exports.Tags = exports.Segments = exports.Profiles = exports.Metrics = exports.Lists = exports.Flows = exports.Events = exports.DataPrivacy = exports.ConfigWrapper = exports.Client = exports.Catalogs = void 0;
 var _exponentialBackoff = require("exponential-backoff");
 var _CatalogsApi = require("./api/CatalogsApi.js");
 var _ClientApi = require("./api/ClientApi.js");
+var _DataPrivacyApi = require("./api/DataPrivacyApi.js");
 var _EventsApi = require("./api/EventsApi.js");
 var _FlowsApi = require("./api/FlowsApi.js");
 var _ListsApi = require("./api/ListsApi.js");
 var _MetricsApi = require("./api/MetricsApi.js");
 var _ProfilesApi = require("./api/ProfilesApi.js");
 var _SegmentsApi = require("./api/SegmentsApi.js");
+var _TagsApi = require("./api/TagsApi.js");
 var _TemplatesApi = require("./api/TemplatesApi.js");
 var _ApiClient = require("./ApiClient.js");
 var RETRY_CODES = [429, 503, 504];
@@ -81,6 +83,8 @@ var Catalogs = wrapObj(_CatalogsApi.CatalogsApi);
 exports.Catalogs = Catalogs;
 var Client = wrapObj(_ClientApi.ClientApi);
 exports.Client = Client;
+var DataPrivacy = wrapObj(_DataPrivacyApi.DataPrivacyApi);
+exports.DataPrivacy = DataPrivacy;
 var Events = wrapObj(_EventsApi.EventsApi);
 exports.Events = Events;
 var Flows = wrapObj(_FlowsApi.FlowsApi);
@@ -93,5 +97,7 @@ var Profiles = wrapObj(_ProfilesApi.ProfilesApi);
 exports.Profiles = Profiles;
 var Segments = wrapObj(_SegmentsApi.SegmentsApi);
 exports.Segments = Segments;
+var Tags = wrapObj(_TagsApi.TagsApi);
+exports.Tags = Tags;
 var Templates = wrapObj(_TemplatesApi.TemplatesApi);
 exports.Templates = Templates;

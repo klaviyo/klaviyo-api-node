@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The InlineResponse4XX model module.
  * @module model/InlineResponse4XX
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var InlineResponse4XX = /*#__PURE__*/function () {
   /**

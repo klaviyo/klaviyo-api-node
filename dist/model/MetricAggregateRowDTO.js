@@ -14,15 +14,15 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The MetricAggregateRowDTO model module.
  * @module model/MetricAggregateRowDTO
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var MetricAggregateRowDTO = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricAggregateRowDTO</code>.
    * @alias module:model/MetricAggregateRowDTO
    * @class
-   * @param dimensions {Array.<String>} 
-   * @param measurements {Object} 
+   * @param dimensions {Array.<String>} List of dimensions associated with this set of measurements
+   * @param measurements {Object} Dictionary of measurement_key, values
    */
   function MetricAggregateRowDTO(dimensions, measurements) {
     _classCallCheck(this, MetricAggregateRowDTO);
@@ -51,12 +51,14 @@ var MetricAggregateRowDTO = /*#__PURE__*/function () {
   return MetricAggregateRowDTO;
 }();
 /**
+ * List of dimensions associated with this set of measurements
  * @member {Array.<String>} dimensions
  */
 exports.MetricAggregateRowDTO = MetricAggregateRowDTO;
 MetricAggregateRowDTO.prototype.dimensions = undefined;
 
 /**
+ * Dictionary of measurement_key, values
  * @member {Object} measurements
  */
 MetricAggregateRowDTO.prototype.measurements = undefined;

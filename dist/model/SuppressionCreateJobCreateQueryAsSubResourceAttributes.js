@@ -15,14 +15,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The SuppressionCreateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/SuppressionCreateJobCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var SuppressionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SuppressionCreateJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/SuppressionCreateJobCreateQueryAsSubResourceAttributes
    * @class
-   * @param suppressions {Array.<module:model/Suppression>} 
+   * @param suppressions {Array.<module:model/Suppression>} One or more suppressions to be created.
    */
   function SuppressionCreateJobCreateQueryAsSubResourceAttributes(suppressions) {
     _classCallCheck(this, SuppressionCreateJobCreateQueryAsSubResourceAttributes);
@@ -49,6 +49,7 @@ var SuppressionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/functi
   return SuppressionCreateJobCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * One or more suppressions to be created.
  * @member {Array.<module:model/Suppression>} suppressions
  */
 exports.SuppressionCreateJobCreateQueryAsSubResourceAttributes = SuppressionCreateJobCreateQueryAsSubResourceAttributes;

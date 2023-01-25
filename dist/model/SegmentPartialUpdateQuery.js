@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The SegmentPartialUpdateQuery model module.
  * @module model/SegmentPartialUpdateQuery
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var SegmentPartialUpdateQuery = /*#__PURE__*/function () {
   /**

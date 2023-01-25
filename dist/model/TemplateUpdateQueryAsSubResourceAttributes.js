@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateUpdateQueryAsSubResourceAttributes model module.
  * @module model/TemplateUpdateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var TemplateUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -49,22 +49,26 @@ var TemplateUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return TemplateUpdateQueryAsSubResourceAttributes;
 }();
 /**
+ * The name of the template
  * @member {String} name
  */
 exports.TemplateUpdateQueryAsSubResourceAttributes = TemplateUpdateQueryAsSubResourceAttributes;
 TemplateUpdateQueryAsSubResourceAttributes.prototype.name = undefined;
 
 /**
+ * The HTML of the template
  * @member {String} html
  */
 TemplateUpdateQueryAsSubResourceAttributes.prototype.html = undefined;
 
 /**
+ * The plaintext of the template
  * @member {String} text
  */
 TemplateUpdateQueryAsSubResourceAttributes.prototype.text = undefined;
 
 /**
+ * Provide fields to limit the returned data
  * @member {Array.<String>} returnFields
  */
 TemplateUpdateQueryAsSubResourceAttributes.prototype.returnFields = undefined;

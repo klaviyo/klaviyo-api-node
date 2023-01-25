@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogVariantUpdateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogVariantUpdateJobCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var CatalogVariantUpdateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**

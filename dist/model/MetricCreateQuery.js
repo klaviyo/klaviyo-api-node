@@ -14,14 +14,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The MetricCreateQuery model module.
  * @module model/MetricCreateQuery
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var MetricCreateQuery = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>MetricCreateQuery</code>.
    * @alias module:model/MetricCreateQuery
    * @class
-   * @param name {String} 
+   * @param name {String} Name of the event. Must be less than 128 characters.
    */
   function MetricCreateQuery(name) {
     _classCallCheck(this, MetricCreateQuery);
@@ -49,12 +49,14 @@ var MetricCreateQuery = /*#__PURE__*/function () {
   return MetricCreateQuery;
 }();
 /**
+ * Name of the event. Must be less than 128 characters.
  * @member {String} name
  */
 exports.MetricCreateQuery = MetricCreateQuery;
 MetricCreateQuery.prototype.name = undefined;
 
 /**
+ * This is for advanced usage. For api requests, this should use the default, which is set to api.
  * @member {String} service
  */
 MetricCreateQuery.prototype.service = undefined;

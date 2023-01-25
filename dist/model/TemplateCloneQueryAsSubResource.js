@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateCloneQueryAsSubResource model module.
  * @module model/TemplateCloneQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var TemplateCloneQueryAsSubResource = /*#__PURE__*/function () {
   /**
@@ -23,11 +23,13 @@ var TemplateCloneQueryAsSubResource = /*#__PURE__*/function () {
    * @alias module:model/TemplateCloneQueryAsSubResource
    * @class
    * @param type {module:model/TemplateCloneQueryAsSubResource.TypeEnum} 
+   * @param id {Object} The ID of MessageTemplate
    * @param attributes {module:model/TemplateCloneQueryAsSubResourceAttributes} 
    */
-  function TemplateCloneQueryAsSubResource(type, attributes) {
+  function TemplateCloneQueryAsSubResource(type, id, attributes) {
     _classCallCheck(this, TemplateCloneQueryAsSubResource);
     this.type = type;
+    this.id = id;
     this.attributes = attributes;
   }
 
@@ -44,6 +46,7 @@ var TemplateCloneQueryAsSubResource = /*#__PURE__*/function () {
       if (data) {
         obj = obj || new TemplateCloneQueryAsSubResource();
         if (data.hasOwnProperty('type')) obj.type = _ApiClient.ApiClient.convertToType(data['type'], 'String');
+        if (data.hasOwnProperty('id')) obj.id = _ApiClient.ApiClient.convertToType(data['id'], Object);
         if (data.hasOwnProperty('attributes')) obj.attributes = _TemplateCloneQueryAsSubResourceAttributes.TemplateCloneQueryAsSubResourceAttributes.constructFromObject(data['attributes']);
       }
       return obj;
@@ -68,6 +71,12 @@ TemplateCloneQueryAsSubResource.TypeEnum = {
  * @member {module:model/TemplateCloneQueryAsSubResource.TypeEnum} type
  */
 TemplateCloneQueryAsSubResource.prototype.type = undefined;
+
+/**
+ * The ID of MessageTemplate
+ * @member {Object} id
+ */
+TemplateCloneQueryAsSubResource.prototype.id = undefined;
 
 /**
  * @member {module:model/TemplateCloneQueryAsSubResourceAttributes} attributes

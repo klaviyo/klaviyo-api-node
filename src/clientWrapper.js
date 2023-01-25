@@ -2,12 +2,14 @@ import { backOff } from "exponential-backoff";
 
 import {CatalogsApi} from './api/CatalogsApi.js';
 import {ClientApi} from './api/ClientApi.js';
+import {DataPrivacyApi} from './api/DataPrivacyApi.js';
 import {EventsApi} from './api/EventsApi.js';
 import {FlowsApi} from './api/FlowsApi.js';
 import {ListsApi} from './api/ListsApi.js';
 import {MetricsApi} from './api/MetricsApi.js';
 import {ProfilesApi} from './api/ProfilesApi.js';
 import {SegmentsApi} from './api/SegmentsApi.js';
+import {TagsApi} from './api/TagsApi.js';
 import {TemplatesApi} from './api/TemplatesApi.js';
 
 import {ApiClient} from './ApiClient.js';
@@ -78,23 +80,27 @@ const ConfigWrapper = (authKey, opts = {}) => {
 
 const Catalogs = wrapObj(CatalogsApi)
 const Client = wrapObj(ClientApi)
+const DataPrivacy = wrapObj(DataPrivacyApi)
 const Events = wrapObj(EventsApi)
 const Flows = wrapObj(FlowsApi)
 const Lists = wrapObj(ListsApi)
 const Metrics = wrapObj(MetricsApi)
 const Profiles = wrapObj(ProfilesApi)
 const Segments = wrapObj(SegmentsApi)
+const Tags = wrapObj(TagsApi)
 const Templates = wrapObj(TemplatesApi)
 
 export {
     Catalogs,
     Client,
+    DataPrivacy,
     Events,
     Flows,
     Lists,
     Metrics,
     Profiles,
     Segments,
+    Tags,
     Templates,
 ConfigWrapper
 }

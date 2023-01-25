@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogCategoryCreateQuery model module.
  * @module model/CatalogCategoryCreateQuery
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var CatalogCategoryCreateQuery = /*#__PURE__*/function () {
   /**

@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogCategoryCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogCategoryCreateQueryAsSubResourceAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var CatalogCategoryCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -83,5 +83,6 @@ CatalogCategoryCreateQueryAsSubResourceAttributes.prototype.integrationType = un
 
 /**
  * @member {String} catalogType
+ * @default '$default'
  */
-CatalogCategoryCreateQueryAsSubResourceAttributes.prototype.catalogType = undefined;
+CatalogCategoryCreateQueryAsSubResourceAttributes.prototype.catalogType = '$default';

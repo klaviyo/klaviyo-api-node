@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.V2TemplateRenderQueryAsSubResource = void 0;
 var _ApiClient = require("../ApiClient.js");
-var _V2TemplateRenderQueryAsSubResourceAttributes = require("./V2TemplateRenderQueryAsSubResourceAttributes.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
@@ -15,20 +14,18 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The V2TemplateRenderQueryAsSubResource model module.
  * @module model/V2TemplateRenderQueryAsSubResource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var V2TemplateRenderQueryAsSubResource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>V2TemplateRenderQueryAsSubResource</code>.
    * @alias module:model/V2TemplateRenderQueryAsSubResource
    * @class
-   * @param type {module:model/V2TemplateRenderQueryAsSubResource.TypeEnum} 
-   * @param attributes {module:model/V2TemplateRenderQueryAsSubResourceAttributes} 
+   * @param id {Object} The ID of MessageTemplate
    */
-  function V2TemplateRenderQueryAsSubResource(type, attributes) {
+  function V2TemplateRenderQueryAsSubResource(id) {
     _classCallCheck(this, V2TemplateRenderQueryAsSubResource);
-    this.type = type;
-    this.attributes = attributes;
+    this.id = id;
   }
 
   /**
@@ -43,8 +40,7 @@ var V2TemplateRenderQueryAsSubResource = /*#__PURE__*/function () {
     value: function constructFromObject(data, obj) {
       if (data) {
         obj = obj || new V2TemplateRenderQueryAsSubResource();
-        if (data.hasOwnProperty('type')) obj.type = _ApiClient.ApiClient.convertToType(data['type'], 'String');
-        if (data.hasOwnProperty('attributes')) obj.attributes = _V2TemplateRenderQueryAsSubResourceAttributes.V2TemplateRenderQueryAsSubResourceAttributes.constructFromObject(data['attributes']);
+        if (data.hasOwnProperty('id')) obj.id = _ApiClient.ApiClient.convertToType(data['id'], Object);
       }
       return obj;
     }
@@ -52,24 +48,8 @@ var V2TemplateRenderQueryAsSubResource = /*#__PURE__*/function () {
   return V2TemplateRenderQueryAsSubResource;
 }();
 /**
- * Allowed values for the <code>type</code> property.
- * @enum {String}
- * @readonly
+ * The ID of MessageTemplate
+ * @member {Object} id
  */
 exports.V2TemplateRenderQueryAsSubResource = V2TemplateRenderQueryAsSubResource;
-V2TemplateRenderQueryAsSubResource.TypeEnum = {
-  /**
-   * value: "template"
-   * @const
-   */
-  template: "template"
-};
-/**
- * @member {module:model/V2TemplateRenderQueryAsSubResource.TypeEnum} type
- */
-V2TemplateRenderQueryAsSubResource.prototype.type = undefined;
-
-/**
- * @member {module:model/V2TemplateRenderQueryAsSubResourceAttributes} attributes
- */
-V2TemplateRenderQueryAsSubResource.prototype.attributes = undefined;
+V2TemplateRenderQueryAsSubResource.prototype.id = undefined;

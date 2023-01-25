@@ -16,7 +16,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedMetrics model module.
  * @module model/IncludedMetrics
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var IncludedMetrics = /*#__PURE__*/function () {
   /**
@@ -24,7 +24,7 @@ var IncludedMetrics = /*#__PURE__*/function () {
    * @alias module:model/IncludedMetrics
    * @class
    * @param type {module:model/IncludedMetrics.TypeEnum} 
-   * @param id {String} 
+   * @param id {String} The Metric ID
    * @param attributes {module:model/IncludedMetricsAttributes} 
    * @param links {module:model/IncludedVariantsLinks} 
    */
@@ -77,6 +77,7 @@ IncludedMetrics.TypeEnum = {
 IncludedMetrics.prototype.type = undefined;
 
 /**
+ * The Metric ID
  * @member {String} id
  */
 IncludedMetrics.prototype.id = undefined;

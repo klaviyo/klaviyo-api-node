@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedListsAttributes model module.
  * @module model/IncludedListsAttributes
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var IncludedListsAttributes = /*#__PURE__*/function () {
   /**

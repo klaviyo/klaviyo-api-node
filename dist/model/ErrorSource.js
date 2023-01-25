@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The ErrorSource model module.
  * @module model/ErrorSource
- * @version 2022-10-17
+ * @version 2023-01-24
  */
 var ErrorSource = /*#__PURE__*/function () {
   /**
@@ -49,6 +49,7 @@ var ErrorSource = /*#__PURE__*/function () {
 }();
 /**
  * @member {String} pointer
+ * @default '/data'
  */
 exports.ErrorSource = ErrorSource;
-ErrorSource.prototype.pointer = undefined;
+ErrorSource.prototype.pointer = '/data';
