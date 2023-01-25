@@ -13,7 +13,8 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from "../ApiClient.js";
+import { ApiClient } from "../ApiClient.js";
+import { backOff } from "exponential-backoff";
 
 /**
 * Segments service.
@@ -45,42 +46,52 @@ export class SegmentsApi {
      */
     getSegment = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getSegment");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getSegment");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[segment]': this.apiClient.buildCollectionParam(opts['fieldsSegment'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[segment]': this.apiClient.buildCollectionParam(opts['fieldsSegment'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/segments/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/segments/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -95,42 +106,52 @@ export class SegmentsApi {
      */
     getSegmentProfiles = async (segmentId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'segmentId' is set
-      if (segmentId === undefined || segmentId === null) {
-        throw new Error("Missing the required parameter 'segmentId' when calling getSegmentProfiles");
-      }
+        if (segmentId === undefined || segmentId === null) {
+            throw new Error("Missing the required parameter 'segmentId' when calling getSegmentProfiles");
+        }
 
-      let pathParams = {
-        'segment_id': segmentId
-      };
-      let queryParams = {
-        'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'segment_id': segmentId
+        };
+        let queryParams = {
+          'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/segments/{segment_id}/profiles/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/segments/{segment_id}/profiles/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -144,46 +165,56 @@ export class SegmentsApi {
      */
     getSegmentRelationships = async (id, relatedResource, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getSegmentRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getSegmentRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling getSegmentRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling getSegmentRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/segments/{id}/relationships/{related_resource}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/segments/{id}/relationships/{related_resource}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -196,42 +227,52 @@ export class SegmentsApi {
      */
     getSegmentTags = async (segmentId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'segmentId' is set
-      if (segmentId === undefined || segmentId === null) {
-        throw new Error("Missing the required parameter 'segmentId' when calling getSegmentTags");
-      }
+        if (segmentId === undefined || segmentId === null) {
+            throw new Error("Missing the required parameter 'segmentId' when calling getSegmentTags");
+        }
 
-      let pathParams = {
-        'segment_id': segmentId
-      };
-      let queryParams = {
-        'fields[tag]': this.apiClient.buildCollectionParam(opts['fieldsTag'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'segment_id': segmentId
+        };
+        let queryParams = {
+          'fields[tag]': this.apiClient.buildCollectionParam(opts['fieldsTag'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/segments/{segment_id}/tags/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/segments/{segment_id}/tags/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -245,38 +286,48 @@ export class SegmentsApi {
      */
     getSegments = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[segment]': this.apiClient.buildCollectionParam(opts['fieldsSegment'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[segment]': this.apiClient.buildCollectionParam(opts['fieldsSegment'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/segments/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/segments/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -288,46 +339,56 @@ export class SegmentsApi {
      */
     updateSegment = async (body, id) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateSegment");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling updateSegment");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateSegment");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling updateSegment");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/segments/{id}/', 'PATCH',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/segments/{id}/', 'PATCH',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
 }

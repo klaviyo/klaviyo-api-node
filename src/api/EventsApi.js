@@ -13,7 +13,8 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from "../ApiClient.js";
+import { ApiClient } from "../ApiClient.js";
+import { backOff } from "exponential-backoff";
 
 /**
 * Events service.
@@ -43,42 +44,52 @@ export class EventsApi {
      */
     createEvent = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createEvent");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createEvent");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/events/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/events/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -94,42 +105,52 @@ export class EventsApi {
      */
     getEvent = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getEvent");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getEvent");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[event]': this.apiClient.buildCollectionParam(opts['fieldsEvent'], 'csv'),'fields[metric]': this.apiClient.buildCollectionParam(opts['fieldsMetric'], 'csv'),'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[event]': this.apiClient.buildCollectionParam(opts['fieldsEvent'], 'csv'),'fields[metric]': this.apiClient.buildCollectionParam(opts['fieldsMetric'], 'csv'),'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/events/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/events/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -142,42 +163,52 @@ export class EventsApi {
      */
     getEventMetrics = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getEventMetrics");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getEventMetrics");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[metric]': this.apiClient.buildCollectionParam(opts['fieldsMetric'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[metric]': this.apiClient.buildCollectionParam(opts['fieldsMetric'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/events/{id}/metrics/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/events/{id}/metrics/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -190,42 +221,52 @@ export class EventsApi {
      */
     getEventProfiles = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getEventProfiles");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getEventProfiles");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/events/{id}/profiles/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/events/{id}/profiles/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -237,46 +278,56 @@ export class EventsApi {
      */
     getEventRelationships = async (id, relatedResource) => {
 
-    
-      let postBody = null;
+        
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getEventRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getEventRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling getEventRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling getEventRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/events/{id}/relationships/{related_resource}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/events/{id}/relationships/{related_resource}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -294,38 +345,48 @@ export class EventsApi {
      */
     getEvents = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[event]': this.apiClient.buildCollectionParam(opts['fieldsEvent'], 'csv'),'fields[metric]': this.apiClient.buildCollectionParam(opts['fieldsMetric'], 'csv'),'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'page[cursor]': opts['pageCursor'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[event]': this.apiClient.buildCollectionParam(opts['fieldsEvent'], 'csv'),'fields[metric]': this.apiClient.buildCollectionParam(opts['fieldsMetric'], 'csv'),'fields[profile]': this.apiClient.buildCollectionParam(opts['fieldsProfile'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'page[cursor]': opts['pageCursor'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/events/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/events/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
 }

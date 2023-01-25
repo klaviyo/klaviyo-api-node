@@ -13,7 +13,8 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from "../ApiClient.js";
+import { ApiClient } from "../ApiClient.js";
+import { backOff } from "exponential-backoff";
 
 /**
 * Client service.
@@ -44,46 +45,56 @@ export class ClientApi {
      */
     createClientEvent = async (body, companyId) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createClientEvent");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createClientEvent");
+        }
       // verify the required parameter 'companyId' is set
-      if (companyId === undefined || companyId === null) {
-        throw new Error("Missing the required parameter 'companyId' when calling createClientEvent");
-      }
+        if (companyId === undefined || companyId === null) {
+            throw new Error("Missing the required parameter 'companyId' when calling createClientEvent");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'company_id': companyId
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'company_id': companyId
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = [];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = [];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/client/events/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/client/events/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -95,46 +106,56 @@ export class ClientApi {
      */
     createClientProfile = async (body, companyId) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createClientProfile");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createClientProfile");
+        }
       // verify the required parameter 'companyId' is set
-      if (companyId === undefined || companyId === null) {
-        throw new Error("Missing the required parameter 'companyId' when calling createClientProfile");
-      }
+        if (companyId === undefined || companyId === null) {
+            throw new Error("Missing the required parameter 'companyId' when calling createClientProfile");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'company_id': companyId
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'company_id': companyId
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = [];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = [];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/client/profiles/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/client/profiles/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -146,46 +167,56 @@ export class ClientApi {
      */
     createClientSubscription = async (body, companyId) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createClientSubscription");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createClientSubscription");
+        }
       // verify the required parameter 'companyId' is set
-      if (companyId === undefined || companyId === null) {
-        throw new Error("Missing the required parameter 'companyId' when calling createClientSubscription");
-      }
+        if (companyId === undefined || companyId === null) {
+            throw new Error("Missing the required parameter 'companyId' when calling createClientSubscription");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'company_id': companyId
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'company_id': companyId
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = [];
-      let contentTypes = ['application/json'];
-      let accepts = [];
-      let returnType = Object;
+        let authNames = [];
+        let contentTypes = ['application/json'];
+        let accepts = [];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/client/subscriptions/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/client/subscriptions/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
 }

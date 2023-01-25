@@ -13,7 +13,8 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from "../ApiClient.js";
+import { ApiClient } from "../ApiClient.js";
+import { backOff } from "exponential-backoff";
 
 /**
 * Catalogs service.
@@ -43,42 +44,52 @@ export class CatalogsApi {
      */
     createCatalogCategory = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createCatalogCategory");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createCatalogCategory");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -91,50 +102,60 @@ export class CatalogsApi {
      */
     createCatalogCategoryRelationships = async (body, id, relatedResource) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createCatalogCategoryRelationships");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createCatalogCategoryRelationships");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling createCatalogCategoryRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling createCatalogCategoryRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling createCatalogCategoryRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling createCatalogCategoryRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{id}/relationships/{related_resource}/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{id}/relationships/{related_resource}/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -145,42 +166,52 @@ export class CatalogsApi {
      */
     createCatalogItem = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createCatalogItem");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createCatalogItem");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -193,50 +224,60 @@ export class CatalogsApi {
      */
     createCatalogItemRelationships = async (body, id, relatedResource) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createCatalogItemRelationships");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createCatalogItemRelationships");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling createCatalogItemRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling createCatalogItemRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling createCatalogItemRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling createCatalogItemRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{id}/relationships/{related_resource}/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{id}/relationships/{related_resource}/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -247,42 +288,52 @@ export class CatalogsApi {
      */
     createCatalogVariant = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling createCatalogVariant");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling createCatalogVariant");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variants/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variants/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -293,42 +344,52 @@ export class CatalogsApi {
      */
     deleteCatalogCategory = async (id) => {
 
-    
-      let postBody = null;
+        
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteCatalogCategory");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling deleteCatalogCategory");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{id}/', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{id}/', 'DELETE',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -341,50 +402,60 @@ export class CatalogsApi {
      */
     deleteCatalogCategoryRelationships = async (body, id, relatedResource) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling deleteCatalogCategoryRelationships");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling deleteCatalogCategoryRelationships");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteCatalogCategoryRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling deleteCatalogCategoryRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling deleteCatalogCategoryRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling deleteCatalogCategoryRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{id}/relationships/{related_resource}/', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{id}/relationships/{related_resource}/', 'DELETE',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -395,42 +466,52 @@ export class CatalogsApi {
      */
     deleteCatalogItem = async (id) => {
 
-    
-      let postBody = null;
+        
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteCatalogItem");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling deleteCatalogItem");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{id}/', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{id}/', 'DELETE',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -443,50 +524,60 @@ export class CatalogsApi {
      */
     deleteCatalogItemRelationships = async (body, id, relatedResource) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling deleteCatalogItemRelationships");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling deleteCatalogItemRelationships");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteCatalogItemRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling deleteCatalogItemRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling deleteCatalogItemRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling deleteCatalogItemRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{id}/relationships/{related_resource}/', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{id}/relationships/{related_resource}/', 'DELETE',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -497,42 +588,52 @@ export class CatalogsApi {
      */
     deleteCatalogVariant = async (id) => {
 
-    
-      let postBody = null;
+        
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling deleteCatalogVariant");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling deleteCatalogVariant");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variants/{id}/', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variants/{id}/', 'DELETE',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -547,38 +648,48 @@ export class CatalogsApi {
      */
     getCatalogCategories = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -591,42 +702,52 @@ export class CatalogsApi {
      */
     getCatalogCategory = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getCatalogCategory");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getCatalogCategory");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -644,42 +765,52 @@ export class CatalogsApi {
      */
     getCatalogCategoryItems = async (categoryId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'categoryId' is set
-      if (categoryId === undefined || categoryId === null) {
-        throw new Error("Missing the required parameter 'categoryId' when calling getCatalogCategoryItems");
-      }
+        if (categoryId === undefined || categoryId === null) {
+            throw new Error("Missing the required parameter 'categoryId' when calling getCatalogCategoryItems");
+        }
 
-      let pathParams = {
-        'category_id': categoryId
-      };
-      let queryParams = {
-        'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'page[cursor]': opts['pageCursor'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'category_id': categoryId
+        };
+        let queryParams = {
+          'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'page[cursor]': opts['pageCursor'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{category_id}/items/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{category_id}/items/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -693,46 +824,56 @@ export class CatalogsApi {
      */
     getCatalogCategoryRelationships = async (id, relatedResource, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getCatalogCategoryRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getCatalogCategoryRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling getCatalogCategoryRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling getCatalogCategoryRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{id}/relationships/{related_resource}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{id}/relationships/{related_resource}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -747,42 +888,52 @@ export class CatalogsApi {
      */
     getCatalogItem = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getCatalogItem");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getCatalogItem");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -798,42 +949,52 @@ export class CatalogsApi {
      */
     getCatalogItemCategories = async (itemId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'itemId' is set
-      if (itemId === undefined || itemId === null) {
-        throw new Error("Missing the required parameter 'itemId' when calling getCatalogItemCategories");
-      }
+        if (itemId === undefined || itemId === null) {
+            throw new Error("Missing the required parameter 'itemId' when calling getCatalogItemCategories");
+        }
 
-      let pathParams = {
-        'item_id': itemId
-      };
-      let queryParams = {
-        'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'item_id': itemId
+        };
+        let queryParams = {
+          'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{item_id}/categories/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{item_id}/categories/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -847,46 +1008,56 @@ export class CatalogsApi {
      */
     getCatalogItemRelationships = async (id, relatedResource, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getCatalogItemRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getCatalogItemRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling getCatalogItemRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling getCatalogItemRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{id}/relationships/{related_resource}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{id}/relationships/{related_resource}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -902,42 +1073,52 @@ export class CatalogsApi {
      */
     getCatalogItemVariants = async (itemId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'itemId' is set
-      if (itemId === undefined || itemId === null) {
-        throw new Error("Missing the required parameter 'itemId' when calling getCatalogItemVariants");
-      }
+        if (itemId === undefined || itemId === null) {
+            throw new Error("Missing the required parameter 'itemId' when calling getCatalogItemVariants");
+        }
 
-      let pathParams = {
-        'item_id': itemId
-      };
-      let queryParams = {
-        'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'item_id': itemId
+        };
+        let queryParams = {
+          'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{item_id}/variants/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{item_id}/variants/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -954,38 +1135,48 @@ export class CatalogsApi {
      */
     getCatalogItems = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'page[cursor]': opts['pageCursor'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'page[cursor]': opts['pageCursor'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -998,42 +1189,52 @@ export class CatalogsApi {
      */
     getCatalogVariant = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getCatalogVariant");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getCatalogVariant");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variants/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variants/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1048,38 +1249,48 @@ export class CatalogsApi {
      */
     getCatalogVariants = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variants/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variants/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1094,42 +1305,52 @@ export class CatalogsApi {
      */
     getCreateCategoriesJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getCreateCategoriesJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getCreateCategoriesJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-category-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkCreateJob'], 'csv'),'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-category-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkCreateJob'], 'csv'),'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-create-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-create-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1143,38 +1364,48 @@ export class CatalogsApi {
      */
     getCreateCategoriesJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-category-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkCreateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-category-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkCreateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-create-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-create-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1189,42 +1420,52 @@ export class CatalogsApi {
      */
     getCreateItemsJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getCreateItemsJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getCreateItemsJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-item-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkCreateJob'], 'csv'),'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-item-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkCreateJob'], 'csv'),'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-create-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-create-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1238,38 +1479,48 @@ export class CatalogsApi {
      */
     getCreateItemsJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-item-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkCreateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-item-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkCreateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-create-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-create-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1284,42 +1535,52 @@ export class CatalogsApi {
      */
     getCreateVariantsJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getCreateVariantsJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getCreateVariantsJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-variant-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkCreateJob'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-variant-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkCreateJob'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-create-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-create-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1333,38 +1594,48 @@ export class CatalogsApi {
      */
     getCreateVariantsJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-variant-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkCreateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-variant-bulk-create-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkCreateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-create-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-create-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1377,42 +1648,52 @@ export class CatalogsApi {
      */
     getDeleteCategoriesJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getDeleteCategoriesJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getDeleteCategoriesJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-category-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkDeleteJob'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-category-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkDeleteJob'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-delete-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-delete-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1426,38 +1707,48 @@ export class CatalogsApi {
      */
     getDeleteCategoriesJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-category-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkDeleteJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-category-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkDeleteJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-delete-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-delete-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1470,42 +1761,52 @@ export class CatalogsApi {
      */
     getDeleteItemsJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getDeleteItemsJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getDeleteItemsJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-item-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkDeleteJob'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-item-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkDeleteJob'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-delete-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-delete-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1519,38 +1820,48 @@ export class CatalogsApi {
      */
     getDeleteItemsJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-item-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkDeleteJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-item-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkDeleteJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-delete-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-delete-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1563,42 +1874,52 @@ export class CatalogsApi {
      */
     getDeleteVariantsJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getDeleteVariantsJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getDeleteVariantsJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-variant-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkDeleteJob'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-variant-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkDeleteJob'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-delete-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-delete-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1612,38 +1933,48 @@ export class CatalogsApi {
      */
     getDeleteVariantsJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-variant-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkDeleteJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-variant-bulk-delete-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkDeleteJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-delete-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-delete-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1658,42 +1989,52 @@ export class CatalogsApi {
      */
     getUpdateCategoriesJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getUpdateCategoriesJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getUpdateCategoriesJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-category-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkUpdateJob'], 'csv'),'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-category-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkUpdateJob'], 'csv'),'fields[catalog-category]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategory'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-update-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-update-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1707,38 +2048,48 @@ export class CatalogsApi {
      */
     getUpdateCategoriesJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-category-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkUpdateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-category-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogCategoryBulkUpdateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-update-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-update-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1753,42 +2104,52 @@ export class CatalogsApi {
      */
     getUpdateItemsJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getUpdateItemsJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getUpdateItemsJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-item-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkUpdateJob'], 'csv'),'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-item-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkUpdateJob'], 'csv'),'fields[catalog-item]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItem'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-update-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-update-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1802,38 +2163,48 @@ export class CatalogsApi {
      */
     getUpdateItemsJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-item-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkUpdateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-item-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogItemBulkUpdateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-update-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-update-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1848,42 +2219,52 @@ export class CatalogsApi {
      */
     getUpdateVariantsJob = async (jobId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'jobId' is set
-      if (jobId === undefined || jobId === null) {
-        throw new Error("Missing the required parameter 'jobId' when calling getUpdateVariantsJob");
-      }
+        if (jobId === undefined || jobId === null) {
+            throw new Error("Missing the required parameter 'jobId' when calling getUpdateVariantsJob");
+        }
 
-      let pathParams = {
-        'job_id': jobId
-      };
-      let queryParams = {
-        'fields[catalog-variant-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkUpdateJob'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'job_id': jobId
+        };
+        let queryParams = {
+          'fields[catalog-variant-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkUpdateJob'], 'csv'),'fields[catalog-variant]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariant'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-update-jobs/{job_id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-update-jobs/{job_id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1897,38 +2278,48 @@ export class CatalogsApi {
      */
     getUpdateVariantsJobs = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[catalog-variant-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkUpdateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[catalog-variant-bulk-update-job]': this.apiClient.buildCollectionParam(opts['fieldsCatalogVariantBulkUpdateJob'], 'csv'),'filter': opts['filter'],'page[cursor]': opts['pageCursor']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-update-jobs/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-update-jobs/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1939,42 +2330,52 @@ export class CatalogsApi {
      */
     spawnCreateCategoriesJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnCreateCategoriesJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnCreateCategoriesJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-create-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-create-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -1985,42 +2386,52 @@ export class CatalogsApi {
      */
     spawnCreateItemsJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnCreateItemsJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnCreateItemsJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-create-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-create-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2031,42 +2442,52 @@ export class CatalogsApi {
      */
     spawnCreateVariantsJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnCreateVariantsJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnCreateVariantsJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-create-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-create-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2077,42 +2498,52 @@ export class CatalogsApi {
      */
     spawnDeleteCategoriesJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnDeleteCategoriesJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnDeleteCategoriesJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-delete-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-delete-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2123,42 +2554,52 @@ export class CatalogsApi {
      */
     spawnDeleteItemsJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnDeleteItemsJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnDeleteItemsJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-delete-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-delete-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2169,42 +2610,52 @@ export class CatalogsApi {
      */
     spawnDeleteVariantsJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnDeleteVariantsJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnDeleteVariantsJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-delete-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-delete-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2215,42 +2666,52 @@ export class CatalogsApi {
      */
     spawnUpdateCategoriesJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnUpdateCategoriesJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnUpdateCategoriesJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-category-bulk-update-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-category-bulk-update-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2261,42 +2722,52 @@ export class CatalogsApi {
      */
     spawnUpdateItemsJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnUpdateItemsJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnUpdateItemsJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-item-bulk-update-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-item-bulk-update-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2307,42 +2778,52 @@ export class CatalogsApi {
      */
     spawnUpdateVariantsJob = async (body) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling spawnUpdateVariantsJob");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling spawnUpdateVariantsJob");
+        }
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variant-bulk-update-jobs/', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variant-bulk-update-jobs/', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2354,46 +2835,56 @@ export class CatalogsApi {
      */
     updateCatalogCategory = async (body, id) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateCatalogCategory");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling updateCatalogCategory");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateCatalogCategory");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling updateCatalogCategory");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{id}/', 'PATCH',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{id}/', 'PATCH',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2406,50 +2897,60 @@ export class CatalogsApi {
      */
     updateCatalogCategoryRelationships = async (body, id, relatedResource) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateCatalogCategoryRelationships");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling updateCatalogCategoryRelationships");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateCatalogCategoryRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling updateCatalogCategoryRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling updateCatalogCategoryRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling updateCatalogCategoryRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-categories/{id}/relationships/{related_resource}/', 'PATCH',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-categories/{id}/relationships/{related_resource}/', 'PATCH',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2461,46 +2962,56 @@ export class CatalogsApi {
      */
     updateCatalogItem = async (body, id) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateCatalogItem");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling updateCatalogItem");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateCatalogItem");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling updateCatalogItem");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{id}/', 'PATCH',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{id}/', 'PATCH',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2513,50 +3024,60 @@ export class CatalogsApi {
      */
     updateCatalogItemRelationships = async (body, id, relatedResource) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateCatalogItemRelationships");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling updateCatalogItemRelationships");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateCatalogItemRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling updateCatalogItemRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling updateCatalogItemRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling updateCatalogItemRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-items/{id}/relationships/{related_resource}/', 'PATCH',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-items/{id}/relationships/{related_resource}/', 'PATCH',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -2568,46 +3089,56 @@ export class CatalogsApi {
      */
     updateCatalogVariant = async (body, id) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateCatalogVariant");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling updateCatalogVariant");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateCatalogVariant");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling updateCatalogVariant");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/catalog-variants/{id}/', 'PATCH',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/catalog-variants/{id}/', 'PATCH',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
 }

@@ -13,7 +13,8 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from "../ApiClient.js";
+import { ApiClient } from "../ApiClient.js";
+import { backOff } from "exponential-backoff";
 
 /**
 * Flows service.
@@ -47,42 +48,52 @@ export class FlowsApi {
      */
     getFlow = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getFlow");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getFlow");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flows/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flows/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -98,42 +109,52 @@ export class FlowsApi {
      */
     getFlowAction = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getFlowAction");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getFlowAction");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow-message]': this.apiClient.buildCollectionParam(opts['fieldsFlowMessage'], 'csv'),'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow-message]': this.apiClient.buildCollectionParam(opts['fieldsFlowMessage'], 'csv'),'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flow-actions/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flow-actions/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -146,42 +167,52 @@ export class FlowsApi {
      */
     getFlowActionFlow = async (actionId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'actionId' is set
-      if (actionId === undefined || actionId === null) {
-        throw new Error("Missing the required parameter 'actionId' when calling getFlowActionFlow");
-      }
+        if (actionId === undefined || actionId === null) {
+            throw new Error("Missing the required parameter 'actionId' when calling getFlowActionFlow");
+        }
 
-      let pathParams = {
-        'action_id': actionId
-      };
-      let queryParams = {
-        'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'action_id': actionId
+        };
+        let queryParams = {
+          'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flow-actions/{action_id}/flow/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flow-actions/{action_id}/flow/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -196,42 +227,52 @@ export class FlowsApi {
      */
     getFlowActionMessages = async (actionId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'actionId' is set
-      if (actionId === undefined || actionId === null) {
-        throw new Error("Missing the required parameter 'actionId' when calling getFlowActionMessages");
-      }
+        if (actionId === undefined || actionId === null) {
+            throw new Error("Missing the required parameter 'actionId' when calling getFlowActionMessages");
+        }
 
-      let pathParams = {
-        'action_id': actionId
-      };
-      let queryParams = {
-        'fields[flow-message]': this.apiClient.buildCollectionParam(opts['fieldsFlowMessage'], 'csv'),'filter': opts['filter'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'action_id': actionId
+        };
+        let queryParams = {
+          'fields[flow-message]': this.apiClient.buildCollectionParam(opts['fieldsFlowMessage'], 'csv'),'filter': opts['filter'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flow-actions/{action_id}/flow-messages/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flow-actions/{action_id}/flow-messages/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -246,46 +287,56 @@ export class FlowsApi {
      */
     getFlowActionRelationships = async (id, relatedResource, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getFlowActionRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getFlowActionRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling getFlowActionRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling getFlowActionRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        'filter': opts['filter'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          'filter': opts['filter'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flow-actions/{id}/relationships/{related_resource}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flow-actions/{id}/relationships/{related_resource}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -300,42 +351,52 @@ export class FlowsApi {
      */
     getFlowFlowActions = async (flowId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'flowId' is set
-      if (flowId === undefined || flowId === null) {
-        throw new Error("Missing the required parameter 'flowId' when calling getFlowFlowActions");
-      }
+        if (flowId === undefined || flowId === null) {
+            throw new Error("Missing the required parameter 'flowId' when calling getFlowFlowActions");
+        }
 
-      let pathParams = {
-        'flow_id': flowId
-      };
-      let queryParams = {
-        'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'filter': opts['filter'],'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'flow_id': flowId
+        };
+        let queryParams = {
+          'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'filter': opts['filter'],'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flows/{flow_id}/flow-actions/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flows/{flow_id}/flow-actions/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -350,42 +411,52 @@ export class FlowsApi {
      */
     getFlowMessage = async (id, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getFlowMessage");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getFlowMessage");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow-message]': this.apiClient.buildCollectionParam(opts['fieldsFlowMessage'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow-message]': this.apiClient.buildCollectionParam(opts['fieldsFlowMessage'], 'csv'),'include': this.apiClient.buildCollectionParam(opts['include'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flow-messages/{id}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flow-messages/{id}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -398,42 +469,52 @@ export class FlowsApi {
      */
     getFlowMessageAction = async (messageId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'messageId' is set
-      if (messageId === undefined || messageId === null) {
-        throw new Error("Missing the required parameter 'messageId' when calling getFlowMessageAction");
-      }
+        if (messageId === undefined || messageId === null) {
+            throw new Error("Missing the required parameter 'messageId' when calling getFlowMessageAction");
+        }
 
-      let pathParams = {
-        'message_id': messageId
-      };
-      let queryParams = {
-        'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'message_id': messageId
+        };
+        let queryParams = {
+          'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flow-messages/{message_id}/flow-action/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flow-messages/{message_id}/flow-action/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -445,46 +526,56 @@ export class FlowsApi {
      */
     getFlowMessageRelationships = async (id, relatedResource) => {
 
-    
-      let postBody = null;
+        
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getFlowMessageRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getFlowMessageRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling getFlowMessageRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling getFlowMessageRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flow-messages/{id}/relationships/{related_resource}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flow-messages/{id}/relationships/{related_resource}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -496,46 +587,56 @@ export class FlowsApi {
      */
     getFlowRelationships = async (id, relatedResource) => {
 
-    
-      let postBody = null;
+        
+        let postBody = null;
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getFlowRelationships");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling getFlowRelationships");
+        }
       // verify the required parameter 'relatedResource' is set
-      if (relatedResource === undefined || relatedResource === null) {
-        throw new Error("Missing the required parameter 'relatedResource' when calling getFlowRelationships");
-      }
+        if (relatedResource === undefined || relatedResource === null) {
+            throw new Error("Missing the required parameter 'relatedResource' when calling getFlowRelationships");
+        }
 
-      let pathParams = {
-        'id': id,'related_resource': relatedResource
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id,'related_resource': relatedResource
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flows/{id}/relationships/{related_resource}/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flows/{id}/relationships/{related_resource}/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -548,42 +649,52 @@ export class FlowsApi {
      */
     getFlowTags = async (flowId, opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
       // verify the required parameter 'flowId' is set
-      if (flowId === undefined || flowId === null) {
-        throw new Error("Missing the required parameter 'flowId' when calling getFlowTags");
-      }
+        if (flowId === undefined || flowId === null) {
+            throw new Error("Missing the required parameter 'flowId' when calling getFlowTags");
+        }
 
-      let pathParams = {
-        'flow_id': flowId
-      };
-      let queryParams = {
-        'fields[tag]': this.apiClient.buildCollectionParam(opts['fieldsTag'], 'csv')
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'flow_id': flowId
+        };
+        let queryParams = {
+          'fields[tag]': this.apiClient.buildCollectionParam(opts['fieldsTag'], 'csv')
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flows/{flow_id}/tags/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flows/{flow_id}/tags/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -599,38 +710,48 @@ export class FlowsApi {
      */
     getFlows = async (opts) => {
 
-    opts = opts || {};
-      let postBody = null;
+        opts = opts || {};
+        let postBody = null;
 
-      let pathParams = {
-        
-      };
-      let queryParams = {
-        'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'sort': opts['sort']
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          'fields[flow-action]': this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),'fields[flow]': this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv'),'filter': opts['filter'],'include': this.apiClient.buildCollectionParam(opts['include'], 'csv'),'sort': opts['sort']
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = [];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flows/', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flows/', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
     /**
@@ -642,46 +763,56 @@ export class FlowsApi {
      */
     updateFlow = async (body, id) => {
 
-    
-      let postBody = body;
+        
+        let postBody = body;
       // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateFlow");
-      }
+        if (body === undefined || body === null) {
+            throw new Error("Missing the required parameter 'body' when calling updateFlow");
+        }
       // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling updateFlow");
-      }
+        if (id === undefined || id === null) {
+            throw new Error("Missing the required parameter 'id' when calling updateFlow");
+        }
 
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        
-      };
-      let headerParams = {
-        
-      };
-      let formParams = {
-        
-      };
+        let pathParams = {
+          'id': id
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {
+          
+        };
+        let formParams = {
+          
+        };
 
-      let authNames = ['Klaviyo-API-Key'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = Object;
+        let authNames = ['Klaviyo-API-Key'];
+        let contentTypes = ['application/json'];
+        let accepts = ['application/json'];
+        let returnType = Object;
 
-      return this.apiClient.callApi(
-        '/api/flows/{id}/', 'PATCH',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      ).then(function(response_and_data) {
-          return {
+        return backOff(() => {
+          return this.apiClient.callApi(
+            '/api/flows/{id}/', 'PATCH',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType
+          ).then(function(response_and_data) {
+            return {
               body: response_and_data.data,
               headers: response_and_data.response.headers,
               status: response_and_data.response.status,
-          };
-      });
+            };
+          });
+        }, {
+          jitter: "full",
+          numOfAttempts: this.apiClient.RETRY_MAX_ATTEMPTS,
+          timeMultiple: this.apiClient.TIME_MULTIPLE,
+          startingDelay: this.apiClient.STARTING_DELAY,
+          retry: res => {
+            return this.apiClient.RETRY_CODES.includes(res.status)
+          }
+        });
     }
 
 }

@@ -30,6 +30,10 @@ import querystring from "querystring";
 */
 export class ApiClient {
     constructor() {
+        this.RETRY_CODES = [429, 503, 504]
+        this.RETRY_MAX_ATTEMPTS = 3
+        this.TIME_MULTIPLE = 5
+        this.STARTING_DELAY = 500
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
