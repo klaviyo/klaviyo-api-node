@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
     - Get Segment Tags
 - Reworked the response object from api
   - instead of only returning the response payload, the status code and headers are now also returned
-  - original payload items are now being `body`. to get the `id` by calling `response.body.data.id` instead `response.data.id` from previous releases
+  - The API response payload is now nested under `body` within the API response returned by SDK methods. You can get the `id` of the returned resource by calling `response.body.data.id` instead of `response.data.id` from previous releases. You can get response headers and status with `response.headers` and `response.status` respectively.
 
 ## [1.0.2] - revision: 2022-10-19 (update: 2022-12-19)
 
