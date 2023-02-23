@@ -16,7 +16,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedItems model module.
  * @module model/IncludedItems
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedItems = /*#__PURE__*/function () {
   /**
@@ -24,7 +24,7 @@ var IncludedItems = /*#__PURE__*/function () {
    * @alias module:model/IncludedItems
    * @class
    * @param type {module:model/IncludedItems.TypeEnum} 
-   * @param id {String} 
+   * @param id {String} The catalog item ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
    * @param attributes {module:model/IncludedItemsAttributes} 
    * @param links {module:model/IncludedVariantsLinks} 
    */
@@ -77,6 +77,7 @@ IncludedItems.TypeEnum = {
 IncludedItems.prototype.type = undefined;
 
 /**
+ * The catalog item ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
  * @member {String} id
  */
 IncludedItems.prototype.id = undefined;

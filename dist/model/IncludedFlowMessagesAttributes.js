@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedFlowMessagesAttributes model module.
  * @module model/IncludedFlowMessagesAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedFlowMessagesAttributes = /*#__PURE__*/function () {
   /**

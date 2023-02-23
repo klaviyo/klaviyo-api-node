@@ -18,7 +18,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CampaignPartialUpdateQueryAsSubResourceAttributes model module.
  * @module model/CampaignPartialUpdateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CampaignPartialUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**

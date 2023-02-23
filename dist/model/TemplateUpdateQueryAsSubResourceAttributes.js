@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateUpdateQueryAsSubResourceAttributes model module.
  * @module model/TemplateUpdateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TemplateUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**

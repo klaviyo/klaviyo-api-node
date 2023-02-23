@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CampaignPartialUpdateQuery model module.
  * @module model/CampaignPartialUpdateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CampaignPartialUpdateQuery = /*#__PURE__*/function () {
   /**

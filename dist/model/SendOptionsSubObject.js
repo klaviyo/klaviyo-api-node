@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The SendOptionsSubObject model module.
  * @module model/SendOptionsSubObject
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var SendOptionsSubObject = /*#__PURE__*/function () {
   /**
@@ -39,7 +39,6 @@ var SendOptionsSubObject = /*#__PURE__*/function () {
       if (data) {
         obj = obj || new SendOptionsSubObject();
         if (data.hasOwnProperty('use_smart_sending')) obj.useSmartSending = _ApiClient.ApiClient.convertToType(data['use_smart_sending'], 'Boolean');
-        if (data.hasOwnProperty('ignore_unsubscribes')) obj.ignoreUnsubscribes = _ApiClient.ApiClient.convertToType(data['ignore_unsubscribes'], 'Boolean');
       }
       return obj;
     }
@@ -52,9 +51,3 @@ var SendOptionsSubObject = /*#__PURE__*/function () {
  */
 exports.SendOptionsSubObject = SendOptionsSubObject;
 SendOptionsSubObject.prototype.useSmartSending = undefined;
-
-/**
- * Ignore unsubscribes. Defaults to False
- * @member {Boolean} ignoreUnsubscribes
- */
-SendOptionsSubObject.prototype.ignoreUnsubscribes = undefined;

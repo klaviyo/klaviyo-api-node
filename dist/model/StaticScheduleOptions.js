@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The StaticScheduleOptions model module.
  * @module model/StaticScheduleOptions
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var StaticScheduleOptions = /*#__PURE__*/function () {
   /**

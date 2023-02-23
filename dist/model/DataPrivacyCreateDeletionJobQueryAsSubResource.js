@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The DataPrivacyCreateDeletionJobQueryAsSubResource model module.
  * @module model/DataPrivacyCreateDeletionJobQueryAsSubResource
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var DataPrivacyCreateDeletionJobQueryAsSubResource = /*#__PURE__*/function () {
   /**

@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogVariantUpdateQueryAsSubResource model module.
  * @module model/CatalogVariantUpdateQueryAsSubResource
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogVariantUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**
@@ -23,7 +23,7 @@ var CatalogVariantUpdateQueryAsSubResource = /*#__PURE__*/function () {
    * @alias module:model/CatalogVariantUpdateQueryAsSubResource
    * @class
    * @param type {module:model/CatalogVariantUpdateQueryAsSubResource.TypeEnum} 
-   * @param id {String} The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`, but support for multiple catalogs  & non-custom integrations is forthcoming.
+   * @param id {String} The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
    * @param attributes {module:model/CatalogVariantUpdateQueryAsSubResourceAttributes} 
    */
   function CatalogVariantUpdateQueryAsSubResource(type, id, attributes) {
@@ -73,7 +73,7 @@ CatalogVariantUpdateQueryAsSubResource.TypeEnum = {
 CatalogVariantUpdateQueryAsSubResource.prototype.type = undefined;
 
 /**
- * The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`, but support for multiple catalogs  & non-custom integrations is forthcoming.
+ * The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
  * @member {String} id
  */
 CatalogVariantUpdateQueryAsSubResource.prototype.id = undefined;

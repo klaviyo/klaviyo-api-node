@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogCategoryUpdateQueryAsSubResourceAttributes model module.
  * @module model/CatalogCategoryUpdateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogCategoryUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -46,6 +46,7 @@ var CatalogCategoryUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function ()
   return CatalogCategoryUpdateQueryAsSubResourceAttributes;
 }();
 /**
+ * The name of the catalog category.
  * @member {String} name
  */
 exports.CatalogCategoryUpdateQueryAsSubResourceAttributes = CatalogCategoryUpdateQueryAsSubResourceAttributes;

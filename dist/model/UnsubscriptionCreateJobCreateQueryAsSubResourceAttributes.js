@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var UnsubscriptionCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**

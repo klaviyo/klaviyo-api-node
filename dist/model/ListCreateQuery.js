@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The ListCreateQuery model module.
  * @module model/ListCreateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var ListCreateQuery = /*#__PURE__*/function () {
   /**

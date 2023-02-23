@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The SendTimeSubObject model module.
  * @module model/SendTimeSubObject
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var SendTimeSubObject = /*#__PURE__*/function () {
   /**

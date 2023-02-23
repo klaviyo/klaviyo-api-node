@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateCloneQueryAsSubResourceAttributes model module.
  * @module model/TemplateCloneQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TemplateCloneQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**

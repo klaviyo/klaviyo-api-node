@@ -14,15 +14,15 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogCategoryCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogCategoryCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogCategoryCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogCategoryCreateQueryAsSubResourceAttributes
    * @class
-   * @param externalId {String} 
-   * @param name {String} 
+   * @param externalId {String} The ID of the catalog category in an external system.
+   * @param name {String} The name of the catalog category.
    */
   function CatalogCategoryCreateQueryAsSubResourceAttributes(externalId, name) {
     _classCallCheck(this, CatalogCategoryCreateQueryAsSubResourceAttributes);
@@ -53,12 +53,14 @@ var CatalogCategoryCreateQueryAsSubResourceAttributes = /*#__PURE__*/function ()
   return CatalogCategoryCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * The ID of the catalog category in an external system.
  * @member {String} externalId
  */
 exports.CatalogCategoryCreateQueryAsSubResourceAttributes = CatalogCategoryCreateQueryAsSubResourceAttributes;
 CatalogCategoryCreateQueryAsSubResourceAttributes.prototype.externalId = undefined;
 
 /**
+ * The name of the catalog category.
  * @member {String} name
  */
 CatalogCategoryCreateQueryAsSubResourceAttributes.prototype.name = undefined;
@@ -76,12 +78,13 @@ CatalogCategoryCreateQueryAsSubResourceAttributes.IntegrationTypeEnum = {
   custom: "$custom"
 };
 /**
- * The integration type. Currently, this can only be set to $custom (and defaults to $custom if not included in the payload).
+ * The integration type. Currently only \"$custom\" is supported.
  * @member {module:model/CatalogCategoryCreateQueryAsSubResourceAttributes.IntegrationTypeEnum} integrationType
  */
 CatalogCategoryCreateQueryAsSubResourceAttributes.prototype.integrationType = undefined;
 
 /**
+ * The type of catalog. Currently only \"$default\" is supported.
  * @member {String} catalogType
  * @default '$default'
  */
