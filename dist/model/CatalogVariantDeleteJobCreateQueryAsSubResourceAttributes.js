@@ -15,14 +15,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes
    * @class
-   * @param variants {Array.<module:model/CatalogVariantDeleteQueryAsSubResource>} 
+   * @param variants {Array.<module:model/CatalogVariantDeleteQueryAsSubResource>} Array of catalog variants to delete.
    */
   function CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes(variants) {
     _classCallCheck(this, CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes);
@@ -49,6 +49,7 @@ var CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/fun
   return CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * Array of catalog variants to delete.
  * @member {Array.<module:model/CatalogVariantDeleteQueryAsSubResource>} variants
  */
 exports.CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes = CatalogVariantDeleteJobCreateQueryAsSubResourceAttributes;

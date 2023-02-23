@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateCreateQuery model module.
  * @module model/TemplateCreateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TemplateCreateQuery = /*#__PURE__*/function () {
   /**

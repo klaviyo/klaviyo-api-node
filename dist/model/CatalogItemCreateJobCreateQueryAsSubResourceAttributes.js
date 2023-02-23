@@ -15,14 +15,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogItemCreateJobCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogItemCreateJobCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogItemCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogItemCreateJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogItemCreateJobCreateQueryAsSubResourceAttributes
    * @class
-   * @param items {Array.<module:model/CatalogItemCreateQueryAsSubResource>} 
+   * @param items {Array.<module:model/CatalogItemCreateQueryAsSubResource>} Array of catalog items to create.
    */
   function CatalogItemCreateJobCreateQueryAsSubResourceAttributes(items) {
     _classCallCheck(this, CatalogItemCreateJobCreateQueryAsSubResourceAttributes);
@@ -49,6 +49,7 @@ var CatalogItemCreateJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/functi
   return CatalogItemCreateJobCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * Array of catalog items to create.
  * @member {Array.<module:model/CatalogItemCreateQueryAsSubResource>} items
  */
 exports.CatalogItemCreateJobCreateQueryAsSubResourceAttributes = CatalogItemCreateJobCreateQueryAsSubResourceAttributes;

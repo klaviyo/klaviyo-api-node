@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogVariantUpdateQueryAsSubResourceAttributes model module.
  * @module model/CatalogVariantUpdateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogVariantUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -56,12 +56,14 @@ var CatalogVariantUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () 
   return CatalogVariantUpdateQueryAsSubResourceAttributes;
 }();
 /**
+ * The title of the catalog item variant.
  * @member {String} title
  */
 exports.CatalogVariantUpdateQueryAsSubResourceAttributes = CatalogVariantUpdateQueryAsSubResourceAttributes;
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.title = undefined;
 
 /**
+ * A description of the catalog item variant.
  * @member {String} description
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.description = undefined;
@@ -89,47 +91,55 @@ CatalogVariantUpdateQueryAsSubResourceAttributes.InventoryPolicyEnum = {
   _2: 2
 };
 /**
- * A field that controls product visibility in product feeds/blocks. This field has two options:     DENY (1): a product will not appear in dynamic product recommendation feeds and blocks if it is out of stock.     CONTINUE (2): a product can appear in dynamic product recommendation feeds and blocks regardless of inventory quantity.     UNKNOWN (0): the behavior will be the same as if it were set to 2 [Default]
+ * This field controls the visibility of this catalog item variant in product feeds/blocks. This field supports the following values: `1`: a product will not appear in dynamic product recommendation feeds and blocks if it is out of stock. `0` or `2`: a product can appear in dynamic product recommendation feeds and blocks regardless of inventory quantity. 
  * @member {module:model/CatalogVariantUpdateQueryAsSubResourceAttributes.InventoryPolicyEnum} inventoryPolicy
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.inventoryPolicy = undefined;
 
 /**
+ * The quantity of the catalog item variant currently in stock.
  * @member {Number} inventoryQuantity
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.inventoryQuantity = undefined;
 
 /**
+ * This field can be used to set the price on the catalog item variant, which is what gets displayed for the item variant when included in emails. For most price-update use cases, you will also want to update the `price` on any parent items using the [Update Catalog Item Endpoint](https://developers.klaviyo.com/en/reference/update_catalog_item).
  * @member {Number} price
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.price = undefined;
 
 /**
+ * URL pointing to the location of the catalog item variant on your website.
  * @member {String} url
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.url = undefined;
 
 /**
+ * URL pointing to the location of a full image of the catalog item variant.
  * @member {String} imageFullUrl
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.imageFullUrl = undefined;
 
 /**
+ * URL pointing to the location of an image thumbnail of the catalog item variant.
  * @member {String} imageThumbnailUrl
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.imageThumbnailUrl = undefined;
 
 /**
+ * List of URLs pointing to the locations of images of the catalog item variant.
  * @member {Array.<String>} images
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.images = undefined;
 
 /**
+ * Flat JSON blob to provide custom metadata about the catalog item variant. May not exceed 100kb.
  * @member {Object} customMetadata
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.customMetadata = undefined;
 
 /**
+ * Boolean value indicating whether the catalog item variant is published.
  * @member {Boolean} published
  */
 CatalogVariantUpdateQueryAsSubResourceAttributes.prototype.published = undefined;

@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Subscription = void 0;
 var _ApiClient = require("../ApiClient.js");
+var _SubscriptionChannels = require("./SubscriptionChannels.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
@@ -14,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The Subscription model module.
  * @module model/Subscription
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var Subscription = /*#__PURE__*/function () {
   /**
@@ -38,8 +39,10 @@ var Subscription = /*#__PURE__*/function () {
     value: function constructFromObject(data, obj) {
       if (data) {
         obj = obj || new Subscription();
+        if (data.hasOwnProperty('channels')) obj.channels = _SubscriptionChannels.SubscriptionChannels.constructFromObject(data['channels']);
         if (data.hasOwnProperty('email')) obj.email = _ApiClient.ApiClient.convertToType(data['email'], 'String');
         if (data.hasOwnProperty('phone_number')) obj.phoneNumber = _ApiClient.ApiClient.convertToType(data['phone_number'], 'String');
+        if (data.hasOwnProperty('profile_id')) obj.profileId = _ApiClient.ApiClient.convertToType(data['profile_id'], 'String');
       }
       return obj;
     }
@@ -47,12 +50,25 @@ var Subscription = /*#__PURE__*/function () {
   return Subscription;
 }();
 /**
- * @member {String} email
+ * @member {module:model/SubscriptionChannels} channels
  */
 exports.Subscription = Subscription;
+Subscription.prototype.channels = undefined;
+
+/**
+ * The email address to subscribe or to set on the profile if `channels` is specified and the email channel is omitted.
+ * @member {String} email
+ */
 Subscription.prototype.email = undefined;
 
 /**
+ * The phone number to subscribe or to set on the profile if `channels` is specified and the SMS channel is omitted.
  * @member {String} phoneNumber
  */
 Subscription.prototype.phoneNumber = undefined;
+
+/**
+ * The ID of the profile to subscribe. If provided, this will be used to perform the lookup.
+ * @member {String} profileId
+ */
+Subscription.prototype.profileId = undefined;

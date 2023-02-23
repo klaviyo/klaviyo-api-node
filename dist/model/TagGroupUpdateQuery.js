@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TagGroupUpdateQuery model module.
  * @module model/TagGroupUpdateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TagGroupUpdateQuery = /*#__PURE__*/function () {
   /**

@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CampaignMessageAssignTemplateQueryAsSubResource model module.
  * @module model/CampaignMessageAssignTemplateQueryAsSubResource
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CampaignMessageAssignTemplateQueryAsSubResource = /*#__PURE__*/function () {
   /**

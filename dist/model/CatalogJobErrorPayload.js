@@ -15,17 +15,17 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogJobErrorPayload model module.
  * @module model/CatalogJobErrorPayload
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogJobErrorPayload = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogJobErrorPayload</code>.
    * @alias module:model/CatalogJobErrorPayload
    * @class
-   * @param id {String} 
-   * @param code {String} 
-   * @param title {String} 
-   * @param detail {String} 
+   * @param id {String} Unique identifier for the error.
+   * @param code {String} A code for classifying the error type.
+   * @param title {String} A high-level message about the error.
+   * @param detail {String} Specific details about the error.
    * @param source {module:model/ErrorSource} 
    */
   function CatalogJobErrorPayload(id, code, title, detail, source) {
@@ -61,22 +61,26 @@ var CatalogJobErrorPayload = /*#__PURE__*/function () {
   return CatalogJobErrorPayload;
 }();
 /**
+ * Unique identifier for the error.
  * @member {String} id
  */
 exports.CatalogJobErrorPayload = CatalogJobErrorPayload;
 CatalogJobErrorPayload.prototype.id = undefined;
 
 /**
+ * A code for classifying the error type.
  * @member {String} code
  */
 CatalogJobErrorPayload.prototype.code = undefined;
 
 /**
+ * A high-level message about the error.
  * @member {String} title
  */
 CatalogJobErrorPayload.prototype.title = undefined;
 
 /**
+ * Specific details about the error.
  * @member {String} detail
  */
 CatalogJobErrorPayload.prototype.detail = undefined;

@@ -19,7 +19,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
 * Profiles service.
 * @module api/ProfilesApi
-* @version 2023-01-24
+* @version 2023-02-22
 */
 var ProfilesApi = /*#__PURE__*/_createClass(
 /**
@@ -33,6 +33,12 @@ function ProfilesApi(apiClient) {
   var _this = this;
   _classCallCheck(this, ProfilesApi);
   _defineProperty(this, "apiClient", void 0);
+  /**
+   * Create Profile
+   * Create a new profile. If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you&#x27;ll need to include at least one other identifier attribute (&#x60;email&#x60; or &#x60;external_id&#x60;) in addition to the &#x60;phone_number&#x60; attribute for the API call to work.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createProfile", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -81,6 +87,17 @@ function ProfilesApi(apiClient) {
       return _ref.apply(this, arguments);
     };
   }());
+  /**
+   * Get Profile
+   * Get the profile with the given profile ID. Include parameters can be provided to get the following related resource data: &#x60;lists&#x60; memberships, &#x60;segments&#x60; memberships\&quot;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getProfile", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -137,6 +154,14 @@ function ProfilesApi(apiClient) {
       return _ref2.apply(this, arguments);
     };
   }());
+  /**
+   * Get Profile Lists
+   * Get list memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;List Read&#x60; &#x60;Profiles Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} profileId 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getProfileLists", /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(profileId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -190,6 +215,13 @@ function ProfilesApi(apiClient) {
       return _ref3.apply(this, arguments);
     };
   }());
+  /**
+   * Get Profile Relationships
+   * Get list membership or segment membership relationships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Lists Read&#x60; &#x60;Profiles Read&#x60; &#x60;Segments Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getProfileRelationships", /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -247,6 +279,14 @@ function ProfilesApi(apiClient) {
       return _ref4.apply(this, arguments);
     };
   }());
+  /**
+   * Get Profile Segments
+   * Get segment memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60; &#x60;Segments Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} profileId 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getProfileSegments", /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(profileId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -300,6 +340,16 @@ function ProfilesApi(apiClient) {
       return _ref5.apply(this, arguments);
     };
   }());
+  /**
+   * Get Profiles
+   * Get all profiles in an account. Profiles can be sorted by the following fields in ascending and descending order: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;email&#x60; You can adjust the number of results per page via the &#x60;page[size]&#x60; query parameter, e.g. &#x60;?page[size]&#x3D;25&#x60;. **Default**: 20. **Max**: 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;anonymous_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getProfiles", /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -348,6 +398,12 @@ function ProfilesApi(apiClient) {
       return _ref6.apply(this, arguments);
     };
   }());
+  /**
+   * Subscribe Profiles
+   * Subscribe one or more profiles to email marketing, SMS marketing, or both. If the list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships). Maximum number of profile can be submitted for subscription: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Profiles Write&#x60; &#x60;Subscriptions Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "subscribeProfiles", /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -396,6 +452,12 @@ function ProfilesApi(apiClient) {
       return _ref7.apply(this, arguments);
     };
   }());
+  /**
+   * Suppress Profiles
+   * Manually suppress one or more profiles. Manually suppressed profiles will not receive email marketing. Not supported for SMS marketing. Maximum number of profile can be submitted for suppression: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60; &#x60;Subscriptions Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "suppressProfiles", /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -444,6 +506,12 @@ function ProfilesApi(apiClient) {
       return _ref8.apply(this, arguments);
     };
   }());
+  /**
+   * Unsubscribe Profiles
+   * Unsubscribe one or more profiles to email marketing, SMS marketing, or both. To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships). Maximum number of profile can be submitted for unsubscription: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Profiles Write&#x60; &#x60;Subscriptions Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body Unsubscribes one or more profiles from marketing. Currently, supports email and SMS only. All profiles will be removed from the provided list. Either email or phone number is required. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "unsubscribeProfiles", /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -492,6 +560,12 @@ function ProfilesApi(apiClient) {
       return _ref9.apply(this, arguments);
     };
   }());
+  /**
+   * Unsuppress Profiles
+   * Unsuppress one or more profiles. Unsuppressed profiles will receive email marketing. Not supported for SMS marketing. Profiles suppressed due to a hard bounced email will not be unsuppressed. Maximum number of profile can be submitted for unsuppression: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Subscriptions Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "unsuppressProfiles", /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -540,6 +614,13 @@ function ProfilesApi(apiClient) {
       return _ref10.apply(this, arguments);
     };
   }());
+  /**
+   * Update Profile
+   * Update the profile with the given profile ID. If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you&#x27;ll need to include at least one other identifier attribute (&#x60;email&#x60; or &#x60;external_id&#x60;) in addition to the &#x60;phone_number&#x60; attribute for the API call to work.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id Primary key that uniquely identifies this profile. Generated by Klaviyo.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateProfile", /*#__PURE__*/function () {
     var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -597,12 +678,5 @@ function ProfilesApi(apiClient) {
     };
   }());
   this.apiClient = apiClient || _ApiClient.ApiClient.instance;
-}
-
-/**
- * Create Profile
- * Create a new profile. If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you&#x27;ll need to include at least one other identifier attribute (&#x60;email&#x60; or &#x60;external_id&#x60;) in addition to the &#x60;phone_number&#x60; attribute for the API call to work.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60;
- * @param {<&vendorExtensions.x-jsdoc-type>} body 
- * @return {Promise} a {@link https://www.promisejs.org/|Promise}
- */);
+});
 exports.ProfilesApi = ProfilesApi;

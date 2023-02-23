@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The ProfileCreateQueryAsSubResourceAttributes model module.
  * @module model/ProfileCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var ProfileCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -57,17 +57,20 @@ var ProfileCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return ProfileCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * Individual's email address
  * @member {String} email
  */
 exports.ProfileCreateQueryAsSubResourceAttributes = ProfileCreateQueryAsSubResourceAttributes;
 ProfileCreateQueryAsSubResourceAttributes.prototype.email = undefined;
 
 /**
+ * Individual's phone number in E.164 format
  * @member {String} phoneNumber
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.phoneNumber = undefined;
 
 /**
+ * A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
  * @member {String} externalId
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.externalId = undefined;
@@ -78,26 +81,31 @@ ProfileCreateQueryAsSubResourceAttributes.prototype.externalId = undefined;
 ProfileCreateQueryAsSubResourceAttributes.prototype.anonymousId = undefined;
 
 /**
+ * Individual's first name
  * @member {String} firstName
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.firstName = undefined;
 
 /**
+ * Individual's last name
  * @member {String} lastName
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.lastName = undefined;
 
 /**
+ * Name of the company or organization within the company for whom the individual works
  * @member {String} organization
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.organization = undefined;
 
 /**
+ * Individual's job title
  * @member {String} title
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.title = undefined;
 
 /**
+ * URL pointing to the location of a profile image
  * @member {String} image
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.image = undefined;
@@ -108,6 +116,7 @@ ProfileCreateQueryAsSubResourceAttributes.prototype.image = undefined;
 ProfileCreateQueryAsSubResourceAttributes.prototype.location = undefined;
 
 /**
+ * An object containing key/value pairs for any custom properties assigned to this profile
  * @member {Object} properties
  */
 ProfileCreateQueryAsSubResourceAttributes.prototype.properties = undefined;

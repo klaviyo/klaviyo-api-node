@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SendStrategySubObject = void 0;
 var _ApiClient = require("../ApiClient.js");
+var _STOScheduleOptions = require("./STOScheduleOptions.js");
 var _StaticScheduleOptions = require("./StaticScheduleOptions.js");
 var _ThrottledScheduleOptions = require("./ThrottledScheduleOptions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -16,14 +17,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The SendStrategySubObject model module.
  * @module model/SendStrategySubObject
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var SendStrategySubObject = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>SendStrategySubObject</code>.
    * @alias module:model/SendStrategySubObject
    * @class
-   * @param method {String} Describes the shape of the options object. Allowed values: ['static', 'throttled', 'immediate']
+   * @param method {String} Describes the shape of the options object. Allowed values: ['static', 'throttled', 'immediate', 'smart_send_time']
    */
   function SendStrategySubObject(method) {
     _classCallCheck(this, SendStrategySubObject);
@@ -45,6 +46,7 @@ var SendStrategySubObject = /*#__PURE__*/function () {
         if (data.hasOwnProperty('method')) obj.method = _ApiClient.ApiClient.convertToType(data['method'], 'String');
         if (data.hasOwnProperty('options_static')) obj.optionsStatic = _StaticScheduleOptions.StaticScheduleOptions.constructFromObject(data['options_static']);
         if (data.hasOwnProperty('options_throttled')) obj.optionsThrottled = _ThrottledScheduleOptions.ThrottledScheduleOptions.constructFromObject(data['options_throttled']);
+        if (data.hasOwnProperty('options_sto')) obj.optionsSto = _STOScheduleOptions.STOScheduleOptions.constructFromObject(data['options_sto']);
       }
       return obj;
     }
@@ -52,7 +54,7 @@ var SendStrategySubObject = /*#__PURE__*/function () {
   return SendStrategySubObject;
 }();
 /**
- * Describes the shape of the options object. Allowed values: ['static', 'throttled', 'immediate']
+ * Describes the shape of the options object. Allowed values: ['static', 'throttled', 'immediate', 'smart_send_time']
  * @member {String} method
  */
 exports.SendStrategySubObject = SendStrategySubObject;
@@ -67,3 +69,8 @@ SendStrategySubObject.prototype.optionsStatic = undefined;
  * @member {module:model/ThrottledScheduleOptions} optionsThrottled
  */
 SendStrategySubObject.prototype.optionsThrottled = undefined;
+
+/**
+ * @member {module:model/STOScheduleOptions} optionsSto
+ */
+SendStrategySubObject.prototype.optionsSto = undefined;

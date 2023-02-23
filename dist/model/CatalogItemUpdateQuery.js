@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogItemUpdateQuery model module.
  * @module model/CatalogItemUpdateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogItemUpdateQuery = /*#__PURE__*/function () {
   /**

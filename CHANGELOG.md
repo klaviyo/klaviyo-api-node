@@ -1,9 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - revision 2023-01-24
+
+### Added
+- Campaigns (which were previously in our Beta API/SDKs)
+
+### Changes
+- Flows
+    - Pagination changed from page offset to cursor
+
 ## [2.0.0] - revision 2023-01-24
 
-- Added the following endpoints (which were previously in our Beta API/SDKs):
+- Added the following endpoints (which were previously in our Beta APIg/SDKs):
   - Data Privacy
   - All Tags endpoints, as well as the following related resource-specific endpoints:
     - Get Flow Tags

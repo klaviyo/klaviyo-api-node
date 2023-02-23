@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TagGroupCreateQuery model module.
  * @module model/TagGroupCreateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TagGroupCreateQuery = /*#__PURE__*/function () {
   /**

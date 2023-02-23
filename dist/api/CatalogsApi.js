@@ -19,7 +19,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
 * Catalogs service.
 * @module api/CatalogsApi
-* @version 2023-01-24
+* @version 2023-02-22
 */
 var CatalogsApi = /*#__PURE__*/_createClass(
 /**
@@ -33,6 +33,12 @@ function CatalogsApi(apiClient) {
   var _this = this;
   _classCallCheck(this, CatalogsApi);
   _defineProperty(this, "apiClient", void 0);
+  /**
+   * Create Catalog Category
+   * Create a new catalog category.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createCatalogCategory", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -81,6 +87,14 @@ function CatalogsApi(apiClient) {
       return _ref.apply(this, arguments);
     };
   }());
+  /**
+   * Create Catalog Category Relationships
+   * Create a new item relationship for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createCatalogCategoryRelationships", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -144,6 +158,12 @@ function CatalogsApi(apiClient) {
       return _ref2.apply(this, arguments);
     };
   }());
+  /**
+   * Create Catalog Item
+   * Create a new catalog item.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createCatalogItem", /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -192,6 +212,14 @@ function CatalogsApi(apiClient) {
       return _ref3.apply(this, arguments);
     };
   }());
+  /**
+   * Create Catalog Item Relationships
+   * Create a new catalog category relationship for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createCatalogItemRelationships", /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -255,6 +283,12 @@ function CatalogsApi(apiClient) {
       return _ref4.apply(this, arguments);
     };
   }());
+  /**
+   * Create Catalog Variant
+   * Create a new variant for a related catalog item.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createCatalogVariant", /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -303,6 +337,12 @@ function CatalogsApi(apiClient) {
       return _ref5.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Catalog Category
+   * Delete a catalog category using the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteCatalogCategory", /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -353,6 +393,14 @@ function CatalogsApi(apiClient) {
       return _ref6.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Catalog Category Relationships
+   * Delete item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteCatalogCategoryRelationships", /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -416,6 +464,12 @@ function CatalogsApi(apiClient) {
       return _ref7.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Catalog Item
+   * Delete a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteCatalogItem", /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -466,6 +520,14 @@ function CatalogsApi(apiClient) {
       return _ref8.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Catalog Item Relationships
+   * Delete catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteCatalogItemRelationships", /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -529,6 +591,12 @@ function CatalogsApi(apiClient) {
       return _ref9.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Catalog Variant
+   * Delete a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteCatalogVariant", /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -579,6 +647,16 @@ function CatalogsApi(apiClient) {
       return _ref10.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Categories
+   * Get all catalog categories in an account. Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogCategories", /*#__PURE__*/function () {
     var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -627,6 +705,14 @@ function CatalogsApi(apiClient) {
       return _ref11.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Category
+   * Get a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogCategory", /*#__PURE__*/function () {
     var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -680,6 +766,19 @@ function CatalogsApi(apiClient) {
       return _ref12.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Category Items
+   * Get all items in a category with the given category ID. Items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Include parameters can be provided to get the following related resource data: &#x60;variants&#x60; Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} categoryId The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogCategoryItems", /*#__PURE__*/function () {
     var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(categoryId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -738,6 +837,15 @@ function CatalogsApi(apiClient) {
       return _ref13.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Category Relationships
+   * Get all items in the given category ID. Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @param {Object} opts Optional parameters
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogCategoryRelationships", /*#__PURE__*/function () {
     var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(id, relatedResource, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -798,6 +906,16 @@ function CatalogsApi(apiClient) {
       return _ref14.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Item
+   * Get a specific catalog item with the given item ID. Include parameters can be provided to get the following related resource data: &#x60;variants&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogItem", /*#__PURE__*/function () {
     var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -853,6 +971,17 @@ function CatalogsApi(apiClient) {
       return _ref15.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Item Categories
+   * Get all catalog categories that an item with the given item ID is in. Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} itemId The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogItemCategories", /*#__PURE__*/function () {
     var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(itemId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -909,6 +1038,15 @@ function CatalogsApi(apiClient) {
       return _ref16.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Item Relationships
+   * Get all catalog categories that a particular item is in. Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @param {Object} opts Optional parameters
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogItemRelationships", /*#__PURE__*/function () {
     var _ref17 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17(id, relatedResource, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -969,6 +1107,17 @@ function CatalogsApi(apiClient) {
       return _ref17.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Item Variants
+   * Get all variants related to the given item ID. Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} itemId The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogItemVariants", /*#__PURE__*/function () {
     var _ref18 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18(itemId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1025,6 +1174,18 @@ function CatalogsApi(apiClient) {
       return _ref18.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Items
+   * Get all catalog items in an account. Catalog items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Include parameters can be provided to get the following related resource data: &#x60;variants&#x60; Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogItems", /*#__PURE__*/function () {
     var _ref19 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1075,6 +1236,14 @@ function CatalogsApi(apiClient) {
       return _ref19.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Variant
+   * Get a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogVariant", /*#__PURE__*/function () {
     var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1128,6 +1297,16 @@ function CatalogsApi(apiClient) {
       return _ref20.apply(this, arguments);
     };
   }());
+  /**
+   * Get Catalog Variants
+   * Get all variants in an account. Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCatalogVariants", /*#__PURE__*/function () {
     var _ref21 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1176,6 +1355,16 @@ function CatalogsApi(apiClient) {
       return _ref21.apply(this, arguments);
     };
   }());
+  /**
+   * Get Create Categories Job
+   * Get a catalog category bulk create job with the given job ID. An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCreateCategoriesJob", /*#__PURE__*/function () {
     var _ref22 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1231,6 +1420,15 @@ function CatalogsApi(apiClient) {
       return _ref22.apply(this, arguments);
     };
   }());
+  /**
+   * Get Create Categories Jobs
+   * Get all catalog category bulk create jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCreateCategoriesJobs", /*#__PURE__*/function () {
     var _ref23 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee23(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1278,6 +1476,16 @@ function CatalogsApi(apiClient) {
       return _ref23.apply(this, arguments);
     };
   }());
+  /**
+   * Get Create Items Job
+   * Get a catalog item bulk create job with the given job ID. An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCreateItemsJob", /*#__PURE__*/function () {
     var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee24(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1333,6 +1541,15 @@ function CatalogsApi(apiClient) {
       return _ref24.apply(this, arguments);
     };
   }());
+  /**
+   * Get Create Items Jobs
+   * Get all catalog item bulk create jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCreateItemsJobs", /*#__PURE__*/function () {
     var _ref25 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee25(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1380,6 +1597,16 @@ function CatalogsApi(apiClient) {
       return _ref25.apply(this, arguments);
     };
   }());
+  /**
+   * Get Create Variants Job
+   * Get a catalog variant bulk create job with the given job ID. An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCreateVariantsJob", /*#__PURE__*/function () {
     var _ref26 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee26(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1435,6 +1662,15 @@ function CatalogsApi(apiClient) {
       return _ref26.apply(this, arguments);
     };
   }());
+  /**
+   * Get Create Variants Jobs
+   * Get all catalog variant bulk create jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getCreateVariantsJobs", /*#__PURE__*/function () {
     var _ref27 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee27(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1482,6 +1718,14 @@ function CatalogsApi(apiClient) {
       return _ref27.apply(this, arguments);
     };
   }());
+  /**
+   * Get Delete Categories Job
+   * Get a catalog category bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getDeleteCategoriesJob", /*#__PURE__*/function () {
     var _ref28 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee28(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1535,6 +1779,15 @@ function CatalogsApi(apiClient) {
       return _ref28.apply(this, arguments);
     };
   }());
+  /**
+   * Get Delete Categories Jobs
+   * Get all catalog category bulk delete jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getDeleteCategoriesJobs", /*#__PURE__*/function () {
     var _ref29 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee29(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1582,6 +1835,14 @@ function CatalogsApi(apiClient) {
       return _ref29.apply(this, arguments);
     };
   }());
+  /**
+   * Get Delete Items Job
+   * Get a catalog item bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getDeleteItemsJob", /*#__PURE__*/function () {
     var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee30(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1635,6 +1896,15 @@ function CatalogsApi(apiClient) {
       return _ref30.apply(this, arguments);
     };
   }());
+  /**
+   * Get Delete Items Jobs
+   * Get all catalog item bulk delete jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getDeleteItemsJobs", /*#__PURE__*/function () {
     var _ref31 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee31(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1682,6 +1952,14 @@ function CatalogsApi(apiClient) {
       return _ref31.apply(this, arguments);
     };
   }());
+  /**
+   * Get Delete Variants Job
+   * Get a catalog variant bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getDeleteVariantsJob", /*#__PURE__*/function () {
     var _ref32 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee32(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1735,6 +2013,15 @@ function CatalogsApi(apiClient) {
       return _ref32.apply(this, arguments);
     };
   }());
+  /**
+   * Get Delete Variants Jobs
+   * Get all catalog variant bulk delete jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getDeleteVariantsJobs", /*#__PURE__*/function () {
     var _ref33 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee33(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1782,6 +2069,16 @@ function CatalogsApi(apiClient) {
       return _ref33.apply(this, arguments);
     };
   }());
+  /**
+   * Get Update Categories Job
+   * Get a catalog category bulk update job with the given job ID. An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getUpdateCategoriesJob", /*#__PURE__*/function () {
     var _ref34 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee34(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1837,6 +2134,15 @@ function CatalogsApi(apiClient) {
       return _ref34.apply(this, arguments);
     };
   }());
+  /**
+   * Get Update Categories Jobs
+   * Get all catalog category bulk update jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getUpdateCategoriesJobs", /*#__PURE__*/function () {
     var _ref35 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee35(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1884,6 +2190,16 @@ function CatalogsApi(apiClient) {
       return _ref35.apply(this, arguments);
     };
   }());
+  /**
+   * Get Update Items Job
+   * Get a catalog item bulk update job with the given job ID. An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getUpdateItemsJob", /*#__PURE__*/function () {
     var _ref36 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee36(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1939,6 +2255,15 @@ function CatalogsApi(apiClient) {
       return _ref36.apply(this, arguments);
     };
   }());
+  /**
+   * Get Update Items Jobs
+   * Get all catalog item bulk update jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getUpdateItemsJobs", /*#__PURE__*/function () {
     var _ref37 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee37(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -1986,6 +2311,16 @@ function CatalogsApi(apiClient) {
       return _ref37.apply(this, arguments);
     };
   }());
+  /**
+   * Get Update Variants Job
+   * Get a catalog variate bulk update job with the given job ID. An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} jobId ID of the job to retrieve.
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getUpdateVariantsJob", /*#__PURE__*/function () {
     var _ref38 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee38(jobId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2041,6 +2376,15 @@ function CatalogsApi(apiClient) {
       return _ref38.apply(this, arguments);
     };
   }());
+  /**
+   * Get Update Variants Jobs
+   * Get all catalog variant bulk update jobs. Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getUpdateVariantsJobs", /*#__PURE__*/function () {
     var _ref39 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee39(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2088,6 +2432,12 @@ function CatalogsApi(apiClient) {
       return _ref39.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Create Categories Job
+   * Create a catalog category bulk create job to create a batch of catalog categories. Accepts up to 100 catalog categories per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnCreateCategoriesJob", /*#__PURE__*/function () {
     var _ref40 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee40(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2136,6 +2486,12 @@ function CatalogsApi(apiClient) {
       return _ref40.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Create Items Job
+   * Create a catalog item bulk create job to create a batch of catalog items. Accepts up to 100 catalog items per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnCreateItemsJob", /*#__PURE__*/function () {
     var _ref41 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee41(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2184,6 +2540,12 @@ function CatalogsApi(apiClient) {
       return _ref41.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Create Variants Job
+   * Create a catalog variant bulk create job to create a batch of catalog variants. Accepts up to 100 catalog variants per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnCreateVariantsJob", /*#__PURE__*/function () {
     var _ref42 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee42(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2232,6 +2594,12 @@ function CatalogsApi(apiClient) {
       return _ref42.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Delete Categories Job
+   * Create a catalog category bulk delete job to delete a batch of catalog categories. Accepts up to 100 catalog categories per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnDeleteCategoriesJob", /*#__PURE__*/function () {
     var _ref43 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee43(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2280,6 +2648,12 @@ function CatalogsApi(apiClient) {
       return _ref43.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Delete Items Job
+   * Create a catalog item bulk delete job to delete a batch of catalog items. Accepts up to 100 catalog items per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnDeleteItemsJob", /*#__PURE__*/function () {
     var _ref44 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee44(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2328,6 +2702,12 @@ function CatalogsApi(apiClient) {
       return _ref44.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Delete Variants Job
+   * Create a catalog variant bulk delete job to delete a batch of catalog variants. Accepts up to 100 catalog variants per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnDeleteVariantsJob", /*#__PURE__*/function () {
     var _ref45 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee45(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2376,6 +2756,12 @@ function CatalogsApi(apiClient) {
       return _ref45.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Update Categories Job
+   * Create a catalog category bulk update job to update a batch of catalog categories. Accepts up to 100 catalog categories per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnUpdateCategoriesJob", /*#__PURE__*/function () {
     var _ref46 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee46(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2424,6 +2810,12 @@ function CatalogsApi(apiClient) {
       return _ref46.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Update Items Job
+   * Create a catalog item bulk update job to update a batch of catalog items. Accepts up to 100 catalog items per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnUpdateItemsJob", /*#__PURE__*/function () {
     var _ref47 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee47(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2472,6 +2864,12 @@ function CatalogsApi(apiClient) {
       return _ref47.apply(this, arguments);
     };
   }());
+  /**
+   * Spawn Update Variants Job
+   * Create a catalog variant bulk update job to update a batch of catalog variants. Accepts up to 100 catalog variants per request. The maximum allowed payload size is 4MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "spawnUpdateVariantsJob", /*#__PURE__*/function () {
     var _ref48 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee48(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2520,6 +2918,13 @@ function CatalogsApi(apiClient) {
       return _ref48.apply(this, arguments);
     };
   }());
+  /**
+   * Update Catalog Category
+   * Update a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateCatalogCategory", /*#__PURE__*/function () {
     var _ref49 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee49(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2576,6 +2981,14 @@ function CatalogsApi(apiClient) {
       return _ref49.apply(this, arguments);
     };
   }());
+  /**
+   * Update Catalog Category Relationships
+   * Update item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateCatalogCategoryRelationships", /*#__PURE__*/function () {
     var _ref50 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee50(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2639,6 +3052,13 @@ function CatalogsApi(apiClient) {
       return _ref50.apply(this, arguments);
     };
   }());
+  /**
+   * Update Catalog Item
+   * Update a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateCatalogItem", /*#__PURE__*/function () {
     var _ref51 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee51(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2695,6 +3115,14 @@ function CatalogsApi(apiClient) {
       return _ref51.apply(this, arguments);
     };
   }());
+  /**
+   * Update Catalog Item Relationships
+   * Update catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateCatalogItemRelationships", /*#__PURE__*/function () {
     var _ref52 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee52(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2758,6 +3186,13 @@ function CatalogsApi(apiClient) {
       return _ref52.apply(this, arguments);
     };
   }());
+  /**
+   * Update Catalog Variant
+   * Update a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateCatalogVariant", /*#__PURE__*/function () {
     var _ref53 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee53(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -2815,12 +3250,5 @@ function CatalogsApi(apiClient) {
     };
   }());
   this.apiClient = apiClient || _ApiClient.ApiClient.instance;
-}
-
-/**
- * Create Catalog Category
- * Create a new catalog category.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
- * @param {<&vendorExtensions.x-jsdoc-type>} body 
- * @return {Promise} a {@link https://www.promisejs.org/|Promise}
- */);
+});
 exports.CatalogsApi = CatalogsApi;

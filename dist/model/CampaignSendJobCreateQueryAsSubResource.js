@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CampaignSendJobCreateQueryAsSubResource model module.
  * @module model/CampaignSendJobCreateQueryAsSubResource
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CampaignSendJobCreateQueryAsSubResource = /*#__PURE__*/function () {
   /**

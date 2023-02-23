@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The Suppression model module.
  * @module model/Suppression
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var Suppression = /*#__PURE__*/function () {
   /**

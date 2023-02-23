@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedCategoriesAttributes model module.
  * @module model/IncludedCategoriesAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedCategoriesAttributes = /*#__PURE__*/function () {
   /**
@@ -48,17 +48,20 @@ var IncludedCategoriesAttributes = /*#__PURE__*/function () {
   return IncludedCategoriesAttributes;
 }();
 /**
+ * The ID of the catalog category in an external system.
  * @member {String} externalId
  */
 exports.IncludedCategoriesAttributes = IncludedCategoriesAttributes;
 IncludedCategoriesAttributes.prototype.externalId = undefined;
 
 /**
+ * The name of the catalog category.
  * @member {String} name
  */
 IncludedCategoriesAttributes.prototype.name = undefined;
 
 /**
+ * Date and time when the catalog category was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
  * @member {Date} updated
  */
 IncludedCategoriesAttributes.prototype.updated = undefined;

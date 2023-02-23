@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The OnsiteSubscriptionCreateQuery model module.
  * @module model/OnsiteSubscriptionCreateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var OnsiteSubscriptionCreateQuery = /*#__PURE__*/function () {
   /**

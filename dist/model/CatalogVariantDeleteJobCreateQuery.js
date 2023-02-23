@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogVariantDeleteJobCreateQuery model module.
  * @module model/CatalogVariantDeleteJobCreateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogVariantDeleteJobCreateQuery = /*#__PURE__*/function () {
   /**

@@ -105,6 +105,24 @@ Object.defineProperty(exports, "CampaignPartialUpdateQueryAsSubResourceAttribute
     return _CampaignPartialUpdateQueryAsSubResourceAttributes.CampaignPartialUpdateQueryAsSubResourceAttributes;
   }
 });
+Object.defineProperty(exports, "CampaignRecipientEstimationJobCreateQuery", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignRecipientEstimationJobCreateQuery.CampaignRecipientEstimationJobCreateQuery;
+  }
+});
+Object.defineProperty(exports, "CampaignRecipientEstimationJobCreateQueryAsSubResource", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignRecipientEstimationJobCreateQueryAsSubResource.CampaignRecipientEstimationJobCreateQueryAsSubResource;
+  }
+});
+Object.defineProperty(exports, "CampaignRecipientEstimationJobCreateQueryAsSubResourceAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignRecipientEstimationJobCreateQueryAsSubResourceAttributes.CampaignRecipientEstimationJobCreateQueryAsSubResourceAttributes;
+  }
+});
 Object.defineProperty(exports, "CampaignSendJobCreateQuery", {
   enumerable: true,
   get: function get() {
@@ -139,6 +157,18 @@ Object.defineProperty(exports, "CampaignSendJobPartialUpdateQueryAsSubResourceAt
   enumerable: true,
   get: function get() {
     return _CampaignSendJobPartialUpdateQueryAsSubResourceAttributes.CampaignSendJobPartialUpdateQueryAsSubResourceAttributes;
+  }
+});
+Object.defineProperty(exports, "Campaigns", {
+  enumerable: true,
+  get: function get() {
+    return _clientWrapper.Campaigns;
+  }
+});
+Object.defineProperty(exports, "CampaignsApi", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignsApi.CampaignsApi;
   }
 });
 Object.defineProperty(exports, "CatalogCategoryCreateJobCreateQuery", {
@@ -735,6 +765,18 @@ Object.defineProperty(exports, "IncludedSegments", {
     return _IncludedSegments.IncludedSegments;
   }
 });
+Object.defineProperty(exports, "IncludedSegmentsAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _IncludedSegmentsAttributes.IncludedSegmentsAttributes;
+  }
+});
+Object.defineProperty(exports, "IncludedTags", {
+  enumerable: true,
+  get: function get() {
+    return _IncludedTags.IncludedTags;
+  }
+});
 Object.defineProperty(exports, "IncludedVariants", {
   enumerable: true,
   get: function get() {
@@ -1005,6 +1047,12 @@ Object.defineProperty(exports, "SMSTrackingOptions", {
     return _SMSTrackingOptions.SMSTrackingOptions;
   }
 });
+Object.defineProperty(exports, "STOScheduleOptions", {
+  enumerable: true,
+  get: function get() {
+    return _STOScheduleOptions.STOScheduleOptions;
+  }
+});
 Object.defineProperty(exports, "SegmentPartialUpdateQuery", {
   enumerable: true,
   get: function get() {
@@ -1015,6 +1063,12 @@ Object.defineProperty(exports, "SegmentPartialUpdateQueryAsSubResource", {
   enumerable: true,
   get: function get() {
     return _SegmentPartialUpdateQueryAsSubResource.SegmentPartialUpdateQueryAsSubResource;
+  }
+});
+Object.defineProperty(exports, "SegmentPartialUpdateQueryAsSubResourceAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _SegmentPartialUpdateQueryAsSubResourceAttributes.SegmentPartialUpdateQueryAsSubResourceAttributes;
   }
 });
 Object.defineProperty(exports, "Segments", {
@@ -1063,6 +1117,12 @@ Object.defineProperty(exports, "Subscription", {
   enumerable: true,
   get: function get() {
     return _Subscription.Subscription;
+  }
+});
+Object.defineProperty(exports, "SubscriptionChannels", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionChannels.SubscriptionChannels;
   }
 });
 Object.defineProperty(exports, "SubscriptionCreateJobCreateQuery", {
@@ -1347,12 +1407,6 @@ Object.defineProperty(exports, "UtmParamInfo", {
     return _UtmParamInfo.UtmParamInfo;
   }
 });
-Object.defineProperty(exports, "V2TemplateRenderQueryAsSubResource", {
-  enumerable: true,
-  get: function get() {
-    return _V2TemplateRenderQueryAsSubResource.V2TemplateRenderQueryAsSubResource;
-  }
-});
 var _ApiClient = require("./ApiClient.js");
 var _AudiencesSubObject = require("./model/AudiencesSubObject.js");
 var _CampaignCloneQuery = require("./model/CampaignCloneQuery.js");
@@ -1370,6 +1424,9 @@ var _CampaignMessagePartialUpdateQueryAsSubResourceAttributes = require("./model
 var _CampaignPartialUpdateQuery = require("./model/CampaignPartialUpdateQuery.js");
 var _CampaignPartialUpdateQueryAsSubResource = require("./model/CampaignPartialUpdateQueryAsSubResource.js");
 var _CampaignPartialUpdateQueryAsSubResourceAttributes = require("./model/CampaignPartialUpdateQueryAsSubResourceAttributes.js");
+var _CampaignRecipientEstimationJobCreateQuery = require("./model/CampaignRecipientEstimationJobCreateQuery.js");
+var _CampaignRecipientEstimationJobCreateQueryAsSubResource = require("./model/CampaignRecipientEstimationJobCreateQueryAsSubResource.js");
+var _CampaignRecipientEstimationJobCreateQueryAsSubResourceAttributes = require("./model/CampaignRecipientEstimationJobCreateQueryAsSubResourceAttributes.js");
 var _CampaignSendJobCreateQuery = require("./model/CampaignSendJobCreateQuery.js");
 var _CampaignSendJobCreateQueryAsSubResource = require("./model/CampaignSendJobCreateQueryAsSubResource.js");
 var _CampaignSendJobCreateQueryAsSubResourceAttributes = require("./model/CampaignSendJobCreateQueryAsSubResourceAttributes.js");
@@ -1464,6 +1521,8 @@ var _IncludedMetricsAttributes = require("./model/IncludedMetricsAttributes.js")
 var _IncludedProfiles = require("./model/IncludedProfiles.js");
 var _IncludedProfilesAttributes = require("./model/IncludedProfilesAttributes.js");
 var _IncludedSegments = require("./model/IncludedSegments.js");
+var _IncludedSegmentsAttributes = require("./model/IncludedSegmentsAttributes.js");
+var _IncludedTags = require("./model/IncludedTags.js");
 var _IncludedVariants = require("./model/IncludedVariants.js");
 var _IncludedVariantsAttributes = require("./model/IncludedVariantsAttributes.js");
 var _IncludedVariantsLinks = require("./model/IncludedVariantsLinks.js");
@@ -1503,14 +1562,17 @@ var _ProfilePartialUpdateQueryAsSubResource = require("./model/ProfilePartialUpd
 var _SMSMessageContent = require("./model/SMSMessageContent.js");
 var _SMSRenderOptions = require("./model/SMSRenderOptions.js");
 var _SMSTrackingOptions = require("./model/SMSTrackingOptions.js");
+var _STOScheduleOptions = require("./model/STOScheduleOptions.js");
 var _SegmentPartialUpdateQuery = require("./model/SegmentPartialUpdateQuery.js");
 var _SegmentPartialUpdateQueryAsSubResource = require("./model/SegmentPartialUpdateQueryAsSubResource.js");
+var _SegmentPartialUpdateQueryAsSubResourceAttributes = require("./model/SegmentPartialUpdateQueryAsSubResourceAttributes.js");
 var _SendOptions = require("./model/SendOptions.js");
 var _SendOptionsSubObject = require("./model/SendOptionsSubObject.js");
 var _SendStrategySubObject = require("./model/SendStrategySubObject.js");
 var _SendTimeSubObject = require("./model/SendTimeSubObject.js");
 var _StaticScheduleOptions = require("./model/StaticScheduleOptions.js");
 var _Subscription = require("./model/Subscription.js");
+var _SubscriptionChannels = require("./model/SubscriptionChannels.js");
 var _SubscriptionCreateJobCreateQuery = require("./model/SubscriptionCreateJobCreateQuery.js");
 var _SubscriptionCreateJobCreateQueryAsSubResource = require("./model/SubscriptionCreateJobCreateQueryAsSubResource.js");
 var _SubscriptionCreateJobCreateQueryAsSubResourceAttributes = require("./model/SubscriptionCreateJobCreateQueryAsSubResourceAttributes.js");
@@ -1554,7 +1616,7 @@ var _UnsuppressionCreateJobCreateQuery = require("./model/UnsuppressionCreateJob
 var _UnsuppressionCreateJobCreateQueryAsSubResource = require("./model/UnsuppressionCreateJobCreateQueryAsSubResource.js");
 var _UnsuppressionCreateJobCreateQueryAsSubResourceAttributes = require("./model/UnsuppressionCreateJobCreateQueryAsSubResourceAttributes.js");
 var _UtmParamInfo = require("./model/UtmParamInfo.js");
-var _V2TemplateRenderQueryAsSubResource = require("./model/V2TemplateRenderQueryAsSubResource.js");
+var _CampaignsApi = require("./api/CampaignsApi.js");
 var _CatalogsApi = require("./api/CatalogsApi.js");
 var _ClientApi = require("./api/ClientApi.js");
 var _DataPrivacyApi = require("./api/DataPrivacyApi.js");
