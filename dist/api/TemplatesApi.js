@@ -19,7 +19,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
 * Templates service.
 * @module api/TemplatesApi
-* @version 2023-01-24
+* @version 2023-02-22
 */
 var TemplatesApi = /*#__PURE__*/_createClass(
 /**
@@ -33,6 +33,12 @@ function TemplatesApi(apiClient) {
   var _this = this;
   _classCallCheck(this, TemplatesApi);
   _defineProperty(this, "apiClient", void 0);
+  /**
+   * Create Template
+   * Create a new custom HTML template. If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API. Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createTemplate", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -81,6 +87,12 @@ function TemplatesApi(apiClient) {
       return _ref.apply(this, arguments);
     };
   }());
+  /**
+   * Create Template Clone
+   * Create a clone of a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createTemplateClone", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -129,6 +141,12 @@ function TemplatesApi(apiClient) {
       return _ref2.apply(this, arguments);
     };
   }());
+  /**
+   * Create Template Render
+   * Render a template with the given template ID and context attribute. Returns the HTML and plain text versions of the email template.  **Request body parameters** (nested under &#x60;attributes&#x60;):  * &#x60;return_fields&#x60;: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets). * &#x60;context&#x60;: This is the context your email template will be rendered with. You must pass in a &#x60;context&#x60; object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding &#x60;context&#x60; values are treated as &#x60;FALSE&#x60; and output nothing.  Ex. &#x60;{ \&quot;name\&quot; : \&quot;George Washington\&quot;, \&quot;state\&quot; : \&quot;VA\&quot; }&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Templates Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createTemplateRender", /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -177,6 +195,12 @@ function TemplatesApi(apiClient) {
       return _ref3.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Template
+   * Delete a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The ID of template
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteTemplate", /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -227,6 +251,14 @@ function TemplatesApi(apiClient) {
       return _ref4.apply(this, arguments);
     };
   }());
+  /**
+   * Get Template
+   * Get a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The ID of template
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTemplate", /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -280,6 +312,16 @@ function TemplatesApi(apiClient) {
       return _ref5.apply(this, arguments);
     };
   }());
+  /**
+   * Get Templates
+   * Get all templates in an account. Filter to request a subset of all templates. Templates can be sorted by the following fields, in ascending and descending order: &#x60;id&#x60;, &#x60;name&#x60;, &#x60;created&#x60;, &#x60;updated&#x60; Returns a maximum of 20 results per page.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTemplates", /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -328,6 +370,13 @@ function TemplatesApi(apiClient) {
       return _ref6.apply(this, arguments);
     };
   }());
+  /**
+   * Update Template
+   * Update a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The ID of template
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateTemplate", /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -385,12 +434,5 @@ function TemplatesApi(apiClient) {
     };
   }());
   this.apiClient = apiClient || _ApiClient.ApiClient.instance;
-}
-
-/**
- * Create Template
- * Create a new custom HTML template. If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API. Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Write&#x60;
- * @param {<&vendorExtensions.x-jsdoc-type>} body 
- * @return {Promise} a {@link https://www.promisejs.org/|Promise}
- */);
+});
 exports.TemplatesApi = TemplatesApi;

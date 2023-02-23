@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateRenderQueryAsSubResourceAttributes model module.
  * @module model/TemplateRenderQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TemplateRenderQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**

@@ -19,7 +19,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
 * Tags service.
 * @module api/TagsApi
-* @version 2023-01-24
+* @version 2023-02-22
 */
 var TagsApi = /*#__PURE__*/_createClass(
 /**
@@ -33,6 +33,12 @@ function TagsApi(apiClient) {
   var _this = this;
   _classCallCheck(this, TagsApi);
   _defineProperty(this, "apiClient", void 0);
+  /**
+   * Create Tag
+   * Create a tag. An account cannot have more than **500** unique tags. A tag belongs to a single tag group. If the &#x60;tag_group_id&#x60; is not specified, the tag is added to the account&#x27;s default tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createTag", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -81,6 +87,12 @@ function TagsApi(apiClient) {
       return _ref.apply(this, arguments);
     };
   }());
+  /**
+   * Create Tag Group
+   * Create a tag group. An account cannot have more than **50** unique tag groups. If &#x60;exclusive&#x60; is not specified &#x60;true&#x60; or &#x60;false&#x60;, the tag group defaults to non-exclusive. If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createTagGroup", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(body) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -129,6 +141,14 @@ function TagsApi(apiClient) {
       return _ref2.apply(this, arguments);
     };
   }());
+  /**
+   * Create Tag Relationships
+   * Associate a tag with other resources. Any given resource cannot be associated with more than **100** tags. The &#x60;related_resource&#x60; can be one of &#x60;campaigns&#x60;, &#x60;flows&#x60;, &#x60;lists&#x60;, or &#x60;segments&#x60;. Use the request body to pass in the ID(s) of the related resource(s) that will be associated with the tag. The scopes listed below are conditionally required depending on the specified related resource.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60; &#x60;Lists Write&#x60; &#x60;Segments Write&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createTagRelationships", /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -192,6 +212,12 @@ function TagsApi(apiClient) {
       return _ref3.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Tag
+   * Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag ID
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteTag", /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -242,6 +268,12 @@ function TagsApi(apiClient) {
       return _ref4.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Tag Group
+   * Delete the tag group with the given tag group ID. Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag Group ID
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteTagGroup", /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -292,6 +324,14 @@ function TagsApi(apiClient) {
       return _ref5.apply(this, arguments);
     };
   }());
+  /**
+   * Delete Tag Relationships
+   * Remove a tag&#x27;s association with other resources. The &#x60;related_resource&#x60; can be one of &#x60;campaigns&#x60;, &#x60;flows&#x60;, &#x60;lists&#x60;, or &#x60;segments&#x60;. Use the request body to pass in the ID(s) of the related resource(s) whose association with the tag will be removed. The scopes listed below are conditionally required depending on the specified related resource.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60; &#x60;Lists Write&#x60; &#x60;Segments Write&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "deleteTagRelationships", /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(body, id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -355,6 +395,14 @@ function TagsApi(apiClient) {
       return _ref6.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tag
+   * Retrieve the tag with the given tag ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag ID
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTag", /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -408,6 +456,14 @@ function TagsApi(apiClient) {
       return _ref7.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tag Group
+   * Retrieve the tag group with the given tag group ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag Group ID
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTagGroup", /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -461,6 +517,13 @@ function TagsApi(apiClient) {
       return _ref8.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tag Group Relationships
+   * When &#x60;related_resource&#x60; is &#x60;tags&#x60;, returns the tag IDs of all tags inside the given tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTagGroupRelationships", /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -518,6 +581,14 @@ function TagsApi(apiClient) {
       return _ref9.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tag Group Tags
+   * Return the tags for a given tag group ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag Group ID
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTagGroupTags", /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -571,6 +642,16 @@ function TagsApi(apiClient) {
       return _ref10.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tag Groups
+   * List all tag groups in an account. Every account has one default tag group. Tag groups can be filtered by &#x60;name&#x60;, &#x60;exclusive&#x60;, and &#x60;default&#x60;, and sorted by &#x60;name&#x60; or &#x60;id&#x60; in ascending or descending order. Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTagGroups", /*#__PURE__*/function () {
     var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -619,6 +700,13 @@ function TagsApi(apiClient) {
       return _ref11.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tag Relationships
+   * Get the relationships for a tag. If &#x60;related_resource&#x60; is &#x60;tag-group&#x60;, the request will return the &#x60;tag_group_id&#x60; of the tag group to which the tag belongs. If &#x60;related_resource&#x60; is set to &#x60;campaigns&#x60;, &#x60;flows&#x60;, &#x60;lists&#x60;, or &#x60;segments&#x60;, the request will return the IDs of all associated resources of that type. The scopes listed below are conditionally required depending on the specified related resource.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60; &#x60;Lists Read&#x60; &#x60;Segments Read&#x60; &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTagRelationships", /*#__PURE__*/function () {
     var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -676,6 +764,14 @@ function TagsApi(apiClient) {
       return _ref12.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tag Tag Group
+   * Returns the tag group resource for a given tag ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag ID
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTagTagGroup", /*#__PURE__*/function () {
     var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -729,6 +825,16 @@ function TagsApi(apiClient) {
       return _ref13.apply(this, arguments);
     };
   }());
+  /**
+   * Get Tags
+   * List all tags in an account. Tags can be filtered by &#x60;name&#x60;, and sorted by &#x60;name&#x60; or &#x60;id&#x60; in ascending or descending order. Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getTags", /*#__PURE__*/function () {
     var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -777,6 +883,13 @@ function TagsApi(apiClient) {
       return _ref14.apply(this, arguments);
     };
   }());
+  /**
+   * Update Tag
+   * Update the tag with the given tag ID. Only a tag&#x27;s &#x60;name&#x60; can be changed. A tag cannot be moved from one tag group to another.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag ID
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateTag", /*#__PURE__*/function () {
     var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -833,6 +946,13 @@ function TagsApi(apiClient) {
       return _ref15.apply(this, arguments);
     };
   }());
+  /**
+   * Update Tag Group
+   * Update the tag group with the given tag group ID. Only a tag group&#x27;s &#x60;name&#x60; can be changed. A tag group&#x27;s &#x60;exclusive&#x60; or &#x60;default&#x60; value cannot be changed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60; &#x60;Tags Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The Tag Group ID
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateTagGroup", /*#__PURE__*/function () {
     var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -890,12 +1010,5 @@ function TagsApi(apiClient) {
     };
   }());
   this.apiClient = apiClient || _ApiClient.ApiClient.instance;
-}
-
-/**
- * Create Tag
- * Create a tag. An account cannot have more than **500** unique tags. A tag belongs to a single tag group. If the &#x60;tag_group_id&#x60; is not specified, the tag is added to the account&#x27;s default tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60; &#x60;Tags Write&#x60;
- * @param {<&vendorExtensions.x-jsdoc-type>} body 
- * @return {Promise} a {@link https://www.promisejs.org/|Promise}
- */);
+});
 exports.TagsApi = TagsApi;

@@ -16,7 +16,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedVariants model module.
  * @module model/IncludedVariants
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedVariants = /*#__PURE__*/function () {
   /**
@@ -24,7 +24,7 @@ var IncludedVariants = /*#__PURE__*/function () {
    * @alias module:model/IncludedVariants
    * @class
    * @param type {module:model/IncludedVariants.TypeEnum} 
-   * @param id {String} 
+   * @param id {String} The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
    * @param attributes {module:model/IncludedVariantsAttributes} 
    * @param links {module:model/IncludedVariantsLinks} 
    */
@@ -77,6 +77,7 @@ IncludedVariants.TypeEnum = {
 IncludedVariants.prototype.type = undefined;
 
 /**
+ * The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
  * @member {String} id
  */
 IncludedVariants.prototype.id = undefined;

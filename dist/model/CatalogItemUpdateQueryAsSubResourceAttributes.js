@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogItemUpdateQueryAsSubResourceAttributes model module.
  * @module model/CatalogItemUpdateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogItemUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -39,6 +39,7 @@ var CatalogItemUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
       if (data) {
         obj = obj || new CatalogItemUpdateQueryAsSubResourceAttributes();
         if (data.hasOwnProperty('title')) obj.title = _ApiClient.ApiClient.convertToType(data['title'], 'String');
+        if (data.hasOwnProperty('price')) obj.price = _ApiClient.ApiClient.convertToType(data['price'], 'Number');
         if (data.hasOwnProperty('description')) obj.description = _ApiClient.ApiClient.convertToType(data['description'], 'String');
         if (data.hasOwnProperty('url')) obj.url = _ApiClient.ApiClient.convertToType(data['url'], 'String');
         if (data.hasOwnProperty('image_full_url')) obj.imageFullUrl = _ApiClient.ApiClient.convertToType(data['image_full_url'], 'String');
@@ -53,42 +54,56 @@ var CatalogItemUpdateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return CatalogItemUpdateQueryAsSubResourceAttributes;
 }();
 /**
+ * The title of the catalog item.
  * @member {String} title
  */
 exports.CatalogItemUpdateQueryAsSubResourceAttributes = CatalogItemUpdateQueryAsSubResourceAttributes;
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.title = undefined;
 
 /**
+ * This field can be used to set the price on the catalog item, which is what gets displayed for the item when included in emails. For most price-update use cases, you will also want to update the `price` on any child variants, using the [Update Catalog Variant Endpoint](https://developers.klaviyo.com/en/reference/update_catalog_variant).
+ * @member {Number} price
+ */
+CatalogItemUpdateQueryAsSubResourceAttributes.prototype.price = undefined;
+
+/**
+ * A description of the catalog item.
  * @member {String} description
  */
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.description = undefined;
 
 /**
+ * URL pointing to the location of the catalog item on your website.
  * @member {String} url
  */
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.url = undefined;
 
 /**
+ * URL pointing to the location of a full image of the catalog item.
  * @member {String} imageFullUrl
  */
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.imageFullUrl = undefined;
 
 /**
+ * URL pointing to the location of an image thumbnail of the catalog item
  * @member {String} imageThumbnailUrl
  */
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.imageThumbnailUrl = undefined;
 
 /**
+ * List of URLs pointing to the locations of images of the catalog item.
  * @member {Array.<String>} images
  */
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.images = undefined;
 
 /**
+ * Flat JSON blob to provide custom metadata about the catalog item. May not exceed 100kb.
  * @member {Object} customMetadata
  */
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.customMetadata = undefined;
 
 /**
+ * Boolean value indicating whether the catalog item is published.
  * @member {Boolean} published
  */
 CatalogItemUpdateQueryAsSubResourceAttributes.prototype.published = undefined;

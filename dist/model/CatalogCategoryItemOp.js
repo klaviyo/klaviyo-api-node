@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogCategoryItemOp model module.
  * @module model/CatalogCategoryItemOp
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogCategoryItemOp = /*#__PURE__*/function () {
   /**

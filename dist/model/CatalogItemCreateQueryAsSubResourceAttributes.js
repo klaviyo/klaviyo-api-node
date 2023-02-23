@@ -14,17 +14,17 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogItemCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogItemCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogItemCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogItemCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogItemCreateQueryAsSubResourceAttributes
    * @class
-   * @param externalId {String} 
-   * @param title {String} 
-   * @param description {String} 
-   * @param url {String} 
+   * @param externalId {String} The ID of the catalog item in an external system.
+   * @param title {String} The title of the catalog item.
+   * @param description {String} A description of the catalog item.
+   * @param url {String} URL pointing to the location of the catalog item on your website.
    */
   function CatalogItemCreateQueryAsSubResourceAttributes(externalId, title, description, url) {
     _classCallCheck(this, CatalogItemCreateQueryAsSubResourceAttributes);
@@ -49,6 +49,7 @@ var CatalogItemCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
         if (data.hasOwnProperty('external_id')) obj.externalId = _ApiClient.ApiClient.convertToType(data['external_id'], 'String');
         if (data.hasOwnProperty('integration_type')) obj.integrationType = _ApiClient.ApiClient.convertToType(data['integration_type'], 'String');
         if (data.hasOwnProperty('title')) obj.title = _ApiClient.ApiClient.convertToType(data['title'], 'String');
+        if (data.hasOwnProperty('price')) obj.price = _ApiClient.ApiClient.convertToType(data['price'], 'Number');
         if (data.hasOwnProperty('catalog_type')) obj.catalogType = _ApiClient.ApiClient.convertToType(data['catalog_type'], 'String');
         if (data.hasOwnProperty('description')) obj.description = _ApiClient.ApiClient.convertToType(data['description'], 'String');
         if (data.hasOwnProperty('url')) obj.url = _ApiClient.ApiClient.convertToType(data['url'], 'String');
@@ -64,6 +65,7 @@ var CatalogItemCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return CatalogItemCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * The ID of the catalog item in an external system.
  * @member {String} externalId
  */
 exports.CatalogItemCreateQueryAsSubResourceAttributes = CatalogItemCreateQueryAsSubResourceAttributes;
@@ -82,53 +84,68 @@ CatalogItemCreateQueryAsSubResourceAttributes.IntegrationTypeEnum = {
   custom: "$custom"
 };
 /**
- * The integration type. Currently, this can only be set to $custom (and defaults to $custom if not included in the payload).
+ * The integration type. Currently only \"$custom\" is supported.
  * @member {module:model/CatalogItemCreateQueryAsSubResourceAttributes.IntegrationTypeEnum} integrationType
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.integrationType = undefined;
 
 /**
+ * The title of the catalog item.
  * @member {String} title
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.title = undefined;
 
 /**
+ * This field can be used to set the price on the catalog item, which is what gets displayed for the item when included in emails. For most price-update use cases, you will also want to update the `price` on any child variants, using the [Update Catalog Variant Endpoint](https://developers.klaviyo.com/en/reference/update_catalog_variant).
+ * @member {Number} price
+ */
+CatalogItemCreateQueryAsSubResourceAttributes.prototype.price = undefined;
+
+/**
+ * The type of catalog. Currently only \"$default\" is supported.
  * @member {String} catalogType
  * @default '$default'
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.catalogType = '$default';
 
 /**
+ * A description of the catalog item.
  * @member {String} description
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.description = undefined;
 
 /**
+ * URL pointing to the location of the catalog item on your website.
  * @member {String} url
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.url = undefined;
 
 /**
+ * URL pointing to the location of a full image of the catalog item.
  * @member {String} imageFullUrl
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.imageFullUrl = undefined;
 
 /**
+ * URL pointing to the location of an image thumbnail of the catalog item
  * @member {String} imageThumbnailUrl
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.imageThumbnailUrl = undefined;
 
 /**
+ * List of URLs pointing to the locations of images of the catalog item.
  * @member {Array.<String>} images
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.images = undefined;
 
 /**
+ * Flat JSON blob to provide custom metadata about the catalog item. May not exceed 100kb.
  * @member {Object} customMetadata
  */
 CatalogItemCreateQueryAsSubResourceAttributes.prototype.customMetadata = undefined;
 
 /**
+ * Boolean value indicating whether the catalog item is published.
  * @member {Boolean} published
  * @default true
  */

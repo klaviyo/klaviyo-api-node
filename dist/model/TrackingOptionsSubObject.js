@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TrackingOptionsSubObject model module.
  * @module model/TrackingOptionsSubObject
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TrackingOptionsSubObject = /*#__PURE__*/function () {
   /**

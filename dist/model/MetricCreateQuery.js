@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The MetricCreateQuery model module.
  * @module model/MetricCreateQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var MetricCreateQuery = /*#__PURE__*/function () {
   /**

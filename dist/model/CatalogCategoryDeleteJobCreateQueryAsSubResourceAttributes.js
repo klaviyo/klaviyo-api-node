@@ -15,14 +15,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes model module.
  * @module model/CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes
    * @class
-   * @param categories {Array.<module:model/CatalogCategoryDeleteQueryAsSubResource>} 
+   * @param categories {Array.<module:model/CatalogCategoryDeleteQueryAsSubResource>} Array of catalog categories to delete.
    */
   function CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes(categories) {
     _classCallCheck(this, CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes);
@@ -49,6 +49,7 @@ var CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes = /*#__PURE__*/fu
   return CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * Array of catalog categories to delete.
  * @member {Array.<module:model/CatalogCategoryDeleteQueryAsSubResource>} categories
  */
 exports.CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes = CatalogCategoryDeleteJobCreateQueryAsSubResourceAttributes;

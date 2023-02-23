@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.IncludedSegments = void 0;
 var _ApiClient = require("../ApiClient.js");
-var _IncludedListsAttributes = require("./IncludedListsAttributes.js");
+var _IncludedSegmentsAttributes = require("./IncludedSegmentsAttributes.js");
 var _IncludedVariantsLinks = require("./IncludedVariantsLinks.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16,7 +16,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedSegments model module.
  * @module model/IncludedSegments
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedSegments = /*#__PURE__*/function () {
   /**
@@ -25,7 +25,7 @@ var IncludedSegments = /*#__PURE__*/function () {
    * @class
    * @param type {module:model/IncludedSegments.TypeEnum} 
    * @param id {String} 
-   * @param attributes {module:model/IncludedListsAttributes} 
+   * @param attributes {module:model/IncludedSegmentsAttributes} 
    * @param links {module:model/IncludedVariantsLinks} 
    */
   function IncludedSegments(type, id, attributes, links) {
@@ -50,7 +50,7 @@ var IncludedSegments = /*#__PURE__*/function () {
         obj = obj || new IncludedSegments();
         if (data.hasOwnProperty('type')) obj.type = _ApiClient.ApiClient.convertToType(data['type'], 'String');
         if (data.hasOwnProperty('id')) obj.id = _ApiClient.ApiClient.convertToType(data['id'], 'String');
-        if (data.hasOwnProperty('attributes')) obj.attributes = _IncludedListsAttributes.IncludedListsAttributes.constructFromObject(data['attributes']);
+        if (data.hasOwnProperty('attributes')) obj.attributes = _IncludedSegmentsAttributes.IncludedSegmentsAttributes.constructFromObject(data['attributes']);
         if (data.hasOwnProperty('links')) obj.links = _IncludedVariantsLinks.IncludedVariantsLinks.constructFromObject(data['links']);
       }
       return obj;
@@ -82,7 +82,7 @@ IncludedSegments.prototype.type = undefined;
 IncludedSegments.prototype.id = undefined;
 
 /**
- * @member {module:model/IncludedListsAttributes} attributes
+ * @member {module:model/IncludedSegmentsAttributes} attributes
  */
 IncludedSegments.prototype.attributes = undefined;
 

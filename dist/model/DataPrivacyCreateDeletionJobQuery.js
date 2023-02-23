@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The DataPrivacyCreateDeletionJobQuery model module.
  * @module model/DataPrivacyCreateDeletionJobQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var DataPrivacyCreateDeletionJobQuery = /*#__PURE__*/function () {
   /**

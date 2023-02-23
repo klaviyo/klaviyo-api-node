@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedMetricsAttributes model module.
  * @module model/IncludedMetricsAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedMetricsAttributes = /*#__PURE__*/function () {
   /**

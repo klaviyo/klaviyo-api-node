@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The ProfileLocation model module.
  * @module model/ProfileLocation
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var ProfileLocation = /*#__PURE__*/function () {
   /**
@@ -54,47 +54,56 @@ var ProfileLocation = /*#__PURE__*/function () {
   return ProfileLocation;
 }();
 /**
+ * First line of street address
  * @member {String} address1
  */
 exports.ProfileLocation = ProfileLocation;
 ProfileLocation.prototype.address1 = undefined;
 
 /**
+ * Second line of street address
  * @member {String} address2
  */
 ProfileLocation.prototype.address2 = undefined;
 
 /**
+ * City name
  * @member {String} city
  */
 ProfileLocation.prototype.city = undefined;
 
 /**
+ * Country name
  * @member {String} country
  */
 ProfileLocation.prototype.country = undefined;
 
 /**
+ * Latitude coordinate. We recommend providing a precision of four decimal places.
  * @member {Object} latitude
  */
 ProfileLocation.prototype.latitude = undefined;
 
 /**
+ * Longitude coordinate. We recommend providing a precision of four decimal places.
  * @member {Object} longitude
  */
 ProfileLocation.prototype.longitude = undefined;
 
 /**
+ * Region within a country, such as state or province
  * @member {String} region
  */
 ProfileLocation.prototype.region = undefined;
 
 /**
+ * Zip code
  * @member {String} zip
  */
 ProfileLocation.prototype.zip = undefined;
 
 /**
+ * Time zone name. We recommend using time zones from the IANA Time Zone Database.
  * @member {String} timezone
  */
 ProfileLocation.prototype.timezone = undefined;

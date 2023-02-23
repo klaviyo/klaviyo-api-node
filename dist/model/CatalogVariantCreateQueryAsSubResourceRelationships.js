@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The CatalogVariantCreateQueryAsSubResourceRelationships model module.
  * @module model/CatalogVariantCreateQueryAsSubResourceRelationships
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var CatalogVariantCreateQueryAsSubResourceRelationships = /*#__PURE__*/function () {
   /**

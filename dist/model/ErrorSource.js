@@ -14,14 +14,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The ErrorSource model module.
  * @module model/ErrorSource
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var ErrorSource = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ErrorSource</code>.
    * @alias module:model/ErrorSource
    * @class
-   * @param pointer {String} 
+   * @param pointer {String} A pointer to the source of the error in the request payload.
    */
   function ErrorSource(pointer) {
     _classCallCheck(this, ErrorSource);
@@ -48,6 +48,7 @@ var ErrorSource = /*#__PURE__*/function () {
   return ErrorSource;
 }();
 /**
+ * A pointer to the source of the error in the request payload.
  * @member {String} pointer
  * @default '/data'
  */

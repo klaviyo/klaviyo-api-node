@@ -14,14 +14,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The ListCreateQueryAsSubResourceAttributes model module.
  * @module model/ListCreateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var ListCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
    * Constructs a new <code>ListCreateQueryAsSubResourceAttributes</code>.
    * @alias module:model/ListCreateQueryAsSubResourceAttributes
    * @class
-   * @param name {String} 
+   * @param name {String} A helpful name to label the list
    */
   function ListCreateQueryAsSubResourceAttributes(name) {
     _classCallCheck(this, ListCreateQueryAsSubResourceAttributes);
@@ -48,6 +48,7 @@ var ListCreateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   return ListCreateQueryAsSubResourceAttributes;
 }();
 /**
+ * A helpful name to label the list
  * @member {String} name
  */
 exports.ListCreateQueryAsSubResourceAttributes = ListCreateQueryAsSubResourceAttributes;

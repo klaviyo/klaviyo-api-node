@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The MetricAggregateQueryAsSubResourceAttributes model module.
  * @module model/MetricAggregateQueryAsSubResourceAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
   /**
@@ -24,7 +24,7 @@ var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
    * @param metricId {String} The metric ID used in the aggregation.
    * @param measurements {Array.<module:model/MetricAggregateQueryAsSubResourceAttributes.MeasurementsEnum>} Measurement key, e.g. `unique`, `sum_value`, `count`
    * @param interval {module:model/MetricAggregateQueryAsSubResourceAttributes.IntervalEnum} Aggregation interval, e.g. \"hour\", \"day\", \"week\", \"month\"
-   * @param filter {Array.<String>} List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).             These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.             The time range can be filtered by providing a `greater_or_equal` and a `less-than` filter on the `datetime` field.
+   * @param filter {Array.<String>} List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).             These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.             The time range can be filtered by providing a `greater-or-equal` and a `less-than` filter on the `datetime` field.
    */
   function MetricAggregateQueryAsSubResourceAttributes(metricId, measurements, interval, filter) {
     _classCallCheck(this, MetricAggregateQueryAsSubResourceAttributes);
@@ -47,6 +47,7 @@ var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
       if (data) {
         obj = obj || new MetricAggregateQueryAsSubResourceAttributes();
         if (data.hasOwnProperty('metric_id')) obj.metricId = _ApiClient.ApiClient.convertToType(data['metric_id'], 'String');
+        if (data.hasOwnProperty('page_cursor')) obj.pageCursor = _ApiClient.ApiClient.convertToType(data['page_cursor'], 'String');
         if (data.hasOwnProperty('measurements')) obj.measurements = _ApiClient.ApiClient.convertToType(data['measurements'], ['String']);
         if (data.hasOwnProperty('interval')) obj.interval = _ApiClient.ApiClient.convertToType(data['interval'], 'String');
         if (data.hasOwnProperty('page_size')) obj.pageSize = _ApiClient.ApiClient.convertToType(data['page_size'], 'Number');
@@ -55,7 +56,6 @@ var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
         if (data.hasOwnProperty('filter')) obj.filter = _ApiClient.ApiClient.convertToType(data['filter'], ['String']);
         if (data.hasOwnProperty('timezone')) obj.timezone = _ApiClient.ApiClient.convertToType(data['timezone'], 'String');
         if (data.hasOwnProperty('sort')) obj.sort = _ApiClient.ApiClient.convertToType(data['sort'], 'String');
-        if (data.hasOwnProperty('page_cursor')) obj.pageCursor = _ApiClient.ApiClient.convertToType(data['page_cursor'], 'String');
       }
       return obj;
     }
@@ -68,6 +68,12 @@ var MetricAggregateQueryAsSubResourceAttributes = /*#__PURE__*/function () {
  */
 exports.MetricAggregateQueryAsSubResourceAttributes = MetricAggregateQueryAsSubResourceAttributes;
 MetricAggregateQueryAsSubResourceAttributes.prototype.metricId = undefined;
+
+/**
+ * Optional pagination cursor to iterate over large result sets
+ * @member {String} pageCursor
+ */
+MetricAggregateQueryAsSubResourceAttributes.prototype.pageCursor = undefined;
 
 /**
  * Allowed values for the <code>measurements</code> property.
@@ -307,7 +313,7 @@ MetricAggregateQueryAsSubResourceAttributes.prototype.by = undefined;
 MetricAggregateQueryAsSubResourceAttributes.prototype.returnFields = undefined;
 
 /**
- * List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).             These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.             The time range can be filtered by providing a `greater_or_equal` and a `less-than` filter on the `datetime` field.
+ * List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).             These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.             The time range can be filtered by providing a `greater-or-equal` and a `less-than` filter on the `datetime` field.
  * @member {Array.<String>} filter
  */
 MetricAggregateQueryAsSubResourceAttributes.prototype.filter = undefined;
@@ -657,11 +663,7 @@ MetricAggregateQueryAsSubResourceAttributes.SortEnum = {
   unique_65: "-unique"
 };
 /**
+ * Provide a sort key (e.g. -$message)
  * @member {module:model/MetricAggregateQueryAsSubResourceAttributes.SortEnum} sort
  */
 MetricAggregateQueryAsSubResourceAttributes.prototype.sort = undefined;
-
-/**
- * @member {String} pageCursor
- */
-MetricAggregateQueryAsSubResourceAttributes.prototype.pageCursor = undefined;

@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TemplateCloneQuery model module.
  * @module model/TemplateCloneQuery
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TemplateCloneQuery = /*#__PURE__*/function () {
   /**

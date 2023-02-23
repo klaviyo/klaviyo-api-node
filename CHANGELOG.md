@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - revision 2023-01-24
+
+### Added
+- Campagins (which were previously in our Beta API/SDKs)
+
+### Changes
+- Profiles
+    - Fix longitude value in ProfileLocation type mapping
+- Flows
+    - Pagination changed from page offset to cursor
+
 ## [2.0.0] - revision 2023-01-24
 
 - Added the following endpoints (which were previously in our Beta API/SDKs):

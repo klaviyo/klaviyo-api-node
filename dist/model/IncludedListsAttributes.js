@@ -14,7 +14,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedListsAttributes model module.
  * @module model/IncludedListsAttributes
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedListsAttributes = /*#__PURE__*/function () {
   /**
@@ -48,17 +48,20 @@ var IncludedListsAttributes = /*#__PURE__*/function () {
   return IncludedListsAttributes;
 }();
 /**
+ * A helpful name to label the list
  * @member {String} name
  */
 exports.IncludedListsAttributes = IncludedListsAttributes;
 IncludedListsAttributes.prototype.name = undefined;
 
 /**
+ * Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
  * @member {Date} created
  */
 IncludedListsAttributes.prototype.created = undefined;
 
 /**
+ * Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
  * @member {Date} updated
  */
 IncludedListsAttributes.prototype.updated = undefined;

@@ -19,7 +19,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
 * Flows service.
 * @module api/FlowsApi
-* @version 2023-01-24
+* @version 2023-02-22
 */
 var FlowsApi = /*#__PURE__*/_createClass(
 /**
@@ -33,6 +33,16 @@ function FlowsApi(apiClient) {
   var _this = this;
   _classCallCheck(this, FlowsApi);
   _defineProperty(this, "apiClient", void 0);
+  /**
+   * Get Flow
+   * Get a flow with the given flow ID. Include parameters can be provided to get the following related resource data: &#x60;flow-actions&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlow", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -88,6 +98,17 @@ function FlowsApi(apiClient) {
       return _ref.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Action
+   * Get a flow action from a flow with the given flow action ID. Include parameters can be provided to get the following related resource data: &#x60;flows&#x60;, &#x60;flow-messages&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowAction", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -144,6 +165,14 @@ function FlowsApi(apiClient) {
       return _ref2.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow For Flow Action
+   * Get the flow associated with the given action ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} actionId 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowActionFlow", /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(actionId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -197,6 +226,17 @@ function FlowsApi(apiClient) {
       return _ref3.apply(this, arguments);
     };
   }());
+  /**
+   * Get Messages For Flow Action
+   * Get all flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} actionId 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowActionMessages", /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(actionId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -217,6 +257,7 @@ function FlowsApi(apiClient) {
             queryParams = {
               'fields[flow-message]': _this.apiClient.buildCollectionParam(opts['fieldsFlowMessage'], 'csv'),
               'filter': opts['filter'],
+              'page[cursor]': opts['pageCursor'],
               'sort': opts['sort']
             };
             headerParams = {};
@@ -252,6 +293,17 @@ function FlowsApi(apiClient) {
       return _ref4.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Action Relationships
+   * Get all relationships for flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @param {Object} opts Optional parameters
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowActionRelationships", /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id, relatedResource, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -278,6 +330,7 @@ function FlowsApi(apiClient) {
             };
             queryParams = {
               'filter': opts['filter'],
+              'page[cursor]': opts['pageCursor'],
               'sort': opts['sort']
             };
             headerParams = {};
@@ -313,6 +366,17 @@ function FlowsApi(apiClient) {
       return _ref5.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Actions For Flow
+   * Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} flowId 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowFlowActions", /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(flowId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -333,6 +397,7 @@ function FlowsApi(apiClient) {
             queryParams = {
               'fields[flow-action]': _this.apiClient.buildCollectionParam(opts['fieldsFlowAction'], 'csv'),
               'filter': opts['filter'],
+              'page[cursor]': opts['pageCursor'],
               'sort': opts['sort']
             };
             headerParams = {};
@@ -368,6 +433,16 @@ function FlowsApi(apiClient) {
       return _ref6.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Message
+   * Get the flow message of a flow with the given message ID. Include parameters can be provided to get the following related resource data: &#x27;flow-actions&#x27;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowMessage", /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(id, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -423,6 +498,14 @@ function FlowsApi(apiClient) {
       return _ref7.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Action For Message
+   * Get the flow action for a flow message with the given message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} messageId 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowMessageAction", /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(messageId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -476,6 +559,13 @@ function FlowsApi(apiClient) {
       return _ref8.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Message Relationships
+   * Get the [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a flow message&#x27;s flow action, given the flow ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowMessageRelationships", /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -533,6 +623,13 @@ function FlowsApi(apiClient) {
       return _ref9.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Relationships
+   * If the &#x60;related_resource&#x60; is &#x60;tags&#x60;, returns the tag IDs of all tags associated with the given flow.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60; &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} relatedResource 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowRelationships", /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(id, relatedResource) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -590,6 +687,14 @@ function FlowsApi(apiClient) {
       return _ref10.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flow Tags
+   * Return all tags associated with the given flow ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60; &#x60;Tags Read&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} flowId 
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlowTags", /*#__PURE__*/function () {
     var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(flowId, opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -643,6 +748,18 @@ function FlowsApi(apiClient) {
       return _ref11.apply(this, arguments);
     };
   }());
+  /**
+   * Get Flows
+   * Get all flows in an account.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
+   * @param {Object} opts Optional parameters
+   * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {Array.<module:model/String>} opts.fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
+   * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;
+   * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
+   * @param {String} opts.pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+   * @param {module:model/String} opts.sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "getFlows", /*#__PURE__*/function () {
     var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(opts) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -657,6 +774,7 @@ function FlowsApi(apiClient) {
               'fields[flow]': _this.apiClient.buildCollectionParam(opts['fieldsFlow'], 'csv'),
               'filter': opts['filter'],
               'include': _this.apiClient.buildCollectionParam(opts['include'], 'csv'),
+              'page[cursor]': opts['pageCursor'],
               'sort': opts['sort']
             };
             headerParams = {};
@@ -692,6 +810,13 @@ function FlowsApi(apiClient) {
       return _ref12.apply(this, arguments);
     };
   }());
+  /**
+   * Update Flow Status
+   * Update the status of a flow with the given flow ID, and all actions in that flow.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "updateFlow", /*#__PURE__*/function () {
     var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(body, id) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -749,16 +874,5 @@ function FlowsApi(apiClient) {
     };
   }());
   this.apiClient = apiClient || _ApiClient.ApiClient.instance;
-}
-
-/**
- * Get Flow
- * Get a flow with the given flow ID. Include parameters can be provided to get the following related resource data: &#x60;flow-actions&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60;
- * @param {<&vendorExtensions.x-jsdoc-type>} id 
- * @param {Object} opts Optional parameters
- * @param {Array.<module:model/String>} opts.fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2023-01-24/reference/api-overview#sparse-fieldsets
- * @param {Array.<module:model/String>} opts.fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2023-01-24/reference/api-overview#sparse-fieldsets
- * @param {Array.<module:model/String>} opts.include For more information please visit https://developers.klaviyo.com/en/v2023-01-24/reference/api-overview#relationships
- * @return {Promise} a {@link https://www.promisejs.org/|Promise}
- */);
+});
 exports.FlowsApi = FlowsApi;

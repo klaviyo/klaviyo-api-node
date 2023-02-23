@@ -16,7 +16,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The IncludedCategories model module.
  * @module model/IncludedCategories
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var IncludedCategories = /*#__PURE__*/function () {
   /**
@@ -24,7 +24,7 @@ var IncludedCategories = /*#__PURE__*/function () {
    * @alias module:model/IncludedCategories
    * @class
    * @param type {module:model/IncludedCategories.TypeEnum} 
-   * @param id {String} The catalog category ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`, but support for multiple catalogs  & non-custom integrations is forthcoming.
+   * @param id {String} The catalog category ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
    * @param attributes {module:model/IncludedCategoriesAttributes} 
    * @param links {module:model/IncludedVariantsLinks} 
    */
@@ -77,7 +77,7 @@ IncludedCategories.TypeEnum = {
 IncludedCategories.prototype.type = undefined;
 
 /**
- * The catalog category ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`, but support for multiple catalogs  & non-custom integrations is forthcoming.
+ * The catalog category ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
  * @member {String} id
  */
 IncludedCategories.prototype.id = undefined;

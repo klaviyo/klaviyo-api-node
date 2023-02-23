@@ -15,7 +15,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
  * The TagGroupUpdateQueryAsSubResource model module.
  * @module model/TagGroupUpdateQueryAsSubResource
- * @version 2023-01-24
+ * @version 2023-02-22
  */
 var TagGroupUpdateQueryAsSubResource = /*#__PURE__*/function () {
   /**

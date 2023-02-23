@@ -19,7 +19,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /**
 * Client service.
 * @module api/ClientApi
-* @version 2023-01-24
+* @version 2023-02-22
 */
 var ClientApi = /*#__PURE__*/_createClass(
 /**
@@ -33,6 +33,13 @@ function ClientApi(apiClient) {
   var _this = this;
   _classCallCheck(this, ClientApi);
   _defineProperty(this, "apiClient", void 0);
+  /**
+   * Create Client Event
+   * Create a new event to track a profile&#x27;s activity. This endpoint is specifically designed to be called from publicly-browseable, client-side environments only. To create events from server-based applications, please use [POST /api/events](https://developers.klaviyo.com/en/reference/create_event)&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body Event to create.
+   * @param {<&vendorExtensions.x-jsdoc-type>} companyId ID of the Company to create event
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createClientEvent", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(body, companyId) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -89,6 +96,13 @@ function ClientApi(apiClient) {
       return _ref.apply(this, arguments);
     };
   }());
+  /**
+   * Create or Update Client Profile
+   * Create and update properties about a profile without tracking an associated event. This endpoint is specifically designed to be called from publicly-browseable, client-side environments only. To create profiles from server applications (e.g. custom server-side scripts / applications), please use [POST /api/profiles](https://developers.klaviyo.com/en/reference/create_profile)&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body 
+   * @param {<&vendorExtensions.x-jsdoc-type>} companyId 
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createClientProfile", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(body, companyId) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -145,6 +159,13 @@ function ClientApi(apiClient) {
       return _ref2.apply(this, arguments);
     };
   }());
+  /**
+   * Create Client Subscription
+   * Create a new subscription for the given list ID and channel:  * Email &#x60;email&#x60; * SMS &#x60;phone_number&#x60;  This endpoint is specifically designed to be called from publicly-browseable, client-side environments only. To create subscriptions from server-based applications, please use [POST /api/profile-subscription-bulk-create-jobs](https://developers.klaviyo.com/en/reference/subscribe_profiles)&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;100/s&#x60;&lt;br&gt;Steady: &#x60;100/m&#x60;  **Scopes:** &#x60;Subscriptions Write&#x60;
+   * @param {<&vendorExtensions.x-jsdoc-type>} body Creates a subscription and consent records for Email and or SMS channels based on the provided email and phone_number attributes respectively. One of either email or phone_number must be provided. To create a subscription and consent record for only one channel but still include the other channel as a profile property the consent channel can be provided as a top level attribute and the other channel can be included in the properties object.
+   * @param {<&vendorExtensions.x-jsdoc-type>} companyId Your company ID.
+   * @return {Promise} a {@link https://www.promisejs.org/|Promise}
+   */
   _defineProperty(this, "createClientSubscription", /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(body, companyId) {
       var postBody, pathParams, queryParams, headerParams, formParams, authNames, contentTypes, accepts, returnType;
@@ -202,13 +223,5 @@ function ClientApi(apiClient) {
     };
   }());
   this.apiClient = apiClient || _ApiClient.ApiClient.instance;
-}
-
-/**
- * Create Client Event
- * Create a new event to track a profile&#x27;s activity. This endpoint is specifically designed to be called from publicly-browseable, client-side environments only. To create events from server-based applications, please use [POST /api/events](https://developers.klaviyo.com/en/reference/create_event)&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Write&#x60;
- * @param {<&vendorExtensions.x-jsdoc-type>} body Event to create.
- * @param {<&vendorExtensions.x-jsdoc-type>} companyId ID of the Company to create event
- * @return {Promise} a {@link https://www.promisejs.org/|Promise}
- */);
+});
 exports.ClientApi = ClientApi;
