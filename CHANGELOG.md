@@ -7,8 +7,6 @@ All notable changes to this project will be documented in this file.
 - Campagins (which were previously in our Beta API/SDKs)
 
 ### Changes
-- Profiles
-    - Fix longitude value in ProfileLocation type mapping
 - Flows
     - Pagination changed from page offset to cursor
 
