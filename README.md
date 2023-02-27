@@ -60,9 +60,9 @@ ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE")
 ```
 Or if ES6 isn't your thing
 ```JavaScript
-var KaviyoSdk = require('klaviyo-api');
+var KlaviyoSdk = require('klaviyo-api');
 
-KaviyoSdk.ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE")
+KlaviyoSdk.ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE")
 ```
 
 To edit the exponential backoff built into the ConfigWrapper you can pass optional parameters
@@ -104,19 +104,19 @@ try {
     response = await Profiles.getProfile(profileId, opts)
     console.log(response);
 } catch (e) {
-    console.log(error);
+    console.log(e);
 }
 ```
 
 once again if you're not using ES6
 
 ```Javascript
-var KaviyoSdk = require('klaviyo-api');
+var KlaviyoSdk = require('klaviyo-api');
 
 var profileId = "PROFILE_ID";
 var opts = {};
 
-KaviyoSdk.Profiles.getProfile(profileId, opts)
+KlaviyoSdk.Profiles.getProfile(profileId, opts)
     .then(data => 'Do Something Here')
     .catch(error => 'An error was thrown check the HTTP code with error.status');
 ```
@@ -142,7 +142,7 @@ try {
     const status = response.status
     const headers = response.headers
 } catch (e) {
-    console.log(error);
+    console.log(e);
 }
 ```
 
@@ -1585,7 +1585,7 @@ const Templates.updateTemplate(body, id)
 
 try {
     await YOUR_CALL
-} catch e {
+} catch (e) {
     print(e.status, e.body, e.headers)
 }
 ```
