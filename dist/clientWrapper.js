@@ -30,8 +30,12 @@ var STARTING_DELAY_OPT_NAME = 'startingDelay';
    * */
 var ConfigWrapper = function ConfigWrapper(authKey) {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var defaultClient = _ApiClient.ApiClient.instance;
-  // Configure API key authorization: ApiKeyAuth
+  var defaultClient;
+  if (_ApiClient.ApiClient.instance.authentications['Klaviyo-API-Key'].apiKey) {
+    defaultClient = new _ApiClient.ApiClient();
+  } else {
+    defaultClient = _ApiClient.ApiClient.instance;
+  } // Configure API key authorization: ApiKeyAuth
   var ApiKeyAuth = defaultClient.authentications['Klaviyo-API-Key'];
   ApiKeyAuth.apiKey = authKey;
   ApiKeyAuth.apiKeyPrefix = "Klaviyo-API-Key";

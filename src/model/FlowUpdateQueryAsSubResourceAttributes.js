@@ -25,7 +25,7 @@ export class FlowUpdateQueryAsSubResourceAttributes {
    * Constructs a new <code>FlowUpdateQueryAsSubResourceAttributes</code>.
    * @alias module:model/FlowUpdateQueryAsSubResourceAttributes
    * @class
-   * @param status {String} 
+   * @param status {String} Status you want to update the flow to. ['draft', 'manual', or 'live']
    */
   constructor(status) {
     this.status = status;
@@ -49,6 +49,7 @@ export class FlowUpdateQueryAsSubResourceAttributes {
 }
 
 /**
+ * Status you want to update the flow to. ['draft', 'manual', or 'live']
  * @member {String} status
  */
 FlowUpdateQueryAsSubResourceAttributes.prototype.status = undefined;

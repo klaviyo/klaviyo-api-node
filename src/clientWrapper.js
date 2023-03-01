@@ -27,8 +27,12 @@ const STARTING_DELAY_OPT_NAME =  'startingDelay'
    * @return {ApiClient#instance} a instance of {@link  module:ApiClient}
    * */
 const ConfigWrapper = (authKey, opts = {}) => {
-    let defaultClient = ApiClient.instance;
-    // Configure API key authorization: ApiKeyAuth
+    let defaultClient
+    if (ApiClient.instance.authentications['Klaviyo-API-Key'].apiKey) {
+        defaultClient = new ApiClient()
+    } else {
+        defaultClient = ApiClient.instance;
+    }    // Configure API key authorization: ApiKeyAuth
     let ApiKeyAuth = defaultClient.authentications['Klaviyo-API-Key'];
     ApiKeyAuth.apiKey = authKey
     ApiKeyAuth.apiKeyPrefix = "Klaviyo-API-Key"

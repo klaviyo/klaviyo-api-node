@@ -1,7 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [2.1.0] - revision 2023-01-24
+## [2.1.1] - revision 2023-02-22
+### Changes 
+- Multi-store
+  - ConfigWrappers passed into the api wrappers now works as intended
+- PageSize is now added as an optional param to the following endpoints
+  - Segments
+    - getSegmentProfiles
+  - Profiles
+    - getProfiles
+  - Lists
+    - getListProfiles
+
+## [2.1.0] - revision 2023-02-22
 
 ### Added
 - Campaigns (which were previously in our Beta API/SDKs)

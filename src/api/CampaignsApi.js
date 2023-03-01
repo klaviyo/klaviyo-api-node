@@ -149,7 +149,7 @@ export class CampaignsApi {
     }
 
     /**
-     * Create Campaign Message Assign Template
+     * Assign Campaign Message Template
      * Creates a non-reusable version of the template and assigns it to the message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Campaigns Write&#x60;
      * @param {<&vendorExtensions.x-jsdoc-type>} body Takes a reusable template, clones it, and assigns the non-reusable clone to the message.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}

@@ -28,7 +28,7 @@ export class CatalogCategoryUpdateQueryAsSubResource {
    * @alias module:model/CatalogCategoryUpdateQueryAsSubResource
    * @class
    * @param type {module:model/CatalogCategoryUpdateQueryAsSubResource.TypeEnum} 
-   * @param id {String} The catalog category ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
+   * @param id {String} The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
    * @param attributes {module:model/CatalogCategoryUpdateQueryAsSubResourceAttributes} 
    */
   constructor(type, id, attributes) {
@@ -78,7 +78,7 @@ CatalogCategoryUpdateQueryAsSubResource.TypeEnum = {
 CatalogCategoryUpdateQueryAsSubResource.prototype.type = undefined;
 
 /**
- * The catalog category ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
+ * The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
  * @member {String} id
  */
 CatalogCategoryUpdateQueryAsSubResource.prototype.id = undefined;
