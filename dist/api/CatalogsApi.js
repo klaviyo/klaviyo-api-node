@@ -340,7 +340,7 @@ function CatalogsApi(apiClient) {
   /**
    * Delete Catalog Category
    * Delete a catalog category using the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
    */
   _defineProperty(this, "deleteCatalogCategory", /*#__PURE__*/function () {
@@ -467,7 +467,7 @@ function CatalogsApi(apiClient) {
   /**
    * Delete Catalog Item
    * Delete a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
    */
   _defineProperty(this, "deleteCatalogItem", /*#__PURE__*/function () {
@@ -594,7 +594,7 @@ function CatalogsApi(apiClient) {
   /**
    * Delete Catalog Variant
    * Delete a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
    */
   _defineProperty(this, "deleteCatalogVariant", /*#__PURE__*/function () {
@@ -708,7 +708,7 @@ function CatalogsApi(apiClient) {
   /**
    * Get Catalog Category
    * Get a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @param {Object} opts Optional parameters
    * @param {Array.<module:model/String>} opts.fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
@@ -769,7 +769,7 @@ function CatalogsApi(apiClient) {
   /**
    * Get Catalog Category Items
    * Get all items in a category with the given category ID. Items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Include parameters can be provided to get the following related resource data: &#x60;variants&#x60; Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} categoryId The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} categoryId The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @param {Object} opts Optional parameters
    * @param {Array.<module:model/String>} opts.fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
    * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -909,7 +909,7 @@ function CatalogsApi(apiClient) {
   /**
    * Get Catalog Item
    * Get a specific catalog item with the given item ID. Include parameters can be provided to get the following related resource data: &#x60;variants&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @param {Object} opts Optional parameters
    * @param {Array.<module:model/String>} opts.fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
    * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -974,7 +974,7 @@ function CatalogsApi(apiClient) {
   /**
    * Get Catalog Item Categories
    * Get all catalog categories that an item with the given item ID is in. Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} itemId The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} itemId The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @param {Object} opts Optional parameters
    * @param {Array.<module:model/String>} opts.fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
    * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
@@ -1110,7 +1110,7 @@ function CatalogsApi(apiClient) {
   /**
    * Get Catalog Item Variants
    * Get all variants related to the given item ID. Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} itemId The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} itemId The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @param {Object} opts Optional parameters
    * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
    * @param {String} opts.filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
@@ -1239,7 +1239,7 @@ function CatalogsApi(apiClient) {
   /**
    * Get Catalog Variant
    * Get a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @param {Object} opts Optional parameters
    * @param {Array.<module:model/String>} opts.fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
@@ -2922,7 +2922,7 @@ function CatalogsApi(apiClient) {
    * Update Catalog Category
    * Update a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
    * @param {<&vendorExtensions.x-jsdoc-type>} body 
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
    */
   _defineProperty(this, "updateCatalogCategory", /*#__PURE__*/function () {
@@ -3056,7 +3056,7 @@ function CatalogsApi(apiClient) {
    * Update Catalog Item
    * Update a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
    * @param {<&vendorExtensions.x-jsdoc-type>} body 
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
    */
   _defineProperty(this, "updateCatalogItem", /*#__PURE__*/function () {
@@ -3190,7 +3190,7 @@ function CatalogsApi(apiClient) {
    * Update Catalog Variant
    * Update a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
    * @param {<&vendorExtensions.x-jsdoc-type>} body 
-   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+   * @param {<&vendorExtensions.x-jsdoc-type>} id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
    */
   _defineProperty(this, "updateCatalogVariant", /*#__PURE__*/function () {

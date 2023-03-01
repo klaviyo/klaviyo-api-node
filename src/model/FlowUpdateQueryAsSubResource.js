@@ -27,7 +27,7 @@ export class FlowUpdateQueryAsSubResource {
    * @alias module:model/FlowUpdateQueryAsSubResource
    * @class
    * @param type {module:model/FlowUpdateQueryAsSubResource.TypeEnum} 
-   * @param id {String} 
+   * @param id {String} ID of the Flow to update. Ex: XVTP5Q
    * @param attributes {module:model/FlowUpdateQueryAsSubResourceAttributes} 
    */
   constructor(type, id, attributes) {
@@ -75,6 +75,7 @@ FlowUpdateQueryAsSubResource.TypeEnum = {
 FlowUpdateQueryAsSubResource.prototype.type = undefined;
 
 /**
+ * ID of the Flow to update. Ex: XVTP5Q
  * @member {String} id
  */
 FlowUpdateQueryAsSubResource.prototype.id = undefined;

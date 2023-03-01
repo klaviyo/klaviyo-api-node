@@ -28,7 +28,7 @@ export class IncludedVariants {
    * @alias module:model/IncludedVariants
    * @class
    * @param type {module:model/IncludedVariants.TypeEnum} 
-   * @param id {String} The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
+   * @param id {String} The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
    * @param attributes {module:model/IncludedVariantsAttributes} 
    * @param links {module:model/IncludedVariantsLinks} 
    */
@@ -80,7 +80,7 @@ IncludedVariants.TypeEnum = {
 IncludedVariants.prototype.type = undefined;
 
 /**
- * The catalog variant ID is a compound ID (string), with format: `${integration}:::${catalog}:::${external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
+ * The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
  * @member {String} id
  */
 IncludedVariants.prototype.id = undefined;

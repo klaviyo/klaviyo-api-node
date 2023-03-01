@@ -58,7 +58,7 @@ var ApiClient = /*#__PURE__*/function () {
      */
     this.defaultHeaders = {
       revision: "2023-02-22",
-      "User-Agent": "klaviyo-api-node/2.1.0"
+      "User-Agent": "klaviyo-api-node/2.1.1"
     };
 
     /**

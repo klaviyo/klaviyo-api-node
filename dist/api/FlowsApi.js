@@ -814,7 +814,7 @@ function FlowsApi(apiClient) {
    * Update Flow Status
    * Update the status of a flow with the given flow ID, and all actions in that flow.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60;
    * @param {<&vendorExtensions.x-jsdoc-type>} body 
-   * @param {<&vendorExtensions.x-jsdoc-type>} id 
+   * @param {<&vendorExtensions.x-jsdoc-type>} id ID of the Flow to update. Ex: XVTP5Q
    * @return {Promise} a {@link https://www.promisejs.org/|Promise}
    */
   _defineProperty(this, "updateFlow", /*#__PURE__*/function () {

@@ -1,6 +1,6 @@
 # Klaviyo JavaScript SDK
 
-- SDK version: 2.1.0
+- SDK version: 2.1.1
 
 - Revision: 2023-02-22
 
@@ -60,9 +60,9 @@ ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE")
 ```
 Or if ES6 isn't your thing
 ```JavaScript
-var KaviyoSdk = require('klaviyo-api');
+var klaviyoSdk = require('klaviyo-api');
 
-KaviyoSdk.ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE")
+klaviyoSdk.ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE")
 ```
 
 To edit the exponential backoff built into the ConfigWrapper you can pass optional parameters
@@ -77,8 +77,9 @@ ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE", {
 })
 ```
 
-NOTE:
+NOTES:
 * The SDK retries on resolvable errors, namely: rate limits (common) and server errors on klaviyo (rare).
+* The first ConfigWrapper created is the default, if you want to use more than one api key see [multi-store instructions below](https://github.com/klaviyo/klaviyo-api-node#multiple-stores)
 
 ### To call the `getProfile` operation:
 
@@ -104,19 +105,19 @@ try {
     response = await Profiles.getProfile(profileId, opts)
     console.log(response);
 } catch (e) {
-    console.log(error);
+    console.log(e);
 }
 ```
 
 once again if you're not using ES6
 
 ```Javascript
-var KaviyoSdk = require('klaviyo-api');
+var KlaviyoSdk = require('klaviyo-api');
 
 var profileId = "PROFILE_ID";
 var opts = {};
 
-KaviyoSdk.Profiles.getProfile(profileId, opts)
+KlaviyoSdk.Profiles.getProfile(profileId, opts)
     .then(data => 'Do Something Here')
     .catch(error => 'An error was thrown check the HTTP code with error.status');
 ```
@@ -142,7 +143,7 @@ try {
     const status = response.status
     const headers = response.headers
 } catch (e) {
-    console.log(error);
+    console.log(e);
 }
 ```
 
@@ -182,7 +183,7 @@ Obtain the cursor value from the call you want to get the next page for, then pa
 // page cursor looks like 'WzE2NDA5OTUyMDAsICIzYzRjeXdGTndadyIsIHRydWVd'
 // next.link returns the entire url of the next call but the sdk will accept the entire link and use only the relevant cursor
 
-const response = await Profiles.getProfiles();
+const response = await Profiles.getProfiles({});
 const opts = {pageCursor: response.body.links.next}
 const response2 = await Profiles.getProfiles(opts);
 ```
@@ -256,7 +257,7 @@ const Campaigns.createCampaignClone(body)
 
 
 
-#### [Create Campaign Message Assign Template](https://developers.klaviyo.com/en/v2023-02-22/reference/create_campaign_message_assign_template)
+#### [Assign Campaign Message Template](https://developers.klaviyo.com/en/v2023-02-22/reference/create_campaign_message_assign_template)
 
 ```JavaScript
 const Campaigns.createCampaignMessageAssignTemplate(body)
@@ -1585,7 +1586,7 @@ const Templates.updateTemplate(body, id)
 
 try {
     await YOUR_CALL
-} catch e {
+} catch (e) {
     print(e.status, e.body, e.headers)
 }
 ```
