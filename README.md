@@ -1,6 +1,6 @@
 # Klaviyo JavaScript SDK
 
-- SDK version: 2.1.1
+- SDK version: 3.0.0
 
 - Revision: 2023-02-22
 
@@ -329,10 +329,10 @@ const Campaigns.getCampaignRecipientEstimationJob(id, opts)
 
 
 
-#### [Get Campaign Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_relationships)
+#### [Get Campaign Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_relationships_tags)
 
 ```JavaScript
-const Campaigns.getCampaignRelationships(id, relatedResource)
+const Campaigns.getCampaignRelationshipsTags(id)
 ```
 
 
@@ -403,10 +403,10 @@ const Catalogs.createCatalogCategory(body)
 
 
 
-#### [Create Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_category_relationships)
+#### [Create Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_category_relationships_items)
 
 ```JavaScript
-const Catalogs.createCatalogCategoryRelationships(body, id, relatedResource)
+const Catalogs.createCatalogCategoryRelationshipsItems(body, id)
 ```
 
 
@@ -421,10 +421,10 @@ const Catalogs.createCatalogItem(body)
 
 
 
-#### [Create Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_item_relationships)
+#### [Create Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_item_relationships_categories)
 
 ```JavaScript
-const Catalogs.createCatalogItemRelationships(body, id, relatedResource)
+const Catalogs.createCatalogItemRelationshipsCategories(body, id)
 ```
 
 
@@ -448,10 +448,10 @@ const Catalogs.deleteCatalogCategory(id)
 
 
 
-#### [Delete Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_category_relationships)
+#### [Delete Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_category_relationships_items)
 
 ```JavaScript
-const Catalogs.deleteCatalogCategoryRelationships(body, id, relatedResource)
+const Catalogs.deleteCatalogCategoryRelationshipsItems(body, id)
 ```
 
 
@@ -466,10 +466,10 @@ const Catalogs.deleteCatalogItem(id)
 
 
 
-#### [Delete Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_item_relationships)
+#### [Delete Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_item_relationships_categories)
 
 ```JavaScript
-const Catalogs.deleteCatalogItemRelationships(body, id, relatedResource)
+const Catalogs.deleteCatalogItemRelationshipsCategories(body, id)
 ```
 
 
@@ -511,10 +511,10 @@ const Catalogs.getCatalogCategoryItems(categoryId, opts)
 
 
 
-#### [Get Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_category_relationships)
+#### [Get Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_category_relationships_items)
 
 ```JavaScript
-const Catalogs.getCatalogCategoryRelationships(id, relatedResource, opts)
+const Catalogs.getCatalogCategoryRelationshipsItems(id, opts)
 ```
 
 
@@ -538,10 +538,10 @@ const Catalogs.getCatalogItemCategories(itemId, opts)
 
 
 
-#### [Get Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_item_relationships)
+#### [Get Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_item_relationships_categories)
 
 ```JavaScript
-const Catalogs.getCatalogItemRelationships(id, relatedResource, opts)
+const Catalogs.getCatalogItemRelationshipsCategories(id, opts)
 ```
 
 
@@ -835,10 +835,10 @@ const Catalogs.updateCatalogCategory(body, id)
 
 
 
-#### [Update Catalog Category Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_category_relationships)
+#### [Update Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_category_relationships_items)
 
 ```JavaScript
-const Catalogs.updateCatalogCategoryRelationships(body, id, relatedResource)
+const Catalogs.updateCatalogCategoryRelationshipsItems(body, id)
 ```
 
 
@@ -853,10 +853,10 @@ const Catalogs.updateCatalogItem(body, id)
 
 
 
-#### [Update Catalog Item Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_item_relationships)
+#### [Update Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_item_relationships_categories)
 
 ```JavaScript
-const Catalogs.updateCatalogItemRelationships(body, id, relatedResource)
+const Catalogs.updateCatalogItemRelationshipsCategories(body, id)
 ```
 
 
@@ -949,10 +949,19 @@ const Events.getEventProfiles(id, opts)
 
 
 
-#### [Get Event Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event_relationships)
+#### [Get Event Relationships Metrics](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event_relationships_metrics)
 
 ```JavaScript
-const Events.getEventRelationships(id, relatedResource)
+const Events.getEventRelationshipsMetrics(id)
+```
+
+
+
+
+#### [Get Event Relationships Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event_relationships_profiles)
+
+```JavaScript
+const Events.getEventRelationshipsProfiles(id)
 ```
 
 
@@ -1005,10 +1014,19 @@ const Flows.getFlowActionMessages(actionId, opts)
 
 
 
-#### [Get Flow Action Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action_relationships)
+#### [Get Flow Action Relationships Flow](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action_relationships_flow)
 
 ```JavaScript
-const Flows.getFlowActionRelationships(id, relatedResource, opts)
+const Flows.getFlowActionRelationshipsFlow(id)
+```
+
+
+
+
+#### [Get Flow Action Relationships Messages](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action_relationships_messages)
+
+```JavaScript
+const Flows.getFlowActionRelationshipsMessages(id, opts)
 ```
 
 
@@ -1041,19 +1059,28 @@ const Flows.getFlowMessageAction(messageId, opts)
 
 
 
-#### [Get Flow Message Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_message_relationships)
+#### [Get Flow Message Relationships Action](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_message_relationships_action)
 
 ```JavaScript
-const Flows.getFlowMessageRelationships(id, relatedResource)
+const Flows.getFlowMessageRelationshipsAction(id)
 ```
 
 
 
 
-#### [Get Flow Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_relationships)
+#### [Get Flow Relationships Flow Actions](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_relationships_flow_actions)
 
 ```JavaScript
-const Flows.getFlowRelationships(id, relatedResource)
+const Flows.getFlowRelationshipsFlowActions(id, opts)
+```
+
+
+
+
+#### [Get Flow Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_relationships_tags)
+
+```JavaScript
+const Flows.getFlowRelationshipsTags(id)
 ```
 
 
@@ -1097,10 +1124,10 @@ const Lists.createList(body)
 
 
 
-#### [Add Profile to List](https://developers.klaviyo.com/en/v2023-02-22/reference/create_list_relationships)
+#### [Add Profile To List](https://developers.klaviyo.com/en/v2023-02-22/reference/create_list_relationships)
 
 ```JavaScript
-const Lists.createListRelationships(body, id, relatedResource)
+const Lists.createListRelationships(body, id)
 ```
 
 
@@ -1115,10 +1142,10 @@ const Lists.deleteList(id)
 
 
 
-#### [Remove Profile from List](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_list_relationships)
+#### [Remove Profile From List](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_list_relationships)
 
 ```JavaScript
-const Lists.deleteListRelationships(body, id, relatedResource)
+const Lists.deleteListRelationships(body, id)
 ```
 
 
@@ -1142,10 +1169,19 @@ const Lists.getListProfiles(listId, opts)
 
 
 
-#### [Get List Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list_relationships)
+#### [Get List Relationships Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list_relationships_profiles)
 
 ```JavaScript
-const Lists.getListRelationships(id, relatedResource, opts)
+const Lists.getListRelationshipsProfiles(id, opts)
+```
+
+
+
+
+#### [Get List Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list_relationships_tags)
+
+```JavaScript
+const Lists.getListRelationshipsTags(id)
 ```
 
 
@@ -1212,7 +1248,7 @@ const Metrics.queryMetricAggregates(body)
 #### [Create Profile](https://developers.klaviyo.com/en/v2023-02-22/reference/create_profile)
 
 ```JavaScript
-const Profiles.createProfile(body)
+const Profiles.createProfile(body, opts)
 ```
 
 
@@ -1236,10 +1272,19 @@ const Profiles.getProfileLists(profileId, opts)
 
 
 
-#### [Get Profile Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile_relationships)
+#### [Get Profile Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile_relationships_lists)
 
 ```JavaScript
-const Profiles.getProfileRelationships(id, relatedResource)
+const Profiles.getProfileRelationshipsLists(id)
+```
+
+
+
+
+#### [Get Profile Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile_relationships_segments)
+
+```JavaScript
+const Profiles.getProfileRelationshipsSegments(id)
 ```
 
 
@@ -1302,7 +1347,7 @@ const Profiles.unsuppressProfiles(body)
 #### [Update Profile](https://developers.klaviyo.com/en/v2023-02-22/reference/update_profile)
 
 ```JavaScript
-const Profiles.updateProfile(body, id)
+const Profiles.updateProfile(body, id, opts)
 ```
 
 
@@ -1328,10 +1373,19 @@ const Segments.getSegmentProfiles(segmentId, opts)
 
 
 
-#### [Get Segment Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment_relationships)
+#### [Get Segment Relationships Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment_relationships_profiles)
 
 ```JavaScript
-const Segments.getSegmentRelationships(id, relatedResource, opts)
+const Segments.getSegmentRelationshipsProfiles(id, opts)
+```
+
+
+
+
+#### [Get Segment Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment_relationships_tags)
+
+```JavaScript
+const Segments.getSegmentRelationshipsTags(id)
 ```
 
 
@@ -1384,10 +1438,37 @@ const Tags.createTagGroup(body)
 
 
 
-#### [Create Tag Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships)
+#### [Create Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_campaigns)
 
 ```JavaScript
-const Tags.createTagRelationships(body, id, relatedResource)
+const Tags.createTagRelationshipsCampaigns(body, id)
+```
+
+
+
+
+#### [Create Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_flows)
+
+```JavaScript
+const Tags.createTagRelationshipsFlows(body, id)
+```
+
+
+
+
+#### [Create Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_lists)
+
+```JavaScript
+const Tags.createTagRelationshipsLists(body, id)
+```
+
+
+
+
+#### [Create Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_segments)
+
+```JavaScript
+const Tags.createTagRelationshipsSegments(body, id)
 ```
 
 
@@ -1411,10 +1492,37 @@ const Tags.deleteTagGroup(id)
 
 
 
-#### [Delete Tag Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships)
+#### [Delete Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_campaigns)
 
 ```JavaScript
-const Tags.deleteTagRelationships(body, id, relatedResource)
+const Tags.deleteTagRelationshipsCampaigns(body, id)
+```
+
+
+
+
+#### [Delete Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_flows)
+
+```JavaScript
+const Tags.deleteTagRelationshipsFlows(body, id)
+```
+
+
+
+
+#### [Delete Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_lists)
+
+```JavaScript
+const Tags.deleteTagRelationshipsLists(body, id)
+```
+
+
+
+
+#### [Delete Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_segments)
+
+```JavaScript
+const Tags.deleteTagRelationshipsSegments(body, id)
 ```
 
 
@@ -1438,10 +1546,10 @@ const Tags.getTagGroup(id, opts)
 
 
 
-#### [Get Tag Group Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_group_relationships)
+#### [Get Tag Group Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_group_relationships_tags)
 
 ```JavaScript
-const Tags.getTagGroupRelationships(id, relatedResource)
+const Tags.getTagGroupRelationshipsTags(id)
 ```
 
 
@@ -1465,10 +1573,46 @@ const Tags.getTagGroups(opts)
 
 
 
-#### [Get Tag Relationships](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships)
+#### [Get Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_campaigns)
 
 ```JavaScript
-const Tags.getTagRelationships(id, relatedResource)
+const Tags.getTagRelationshipsCampaigns(id)
+```
+
+
+
+
+#### [Get Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_flows)
+
+```JavaScript
+const Tags.getTagRelationshipsFlows(id)
+```
+
+
+
+
+#### [Get Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_lists)
+
+```JavaScript
+const Tags.getTagRelationshipsLists(id)
+```
+
+
+
+
+#### [Get Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_segments)
+
+```JavaScript
+const Tags.getTagRelationshipsSegments(id)
+```
+
+
+
+
+#### [Get Tag Relationships Tag Group](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_tag_group)
+
+```JavaScript
+const Tags.getTagRelationshipsTagGroup(id)
 ```
 
 

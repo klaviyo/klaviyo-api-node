@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - revision 2023-02-22
+### Added
+- Profiles API now returns predictive analytics when calling `getProfile` and `getProfiles` by passing in `additionalFieldsProfile = ["predictive_analytics"]`.
+
+  ```javascript
+  const response = await Profiles.getProfiles({additionalFieldsProfile: ["predictive_analytics"]})
+  ```
+
+### Changed
+- Relationship endpoints that were previously grouped together are now split into related-resource-specific endpoints.
+
+### Migration Guide
+- To migrate to this latest version, all calls to relationship endpoints need to be updated, as in the following example:
+  - `getCampaignRelationships(campaignId, "tags")` will become `getCampaignRelationshipsTags(campaignId)`.
+
 ## [2.1.1] - revision 2023-02-22
 ### Changes 
 - Multi-store

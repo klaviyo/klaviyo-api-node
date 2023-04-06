@@ -1,0 +1,112 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CampaignCreateQueryResourceObjectAttributes = void 0;
+var _ApiClient = require("../ApiClient.js");
+var _AudiencesSubObject = require("./AudiencesSubObject.js");
+var _SendOptionsSubObject = require("./SendOptionsSubObject.js");
+var _SendStrategySubObject = require("./SendStrategySubObject.js");
+var _TrackingOptionsSubObject = require("./TrackingOptionsSubObject.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); } /*
+                                                                                                                                                                                                                                                                                                                                                                                               * Klaviyo API
+                                                                                                                                                                                                                                                                                                                                                                                               * The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * OpenAPI spec version: 2023-02-22
+                                                                                                                                                                                                                                                                                                                                                                                               * Contact: developers@klaviyo.com
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * NOTE: This class is auto generated by the swagger code generator program.
+                                                                                                                                                                                                                                                                                                                                                                                               * https://github.com/swagger-api/swagger-codegen.git
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * Swagger Codegen version: 3.0.41
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * Do not edit the class manually.
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               */
+/**
+ * The CampaignCreateQueryResourceObjectAttributes model module.
+ * @module model/CampaignCreateQueryResourceObjectAttributes
+ * @version 2023-02-22
+ */
+var CampaignCreateQueryResourceObjectAttributes = /*#__PURE__*/function () {
+  /**
+   * Constructs a new <code>CampaignCreateQueryResourceObjectAttributes</code>.
+   * @alias module:model/CampaignCreateQueryResourceObjectAttributes
+   * @class
+   * @param name {String} The campaign name
+   * @param channel {String} The type of campaign (email or sms, for example)
+   * @param audiences {module:model/AudiencesSubObject} 
+   * @param sendStrategy {module:model/SendStrategySubObject} 
+   * @param sendOptions {module:model/SendOptionsSubObject} 
+   */
+  function CampaignCreateQueryResourceObjectAttributes(name, channel, audiences, sendStrategy, sendOptions) {
+    _classCallCheck(this, CampaignCreateQueryResourceObjectAttributes);
+    this.name = name;
+    this.channel = channel;
+    this.audiences = audiences;
+    this.sendStrategy = sendStrategy;
+    this.sendOptions = sendOptions;
+  }
+
+  /**
+   * Constructs a <code>CampaignCreateQueryResourceObjectAttributes</code> from a plain JavaScript object, optionally creating a new instance.
+   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+   * @param {Object} data The plain JavaScript object bearing properties of interest.
+   * @param {module:model/CampaignCreateQueryResourceObjectAttributes} obj Optional instance to populate.
+   * @return {module:model/CampaignCreateQueryResourceObjectAttributes} The populated <code>CampaignCreateQueryResourceObjectAttributes</code> instance.
+   */
+  _createClass(CampaignCreateQueryResourceObjectAttributes, null, [{
+    key: "constructFromObject",
+    value: function constructFromObject(data, obj) {
+      if (data) {
+        obj = obj || new CampaignCreateQueryResourceObjectAttributes();
+        if (data.hasOwnProperty('name')) obj.name = _ApiClient.ApiClient.convertToType(data['name'], 'String');
+        if (data.hasOwnProperty('channel')) obj.channel = _ApiClient.ApiClient.convertToType(data['channel'], 'String');
+        if (data.hasOwnProperty('audiences')) obj.audiences = _AudiencesSubObject.AudiencesSubObject.constructFromObject(data['audiences']);
+        if (data.hasOwnProperty('send_strategy')) obj.sendStrategy = _SendStrategySubObject.SendStrategySubObject.constructFromObject(data['send_strategy']);
+        if (data.hasOwnProperty('send_options')) obj.sendOptions = _SendOptionsSubObject.SendOptionsSubObject.constructFromObject(data['send_options']);
+        if (data.hasOwnProperty('tracking_options')) obj.trackingOptions = _TrackingOptionsSubObject.TrackingOptionsSubObject.constructFromObject(data['tracking_options']);
+      }
+      return obj;
+    }
+  }]);
+  return CampaignCreateQueryResourceObjectAttributes;
+}();
+/**
+ * The campaign name
+ * @member {String} name
+ */
+exports.CampaignCreateQueryResourceObjectAttributes = CampaignCreateQueryResourceObjectAttributes;
+CampaignCreateQueryResourceObjectAttributes.prototype.name = undefined;
+
+/**
+ * The type of campaign (email or sms, for example)
+ * @member {String} channel
+ */
+CampaignCreateQueryResourceObjectAttributes.prototype.channel = undefined;
+
+/**
+ * @member {module:model/AudiencesSubObject} audiences
+ */
+CampaignCreateQueryResourceObjectAttributes.prototype.audiences = undefined;
+
+/**
+ * @member {module:model/SendStrategySubObject} sendStrategy
+ */
+CampaignCreateQueryResourceObjectAttributes.prototype.sendStrategy = undefined;
+
+/**
+ * @member {module:model/SendOptionsSubObject} sendOptions
+ */
+CampaignCreateQueryResourceObjectAttributes.prototype.sendOptions = undefined;
+
+/**
+ * @member {module:model/TrackingOptionsSubObject} trackingOptions
+ */
+CampaignCreateQueryResourceObjectAttributes.prototype.trackingOptions = undefined;
