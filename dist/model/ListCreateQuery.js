@@ -5,13 +5,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ListCreateQuery = void 0;
 var _ApiClient = require("../ApiClient.js");
-var _ListCreateQueryAsSubResource = require("./ListCreateQueryAsSubResource.js");
+var _ListCreateQueryResourceObject = require("./ListCreateQueryResourceObject.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); } /*
+                                                                                                                                                                                                                                                                                                                                                                                               * Klaviyo API
+                                                                                                                                                                                                                                                                                                                                                                                               * The Klaviyo REST API. Please visit https://developers.klaviyo.com for more details.
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * OpenAPI spec version: 2023-02-22
+                                                                                                                                                                                                                                                                                                                                                                                               * Contact: developers@klaviyo.com
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * NOTE: This class is auto generated by the swagger code generator program.
+                                                                                                                                                                                                                                                                                                                                                                                               * https://github.com/swagger-api/swagger-codegen.git
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * Swagger Codegen version: 3.0.41
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               * Do not edit the class manually.
+                                                                                                                                                                                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                                                                                                                                                                                               */
 /**
  * The ListCreateQuery model module.
  * @module model/ListCreateQuery
@@ -22,7 +36,7 @@ var ListCreateQuery = /*#__PURE__*/function () {
    * Constructs a new <code>ListCreateQuery</code>.
    * @alias module:model/ListCreateQuery
    * @class
-   * @param data {module:model/ListCreateQueryAsSubResource} 
+   * @param data {module:model/ListCreateQueryResourceObject} 
    */
   function ListCreateQuery(data) {
     _classCallCheck(this, ListCreateQuery);
@@ -41,7 +55,7 @@ var ListCreateQuery = /*#__PURE__*/function () {
     value: function constructFromObject(data, obj) {
       if (data) {
         obj = obj || new ListCreateQuery();
-        if (data.hasOwnProperty('data')) obj.data = _ListCreateQueryAsSubResource.ListCreateQueryAsSubResource.constructFromObject(data['data']);
+        if (data.hasOwnProperty('data')) obj.data = _ListCreateQueryResourceObject.ListCreateQueryResourceObject.constructFromObject(data['data']);
       }
       return obj;
     }
@@ -49,7 +63,7 @@ var ListCreateQuery = /*#__PURE__*/function () {
   return ListCreateQuery;
 }();
 /**
- * @member {module:model/ListCreateQueryAsSubResource} data
+ * @member {module:model/ListCreateQueryResourceObject} data
  */
 exports.ListCreateQuery = ListCreateQuery;
 ListCreateQuery.prototype.data = undefined;
