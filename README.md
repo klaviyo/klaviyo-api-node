@@ -6,8 +6,8 @@
 
 ## Helpful Resources
 
-- [API Reference](https://developers.klaviyo.com/en/reference/)
-- [API Guides](https://developers.klaviyo.com/en/docs)
+- [API Reference](https://developers.klaviyo.com/en/v2023-02-22/reference/)
+- [API Guides](https://developers.klaviyo.com/en/v2023-02-22/docs)
 - [Postman Workspace](https://www.postman.com/klaviyo/workspace/klaviyo-developers)
 
 ## Design & Approach
@@ -158,79 +158,277 @@ const catalogApi = new CatalogsApi(ConfigWrapper("KLAVIYO PRIVATE KEY GOES HERE"
 const r = await catalogApi.createCatalogCategory(body)
 ```
 
-### Optional Parameters
+## Optional Parameters and Json Api Features
 
-Different endpoint include specific optional parameters. Here is a few examples how to use these and what they look like
+Here we will go over
 
-more often than not the info that can go into the `opts` param are the optional headers.
-These are formatted in js a bit different from the docs, headers names have variables that make bad names like
-page[cursor] are transformed to `pageCursor`. (Remove the weird characters and append words with camelCase)
+- Pagination
+- Page size
+- Additional Fields
+- Filtering
+- Sparse Fields
+- Sorting
+- Relationships
 
-```javascript
-const opts = {
-    pageCursor: "page_cursor", // page[cursor]
-    fieldsList: ["list", "of", "wanted", "attributes"] // fields[list]
-    include: ["resource_to_include"] // include
+### Quick rule
+
+The optional parameters are named slightly different from how you would make the call without the SDK docs, query parameter names have variables that make bad JavaScript names like
+`page[cursor]` are transformed to `pageCursor`. (Remove the weird characters and append words with camelCase). A modern IDE will make the positional arguments look a bit more clear.
+
+### Cursor based Pagination
+
+All the endpoints that return list of results use cursor base pagination.
+
+Obtain the cursor value from the call you want to get the next page for, then pass it under the `pageCursor` optional parameter. The page cursor looks like `WzE2NDA5OTUyMDAsICIzYzRjeXdGTndadyIsIHRydWVd`.
+
+If you were using the api directly you would pass the cursor like:
+
+```
+https://a.klaviyo.com/api/profiles/?page[cursor]=WzE2NTcyMTM4NjQsICIzc042NjRyeHo0ciIsIHRydWVd
+```
+
+The same call in the sdk the call would look like this:
+
+```JavaScript
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
+
+const profileList = await profilesApi.getProfiles({pageCursor: 'WzE2NTcyMTM4NjQsICIzc042NjRyeHo0ciIsIHRydWVd'})
+```
+
+You get the cursor for the next page from `body.link.next` returns the entire url of the next call but the sdk will accept the entire link and use only the relevant cursor.
+
+Here is an example of getting the second next and passing in the page cursor:
+
+```JavaScript
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
+
+try {
+    const profilesListFirstPage = await profilesApi.getProfiles()
+    const nextPage = profilesList.body.links.next
+    const profileListSecondPage = await profilesApi.getProfiles({pageCursor: nextPage})
+    console.log(profileListSecondPage.body)
+} catch (e) {
+    console.log(e)
 }
 ```
 
+There are more page cursors than just next, check the endpoint's docs or the response type but often there is `first`, `last`, `next` and `prev`.
 
-#### Cursor based Pagination
+### Page Size
+Some endpoint you can get a larger or smaller page size by using the `pageSize` parameter.
 
-Obtain the cursor value from the call you want to get the next page for, then pass it under the `pageCursor` optional parameter
+if you were hitting the api directly this would look like
+
+```
+https://a.klaviyo.com/api/profiles/?page[size]=20
+```
+
+In the SDK this looks like:
+
+```JavaScript
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
+
+const profileList = await profilesApi.getProfiles({pageSize: 20})
+```
+
+### Additional Fields
+
+Additional fields are used to populate part of the response that would be null otherwise.
+For the `getProfile` endpoint you can pass in a request to get the predictive analytics of the profile. Using the `additionalFields` parameter often will change the rate limit of the endpoint so be sure to keep an eye on your usage.
+
+The url would look like:
+```
+https://a.klaviyo.com/api/profiles/01GDDKASAP8TKDDA2GRZDSVP4H/?additional-fields[profile]=predictive_analytics
+```
+
+The SDK equivalent is:
 
 ```javascript
-// page cursor looks like 'WzE2NDA5OTUyMDAsICIzYzRjeXdGTndadyIsIHRydWVd'
-// next.link returns the entire url of the next call but the sdk will accept the entire link and use only the relevant cursor
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
 
-const response = await Profiles.getProfiles({});
-const opts = {pageCursor: response.body.links.next}
-const response2 = await Profiles.getProfiles(opts);
+const profileId = '01GDDKASAP8TKDDA2GRZDSVP4H'
+const profile = await profilesApi.getProfile(profileId, {additionalFieldsProfile: ['predictive_analytics']})
+
+// If your profile has enough information for predictive analytis it will populate
+console.log(profile.body.data.attributes.predictiveAnalytics)
 ```
 
 #### Filtering
 
-Filter by passing the filter as a string as under the optional parameter `filter`
+Filter by passing the filter as a string as under the optional parameter `filter`. Note that when filtering by a property it will be snake_case instead of camelCase, ie. `metric_id`
 
-Read more about formatting your filter strings in our developer documentation
+Read more about formatting your filter strings in our [developer documentation](https://developers.klaviyo.com/en/v2023-02-22/docs/filtering_)
 
+Here is an example of a filter string for results between two date times: `less-than(updated,2023-04-26T00:00:00Z),greater-than(updated,2023-04-19T00:00:00Z)`
+
+Here is a code example filter for profiles with the matching emails:
+
+```
+https://a.klaviyo.com/api/profiles/?filter=any(email,["henry.chan@klaviyo-demo.com","amanda.das@klaviyo-demo.com"]
+```
+For the sdk:
 ```javascript
-const filter = 'any(email,["henry.chan@klaviyo-demo.com","amanda.das@klaviyo-demo.com"])'
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
 
-const response1 = await Profiles.getProfiles({filter}); // the same as {filter: filter}
+const filter = 'any(email,["henry.chan@klaviyo-demo.com","amanda.das@klaviyo-demo.com"])'
+// remember { filter: filter } is the same as {filter}
+const profileList = await profilesApi.getProfiles({filter})
 ```
 
-#### Sparse Fields
+### Sparse Fields
 
-The SDK expands the optional sparse fields into their own option, where you can pass a list of the desired items to include
+If you only want a specific subset of data from a specific query you can use sparse fields to request only the specific properties.
+The SDK expands the optional sparse fields into their own option, where you can pass a list of the desired items to include.
+
+To get a list of event properties the URL your would use is:
+```
+https://a.klaviyo.com/api/events/?fields[event]=event_properties
+```
+
+In the SDK you would use
 
 ```javascript
-const fieldsProfile = ["email"]
-const fieldsList = ["name"]
+import { ConfigWrapper, EventsApi } from 'klaviyo-api'
+const eventsApi = new EventsApi(ConfigWrapper("<Your Private Key Here>"))
 
-await Profiles.getProfile(PROFILE_ID, {
-    fieldsProfile,
-    fieldsList
-});
+const eventsList = await eventsApi.getEvents({fieldsEvent: ["event_properties"]})
+```
+
+### Sorting
+
+Your can request the results of specific endpoints to be ordered by a given parameter. The direction of the sort can swapped by adding a `-` in front of the sort key.
+For example `datetime` will be ascending while `-datetime` will be descending.
+
+If you are unsure about the available sort fields you can always check the documentation for the endpoint you are using.
+For a comprehensive list that links to the documentation for each function check the Endpoints section below.
+
+Get events sorted by oldest to newest datetime.
+```
+https://a.klaviyo.com/api/events/?sort=-datetime
+```
+and via the sdk
+
+```JavaScript
+import { ConfigWrapper, EventsApi } from 'klaviyo-api'
+const eventsApi = new EventsApi(ConfigWrapper("<Your Private Key Here>"))
+
+const events = await eventsApi.getEvents({sort: '-datetime'})
 ```
 
 ### Includes
 
-Includes you can pass a similar way, just add the values you want to include as a list
+How to add additional information to your API response via additional-fields and the `includes` parameter.
+This allows you to get information about two or more objects from a single api call.
+Using the `includes` parameter often changes the rate limit of the endpoint so be sure to take note.
 
-```javascript
-const include = ["lists","segments"]
+Using the URl to get profile information and the information about the lists the profile is in:
 
-await Profiles.getProfile(PROFILE_ID, {
-    include,
-});
+```
+https://a.klaviyo.com/api/profiles/01GDDKASAP8TKDDA2GRZDSVP4H/?include=lists
 ```
 
+In the sdk:
+
+```JavaScript
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
+
+const profileId = '01GDDKASAP8TKDDA2GRZDSVP4H'
+const profile = await profilesApi.getProfile(profileId, {include:["lists"]})
+
+// Profile information is accessed the same way with
+console.log(profile.body.data)
+// Lists related to the profile with be accessible via the included array
+console.log(profile.body.included)
+```
+
+*Note about sparse fields and relationships:* you can request only specific fields of the included object as well.
+
+```JavaScript
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
+
+const profileId = '01GDDKASAP8TKDDA2GRZDSVP4H'
+// Use the fieldsLists property to request only the list name
+const profile = await profilesApi.getProfile(profileId, { fieldsList: ['name'], include: ["lists"])
+
+// Profile information is accessed the same way with
+console.log(profile.body.data)
+// Lists related to the profile with be accessible via the included array
+console.log(profile.body.included)
+```
+
+### Relationships
+
+The Klaviyo Api has a series of endpoints to expose the relationships between your different Klaviyo Items. You can read more about relationships in [our documentation](https://developers.klaviyo.com/en/v2023-02-22/docs/relationships_).
+
+Here are some use cases and their examples:
+
+How to get the list memberships for a profile with the given profile ID.
+
+Via the URL:
+
+```
+https://a.klaviyo.com/api/profiles/01GDDKASAP8TKDDA2GRZDSVP4H/relationships/lists/
+```
+
+and for the SDK:
+
+```JavaScript
+import { ConfigWrapper, ProfilesApi } from 'klaviyo-api'
+const profilesApi = new ProfilesApi(ConfigWrapper("<Your Private Key Here>"))
+
+const profileId = '01GDDKASAP8TKDDA2GRZDSVP4H'
+const profileRelationships = await profilesApi.getProfileRelationshipsLists(profileId)
+```
+
+For another example:
+
+Get all campaigns associated with the given `tag_id`.
+
+the URL:
+
+```
+https://a.klaviyo.com/api/tags/9c8db7a0-5ab5-4e3c-9a37-a3224fd14382/relationships/campaigns/
+```
+
+Through the SDK:
+
+```JavaScript
+import { ConfigWrapper, TagsApi } from 'klaviyo-api'
+const tagsApi = new TagsApi(ConfigWrapper("< Your private key here >"))
+
+const tagId = '9c8db7a0-5ab5-4e3c-9a37-a3224fd14382'
+const relatedCampagins = tagsApi.getTagRelationshipsCampaigns(tagId)
+```
+### Combining
+
+You can use any combination of the features outlines above in conjunction with one another.
+
+#### Get events associated with a specific metric, then return just the event properties sorted by oldest to newest datetime.
+
+```
+https://a.klaviyo.com/api/events/?fields[event]=event_properties&filter=equals(metric_id,"URDbLg")&sort=-datetime
+```
+or
+```JavaScript
+import { ConfigWrapper, EventsApi } from 'klaviyo-api'
+const eventsApi = new EventsApi(ConfigWrapper("<Your Private Key Here>"))
+
+const metricId = 'URDbLg'
+const filter = `equal(metric_id,"${metricId}")`
+const events = await eventsApi.getEvents({ fieldsEvent: ['event_properties'], filter, sort: '-datetime'})
+```
 
 # Comprehensive list of Operations & Parameters
 
 _**NOTE:**_
-- Organization: Resource groups and operation_ids are listed in alphabetical order, first by Resource name, then by **OpenAPI Summary**. Operation summaries are those listed in the right side bar of the [API Reference](https://developers.klaviyo.com/en/reference/track-post).
+- Organization: Resource groups and operation_ids are listed in alphabetical order, first by Resource name, then by **OpenAPI Summary**. Operation summaries are those listed in the right sidebar of the API Reference.
 - For example values / data types, as well as whether parameters are required/optional, please reference the corresponding API Reference link.
 - Some keyword args are required for the API call to succeed, the API docs above are the source of truth regarding which keyword params are required.
 
