@@ -1,6 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - revision 2023-06-15
+### Added
+- Accounts API is now available, this will allow you to access information about the Klaviyo account associated with your API key.
+  - `getAccounts`
+  - `getAccount`
+  
+**Note:** You will need to generate a new API key with either the `Accounts` scope enabled or `Full Access` to use these endpoints.
+
+### Changed
+- `createProfile` - opts parameter removed because there are no optional query parameter that can be passed to the endpoint
+
+### Removed
+- All `client` endpoints - While you could potentially get this repo to work for frontend and use only these client endpoints, it is bad practice to use client-side endpoints on the server side. In addition, developers found the inclusion of the client-side endpoints in our SDKs generally confusing.
+  - `createClientEvent`
+  - `createClientProfile`
+  - `createClientSubscription`
+
+Klaviyo has the much lighter weight `klaviyo.js` wrapper that we recommend for client-side use [which you can read about here.](https://developers.klaviyo.com/en/docs/introduction_to_the_klaviyo_object)
+
+In addition, you can [make client-side API calls](https://developers.klaviyo.com/en/reference/create_client_event) outright if desired.
+
 ## [3.0.0] - revision 2023-02-22
 ### Added
 - Profiles API now returns predictive analytics when calling `getProfile` and `getProfiles` by passing in `additionalFieldsProfile = ["predictive_analytics"]`.
