@@ -3,11 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Templates = exports.Tags = exports.Segments = exports.Profiles = exports.Metrics = exports.Lists = exports.Flows = exports.Events = exports.DataPrivacy = exports.ConfigWrapper = exports.Client = exports.Catalogs = exports.Campaigns = void 0;
+exports.Templates = exports.Tags = exports.Segments = exports.Profiles = exports.Metrics = exports.Lists = exports.Flows = exports.Events = exports.DataPrivacy = exports.ConfigWrapper = exports.Catalogs = exports.Campaigns = exports.Accounts = void 0;
 var _exponentialBackoff = require("exponential-backoff");
+var _AccountsApi = require("./api/AccountsApi.js");
 var _CampaignsApi = require("./api/CampaignsApi.js");
 var _CatalogsApi = require("./api/CatalogsApi.js");
-var _ClientApi = require("./api/ClientApi.js");
 var _DataPrivacyApi = require("./api/DataPrivacyApi.js");
 var _EventsApi = require("./api/EventsApi.js");
 var _FlowsApi = require("./api/FlowsApi.js");
@@ -51,12 +51,12 @@ var ConfigWrapper = function ConfigWrapper(authKey) {
   return defaultClient;
 };
 exports.ConfigWrapper = ConfigWrapper;
+var Accounts = new _AccountsApi.AccountsApi();
+exports.Accounts = Accounts;
 var Campaigns = new _CampaignsApi.CampaignsApi();
 exports.Campaigns = Campaigns;
 var Catalogs = new _CatalogsApi.CatalogsApi();
 exports.Catalogs = Catalogs;
-var Client = new _ClientApi.ClientApi();
-exports.Client = Client;
 var DataPrivacy = new _DataPrivacyApi.DataPrivacyApi();
 exports.DataPrivacy = DataPrivacy;
 var Events = new _EventsApi.EventsApi();
