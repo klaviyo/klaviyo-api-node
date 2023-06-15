@@ -56,7 +56,7 @@ export class ApiClient {
          */
         this.defaultHeaders = { 
             revision: "2023-06-15",
-            "User-Agent": "klaviyo-api-node/3.0.0",
+            "User-Agent": "klaviyo-api-node/4.0.1",
         };
 
         /**
