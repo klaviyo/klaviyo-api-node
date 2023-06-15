@@ -1,6 +1,6 @@
 {
   "name": "klaviyo-api",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Node SDK for the Klaviyo API",
   "license": "MIT",
   "type": "module",
@@ -24,7 +24,7 @@
     "url": "git+https://github.com/klaviyo/klaviyo-api-node"
   },
   "dependencies": {
-    "superagent": "^7.1.1",
+    "superagent": "^8.0.9",
     "exponential-backoff": "^3.1.0"
   },
   "devDependencies": {
