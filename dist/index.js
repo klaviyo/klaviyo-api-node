@@ -27,6 +27,12 @@ Object.defineProperty(exports, "AudiencesSubObject", {
     return _AudiencesSubObject.AudiencesSubObject;
   }
 });
+Object.defineProperty(exports, "BackInStockSubscriptionEnum", {
+  enumerable: true,
+  get: function get() {
+    return _BackInStockSubscriptionEnum.BackInStockSubscriptionEnum;
+  }
+});
 Object.defineProperty(exports, "CampaignCloneQuery", {
   enumerable: true,
   get: function get() {
@@ -63,6 +69,12 @@ Object.defineProperty(exports, "CampaignCreateQueryResourceObjectAttributes", {
     return _CampaignCreateQueryResourceObjectAttributes.CampaignCreateQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "CampaignCreateQueryResourceObjectAttributesCampaignmessages", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignCreateQueryResourceObjectAttributesCampaignmessages.CampaignCreateQueryResourceObjectAttributesCampaignmessages;
+  }
+});
 Object.defineProperty(exports, "CampaignEnum", {
   enumerable: true,
   get: function get() {
@@ -85,6 +97,36 @@ Object.defineProperty(exports, "CampaignMessageAssignTemplateQueryResourceObject
   enumerable: true,
   get: function get() {
     return _CampaignMessageAssignTemplateQueryResourceObjectAttributes.CampaignMessageAssignTemplateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "CampaignMessageAssignTemplateQueryResourceObjectRelationships", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignMessageAssignTemplateQueryResourceObjectRelationships.CampaignMessageAssignTemplateQueryResourceObjectRelationships;
+  }
+});
+Object.defineProperty(exports, "CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate.CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate;
+  }
+});
+Object.defineProperty(exports, "CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData.CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData;
+  }
+});
+Object.defineProperty(exports, "CampaignMessageCreateQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignMessageCreateQueryResourceObject.CampaignMessageCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "CampaignMessageCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _CampaignMessageCreateQueryResourceObjectAttributes.CampaignMessageCreateQueryResourceObjectAttributes;
   }
 });
 Object.defineProperty(exports, "CampaignMessageEnum", {
@@ -243,6 +285,12 @@ Object.defineProperty(exports, "CatalogCategoryCreateJobCreateQueryResourceObjec
     return _CatalogCategoryCreateJobCreateQueryResourceObjectAttributes.CatalogCategoryCreateJobCreateQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "CatalogCategoryCreateJobCreateQueryResourceObjectAttributesCategories", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogCategoryCreateJobCreateQueryResourceObjectAttributesCategories.CatalogCategoryCreateJobCreateQueryResourceObjectAttributesCategories;
+  }
+});
 Object.defineProperty(exports, "CatalogCategoryCreateQuery", {
   enumerable: true,
   get: function get() {
@@ -279,6 +327,12 @@ Object.defineProperty(exports, "CatalogCategoryDeleteJobCreateQueryResourceObjec
     return _CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes.CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "CatalogCategoryDeleteJobCreateQueryResourceObjectAttributesCategories", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogCategoryDeleteJobCreateQueryResourceObjectAttributesCategories.CatalogCategoryDeleteJobCreateQueryResourceObjectAttributesCategories;
+  }
+});
 Object.defineProperty(exports, "CatalogCategoryDeleteQueryResourceObject", {
   enumerable: true,
   get: function get() {
@@ -313,6 +367,12 @@ Object.defineProperty(exports, "CatalogCategoryUpdateJobCreateQueryResourceObjec
   enumerable: true,
   get: function get() {
     return _CatalogCategoryUpdateJobCreateQueryResourceObjectAttributes.CatalogCategoryUpdateJobCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "CatalogCategoryUpdateJobCreateQueryResourceObjectAttributesCategories", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogCategoryUpdateJobCreateQueryResourceObjectAttributesCategories.CatalogCategoryUpdateJobCreateQueryResourceObjectAttributesCategories;
   }
 });
 Object.defineProperty(exports, "CatalogCategoryUpdateQuery", {
@@ -399,6 +459,12 @@ Object.defineProperty(exports, "CatalogItemCreateJobCreateQueryResourceObjectAtt
     return _CatalogItemCreateJobCreateQueryResourceObjectAttributes.CatalogItemCreateJobCreateQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "CatalogItemCreateJobCreateQueryResourceObjectAttributesItems", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogItemCreateJobCreateQueryResourceObjectAttributesItems.CatalogItemCreateJobCreateQueryResourceObjectAttributesItems;
+  }
+});
 Object.defineProperty(exports, "CatalogItemCreateQuery", {
   enumerable: true,
   get: function get() {
@@ -447,6 +513,12 @@ Object.defineProperty(exports, "CatalogItemDeleteJobCreateQueryResourceObjectAtt
     return _CatalogItemDeleteJobCreateQueryResourceObjectAttributes.CatalogItemDeleteJobCreateQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "CatalogItemDeleteJobCreateQueryResourceObjectAttributesItems", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogItemDeleteJobCreateQueryResourceObjectAttributesItems.CatalogItemDeleteJobCreateQueryResourceObjectAttributesItems;
+  }
+});
 Object.defineProperty(exports, "CatalogItemDeleteQueryResourceObject", {
   enumerable: true,
   get: function get() {
@@ -475,6 +547,12 @@ Object.defineProperty(exports, "CatalogItemUpdateJobCreateQueryResourceObjectAtt
   enumerable: true,
   get: function get() {
     return _CatalogItemUpdateJobCreateQueryResourceObjectAttributes.CatalogItemUpdateJobCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "CatalogItemUpdateJobCreateQueryResourceObjectAttributesItems", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogItemUpdateJobCreateQueryResourceObjectAttributesItems.CatalogItemUpdateJobCreateQueryResourceObjectAttributesItems;
   }
 });
 Object.defineProperty(exports, "CatalogItemUpdateQuery", {
@@ -531,6 +609,12 @@ Object.defineProperty(exports, "CatalogVariantCreateJobCreateQueryResourceObject
     return _CatalogVariantCreateJobCreateQueryResourceObjectAttributes.CatalogVariantCreateJobCreateQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "CatalogVariantCreateJobCreateQueryResourceObjectAttributesVariants", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogVariantCreateJobCreateQueryResourceObjectAttributesVariants.CatalogVariantCreateJobCreateQueryResourceObjectAttributesVariants;
+  }
+});
 Object.defineProperty(exports, "CatalogVariantCreateQuery", {
   enumerable: true,
   get: function get() {
@@ -549,6 +633,18 @@ Object.defineProperty(exports, "CatalogVariantCreateQueryResourceObjectAttribute
     return _CatalogVariantCreateQueryResourceObjectAttributes.CatalogVariantCreateQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "CatalogVariantCreateQueryResourceObjectRelationships", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogVariantCreateQueryResourceObjectRelationships.CatalogVariantCreateQueryResourceObjectRelationships;
+  }
+});
+Object.defineProperty(exports, "CatalogVariantCreateQueryResourceObjectRelationshipsItem", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogVariantCreateQueryResourceObjectRelationshipsItem.CatalogVariantCreateQueryResourceObjectRelationshipsItem;
+  }
+});
 Object.defineProperty(exports, "CatalogVariantDeleteJobCreateQuery", {
   enumerable: true,
   get: function get() {
@@ -565,6 +661,12 @@ Object.defineProperty(exports, "CatalogVariantDeleteJobCreateQueryResourceObject
   enumerable: true,
   get: function get() {
     return _CatalogVariantDeleteJobCreateQueryResourceObjectAttributes.CatalogVariantDeleteJobCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants.CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants;
   }
 });
 Object.defineProperty(exports, "CatalogVariantDeleteQueryResourceObject", {
@@ -595,6 +697,12 @@ Object.defineProperty(exports, "CatalogVariantUpdateJobCreateQueryResourceObject
   enumerable: true,
   get: function get() {
     return _CatalogVariantUpdateJobCreateQueryResourceObjectAttributes.CatalogVariantUpdateJobCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants", {
+  enumerable: true,
+  get: function get() {
+    return _CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants.CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants;
   }
 });
 Object.defineProperty(exports, "CatalogVariantUpdateQuery", {
@@ -633,12 +741,6 @@ Object.defineProperty(exports, "ConfigWrapper", {
     return _clientWrapper.ConfigWrapper;
   }
 });
-Object.defineProperty(exports, "ContentSubObject", {
-  enumerable: true,
-  get: function get() {
-    return _ContentSubObject.ContentSubObject;
-  }
-});
 Object.defineProperty(exports, "DataPrivacy", {
   enumerable: true,
   get: function get() {
@@ -669,28 +771,76 @@ Object.defineProperty(exports, "DataPrivacyCreateDeletionJobQueryResourceObjectA
     return _DataPrivacyCreateDeletionJobQueryResourceObjectAttributes.DataPrivacyCreateDeletionJobQueryResourceObjectAttributes;
   }
 });
+Object.defineProperty(exports, "DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile", {
+  enumerable: true,
+  get: function get() {
+    return _DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile.DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile;
+  }
+});
 Object.defineProperty(exports, "DataPrivacyDeletionJobEnum", {
   enumerable: true,
   get: function get() {
     return _DataPrivacyDeletionJobEnum.DataPrivacyDeletionJobEnum;
   }
 });
-Object.defineProperty(exports, "EventCreateQuery", {
+Object.defineProperty(exports, "DataPrivacyProfileQueryResourceObject", {
   enumerable: true,
   get: function get() {
-    return _EventCreateQuery.EventCreateQuery;
+    return _DataPrivacyProfileQueryResourceObject.DataPrivacyProfileQueryResourceObject;
   }
 });
-Object.defineProperty(exports, "EventCreateQueryResourceObject", {
+Object.defineProperty(exports, "DataPrivacyProfileQueryResourceObjectAttributes", {
   enumerable: true,
   get: function get() {
-    return _EventCreateQueryResourceObject.EventCreateQueryResourceObject;
+    return _DataPrivacyProfileQueryResourceObjectAttributes.DataPrivacyProfileQueryResourceObjectAttributes;
   }
 });
-Object.defineProperty(exports, "EventCreateQueryResourceObjectAttributes", {
+Object.defineProperty(exports, "EmailContentSubObject", {
   enumerable: true,
   get: function get() {
-    return _EventCreateQueryResourceObjectAttributes.EventCreateQueryResourceObjectAttributes;
+    return _EmailContentSubObject.EmailContentSubObject;
+  }
+});
+Object.defineProperty(exports, "EmailSendOptionsSubObject", {
+  enumerable: true,
+  get: function get() {
+    return _EmailSendOptionsSubObject.EmailSendOptionsSubObject;
+  }
+});
+Object.defineProperty(exports, "EmailTrackingOptionsSubObject", {
+  enumerable: true,
+  get: function get() {
+    return _EmailTrackingOptionsSubObject.EmailTrackingOptionsSubObject;
+  }
+});
+Object.defineProperty(exports, "EventCreateQueryV2", {
+  enumerable: true,
+  get: function get() {
+    return _EventCreateQueryV.EventCreateQueryV2;
+  }
+});
+Object.defineProperty(exports, "EventCreateQueryV2ResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _EventCreateQueryV2ResourceObject.EventCreateQueryV2ResourceObject;
+  }
+});
+Object.defineProperty(exports, "EventCreateQueryV2ResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _EventCreateQueryV2ResourceObjectAttributes.EventCreateQueryV2ResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "EventCreateQueryV2ResourceObjectAttributesMetric", {
+  enumerable: true,
+  get: function get() {
+    return _EventCreateQueryV2ResourceObjectAttributesMetric.EventCreateQueryV2ResourceObjectAttributesMetric;
+  }
+});
+Object.defineProperty(exports, "EventCreateQueryV2ResourceObjectAttributesProfile", {
+  enumerable: true,
+  get: function get() {
+    return _EventCreateQueryV2ResourceObjectAttributesProfile.EventCreateQueryV2ResourceObjectAttributesProfile;
   }
 });
 Object.defineProperty(exports, "EventEnum", {
@@ -855,10 +1005,22 @@ Object.defineProperty(exports, "MetricAggregateQueryResourceObjectAttributes", {
     return _MetricAggregateQueryResourceObjectAttributes.MetricAggregateQueryResourceObjectAttributes;
   }
 });
-Object.defineProperty(exports, "MetricCreateQuery", {
+Object.defineProperty(exports, "MetricCreateQueryResourceObject", {
   enumerable: true,
   get: function get() {
-    return _MetricCreateQuery.MetricCreateQuery;
+    return _MetricCreateQueryResourceObject.MetricCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "MetricCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _MetricCreateQueryResourceObjectAttributes.MetricCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "MetricEnum", {
+  enumerable: true,
+  get: function get() {
+    return _MetricEnum.MetricEnum;
   }
 });
 Object.defineProperty(exports, "Metrics", {
@@ -873,6 +1035,42 @@ Object.defineProperty(exports, "MetricsApi", {
     return _MetricsApi.MetricsApi;
   }
 });
+Object.defineProperty(exports, "OneOfCampaignCreateQueryResourceObjectAttributesSendOptions", {
+  enumerable: true,
+  get: function get() {
+    return _OneOfCampaignCreateQueryResourceObjectAttributesSendOptions.OneOfCampaignCreateQueryResourceObjectAttributesSendOptions;
+  }
+});
+Object.defineProperty(exports, "OneOfCampaignCreateQueryResourceObjectAttributesTrackingOptions", {
+  enumerable: true,
+  get: function get() {
+    return _OneOfCampaignCreateQueryResourceObjectAttributesTrackingOptions.OneOfCampaignCreateQueryResourceObjectAttributesTrackingOptions;
+  }
+});
+Object.defineProperty(exports, "OneOfCampaignMessageCreateQueryResourceObjectAttributesContent", {
+  enumerable: true,
+  get: function get() {
+    return _OneOfCampaignMessageCreateQueryResourceObjectAttributesContent.OneOfCampaignMessageCreateQueryResourceObjectAttributesContent;
+  }
+});
+Object.defineProperty(exports, "OneOfCampaignMessagePartialUpdateQueryResourceObjectAttributesContent", {
+  enumerable: true,
+  get: function get() {
+    return _OneOfCampaignMessagePartialUpdateQueryResourceObjectAttributesContent.OneOfCampaignMessagePartialUpdateQueryResourceObjectAttributesContent;
+  }
+});
+Object.defineProperty(exports, "OneOfCampaignPartialUpdateQueryResourceObjectAttributesSendOptions", {
+  enumerable: true,
+  get: function get() {
+    return _OneOfCampaignPartialUpdateQueryResourceObjectAttributesSendOptions.OneOfCampaignPartialUpdateQueryResourceObjectAttributesSendOptions;
+  }
+});
+Object.defineProperty(exports, "OneOfCampaignPartialUpdateQueryResourceObjectAttributesTrackingOptions", {
+  enumerable: true,
+  get: function get() {
+    return _OneOfCampaignPartialUpdateQueryResourceObjectAttributesTrackingOptions.OneOfCampaignPartialUpdateQueryResourceObjectAttributesTrackingOptions;
+  }
+});
 Object.defineProperty(exports, "OneOfProfileLocationLatitude", {
   enumerable: true,
   get: function get() {
@@ -883,6 +1081,30 @@ Object.defineProperty(exports, "OneOfProfileLocationLongitude", {
   enumerable: true,
   get: function get() {
     return _OneOfProfileLocationLongitude.OneOfProfileLocationLongitude;
+  }
+});
+Object.defineProperty(exports, "OneOfProfileMetaPatchPropertiesUnset", {
+  enumerable: true,
+  get: function get() {
+    return _OneOfProfileMetaPatchPropertiesUnset.OneOfProfileMetaPatchPropertiesUnset;
+  }
+});
+Object.defineProperty(exports, "OnsiteProfileCreateQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _OnsiteProfileCreateQueryResourceObject.OnsiteProfileCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "OnsiteProfileCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _OnsiteProfileCreateQueryResourceObjectAttributes.OnsiteProfileCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "OnsiteProfileMeta", {
+  enumerable: true,
+  get: function get() {
+    return _OnsiteProfileMeta.OnsiteProfileMeta;
   }
 });
 Object.defineProperty(exports, "ProfileCreateQuery", {
@@ -909,10 +1131,34 @@ Object.defineProperty(exports, "ProfileEnum", {
     return _ProfileEnum.ProfileEnum;
   }
 });
+Object.defineProperty(exports, "ProfileIdentifierDTOResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileIdentifierDTOResourceObject.ProfileIdentifierDTOResourceObject;
+  }
+});
+Object.defineProperty(exports, "ProfileIdentifierDTOResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileIdentifierDTOResourceObjectAttributes.ProfileIdentifierDTOResourceObjectAttributes;
+  }
+});
 Object.defineProperty(exports, "ProfileLocation", {
   enumerable: true,
   get: function get() {
     return _ProfileLocation.ProfileLocation;
+  }
+});
+Object.defineProperty(exports, "ProfileMeta", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileMeta.ProfileMeta;
+  }
+});
+Object.defineProperty(exports, "ProfileMetaPatchProperties", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileMetaPatchProperties.ProfileMetaPatchProperties;
   }
 });
 Object.defineProperty(exports, "ProfilePartialUpdateQuery", {
@@ -939,22 +1185,70 @@ Object.defineProperty(exports, "ProfileSubscriptionBulkCreateJobEnum", {
     return _ProfileSubscriptionBulkCreateJobEnum.ProfileSubscriptionBulkCreateJobEnum;
   }
 });
+Object.defineProperty(exports, "ProfileSubscriptionBulkDeleteJobEnum", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSubscriptionBulkDeleteJobEnum.ProfileSubscriptionBulkDeleteJobEnum;
+  }
+});
+Object.defineProperty(exports, "ProfileSubscriptionCreateQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSubscriptionCreateQueryResourceObject.ProfileSubscriptionCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "ProfileSubscriptionCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSubscriptionCreateQueryResourceObjectAttributes.ProfileSubscriptionCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "ProfileSubscriptionDeleteQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSubscriptionDeleteQueryResourceObject.ProfileSubscriptionDeleteQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "ProfileSubscriptionDeleteQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSubscriptionDeleteQueryResourceObjectAttributes.ProfileSubscriptionDeleteQueryResourceObjectAttributes;
+  }
+});
 Object.defineProperty(exports, "ProfileSuppressionBulkCreateJobEnum", {
   enumerable: true,
   get: function get() {
     return _ProfileSuppressionBulkCreateJobEnum.ProfileSuppressionBulkCreateJobEnum;
   }
 });
-Object.defineProperty(exports, "ProfileUnsubscriptionBulkCreateJobEnum", {
+Object.defineProperty(exports, "ProfileSuppressionBulkDeleteJobEnum", {
   enumerable: true,
   get: function get() {
-    return _ProfileUnsubscriptionBulkCreateJobEnum.ProfileUnsubscriptionBulkCreateJobEnum;
+    return _ProfileSuppressionBulkDeleteJobEnum.ProfileSuppressionBulkDeleteJobEnum;
   }
 });
-Object.defineProperty(exports, "ProfileUnsuppressionBulkCreateJobEnum", {
+Object.defineProperty(exports, "ProfileSuppressionCreateQueryResourceObject", {
   enumerable: true,
   get: function get() {
-    return _ProfileUnsuppressionBulkCreateJobEnum.ProfileUnsuppressionBulkCreateJobEnum;
+    return _ProfileSuppressionCreateQueryResourceObject.ProfileSuppressionCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "ProfileSuppressionCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSuppressionCreateQueryResourceObjectAttributes.ProfileSuppressionCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "ProfileSuppressionDeleteQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSuppressionDeleteQueryResourceObject.ProfileSuppressionDeleteQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "ProfileSuppressionDeleteQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _ProfileSuppressionDeleteQueryResourceObjectAttributes.ProfileSuppressionDeleteQueryResourceObjectAttributes;
   }
 });
 Object.defineProperty(exports, "Profiles", {
@@ -967,6 +1261,30 @@ Object.defineProperty(exports, "ProfilesApi", {
   enumerable: true,
   get: function get() {
     return _ProfilesApi.ProfilesApi;
+  }
+});
+Object.defineProperty(exports, "RenderOptionsSubObject", {
+  enumerable: true,
+  get: function get() {
+    return _RenderOptionsSubObject.RenderOptionsSubObject;
+  }
+});
+Object.defineProperty(exports, "SMSContentSubObjectCreate", {
+  enumerable: true,
+  get: function get() {
+    return _SMSContentSubObjectCreate.SMSContentSubObjectCreate;
+  }
+});
+Object.defineProperty(exports, "SMSSendOptionsSubObject", {
+  enumerable: true,
+  get: function get() {
+    return _SMSSendOptionsSubObject.SMSSendOptionsSubObject;
+  }
+});
+Object.defineProperty(exports, "SMSTrackingOptionsSubObject", {
+  enumerable: true,
+  get: function get() {
+    return _SMSTrackingOptionsSubObject.SMSTrackingOptionsSubObject;
   }
 });
 Object.defineProperty(exports, "STOScheduleOptions", {
@@ -1011,28 +1329,58 @@ Object.defineProperty(exports, "SegmentsApi", {
     return _SegmentsApi.SegmentsApi;
   }
 });
-Object.defineProperty(exports, "SendOptionsSubObject", {
-  enumerable: true,
-  get: function get() {
-    return _SendOptionsSubObject.SendOptionsSubObject;
-  }
-});
 Object.defineProperty(exports, "SendStrategySubObject", {
   enumerable: true,
   get: function get() {
     return _SendStrategySubObject.SendStrategySubObject;
   }
 });
+Object.defineProperty(exports, "ServerBISSubscriptionCreateQuery", {
+  enumerable: true,
+  get: function get() {
+    return _ServerBISSubscriptionCreateQuery.ServerBISSubscriptionCreateQuery;
+  }
+});
+Object.defineProperty(exports, "ServerBISSubscriptionCreateQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _ServerBISSubscriptionCreateQueryResourceObject.ServerBISSubscriptionCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "ServerBISSubscriptionCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _ServerBISSubscriptionCreateQueryResourceObjectAttributes.ServerBISSubscriptionCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "ServerBISSubscriptionCreateQueryResourceObjectAttributesProfile", {
+  enumerable: true,
+  get: function get() {
+    return _ServerBISSubscriptionCreateQueryResourceObjectAttributesProfile.ServerBISSubscriptionCreateQueryResourceObjectAttributesProfile;
+  }
+});
+Object.defineProperty(exports, "ServerBISSubscriptionCreateQueryResourceObjectRelationships", {
+  enumerable: true,
+  get: function get() {
+    return _ServerBISSubscriptionCreateQueryResourceObjectRelationships.ServerBISSubscriptionCreateQueryResourceObjectRelationships;
+  }
+});
+Object.defineProperty(exports, "ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant", {
+  enumerable: true,
+  get: function get() {
+    return _ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant.ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant;
+  }
+});
+Object.defineProperty(exports, "ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData", {
+  enumerable: true,
+  get: function get() {
+    return _ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData.ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData;
+  }
+});
 Object.defineProperty(exports, "StaticScheduleOptions", {
   enumerable: true,
   get: function get() {
     return _StaticScheduleOptions.StaticScheduleOptions;
-  }
-});
-Object.defineProperty(exports, "Subscription", {
-  enumerable: true,
-  get: function get() {
-    return _Subscription.Subscription;
   }
 });
 Object.defineProperty(exports, "SubscriptionChannels", {
@@ -1059,10 +1407,52 @@ Object.defineProperty(exports, "SubscriptionCreateJobCreateQueryResourceObjectAt
     return _SubscriptionCreateJobCreateQueryResourceObjectAttributes.SubscriptionCreateJobCreateQueryResourceObjectAttributes;
   }
 });
-Object.defineProperty(exports, "Suppression", {
+Object.defineProperty(exports, "SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles", {
   enumerable: true,
   get: function get() {
-    return _Suppression.Suppression;
+    return _SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles.SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles;
+  }
+});
+Object.defineProperty(exports, "SubscriptionDeleteJobCreateQuery", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionDeleteJobCreateQuery.SubscriptionDeleteJobCreateQuery;
+  }
+});
+Object.defineProperty(exports, "SubscriptionDeleteJobCreateQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionDeleteJobCreateQueryResourceObject.SubscriptionDeleteJobCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "SubscriptionDeleteJobCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionDeleteJobCreateQueryResourceObjectAttributes.SubscriptionDeleteJobCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles.SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles;
+  }
+});
+Object.defineProperty(exports, "SubscriptionDeleteJobCreateQueryResourceObjectRelationships", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionDeleteJobCreateQueryResourceObjectRelationships.SubscriptionDeleteJobCreateQueryResourceObjectRelationships;
+  }
+});
+Object.defineProperty(exports, "SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList.SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList;
+  }
+});
+Object.defineProperty(exports, "SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData", {
+  enumerable: true,
+  get: function get() {
+    return _SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData.SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData;
   }
 });
 Object.defineProperty(exports, "SuppressionCreateJobCreateQuery", {
@@ -1081,6 +1471,36 @@ Object.defineProperty(exports, "SuppressionCreateJobCreateQueryResourceObjectAtt
   enumerable: true,
   get: function get() {
     return _SuppressionCreateJobCreateQueryResourceObjectAttributes.SuppressionCreateJobCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles", {
+  enumerable: true,
+  get: function get() {
+    return _SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles.SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles;
+  }
+});
+Object.defineProperty(exports, "SuppressionDeleteJobCreateQuery", {
+  enumerable: true,
+  get: function get() {
+    return _SuppressionDeleteJobCreateQuery.SuppressionDeleteJobCreateQuery;
+  }
+});
+Object.defineProperty(exports, "SuppressionDeleteJobCreateQueryResourceObject", {
+  enumerable: true,
+  get: function get() {
+    return _SuppressionDeleteJobCreateQueryResourceObject.SuppressionDeleteJobCreateQueryResourceObject;
+  }
+});
+Object.defineProperty(exports, "SuppressionDeleteJobCreateQueryResourceObjectAttributes", {
+  enumerable: true,
+  get: function get() {
+    return _SuppressionDeleteJobCreateQueryResourceObjectAttributes.SuppressionDeleteJobCreateQueryResourceObjectAttributes;
+  }
+});
+Object.defineProperty(exports, "SuppressionDeleteJobCreateQueryResourceObjectAttributesProfiles", {
+  enumerable: true,
+  get: function get() {
+    return _SuppressionDeleteJobCreateQueryResourceObjectAttributesProfiles.SuppressionDeleteJobCreateQueryResourceObjectAttributesProfiles;
   }
 });
 Object.defineProperty(exports, "TagCampaignOp", {
@@ -1107,10 +1527,22 @@ Object.defineProperty(exports, "TagCreateQueryResourceObject", {
     return _TagCreateQueryResourceObject.TagCreateQueryResourceObject;
   }
 });
-Object.defineProperty(exports, "TagCreateQueryResourceObjectAttributes", {
+Object.defineProperty(exports, "TagCreateQueryResourceObjectRelationships", {
   enumerable: true,
   get: function get() {
-    return _TagCreateQueryResourceObjectAttributes.TagCreateQueryResourceObjectAttributes;
+    return _TagCreateQueryResourceObjectRelationships.TagCreateQueryResourceObjectRelationships;
+  }
+});
+Object.defineProperty(exports, "TagCreateQueryResourceObjectRelationshipsTaggroup", {
+  enumerable: true,
+  get: function get() {
+    return _TagCreateQueryResourceObjectRelationshipsTaggroup.TagCreateQueryResourceObjectRelationshipsTaggroup;
+  }
+});
+Object.defineProperty(exports, "TagCreateQueryResourceObjectRelationshipsTaggroupData", {
+  enumerable: true,
+  get: function get() {
+    return _TagCreateQueryResourceObjectRelationshipsTaggroupData.TagCreateQueryResourceObjectRelationshipsTaggroupData;
   }
 });
 Object.defineProperty(exports, "TagEnum", {
@@ -1323,66 +1755,31 @@ Object.defineProperty(exports, "ThrottledScheduleOptions", {
     return _ThrottledScheduleOptions.ThrottledScheduleOptions;
   }
 });
-Object.defineProperty(exports, "TrackingOptionsSubObject", {
-  enumerable: true,
-  get: function get() {
-    return _TrackingOptionsSubObject.TrackingOptionsSubObject;
-  }
-});
 Object.defineProperty(exports, "UTMParamsSubObject", {
   enumerable: true,
   get: function get() {
     return _UTMParamsSubObject.UTMParamsSubObject;
   }
 });
-Object.defineProperty(exports, "UnsubscriptionCreateJobCreateQuery", {
-  enumerable: true,
-  get: function get() {
-    return _UnsubscriptionCreateJobCreateQuery.UnsubscriptionCreateJobCreateQuery;
-  }
-});
-Object.defineProperty(exports, "UnsubscriptionCreateJobCreateQueryResourceObject", {
-  enumerable: true,
-  get: function get() {
-    return _UnsubscriptionCreateJobCreateQueryResourceObject.UnsubscriptionCreateJobCreateQueryResourceObject;
-  }
-});
-Object.defineProperty(exports, "UnsubscriptionCreateJobCreateQueryResourceObjectAttributes", {
-  enumerable: true,
-  get: function get() {
-    return _UnsubscriptionCreateJobCreateQueryResourceObjectAttributes.UnsubscriptionCreateJobCreateQueryResourceObjectAttributes;
-  }
-});
-Object.defineProperty(exports, "UnsuppressionCreateJobCreateQuery", {
-  enumerable: true,
-  get: function get() {
-    return _UnsuppressionCreateJobCreateQuery.UnsuppressionCreateJobCreateQuery;
-  }
-});
-Object.defineProperty(exports, "UnsuppressionCreateJobCreateQueryResourceObject", {
-  enumerable: true,
-  get: function get() {
-    return _UnsuppressionCreateJobCreateQueryResourceObject.UnsuppressionCreateJobCreateQueryResourceObject;
-  }
-});
-Object.defineProperty(exports, "UnsuppressionCreateJobCreateQueryResourceObjectAttributes", {
-  enumerable: true,
-  get: function get() {
-    return _UnsuppressionCreateJobCreateQueryResourceObjectAttributes.UnsuppressionCreateJobCreateQueryResourceObjectAttributes;
-  }
-});
 var _ApiClient = require("./ApiClient.js");
 var _AudiencesSubObject = require("./model/AudiencesSubObject.js");
+var _BackInStockSubscriptionEnum = require("./model/BackInStockSubscriptionEnum.js");
 var _CampaignCloneQuery = require("./model/CampaignCloneQuery.js");
 var _CampaignCloneQueryResourceObject = require("./model/CampaignCloneQueryResourceObject.js");
 var _CampaignCloneQueryResourceObjectAttributes = require("./model/CampaignCloneQueryResourceObjectAttributes.js");
 var _CampaignCreateQuery = require("./model/CampaignCreateQuery.js");
 var _CampaignCreateQueryResourceObject = require("./model/CampaignCreateQueryResourceObject.js");
 var _CampaignCreateQueryResourceObjectAttributes = require("./model/CampaignCreateQueryResourceObjectAttributes.js");
+var _CampaignCreateQueryResourceObjectAttributesCampaignmessages = require("./model/CampaignCreateQueryResourceObjectAttributesCampaignmessages.js");
 var _CampaignEnum = require("./model/CampaignEnum.js");
 var _CampaignMessageAssignTemplateQuery = require("./model/CampaignMessageAssignTemplateQuery.js");
 var _CampaignMessageAssignTemplateQueryResourceObject = require("./model/CampaignMessageAssignTemplateQueryResourceObject.js");
 var _CampaignMessageAssignTemplateQueryResourceObjectAttributes = require("./model/CampaignMessageAssignTemplateQueryResourceObjectAttributes.js");
+var _CampaignMessageAssignTemplateQueryResourceObjectRelationships = require("./model/CampaignMessageAssignTemplateQueryResourceObjectRelationships.js");
+var _CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate = require("./model/CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate.js");
+var _CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData = require("./model/CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData.js");
+var _CampaignMessageCreateQueryResourceObject = require("./model/CampaignMessageCreateQueryResourceObject.js");
+var _CampaignMessageCreateQueryResourceObjectAttributes = require("./model/CampaignMessageCreateQueryResourceObjectAttributes.js");
 var _CampaignMessageEnum = require("./model/CampaignMessageEnum.js");
 var _CampaignMessagePartialUpdateQuery = require("./model/CampaignMessagePartialUpdateQuery.js");
 var _CampaignMessagePartialUpdateQueryResourceObject = require("./model/CampaignMessagePartialUpdateQueryResourceObject.js");
@@ -1407,18 +1804,21 @@ var _CatalogCategoryBulkUpdateJobEnum = require("./model/CatalogCategoryBulkUpda
 var _CatalogCategoryCreateJobCreateQuery = require("./model/CatalogCategoryCreateJobCreateQuery.js");
 var _CatalogCategoryCreateJobCreateQueryResourceObject = require("./model/CatalogCategoryCreateJobCreateQueryResourceObject.js");
 var _CatalogCategoryCreateJobCreateQueryResourceObjectAttributes = require("./model/CatalogCategoryCreateJobCreateQueryResourceObjectAttributes.js");
+var _CatalogCategoryCreateJobCreateQueryResourceObjectAttributesCategories = require("./model/CatalogCategoryCreateJobCreateQueryResourceObjectAttributesCategories.js");
 var _CatalogCategoryCreateQuery = require("./model/CatalogCategoryCreateQuery.js");
 var _CatalogCategoryCreateQueryResourceObject = require("./model/CatalogCategoryCreateQueryResourceObject.js");
 var _CatalogCategoryCreateQueryResourceObjectAttributes = require("./model/CatalogCategoryCreateQueryResourceObjectAttributes.js");
 var _CatalogCategoryDeleteJobCreateQuery = require("./model/CatalogCategoryDeleteJobCreateQuery.js");
 var _CatalogCategoryDeleteJobCreateQueryResourceObject = require("./model/CatalogCategoryDeleteJobCreateQueryResourceObject.js");
 var _CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes = require("./model/CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes.js");
+var _CatalogCategoryDeleteJobCreateQueryResourceObjectAttributesCategories = require("./model/CatalogCategoryDeleteJobCreateQueryResourceObjectAttributesCategories.js");
 var _CatalogCategoryDeleteQueryResourceObject = require("./model/CatalogCategoryDeleteQueryResourceObject.js");
 var _CatalogCategoryEnum = require("./model/CatalogCategoryEnum.js");
 var _CatalogCategoryItemOp = require("./model/CatalogCategoryItemOp.js");
 var _CatalogCategoryUpdateJobCreateQuery = require("./model/CatalogCategoryUpdateJobCreateQuery.js");
 var _CatalogCategoryUpdateJobCreateQueryResourceObject = require("./model/CatalogCategoryUpdateJobCreateQueryResourceObject.js");
 var _CatalogCategoryUpdateJobCreateQueryResourceObjectAttributes = require("./model/CatalogCategoryUpdateJobCreateQueryResourceObjectAttributes.js");
+var _CatalogCategoryUpdateJobCreateQueryResourceObjectAttributesCategories = require("./model/CatalogCategoryUpdateJobCreateQueryResourceObjectAttributesCategories.js");
 var _CatalogCategoryUpdateQuery = require("./model/CatalogCategoryUpdateQuery.js");
 var _CatalogCategoryUpdateQueryResourceObject = require("./model/CatalogCategoryUpdateQueryResourceObject.js");
 var _CatalogCategoryUpdateQueryResourceObjectAttributes = require("./model/CatalogCategoryUpdateQueryResourceObjectAttributes.js");
@@ -1433,6 +1833,7 @@ var _CatalogItemCategoryOpData = require("./model/CatalogItemCategoryOpData.js")
 var _CatalogItemCreateJobCreateQuery = require("./model/CatalogItemCreateJobCreateQuery.js");
 var _CatalogItemCreateJobCreateQueryResourceObject = require("./model/CatalogItemCreateJobCreateQueryResourceObject.js");
 var _CatalogItemCreateJobCreateQueryResourceObjectAttributes = require("./model/CatalogItemCreateJobCreateQueryResourceObjectAttributes.js");
+var _CatalogItemCreateJobCreateQueryResourceObjectAttributesItems = require("./model/CatalogItemCreateJobCreateQueryResourceObjectAttributesItems.js");
 var _CatalogItemCreateQuery = require("./model/CatalogItemCreateQuery.js");
 var _CatalogItemCreateQueryResourceObject = require("./model/CatalogItemCreateQueryResourceObject.js");
 var _CatalogItemCreateQueryResourceObjectAttributes = require("./model/CatalogItemCreateQueryResourceObjectAttributes.js");
@@ -1441,11 +1842,13 @@ var _CatalogItemCreateQueryResourceObjectRelationshipsCategories = require("./mo
 var _CatalogItemDeleteJobCreateQuery = require("./model/CatalogItemDeleteJobCreateQuery.js");
 var _CatalogItemDeleteJobCreateQueryResourceObject = require("./model/CatalogItemDeleteJobCreateQueryResourceObject.js");
 var _CatalogItemDeleteJobCreateQueryResourceObjectAttributes = require("./model/CatalogItemDeleteJobCreateQueryResourceObjectAttributes.js");
+var _CatalogItemDeleteJobCreateQueryResourceObjectAttributesItems = require("./model/CatalogItemDeleteJobCreateQueryResourceObjectAttributesItems.js");
 var _CatalogItemDeleteQueryResourceObject = require("./model/CatalogItemDeleteQueryResourceObject.js");
 var _CatalogItemEnum = require("./model/CatalogItemEnum.js");
 var _CatalogItemUpdateJobCreateQuery = require("./model/CatalogItemUpdateJobCreateQuery.js");
 var _CatalogItemUpdateJobCreateQueryResourceObject = require("./model/CatalogItemUpdateJobCreateQueryResourceObject.js");
 var _CatalogItemUpdateJobCreateQueryResourceObjectAttributes = require("./model/CatalogItemUpdateJobCreateQueryResourceObjectAttributes.js");
+var _CatalogItemUpdateJobCreateQueryResourceObjectAttributesItems = require("./model/CatalogItemUpdateJobCreateQueryResourceObjectAttributesItems.js");
 var _CatalogItemUpdateQuery = require("./model/CatalogItemUpdateQuery.js");
 var _CatalogItemUpdateQueryResourceObject = require("./model/CatalogItemUpdateQueryResourceObject.js");
 var _CatalogItemUpdateQueryResourceObjectAttributes = require("./model/CatalogItemUpdateQueryResourceObjectAttributes.js");
@@ -1455,28 +1858,40 @@ var _CatalogVariantBulkUpdateJobEnum = require("./model/CatalogVariantBulkUpdate
 var _CatalogVariantCreateJobCreateQuery = require("./model/CatalogVariantCreateJobCreateQuery.js");
 var _CatalogVariantCreateJobCreateQueryResourceObject = require("./model/CatalogVariantCreateJobCreateQueryResourceObject.js");
 var _CatalogVariantCreateJobCreateQueryResourceObjectAttributes = require("./model/CatalogVariantCreateJobCreateQueryResourceObjectAttributes.js");
+var _CatalogVariantCreateJobCreateQueryResourceObjectAttributesVariants = require("./model/CatalogVariantCreateJobCreateQueryResourceObjectAttributesVariants.js");
 var _CatalogVariantCreateQuery = require("./model/CatalogVariantCreateQuery.js");
 var _CatalogVariantCreateQueryResourceObject = require("./model/CatalogVariantCreateQueryResourceObject.js");
 var _CatalogVariantCreateQueryResourceObjectAttributes = require("./model/CatalogVariantCreateQueryResourceObjectAttributes.js");
+var _CatalogVariantCreateQueryResourceObjectRelationships = require("./model/CatalogVariantCreateQueryResourceObjectRelationships.js");
+var _CatalogVariantCreateQueryResourceObjectRelationshipsItem = require("./model/CatalogVariantCreateQueryResourceObjectRelationshipsItem.js");
 var _CatalogVariantDeleteJobCreateQuery = require("./model/CatalogVariantDeleteJobCreateQuery.js");
 var _CatalogVariantDeleteJobCreateQueryResourceObject = require("./model/CatalogVariantDeleteJobCreateQueryResourceObject.js");
 var _CatalogVariantDeleteJobCreateQueryResourceObjectAttributes = require("./model/CatalogVariantDeleteJobCreateQueryResourceObjectAttributes.js");
+var _CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants = require("./model/CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants.js");
 var _CatalogVariantDeleteQueryResourceObject = require("./model/CatalogVariantDeleteQueryResourceObject.js");
 var _CatalogVariantEnum = require("./model/CatalogVariantEnum.js");
 var _CatalogVariantUpdateJobCreateQuery = require("./model/CatalogVariantUpdateJobCreateQuery.js");
 var _CatalogVariantUpdateJobCreateQueryResourceObject = require("./model/CatalogVariantUpdateJobCreateQueryResourceObject.js");
 var _CatalogVariantUpdateJobCreateQueryResourceObjectAttributes = require("./model/CatalogVariantUpdateJobCreateQueryResourceObjectAttributes.js");
+var _CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants = require("./model/CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants.js");
 var _CatalogVariantUpdateQuery = require("./model/CatalogVariantUpdateQuery.js");
 var _CatalogVariantUpdateQueryResourceObject = require("./model/CatalogVariantUpdateQueryResourceObject.js");
 var _CatalogVariantUpdateQueryResourceObjectAttributes = require("./model/CatalogVariantUpdateQueryResourceObjectAttributes.js");
-var _ContentSubObject = require("./model/ContentSubObject.js");
 var _DataPrivacyCreateDeletionJobQuery = require("./model/DataPrivacyCreateDeletionJobQuery.js");
 var _DataPrivacyCreateDeletionJobQueryResourceObject = require("./model/DataPrivacyCreateDeletionJobQueryResourceObject.js");
 var _DataPrivacyCreateDeletionJobQueryResourceObjectAttributes = require("./model/DataPrivacyCreateDeletionJobQueryResourceObjectAttributes.js");
+var _DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile = require("./model/DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile.js");
 var _DataPrivacyDeletionJobEnum = require("./model/DataPrivacyDeletionJobEnum.js");
-var _EventCreateQuery = require("./model/EventCreateQuery.js");
-var _EventCreateQueryResourceObject = require("./model/EventCreateQueryResourceObject.js");
-var _EventCreateQueryResourceObjectAttributes = require("./model/EventCreateQueryResourceObjectAttributes.js");
+var _DataPrivacyProfileQueryResourceObject = require("./model/DataPrivacyProfileQueryResourceObject.js");
+var _DataPrivacyProfileQueryResourceObjectAttributes = require("./model/DataPrivacyProfileQueryResourceObjectAttributes.js");
+var _EmailContentSubObject = require("./model/EmailContentSubObject.js");
+var _EmailSendOptionsSubObject = require("./model/EmailSendOptionsSubObject.js");
+var _EmailTrackingOptionsSubObject = require("./model/EmailTrackingOptionsSubObject.js");
+var _EventCreateQueryV = require("./model/EventCreateQueryV2.js");
+var _EventCreateQueryV2ResourceObject = require("./model/EventCreateQueryV2ResourceObject.js");
+var _EventCreateQueryV2ResourceObjectAttributes = require("./model/EventCreateQueryV2ResourceObjectAttributes.js");
+var _EventCreateQueryV2ResourceObjectAttributesMetric = require("./model/EventCreateQueryV2ResourceObjectAttributesMetric.js");
+var _EventCreateQueryV2ResourceObjectAttributesProfile = require("./model/EventCreateQueryV2ResourceObjectAttributesProfile.js");
 var _EventEnum = require("./model/EventEnum.js");
 var _FlowEnum = require("./model/FlowEnum.js");
 var _FlowUpdateQuery = require("./model/FlowUpdateQuery.js");
@@ -1498,43 +1913,90 @@ var _MetricAggregateEnum = require("./model/MetricAggregateEnum.js");
 var _MetricAggregateQuery = require("./model/MetricAggregateQuery.js");
 var _MetricAggregateQueryResourceObject = require("./model/MetricAggregateQueryResourceObject.js");
 var _MetricAggregateQueryResourceObjectAttributes = require("./model/MetricAggregateQueryResourceObjectAttributes.js");
-var _MetricCreateQuery = require("./model/MetricCreateQuery.js");
+var _MetricCreateQueryResourceObject = require("./model/MetricCreateQueryResourceObject.js");
+var _MetricCreateQueryResourceObjectAttributes = require("./model/MetricCreateQueryResourceObjectAttributes.js");
+var _MetricEnum = require("./model/MetricEnum.js");
+var _OneOfCampaignCreateQueryResourceObjectAttributesSendOptions = require("./model/OneOfCampaignCreateQueryResourceObjectAttributesSendOptions.js");
+var _OneOfCampaignCreateQueryResourceObjectAttributesTrackingOptions = require("./model/OneOfCampaignCreateQueryResourceObjectAttributesTrackingOptions.js");
+var _OneOfCampaignMessageCreateQueryResourceObjectAttributesContent = require("./model/OneOfCampaignMessageCreateQueryResourceObjectAttributesContent.js");
+var _OneOfCampaignMessagePartialUpdateQueryResourceObjectAttributesContent = require("./model/OneOfCampaignMessagePartialUpdateQueryResourceObjectAttributesContent.js");
+var _OneOfCampaignPartialUpdateQueryResourceObjectAttributesSendOptions = require("./model/OneOfCampaignPartialUpdateQueryResourceObjectAttributesSendOptions.js");
+var _OneOfCampaignPartialUpdateQueryResourceObjectAttributesTrackingOptions = require("./model/OneOfCampaignPartialUpdateQueryResourceObjectAttributesTrackingOptions.js");
 var _OneOfProfileLocationLatitude = require("./model/OneOfProfileLocationLatitude.js");
 var _OneOfProfileLocationLongitude = require("./model/OneOfProfileLocationLongitude.js");
+var _OneOfProfileMetaPatchPropertiesUnset = require("./model/OneOfProfileMetaPatchPropertiesUnset.js");
+var _OnsiteProfileCreateQueryResourceObject = require("./model/OnsiteProfileCreateQueryResourceObject.js");
+var _OnsiteProfileCreateQueryResourceObjectAttributes = require("./model/OnsiteProfileCreateQueryResourceObjectAttributes.js");
+var _OnsiteProfileMeta = require("./model/OnsiteProfileMeta.js");
 var _ProfileCreateQuery = require("./model/ProfileCreateQuery.js");
 var _ProfileCreateQueryResourceObject = require("./model/ProfileCreateQueryResourceObject.js");
 var _ProfileCreateQueryResourceObjectAttributes = require("./model/ProfileCreateQueryResourceObjectAttributes.js");
 var _ProfileEnum = require("./model/ProfileEnum.js");
+var _ProfileIdentifierDTOResourceObject = require("./model/ProfileIdentifierDTOResourceObject.js");
+var _ProfileIdentifierDTOResourceObjectAttributes = require("./model/ProfileIdentifierDTOResourceObjectAttributes.js");
 var _ProfileLocation = require("./model/ProfileLocation.js");
+var _ProfileMeta = require("./model/ProfileMeta.js");
+var _ProfileMetaPatchProperties = require("./model/ProfileMetaPatchProperties.js");
 var _ProfilePartialUpdateQuery = require("./model/ProfilePartialUpdateQuery.js");
 var _ProfilePartialUpdateQueryResourceObject = require("./model/ProfilePartialUpdateQueryResourceObject.js");
 var _ProfilePartialUpdateQueryResourceObjectAttributes = require("./model/ProfilePartialUpdateQueryResourceObjectAttributes.js");
 var _ProfileSubscriptionBulkCreateJobEnum = require("./model/ProfileSubscriptionBulkCreateJobEnum.js");
+var _ProfileSubscriptionBulkDeleteJobEnum = require("./model/ProfileSubscriptionBulkDeleteJobEnum.js");
+var _ProfileSubscriptionCreateQueryResourceObject = require("./model/ProfileSubscriptionCreateQueryResourceObject.js");
+var _ProfileSubscriptionCreateQueryResourceObjectAttributes = require("./model/ProfileSubscriptionCreateQueryResourceObjectAttributes.js");
+var _ProfileSubscriptionDeleteQueryResourceObject = require("./model/ProfileSubscriptionDeleteQueryResourceObject.js");
+var _ProfileSubscriptionDeleteQueryResourceObjectAttributes = require("./model/ProfileSubscriptionDeleteQueryResourceObjectAttributes.js");
 var _ProfileSuppressionBulkCreateJobEnum = require("./model/ProfileSuppressionBulkCreateJobEnum.js");
-var _ProfileUnsubscriptionBulkCreateJobEnum = require("./model/ProfileUnsubscriptionBulkCreateJobEnum.js");
-var _ProfileUnsuppressionBulkCreateJobEnum = require("./model/ProfileUnsuppressionBulkCreateJobEnum.js");
+var _ProfileSuppressionBulkDeleteJobEnum = require("./model/ProfileSuppressionBulkDeleteJobEnum.js");
+var _ProfileSuppressionCreateQueryResourceObject = require("./model/ProfileSuppressionCreateQueryResourceObject.js");
+var _ProfileSuppressionCreateQueryResourceObjectAttributes = require("./model/ProfileSuppressionCreateQueryResourceObjectAttributes.js");
+var _ProfileSuppressionDeleteQueryResourceObject = require("./model/ProfileSuppressionDeleteQueryResourceObject.js");
+var _ProfileSuppressionDeleteQueryResourceObjectAttributes = require("./model/ProfileSuppressionDeleteQueryResourceObjectAttributes.js");
+var _RenderOptionsSubObject = require("./model/RenderOptionsSubObject.js");
+var _SMSContentSubObjectCreate = require("./model/SMSContentSubObjectCreate.js");
+var _SMSSendOptionsSubObject = require("./model/SMSSendOptionsSubObject.js");
+var _SMSTrackingOptionsSubObject = require("./model/SMSTrackingOptionsSubObject.js");
 var _STOScheduleOptions = require("./model/STOScheduleOptions.js");
 var _SegmentEnum = require("./model/SegmentEnum.js");
 var _SegmentPartialUpdateQuery = require("./model/SegmentPartialUpdateQuery.js");
 var _SegmentPartialUpdateQueryResourceObject = require("./model/SegmentPartialUpdateQueryResourceObject.js");
 var _SegmentPartialUpdateQueryResourceObjectAttributes = require("./model/SegmentPartialUpdateQueryResourceObjectAttributes.js");
-var _SendOptionsSubObject = require("./model/SendOptionsSubObject.js");
 var _SendStrategySubObject = require("./model/SendStrategySubObject.js");
+var _ServerBISSubscriptionCreateQuery = require("./model/ServerBISSubscriptionCreateQuery.js");
+var _ServerBISSubscriptionCreateQueryResourceObject = require("./model/ServerBISSubscriptionCreateQueryResourceObject.js");
+var _ServerBISSubscriptionCreateQueryResourceObjectAttributes = require("./model/ServerBISSubscriptionCreateQueryResourceObjectAttributes.js");
+var _ServerBISSubscriptionCreateQueryResourceObjectAttributesProfile = require("./model/ServerBISSubscriptionCreateQueryResourceObjectAttributesProfile.js");
+var _ServerBISSubscriptionCreateQueryResourceObjectRelationships = require("./model/ServerBISSubscriptionCreateQueryResourceObjectRelationships.js");
+var _ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant = require("./model/ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant.js");
+var _ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData = require("./model/ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData.js");
 var _StaticScheduleOptions = require("./model/StaticScheduleOptions.js");
-var _Subscription = require("./model/Subscription.js");
 var _SubscriptionChannels = require("./model/SubscriptionChannels.js");
 var _SubscriptionCreateJobCreateQuery = require("./model/SubscriptionCreateJobCreateQuery.js");
 var _SubscriptionCreateJobCreateQueryResourceObject = require("./model/SubscriptionCreateJobCreateQueryResourceObject.js");
 var _SubscriptionCreateJobCreateQueryResourceObjectAttributes = require("./model/SubscriptionCreateJobCreateQueryResourceObjectAttributes.js");
-var _Suppression = require("./model/Suppression.js");
+var _SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles = require("./model/SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles.js");
+var _SubscriptionDeleteJobCreateQuery = require("./model/SubscriptionDeleteJobCreateQuery.js");
+var _SubscriptionDeleteJobCreateQueryResourceObject = require("./model/SubscriptionDeleteJobCreateQueryResourceObject.js");
+var _SubscriptionDeleteJobCreateQueryResourceObjectAttributes = require("./model/SubscriptionDeleteJobCreateQueryResourceObjectAttributes.js");
+var _SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles = require("./model/SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles.js");
+var _SubscriptionDeleteJobCreateQueryResourceObjectRelationships = require("./model/SubscriptionDeleteJobCreateQueryResourceObjectRelationships.js");
+var _SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList = require("./model/SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList.js");
+var _SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData = require("./model/SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData.js");
 var _SuppressionCreateJobCreateQuery = require("./model/SuppressionCreateJobCreateQuery.js");
 var _SuppressionCreateJobCreateQueryResourceObject = require("./model/SuppressionCreateJobCreateQueryResourceObject.js");
 var _SuppressionCreateJobCreateQueryResourceObjectAttributes = require("./model/SuppressionCreateJobCreateQueryResourceObjectAttributes.js");
+var _SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles = require("./model/SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles.js");
+var _SuppressionDeleteJobCreateQuery = require("./model/SuppressionDeleteJobCreateQuery.js");
+var _SuppressionDeleteJobCreateQueryResourceObject = require("./model/SuppressionDeleteJobCreateQueryResourceObject.js");
+var _SuppressionDeleteJobCreateQueryResourceObjectAttributes = require("./model/SuppressionDeleteJobCreateQueryResourceObjectAttributes.js");
+var _SuppressionDeleteJobCreateQueryResourceObjectAttributesProfiles = require("./model/SuppressionDeleteJobCreateQueryResourceObjectAttributesProfiles.js");
 var _TagCampaignOp = require("./model/TagCampaignOp.js");
 var _TagCampaignOpData = require("./model/TagCampaignOpData.js");
 var _TagCreateQuery = require("./model/TagCreateQuery.js");
 var _TagCreateQueryResourceObject = require("./model/TagCreateQueryResourceObject.js");
-var _TagCreateQueryResourceObjectAttributes = require("./model/TagCreateQueryResourceObjectAttributes.js");
+var _TagCreateQueryResourceObjectRelationships = require("./model/TagCreateQueryResourceObjectRelationships.js");
+var _TagCreateQueryResourceObjectRelationshipsTaggroup = require("./model/TagCreateQueryResourceObjectRelationshipsTaggroup.js");
+var _TagCreateQueryResourceObjectRelationshipsTaggroupData = require("./model/TagCreateQueryResourceObjectRelationshipsTaggroupData.js");
 var _TagEnum = require("./model/TagEnum.js");
 var _TagFlowOp = require("./model/TagFlowOp.js");
 var _TagFlowOpData = require("./model/TagFlowOpData.js");
@@ -1566,14 +2028,7 @@ var _TemplateUpdateQuery = require("./model/TemplateUpdateQuery.js");
 var _TemplateUpdateQueryResourceObject = require("./model/TemplateUpdateQueryResourceObject.js");
 var _TemplateUpdateQueryResourceObjectAttributes = require("./model/TemplateUpdateQueryResourceObjectAttributes.js");
 var _ThrottledScheduleOptions = require("./model/ThrottledScheduleOptions.js");
-var _TrackingOptionsSubObject = require("./model/TrackingOptionsSubObject.js");
 var _UTMParamsSubObject = require("./model/UTMParamsSubObject.js");
-var _UnsubscriptionCreateJobCreateQuery = require("./model/UnsubscriptionCreateJobCreateQuery.js");
-var _UnsubscriptionCreateJobCreateQueryResourceObject = require("./model/UnsubscriptionCreateJobCreateQueryResourceObject.js");
-var _UnsubscriptionCreateJobCreateQueryResourceObjectAttributes = require("./model/UnsubscriptionCreateJobCreateQueryResourceObjectAttributes.js");
-var _UnsuppressionCreateJobCreateQuery = require("./model/UnsuppressionCreateJobCreateQuery.js");
-var _UnsuppressionCreateJobCreateQueryResourceObject = require("./model/UnsuppressionCreateJobCreateQueryResourceObject.js");
-var _UnsuppressionCreateJobCreateQueryResourceObjectAttributes = require("./model/UnsuppressionCreateJobCreateQueryResourceObjectAttributes.js");
 var _AccountsApi = require("./api/AccountsApi.js");
 var _CampaignsApi = require("./api/CampaignsApi.js");
 var _CatalogsApi = require("./api/CatalogsApi.js");

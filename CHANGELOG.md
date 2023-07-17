@@ -1,6 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [5.0.0] - revision 2023-07-15
+### Added
+- Back-In-stock APIs
+  - We have added support for subscribing profiles to back-in-stock notifications, for both email and SMS, using the new [create_back_in_stock_subscription](./README.md#create-back-in-stock-subscription) endpoint.  
+- New functionality to Campaigns API
+  - CRUD support for SMS campaigns is now available
+  - You can now also retrieve all messages for a campaign to determine performance data on campaigns where you're running A/B tests
+    - To support this functionality, we introduced a relationship between [campaigns and campaign messages](./README.md#get-campaign-relationships-campaign-messages), and between [campaign messages and templates](./README.md#get-campaign-message-relationships-template)
+
+
+### Changed
+- Relationship Standardization
+  - We are making a number of changes across endpoints to standardize how we handle [relationships](https://developers.klaviyo.com/en/docs/relationships_) in our APIs and leverage consistently typed objects across endpoints. For example, you can create a profile in our APIs in the same shape, regardless of whether you're calling the profiles endpoint or the events endpoint.
+  - The changes include:
+    - Updating 1:1 relationships to use singular tense and an object (instead of plural and an array) 
+      - example: for [get_flow_action](./README.md#get-flow-action), if you want to use the `include` param, you would set `include=` to `"flow"` (instead of `"flows"`)
+    - Moving related object IDs from the attributes payload to relationships
+      - example: The format for the [body](https://developers.klaviyo.com/en/reference/create_tag) of [create_tag](./README.md#create-tag) has changed, with `tag_group_id` previously at `data.attributes.tag_group_id` being removed and replaced by a `data` object containing `type`+`id` and located at `data.relationships.tag-group.data`.
+    - Specifying a relationship between two Klaviyo objects to allow for improved consistency and greater interoperability across endpoints 
+      - example: for [create_event](./README.md#create-event), you can now create/update a profile for an event in the same way you would when using the profiles API directly
+  - NOTE: The examples for the above relationship changes are illustrative, not comprehensive. For a complete list of ALL the endpoints that have changed and exactly how, please refer to our latest [API Changelog](https://developers.klaviyo.com/en/docs/changelog_#revision-2023-07-15)
+- For [get_campaigns](./README.md#get-campaigns) endpoint, `filter` param is now required, to, at minimum, filter on `messages.channel`
+
+
+### Removed
+- We removed the `company_id` from the response for [get_template](./README.md#get-template) and [get_templates](./README.md#get-templates). If you need to obtain the company ID / public API key for an account, please use the [Accounts API](./README.md#accounts).- We removed the `company_id` from the response for [get_template](./README.md#get-template) and [get_templates](./README.md#get-templates). If you need to obtain the company ID / public API key for an account, please use the [Accounts API](./README.md#accounts).
+
 ## [4.0.0] - revision 2023-06-15
 ### Added
 - Accounts API is now available, this will allow you to access information about the Klaviyo account associated with your API key.
