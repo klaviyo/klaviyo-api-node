@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "ES6",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "removeComments": true,
+        "sourceMap": true,
+        "noLib": false,
+        "declaration": true,
+        "lib": [
+            "dom",
+            "es6",
+            "es5",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "outDir": "sample/dist",
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "include": [
+        "sample/sample.ts"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "sample/dist"
+    ]
+}
