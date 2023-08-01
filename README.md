@@ -51,7 +51,7 @@ and then running JavaScript from the cloned repo.
 
 ### TypeScript Beta
 
-The Beta SDK major.minor.patch version will correspond with the stable node SDK major.minor.patch version. For example, node SDK version 4.0.0 and TypeScript Beta SDK version 4.0.0-beta.1 have access to the same API version and underlying API functionality. 
+The Beta SDK major.minor.patch version will correspond with the stable node SDK major.minor.patch version. For example, node SDK version 5.0.0 and TypeScript Beta SDK version 5.0.0-beta.1 have access to the same API version and underlying API functionality. 
 
 You can find the beta branch [linked](https://github.com/klaviyo/klaviyo-api-node/tree/typescript-beta) here.
 
