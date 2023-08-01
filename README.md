@@ -49,6 +49,24 @@ You can install this library using `npm`.
 
 and then running JavaScript from the cloned repo.
 
+### TypeScript Beta
+
+The Beta SDK major.minor.patch version will correspond with the stable node SDK major.minor.patch version. For example, node SDK version 4.0.0 and TypeScript Beta SDK version 4.0.0-beta.1 have access to the same API version and underlying API functionality. 
+
+You can find the beta branch [linked](https://github.com/klaviyo/klaviyo-api-node/tree/typescript-beta) here.
+
+We would love for you to try the beta SDK and share feedback with us before these features reach the general availability (stable) phase. If you have feedback you can leave it [here](https://docs.google.com/forms/d/e/1FAIpQLSckdxPXezeY6SludpOGpJ2nNZU280tEnSwuRnEyx0XNS02zdA/viewform). 
+
+> **Note**: There can be breaking changes between beta versions. Therefore we recommend pinning the package version to a specific beta version in your package.json file. This way you can install the same version each time without breaking changes unless you are intentionally looking for the latest beta version.
+
+You can install this beta library using `npm`.
+
+`npm install klaviyo-api@5.0.0-beta.1`
+
+or with the tag
+
+`npm install klaviyo-api@beta`
+
 # Usage Example
 
 ### To instantiate the ConfigWrapper
