@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 
+export * from './aPIJobErrorPayload';
 export * from './accountEnum';
 export * from './accountResponseObjectResource';
 export * from './accountResponseObjectResourceAttributes';
@@ -12,8 +13,6 @@ export * from './campaignCreateQuery';
 export * from './campaignCreateQueryResourceObject';
 export * from './campaignCreateQueryResourceObjectAttributes';
 export * from './campaignCreateQueryResourceObjectAttributesCampaignMessages';
-export * from './campaignCreateQueryResourceObjectAttributesSendOptions';
-export * from './campaignCreateQueryResourceObjectAttributesTrackingOptions';
 export * from './campaignEnum';
 export * from './campaignMessageAssignTemplateQuery';
 export * from './campaignMessageAssignTemplateQueryResourceObject';
@@ -29,6 +28,8 @@ export * from './campaignMessagePartialUpdateQuery';
 export * from './campaignMessagePartialUpdateQueryResourceObject';
 export * from './campaignMessagePartialUpdateQueryResourceObjectAttributes';
 export * from './campaignMessageResponseObjectResource';
+export * from './campaignMessageResponseObjectResourceAttributes';
+export * from './campaignMessageResponseObjectResourceAttributesContent';
 export * from './campaignPartialUpdateQuery';
 export * from './campaignPartialUpdateQueryResourceObject';
 export * from './campaignPartialUpdateQueryResourceObjectAttributes';
@@ -38,10 +39,13 @@ export * from './campaignRecipientEstimationJobCreateQueryResourceObject';
 export * from './campaignRecipientEstimationJobCreateQueryResourceObjectAttributes';
 export * from './campaignRecipientEstimationJobEnum';
 export * from './campaignRecipientEstimationJobResponseObjectResource';
+export * from './campaignRecipientEstimationJobResponseObjectResourceAttributes';
 export * from './campaignRecipientEstimationResponseObjectResource';
 export * from './campaignRecipientEstimationResponseObjectResourceAttributes';
 export * from './campaignResponseObjectResource';
 export * from './campaignResponseObjectResourceAttributes';
+export * from './campaignResponseObjectResourceAttributesSendOptions';
+export * from './campaignResponseObjectResourceAttributesTrackingOptions';
 export * from './campaignSendJobCreateQuery';
 export * from './campaignSendJobCreateQueryResourceObject';
 export * from './campaignSendJobCreateQueryResourceObjectAttributes';
@@ -50,6 +54,7 @@ export * from './campaignSendJobPartialUpdateQuery';
 export * from './campaignSendJobPartialUpdateQueryResourceObject';
 export * from './campaignSendJobPartialUpdateQueryResourceObjectAttributes';
 export * from './campaignSendJobResponseObjectResource';
+export * from './campaignSendJobResponseObjectResourceAttributes';
 export * from './catalogCategoryBulkCreateJobEnum';
 export * from './catalogCategoryBulkDeleteJobEnum';
 export * from './catalogCategoryBulkUpdateJobEnum';
@@ -61,6 +66,8 @@ export * from './catalogCategoryCreateJobResponseObjectResource';
 export * from './catalogCategoryCreateQuery';
 export * from './catalogCategoryCreateQueryResourceObject';
 export * from './catalogCategoryCreateQueryResourceObjectAttributes';
+export * from './catalogCategoryCreateQueryResourceObjectRelationships';
+export * from './catalogCategoryCreateQueryResourceObjectRelationshipsItems';
 export * from './catalogCategoryDeleteJobCreateQuery';
 export * from './catalogCategoryDeleteJobCreateQueryResourceObject';
 export * from './catalogCategoryDeleteJobCreateQueryResourceObjectAttributes';
@@ -70,6 +77,7 @@ export * from './catalogCategoryDeleteQueryResourceObject';
 export * from './catalogCategoryEnum';
 export * from './catalogCategoryItemOp';
 export * from './catalogCategoryResponseObjectResource';
+export * from './catalogCategoryResponseObjectResourceAttributes';
 export * from './catalogCategoryUpdateJobCreateQuery';
 export * from './catalogCategoryUpdateJobCreateQueryResourceObject';
 export * from './catalogCategoryUpdateJobCreateQueryResourceObjectAttributes';
@@ -78,9 +86,6 @@ export * from './catalogCategoryUpdateJobResponseObjectResource';
 export * from './catalogCategoryUpdateQuery';
 export * from './catalogCategoryUpdateQueryResourceObject';
 export * from './catalogCategoryUpdateQueryResourceObjectAttributes';
-export * from './catalogCategoryUpdateQueryResourceObjectRelationships';
-export * from './catalogCategoryUpdateQueryResourceObjectRelationshipsItems';
-export * from './catalogCategoryUpdateQueryResourceObjectRelationshipsItemsDataInner';
 export * from './catalogItemBulkCreateJobEnum';
 export * from './catalogItemBulkDeleteJobEnum';
 export * from './catalogItemBulkUpdateJobEnum';
@@ -90,9 +95,12 @@ export * from './catalogItemCreateJobCreateQueryResourceObject';
 export * from './catalogItemCreateJobCreateQueryResourceObjectAttributes';
 export * from './catalogItemCreateJobCreateQueryResourceObjectAttributesItems';
 export * from './catalogItemCreateJobResponseObjectResource';
+export * from './catalogItemCreateJobResponseObjectResourceAttributes';
 export * from './catalogItemCreateQuery';
 export * from './catalogItemCreateQueryResourceObject';
 export * from './catalogItemCreateQueryResourceObjectAttributes';
+export * from './catalogItemCreateQueryResourceObjectRelationships';
+export * from './catalogItemCreateQueryResourceObjectRelationshipsCategories';
 export * from './catalogItemDeleteJobCreateQuery';
 export * from './catalogItemDeleteJobCreateQueryResourceObject';
 export * from './catalogItemDeleteJobCreateQueryResourceObjectAttributes';
@@ -101,6 +109,7 @@ export * from './catalogItemDeleteJobResponseObjectResource';
 export * from './catalogItemDeleteQueryResourceObject';
 export * from './catalogItemEnum';
 export * from './catalogItemResponseObjectResource';
+export * from './catalogItemResponseObjectResourceAttributes';
 export * from './catalogItemUpdateJobCreateQuery';
 export * from './catalogItemUpdateJobCreateQueryResourceObject';
 export * from './catalogItemUpdateJobCreateQueryResourceObjectAttributes';
@@ -109,9 +118,6 @@ export * from './catalogItemUpdateJobResponseObjectResource';
 export * from './catalogItemUpdateQuery';
 export * from './catalogItemUpdateQueryResourceObject';
 export * from './catalogItemUpdateQueryResourceObjectAttributes';
-export * from './catalogItemUpdateQueryResourceObjectRelationships';
-export * from './catalogItemUpdateQueryResourceObjectRelationshipsCategories';
-export * from './catalogJobErrorPayload';
 export * from './catalogVariantBulkCreateJobEnum';
 export * from './catalogVariantBulkDeleteJobEnum';
 export * from './catalogVariantBulkUpdateJobEnum';
@@ -133,12 +139,12 @@ export * from './catalogVariantDeleteJobResponseObjectResource';
 export * from './catalogVariantDeleteQueryResourceObject';
 export * from './catalogVariantEnum';
 export * from './catalogVariantResponseObjectResource';
+export * from './catalogVariantResponseObjectResourceAttributes';
 export * from './catalogVariantUpdateJobCreateQuery';
 export * from './catalogVariantUpdateJobCreateQueryResourceObject';
 export * from './catalogVariantUpdateJobCreateQueryResourceObjectAttributes';
 export * from './catalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants';
 export * from './catalogVariantUpdateJobResponseObjectResource';
-export * from './catalogVariantUpdateJobResponseObjectResourceAttributes';
 export * from './catalogVariantUpdateQuery';
 export * from './catalogVariantUpdateQueryResourceObject';
 export * from './catalogVariantUpdateQueryResourceObjectAttributes';
@@ -152,9 +158,7 @@ export * from './dataPrivacyDeletionJobEnum';
 export * from './dataPrivacyProfileQueryResourceObject';
 export * from './dataPrivacyProfileQueryResourceObjectAttributes';
 export * from './deleteTagGroupResponse';
-export * from './deleteTagGroupResponseData';
-export * from './deleteTagGroupResponseDataAttributes';
-export * from './deleteTagGroupResponseDataRelationships';
+export * from './deviceMetadata';
 export * from './emailChannel';
 export * from './emailContentSubObject';
 export * from './emailMarketing';
@@ -189,52 +193,63 @@ export * from './flowUpdateQueryResourceObject';
 export * from './flowUpdateQueryResourceObjectAttributes';
 export * from './getAccountResponse';
 export * from './getAccountResponseCollection';
+export * from './getAccounts4XXResponse';
+export * from './getAccounts4XXResponseErrorsInner';
+export * from './getAccounts4XXResponseErrorsInnerSource';
 export * from './getCampaignMessageCampaignRelationshipListResponse';
 export * from './getCampaignMessageResponse';
 export * from './getCampaignMessageResponseCollectionCompoundDocument';
-export * from './getCampaignMessageResponseCollectionCompoundDocumentDataInner';
-export * from './getCampaignMessageResponseCollectionCompoundDocumentDataInnerAllOf';
-export * from './getCampaignMessageResponseCollectionCompoundDocumentIncludedInner';
 export * from './getCampaignMessageResponseCompoundDocument';
+export * from './getCampaignMessageResponseCompoundDocumentData';
+export * from './getCampaignMessageResponseCompoundDocumentDataAllOf';
+export * from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationships';
+export * from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign';
+export * from './getCampaignMessageResponseCompoundDocumentIncludedInner';
 export * from './getCampaignMessageTemplateRelationshipListResponse';
 export * from './getCampaignMessagesRelationshipListResponseCollection';
 export * from './getCampaignRecipientEstimationJobResponse';
 export * from './getCampaignRecipientEstimationResponse';
 export * from './getCampaignResponseCollectionCompoundDocument';
+export * from './getCampaignResponseCollectionCompoundDocumentDataInner';
+export * from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOf';
+export * from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages';
+export * from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner';
+export * from './getCampaignResponseCollectionCompoundDocumentIncludedInner';
 export * from './getCampaignResponseCompoundDocument';
-export * from './getCampaignResponseCompoundDocumentData';
-export * from './getCampaignResponseCompoundDocumentDataAllOf';
-export * from './getCampaignResponseCompoundDocumentIncludedInner';
 export * from './getCampaignSendJobResponse';
 export * from './getCampaignTagRelationshipListResponseCollection';
 export * from './getCatalogCategoryCreateJobResponseCollectionCompoundDocument';
+export * from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInner';
+export * from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+export * from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories';
 export * from './getCatalogCategoryCreateJobResponseCompoundDocument';
-export * from './getCatalogCategoryCreateJobResponseCompoundDocumentData';
-export * from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOf';
-export * from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationships';
-export * from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategories';
-export * from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategoriesDataInner';
 export * from './getCatalogCategoryDeleteJobResponse';
 export * from './getCatalogCategoryDeleteJobResponseCollection';
-export * from './getCatalogCategoryDeleteJobResponseData';
+export * from './getCatalogCategoryDeleteJobResponseCollectionDataInner';
 export * from './getCatalogCategoryItemListResponseCollection';
+export * from './getCatalogCategoryItemListResponseCollectionDataInner';
 export * from './getCatalogCategoryResponse';
 export * from './getCatalogCategoryResponseCollection';
-export * from './getCatalogCategoryResponseData';
-export * from './getCatalogCategoryResponseDataAllOf';
+export * from './getCatalogCategoryResponseCollectionDataInner';
+export * from './getCatalogCategoryResponseCollectionDataInnerAllOf';
+export * from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationships';
+export * from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems';
 export * from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocument';
+export * from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInner';
 export * from './getCatalogCategoryUpdateJobResponseCompoundDocument';
-export * from './getCatalogCategoryUpdateJobResponseCompoundDocumentData';
 export * from './getCatalogItemCategoryListResponseCollection';
+export * from './getCatalogItemCategoryListResponseCollectionDataInner';
 export * from './getCatalogItemCreateJobResponseCollectionCompoundDocument';
 export * from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner';
+export * from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+export * from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems';
 export * from './getCatalogItemCreateJobResponseCompoundDocument';
 export * from './getCatalogItemDeleteJobResponse';
 export * from './getCatalogItemDeleteJobResponseCollection';
-export * from './getCatalogItemDeleteJobResponseData';
-export * from './getCatalogItemDeleteJobResponseDataAllOf';
-export * from './getCatalogItemDeleteJobResponseDataAllOfRelationships';
-export * from './getCatalogItemDeleteJobResponseDataAllOfRelationshipsItems';
+export * from './getCatalogItemDeleteJobResponseCollectionDataInner';
 export * from './getCatalogItemResponseCollectionCompoundDocument';
 export * from './getCatalogItemResponseCollectionCompoundDocumentDataInner';
 export * from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -248,22 +263,23 @@ export * from './getCatalogItemUpdateJobResponseCompoundDocument';
 export * from './getCatalogVariantCreateJobResponseCollectionCompoundDocument';
 export * from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner';
 export * from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+export * from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
+export * from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
 export * from './getCatalogVariantCreateJobResponseCompoundDocument';
 export * from './getCatalogVariantDeleteJobResponse';
 export * from './getCatalogVariantDeleteJobResponseCollection';
-export * from './getCatalogVariantDeleteJobResponseData';
+export * from './getCatalogVariantDeleteJobResponseCollectionDataInner';
 export * from './getCatalogVariantResponse';
 export * from './getCatalogVariantResponseCollection';
-export * from './getCatalogVariantResponseData';
-export * from './getCatalogVariantResponseDataAllOf';
-export * from './getCatalogVariantResponseDataAllOfRelationships';
-export * from './getCatalogVariantResponseDataAllOfRelationshipsItem';
+export * from './getCatalogVariantResponseCollectionDataInner';
+export * from './getCatalogVariantResponseCollectionDataInnerAllOf';
+export * from './getCatalogVariantResponseCollectionDataInnerAllOfRelationships';
+export * from './getCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItem';
+export * from './getCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItemData';
 export * from './getCatalogVariantUpdateJobResponseCollectionCompoundDocument';
+export * from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner';
 export * from './getCatalogVariantUpdateJobResponseCompoundDocument';
-export * from './getCatalogVariantUpdateJobResponseCompoundDocumentData';
-export * from './getCreateVariantsJobs5XXResponse';
-export * from './getCreateVariantsJobs5XXResponseErrorsInner';
-export * from './getCreateVariantsJobs5XXResponseErrorsInnerSource';
 export * from './getEventMetricsRelationshipListResponse';
 export * from './getEventProfilesRelationshipListResponse';
 export * from './getEventResponseCollectionCompoundDocument';
@@ -280,14 +296,14 @@ export * from './getFlowActionFlowMessageRelationshipResponseCollection';
 export * from './getFlowActionFlowRelationshipResponse';
 export * from './getFlowActionResponse';
 export * from './getFlowActionResponseCollection';
+export * from './getFlowActionResponseCollectionDataInner';
+export * from './getFlowActionResponseCollectionDataInnerAllOf';
+export * from './getFlowActionResponseCollectionDataInnerAllOfRelationships';
+export * from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlow';
+export * from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages';
+export * from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner';
 export * from './getFlowActionResponseCompoundDocument';
 export * from './getFlowActionResponseCompoundDocumentIncludedInner';
-export * from './getFlowActionResponseData';
-export * from './getFlowActionResponseDataAllOf';
-export * from './getFlowActionResponseDataAllOfRelationships';
-export * from './getFlowActionResponseDataAllOfRelationshipsFlow';
-export * from './getFlowActionResponseDataAllOfRelationshipsFlowMessages';
-export * from './getFlowActionResponseDataAllOfRelationshipsFlowMessagesDataInner';
 export * from './getFlowFlowActionRelationshipListResponseCollection';
 export * from './getFlowMessageFlowActionRelationshipResponse';
 export * from './getFlowMessageResponseCollection';
@@ -295,21 +311,28 @@ export * from './getFlowMessageResponseCollectionDataInner';
 export * from './getFlowMessageResponseCollectionDataInnerAllOf';
 export * from './getFlowMessageResponseCollectionDataInnerAllOfRelationships';
 export * from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction';
+export * from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate';
+export * from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData';
 export * from './getFlowMessageResponseCompoundDocument';
+export * from './getFlowMessageResponseCompoundDocumentIncludedInner';
+export * from './getFlowMessageTemplateRelationshipResponse';
 export * from './getFlowResponse';
 export * from './getFlowResponseCollectionCompoundDocument';
+export * from './getFlowResponseCollectionCompoundDocumentDataInner';
+export * from './getFlowResponseCollectionCompoundDocumentDataInnerAllOf';
+export * from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions';
+export * from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner';
+export * from './getFlowResponseCollectionCompoundDocumentIncludedInner';
 export * from './getFlowResponseCompoundDocument';
-export * from './getFlowResponseCompoundDocumentData';
-export * from './getFlowResponseCompoundDocumentDataAllOf';
-export * from './getFlowResponseCompoundDocumentDataAllOfRelationships';
-export * from './getFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActions';
-export * from './getFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActionsDataInner';
-export * from './getFlowResponseCompoundDocumentDataAllOfRelationshipsTags';
-export * from './getFlowResponseCompoundDocumentDataAllOfRelationshipsTagsDataInner';
-export * from './getFlowResponseCompoundDocumentIncludedInner';
 export * from './getFlowTagRelationshipListResponseCollection';
 export * from './getListListResponseCollectionCompoundDocument';
 export * from './getListListResponseCollectionCompoundDocumentDataInner';
+export * from './getListListResponseCollectionCompoundDocumentDataInnerAllOf';
+export * from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
+export * from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
+export * from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner';
 export * from './getListRelationshipsResponseCollection';
 export * from './getListResponseCollection';
 export * from './getListResponseCollectionDataInner';
@@ -325,17 +348,19 @@ export * from './getProfileResponseCollectionCompoundDocument';
 export * from './getProfileResponseCollectionCompoundDocumentDataInner';
 export * from './getProfileResponseCollectionCompoundDocumentDataInnerAllOf';
 export * from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-export * from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsSegments';
+export * from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
 export * from './getProfileResponseCompoundDocument';
-export * from './getProfileResponseCompoundDocumentData';
-export * from './getProfileResponseCompoundDocumentDataAllOf';
 export * from './getProfileResponseCompoundDocumentIncludedInner';
+export * from './getProfileResponseData';
+export * from './getProfileResponseDataAllOf';
+export * from './getProfileResponseDataAllOfRelationships';
+export * from './getProfileResponseDataAllOfRelationshipsLists';
+export * from './getProfileResponseDataAllOfRelationshipsListsDataInner';
+export * from './getProfileResponseDataAllOfRelationshipsSegments';
+export * from './getProfileResponseDataAllOfRelationshipsSegmentsDataInner';
 export * from './getProfileSegmentRelationshipsResponseCollection';
 export * from './getSegmentListResponseCollectionCompoundDocument';
 export * from './getSegmentListResponseCollectionCompoundDocumentDataInner';
-export * from './getSegmentListResponseCollectionCompoundDocumentDataInnerAllOf';
-export * from './getSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-export * from './getSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
 export * from './getSegmentRelationshipsResponseCollection';
 export * from './getSegmentResponseCollection';
 export * from './getSegmentResponseCollectionDataInner';
@@ -348,6 +373,7 @@ export * from './getTagGroupResponse';
 export * from './getTagGroupResponseCollection';
 export * from './getTagGroupResponseCollectionDataInner';
 export * from './getTagGroupResponseCollectionDataInnerAllOf';
+export * from './getTagGroupResponseCollectionDataInnerAllOfRelationships';
 export * from './getTagGroupTagRelationshipsResponseCollection';
 export * from './getTagGroupTagRelationshipsResponseCollectionDataInner';
 export * from './getTagListRelationshipsResponseCollection';
@@ -357,6 +383,7 @@ export * from './getTagResponseCollectionDataInner';
 export * from './getTagResponseCollectionDataInnerAllOf';
 export * from './getTagResponseCollectionDataInnerAllOfRelationships';
 export * from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaigns';
+export * from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner';
 export * from './getTagResponseCollectionDataInnerAllOfRelationshipsFlows';
 export * from './getTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner';
 export * from './getTagResponseCollectionDataInnerAllOfRelationshipsTagGroup';
@@ -369,6 +396,7 @@ export * from './getTemplateResponse';
 export * from './getTemplateResponseCollection';
 export * from './listCreateQuery';
 export * from './listCreateQueryResourceObject';
+export * from './listCreateQueryResourceObjectAttributes';
 export * from './listEnum';
 export * from './listListResponseObjectResource';
 export * from './listListResponseObjectResourceAttributes';
@@ -376,11 +404,11 @@ export * from './listMembersAddQuery';
 export * from './listMembersDeleteQuery';
 export * from './listPartialUpdateQuery';
 export * from './listPartialUpdateQueryResourceObject';
-export * from './listPartialUpdateQueryResourceObjectAttributes';
 export * from './listResponseObjectResource';
 export * from './listRetrieveResponseObjectResourceAttributes';
 export * from './listRetrieveResponseObjectResourceExtended';
 export * from './listRetrieveResponseObjectResourceExtendedAttributes';
+export * from './listRetrieveResponseObjectResourceExtendedAttributesAllOf';
 export * from './metricAggregateEnum';
 export * from './metricAggregateQuery';
 export * from './metricAggregateQueryResourceObject';
@@ -396,60 +424,32 @@ export * from './onsiteProfileCreateQueryResourceObject';
 export * from './onsiteProfileCreateQueryResourceObjectAttributes';
 export * from './onsiteProfileMeta';
 export * from './patchCampaignMessageResponse';
-export * from './patchCampaignMessageResponseData';
-export * from './patchCampaignMessageResponseDataAttributes';
-export * from './patchCampaignMessageResponseDataAttributesContent';
-export * from './patchCampaignMessageResponseDataRelationships';
-export * from './patchCampaignMessageResponseDataRelationshipsCampaign';
-export * from './patchCampaignMessageResponseDataRelationshipsCampaignData';
-export * from './patchCampaignMessageResponseDataRelationshipsTemplate';
-export * from './patchCampaignMessageResponseDataRelationshipsTemplateData';
 export * from './patchCampaignResponse';
 export * from './patchCatalogCategoryResponse';
 export * from './patchCatalogItemResponse';
-export * from './patchCatalogItemResponseData';
-export * from './patchCatalogItemResponseDataAttributes';
 export * from './patchCatalogVariantResponse';
 export * from './patchFlowResponse';
 export * from './patchFlowResponseData';
 export * from './patchListPartialUpdateResponse';
-export * from './patchListPartialUpdateResponseData';
 export * from './patchProfileResponse';
-export * from './patchProfileResponseData';
-export * from './patchProfileResponseDataAttributes';
-export * from './patchProfileResponseDataRelationships';
-export * from './patchProfileResponseDataRelationshipsLists';
-export * from './patchProfileResponseDataRelationshipsListsDataInner';
-export * from './patchProfileResponseDataRelationshipsSegments';
-export * from './patchProfileResponseDataRelationshipsSegmentsDataInner';
 export * from './patchSegmentPartialUpdateResponse';
 export * from './patchSegmentPartialUpdateResponseData';
 export * from './patchTagGroupResponse';
 export * from './patchTemplateResponse';
-export * from './patchTemplateResponseData';
-export * from './patchTemplateResponseDataAttributes';
 export * from './postCampaignMessageResponse';
+export * from './postCampaignMessageResponseData';
 export * from './postCampaignRecipientEstimationJobResponse';
 export * from './postCampaignRecipientEstimationJobResponseData';
-export * from './postCampaignRecipientEstimationJobResponseDataAttributes';
 export * from './postCampaignResponse';
 export * from './postCampaignResponseData';
-export * from './postCampaignResponseDataRelationships';
-export * from './postCampaignResponseDataRelationshipsCampaignMessages';
-export * from './postCampaignResponseDataRelationshipsCampaignMessagesDataInner';
 export * from './postCampaignSendJobResponse';
 export * from './postCampaignSendJobResponseData';
-export * from './postCampaignSendJobResponseDataAttributes';
 export * from './postCatalogCategoryCreateJobResponse';
 export * from './postCatalogCategoryCreateJobResponseData';
 export * from './postCatalogCategoryDeleteJobResponse';
 export * from './postCatalogCategoryDeleteJobResponseData';
 export * from './postCatalogCategoryResponse';
 export * from './postCatalogCategoryResponseData';
-export * from './postCatalogCategoryResponseDataAttributes';
-export * from './postCatalogCategoryResponseDataRelationships';
-export * from './postCatalogCategoryResponseDataRelationshipsItems';
-export * from './postCatalogCategoryResponseDataRelationshipsItemsDataInner';
 export * from './postCatalogCategoryUpdateJobResponse';
 export * from './postCatalogCategoryUpdateJobResponseData';
 export * from './postCatalogItemCreateJobResponse';
@@ -457,29 +457,31 @@ export * from './postCatalogItemCreateJobResponseData';
 export * from './postCatalogItemDeleteJobResponse';
 export * from './postCatalogItemDeleteJobResponseData';
 export * from './postCatalogItemResponse';
+export * from './postCatalogItemResponseData';
 export * from './postCatalogItemUpdateJobResponse';
 export * from './postCatalogItemUpdateJobResponseData';
 export * from './postCatalogVariantCreateJobResponse';
 export * from './postCatalogVariantCreateJobResponseData';
-export * from './postCatalogVariantCreateJobResponseDataRelationships';
-export * from './postCatalogVariantCreateJobResponseDataRelationshipsVariants';
-export * from './postCatalogVariantCreateJobResponseDataRelationshipsVariantsDataInner';
 export * from './postCatalogVariantDeleteJobResponse';
 export * from './postCatalogVariantDeleteJobResponseData';
 export * from './postCatalogVariantResponse';
 export * from './postCatalogVariantResponseData';
-export * from './postCatalogVariantResponseDataAttributes';
 export * from './postCatalogVariantUpdateJobResponse';
 export * from './postCatalogVariantUpdateJobResponseData';
 export * from './postListCreateResponse';
+export * from './postListCreateResponseData';
 export * from './postMetricAggregateResponse';
 export * from './postMetricAggregateResponseData';
 export * from './postMetricAggregateResponseDataAttributes';
 export * from './postProfileResponse';
+export * from './postProfileResponseData';
+export * from './postProfileResponseDataAttributes';
 export * from './postTagGroupResponse';
+export * from './postTagGroupResponseData';
 export * from './postTagResponse';
 export * from './postTagResponseData';
 export * from './postTemplateResponse';
+export * from './postTemplateResponseData';
 export * from './predictiveAnalytics';
 export * from './profileCreateQuery';
 export * from './profileCreateQueryResourceObject';
@@ -495,7 +497,6 @@ export * from './profileMetaPatchProperties';
 export * from './profileMetaPatchPropertiesUnset';
 export * from './profilePartialUpdateQuery';
 export * from './profilePartialUpdateQueryResourceObject';
-export * from './profilePartialUpdateQueryResourceObjectAttributes';
 export * from './profileResponseObjectResource';
 export * from './profileResponseObjectResourceAttributes';
 export * from './profileResponseObjectResourceExtended';
@@ -513,6 +514,13 @@ export * from './profileSuppressionCreateQueryResourceObject';
 export * from './profileSuppressionCreateQueryResourceObjectAttributes';
 export * from './profileSuppressionDeleteQueryResourceObject';
 export * from './profileSuppressionDeleteQueryResourceObjectAttributes';
+export * from './profileUpsertQueryResourceObject';
+export * from './profileUpsertQueryResourceObjectAttributes';
+export * from './pushTokenCreateQuery';
+export * from './pushTokenCreateQueryResourceObject';
+export * from './pushTokenCreateQueryResourceObjectAttributes';
+export * from './pushTokenCreateQueryResourceObjectAttributesProfile';
+export * from './pushTokenEnum';
 export * from './relationshipLinks';
 export * from './renderOptionsSubObject';
 export * from './sMSChannel';
@@ -527,15 +535,14 @@ export * from './sMSTrackingOptionsSubObject';
 export * from './sTOScheduleOptions';
 export * from './segmentEnum';
 export * from './segmentListResponseObjectResource';
+export * from './segmentListResponseObjectResourceAttributes';
 export * from './segmentPartialUpdateQuery';
 export * from './segmentPartialUpdateQueryResourceObject';
 export * from './segmentPartialUpdateQueryResourceObjectAttributes';
 export * from './segmentResponseObjectResource';
-export * from './segmentResponseObjectResourceAttributes';
 export * from './segmentRetrieveResponseObjectResourceAttributes';
 export * from './segmentRetrieveResponseObjectResourceExtended';
 export * from './segmentRetrieveResponseObjectResourceExtendedAttributes';
-export * from './segmentRetrieveResponseObjectResourceExtendedAttributesAllOf';
 export * from './sendOptions';
 export * from './sendStrategySubObject';
 export * from './sendTimeSubObject';
@@ -552,13 +559,13 @@ export * from './subscriptionCreateJobCreateQuery';
 export * from './subscriptionCreateJobCreateQueryResourceObject';
 export * from './subscriptionCreateJobCreateQueryResourceObjectAttributes';
 export * from './subscriptionCreateJobCreateQueryResourceObjectAttributesProfiles';
+export * from './subscriptionCreateJobCreateQueryResourceObjectRelationships';
+export * from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsList';
+export * from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsListData';
 export * from './subscriptionDeleteJobCreateQuery';
 export * from './subscriptionDeleteJobCreateQueryResourceObject';
 export * from './subscriptionDeleteJobCreateQueryResourceObjectAttributes';
 export * from './subscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles';
-export * from './subscriptionDeleteJobCreateQueryResourceObjectRelationships';
-export * from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsList';
-export * from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData';
 export * from './subscriptions';
 export * from './suppressionCreateJobCreateQuery';
 export * from './suppressionCreateJobCreateQueryResourceObject';
@@ -580,15 +587,16 @@ export * from './tagGroupCreateQueryResourceObject';
 export * from './tagGroupCreateQueryResourceObjectAttributes';
 export * from './tagGroupEnum';
 export * from './tagGroupResponseObjectResource';
+export * from './tagGroupResponseObjectResourceAttributes';
 export * from './tagGroupUpdateQuery';
 export * from './tagGroupUpdateQueryResourceObject';
 export * from './tagGroupUpdateQueryResourceObjectAttributes';
 export * from './tagListOp';
 export * from './tagResponseObjectResource';
+export * from './tagResponseObjectResourceAttributes';
 export * from './tagSegmentOp';
 export * from './tagUpdateQuery';
 export * from './tagUpdateQueryResourceObject';
-export * from './tagUpdateQueryResourceObjectAttributes';
 export * from './templateCloneQuery';
 export * from './templateCloneQueryResourceObject';
 export * from './templateCloneQueryResourceObjectAttributes';
@@ -600,6 +608,7 @@ export * from './templateRenderQuery';
 export * from './templateRenderQueryResourceObject';
 export * from './templateRenderQueryResourceObjectAttributes';
 export * from './templateResponseObjectResource';
+export * from './templateResponseObjectResourceAttributes';
 export * from './templateUpdateQuery';
 export * from './templateUpdateQueryResourceObject';
 export * from './templateUpdateQueryResourceObjectAttributes';
@@ -620,6 +629,7 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
+import { APIJobErrorPayload } from './aPIJobErrorPayload';
 import { AccountEnum } from './accountEnum';
 import { AccountResponseObjectResource } from './accountResponseObjectResource';
 import { AccountResponseObjectResourceAttributes } from './accountResponseObjectResourceAttributes';
@@ -632,8 +642,6 @@ import { CampaignCreateQuery } from './campaignCreateQuery';
 import { CampaignCreateQueryResourceObject } from './campaignCreateQueryResourceObject';
 import { CampaignCreateQueryResourceObjectAttributes } from './campaignCreateQueryResourceObjectAttributes';
 import { CampaignCreateQueryResourceObjectAttributesCampaignMessages } from './campaignCreateQueryResourceObjectAttributesCampaignMessages';
-import { CampaignCreateQueryResourceObjectAttributesSendOptions } from './campaignCreateQueryResourceObjectAttributesSendOptions';
-import { CampaignCreateQueryResourceObjectAttributesTrackingOptions } from './campaignCreateQueryResourceObjectAttributesTrackingOptions';
 import { CampaignEnum } from './campaignEnum';
 import { CampaignMessageAssignTemplateQuery } from './campaignMessageAssignTemplateQuery';
 import { CampaignMessageAssignTemplateQueryResourceObject } from './campaignMessageAssignTemplateQueryResourceObject';
@@ -649,6 +657,8 @@ import { CampaignMessagePartialUpdateQuery } from './campaignMessagePartialUpdat
 import { CampaignMessagePartialUpdateQueryResourceObject } from './campaignMessagePartialUpdateQueryResourceObject';
 import { CampaignMessagePartialUpdateQueryResourceObjectAttributes } from './campaignMessagePartialUpdateQueryResourceObjectAttributes';
 import { CampaignMessageResponseObjectResource } from './campaignMessageResponseObjectResource';
+import { CampaignMessageResponseObjectResourceAttributes } from './campaignMessageResponseObjectResourceAttributes';
+import { CampaignMessageResponseObjectResourceAttributesContent } from './campaignMessageResponseObjectResourceAttributesContent';
 import { CampaignPartialUpdateQuery } from './campaignPartialUpdateQuery';
 import { CampaignPartialUpdateQueryResourceObject } from './campaignPartialUpdateQueryResourceObject';
 import { CampaignPartialUpdateQueryResourceObjectAttributes } from './campaignPartialUpdateQueryResourceObjectAttributes';
@@ -658,10 +668,13 @@ import { CampaignRecipientEstimationJobCreateQueryResourceObject } from './campa
 import { CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes } from './campaignRecipientEstimationJobCreateQueryResourceObjectAttributes';
 import { CampaignRecipientEstimationJobEnum } from './campaignRecipientEstimationJobEnum';
 import { CampaignRecipientEstimationJobResponseObjectResource } from './campaignRecipientEstimationJobResponseObjectResource';
+import { CampaignRecipientEstimationJobResponseObjectResourceAttributes } from './campaignRecipientEstimationJobResponseObjectResourceAttributes';
 import { CampaignRecipientEstimationResponseObjectResource } from './campaignRecipientEstimationResponseObjectResource';
 import { CampaignRecipientEstimationResponseObjectResourceAttributes } from './campaignRecipientEstimationResponseObjectResourceAttributes';
 import { CampaignResponseObjectResource } from './campaignResponseObjectResource';
 import { CampaignResponseObjectResourceAttributes } from './campaignResponseObjectResourceAttributes';
+import { CampaignResponseObjectResourceAttributesSendOptions } from './campaignResponseObjectResourceAttributesSendOptions';
+import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
 import { CampaignSendJobCreateQuery } from './campaignSendJobCreateQuery';
 import { CampaignSendJobCreateQueryResourceObject } from './campaignSendJobCreateQueryResourceObject';
 import { CampaignSendJobCreateQueryResourceObjectAttributes } from './campaignSendJobCreateQueryResourceObjectAttributes';
@@ -670,6 +683,7 @@ import { CampaignSendJobPartialUpdateQuery } from './campaignSendJobPartialUpdat
 import { CampaignSendJobPartialUpdateQueryResourceObject } from './campaignSendJobPartialUpdateQueryResourceObject';
 import { CampaignSendJobPartialUpdateQueryResourceObjectAttributes } from './campaignSendJobPartialUpdateQueryResourceObjectAttributes';
 import { CampaignSendJobResponseObjectResource } from './campaignSendJobResponseObjectResource';
+import { CampaignSendJobResponseObjectResourceAttributes } from './campaignSendJobResponseObjectResourceAttributes';
 import { CatalogCategoryBulkCreateJobEnum } from './catalogCategoryBulkCreateJobEnum';
 import { CatalogCategoryBulkDeleteJobEnum } from './catalogCategoryBulkDeleteJobEnum';
 import { CatalogCategoryBulkUpdateJobEnum } from './catalogCategoryBulkUpdateJobEnum';
@@ -681,6 +695,8 @@ import { CatalogCategoryCreateJobResponseObjectResource } from './catalogCategor
 import { CatalogCategoryCreateQuery } from './catalogCategoryCreateQuery';
 import { CatalogCategoryCreateQueryResourceObject } from './catalogCategoryCreateQueryResourceObject';
 import { CatalogCategoryCreateQueryResourceObjectAttributes } from './catalogCategoryCreateQueryResourceObjectAttributes';
+import { CatalogCategoryCreateQueryResourceObjectRelationships } from './catalogCategoryCreateQueryResourceObjectRelationships';
+import { CatalogCategoryCreateQueryResourceObjectRelationshipsItems } from './catalogCategoryCreateQueryResourceObjectRelationshipsItems';
 import { CatalogCategoryDeleteJobCreateQuery } from './catalogCategoryDeleteJobCreateQuery';
 import { CatalogCategoryDeleteJobCreateQueryResourceObject } from './catalogCategoryDeleteJobCreateQueryResourceObject';
 import { CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes } from './catalogCategoryDeleteJobCreateQueryResourceObjectAttributes';
@@ -690,6 +706,7 @@ import { CatalogCategoryDeleteQueryResourceObject } from './catalogCategoryDelet
 import { CatalogCategoryEnum } from './catalogCategoryEnum';
 import { CatalogCategoryItemOp } from './catalogCategoryItemOp';
 import { CatalogCategoryResponseObjectResource } from './catalogCategoryResponseObjectResource';
+import { CatalogCategoryResponseObjectResourceAttributes } from './catalogCategoryResponseObjectResourceAttributes';
 import { CatalogCategoryUpdateJobCreateQuery } from './catalogCategoryUpdateJobCreateQuery';
 import { CatalogCategoryUpdateJobCreateQueryResourceObject } from './catalogCategoryUpdateJobCreateQueryResourceObject';
 import { CatalogCategoryUpdateJobCreateQueryResourceObjectAttributes } from './catalogCategoryUpdateJobCreateQueryResourceObjectAttributes';
@@ -698,9 +715,6 @@ import { CatalogCategoryUpdateJobResponseObjectResource } from './catalogCategor
 import { CatalogCategoryUpdateQuery } from './catalogCategoryUpdateQuery';
 import { CatalogCategoryUpdateQueryResourceObject } from './catalogCategoryUpdateQueryResourceObject';
 import { CatalogCategoryUpdateQueryResourceObjectAttributes } from './catalogCategoryUpdateQueryResourceObjectAttributes';
-import { CatalogCategoryUpdateQueryResourceObjectRelationships } from './catalogCategoryUpdateQueryResourceObjectRelationships';
-import { CatalogCategoryUpdateQueryResourceObjectRelationshipsItems } from './catalogCategoryUpdateQueryResourceObjectRelationshipsItems';
-import { CatalogCategoryUpdateQueryResourceObjectRelationshipsItemsDataInner } from './catalogCategoryUpdateQueryResourceObjectRelationshipsItemsDataInner';
 import { CatalogItemBulkCreateJobEnum } from './catalogItemBulkCreateJobEnum';
 import { CatalogItemBulkDeleteJobEnum } from './catalogItemBulkDeleteJobEnum';
 import { CatalogItemBulkUpdateJobEnum } from './catalogItemBulkUpdateJobEnum';
@@ -710,9 +724,12 @@ import { CatalogItemCreateJobCreateQueryResourceObject } from './catalogItemCrea
 import { CatalogItemCreateJobCreateQueryResourceObjectAttributes } from './catalogItemCreateJobCreateQueryResourceObjectAttributes';
 import { CatalogItemCreateJobCreateQueryResourceObjectAttributesItems } from './catalogItemCreateJobCreateQueryResourceObjectAttributesItems';
 import { CatalogItemCreateJobResponseObjectResource } from './catalogItemCreateJobResponseObjectResource';
+import { CatalogItemCreateJobResponseObjectResourceAttributes } from './catalogItemCreateJobResponseObjectResourceAttributes';
 import { CatalogItemCreateQuery } from './catalogItemCreateQuery';
 import { CatalogItemCreateQueryResourceObject } from './catalogItemCreateQueryResourceObject';
 import { CatalogItemCreateQueryResourceObjectAttributes } from './catalogItemCreateQueryResourceObjectAttributes';
+import { CatalogItemCreateQueryResourceObjectRelationships } from './catalogItemCreateQueryResourceObjectRelationships';
+import { CatalogItemCreateQueryResourceObjectRelationshipsCategories } from './catalogItemCreateQueryResourceObjectRelationshipsCategories';
 import { CatalogItemDeleteJobCreateQuery } from './catalogItemDeleteJobCreateQuery';
 import { CatalogItemDeleteJobCreateQueryResourceObject } from './catalogItemDeleteJobCreateQueryResourceObject';
 import { CatalogItemDeleteJobCreateQueryResourceObjectAttributes } from './catalogItemDeleteJobCreateQueryResourceObjectAttributes';
@@ -721,6 +738,7 @@ import { CatalogItemDeleteJobResponseObjectResource } from './catalogItemDeleteJ
 import { CatalogItemDeleteQueryResourceObject } from './catalogItemDeleteQueryResourceObject';
 import { CatalogItemEnum } from './catalogItemEnum';
 import { CatalogItemResponseObjectResource } from './catalogItemResponseObjectResource';
+import { CatalogItemResponseObjectResourceAttributes } from './catalogItemResponseObjectResourceAttributes';
 import { CatalogItemUpdateJobCreateQuery } from './catalogItemUpdateJobCreateQuery';
 import { CatalogItemUpdateJobCreateQueryResourceObject } from './catalogItemUpdateJobCreateQueryResourceObject';
 import { CatalogItemUpdateJobCreateQueryResourceObjectAttributes } from './catalogItemUpdateJobCreateQueryResourceObjectAttributes';
@@ -729,9 +747,6 @@ import { CatalogItemUpdateJobResponseObjectResource } from './catalogItemUpdateJ
 import { CatalogItemUpdateQuery } from './catalogItemUpdateQuery';
 import { CatalogItemUpdateQueryResourceObject } from './catalogItemUpdateQueryResourceObject';
 import { CatalogItemUpdateQueryResourceObjectAttributes } from './catalogItemUpdateQueryResourceObjectAttributes';
-import { CatalogItemUpdateQueryResourceObjectRelationships } from './catalogItemUpdateQueryResourceObjectRelationships';
-import { CatalogItemUpdateQueryResourceObjectRelationshipsCategories } from './catalogItemUpdateQueryResourceObjectRelationshipsCategories';
-import { CatalogJobErrorPayload } from './catalogJobErrorPayload';
 import { CatalogVariantBulkCreateJobEnum } from './catalogVariantBulkCreateJobEnum';
 import { CatalogVariantBulkDeleteJobEnum } from './catalogVariantBulkDeleteJobEnum';
 import { CatalogVariantBulkUpdateJobEnum } from './catalogVariantBulkUpdateJobEnum';
@@ -753,12 +768,12 @@ import { CatalogVariantDeleteJobResponseObjectResource } from './catalogVariantD
 import { CatalogVariantDeleteQueryResourceObject } from './catalogVariantDeleteQueryResourceObject';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 import { CatalogVariantResponseObjectResource } from './catalogVariantResponseObjectResource';
+import { CatalogVariantResponseObjectResourceAttributes } from './catalogVariantResponseObjectResourceAttributes';
 import { CatalogVariantUpdateJobCreateQuery } from './catalogVariantUpdateJobCreateQuery';
 import { CatalogVariantUpdateJobCreateQueryResourceObject } from './catalogVariantUpdateJobCreateQueryResourceObject';
 import { CatalogVariantUpdateJobCreateQueryResourceObjectAttributes } from './catalogVariantUpdateJobCreateQueryResourceObjectAttributes';
 import { CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants } from './catalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants';
 import { CatalogVariantUpdateJobResponseObjectResource } from './catalogVariantUpdateJobResponseObjectResource';
-import { CatalogVariantUpdateJobResponseObjectResourceAttributes } from './catalogVariantUpdateJobResponseObjectResourceAttributes';
 import { CatalogVariantUpdateQuery } from './catalogVariantUpdateQuery';
 import { CatalogVariantUpdateQueryResourceObject } from './catalogVariantUpdateQueryResourceObject';
 import { CatalogVariantUpdateQueryResourceObjectAttributes } from './catalogVariantUpdateQueryResourceObjectAttributes';
@@ -772,9 +787,7 @@ import { DataPrivacyDeletionJobEnum } from './dataPrivacyDeletionJobEnum';
 import { DataPrivacyProfileQueryResourceObject } from './dataPrivacyProfileQueryResourceObject';
 import { DataPrivacyProfileQueryResourceObjectAttributes } from './dataPrivacyProfileQueryResourceObjectAttributes';
 import { DeleteTagGroupResponse } from './deleteTagGroupResponse';
-import { DeleteTagGroupResponseData } from './deleteTagGroupResponseData';
-import { DeleteTagGroupResponseDataAttributes } from './deleteTagGroupResponseDataAttributes';
-import { DeleteTagGroupResponseDataRelationships } from './deleteTagGroupResponseDataRelationships';
+import { DeviceMetadata } from './deviceMetadata';
 import { EmailChannel } from './emailChannel';
 import { EmailContentSubObject } from './emailContentSubObject';
 import { EmailMarketing } from './emailMarketing';
@@ -809,52 +822,63 @@ import { FlowUpdateQueryResourceObject } from './flowUpdateQueryResourceObject';
 import { FlowUpdateQueryResourceObjectAttributes } from './flowUpdateQueryResourceObjectAttributes';
 import { GetAccountResponse } from './getAccountResponse';
 import { GetAccountResponseCollection } from './getAccountResponseCollection';
+import { GetAccounts4XXResponse } from './getAccounts4XXResponse';
+import { GetAccounts4XXResponseErrorsInner } from './getAccounts4XXResponseErrorsInner';
+import { GetAccounts4XXResponseErrorsInnerSource } from './getAccounts4XXResponseErrorsInnerSource';
 import { GetCampaignMessageCampaignRelationshipListResponse } from './getCampaignMessageCampaignRelationshipListResponse';
 import { GetCampaignMessageResponse } from './getCampaignMessageResponse';
 import { GetCampaignMessageResponseCollectionCompoundDocument } from './getCampaignMessageResponseCollectionCompoundDocument';
-import { GetCampaignMessageResponseCollectionCompoundDocumentDataInner } from './getCampaignMessageResponseCollectionCompoundDocumentDataInner';
-import { GetCampaignMessageResponseCollectionCompoundDocumentDataInnerAllOf } from './getCampaignMessageResponseCollectionCompoundDocumentDataInnerAllOf';
-import { GetCampaignMessageResponseCollectionCompoundDocumentIncludedInner } from './getCampaignMessageResponseCollectionCompoundDocumentIncludedInner';
 import { GetCampaignMessageResponseCompoundDocument } from './getCampaignMessageResponseCompoundDocument';
+import { GetCampaignMessageResponseCompoundDocumentData } from './getCampaignMessageResponseCompoundDocumentData';
+import { GetCampaignMessageResponseCompoundDocumentDataAllOf } from './getCampaignMessageResponseCompoundDocumentDataAllOf';
+import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationships';
+import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign';
+import { GetCampaignMessageResponseCompoundDocumentIncludedInner } from './getCampaignMessageResponseCompoundDocumentIncludedInner';
 import { GetCampaignMessageTemplateRelationshipListResponse } from './getCampaignMessageTemplateRelationshipListResponse';
 import { GetCampaignMessagesRelationshipListResponseCollection } from './getCampaignMessagesRelationshipListResponseCollection';
 import { GetCampaignRecipientEstimationJobResponse } from './getCampaignRecipientEstimationJobResponse';
 import { GetCampaignRecipientEstimationResponse } from './getCampaignRecipientEstimationResponse';
 import { GetCampaignResponseCollectionCompoundDocument } from './getCampaignResponseCollectionCompoundDocument';
+import { GetCampaignResponseCollectionCompoundDocumentDataInner } from './getCampaignResponseCollectionCompoundDocumentDataInner';
+import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOf } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOf';
+import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages';
+import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner';
+import { GetCampaignResponseCollectionCompoundDocumentIncludedInner } from './getCampaignResponseCollectionCompoundDocumentIncludedInner';
 import { GetCampaignResponseCompoundDocument } from './getCampaignResponseCompoundDocument';
-import { GetCampaignResponseCompoundDocumentData } from './getCampaignResponseCompoundDocumentData';
-import { GetCampaignResponseCompoundDocumentDataAllOf } from './getCampaignResponseCompoundDocumentDataAllOf';
-import { GetCampaignResponseCompoundDocumentIncludedInner } from './getCampaignResponseCompoundDocumentIncludedInner';
 import { GetCampaignSendJobResponse } from './getCampaignSendJobResponse';
 import { GetCampaignTagRelationshipListResponseCollection } from './getCampaignTagRelationshipListResponseCollection';
 import { GetCatalogCategoryCreateJobResponseCollectionCompoundDocument } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocument';
+import { GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInner';
+import { GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOf } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import { GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories';
 import { GetCatalogCategoryCreateJobResponseCompoundDocument } from './getCatalogCategoryCreateJobResponseCompoundDocument';
-import { GetCatalogCategoryCreateJobResponseCompoundDocumentData } from './getCatalogCategoryCreateJobResponseCompoundDocumentData';
-import { GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOf } from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOf';
-import { GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationships } from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationships';
-import { GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategories } from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategories';
-import { GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategoriesDataInner } from './getCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategoriesDataInner';
 import { GetCatalogCategoryDeleteJobResponse } from './getCatalogCategoryDeleteJobResponse';
 import { GetCatalogCategoryDeleteJobResponseCollection } from './getCatalogCategoryDeleteJobResponseCollection';
-import { GetCatalogCategoryDeleteJobResponseData } from './getCatalogCategoryDeleteJobResponseData';
+import { GetCatalogCategoryDeleteJobResponseCollectionDataInner } from './getCatalogCategoryDeleteJobResponseCollectionDataInner';
 import { GetCatalogCategoryItemListResponseCollection } from './getCatalogCategoryItemListResponseCollection';
+import { GetCatalogCategoryItemListResponseCollectionDataInner } from './getCatalogCategoryItemListResponseCollectionDataInner';
 import { GetCatalogCategoryResponse } from './getCatalogCategoryResponse';
 import { GetCatalogCategoryResponseCollection } from './getCatalogCategoryResponseCollection';
-import { GetCatalogCategoryResponseData } from './getCatalogCategoryResponseData';
-import { GetCatalogCategoryResponseDataAllOf } from './getCatalogCategoryResponseDataAllOf';
+import { GetCatalogCategoryResponseCollectionDataInner } from './getCatalogCategoryResponseCollectionDataInner';
+import { GetCatalogCategoryResponseCollectionDataInnerAllOf } from './getCatalogCategoryResponseCollectionDataInnerAllOf';
+import { GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships } from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationships';
+import { GetCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems } from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems';
 import { GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocument';
+import { GetCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInner';
 import { GetCatalogCategoryUpdateJobResponseCompoundDocument } from './getCatalogCategoryUpdateJobResponseCompoundDocument';
-import { GetCatalogCategoryUpdateJobResponseCompoundDocumentData } from './getCatalogCategoryUpdateJobResponseCompoundDocumentData';
 import { GetCatalogItemCategoryListResponseCollection } from './getCatalogItemCategoryListResponseCollection';
+import { GetCatalogItemCategoryListResponseCollectionDataInner } from './getCatalogItemCategoryListResponseCollectionDataInner';
 import { GetCatalogItemCreateJobResponseCollectionCompoundDocument } from './getCatalogItemCreateJobResponseCollectionCompoundDocument';
 import { GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner';
+import { GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOf } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import { GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems';
 import { GetCatalogItemCreateJobResponseCompoundDocument } from './getCatalogItemCreateJobResponseCompoundDocument';
 import { GetCatalogItemDeleteJobResponse } from './getCatalogItemDeleteJobResponse';
 import { GetCatalogItemDeleteJobResponseCollection } from './getCatalogItemDeleteJobResponseCollection';
-import { GetCatalogItemDeleteJobResponseData } from './getCatalogItemDeleteJobResponseData';
-import { GetCatalogItemDeleteJobResponseDataAllOf } from './getCatalogItemDeleteJobResponseDataAllOf';
-import { GetCatalogItemDeleteJobResponseDataAllOfRelationships } from './getCatalogItemDeleteJobResponseDataAllOfRelationships';
-import { GetCatalogItemDeleteJobResponseDataAllOfRelationshipsItems } from './getCatalogItemDeleteJobResponseDataAllOfRelationshipsItems';
+import { GetCatalogItemDeleteJobResponseCollectionDataInner } from './getCatalogItemDeleteJobResponseCollectionDataInner';
 import { GetCatalogItemResponseCollectionCompoundDocument } from './getCatalogItemResponseCollectionCompoundDocument';
 import { GetCatalogItemResponseCollectionCompoundDocumentDataInner } from './getCatalogItemResponseCollectionCompoundDocumentDataInner';
 import { GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOf } from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -868,22 +892,23 @@ import { GetCatalogItemUpdateJobResponseCompoundDocument } from './getCatalogIte
 import { GetCatalogVariantCreateJobResponseCollectionCompoundDocument } from './getCatalogVariantCreateJobResponseCollectionCompoundDocument';
 import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner';
 import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOf } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
+import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
 import { GetCatalogVariantCreateJobResponseCompoundDocument } from './getCatalogVariantCreateJobResponseCompoundDocument';
 import { GetCatalogVariantDeleteJobResponse } from './getCatalogVariantDeleteJobResponse';
 import { GetCatalogVariantDeleteJobResponseCollection } from './getCatalogVariantDeleteJobResponseCollection';
-import { GetCatalogVariantDeleteJobResponseData } from './getCatalogVariantDeleteJobResponseData';
+import { GetCatalogVariantDeleteJobResponseCollectionDataInner } from './getCatalogVariantDeleteJobResponseCollectionDataInner';
 import { GetCatalogVariantResponse } from './getCatalogVariantResponse';
 import { GetCatalogVariantResponseCollection } from './getCatalogVariantResponseCollection';
-import { GetCatalogVariantResponseData } from './getCatalogVariantResponseData';
-import { GetCatalogVariantResponseDataAllOf } from './getCatalogVariantResponseDataAllOf';
-import { GetCatalogVariantResponseDataAllOfRelationships } from './getCatalogVariantResponseDataAllOfRelationships';
-import { GetCatalogVariantResponseDataAllOfRelationshipsItem } from './getCatalogVariantResponseDataAllOfRelationshipsItem';
+import { GetCatalogVariantResponseCollectionDataInner } from './getCatalogVariantResponseCollectionDataInner';
+import { GetCatalogVariantResponseCollectionDataInnerAllOf } from './getCatalogVariantResponseCollectionDataInnerAllOf';
+import { GetCatalogVariantResponseCollectionDataInnerAllOfRelationships } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationships';
+import { GetCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItem } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItem';
+import { GetCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItemData } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItemData';
 import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocument } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocument';
+import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner';
 import { GetCatalogVariantUpdateJobResponseCompoundDocument } from './getCatalogVariantUpdateJobResponseCompoundDocument';
-import { GetCatalogVariantUpdateJobResponseCompoundDocumentData } from './getCatalogVariantUpdateJobResponseCompoundDocumentData';
-import { GetCreateVariantsJobs5XXResponse } from './getCreateVariantsJobs5XXResponse';
-import { GetCreateVariantsJobs5XXResponseErrorsInner } from './getCreateVariantsJobs5XXResponseErrorsInner';
-import { GetCreateVariantsJobs5XXResponseErrorsInnerSource } from './getCreateVariantsJobs5XXResponseErrorsInnerSource';
 import { GetEventMetricsRelationshipListResponse } from './getEventMetricsRelationshipListResponse';
 import { GetEventProfilesRelationshipListResponse } from './getEventProfilesRelationshipListResponse';
 import { GetEventResponseCollectionCompoundDocument } from './getEventResponseCollectionCompoundDocument';
@@ -900,14 +925,14 @@ import { GetFlowActionFlowMessageRelationshipResponseCollection } from './getFlo
 import { GetFlowActionFlowRelationshipResponse } from './getFlowActionFlowRelationshipResponse';
 import { GetFlowActionResponse } from './getFlowActionResponse';
 import { GetFlowActionResponseCollection } from './getFlowActionResponseCollection';
+import { GetFlowActionResponseCollectionDataInner } from './getFlowActionResponseCollectionDataInner';
+import { GetFlowActionResponseCollectionDataInnerAllOf } from './getFlowActionResponseCollectionDataInnerAllOf';
+import { GetFlowActionResponseCollectionDataInnerAllOfRelationships } from './getFlowActionResponseCollectionDataInnerAllOfRelationships';
+import { GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlow } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlow';
+import { GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages';
+import { GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner';
 import { GetFlowActionResponseCompoundDocument } from './getFlowActionResponseCompoundDocument';
 import { GetFlowActionResponseCompoundDocumentIncludedInner } from './getFlowActionResponseCompoundDocumentIncludedInner';
-import { GetFlowActionResponseData } from './getFlowActionResponseData';
-import { GetFlowActionResponseDataAllOf } from './getFlowActionResponseDataAllOf';
-import { GetFlowActionResponseDataAllOfRelationships } from './getFlowActionResponseDataAllOfRelationships';
-import { GetFlowActionResponseDataAllOfRelationshipsFlow } from './getFlowActionResponseDataAllOfRelationshipsFlow';
-import { GetFlowActionResponseDataAllOfRelationshipsFlowMessages } from './getFlowActionResponseDataAllOfRelationshipsFlowMessages';
-import { GetFlowActionResponseDataAllOfRelationshipsFlowMessagesDataInner } from './getFlowActionResponseDataAllOfRelationshipsFlowMessagesDataInner';
 import { GetFlowFlowActionRelationshipListResponseCollection } from './getFlowFlowActionRelationshipListResponseCollection';
 import { GetFlowMessageFlowActionRelationshipResponse } from './getFlowMessageFlowActionRelationshipResponse';
 import { GetFlowMessageResponseCollection } from './getFlowMessageResponseCollection';
@@ -915,21 +940,28 @@ import { GetFlowMessageResponseCollectionDataInner } from './getFlowMessageRespo
 import { GetFlowMessageResponseCollectionDataInnerAllOf } from './getFlowMessageResponseCollectionDataInnerAllOf';
 import { GetFlowMessageResponseCollectionDataInnerAllOfRelationships } from './getFlowMessageResponseCollectionDataInnerAllOfRelationships';
 import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction';
+import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate';
+import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData';
 import { GetFlowMessageResponseCompoundDocument } from './getFlowMessageResponseCompoundDocument';
+import { GetFlowMessageResponseCompoundDocumentIncludedInner } from './getFlowMessageResponseCompoundDocumentIncludedInner';
+import { GetFlowMessageTemplateRelationshipResponse } from './getFlowMessageTemplateRelationshipResponse';
 import { GetFlowResponse } from './getFlowResponse';
 import { GetFlowResponseCollectionCompoundDocument } from './getFlowResponseCollectionCompoundDocument';
+import { GetFlowResponseCollectionCompoundDocumentDataInner } from './getFlowResponseCollectionCompoundDocumentDataInner';
+import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOf } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOf';
+import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions';
+import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner';
+import { GetFlowResponseCollectionCompoundDocumentIncludedInner } from './getFlowResponseCollectionCompoundDocumentIncludedInner';
 import { GetFlowResponseCompoundDocument } from './getFlowResponseCompoundDocument';
-import { GetFlowResponseCompoundDocumentData } from './getFlowResponseCompoundDocumentData';
-import { GetFlowResponseCompoundDocumentDataAllOf } from './getFlowResponseCompoundDocumentDataAllOf';
-import { GetFlowResponseCompoundDocumentDataAllOfRelationships } from './getFlowResponseCompoundDocumentDataAllOfRelationships';
-import { GetFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActions } from './getFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActions';
-import { GetFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActionsDataInner } from './getFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActionsDataInner';
-import { GetFlowResponseCompoundDocumentDataAllOfRelationshipsTags } from './getFlowResponseCompoundDocumentDataAllOfRelationshipsTags';
-import { GetFlowResponseCompoundDocumentDataAllOfRelationshipsTagsDataInner } from './getFlowResponseCompoundDocumentDataAllOfRelationshipsTagsDataInner';
-import { GetFlowResponseCompoundDocumentIncludedInner } from './getFlowResponseCompoundDocumentIncludedInner';
 import { GetFlowTagRelationshipListResponseCollection } from './getFlowTagRelationshipListResponseCollection';
 import { GetListListResponseCollectionCompoundDocument } from './getListListResponseCollectionCompoundDocument';
 import { GetListListResponseCollectionCompoundDocumentDataInner } from './getListListResponseCollectionCompoundDocumentDataInner';
+import { GetListListResponseCollectionCompoundDocumentDataInnerAllOf } from './getListListResponseCollectionCompoundDocumentDataInnerAllOf';
+import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
+import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
+import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner';
 import { GetListRelationshipsResponseCollection } from './getListRelationshipsResponseCollection';
 import { GetListResponseCollection } from './getListResponseCollection';
 import { GetListResponseCollectionDataInner } from './getListResponseCollectionDataInner';
@@ -945,17 +977,19 @@ import { GetProfileResponseCollectionCompoundDocument } from './getProfileRespon
 import { GetProfileResponseCollectionCompoundDocumentDataInner } from './getProfileResponseCollectionCompoundDocumentDataInner';
 import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOf } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOf';
 import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsSegments } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsSegments';
+import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
 import { GetProfileResponseCompoundDocument } from './getProfileResponseCompoundDocument';
-import { GetProfileResponseCompoundDocumentData } from './getProfileResponseCompoundDocumentData';
-import { GetProfileResponseCompoundDocumentDataAllOf } from './getProfileResponseCompoundDocumentDataAllOf';
 import { GetProfileResponseCompoundDocumentIncludedInner } from './getProfileResponseCompoundDocumentIncludedInner';
+import { GetProfileResponseData } from './getProfileResponseData';
+import { GetProfileResponseDataAllOf } from './getProfileResponseDataAllOf';
+import { GetProfileResponseDataAllOfRelationships } from './getProfileResponseDataAllOfRelationships';
+import { GetProfileResponseDataAllOfRelationshipsLists } from './getProfileResponseDataAllOfRelationshipsLists';
+import { GetProfileResponseDataAllOfRelationshipsListsDataInner } from './getProfileResponseDataAllOfRelationshipsListsDataInner';
+import { GetProfileResponseDataAllOfRelationshipsSegments } from './getProfileResponseDataAllOfRelationshipsSegments';
+import { GetProfileResponseDataAllOfRelationshipsSegmentsDataInner } from './getProfileResponseDataAllOfRelationshipsSegmentsDataInner';
 import { GetProfileSegmentRelationshipsResponseCollection } from './getProfileSegmentRelationshipsResponseCollection';
 import { GetSegmentListResponseCollectionCompoundDocument } from './getSegmentListResponseCollectionCompoundDocument';
 import { GetSegmentListResponseCollectionCompoundDocumentDataInner } from './getSegmentListResponseCollectionCompoundDocumentDataInner';
-import { GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOf } from './getSegmentListResponseCollectionCompoundDocumentDataInnerAllOf';
-import { GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-import { GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles } from './getSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
 import { GetSegmentRelationshipsResponseCollection } from './getSegmentRelationshipsResponseCollection';
 import { GetSegmentResponseCollection } from './getSegmentResponseCollection';
 import { GetSegmentResponseCollectionDataInner } from './getSegmentResponseCollectionDataInner';
@@ -968,6 +1002,7 @@ import { GetTagGroupResponse } from './getTagGroupResponse';
 import { GetTagGroupResponseCollection } from './getTagGroupResponseCollection';
 import { GetTagGroupResponseCollectionDataInner } from './getTagGroupResponseCollectionDataInner';
 import { GetTagGroupResponseCollectionDataInnerAllOf } from './getTagGroupResponseCollectionDataInnerAllOf';
+import { GetTagGroupResponseCollectionDataInnerAllOfRelationships } from './getTagGroupResponseCollectionDataInnerAllOfRelationships';
 import { GetTagGroupTagRelationshipsResponseCollection } from './getTagGroupTagRelationshipsResponseCollection';
 import { GetTagGroupTagRelationshipsResponseCollectionDataInner } from './getTagGroupTagRelationshipsResponseCollectionDataInner';
 import { GetTagListRelationshipsResponseCollection } from './getTagListRelationshipsResponseCollection';
@@ -977,6 +1012,7 @@ import { GetTagResponseCollectionDataInner } from './getTagResponseCollectionDat
 import { GetTagResponseCollectionDataInnerAllOf } from './getTagResponseCollectionDataInnerAllOf';
 import { GetTagResponseCollectionDataInnerAllOfRelationships } from './getTagResponseCollectionDataInnerAllOfRelationships';
 import { GetTagResponseCollectionDataInnerAllOfRelationshipsCampaigns } from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaigns';
+import { GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner } from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner';
 import { GetTagResponseCollectionDataInnerAllOfRelationshipsFlows } from './getTagResponseCollectionDataInnerAllOfRelationshipsFlows';
 import { GetTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner } from './getTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner';
 import { GetTagResponseCollectionDataInnerAllOfRelationshipsTagGroup } from './getTagResponseCollectionDataInnerAllOfRelationshipsTagGroup';
@@ -989,6 +1025,7 @@ import { GetTemplateResponse } from './getTemplateResponse';
 import { GetTemplateResponseCollection } from './getTemplateResponseCollection';
 import { ListCreateQuery } from './listCreateQuery';
 import { ListCreateQueryResourceObject } from './listCreateQueryResourceObject';
+import { ListCreateQueryResourceObjectAttributes } from './listCreateQueryResourceObjectAttributes';
 import { ListEnum } from './listEnum';
 import { ListListResponseObjectResource } from './listListResponseObjectResource';
 import { ListListResponseObjectResourceAttributes } from './listListResponseObjectResourceAttributes';
@@ -996,11 +1033,11 @@ import { ListMembersAddQuery } from './listMembersAddQuery';
 import { ListMembersDeleteQuery } from './listMembersDeleteQuery';
 import { ListPartialUpdateQuery } from './listPartialUpdateQuery';
 import { ListPartialUpdateQueryResourceObject } from './listPartialUpdateQueryResourceObject';
-import { ListPartialUpdateQueryResourceObjectAttributes } from './listPartialUpdateQueryResourceObjectAttributes';
 import { ListResponseObjectResource } from './listResponseObjectResource';
 import { ListRetrieveResponseObjectResourceAttributes } from './listRetrieveResponseObjectResourceAttributes';
 import { ListRetrieveResponseObjectResourceExtended } from './listRetrieveResponseObjectResourceExtended';
 import { ListRetrieveResponseObjectResourceExtendedAttributes } from './listRetrieveResponseObjectResourceExtendedAttributes';
+import { ListRetrieveResponseObjectResourceExtendedAttributesAllOf } from './listRetrieveResponseObjectResourceExtendedAttributesAllOf';
 import { MetricAggregateEnum } from './metricAggregateEnum';
 import { MetricAggregateQuery } from './metricAggregateQuery';
 import { MetricAggregateQueryResourceObject } from './metricAggregateQueryResourceObject';
@@ -1016,60 +1053,32 @@ import { OnsiteProfileCreateQueryResourceObject } from './onsiteProfileCreateQue
 import { OnsiteProfileCreateQueryResourceObjectAttributes } from './onsiteProfileCreateQueryResourceObjectAttributes';
 import { OnsiteProfileMeta } from './onsiteProfileMeta';
 import { PatchCampaignMessageResponse } from './patchCampaignMessageResponse';
-import { PatchCampaignMessageResponseData } from './patchCampaignMessageResponseData';
-import { PatchCampaignMessageResponseDataAttributes } from './patchCampaignMessageResponseDataAttributes';
-import { PatchCampaignMessageResponseDataAttributesContent } from './patchCampaignMessageResponseDataAttributesContent';
-import { PatchCampaignMessageResponseDataRelationships } from './patchCampaignMessageResponseDataRelationships';
-import { PatchCampaignMessageResponseDataRelationshipsCampaign } from './patchCampaignMessageResponseDataRelationshipsCampaign';
-import { PatchCampaignMessageResponseDataRelationshipsCampaignData } from './patchCampaignMessageResponseDataRelationshipsCampaignData';
-import { PatchCampaignMessageResponseDataRelationshipsTemplate } from './patchCampaignMessageResponseDataRelationshipsTemplate';
-import { PatchCampaignMessageResponseDataRelationshipsTemplateData } from './patchCampaignMessageResponseDataRelationshipsTemplateData';
 import { PatchCampaignResponse } from './patchCampaignResponse';
 import { PatchCatalogCategoryResponse } from './patchCatalogCategoryResponse';
 import { PatchCatalogItemResponse } from './patchCatalogItemResponse';
-import { PatchCatalogItemResponseData } from './patchCatalogItemResponseData';
-import { PatchCatalogItemResponseDataAttributes } from './patchCatalogItemResponseDataAttributes';
 import { PatchCatalogVariantResponse } from './patchCatalogVariantResponse';
 import { PatchFlowResponse } from './patchFlowResponse';
 import { PatchFlowResponseData } from './patchFlowResponseData';
 import { PatchListPartialUpdateResponse } from './patchListPartialUpdateResponse';
-import { PatchListPartialUpdateResponseData } from './patchListPartialUpdateResponseData';
 import { PatchProfileResponse } from './patchProfileResponse';
-import { PatchProfileResponseData } from './patchProfileResponseData';
-import { PatchProfileResponseDataAttributes } from './patchProfileResponseDataAttributes';
-import { PatchProfileResponseDataRelationships } from './patchProfileResponseDataRelationships';
-import { PatchProfileResponseDataRelationshipsLists } from './patchProfileResponseDataRelationshipsLists';
-import { PatchProfileResponseDataRelationshipsListsDataInner } from './patchProfileResponseDataRelationshipsListsDataInner';
-import { PatchProfileResponseDataRelationshipsSegments } from './patchProfileResponseDataRelationshipsSegments';
-import { PatchProfileResponseDataRelationshipsSegmentsDataInner } from './patchProfileResponseDataRelationshipsSegmentsDataInner';
 import { PatchSegmentPartialUpdateResponse } from './patchSegmentPartialUpdateResponse';
 import { PatchSegmentPartialUpdateResponseData } from './patchSegmentPartialUpdateResponseData';
 import { PatchTagGroupResponse } from './patchTagGroupResponse';
 import { PatchTemplateResponse } from './patchTemplateResponse';
-import { PatchTemplateResponseData } from './patchTemplateResponseData';
-import { PatchTemplateResponseDataAttributes } from './patchTemplateResponseDataAttributes';
 import { PostCampaignMessageResponse } from './postCampaignMessageResponse';
+import { PostCampaignMessageResponseData } from './postCampaignMessageResponseData';
 import { PostCampaignRecipientEstimationJobResponse } from './postCampaignRecipientEstimationJobResponse';
 import { PostCampaignRecipientEstimationJobResponseData } from './postCampaignRecipientEstimationJobResponseData';
-import { PostCampaignRecipientEstimationJobResponseDataAttributes } from './postCampaignRecipientEstimationJobResponseDataAttributes';
 import { PostCampaignResponse } from './postCampaignResponse';
 import { PostCampaignResponseData } from './postCampaignResponseData';
-import { PostCampaignResponseDataRelationships } from './postCampaignResponseDataRelationships';
-import { PostCampaignResponseDataRelationshipsCampaignMessages } from './postCampaignResponseDataRelationshipsCampaignMessages';
-import { PostCampaignResponseDataRelationshipsCampaignMessagesDataInner } from './postCampaignResponseDataRelationshipsCampaignMessagesDataInner';
 import { PostCampaignSendJobResponse } from './postCampaignSendJobResponse';
 import { PostCampaignSendJobResponseData } from './postCampaignSendJobResponseData';
-import { PostCampaignSendJobResponseDataAttributes } from './postCampaignSendJobResponseDataAttributes';
 import { PostCatalogCategoryCreateJobResponse } from './postCatalogCategoryCreateJobResponse';
 import { PostCatalogCategoryCreateJobResponseData } from './postCatalogCategoryCreateJobResponseData';
 import { PostCatalogCategoryDeleteJobResponse } from './postCatalogCategoryDeleteJobResponse';
 import { PostCatalogCategoryDeleteJobResponseData } from './postCatalogCategoryDeleteJobResponseData';
 import { PostCatalogCategoryResponse } from './postCatalogCategoryResponse';
 import { PostCatalogCategoryResponseData } from './postCatalogCategoryResponseData';
-import { PostCatalogCategoryResponseDataAttributes } from './postCatalogCategoryResponseDataAttributes';
-import { PostCatalogCategoryResponseDataRelationships } from './postCatalogCategoryResponseDataRelationships';
-import { PostCatalogCategoryResponseDataRelationshipsItems } from './postCatalogCategoryResponseDataRelationshipsItems';
-import { PostCatalogCategoryResponseDataRelationshipsItemsDataInner } from './postCatalogCategoryResponseDataRelationshipsItemsDataInner';
 import { PostCatalogCategoryUpdateJobResponse } from './postCatalogCategoryUpdateJobResponse';
 import { PostCatalogCategoryUpdateJobResponseData } from './postCatalogCategoryUpdateJobResponseData';
 import { PostCatalogItemCreateJobResponse } from './postCatalogItemCreateJobResponse';
@@ -1077,29 +1086,31 @@ import { PostCatalogItemCreateJobResponseData } from './postCatalogItemCreateJob
 import { PostCatalogItemDeleteJobResponse } from './postCatalogItemDeleteJobResponse';
 import { PostCatalogItemDeleteJobResponseData } from './postCatalogItemDeleteJobResponseData';
 import { PostCatalogItemResponse } from './postCatalogItemResponse';
+import { PostCatalogItemResponseData } from './postCatalogItemResponseData';
 import { PostCatalogItemUpdateJobResponse } from './postCatalogItemUpdateJobResponse';
 import { PostCatalogItemUpdateJobResponseData } from './postCatalogItemUpdateJobResponseData';
 import { PostCatalogVariantCreateJobResponse } from './postCatalogVariantCreateJobResponse';
 import { PostCatalogVariantCreateJobResponseData } from './postCatalogVariantCreateJobResponseData';
-import { PostCatalogVariantCreateJobResponseDataRelationships } from './postCatalogVariantCreateJobResponseDataRelationships';
-import { PostCatalogVariantCreateJobResponseDataRelationshipsVariants } from './postCatalogVariantCreateJobResponseDataRelationshipsVariants';
-import { PostCatalogVariantCreateJobResponseDataRelationshipsVariantsDataInner } from './postCatalogVariantCreateJobResponseDataRelationshipsVariantsDataInner';
 import { PostCatalogVariantDeleteJobResponse } from './postCatalogVariantDeleteJobResponse';
 import { PostCatalogVariantDeleteJobResponseData } from './postCatalogVariantDeleteJobResponseData';
 import { PostCatalogVariantResponse } from './postCatalogVariantResponse';
 import { PostCatalogVariantResponseData } from './postCatalogVariantResponseData';
-import { PostCatalogVariantResponseDataAttributes } from './postCatalogVariantResponseDataAttributes';
 import { PostCatalogVariantUpdateJobResponse } from './postCatalogVariantUpdateJobResponse';
 import { PostCatalogVariantUpdateJobResponseData } from './postCatalogVariantUpdateJobResponseData';
 import { PostListCreateResponse } from './postListCreateResponse';
+import { PostListCreateResponseData } from './postListCreateResponseData';
 import { PostMetricAggregateResponse } from './postMetricAggregateResponse';
 import { PostMetricAggregateResponseData } from './postMetricAggregateResponseData';
 import { PostMetricAggregateResponseDataAttributes } from './postMetricAggregateResponseDataAttributes';
 import { PostProfileResponse } from './postProfileResponse';
+import { PostProfileResponseData } from './postProfileResponseData';
+import { PostProfileResponseDataAttributes } from './postProfileResponseDataAttributes';
 import { PostTagGroupResponse } from './postTagGroupResponse';
+import { PostTagGroupResponseData } from './postTagGroupResponseData';
 import { PostTagResponse } from './postTagResponse';
 import { PostTagResponseData } from './postTagResponseData';
 import { PostTemplateResponse } from './postTemplateResponse';
+import { PostTemplateResponseData } from './postTemplateResponseData';
 import { PredictiveAnalytics } from './predictiveAnalytics';
 import { ProfileCreateQuery } from './profileCreateQuery';
 import { ProfileCreateQueryResourceObject } from './profileCreateQueryResourceObject';
@@ -1115,7 +1126,6 @@ import { ProfileMetaPatchProperties } from './profileMetaPatchProperties';
 import { ProfileMetaPatchPropertiesUnset } from './profileMetaPatchPropertiesUnset';
 import { ProfilePartialUpdateQuery } from './profilePartialUpdateQuery';
 import { ProfilePartialUpdateQueryResourceObject } from './profilePartialUpdateQueryResourceObject';
-import { ProfilePartialUpdateQueryResourceObjectAttributes } from './profilePartialUpdateQueryResourceObjectAttributes';
 import { ProfileResponseObjectResource } from './profileResponseObjectResource';
 import { ProfileResponseObjectResourceAttributes } from './profileResponseObjectResourceAttributes';
 import { ProfileResponseObjectResourceExtended } from './profileResponseObjectResourceExtended';
@@ -1133,6 +1143,13 @@ import { ProfileSuppressionCreateQueryResourceObject } from './profileSuppressio
 import { ProfileSuppressionCreateQueryResourceObjectAttributes } from './profileSuppressionCreateQueryResourceObjectAttributes';
 import { ProfileSuppressionDeleteQueryResourceObject } from './profileSuppressionDeleteQueryResourceObject';
 import { ProfileSuppressionDeleteQueryResourceObjectAttributes } from './profileSuppressionDeleteQueryResourceObjectAttributes';
+import { ProfileUpsertQueryResourceObject } from './profileUpsertQueryResourceObject';
+import { ProfileUpsertQueryResourceObjectAttributes } from './profileUpsertQueryResourceObjectAttributes';
+import { PushTokenCreateQuery } from './pushTokenCreateQuery';
+import { PushTokenCreateQueryResourceObject } from './pushTokenCreateQueryResourceObject';
+import { PushTokenCreateQueryResourceObjectAttributes } from './pushTokenCreateQueryResourceObjectAttributes';
+import { PushTokenCreateQueryResourceObjectAttributesProfile } from './pushTokenCreateQueryResourceObjectAttributesProfile';
+import { PushTokenEnum } from './pushTokenEnum';
 import { RelationshipLinks } from './relationshipLinks';
 import { RenderOptionsSubObject } from './renderOptionsSubObject';
 import { SMSChannel } from './sMSChannel';
@@ -1147,15 +1164,14 @@ import { SMSTrackingOptionsSubObject } from './sMSTrackingOptionsSubObject';
 import { STOScheduleOptions } from './sTOScheduleOptions';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResource } from './segmentListResponseObjectResource';
+import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 import { SegmentPartialUpdateQuery } from './segmentPartialUpdateQuery';
 import { SegmentPartialUpdateQueryResourceObject } from './segmentPartialUpdateQueryResourceObject';
 import { SegmentPartialUpdateQueryResourceObjectAttributes } from './segmentPartialUpdateQueryResourceObjectAttributes';
 import { SegmentResponseObjectResource } from './segmentResponseObjectResource';
-import { SegmentResponseObjectResourceAttributes } from './segmentResponseObjectResourceAttributes';
 import { SegmentRetrieveResponseObjectResourceAttributes } from './segmentRetrieveResponseObjectResourceAttributes';
 import { SegmentRetrieveResponseObjectResourceExtended } from './segmentRetrieveResponseObjectResourceExtended';
 import { SegmentRetrieveResponseObjectResourceExtendedAttributes } from './segmentRetrieveResponseObjectResourceExtendedAttributes';
-import { SegmentRetrieveResponseObjectResourceExtendedAttributesAllOf } from './segmentRetrieveResponseObjectResourceExtendedAttributesAllOf';
 import { SendOptions } from './sendOptions';
 import { SendStrategySubObject } from './sendStrategySubObject';
 import { SendTimeSubObject } from './sendTimeSubObject';
@@ -1172,13 +1188,13 @@ import { SubscriptionCreateJobCreateQuery } from './subscriptionCreateJobCreateQ
 import { SubscriptionCreateJobCreateQueryResourceObject } from './subscriptionCreateJobCreateQueryResourceObject';
 import { SubscriptionCreateJobCreateQueryResourceObjectAttributes } from './subscriptionCreateJobCreateQueryResourceObjectAttributes';
 import { SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles } from './subscriptionCreateJobCreateQueryResourceObjectAttributesProfiles';
+import { SubscriptionCreateJobCreateQueryResourceObjectRelationships } from './subscriptionCreateJobCreateQueryResourceObjectRelationships';
+import { SubscriptionCreateJobCreateQueryResourceObjectRelationshipsList } from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsList';
+import { SubscriptionCreateJobCreateQueryResourceObjectRelationshipsListData } from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsListData';
 import { SubscriptionDeleteJobCreateQuery } from './subscriptionDeleteJobCreateQuery';
 import { SubscriptionDeleteJobCreateQueryResourceObject } from './subscriptionDeleteJobCreateQueryResourceObject';
 import { SubscriptionDeleteJobCreateQueryResourceObjectAttributes } from './subscriptionDeleteJobCreateQueryResourceObjectAttributes';
 import { SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles } from './subscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles';
-import { SubscriptionDeleteJobCreateQueryResourceObjectRelationships } from './subscriptionDeleteJobCreateQueryResourceObjectRelationships';
-import { SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList } from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsList';
-import { SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData } from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData';
 import { Subscriptions } from './subscriptions';
 import { SuppressionCreateJobCreateQuery } from './suppressionCreateJobCreateQuery';
 import { SuppressionCreateJobCreateQueryResourceObject } from './suppressionCreateJobCreateQueryResourceObject';
@@ -1200,15 +1216,16 @@ import { TagGroupCreateQueryResourceObject } from './tagGroupCreateQueryResource
 import { TagGroupCreateQueryResourceObjectAttributes } from './tagGroupCreateQueryResourceObjectAttributes';
 import { TagGroupEnum } from './tagGroupEnum';
 import { TagGroupResponseObjectResource } from './tagGroupResponseObjectResource';
+import { TagGroupResponseObjectResourceAttributes } from './tagGroupResponseObjectResourceAttributes';
 import { TagGroupUpdateQuery } from './tagGroupUpdateQuery';
 import { TagGroupUpdateQueryResourceObject } from './tagGroupUpdateQueryResourceObject';
 import { TagGroupUpdateQueryResourceObjectAttributes } from './tagGroupUpdateQueryResourceObjectAttributes';
 import { TagListOp } from './tagListOp';
 import { TagResponseObjectResource } from './tagResponseObjectResource';
+import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
 import { TagSegmentOp } from './tagSegmentOp';
 import { TagUpdateQuery } from './tagUpdateQuery';
 import { TagUpdateQueryResourceObject } from './tagUpdateQueryResourceObject';
-import { TagUpdateQueryResourceObjectAttributes } from './tagUpdateQueryResourceObjectAttributes';
 import { TemplateCloneQuery } from './templateCloneQuery';
 import { TemplateCloneQueryResourceObject } from './templateCloneQueryResourceObject';
 import { TemplateCloneQueryResourceObjectAttributes } from './templateCloneQueryResourceObjectAttributes';
@@ -1220,6 +1237,7 @@ import { TemplateRenderQuery } from './templateRenderQuery';
 import { TemplateRenderQueryResourceObject } from './templateRenderQueryResourceObject';
 import { TemplateRenderQueryResourceObjectAttributes } from './templateRenderQueryResourceObjectAttributes';
 import { TemplateResponseObjectResource } from './templateResponseObjectResource';
+import { TemplateResponseObjectResourceAttributes } from './templateResponseObjectResourceAttributes';
 import { TemplateUpdateQuery } from './templateUpdateQuery';
 import { TemplateUpdateQueryResourceObject } from './templateUpdateQueryResourceObject';
 import { TemplateUpdateQueryResourceObjectAttributes } from './templateUpdateQueryResourceObjectAttributes';
@@ -1246,7 +1264,9 @@ let enumsMap: {[index: string]: any} = {
         "CampaignMessageEnum": CampaignMessageEnum,
         "CampaignRecipientEstimationEnum": CampaignRecipientEstimationEnum,
         "CampaignRecipientEstimationJobEnum": CampaignRecipientEstimationJobEnum,
+        "CampaignRecipientEstimationJobResponseObjectResourceAttributes.StatusEnum": CampaignRecipientEstimationJobResponseObjectResourceAttributes.StatusEnum,
         "CampaignSendJobEnum": CampaignSendJobEnum,
+        "CampaignSendJobResponseObjectResourceAttributes.StatusEnum": CampaignSendJobResponseObjectResourceAttributes.StatusEnum,
         "CatalogCategoryBulkCreateJobEnum": CatalogCategoryBulkCreateJobEnum,
         "CatalogCategoryBulkDeleteJobEnum": CatalogCategoryBulkDeleteJobEnum,
         "CatalogCategoryBulkUpdateJobEnum": CatalogCategoryBulkUpdateJobEnum,
@@ -1255,46 +1275,54 @@ let enumsMap: {[index: string]: any} = {
         "CatalogItemBulkCreateJobEnum": CatalogItemBulkCreateJobEnum,
         "CatalogItemBulkDeleteJobEnum": CatalogItemBulkDeleteJobEnum,
         "CatalogItemBulkUpdateJobEnum": CatalogItemBulkUpdateJobEnum,
+        "CatalogItemCreateJobResponseObjectResourceAttributes.StatusEnum": CatalogItemCreateJobResponseObjectResourceAttributes.StatusEnum,
         "CatalogItemCreateQueryResourceObjectAttributes.IntegrationTypeEnum": CatalogItemCreateQueryResourceObjectAttributes.IntegrationTypeEnum,
         "CatalogItemEnum": CatalogItemEnum,
         "CatalogVariantBulkCreateJobEnum": CatalogVariantBulkCreateJobEnum,
         "CatalogVariantBulkDeleteJobEnum": CatalogVariantBulkDeleteJobEnum,
         "CatalogVariantBulkUpdateJobEnum": CatalogVariantBulkUpdateJobEnum,
-        "CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum": CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum,
         "CatalogVariantCreateQueryResourceObjectAttributes.IntegrationTypeEnum": CatalogVariantCreateQueryResourceObjectAttributes.IntegrationTypeEnum,
+        "CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum": CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum,
         "CatalogVariantEnum": CatalogVariantEnum,
-        "CatalogVariantUpdateJobResponseObjectResourceAttributes.StatusEnum": CatalogVariantUpdateJobResponseObjectResourceAttributes.StatusEnum,
+        "CatalogVariantResponseObjectResourceAttributes.InventoryPolicyEnum": CatalogVariantResponseObjectResourceAttributes.InventoryPolicyEnum,
         "CatalogVariantUpdateQueryResourceObjectAttributes.InventoryPolicyEnum": CatalogVariantUpdateQueryResourceObjectAttributes.InventoryPolicyEnum,
         "DataPrivacyDeletionJobEnum": DataPrivacyDeletionJobEnum,
+        "DeviceMetadata.KlaviyoSdkEnum": DeviceMetadata.KlaviyoSdkEnum,
+        "DeviceMetadata.OsNameEnum": DeviceMetadata.OsNameEnum,
+        "DeviceMetadata.EnvironmentEnum": DeviceMetadata.EnvironmentEnum,
         "EventEnum": EventEnum,
         "FlowActionEnum": FlowActionEnum,
         "FlowEnum": FlowEnum,
         "FlowMessageEnum": FlowMessageEnum,
+        "FlowResponseObjectResourceAttributes.TriggerTypeEnum": FlowResponseObjectResourceAttributes.TriggerTypeEnum,
         "ListEnum": ListEnum,
         "MetricAggregateEnum": MetricAggregateEnum,
-        "MetricAggregateQueryResourceObjectAttributes.SortEnum": MetricAggregateQueryResourceObjectAttributes.SortEnum,
-        "MetricAggregateQueryResourceObjectAttributes.IntervalEnum": MetricAggregateQueryResourceObjectAttributes.IntervalEnum,
         "MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum": MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum,
+        "MetricAggregateQueryResourceObjectAttributes.IntervalEnum": MetricAggregateQueryResourceObjectAttributes.IntervalEnum,
         "MetricAggregateQueryResourceObjectAttributes.ByEnum": MetricAggregateQueryResourceObjectAttributes.ByEnum,
+        "MetricAggregateQueryResourceObjectAttributes.SortEnum": MetricAggregateQueryResourceObjectAttributes.SortEnum,
         "MetricEnum": MetricEnum,
-        "PostCampaignRecipientEstimationJobResponseDataAttributes.StatusEnum": PostCampaignRecipientEstimationJobResponseDataAttributes.StatusEnum,
-        "PostCampaignSendJobResponseDataAttributes.StatusEnum": PostCampaignSendJobResponseDataAttributes.StatusEnum,
-        "PostCatalogVariantResponseDataAttributes.InventoryPolicyEnum": PostCatalogVariantResponseDataAttributes.InventoryPolicyEnum,
         "ProfileEnum": ProfileEnum,
         "ProfileSubscriptionBulkCreateJobEnum": ProfileSubscriptionBulkCreateJobEnum,
         "ProfileSubscriptionBulkDeleteJobEnum": ProfileSubscriptionBulkDeleteJobEnum,
         "ProfileSuppressionBulkCreateJobEnum": ProfileSuppressionBulkCreateJobEnum,
         "ProfileSuppressionBulkDeleteJobEnum": ProfileSuppressionBulkDeleteJobEnum,
+        "PushTokenCreateQueryResourceObjectAttributes.PlatformEnum": PushTokenCreateQueryResourceObjectAttributes.PlatformEnum,
+        "PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum": PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum,
+        "PushTokenCreateQueryResourceObjectAttributes.VendorEnum": PushTokenCreateQueryResourceObjectAttributes.VendorEnum,
+        "PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum": PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum,
+        "PushTokenEnum": PushTokenEnum,
         "SegmentEnum": SegmentEnum,
         "ServerBISSubscriptionCreateQueryResourceObjectAttributes.ChannelsEnum": ServerBISSubscriptionCreateQueryResourceObjectAttributes.ChannelsEnum,
-        "SubscriptionChannels.SmsEnum": SubscriptionChannels.SmsEnum,
         "SubscriptionChannels.EmailEnum": SubscriptionChannels.EmailEnum,
+        "SubscriptionChannels.SmsEnum": SubscriptionChannels.SmsEnum,
         "TagEnum": TagEnum,
         "TagGroupEnum": TagGroupEnum,
         "TemplateEnum": TemplateEnum,
 }
 
 let typeMap: {[index: string]: any} = {
+    "APIJobErrorPayload": APIJobErrorPayload,
     "AccountResponseObjectResource": AccountResponseObjectResource,
     "AccountResponseObjectResourceAttributes": AccountResponseObjectResourceAttributes,
     "AudiencesSubObject": AudiencesSubObject,
@@ -1305,8 +1333,6 @@ let typeMap: {[index: string]: any} = {
     "CampaignCreateQueryResourceObject": CampaignCreateQueryResourceObject,
     "CampaignCreateQueryResourceObjectAttributes": CampaignCreateQueryResourceObjectAttributes,
     "CampaignCreateQueryResourceObjectAttributesCampaignMessages": CampaignCreateQueryResourceObjectAttributesCampaignMessages,
-    "CampaignCreateQueryResourceObjectAttributesSendOptions": CampaignCreateQueryResourceObjectAttributesSendOptions,
-    "CampaignCreateQueryResourceObjectAttributesTrackingOptions": CampaignCreateQueryResourceObjectAttributesTrackingOptions,
     "CampaignMessageAssignTemplateQuery": CampaignMessageAssignTemplateQuery,
     "CampaignMessageAssignTemplateQueryResourceObject": CampaignMessageAssignTemplateQueryResourceObject,
     "CampaignMessageAssignTemplateQueryResourceObjectAttributes": CampaignMessageAssignTemplateQueryResourceObjectAttributes,
@@ -1320,6 +1346,8 @@ let typeMap: {[index: string]: any} = {
     "CampaignMessagePartialUpdateQueryResourceObject": CampaignMessagePartialUpdateQueryResourceObject,
     "CampaignMessagePartialUpdateQueryResourceObjectAttributes": CampaignMessagePartialUpdateQueryResourceObjectAttributes,
     "CampaignMessageResponseObjectResource": CampaignMessageResponseObjectResource,
+    "CampaignMessageResponseObjectResourceAttributes": CampaignMessageResponseObjectResourceAttributes,
+    "CampaignMessageResponseObjectResourceAttributesContent": CampaignMessageResponseObjectResourceAttributesContent,
     "CampaignPartialUpdateQuery": CampaignPartialUpdateQuery,
     "CampaignPartialUpdateQueryResourceObject": CampaignPartialUpdateQueryResourceObject,
     "CampaignPartialUpdateQueryResourceObjectAttributes": CampaignPartialUpdateQueryResourceObjectAttributes,
@@ -1327,10 +1355,13 @@ let typeMap: {[index: string]: any} = {
     "CampaignRecipientEstimationJobCreateQueryResourceObject": CampaignRecipientEstimationJobCreateQueryResourceObject,
     "CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes": CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes,
     "CampaignRecipientEstimationJobResponseObjectResource": CampaignRecipientEstimationJobResponseObjectResource,
+    "CampaignRecipientEstimationJobResponseObjectResourceAttributes": CampaignRecipientEstimationJobResponseObjectResourceAttributes,
     "CampaignRecipientEstimationResponseObjectResource": CampaignRecipientEstimationResponseObjectResource,
     "CampaignRecipientEstimationResponseObjectResourceAttributes": CampaignRecipientEstimationResponseObjectResourceAttributes,
     "CampaignResponseObjectResource": CampaignResponseObjectResource,
     "CampaignResponseObjectResourceAttributes": CampaignResponseObjectResourceAttributes,
+    "CampaignResponseObjectResourceAttributesSendOptions": CampaignResponseObjectResourceAttributesSendOptions,
+    "CampaignResponseObjectResourceAttributesTrackingOptions": CampaignResponseObjectResourceAttributesTrackingOptions,
     "CampaignSendJobCreateQuery": CampaignSendJobCreateQuery,
     "CampaignSendJobCreateQueryResourceObject": CampaignSendJobCreateQueryResourceObject,
     "CampaignSendJobCreateQueryResourceObjectAttributes": CampaignSendJobCreateQueryResourceObjectAttributes,
@@ -1338,6 +1369,7 @@ let typeMap: {[index: string]: any} = {
     "CampaignSendJobPartialUpdateQueryResourceObject": CampaignSendJobPartialUpdateQueryResourceObject,
     "CampaignSendJobPartialUpdateQueryResourceObjectAttributes": CampaignSendJobPartialUpdateQueryResourceObjectAttributes,
     "CampaignSendJobResponseObjectResource": CampaignSendJobResponseObjectResource,
+    "CampaignSendJobResponseObjectResourceAttributes": CampaignSendJobResponseObjectResourceAttributes,
     "CatalogCategoryCreateJobCreateQuery": CatalogCategoryCreateJobCreateQuery,
     "CatalogCategoryCreateJobCreateQueryResourceObject": CatalogCategoryCreateJobCreateQueryResourceObject,
     "CatalogCategoryCreateJobCreateQueryResourceObjectAttributes": CatalogCategoryCreateJobCreateQueryResourceObjectAttributes,
@@ -1346,6 +1378,8 @@ let typeMap: {[index: string]: any} = {
     "CatalogCategoryCreateQuery": CatalogCategoryCreateQuery,
     "CatalogCategoryCreateQueryResourceObject": CatalogCategoryCreateQueryResourceObject,
     "CatalogCategoryCreateQueryResourceObjectAttributes": CatalogCategoryCreateQueryResourceObjectAttributes,
+    "CatalogCategoryCreateQueryResourceObjectRelationships": CatalogCategoryCreateQueryResourceObjectRelationships,
+    "CatalogCategoryCreateQueryResourceObjectRelationshipsItems": CatalogCategoryCreateQueryResourceObjectRelationshipsItems,
     "CatalogCategoryDeleteJobCreateQuery": CatalogCategoryDeleteJobCreateQuery,
     "CatalogCategoryDeleteJobCreateQueryResourceObject": CatalogCategoryDeleteJobCreateQueryResourceObject,
     "CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes": CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes,
@@ -1354,6 +1388,7 @@ let typeMap: {[index: string]: any} = {
     "CatalogCategoryDeleteQueryResourceObject": CatalogCategoryDeleteQueryResourceObject,
     "CatalogCategoryItemOp": CatalogCategoryItemOp,
     "CatalogCategoryResponseObjectResource": CatalogCategoryResponseObjectResource,
+    "CatalogCategoryResponseObjectResourceAttributes": CatalogCategoryResponseObjectResourceAttributes,
     "CatalogCategoryUpdateJobCreateQuery": CatalogCategoryUpdateJobCreateQuery,
     "CatalogCategoryUpdateJobCreateQueryResourceObject": CatalogCategoryUpdateJobCreateQueryResourceObject,
     "CatalogCategoryUpdateJobCreateQueryResourceObjectAttributes": CatalogCategoryUpdateJobCreateQueryResourceObjectAttributes,
@@ -1362,18 +1397,18 @@ let typeMap: {[index: string]: any} = {
     "CatalogCategoryUpdateQuery": CatalogCategoryUpdateQuery,
     "CatalogCategoryUpdateQueryResourceObject": CatalogCategoryUpdateQueryResourceObject,
     "CatalogCategoryUpdateQueryResourceObjectAttributes": CatalogCategoryUpdateQueryResourceObjectAttributes,
-    "CatalogCategoryUpdateQueryResourceObjectRelationships": CatalogCategoryUpdateQueryResourceObjectRelationships,
-    "CatalogCategoryUpdateQueryResourceObjectRelationshipsItems": CatalogCategoryUpdateQueryResourceObjectRelationshipsItems,
-    "CatalogCategoryUpdateQueryResourceObjectRelationshipsItemsDataInner": CatalogCategoryUpdateQueryResourceObjectRelationshipsItemsDataInner,
     "CatalogItemCategoryOp": CatalogItemCategoryOp,
     "CatalogItemCreateJobCreateQuery": CatalogItemCreateJobCreateQuery,
     "CatalogItemCreateJobCreateQueryResourceObject": CatalogItemCreateJobCreateQueryResourceObject,
     "CatalogItemCreateJobCreateQueryResourceObjectAttributes": CatalogItemCreateJobCreateQueryResourceObjectAttributes,
     "CatalogItemCreateJobCreateQueryResourceObjectAttributesItems": CatalogItemCreateJobCreateQueryResourceObjectAttributesItems,
     "CatalogItemCreateJobResponseObjectResource": CatalogItemCreateJobResponseObjectResource,
+    "CatalogItemCreateJobResponseObjectResourceAttributes": CatalogItemCreateJobResponseObjectResourceAttributes,
     "CatalogItemCreateQuery": CatalogItemCreateQuery,
     "CatalogItemCreateQueryResourceObject": CatalogItemCreateQueryResourceObject,
     "CatalogItemCreateQueryResourceObjectAttributes": CatalogItemCreateQueryResourceObjectAttributes,
+    "CatalogItemCreateQueryResourceObjectRelationships": CatalogItemCreateQueryResourceObjectRelationships,
+    "CatalogItemCreateQueryResourceObjectRelationshipsCategories": CatalogItemCreateQueryResourceObjectRelationshipsCategories,
     "CatalogItemDeleteJobCreateQuery": CatalogItemDeleteJobCreateQuery,
     "CatalogItemDeleteJobCreateQueryResourceObject": CatalogItemDeleteJobCreateQueryResourceObject,
     "CatalogItemDeleteJobCreateQueryResourceObjectAttributes": CatalogItemDeleteJobCreateQueryResourceObjectAttributes,
@@ -1381,6 +1416,7 @@ let typeMap: {[index: string]: any} = {
     "CatalogItemDeleteJobResponseObjectResource": CatalogItemDeleteJobResponseObjectResource,
     "CatalogItemDeleteQueryResourceObject": CatalogItemDeleteQueryResourceObject,
     "CatalogItemResponseObjectResource": CatalogItemResponseObjectResource,
+    "CatalogItemResponseObjectResourceAttributes": CatalogItemResponseObjectResourceAttributes,
     "CatalogItemUpdateJobCreateQuery": CatalogItemUpdateJobCreateQuery,
     "CatalogItemUpdateJobCreateQueryResourceObject": CatalogItemUpdateJobCreateQueryResourceObject,
     "CatalogItemUpdateJobCreateQueryResourceObjectAttributes": CatalogItemUpdateJobCreateQueryResourceObjectAttributes,
@@ -1389,9 +1425,6 @@ let typeMap: {[index: string]: any} = {
     "CatalogItemUpdateQuery": CatalogItemUpdateQuery,
     "CatalogItemUpdateQueryResourceObject": CatalogItemUpdateQueryResourceObject,
     "CatalogItemUpdateQueryResourceObjectAttributes": CatalogItemUpdateQueryResourceObjectAttributes,
-    "CatalogItemUpdateQueryResourceObjectRelationships": CatalogItemUpdateQueryResourceObjectRelationships,
-    "CatalogItemUpdateQueryResourceObjectRelationshipsCategories": CatalogItemUpdateQueryResourceObjectRelationshipsCategories,
-    "CatalogJobErrorPayload": CatalogJobErrorPayload,
     "CatalogVariantCreateJobCreateQuery": CatalogVariantCreateJobCreateQuery,
     "CatalogVariantCreateJobCreateQueryResourceObject": CatalogVariantCreateJobCreateQueryResourceObject,
     "CatalogVariantCreateJobCreateQueryResourceObjectAttributes": CatalogVariantCreateJobCreateQueryResourceObjectAttributes,
@@ -1409,12 +1442,12 @@ let typeMap: {[index: string]: any} = {
     "CatalogVariantDeleteJobResponseObjectResource": CatalogVariantDeleteJobResponseObjectResource,
     "CatalogVariantDeleteQueryResourceObject": CatalogVariantDeleteQueryResourceObject,
     "CatalogVariantResponseObjectResource": CatalogVariantResponseObjectResource,
+    "CatalogVariantResponseObjectResourceAttributes": CatalogVariantResponseObjectResourceAttributes,
     "CatalogVariantUpdateJobCreateQuery": CatalogVariantUpdateJobCreateQuery,
     "CatalogVariantUpdateJobCreateQueryResourceObject": CatalogVariantUpdateJobCreateQueryResourceObject,
     "CatalogVariantUpdateJobCreateQueryResourceObjectAttributes": CatalogVariantUpdateJobCreateQueryResourceObjectAttributes,
     "CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants": CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants,
     "CatalogVariantUpdateJobResponseObjectResource": CatalogVariantUpdateJobResponseObjectResource,
-    "CatalogVariantUpdateJobResponseObjectResourceAttributes": CatalogVariantUpdateJobResponseObjectResourceAttributes,
     "CatalogVariantUpdateQuery": CatalogVariantUpdateQuery,
     "CatalogVariantUpdateQueryResourceObject": CatalogVariantUpdateQueryResourceObject,
     "CatalogVariantUpdateQueryResourceObjectAttributes": CatalogVariantUpdateQueryResourceObjectAttributes,
@@ -1427,9 +1460,7 @@ let typeMap: {[index: string]: any} = {
     "DataPrivacyProfileQueryResourceObject": DataPrivacyProfileQueryResourceObject,
     "DataPrivacyProfileQueryResourceObjectAttributes": DataPrivacyProfileQueryResourceObjectAttributes,
     "DeleteTagGroupResponse": DeleteTagGroupResponse,
-    "DeleteTagGroupResponseData": DeleteTagGroupResponseData,
-    "DeleteTagGroupResponseDataAttributes": DeleteTagGroupResponseDataAttributes,
-    "DeleteTagGroupResponseDataRelationships": DeleteTagGroupResponseDataRelationships,
+    "DeviceMetadata": DeviceMetadata,
     "EmailChannel": EmailChannel,
     "EmailContentSubObject": EmailContentSubObject,
     "EmailMarketing": EmailMarketing,
@@ -1460,52 +1491,63 @@ let typeMap: {[index: string]: any} = {
     "FlowUpdateQueryResourceObjectAttributes": FlowUpdateQueryResourceObjectAttributes,
     "GetAccountResponse": GetAccountResponse,
     "GetAccountResponseCollection": GetAccountResponseCollection,
+    "GetAccounts4XXResponse": GetAccounts4XXResponse,
+    "GetAccounts4XXResponseErrorsInner": GetAccounts4XXResponseErrorsInner,
+    "GetAccounts4XXResponseErrorsInnerSource": GetAccounts4XXResponseErrorsInnerSource,
     "GetCampaignMessageCampaignRelationshipListResponse": GetCampaignMessageCampaignRelationshipListResponse,
     "GetCampaignMessageResponse": GetCampaignMessageResponse,
     "GetCampaignMessageResponseCollectionCompoundDocument": GetCampaignMessageResponseCollectionCompoundDocument,
-    "GetCampaignMessageResponseCollectionCompoundDocumentDataInner": GetCampaignMessageResponseCollectionCompoundDocumentDataInner,
-    "GetCampaignMessageResponseCollectionCompoundDocumentDataInnerAllOf": GetCampaignMessageResponseCollectionCompoundDocumentDataInnerAllOf,
-    "GetCampaignMessageResponseCollectionCompoundDocumentIncludedInner": GetCampaignMessageResponseCollectionCompoundDocumentIncludedInner,
     "GetCampaignMessageResponseCompoundDocument": GetCampaignMessageResponseCompoundDocument,
+    "GetCampaignMessageResponseCompoundDocumentData": GetCampaignMessageResponseCompoundDocumentData,
+    "GetCampaignMessageResponseCompoundDocumentDataAllOf": GetCampaignMessageResponseCompoundDocumentDataAllOf,
+    "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships": GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships,
+    "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign": GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign,
+    "GetCampaignMessageResponseCompoundDocumentIncludedInner": GetCampaignMessageResponseCompoundDocumentIncludedInner,
     "GetCampaignMessageTemplateRelationshipListResponse": GetCampaignMessageTemplateRelationshipListResponse,
     "GetCampaignMessagesRelationshipListResponseCollection": GetCampaignMessagesRelationshipListResponseCollection,
     "GetCampaignRecipientEstimationJobResponse": GetCampaignRecipientEstimationJobResponse,
     "GetCampaignRecipientEstimationResponse": GetCampaignRecipientEstimationResponse,
     "GetCampaignResponseCollectionCompoundDocument": GetCampaignResponseCollectionCompoundDocument,
+    "GetCampaignResponseCollectionCompoundDocumentDataInner": GetCampaignResponseCollectionCompoundDocumentDataInner,
+    "GetCampaignResponseCollectionCompoundDocumentDataInnerAllOf": GetCampaignResponseCollectionCompoundDocumentDataInnerAllOf,
+    "GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages": GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages,
+    "GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner": GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner,
+    "GetCampaignResponseCollectionCompoundDocumentIncludedInner": GetCampaignResponseCollectionCompoundDocumentIncludedInner,
     "GetCampaignResponseCompoundDocument": GetCampaignResponseCompoundDocument,
-    "GetCampaignResponseCompoundDocumentData": GetCampaignResponseCompoundDocumentData,
-    "GetCampaignResponseCompoundDocumentDataAllOf": GetCampaignResponseCompoundDocumentDataAllOf,
-    "GetCampaignResponseCompoundDocumentIncludedInner": GetCampaignResponseCompoundDocumentIncludedInner,
     "GetCampaignSendJobResponse": GetCampaignSendJobResponse,
     "GetCampaignTagRelationshipListResponseCollection": GetCampaignTagRelationshipListResponseCollection,
     "GetCatalogCategoryCreateJobResponseCollectionCompoundDocument": GetCatalogCategoryCreateJobResponseCollectionCompoundDocument,
+    "GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInner": GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInner,
+    "GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOf": GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOf,
+    "GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories": GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories,
     "GetCatalogCategoryCreateJobResponseCompoundDocument": GetCatalogCategoryCreateJobResponseCompoundDocument,
-    "GetCatalogCategoryCreateJobResponseCompoundDocumentData": GetCatalogCategoryCreateJobResponseCompoundDocumentData,
-    "GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOf": GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOf,
-    "GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationships": GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationships,
-    "GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategories": GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategories,
-    "GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategoriesDataInner": GetCatalogCategoryCreateJobResponseCompoundDocumentDataAllOfRelationshipsCategoriesDataInner,
     "GetCatalogCategoryDeleteJobResponse": GetCatalogCategoryDeleteJobResponse,
     "GetCatalogCategoryDeleteJobResponseCollection": GetCatalogCategoryDeleteJobResponseCollection,
-    "GetCatalogCategoryDeleteJobResponseData": GetCatalogCategoryDeleteJobResponseData,
+    "GetCatalogCategoryDeleteJobResponseCollectionDataInner": GetCatalogCategoryDeleteJobResponseCollectionDataInner,
     "GetCatalogCategoryItemListResponseCollection": GetCatalogCategoryItemListResponseCollection,
+    "GetCatalogCategoryItemListResponseCollectionDataInner": GetCatalogCategoryItemListResponseCollectionDataInner,
     "GetCatalogCategoryResponse": GetCatalogCategoryResponse,
     "GetCatalogCategoryResponseCollection": GetCatalogCategoryResponseCollection,
-    "GetCatalogCategoryResponseData": GetCatalogCategoryResponseData,
-    "GetCatalogCategoryResponseDataAllOf": GetCatalogCategoryResponseDataAllOf,
+    "GetCatalogCategoryResponseCollectionDataInner": GetCatalogCategoryResponseCollectionDataInner,
+    "GetCatalogCategoryResponseCollectionDataInnerAllOf": GetCatalogCategoryResponseCollectionDataInnerAllOf,
+    "GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships": GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships,
+    "GetCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems": GetCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems,
     "GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument": GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument,
+    "GetCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInner": GetCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInner,
     "GetCatalogCategoryUpdateJobResponseCompoundDocument": GetCatalogCategoryUpdateJobResponseCompoundDocument,
-    "GetCatalogCategoryUpdateJobResponseCompoundDocumentData": GetCatalogCategoryUpdateJobResponseCompoundDocumentData,
     "GetCatalogItemCategoryListResponseCollection": GetCatalogItemCategoryListResponseCollection,
+    "GetCatalogItemCategoryListResponseCollectionDataInner": GetCatalogItemCategoryListResponseCollectionDataInner,
     "GetCatalogItemCreateJobResponseCollectionCompoundDocument": GetCatalogItemCreateJobResponseCollectionCompoundDocument,
     "GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner": GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner,
+    "GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOf": GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOf,
+    "GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems": GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems,
     "GetCatalogItemCreateJobResponseCompoundDocument": GetCatalogItemCreateJobResponseCompoundDocument,
     "GetCatalogItemDeleteJobResponse": GetCatalogItemDeleteJobResponse,
     "GetCatalogItemDeleteJobResponseCollection": GetCatalogItemDeleteJobResponseCollection,
-    "GetCatalogItemDeleteJobResponseData": GetCatalogItemDeleteJobResponseData,
-    "GetCatalogItemDeleteJobResponseDataAllOf": GetCatalogItemDeleteJobResponseDataAllOf,
-    "GetCatalogItemDeleteJobResponseDataAllOfRelationships": GetCatalogItemDeleteJobResponseDataAllOfRelationships,
-    "GetCatalogItemDeleteJobResponseDataAllOfRelationshipsItems": GetCatalogItemDeleteJobResponseDataAllOfRelationshipsItems,
+    "GetCatalogItemDeleteJobResponseCollectionDataInner": GetCatalogItemDeleteJobResponseCollectionDataInner,
     "GetCatalogItemResponseCollectionCompoundDocument": GetCatalogItemResponseCollectionCompoundDocument,
     "GetCatalogItemResponseCollectionCompoundDocumentDataInner": GetCatalogItemResponseCollectionCompoundDocumentDataInner,
     "GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOf": GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOf,
@@ -1519,22 +1561,23 @@ let typeMap: {[index: string]: any} = {
     "GetCatalogVariantCreateJobResponseCollectionCompoundDocument": GetCatalogVariantCreateJobResponseCollectionCompoundDocument,
     "GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner": GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner,
     "GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOf": GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOf,
+    "GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants": GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants,
+    "GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner": GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner,
     "GetCatalogVariantCreateJobResponseCompoundDocument": GetCatalogVariantCreateJobResponseCompoundDocument,
     "GetCatalogVariantDeleteJobResponse": GetCatalogVariantDeleteJobResponse,
     "GetCatalogVariantDeleteJobResponseCollection": GetCatalogVariantDeleteJobResponseCollection,
-    "GetCatalogVariantDeleteJobResponseData": GetCatalogVariantDeleteJobResponseData,
+    "GetCatalogVariantDeleteJobResponseCollectionDataInner": GetCatalogVariantDeleteJobResponseCollectionDataInner,
     "GetCatalogVariantResponse": GetCatalogVariantResponse,
     "GetCatalogVariantResponseCollection": GetCatalogVariantResponseCollection,
-    "GetCatalogVariantResponseData": GetCatalogVariantResponseData,
-    "GetCatalogVariantResponseDataAllOf": GetCatalogVariantResponseDataAllOf,
-    "GetCatalogVariantResponseDataAllOfRelationships": GetCatalogVariantResponseDataAllOfRelationships,
-    "GetCatalogVariantResponseDataAllOfRelationshipsItem": GetCatalogVariantResponseDataAllOfRelationshipsItem,
+    "GetCatalogVariantResponseCollectionDataInner": GetCatalogVariantResponseCollectionDataInner,
+    "GetCatalogVariantResponseCollectionDataInnerAllOf": GetCatalogVariantResponseCollectionDataInnerAllOf,
+    "GetCatalogVariantResponseCollectionDataInnerAllOfRelationships": GetCatalogVariantResponseCollectionDataInnerAllOfRelationships,
+    "GetCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItem": GetCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItem,
+    "GetCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItemData": GetCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItemData,
     "GetCatalogVariantUpdateJobResponseCollectionCompoundDocument": GetCatalogVariantUpdateJobResponseCollectionCompoundDocument,
+    "GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner": GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner,
     "GetCatalogVariantUpdateJobResponseCompoundDocument": GetCatalogVariantUpdateJobResponseCompoundDocument,
-    "GetCatalogVariantUpdateJobResponseCompoundDocumentData": GetCatalogVariantUpdateJobResponseCompoundDocumentData,
-    "GetCreateVariantsJobs5XXResponse": GetCreateVariantsJobs5XXResponse,
-    "GetCreateVariantsJobs5XXResponseErrorsInner": GetCreateVariantsJobs5XXResponseErrorsInner,
-    "GetCreateVariantsJobs5XXResponseErrorsInnerSource": GetCreateVariantsJobs5XXResponseErrorsInnerSource,
     "GetEventMetricsRelationshipListResponse": GetEventMetricsRelationshipListResponse,
     "GetEventProfilesRelationshipListResponse": GetEventProfilesRelationshipListResponse,
     "GetEventResponseCollectionCompoundDocument": GetEventResponseCollectionCompoundDocument,
@@ -1551,14 +1594,14 @@ let typeMap: {[index: string]: any} = {
     "GetFlowActionFlowRelationshipResponse": GetFlowActionFlowRelationshipResponse,
     "GetFlowActionResponse": GetFlowActionResponse,
     "GetFlowActionResponseCollection": GetFlowActionResponseCollection,
+    "GetFlowActionResponseCollectionDataInner": GetFlowActionResponseCollectionDataInner,
+    "GetFlowActionResponseCollectionDataInnerAllOf": GetFlowActionResponseCollectionDataInnerAllOf,
+    "GetFlowActionResponseCollectionDataInnerAllOfRelationships": GetFlowActionResponseCollectionDataInnerAllOfRelationships,
+    "GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlow": GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlow,
+    "GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages": GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages,
+    "GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner": GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner,
     "GetFlowActionResponseCompoundDocument": GetFlowActionResponseCompoundDocument,
     "GetFlowActionResponseCompoundDocumentIncludedInner": GetFlowActionResponseCompoundDocumentIncludedInner,
-    "GetFlowActionResponseData": GetFlowActionResponseData,
-    "GetFlowActionResponseDataAllOf": GetFlowActionResponseDataAllOf,
-    "GetFlowActionResponseDataAllOfRelationships": GetFlowActionResponseDataAllOfRelationships,
-    "GetFlowActionResponseDataAllOfRelationshipsFlow": GetFlowActionResponseDataAllOfRelationshipsFlow,
-    "GetFlowActionResponseDataAllOfRelationshipsFlowMessages": GetFlowActionResponseDataAllOfRelationshipsFlowMessages,
-    "GetFlowActionResponseDataAllOfRelationshipsFlowMessagesDataInner": GetFlowActionResponseDataAllOfRelationshipsFlowMessagesDataInner,
     "GetFlowFlowActionRelationshipListResponseCollection": GetFlowFlowActionRelationshipListResponseCollection,
     "GetFlowMessageFlowActionRelationshipResponse": GetFlowMessageFlowActionRelationshipResponse,
     "GetFlowMessageResponseCollection": GetFlowMessageResponseCollection,
@@ -1566,21 +1609,28 @@ let typeMap: {[index: string]: any} = {
     "GetFlowMessageResponseCollectionDataInnerAllOf": GetFlowMessageResponseCollectionDataInnerAllOf,
     "GetFlowMessageResponseCollectionDataInnerAllOfRelationships": GetFlowMessageResponseCollectionDataInnerAllOfRelationships,
     "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction": GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction,
+    "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate": GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate,
+    "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData": GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData,
     "GetFlowMessageResponseCompoundDocument": GetFlowMessageResponseCompoundDocument,
+    "GetFlowMessageResponseCompoundDocumentIncludedInner": GetFlowMessageResponseCompoundDocumentIncludedInner,
+    "GetFlowMessageTemplateRelationshipResponse": GetFlowMessageTemplateRelationshipResponse,
     "GetFlowResponse": GetFlowResponse,
     "GetFlowResponseCollectionCompoundDocument": GetFlowResponseCollectionCompoundDocument,
+    "GetFlowResponseCollectionCompoundDocumentDataInner": GetFlowResponseCollectionCompoundDocumentDataInner,
+    "GetFlowResponseCollectionCompoundDocumentDataInnerAllOf": GetFlowResponseCollectionCompoundDocumentDataInnerAllOf,
+    "GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions": GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions,
+    "GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner": GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner,
+    "GetFlowResponseCollectionCompoundDocumentIncludedInner": GetFlowResponseCollectionCompoundDocumentIncludedInner,
     "GetFlowResponseCompoundDocument": GetFlowResponseCompoundDocument,
-    "GetFlowResponseCompoundDocumentData": GetFlowResponseCompoundDocumentData,
-    "GetFlowResponseCompoundDocumentDataAllOf": GetFlowResponseCompoundDocumentDataAllOf,
-    "GetFlowResponseCompoundDocumentDataAllOfRelationships": GetFlowResponseCompoundDocumentDataAllOfRelationships,
-    "GetFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActions": GetFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActions,
-    "GetFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActionsDataInner": GetFlowResponseCompoundDocumentDataAllOfRelationshipsFlowActionsDataInner,
-    "GetFlowResponseCompoundDocumentDataAllOfRelationshipsTags": GetFlowResponseCompoundDocumentDataAllOfRelationshipsTags,
-    "GetFlowResponseCompoundDocumentDataAllOfRelationshipsTagsDataInner": GetFlowResponseCompoundDocumentDataAllOfRelationshipsTagsDataInner,
-    "GetFlowResponseCompoundDocumentIncludedInner": GetFlowResponseCompoundDocumentIncludedInner,
     "GetFlowTagRelationshipListResponseCollection": GetFlowTagRelationshipListResponseCollection,
     "GetListListResponseCollectionCompoundDocument": GetListListResponseCollectionCompoundDocument,
     "GetListListResponseCollectionCompoundDocumentDataInner": GetListListResponseCollectionCompoundDocumentDataInner,
+    "GetListListResponseCollectionCompoundDocumentDataInnerAllOf": GetListListResponseCollectionCompoundDocumentDataInnerAllOf,
+    "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles": GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles,
+    "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags": GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags,
+    "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner": GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner,
     "GetListRelationshipsResponseCollection": GetListRelationshipsResponseCollection,
     "GetListResponseCollection": GetListResponseCollection,
     "GetListResponseCollectionDataInner": GetListResponseCollectionDataInner,
@@ -1596,17 +1646,19 @@ let typeMap: {[index: string]: any} = {
     "GetProfileResponseCollectionCompoundDocumentDataInner": GetProfileResponseCollectionCompoundDocumentDataInner,
     "GetProfileResponseCollectionCompoundDocumentDataInnerAllOf": GetProfileResponseCollectionCompoundDocumentDataInnerAllOf,
     "GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
-    "GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsSegments": GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsSegments,
+    "GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists": GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists,
     "GetProfileResponseCompoundDocument": GetProfileResponseCompoundDocument,
-    "GetProfileResponseCompoundDocumentData": GetProfileResponseCompoundDocumentData,
-    "GetProfileResponseCompoundDocumentDataAllOf": GetProfileResponseCompoundDocumentDataAllOf,
     "GetProfileResponseCompoundDocumentIncludedInner": GetProfileResponseCompoundDocumentIncludedInner,
+    "GetProfileResponseData": GetProfileResponseData,
+    "GetProfileResponseDataAllOf": GetProfileResponseDataAllOf,
+    "GetProfileResponseDataAllOfRelationships": GetProfileResponseDataAllOfRelationships,
+    "GetProfileResponseDataAllOfRelationshipsLists": GetProfileResponseDataAllOfRelationshipsLists,
+    "GetProfileResponseDataAllOfRelationshipsListsDataInner": GetProfileResponseDataAllOfRelationshipsListsDataInner,
+    "GetProfileResponseDataAllOfRelationshipsSegments": GetProfileResponseDataAllOfRelationshipsSegments,
+    "GetProfileResponseDataAllOfRelationshipsSegmentsDataInner": GetProfileResponseDataAllOfRelationshipsSegmentsDataInner,
     "GetProfileSegmentRelationshipsResponseCollection": GetProfileSegmentRelationshipsResponseCollection,
     "GetSegmentListResponseCollectionCompoundDocument": GetSegmentListResponseCollectionCompoundDocument,
     "GetSegmentListResponseCollectionCompoundDocumentDataInner": GetSegmentListResponseCollectionCompoundDocumentDataInner,
-    "GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOf": GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOf,
-    "GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
-    "GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles": GetSegmentListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles,
     "GetSegmentRelationshipsResponseCollection": GetSegmentRelationshipsResponseCollection,
     "GetSegmentResponseCollection": GetSegmentResponseCollection,
     "GetSegmentResponseCollectionDataInner": GetSegmentResponseCollectionDataInner,
@@ -1619,6 +1671,7 @@ let typeMap: {[index: string]: any} = {
     "GetTagGroupResponseCollection": GetTagGroupResponseCollection,
     "GetTagGroupResponseCollectionDataInner": GetTagGroupResponseCollectionDataInner,
     "GetTagGroupResponseCollectionDataInnerAllOf": GetTagGroupResponseCollectionDataInnerAllOf,
+    "GetTagGroupResponseCollectionDataInnerAllOfRelationships": GetTagGroupResponseCollectionDataInnerAllOfRelationships,
     "GetTagGroupTagRelationshipsResponseCollection": GetTagGroupTagRelationshipsResponseCollection,
     "GetTagGroupTagRelationshipsResponseCollectionDataInner": GetTagGroupTagRelationshipsResponseCollectionDataInner,
     "GetTagListRelationshipsResponseCollection": GetTagListRelationshipsResponseCollection,
@@ -1628,6 +1681,7 @@ let typeMap: {[index: string]: any} = {
     "GetTagResponseCollectionDataInnerAllOf": GetTagResponseCollectionDataInnerAllOf,
     "GetTagResponseCollectionDataInnerAllOfRelationships": GetTagResponseCollectionDataInnerAllOfRelationships,
     "GetTagResponseCollectionDataInnerAllOfRelationshipsCampaigns": GetTagResponseCollectionDataInnerAllOfRelationshipsCampaigns,
+    "GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner": GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner,
     "GetTagResponseCollectionDataInnerAllOfRelationshipsFlows": GetTagResponseCollectionDataInnerAllOfRelationshipsFlows,
     "GetTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner": GetTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner,
     "GetTagResponseCollectionDataInnerAllOfRelationshipsTagGroup": GetTagResponseCollectionDataInnerAllOfRelationshipsTagGroup,
@@ -1640,17 +1694,18 @@ let typeMap: {[index: string]: any} = {
     "GetTemplateResponseCollection": GetTemplateResponseCollection,
     "ListCreateQuery": ListCreateQuery,
     "ListCreateQueryResourceObject": ListCreateQueryResourceObject,
+    "ListCreateQueryResourceObjectAttributes": ListCreateQueryResourceObjectAttributes,
     "ListListResponseObjectResource": ListListResponseObjectResource,
     "ListListResponseObjectResourceAttributes": ListListResponseObjectResourceAttributes,
     "ListMembersAddQuery": ListMembersAddQuery,
     "ListMembersDeleteQuery": ListMembersDeleteQuery,
     "ListPartialUpdateQuery": ListPartialUpdateQuery,
     "ListPartialUpdateQueryResourceObject": ListPartialUpdateQueryResourceObject,
-    "ListPartialUpdateQueryResourceObjectAttributes": ListPartialUpdateQueryResourceObjectAttributes,
     "ListResponseObjectResource": ListResponseObjectResource,
     "ListRetrieveResponseObjectResourceAttributes": ListRetrieveResponseObjectResourceAttributes,
     "ListRetrieveResponseObjectResourceExtended": ListRetrieveResponseObjectResourceExtended,
     "ListRetrieveResponseObjectResourceExtendedAttributes": ListRetrieveResponseObjectResourceExtendedAttributes,
+    "ListRetrieveResponseObjectResourceExtendedAttributesAllOf": ListRetrieveResponseObjectResourceExtendedAttributesAllOf,
     "MetricAggregateQuery": MetricAggregateQuery,
     "MetricAggregateQueryResourceObject": MetricAggregateQueryResourceObject,
     "MetricAggregateQueryResourceObjectAttributes": MetricAggregateQueryResourceObjectAttributes,
@@ -1664,60 +1719,32 @@ let typeMap: {[index: string]: any} = {
     "OnsiteProfileCreateQueryResourceObjectAttributes": OnsiteProfileCreateQueryResourceObjectAttributes,
     "OnsiteProfileMeta": OnsiteProfileMeta,
     "PatchCampaignMessageResponse": PatchCampaignMessageResponse,
-    "PatchCampaignMessageResponseData": PatchCampaignMessageResponseData,
-    "PatchCampaignMessageResponseDataAttributes": PatchCampaignMessageResponseDataAttributes,
-    "PatchCampaignMessageResponseDataAttributesContent": PatchCampaignMessageResponseDataAttributesContent,
-    "PatchCampaignMessageResponseDataRelationships": PatchCampaignMessageResponseDataRelationships,
-    "PatchCampaignMessageResponseDataRelationshipsCampaign": PatchCampaignMessageResponseDataRelationshipsCampaign,
-    "PatchCampaignMessageResponseDataRelationshipsCampaignData": PatchCampaignMessageResponseDataRelationshipsCampaignData,
-    "PatchCampaignMessageResponseDataRelationshipsTemplate": PatchCampaignMessageResponseDataRelationshipsTemplate,
-    "PatchCampaignMessageResponseDataRelationshipsTemplateData": PatchCampaignMessageResponseDataRelationshipsTemplateData,
     "PatchCampaignResponse": PatchCampaignResponse,
     "PatchCatalogCategoryResponse": PatchCatalogCategoryResponse,
     "PatchCatalogItemResponse": PatchCatalogItemResponse,
-    "PatchCatalogItemResponseData": PatchCatalogItemResponseData,
-    "PatchCatalogItemResponseDataAttributes": PatchCatalogItemResponseDataAttributes,
     "PatchCatalogVariantResponse": PatchCatalogVariantResponse,
     "PatchFlowResponse": PatchFlowResponse,
     "PatchFlowResponseData": PatchFlowResponseData,
     "PatchListPartialUpdateResponse": PatchListPartialUpdateResponse,
-    "PatchListPartialUpdateResponseData": PatchListPartialUpdateResponseData,
     "PatchProfileResponse": PatchProfileResponse,
-    "PatchProfileResponseData": PatchProfileResponseData,
-    "PatchProfileResponseDataAttributes": PatchProfileResponseDataAttributes,
-    "PatchProfileResponseDataRelationships": PatchProfileResponseDataRelationships,
-    "PatchProfileResponseDataRelationshipsLists": PatchProfileResponseDataRelationshipsLists,
-    "PatchProfileResponseDataRelationshipsListsDataInner": PatchProfileResponseDataRelationshipsListsDataInner,
-    "PatchProfileResponseDataRelationshipsSegments": PatchProfileResponseDataRelationshipsSegments,
-    "PatchProfileResponseDataRelationshipsSegmentsDataInner": PatchProfileResponseDataRelationshipsSegmentsDataInner,
     "PatchSegmentPartialUpdateResponse": PatchSegmentPartialUpdateResponse,
     "PatchSegmentPartialUpdateResponseData": PatchSegmentPartialUpdateResponseData,
     "PatchTagGroupResponse": PatchTagGroupResponse,
     "PatchTemplateResponse": PatchTemplateResponse,
-    "PatchTemplateResponseData": PatchTemplateResponseData,
-    "PatchTemplateResponseDataAttributes": PatchTemplateResponseDataAttributes,
     "PostCampaignMessageResponse": PostCampaignMessageResponse,
+    "PostCampaignMessageResponseData": PostCampaignMessageResponseData,
     "PostCampaignRecipientEstimationJobResponse": PostCampaignRecipientEstimationJobResponse,
     "PostCampaignRecipientEstimationJobResponseData": PostCampaignRecipientEstimationJobResponseData,
-    "PostCampaignRecipientEstimationJobResponseDataAttributes": PostCampaignRecipientEstimationJobResponseDataAttributes,
     "PostCampaignResponse": PostCampaignResponse,
     "PostCampaignResponseData": PostCampaignResponseData,
-    "PostCampaignResponseDataRelationships": PostCampaignResponseDataRelationships,
-    "PostCampaignResponseDataRelationshipsCampaignMessages": PostCampaignResponseDataRelationshipsCampaignMessages,
-    "PostCampaignResponseDataRelationshipsCampaignMessagesDataInner": PostCampaignResponseDataRelationshipsCampaignMessagesDataInner,
     "PostCampaignSendJobResponse": PostCampaignSendJobResponse,
     "PostCampaignSendJobResponseData": PostCampaignSendJobResponseData,
-    "PostCampaignSendJobResponseDataAttributes": PostCampaignSendJobResponseDataAttributes,
     "PostCatalogCategoryCreateJobResponse": PostCatalogCategoryCreateJobResponse,
     "PostCatalogCategoryCreateJobResponseData": PostCatalogCategoryCreateJobResponseData,
     "PostCatalogCategoryDeleteJobResponse": PostCatalogCategoryDeleteJobResponse,
     "PostCatalogCategoryDeleteJobResponseData": PostCatalogCategoryDeleteJobResponseData,
     "PostCatalogCategoryResponse": PostCatalogCategoryResponse,
     "PostCatalogCategoryResponseData": PostCatalogCategoryResponseData,
-    "PostCatalogCategoryResponseDataAttributes": PostCatalogCategoryResponseDataAttributes,
-    "PostCatalogCategoryResponseDataRelationships": PostCatalogCategoryResponseDataRelationships,
-    "PostCatalogCategoryResponseDataRelationshipsItems": PostCatalogCategoryResponseDataRelationshipsItems,
-    "PostCatalogCategoryResponseDataRelationshipsItemsDataInner": PostCatalogCategoryResponseDataRelationshipsItemsDataInner,
     "PostCatalogCategoryUpdateJobResponse": PostCatalogCategoryUpdateJobResponse,
     "PostCatalogCategoryUpdateJobResponseData": PostCatalogCategoryUpdateJobResponseData,
     "PostCatalogItemCreateJobResponse": PostCatalogItemCreateJobResponse,
@@ -1725,29 +1752,31 @@ let typeMap: {[index: string]: any} = {
     "PostCatalogItemDeleteJobResponse": PostCatalogItemDeleteJobResponse,
     "PostCatalogItemDeleteJobResponseData": PostCatalogItemDeleteJobResponseData,
     "PostCatalogItemResponse": PostCatalogItemResponse,
+    "PostCatalogItemResponseData": PostCatalogItemResponseData,
     "PostCatalogItemUpdateJobResponse": PostCatalogItemUpdateJobResponse,
     "PostCatalogItemUpdateJobResponseData": PostCatalogItemUpdateJobResponseData,
     "PostCatalogVariantCreateJobResponse": PostCatalogVariantCreateJobResponse,
     "PostCatalogVariantCreateJobResponseData": PostCatalogVariantCreateJobResponseData,
-    "PostCatalogVariantCreateJobResponseDataRelationships": PostCatalogVariantCreateJobResponseDataRelationships,
-    "PostCatalogVariantCreateJobResponseDataRelationshipsVariants": PostCatalogVariantCreateJobResponseDataRelationshipsVariants,
-    "PostCatalogVariantCreateJobResponseDataRelationshipsVariantsDataInner": PostCatalogVariantCreateJobResponseDataRelationshipsVariantsDataInner,
     "PostCatalogVariantDeleteJobResponse": PostCatalogVariantDeleteJobResponse,
     "PostCatalogVariantDeleteJobResponseData": PostCatalogVariantDeleteJobResponseData,
     "PostCatalogVariantResponse": PostCatalogVariantResponse,
     "PostCatalogVariantResponseData": PostCatalogVariantResponseData,
-    "PostCatalogVariantResponseDataAttributes": PostCatalogVariantResponseDataAttributes,
     "PostCatalogVariantUpdateJobResponse": PostCatalogVariantUpdateJobResponse,
     "PostCatalogVariantUpdateJobResponseData": PostCatalogVariantUpdateJobResponseData,
     "PostListCreateResponse": PostListCreateResponse,
+    "PostListCreateResponseData": PostListCreateResponseData,
     "PostMetricAggregateResponse": PostMetricAggregateResponse,
     "PostMetricAggregateResponseData": PostMetricAggregateResponseData,
     "PostMetricAggregateResponseDataAttributes": PostMetricAggregateResponseDataAttributes,
     "PostProfileResponse": PostProfileResponse,
+    "PostProfileResponseData": PostProfileResponseData,
+    "PostProfileResponseDataAttributes": PostProfileResponseDataAttributes,
     "PostTagGroupResponse": PostTagGroupResponse,
+    "PostTagGroupResponseData": PostTagGroupResponseData,
     "PostTagResponse": PostTagResponse,
     "PostTagResponseData": PostTagResponseData,
     "PostTemplateResponse": PostTemplateResponse,
+    "PostTemplateResponseData": PostTemplateResponseData,
     "PredictiveAnalytics": PredictiveAnalytics,
     "ProfileCreateQuery": ProfileCreateQuery,
     "ProfileCreateQueryResourceObject": ProfileCreateQueryResourceObject,
@@ -1762,7 +1791,6 @@ let typeMap: {[index: string]: any} = {
     "ProfileMetaPatchPropertiesUnset": ProfileMetaPatchPropertiesUnset,
     "ProfilePartialUpdateQuery": ProfilePartialUpdateQuery,
     "ProfilePartialUpdateQueryResourceObject": ProfilePartialUpdateQueryResourceObject,
-    "ProfilePartialUpdateQueryResourceObjectAttributes": ProfilePartialUpdateQueryResourceObjectAttributes,
     "ProfileResponseObjectResource": ProfileResponseObjectResource,
     "ProfileResponseObjectResourceAttributes": ProfileResponseObjectResourceAttributes,
     "ProfileResponseObjectResourceExtended": ProfileResponseObjectResourceExtended,
@@ -1776,6 +1804,12 @@ let typeMap: {[index: string]: any} = {
     "ProfileSuppressionCreateQueryResourceObjectAttributes": ProfileSuppressionCreateQueryResourceObjectAttributes,
     "ProfileSuppressionDeleteQueryResourceObject": ProfileSuppressionDeleteQueryResourceObject,
     "ProfileSuppressionDeleteQueryResourceObjectAttributes": ProfileSuppressionDeleteQueryResourceObjectAttributes,
+    "ProfileUpsertQueryResourceObject": ProfileUpsertQueryResourceObject,
+    "ProfileUpsertQueryResourceObjectAttributes": ProfileUpsertQueryResourceObjectAttributes,
+    "PushTokenCreateQuery": PushTokenCreateQuery,
+    "PushTokenCreateQueryResourceObject": PushTokenCreateQueryResourceObject,
+    "PushTokenCreateQueryResourceObjectAttributes": PushTokenCreateQueryResourceObjectAttributes,
+    "PushTokenCreateQueryResourceObjectAttributesProfile": PushTokenCreateQueryResourceObjectAttributesProfile,
     "RelationshipLinks": RelationshipLinks,
     "RenderOptionsSubObject": RenderOptionsSubObject,
     "SMSChannel": SMSChannel,
@@ -1789,15 +1823,14 @@ let typeMap: {[index: string]: any} = {
     "SMSTrackingOptionsSubObject": SMSTrackingOptionsSubObject,
     "STOScheduleOptions": STOScheduleOptions,
     "SegmentListResponseObjectResource": SegmentListResponseObjectResource,
+    "SegmentListResponseObjectResourceAttributes": SegmentListResponseObjectResourceAttributes,
     "SegmentPartialUpdateQuery": SegmentPartialUpdateQuery,
     "SegmentPartialUpdateQueryResourceObject": SegmentPartialUpdateQueryResourceObject,
     "SegmentPartialUpdateQueryResourceObjectAttributes": SegmentPartialUpdateQueryResourceObjectAttributes,
     "SegmentResponseObjectResource": SegmentResponseObjectResource,
-    "SegmentResponseObjectResourceAttributes": SegmentResponseObjectResourceAttributes,
     "SegmentRetrieveResponseObjectResourceAttributes": SegmentRetrieveResponseObjectResourceAttributes,
     "SegmentRetrieveResponseObjectResourceExtended": SegmentRetrieveResponseObjectResourceExtended,
     "SegmentRetrieveResponseObjectResourceExtendedAttributes": SegmentRetrieveResponseObjectResourceExtendedAttributes,
-    "SegmentRetrieveResponseObjectResourceExtendedAttributesAllOf": SegmentRetrieveResponseObjectResourceExtendedAttributesAllOf,
     "SendOptions": SendOptions,
     "SendStrategySubObject": SendStrategySubObject,
     "SendTimeSubObject": SendTimeSubObject,
@@ -1814,13 +1847,13 @@ let typeMap: {[index: string]: any} = {
     "SubscriptionCreateJobCreateQueryResourceObject": SubscriptionCreateJobCreateQueryResourceObject,
     "SubscriptionCreateJobCreateQueryResourceObjectAttributes": SubscriptionCreateJobCreateQueryResourceObjectAttributes,
     "SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles": SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles,
+    "SubscriptionCreateJobCreateQueryResourceObjectRelationships": SubscriptionCreateJobCreateQueryResourceObjectRelationships,
+    "SubscriptionCreateJobCreateQueryResourceObjectRelationshipsList": SubscriptionCreateJobCreateQueryResourceObjectRelationshipsList,
+    "SubscriptionCreateJobCreateQueryResourceObjectRelationshipsListData": SubscriptionCreateJobCreateQueryResourceObjectRelationshipsListData,
     "SubscriptionDeleteJobCreateQuery": SubscriptionDeleteJobCreateQuery,
     "SubscriptionDeleteJobCreateQueryResourceObject": SubscriptionDeleteJobCreateQueryResourceObject,
     "SubscriptionDeleteJobCreateQueryResourceObjectAttributes": SubscriptionDeleteJobCreateQueryResourceObjectAttributes,
     "SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles": SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles,
-    "SubscriptionDeleteJobCreateQueryResourceObjectRelationships": SubscriptionDeleteJobCreateQueryResourceObjectRelationships,
-    "SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList": SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList,
-    "SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData": SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData,
     "Subscriptions": Subscriptions,
     "SuppressionCreateJobCreateQuery": SuppressionCreateJobCreateQuery,
     "SuppressionCreateJobCreateQueryResourceObject": SuppressionCreateJobCreateQueryResourceObject,
@@ -1840,15 +1873,16 @@ let typeMap: {[index: string]: any} = {
     "TagGroupCreateQueryResourceObject": TagGroupCreateQueryResourceObject,
     "TagGroupCreateQueryResourceObjectAttributes": TagGroupCreateQueryResourceObjectAttributes,
     "TagGroupResponseObjectResource": TagGroupResponseObjectResource,
+    "TagGroupResponseObjectResourceAttributes": TagGroupResponseObjectResourceAttributes,
     "TagGroupUpdateQuery": TagGroupUpdateQuery,
     "TagGroupUpdateQueryResourceObject": TagGroupUpdateQueryResourceObject,
     "TagGroupUpdateQueryResourceObjectAttributes": TagGroupUpdateQueryResourceObjectAttributes,
     "TagListOp": TagListOp,
     "TagResponseObjectResource": TagResponseObjectResource,
+    "TagResponseObjectResourceAttributes": TagResponseObjectResourceAttributes,
     "TagSegmentOp": TagSegmentOp,
     "TagUpdateQuery": TagUpdateQuery,
     "TagUpdateQueryResourceObject": TagUpdateQueryResourceObject,
-    "TagUpdateQueryResourceObjectAttributes": TagUpdateQueryResourceObjectAttributes,
     "TemplateCloneQuery": TemplateCloneQuery,
     "TemplateCloneQueryResourceObject": TemplateCloneQueryResourceObject,
     "TemplateCloneQueryResourceObjectAttributes": TemplateCloneQueryResourceObjectAttributes,
@@ -1859,6 +1893,7 @@ let typeMap: {[index: string]: any} = {
     "TemplateRenderQueryResourceObject": TemplateRenderQueryResourceObject,
     "TemplateRenderQueryResourceObjectAttributes": TemplateRenderQueryResourceObjectAttributes,
     "TemplateResponseObjectResource": TemplateResponseObjectResource,
+    "TemplateResponseObjectResourceAttributes": TemplateResponseObjectResourceAttributes,
     "TemplateUpdateQuery": TemplateUpdateQuery,
     "TemplateUpdateQueryResourceObject": TemplateUpdateQueryResourceObject,
     "TemplateUpdateQueryResourceObjectAttributes": TemplateUpdateQueryResourceObjectAttributes,
