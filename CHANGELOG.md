@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [6.0.0] - revision 2023-08-15
+## [5.1.0] - revision 2023-08-15
 ### Added
 - Flow Message Templates
   - You can now retrieve the templates associated with flow messages using `Flows.getFlowMessageTemplate()` or `Flows.getFlowMessageRelationshipsTemplate()` . You’re also able to include the template HTML for a flow message using `Flows.getFlowMessage(FLOW_MESSAGE_ID, {include: ['template']})`. 
