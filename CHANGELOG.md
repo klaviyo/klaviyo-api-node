@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [5.1.0] - revision 2023-08-15
+### Added
+- Flow Message Templates
+  - You can now retrieve the templates associated with flow messages using `Flows.getFlowMessageTemplate()` or `Flows.getFlowMessageRelationshipsTemplate()` . You’re also able to include the template HTML for a flow message using `Flows.getFlowMessage(FLOW_MESSAGE_ID, {include: ['template']})`. 
+- Create or Update Push Tokens
+  - We have added an endpoint to create push tokens, `Profiles.createPushToken()`.  This endpoint can be used to migrate profiles and their push tokens from another platform to Klaviyo. If you’re looking to register push tokens from users’ devices, please use our mobile SDKs.
+
 ## [5.0.0] - revision 2023-07-15
 ### Added
 - Back-In-stock APIs
