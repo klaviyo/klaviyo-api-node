@@ -11,11 +11,11 @@
 
 import { RequestFile } from './models';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign';
-import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate';
+import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate';
 
 export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships {
     'campaign'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign;
-    'template'?: GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate;
+    'template'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,7 +28,7 @@ export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships {
         {
             "name": "template",
             "baseName": "template",
-            "type": "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate"
+            "type": "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate"
         }    ];
 
     static getAttributeTypeMap() {

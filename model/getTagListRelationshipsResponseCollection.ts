@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseDataAllOfRelationshipsListsDataInner } from './getProfileResponseDataAllOfRelationshipsListsDataInner';
+import { GetTagListRelationshipsResponseCollectionDataInner } from './getTagListRelationshipsResponseCollectionDataInner';
 
 export class GetTagListRelationshipsResponseCollection {
-    'data': Array<GetProfileResponseDataAllOfRelationshipsListsDataInner>;
+    'data': Array<GetTagListRelationshipsResponseCollectionDataInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class GetTagListRelationshipsResponseCollection {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetProfileResponseDataAllOfRelationshipsListsDataInner>"
+            "type": "Array<GetTagListRelationshipsResponseCollectionDataInner>"
         }    ];
 
     static getAttributeTypeMap() {

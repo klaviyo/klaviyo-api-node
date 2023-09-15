@@ -14,6 +14,9 @@ import { MetricEnum } from './metricEnum';
 
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData {
     'type': MetricEnum;
+    /**
+    * The Metric ID
+    */
     'id': string;
 
     static discriminator: string | undefined = undefined;

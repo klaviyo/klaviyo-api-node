@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetCatalogCategoryItemListResponseCollectionDataInner } from './getCatalogCategoryItemListResponseCollectionDataInner';
+import { CatalogVariantCreateQueryResourceObjectRelationshipsItemData } from './catalogVariantCreateQueryResourceObjectRelationshipsItemData';
 
 export class CatalogVariantCreateQueryResourceObjectRelationshipsItem {
-    'data': GetCatalogCategoryItemListResponseCollectionDataInner;
+    'data': CatalogVariantCreateQueryResourceObjectRelationshipsItemData;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class CatalogVariantCreateQueryResourceObjectRelationshipsItem {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetCatalogCategoryItemListResponseCollectionDataInner"
+            "type": "CatalogVariantCreateQueryResourceObjectRelationshipsItemData"
         }    ];
 
     static getAttributeTypeMap() {

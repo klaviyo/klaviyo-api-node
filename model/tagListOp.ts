@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseDataAllOfRelationshipsListsDataInner } from './getProfileResponseDataAllOfRelationshipsListsDataInner';
+import { TagListOpDataInner } from './tagListOpDataInner';
 
 export class TagListOp {
-    'data': Array<GetProfileResponseDataAllOfRelationshipsListsDataInner>;
+    'data': Array<TagListOpDataInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class TagListOp {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetProfileResponseDataAllOfRelationshipsListsDataInner>"
+            "type": "Array<TagListOpDataInner>"
         }    ];
 
     static getAttributeTypeMap() {

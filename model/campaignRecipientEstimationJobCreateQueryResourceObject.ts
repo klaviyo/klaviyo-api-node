@@ -10,12 +10,14 @@
  */
 
 import { RequestFile } from './models';
-import { CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes } from './campaignRecipientEstimationJobCreateQueryResourceObjectAttributes';
 import { CampaignRecipientEstimationJobEnum } from './campaignRecipientEstimationJobEnum';
 
 export class CampaignRecipientEstimationJobCreateQueryResourceObject {
     'type': CampaignRecipientEstimationJobEnum;
-    'attributes': CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes;
+    /**
+    * The ID of the campaign to perform recipient estimation
+    */
+    'id': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -26,9 +28,9 @@ export class CampaignRecipientEstimationJobCreateQueryResourceObject {
             "type": "CampaignRecipientEstimationJobEnum"
         },
         {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes"
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

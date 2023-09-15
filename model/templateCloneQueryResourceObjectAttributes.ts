@@ -13,10 +13,6 @@ import { RequestFile } from './models';
 
 export class TemplateCloneQueryResourceObjectAttributes {
     /**
-    * The ID of template to be cloned
-    */
-    'id': string;
-    /**
     * The name of the template
     */
     'name'?: string;
@@ -24,11 +20,6 @@ export class TemplateCloneQueryResourceObjectAttributes {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
         {
             "name": "name",
             "baseName": "name",

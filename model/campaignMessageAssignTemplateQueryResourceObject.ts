@@ -10,13 +10,15 @@
  */
 
 import { RequestFile } from './models';
-import { CampaignMessageAssignTemplateQueryResourceObjectAttributes } from './campaignMessageAssignTemplateQueryResourceObjectAttributes';
 import { CampaignMessageAssignTemplateQueryResourceObjectRelationships } from './campaignMessageAssignTemplateQueryResourceObjectRelationships';
 import { CampaignMessageEnum } from './campaignMessageEnum';
 
 export class CampaignMessageAssignTemplateQueryResourceObject {
     'type': CampaignMessageEnum;
-    'attributes': CampaignMessageAssignTemplateQueryResourceObjectAttributes;
+    /**
+    * The message ID to be assigned to
+    */
+    'id': string;
     'relationships'?: CampaignMessageAssignTemplateQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
@@ -28,9 +30,9 @@ export class CampaignMessageAssignTemplateQueryResourceObject {
             "type": "CampaignMessageEnum"
         },
         {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "CampaignMessageAssignTemplateQueryResourceObjectAttributes"
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         },
         {
             "name": "relationships",

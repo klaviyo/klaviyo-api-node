@@ -15,6 +15,10 @@ import { CampaignEnum } from './campaignEnum';
 
 export class CampaignCloneQueryResourceObject {
     'type': CampaignEnum;
+    /**
+    * The campaign ID to be cloned
+    */
+    'id': string;
     'attributes': CampaignCloneQueryResourceObjectAttributes;
 
     static discriminator: string | undefined = undefined;
@@ -24,6 +28,11 @@ export class CampaignCloneQueryResourceObject {
             "name": "type",
             "baseName": "type",
             "type": "CampaignEnum"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         },
         {
             "name": "attributes",

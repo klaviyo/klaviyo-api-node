@@ -13,10 +13,6 @@ import { RequestFile } from './models';
 
 export class CampaignCloneQueryResourceObjectAttributes {
     /**
-    * The campaign ID to be cloned
-    */
-    'id': string;
-    /**
     * The name for the new cloned campaign
     */
     'newName'?: string;
@@ -24,11 +20,6 @@ export class CampaignCloneQueryResourceObjectAttributes {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
         {
             "name": "newName",
             "baseName": "new_name",

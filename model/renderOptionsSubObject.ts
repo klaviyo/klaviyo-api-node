@@ -15,7 +15,7 @@ export class RenderOptionsSubObject {
     'shortenLinks'?: boolean = true;
     'addOrgPrefix'?: boolean = true;
     'addInfoLink'?: boolean = true;
-    'addOptOutLanguage'?: boolean;
+    'addOptOutLanguage'?: boolean = false;
 
     static discriminator: string | undefined = undefined;
 

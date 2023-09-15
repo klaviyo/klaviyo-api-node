@@ -10,15 +10,15 @@
  */
 
 import { RequestFile } from './models';
-import { CatalogItemCreateJobResponseObjectResourceAttributes } from './catalogItemCreateJobResponseObjectResourceAttributes';
 import { CatalogVariantBulkDeleteJobEnum } from './catalogVariantBulkDeleteJobEnum';
-import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
+import { GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships } from './getCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 
 export class PostCatalogVariantDeleteJobResponseData {
     'type': CatalogVariantBulkDeleteJobEnum;
-    'attributes': CatalogItemCreateJobResponseObjectResourceAttributes;
-    'relationships'?: GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+    'attributes': CouponCodeCreateJobResponseObjectResourceAttributes;
+    'relationships'?: GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
     static discriminator: string | undefined = undefined;
@@ -32,12 +32,12 @@ export class PostCatalogVariantDeleteJobResponseData {
         {
             "name": "attributes",
             "baseName": "attributes",
-            "type": "CatalogItemCreateJobResponseObjectResourceAttributes"
+            "type": "CouponCodeCreateJobResponseObjectResourceAttributes"
         },
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships"
         },
         {
             "name": "links",

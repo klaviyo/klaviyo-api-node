@@ -15,6 +15,10 @@ import { TemplateEnum } from './templateEnum';
 
 export class TemplateCloneQueryResourceObject {
     'type': TemplateEnum;
+    /**
+    * The ID of template to be cloned
+    */
+    'id': string;
     'attributes': TemplateCloneQueryResourceObjectAttributes;
 
     static discriminator: string | undefined = undefined;
@@ -24,6 +28,11 @@ export class TemplateCloneQueryResourceObject {
             "name": "type",
             "baseName": "type",
             "type": "TemplateEnum"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         },
         {
             "name": "attributes",

@@ -14,6 +14,9 @@ import { TemplateEnum } from './templateEnum';
 
 export class CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData {
     'type': TemplateEnum;
+    /**
+    * The template ID to assign
+    */
     'id': string;
 
     static discriminator: string | undefined = undefined;

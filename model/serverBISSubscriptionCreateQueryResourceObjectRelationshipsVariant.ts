@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
+import { ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData';
 
 export class ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant {
-    'data': GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner;
+    'data': ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant 
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner"
+            "type": "ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData"
         }    ];
 
     static getAttributeTypeMap() {

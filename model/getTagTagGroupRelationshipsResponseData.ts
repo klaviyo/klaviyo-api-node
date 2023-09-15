@@ -14,6 +14,9 @@ import { TagGroupEnum } from './tagGroupEnum';
 
 export class GetTagTagGroupRelationshipsResponseData {
     'type': TagGroupEnum;
+    /**
+    * The ID of the Tag Group the Tag is associated with
+    */
     'id': string;
 
     static discriminator: string | undefined = undefined;

@@ -10,24 +10,22 @@
  */
 
 import { RequestFile } from './models';
+import { PostCouponResponseData } from './postCouponResponseData';
 
-export class CampaignMessageAssignTemplateQueryResourceObjectAttributes {
-    /**
-    * The message ID to be assigned to
-    */
-    'id': string;
+export class PostCouponResponse {
+    'data': PostCouponResponseData;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
+            "name": "data",
+            "baseName": "data",
+            "type": "PostCouponResponseData"
         }    ];
 
     static getAttributeTypeMap() {
-        return CampaignMessageAssignTemplateQueryResourceObjectAttributes.attributeTypeMap;
+        return PostCouponResponse.attributeTypeMap;
     }
 }
 

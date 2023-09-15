@@ -15,6 +15,10 @@ import { TemplateRenderQueryResourceObjectAttributes } from './templateRenderQue
 
 export class TemplateRenderQueryResourceObject {
     'type': TemplateEnum;
+    /**
+    * The ID of template
+    */
+    'id': string;
     'attributes': TemplateRenderQueryResourceObjectAttributes;
 
     static discriminator: string | undefined = undefined;
@@ -24,6 +28,11 @@ export class TemplateRenderQueryResourceObject {
             "name": "type",
             "baseName": "type",
             "type": "TemplateEnum"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         },
         {
             "name": "attributes",

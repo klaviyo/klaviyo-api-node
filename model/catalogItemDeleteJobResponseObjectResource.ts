@@ -11,12 +11,12 @@
 
 import { RequestFile } from './models';
 import { CatalogItemBulkDeleteJobEnum } from './catalogItemBulkDeleteJobEnum';
-import { CatalogItemCreateJobResponseObjectResourceAttributes } from './catalogItemCreateJobResponseObjectResourceAttributes';
+import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
 
 export class CatalogItemDeleteJobResponseObjectResource {
     'type': CatalogItemBulkDeleteJobEnum;
-    'attributes': CatalogItemCreateJobResponseObjectResourceAttributes;
+    'attributes': CouponCodeCreateJobResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
     static discriminator: string | undefined = undefined;
@@ -30,7 +30,7 @@ export class CatalogItemDeleteJobResponseObjectResource {
         {
             "name": "attributes",
             "baseName": "attributes",
-            "type": "CatalogItemCreateJobResponseObjectResourceAttributes"
+            "type": "CouponCodeCreateJobResponseObjectResourceAttributes"
         },
         {
             "name": "links",

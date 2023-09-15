@@ -11,8 +11,8 @@
 
 
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import http from 'http';
 import { backOff, BackoffOptions } from 'exponential-backoff';
+import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { CampaignCloneQuery } from '../model/campaignCloneQuery';
@@ -48,7 +48,7 @@ import { PostCampaignSendJobResponse } from '../model/postCampaignSendJobRespons
 import { ObjectSerializer, Authentication } from '../model/models';
 import { ApiKeyAuth } from '../model/models';
 
-import {ApiClient, KlaviyoApiKey, queryParamPreProcessor, RetryOptions} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -60,32 +60,17 @@ let defaultBasePath = 'https://a.klaviyo.com';
 export class CampaignsApi {
 
     protected backoffOptions: BackoffOptions = new RetryOptions().options
+    session: Session
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-08-15",
-        "User-Agent": "klaviyo-api-node/5.1.0-beta.1"
+        revision: "2023-09-15",
+        "User-Agent": "klaviyo-api-node/6.0.0"
     };
     protected _useQuerystring : boolean = false;
 
-    protected _keyPrefix = "Klaviyo-API-Key"
-
-    protected authentications = {
-        'Klaviyo-API-Key': new ApiKeyAuth('header', 'Authorization'),
-    }
-
-    constructor(apiKeyInfo: string | ApiClient, retryOptions?: RetryOptions){
-        if(apiKeyInfo){
-            if (typeof apiKeyInfo == 'string') {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo)
-            } else {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo.apiKey)
-                this.backoffOptions = apiKeyInfo.retryOptions.options
-            }
-        }
-        if (retryOptions){
-            this.backoffOptions = retryOptions.options
-        }
+    constructor(session: Session){
+        this.session = session
     }
 
     set useQuerystring(value: boolean) {
@@ -106,10 +91,6 @@ export class CampaignsApi {
 
     get basePath() {
         return this._basePath;
-    }
-
-    public setApiKey(key: KlaviyoApiKey, value: string) {
-        this.authentications[key].apiKey = `${this._keyPrefix} ${value}`;
     }
 
     /**
@@ -136,7 +117,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignCreateQuery was null or undefined when calling createCampaign.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -147,16 +127,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignCreateQuery, "CampaignCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCampaignResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCampaignResponse;  }>((resolve, reject) => {
@@ -170,7 +141,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Clones an existing campaign, returning a new campaign based on the original with a new ID and name.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -196,7 +167,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignCloneQuery was null or undefined when calling createCampaignClone.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -207,16 +177,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignCloneQuery, "CampaignCloneQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCampaignResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCampaignResponse;  }>((resolve, reject) => {
@@ -230,7 +191,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Creates a non-reusable version of the template and assigns it to the message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -256,7 +217,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignMessageAssignTemplateQuery was null or undefined when calling createCampaignMessageAssignTemplate.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -267,16 +227,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignMessageAssignTemplateQuery, "CampaignMessageAssignTemplateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }>((resolve, reject) => {
@@ -290,7 +241,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the `Get Campaign Recipient Estimation Job` endpoint to retrieve the status of this estimation job. Use the `Get Campaign Recipient Estimation` endpoint to retrieve the estimated recipient count for a given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -316,7 +267,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignRecipientEstimationJobCreateQuery was null or undefined when calling createCampaignRecipientEstimationJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -327,16 +277,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignRecipientEstimationJobCreateQuery, "CampaignRecipientEstimationJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }>((resolve, reject) => {
@@ -350,7 +291,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Trigger a campaign to send asynchronously<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -376,7 +317,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignSendJobCreateQuery was null or undefined when calling createCampaignSendJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -387,16 +327,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignSendJobCreateQuery, "CampaignSendJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }>((resolve, reject) => {
@@ -410,7 +341,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -437,7 +368,6 @@ export class CampaignsApi {
             throw new Error('Required parameter id was null or undefined when calling deleteCampaign.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -447,16 +377,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -469,13 +390,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns a specific campaign based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign
      * @param id The campaign ID to be retrieved
-     * @param options Contains any of the following optional parameters: fieldsCampaignMessage, fieldsCampaign, fieldsTag, include, 
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }> {
 
@@ -512,7 +433,6 @@ export class CampaignsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign-messages' | 'tags'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -522,16 +442,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }>((resolve, reject) => {
@@ -545,13 +456,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Campaign Messages
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsCampaignMessage, fieldsCampaign, fieldsTemplate, include, 
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getCampaignCampaignMessages (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> {
 
@@ -588,7 +499,6 @@ export class CampaignsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'template'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -598,16 +508,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -621,13 +522,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns a specific message based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Message
      * @param id The message ID to be retrieved
-     * @param options Contains any of the following optional parameters: fieldsCampaignMessage, fieldsCampaign, fieldsTemplate, include, 
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getCampaignMessage (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }> {
 
@@ -664,7 +565,6 @@ export class CampaignsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'template'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -674,16 +574,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }>((resolve, reject) => {
@@ -697,13 +588,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Message Campaign
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsCampaignMessage, 
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignMessageCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponse;  }> {
 
@@ -728,7 +619,6 @@ export class CampaignsApi {
             localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -738,16 +628,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignMessageResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignMessageResponse;  }>((resolve, reject) => {
@@ -761,7 +642,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the ID of the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -788,7 +669,6 @@ export class CampaignsApi {
             throw new Error('Required parameter id was null or undefined when calling getCampaignMessageRelationshipsCampaign.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -798,16 +678,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipListResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipListResponse;  }>((resolve, reject) => {
@@ -821,7 +692,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
@@ -848,7 +719,6 @@ export class CampaignsApi {
             throw new Error('Required parameter id was null or undefined when calling getCampaignMessageRelationshipsTemplate.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -858,16 +728,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }>((resolve, reject) => {
@@ -881,13 +742,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
      * @summary Get Campaign Message Template
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsTemplate, 
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignMessageTemplate (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
 
@@ -912,7 +773,6 @@ export class CampaignsApi {
             localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -922,16 +782,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }>((resolve, reject) => {
@@ -945,13 +796,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get the estimated recipient count for a campaign with the provided campaign ID. You can refresh this count by using the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation
      * @param id The ID of the campaign for which to get the estimated number of recipients
-     * @param options Contains any of the following optional parameters: fieldsCampaignRecipientEstimation, 
+     * @param fieldsCampaignRecipientEstimation For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimation (id: string, options: { fieldsCampaignRecipientEstimation?: Array<'estimated_recipient_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }> {
 
@@ -976,7 +827,6 @@ export class CampaignsApi {
             localVarQueryParameters['fields[campaign-recipient-estimation]'] = ObjectSerializer.serialize(options.fieldsCampaignRecipientEstimation, "Array<'estimated_recipient_count'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -986,16 +836,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }>((resolve, reject) => {
@@ -1009,13 +850,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Retrieve the status of a recipient estimation job triggered with the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation Job
      * @param id The ID of the campaign to get recipient estimation status
-     * @param options Contains any of the following optional parameters: fieldsCampaignRecipientEstimationJob, 
+     * @param fieldsCampaignRecipientEstimationJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimationJob (id: string, options: { fieldsCampaignRecipientEstimationJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }> {
 
@@ -1040,7 +881,6 @@ export class CampaignsApi {
             localVarQueryParameters['fields[campaign-recipient-estimation-job]'] = ObjectSerializer.serialize(options.fieldsCampaignRecipientEstimationJob, "Array<'status'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1050,16 +890,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }>((resolve, reject) => {
@@ -1073,7 +904,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the IDs of all messages associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -1100,7 +931,6 @@ export class CampaignsApi {
             throw new Error('Required parameter id was null or undefined when calling getCampaignRelationshipsCampaignMessages.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1110,16 +940,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }>((resolve, reject) => {
@@ -1133,7 +954,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
@@ -1160,7 +981,6 @@ export class CampaignsApi {
             throw new Error('Required parameter id was null or undefined when calling getCampaignRelationshipsTags.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1170,16 +990,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }>((resolve, reject) => {
@@ -1193,13 +1004,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a campaign send job<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Send Job
      * @param id The ID of the campaign to send
-     * @param options Contains any of the following optional parameters: fieldsCampaignSendJob, 
+     * @param fieldsCampaignSendJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignSendJob (id: string, options: { fieldsCampaignSendJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }> {
 
@@ -1224,7 +1035,6 @@ export class CampaignsApi {
             localVarQueryParameters['fields[campaign-send-job]'] = ObjectSerializer.serialize(options.fieldsCampaignSendJob, "Array<'status'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1234,16 +1044,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }>((resolve, reject) => {
@@ -1257,13 +1058,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
      * @summary Get Campaign Tags
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsTag, 
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
@@ -1288,7 +1089,6 @@ export class CampaignsApi {
             localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1298,16 +1098,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }>((resolve, reject) => {
@@ -1321,13 +1112,13 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,\'email\')` to list email campaigns, or `?filter=equals(messages.channel,\'sms\')` to list SMS campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaigns
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2023-08-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-     * @param options Contains any of the following optional parameters: fieldsCampaignMessage, fieldsCampaign, fieldsTag, include, pageCursor, sort, 
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getCampaigns (filter: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>, pageCursor?: string, sort?: 'created_at' | '-created_at' | 'id' | '-id' | 'name' | '-name' | 'scheduled_at' | '-scheduled_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }> {
 
@@ -1373,7 +1164,6 @@ export class CampaignsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created_at' | '-created_at' | 'id' | '-id' | 'name' | '-name' | 'scheduled_at' | '-scheduled_at' | 'updated_at' | '-updated_at'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1383,16 +1173,7 @@ export class CampaignsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -1406,7 +1187,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -1438,7 +1219,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignPartialUpdateQuery was null or undefined when calling updateCampaign.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1449,16 +1229,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignPartialUpdateQuery, "CampaignPartialUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PatchCampaignResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PatchCampaignResponse;  }>((resolve, reject) => {
@@ -1472,7 +1243,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update a campaign message<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -1504,7 +1275,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignMessagePartialUpdateQuery was null or undefined when calling updateCampaignMessage.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1515,16 +1285,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignMessagePartialUpdateQuery, "CampaignMessagePartialUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PatchCampaignMessageResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PatchCampaignMessageResponse;  }>((resolve, reject) => {
@@ -1538,7 +1299,7 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Permanently cancel the campaign, setting the status to CANCELED or revert the campaign, setting the status back to DRAFT<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -1570,7 +1331,6 @@ export class CampaignsApi {
             throw new Error('Required parameter campaignSendJobPartialUpdateQuery was null or undefined when calling updateCampaignSendJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1581,16 +1341,7 @@ export class CampaignsApi {
             data: ObjectSerializer.serialize(campaignSendJobPartialUpdateQuery, "CampaignSendJobPartialUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -1603,6 +1354,6 @@ export class CampaignsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
 }

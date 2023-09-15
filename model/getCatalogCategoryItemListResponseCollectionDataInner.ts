@@ -14,6 +14,9 @@ import { CatalogItemEnum } from './catalogItemEnum';
 
 export class GetCatalogCategoryItemListResponseCollectionDataInner {
     'type': CatalogItemEnum;
+    /**
+    * A list of catalog item IDs that are in the given category.
+    */
     'id': string;
 
     static discriminator: string | undefined = undefined;

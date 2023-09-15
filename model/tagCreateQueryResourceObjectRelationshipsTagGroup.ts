@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagTagGroupRelationshipsResponseData } from './getTagTagGroupRelationshipsResponseData';
+import { TagCreateQueryResourceObjectRelationshipsTagGroupData } from './tagCreateQueryResourceObjectRelationshipsTagGroupData';
 
 export class TagCreateQueryResourceObjectRelationshipsTagGroup {
-    'data': GetTagTagGroupRelationshipsResponseData;
+    'data': TagCreateQueryResourceObjectRelationshipsTagGroupData;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class TagCreateQueryResourceObjectRelationshipsTagGroup {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetTagTagGroupRelationshipsResponseData"
+            "type": "TagCreateQueryResourceObjectRelationshipsTagGroupData"
         }    ];
 
     static getAttributeTypeMap() {

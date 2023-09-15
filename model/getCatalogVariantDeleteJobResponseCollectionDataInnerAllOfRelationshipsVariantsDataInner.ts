@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { CatalogVariantEnum } from './catalogVariantEnum';
 
-export class CampaignSendJobCreateQueryResourceObjectAttributes {
+export class GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariantsDataInner {
+    'type': CatalogVariantEnum;
     /**
-    * The ID of the campaign to send
+    * IDs of the deleted catalog variants.
     */
     'id': string;
 
@@ -21,13 +23,20 @@ export class CampaignSendJobCreateQueryResourceObjectAttributes {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "type",
+            "baseName": "type",
+            "type": "CatalogVariantEnum"
+        },
+        {
             "name": "id",
             "baseName": "id",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return CampaignSendJobCreateQueryResourceObjectAttributes.attributeTypeMap;
+        return GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariantsDataInner.attributeTypeMap;
     }
 }
 
+export namespace GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariantsDataInner {
+}

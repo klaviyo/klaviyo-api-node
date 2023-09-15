@@ -4,6 +4,7 @@ import {
   ProfileCreateQuery,
   ProfileEnum,
   ProfilesApi,
+  ApiKeySession,
 } from '../api'
 
 namespace NodeJS {
@@ -22,13 +23,13 @@ if (process.env.PK) {
   process.exit(1)
 }
 
-const profilesApi = new ProfilesApi(privateKey)
+const profilesApi = new ProfilesApi(new ApiKeySession(privateKey))
 
 let profile: ProfileCreateQuery = {
   data: {
     type: ProfileEnum.Profile,
     attributes: {
-      email: "typescript_test_12@klaviyo-demo.com"
+      email: "typescript_test@klaviyo-demo.com"
     }
   }
 }
@@ -37,5 +38,5 @@ let profile: ProfileCreateQuery = {
 profilesApi.createProfile(profile).then(result => {
   console.log(result.body)
 }).catch(error => {
-  console.log(error)
+  console.log(error.response.status)
 });
