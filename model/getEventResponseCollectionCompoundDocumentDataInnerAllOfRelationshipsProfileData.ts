@@ -14,6 +14,9 @@ import { ProfileEnum } from './profileEnum';
 
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData {
     'type': ProfileEnum;
+    /**
+    * Profile ID of the associated profile, if available
+    */
     'id': string;
 
     static discriminator: string | undefined = undefined;

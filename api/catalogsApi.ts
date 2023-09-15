@@ -11,8 +11,8 @@
 
 
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import http from 'http';
 import { backOff, BackoffOptions } from 'exponential-backoff';
+import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { CatalogCategoryCreateJobCreateQuery } from '../model/catalogCategoryCreateJobCreateQuery';
@@ -79,7 +79,7 @@ import { ServerBISSubscriptionCreateQuery } from '../model/serverBISSubscription
 import { ObjectSerializer, Authentication } from '../model/models';
 import { ApiKeyAuth } from '../model/models';
 
-import {ApiClient, KlaviyoApiKey, queryParamPreProcessor, RetryOptions} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -91,32 +91,17 @@ let defaultBasePath = 'https://a.klaviyo.com';
 export class CatalogsApi {
 
     protected backoffOptions: BackoffOptions = new RetryOptions().options
+    session: Session
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-08-15",
-        "User-Agent": "klaviyo-api-node/5.1.0-beta.1"
+        revision: "2023-09-15",
+        "User-Agent": "klaviyo-api-node/6.0.0"
     };
     protected _useQuerystring : boolean = false;
 
-    protected _keyPrefix = "Klaviyo-API-Key"
-
-    protected authentications = {
-        'Klaviyo-API-Key': new ApiKeyAuth('header', 'Authorization'),
-    }
-
-    constructor(apiKeyInfo: string | ApiClient, retryOptions?: RetryOptions){
-        if(apiKeyInfo){
-            if (typeof apiKeyInfo == 'string') {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo)
-            } else {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo.apiKey)
-                this.backoffOptions = apiKeyInfo.retryOptions.options
-            }
-        }
-        if (retryOptions){
-            this.backoffOptions = retryOptions.options
-        }
+    constructor(session: Session){
+        this.session = session
     }
 
     set useQuerystring(value: boolean) {
@@ -137,10 +122,6 @@ export class CatalogsApi {
 
     get basePath() {
         return this._basePath;
-    }
-
-    public setApiKey(key: KlaviyoApiKey, value: string) {
-        this.authentications[key].apiKey = `${this._keyPrefix} ${value}`;
     }
 
     /**
@@ -167,7 +148,6 @@ export class CatalogsApi {
             throw new Error('Required parameter serverBISSubscriptionCreateQuery was null or undefined when calling createBackInStockSubscription.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -178,16 +158,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(serverBISSubscriptionCreateQuery, "ServerBISSubscriptionCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -200,7 +171,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a new catalog category.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -226,7 +197,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryCreateQuery was null or undefined when calling createCatalogCategory.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -237,16 +207,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryCreateQuery, "CatalogCategoryCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogCategoryResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogCategoryResponse;  }>((resolve, reject) => {
@@ -260,7 +221,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a new item relationship for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -292,7 +253,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling createCatalogCategoryRelationshipsItems.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -303,16 +263,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -325,7 +276,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a new catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -351,7 +302,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemCreateQuery was null or undefined when calling createCatalogItem.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -362,16 +312,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemCreateQuery, "CatalogItemCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogItemResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogItemResponse;  }>((resolve, reject) => {
@@ -385,7 +326,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -417,7 +358,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling createCatalogItemRelationshipsCategories.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -428,16 +368,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -450,7 +381,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a new variant for a related catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -476,7 +407,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogVariantCreateQuery was null or undefined when calling createCatalogVariant.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -487,16 +417,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogVariantCreateQuery, "CatalogVariantCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogVariantResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogVariantResponse;  }>((resolve, reject) => {
@@ -510,7 +431,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete a catalog category using the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -537,7 +458,6 @@ export class CatalogsApi {
             throw new Error('Required parameter id was null or undefined when calling deleteCatalogCategory.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -547,16 +467,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -569,7 +480,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -601,7 +512,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling deleteCatalogCategoryRelationshipsItems.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -612,16 +522,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -634,7 +535,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -661,7 +562,6 @@ export class CatalogsApi {
             throw new Error('Required parameter id was null or undefined when calling deleteCatalogItem.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -671,16 +571,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -693,7 +584,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -725,7 +616,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling deleteCatalogItemRelationshipsCategories.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -736,16 +626,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -758,7 +639,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -785,7 +666,6 @@ export class CatalogsApi {
             throw new Error('Required parameter id was null or undefined when calling deleteCatalogVariant.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -795,16 +675,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -817,13 +688,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
-     * Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Categories
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategory, filter, pageCursor, sort, 
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getCatalogCategories (options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> {
 
@@ -854,7 +725,6 @@ export class CatalogsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -864,16 +734,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }>((resolve, reject) => {
@@ -887,13 +748,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Category
      * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategory, 
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCatalogCategory (id: string, options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponse;  }> {
 
@@ -918,7 +779,6 @@ export class CatalogsApi {
             localVarQueryParameters['fields[catalog-category]'] = ObjectSerializer.serialize(options.fieldsCatalogCategory, "Array<'external_id' | 'name' | 'updated'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -928,16 +788,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponse;  }>((resolve, reject) => {
@@ -951,13 +802,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: `created`  Include parameters can be provided to get the following related resource data: `variants`  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Category Items
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsCatalogItem, fieldsCatalogVariant, filter, include, pageCursor, sort, 
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getCatalogCategoryItems (id: string, options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, include?: Array<'variants'>, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> {
 
@@ -1002,7 +853,6 @@ export class CatalogsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1012,16 +862,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -1035,13 +876,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all items in the given category ID.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Category Relationships Items
      * @param id 
-     * @param options Contains any of the following optional parameters: pageCursor, 
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getCatalogCategoryRelationshipsItems (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }> {
 
@@ -1066,7 +907,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1076,16 +916,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }>((resolve, reject) => {
@@ -1099,13 +930,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a specific catalog item with the given item ID.  Include parameters can be provided to get the following related resource data: `variants`<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item
      * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param options Contains any of the following optional parameters: fieldsCatalogItem, fieldsCatalogVariant, include, 
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getCatalogItem (id: string, options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCompoundDocument;  }> {
 
@@ -1138,7 +969,6 @@ export class CatalogsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'variants'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1148,16 +978,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCompoundDocument;  }>((resolve, reject) => {
@@ -1171,13 +992,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item Categories
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategory, filter, pageCursor, sort, 
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getCatalogItemCategories (id: string, options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> {
 
@@ -1214,7 +1035,6 @@ export class CatalogsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1224,16 +1044,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }>((resolve, reject) => {
@@ -1247,13 +1058,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog categories that a particular item is in.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item Relationships Categories
      * @param id 
-     * @param options Contains any of the following optional parameters: pageCursor, 
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getCatalogItemRelationshipsCategories (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }> {
 
@@ -1278,7 +1089,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1288,16 +1098,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }>((resolve, reject) => {
@@ -1311,13 +1112,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item Variants
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariant, filter, pageCursor, sort, 
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getCatalogItemVariants (id: string, options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> {
 
@@ -1354,7 +1155,6 @@ export class CatalogsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1364,16 +1164,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }>((resolve, reject) => {
@@ -1387,13 +1178,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
-     * Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: `created`  Include parameters can be provided to get the following related resource data: `variants`  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: `created`  Include parameters can be provided to get the following related resource data: `variants`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Items
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogItem, fieldsCatalogVariant, filter, include, pageCursor, sort, 
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getCatalogItems (options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, include?: Array<'variants'>, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> {
 
@@ -1432,7 +1223,6 @@ export class CatalogsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1442,16 +1232,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -1465,13 +1246,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Variant
      * @param id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariant, 
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getCatalogVariant (id: string, options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponse;  }> {
 
@@ -1496,7 +1277,6 @@ export class CatalogsApi {
             localVarQueryParameters['fields[catalog-variant]'] = ObjectSerializer.serialize(options.fieldsCatalogVariant, "Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1506,16 +1286,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantResponse;  }>((resolve, reject) => {
@@ -1529,13 +1300,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
-     * Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Variants
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariant, filter, pageCursor, sort, 
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getCatalogVariants (options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> {
 
@@ -1566,7 +1337,6 @@ export class CatalogsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1576,16 +1346,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }>((resolve, reject) => {
@@ -1599,13 +1360,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog category bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategoryBulkCreateJob, fieldsCatalogCategory, include, 
+     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getCreateCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkCreateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, include?: Array<'categories'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCompoundDocument;  }> {
 
@@ -1638,7 +1399,6 @@ export class CatalogsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'categories'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1648,16 +1408,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCompoundDocument;  }>((resolve, reject) => {
@@ -1671,13 +1422,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Categories Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategoryBulkCreateJob, filter, pageCursor, 
+     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getCreateCategoriesJobs (options: { fieldsCatalogCategoryBulkCreateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCollectionCompoundDocument;  }> {
 
@@ -1704,7 +1455,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1714,16 +1464,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -1737,13 +1478,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog item bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Items Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogItemBulkCreateJob, fieldsCatalogItem, include, 
+     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getCreateItemsJob (jobId: string, options: { fieldsCatalogItemBulkCreateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }> {
 
@@ -1776,7 +1517,6 @@ export class CatalogsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'items'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1786,16 +1526,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }>((resolve, reject) => {
@@ -1809,13 +1540,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Items Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogItemBulkCreateJob, filter, pageCursor, 
+     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getCreateItemsJobs (options: { fieldsCatalogItemBulkCreateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }> {
 
@@ -1842,7 +1573,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1852,16 +1582,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -1875,13 +1596,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog variant bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariantBulkCreateJob, fieldsCatalogVariant, include, 
+     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getCreateVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkCreateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCompoundDocument;  }> {
 
@@ -1914,7 +1635,6 @@ export class CatalogsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'variants'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1924,16 +1644,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCompoundDocument;  }>((resolve, reject) => {
@@ -1947,13 +1658,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Variants Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariantBulkCreateJob, filter, pageCursor, 
+     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getCreateVariantsJobs (options: { fieldsCatalogVariantBulkCreateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCollectionCompoundDocument;  }> {
 
@@ -1980,7 +1691,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1990,16 +1700,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -2013,13 +1714,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog category bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategoryBulkDeleteJob, 
+     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkDeleteJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponse;  }> {
 
@@ -2044,7 +1745,6 @@ export class CatalogsApi {
             localVarQueryParameters['fields[catalog-category-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsCatalogCategoryBulkDeleteJob, "Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2054,16 +1754,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponse;  }>((resolve, reject) => {
@@ -2077,13 +1768,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Categories Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategoryBulkDeleteJob, filter, pageCursor, 
+     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getDeleteCategoriesJobs (options: { fieldsCatalogCategoryBulkDeleteJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponseCollection;  }> {
 
@@ -2110,7 +1801,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2120,16 +1810,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponseCollection;  }>((resolve, reject) => {
@@ -2143,13 +1824,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog item bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Items Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogItemBulkDeleteJob, 
+     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteItemsJob (jobId: string, options: { fieldsCatalogItemBulkDeleteJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }> {
 
@@ -2174,7 +1855,6 @@ export class CatalogsApi {
             localVarQueryParameters['fields[catalog-item-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkDeleteJob, "Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2184,16 +1864,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }>((resolve, reject) => {
@@ -2207,13 +1878,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Items Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogItemBulkDeleteJob, filter, pageCursor, 
+     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getDeleteItemsJobs (options: { fieldsCatalogItemBulkDeleteJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }> {
 
@@ -2240,7 +1911,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2250,16 +1920,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }>((resolve, reject) => {
@@ -2273,13 +1934,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog variant bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariantBulkDeleteJob, 
+     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkDeleteJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponse;  }> {
 
@@ -2304,7 +1965,6 @@ export class CatalogsApi {
             localVarQueryParameters['fields[catalog-variant-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsCatalogVariantBulkDeleteJob, "Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2314,16 +1974,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponse;  }>((resolve, reject) => {
@@ -2337,13 +1988,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Variants Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariantBulkDeleteJob, filter, pageCursor, 
+     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getDeleteVariantsJobs (options: { fieldsCatalogVariantBulkDeleteJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponseCollection;  }> {
 
@@ -2370,7 +2021,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2380,16 +2030,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponseCollection;  }>((resolve, reject) => {
@@ -2403,13 +2044,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog category bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategoryBulkUpdateJob, fieldsCatalogCategory, include, 
+     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getUpdateCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkUpdateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, include?: Array<'categories'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCompoundDocument;  }> {
 
@@ -2442,7 +2083,6 @@ export class CatalogsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'categories'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2452,16 +2092,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCompoundDocument;  }>((resolve, reject) => {
@@ -2475,13 +2106,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Categories Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogCategoryBulkUpdateJob, filter, pageCursor, 
+     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getUpdateCategoriesJobs (options: { fieldsCatalogCategoryBulkUpdateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument;  }> {
 
@@ -2508,7 +2139,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2518,16 +2148,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -2541,13 +2162,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog item bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Items Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogItemBulkUpdateJob, fieldsCatalogItem, include, 
+     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getUpdateItemsJob (jobId: string, options: { fieldsCatalogItemBulkUpdateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }> {
 
@@ -2580,7 +2201,6 @@ export class CatalogsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'items'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2590,16 +2210,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }>((resolve, reject) => {
@@ -2613,13 +2224,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Items Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogItemBulkUpdateJob, filter, pageCursor, 
+     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getUpdateItemsJobs (options: { fieldsCatalogItemBulkUpdateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }> {
 
@@ -2646,7 +2257,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2656,16 +2266,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -2679,13 +2280,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get a catalog variate bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariantBulkUpdateJob, fieldsCatalogVariant, include, 
+     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getUpdateVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkUpdateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCompoundDocument;  }> {
 
@@ -2718,7 +2319,6 @@ export class CatalogsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'variants'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2728,16 +2328,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCompoundDocument;  }>((resolve, reject) => {
@@ -2751,13 +2342,13 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Variants Jobs
      
-     * @param options Contains any of the following optional parameters: fieldsCatalogVariantBulkUpdateJob, filter, pageCursor, 
+     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getUpdateVariantsJobs (options: { fieldsCatalogVariantBulkUpdateJob?: Array<'job_id' | 'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCollectionCompoundDocument;  }> {
 
@@ -2784,7 +2375,6 @@ export class CatalogsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2794,16 +2384,7 @@ export class CatalogsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -2817,7 +2398,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -2843,7 +2424,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryCreateJobCreateQuery was null or undefined when calling spawnCreateCategoriesJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2854,16 +2434,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryCreateJobCreateQuery, "CatalogCategoryCreateJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }>((resolve, reject) => {
@@ -2877,7 +2448,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -2903,7 +2474,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemCreateJobCreateQuery was null or undefined when calling spawnCreateItemsJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2914,16 +2484,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemCreateJobCreateQuery, "CatalogItemCreateJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }>((resolve, reject) => {
@@ -2937,7 +2498,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -2963,7 +2524,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogVariantCreateJobCreateQuery was null or undefined when calling spawnCreateVariantsJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -2974,16 +2534,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogVariantCreateJobCreateQuery, "CatalogVariantCreateJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }>((resolve, reject) => {
@@ -2997,7 +2548,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3023,7 +2574,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryDeleteJobCreateQuery was null or undefined when calling spawnDeleteCategoriesJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3034,16 +2584,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryDeleteJobCreateQuery, "CatalogCategoryDeleteJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }>((resolve, reject) => {
@@ -3057,7 +2598,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3083,7 +2624,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemDeleteJobCreateQuery was null or undefined when calling spawnDeleteItemsJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3094,16 +2634,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemDeleteJobCreateQuery, "CatalogItemDeleteJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }>((resolve, reject) => {
@@ -3117,7 +2648,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3143,7 +2674,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogVariantDeleteJobCreateQuery was null or undefined when calling spawnDeleteVariantsJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3154,16 +2684,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogVariantDeleteJobCreateQuery, "CatalogVariantDeleteJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }>((resolve, reject) => {
@@ -3177,7 +2698,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3203,7 +2724,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryUpdateJobCreateQuery was null or undefined when calling spawnUpdateCategoriesJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3214,16 +2734,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryUpdateJobCreateQuery, "CatalogCategoryUpdateJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }>((resolve, reject) => {
@@ -3237,7 +2748,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3263,7 +2774,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemUpdateJobCreateQuery was null or undefined when calling spawnUpdateItemsJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3274,16 +2784,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemUpdateJobCreateQuery, "CatalogItemUpdateJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }>((resolve, reject) => {
@@ -3297,7 +2798,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 4MB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3323,7 +2824,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogVariantUpdateJobCreateQuery was null or undefined when calling spawnUpdateVariantsJob.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3334,16 +2834,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogVariantUpdateJobCreateQuery, "CatalogVariantUpdateJobCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }>((resolve, reject) => {
@@ -3357,7 +2848,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3389,7 +2880,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryUpdateQuery was null or undefined when calling updateCatalogCategory.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3400,16 +2890,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryUpdateQuery, "CatalogCategoryUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PatchCatalogCategoryResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PatchCatalogCategoryResponse;  }>((resolve, reject) => {
@@ -3423,7 +2904,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3455,7 +2936,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling updateCatalogCategoryRelationshipsItems.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3466,16 +2946,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -3488,7 +2959,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3520,7 +2991,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemUpdateQuery was null or undefined when calling updateCatalogItem.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3531,16 +3001,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemUpdateQuery, "CatalogItemUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PatchCatalogItemResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PatchCatalogItemResponse;  }>((resolve, reject) => {
@@ -3554,7 +3015,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3586,7 +3047,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling updateCatalogItemRelationshipsCategories.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3597,16 +3057,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -3619,7 +3070,7 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -3651,7 +3102,6 @@ export class CatalogsApi {
             throw new Error('Required parameter catalogVariantUpdateQuery was null or undefined when calling updateCatalogVariant.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -3662,16 +3112,7 @@ export class CatalogsApi {
             data: ObjectSerializer.serialize(catalogVariantUpdateQuery, "CatalogVariantUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PatchCatalogVariantResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PatchCatalogVariantResponse;  }>((resolve, reject) => {
@@ -3685,6 +3126,6 @@ export class CatalogsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
 }

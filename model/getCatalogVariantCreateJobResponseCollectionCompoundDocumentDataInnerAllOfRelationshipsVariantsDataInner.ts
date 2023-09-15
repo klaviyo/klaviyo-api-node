@@ -14,6 +14,9 @@ import { CatalogVariantEnum } from './catalogVariantEnum';
 
 export class GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner {
     'type': CatalogVariantEnum;
+    /**
+    * IDs of the created catalog variants.
+    */
     'id': string;
 
     static discriminator: string | undefined = undefined;

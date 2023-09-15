@@ -13,10 +13,6 @@ import { RequestFile } from './models';
 
 export class TemplateRenderQueryResourceObjectAttributes {
     /**
-    * The ID of template
-    */
-    'id': string;
-    /**
     * The context for the template render. This must be a JSON object which has values for any tags used in the template. See [this doc](https://help.klaviyo.com/hc/en-us/articles/4408802648731) for more details.
     */
     'context': object;
@@ -24,11 +20,6 @@ export class TemplateRenderQueryResourceObjectAttributes {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
         {
             "name": "context",
             "baseName": "context",

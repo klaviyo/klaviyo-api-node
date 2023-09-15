@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetCatalogItemCategoryListResponseCollectionDataInner } from './getCatalogItemCategoryListResponseCollectionDataInner';
+import { GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategoriesDataInner } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategoriesDataInner';
 import { RelationshipLinks } from './relationshipLinks';
 
 export class GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories {
-    'data': Array<GetCatalogItemCategoryListResponseCollectionDataInner>;
+    'data': Array<GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategoriesDataInner>;
     'links'?: RelationshipLinks;
 
     static discriminator: string | undefined = undefined;
@@ -23,7 +23,7 @@ export class GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataIn
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetCatalogItemCategoryListResponseCollectionDataInner>"
+            "type": "Array<GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategoriesDataInner>"
         },
         {
             "name": "links",

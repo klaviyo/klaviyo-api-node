@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
+import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner';
 import { RelationshipLinks } from './relationshipLinks';
 
 export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles {
-    'data': Array<GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData>;
+    'data': Array<GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner>;
     'links'?: RelationshipLinks;
 
     static discriminator: string | undefined = undefined;
@@ -23,7 +23,7 @@ export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelation
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData>"
+            "type": "Array<GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner>"
         },
         {
             "name": "links",

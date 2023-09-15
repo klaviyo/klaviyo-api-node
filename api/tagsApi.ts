@@ -11,8 +11,8 @@
 
 
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import http from 'http';
 import { backOff, BackoffOptions } from 'exponential-backoff';
+import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { DeleteTagGroupResponse } from '../model/deleteTagGroupResponse';
@@ -43,7 +43,7 @@ import { TagUpdateQuery } from '../model/tagUpdateQuery';
 import { ObjectSerializer, Authentication } from '../model/models';
 import { ApiKeyAuth } from '../model/models';
 
-import {ApiClient, KlaviyoApiKey, queryParamPreProcessor, RetryOptions} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -55,32 +55,17 @@ let defaultBasePath = 'https://a.klaviyo.com';
 export class TagsApi {
 
     protected backoffOptions: BackoffOptions = new RetryOptions().options
+    session: Session
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-08-15",
-        "User-Agent": "klaviyo-api-node/5.1.0-beta.1"
+        revision: "2023-09-15",
+        "User-Agent": "klaviyo-api-node/6.0.0"
     };
     protected _useQuerystring : boolean = false;
 
-    protected _keyPrefix = "Klaviyo-API-Key"
-
-    protected authentications = {
-        'Klaviyo-API-Key': new ApiKeyAuth('header', 'Authorization'),
-    }
-
-    constructor(apiKeyInfo: string | ApiClient, retryOptions?: RetryOptions){
-        if(apiKeyInfo){
-            if (typeof apiKeyInfo == 'string') {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo)
-            } else {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo.apiKey)
-                this.backoffOptions = apiKeyInfo.retryOptions.options
-            }
-        }
-        if (retryOptions){
-            this.backoffOptions = retryOptions.options
-        }
+    constructor(session: Session){
+        this.session = session
     }
 
     set useQuerystring(value: boolean) {
@@ -101,10 +86,6 @@ export class TagsApi {
 
     get basePath() {
         return this._basePath;
-    }
-
-    public setApiKey(key: KlaviyoApiKey, value: string) {
-        this.authentications[key].apiKey = `${this._keyPrefix} ${value}`;
     }
 
     /**
@@ -131,7 +112,6 @@ export class TagsApi {
             throw new Error('Required parameter tagCreateQuery was null or undefined when calling createTag.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -142,16 +122,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagCreateQuery, "TagCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostTagResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostTagResponse;  }>((resolve, reject) => {
@@ -165,7 +136,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Create a tag group. An account cannot have more than **50** unique tag groups.  If `exclusive` is not specified `true` or `false`, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -191,7 +162,6 @@ export class TagsApi {
             throw new Error('Required parameter tagGroupCreateQuery was null or undefined when calling createTagGroup.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -202,16 +172,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagGroupCreateQuery, "TagGroupCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostTagGroupResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostTagGroupResponse;  }>((resolve, reject) => {
@@ -225,7 +186,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
@@ -257,7 +218,6 @@ export class TagsApi {
             throw new Error('Required parameter tagCampaignOp was null or undefined when calling createTagRelationshipsCampaigns.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -268,16 +228,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -290,7 +241,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
@@ -322,7 +273,6 @@ export class TagsApi {
             throw new Error('Required parameter tagFlowOp was null or undefined when calling createTagRelationshipsFlows.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -333,16 +283,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -355,7 +296,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:write` `tags:write`
@@ -387,7 +328,6 @@ export class TagsApi {
             throw new Error('Required parameter tagListOp was null or undefined when calling createTagRelationshipsLists.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -398,16 +338,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagListOp, "TagListOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -420,7 +351,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
@@ -452,7 +383,6 @@ export class TagsApi {
             throw new Error('Required parameter tagSegmentOp was null or undefined when calling createTagRelationshipsSegments.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -463,16 +393,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -485,7 +406,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -512,7 +433,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling deleteTag.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -522,16 +442,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -544,7 +455,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -571,7 +482,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling deleteTagGroup.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -581,16 +491,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }>((resolve, reject) => {
@@ -604,7 +505,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Remove a tag\'s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
@@ -636,7 +537,6 @@ export class TagsApi {
             throw new Error('Required parameter tagCampaignOp was null or undefined when calling deleteTagRelationshipsCampaigns.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -647,16 +547,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -669,7 +560,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Remove a tag\'s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
@@ -701,7 +592,6 @@ export class TagsApi {
             throw new Error('Required parameter tagFlowOp was null or undefined when calling deleteTagRelationshipsFlows.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -712,16 +602,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -734,7 +615,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:write` `tags:write`
@@ -766,7 +647,6 @@ export class TagsApi {
             throw new Error('Required parameter tagListOp was null or undefined when calling deleteTagRelationshipsLists.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -777,16 +657,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagListOp, "TagListOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -799,7 +670,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Remove a tag\'s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
@@ -831,7 +702,6 @@ export class TagsApi {
             throw new Error('Required parameter tagSegmentOp was null or undefined when calling deleteTagRelationshipsSegments.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -842,16 +712,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -864,13 +725,13 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag
      * @param id The Tag ID
-     * @param options Contains any of the following optional parameters: fieldsTagGroup, fieldsTag, include, 
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getTag (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, fieldsTag?: Array<'name'>, include?: Array<'tag-group'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }> {
 
@@ -903,7 +764,6 @@ export class TagsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'tag-group'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -913,16 +773,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }>((resolve, reject) => {
@@ -936,13 +787,13 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Group
      * @param id The Tag Group ID
-     * @param options Contains any of the following optional parameters: fieldsTagGroup, 
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagGroup (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
@@ -967,7 +818,6 @@ export class TagsApi {
             localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'name' | 'exclusive' | 'default'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -977,16 +827,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }>((resolve, reject) => {
@@ -1000,7 +841,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -1027,7 +868,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling getTagGroupRelationshipsTags.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1037,16 +877,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }>((resolve, reject) => {
@@ -1060,13 +891,13 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Group Tags
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsTag, 
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagGroupTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
@@ -1091,7 +922,6 @@ export class TagsApi {
             localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1101,16 +931,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }>((resolve, reject) => {
@@ -1124,13 +945,13 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Groups
      
-     * @param options Contains any of the following optional parameters: fieldsTagGroup, filter, pageCursor, sort, 
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getTagGroups (options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, filter?: string, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }> {
 
@@ -1161,7 +982,6 @@ export class TagsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'id' | '-id' | 'name' | '-name'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1171,16 +991,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }>((resolve, reject) => {
@@ -1194,7 +1005,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
@@ -1221,7 +1032,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsCampaigns.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1231,16 +1041,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }>((resolve, reject) => {
@@ -1254,7 +1055,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
@@ -1281,7 +1082,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsFlows.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1291,16 +1091,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }>((resolve, reject) => {
@@ -1314,7 +1105,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:read` `tags:read`
@@ -1341,7 +1132,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsLists.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1351,16 +1141,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }>((resolve, reject) => {
@@ -1374,7 +1155,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
@@ -1401,7 +1182,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsSegments.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1411,16 +1191,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }>((resolve, reject) => {
@@ -1434,7 +1205,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -1461,7 +1232,6 @@ export class TagsApi {
             throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsTagGroup.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1471,16 +1241,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }>((resolve, reject) => {
@@ -1494,13 +1255,13 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Tag Group
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsTagGroup, 
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagTagGroup (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
@@ -1525,7 +1286,6 @@ export class TagsApi {
             localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'name' | 'exclusive' | 'default'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1535,16 +1295,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }>((resolve, reject) => {
@@ -1558,13 +1309,13 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tags
      
-     * @param options Contains any of the following optional parameters: fieldsTagGroup, fieldsTag, filter, include, pageCursor, sort, 
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
     public async getTags (options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'tag-group'>, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }> {
 
@@ -1603,7 +1354,6 @@ export class TagsApi {
             localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'id' | '-id' | 'name' | '-name'");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1613,16 +1363,7 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -1636,7 +1377,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update the tag with the given tag ID.  Only a tag\'s `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -1668,7 +1409,6 @@ export class TagsApi {
             throw new Error('Required parameter tagUpdateQuery was null or undefined when calling updateTag.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1679,16 +1419,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagUpdateQuery, "TagUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -1701,7 +1432,7 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update the tag group with the given tag group ID.  Only a tag group\'s `name` can be changed. A tag group\'s `exclusive` or `default` value cannot be changed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -1733,7 +1464,6 @@ export class TagsApi {
             throw new Error('Required parameter tagGroupUpdateQuery was null or undefined when calling updateTagGroup.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1744,16 +1474,7 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagGroupUpdateQuery, "TagGroupUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PatchTagGroupResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PatchTagGroupResponse;  }>((resolve, reject) => {
@@ -1767,6 +1488,6 @@ export class TagsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
 }

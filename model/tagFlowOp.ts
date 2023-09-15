@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner } from './getTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner';
+import { TagFlowOpDataInner } from './tagFlowOpDataInner';
 
 export class TagFlowOp {
-    'data': Array<GetTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner>;
+    'data': Array<TagFlowOpDataInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class TagFlowOp {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner>"
+            "type": "Array<TagFlowOpDataInner>"
         }    ];
 
     static getAttributeTypeMap() {

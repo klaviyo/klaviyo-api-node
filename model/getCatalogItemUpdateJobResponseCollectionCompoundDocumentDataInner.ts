@@ -11,13 +11,13 @@
 
 import { RequestFile } from './models';
 import { CatalogItemBulkUpdateJobEnum } from './catalogItemBulkUpdateJobEnum';
-import { CatalogItemCreateJobResponseObjectResourceAttributes } from './catalogItemCreateJobResponseObjectResourceAttributes';
 import { CatalogItemUpdateJobResponseObjectResource } from './catalogItemUpdateJobResponseObjectResource';
-import { GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
+import { GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 
 export class GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInner extends CatalogItemUpdateJobResponseObjectResource {
-    'relationships'?: GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+    'relationships'?: GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
     static discriminator: string | undefined = undefined;
 
@@ -25,7 +25,7 @@ export class GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInner 
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {

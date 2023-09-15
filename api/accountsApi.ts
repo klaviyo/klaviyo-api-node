@@ -11,8 +11,8 @@
 
 
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import http from 'http';
 import { backOff, BackoffOptions } from 'exponential-backoff';
+import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { GetAccountResponse } from '../model/getAccountResponse';
@@ -22,7 +22,7 @@ import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { ObjectSerializer, Authentication } from '../model/models';
 import { ApiKeyAuth } from '../model/models';
 
-import {ApiClient, KlaviyoApiKey, queryParamPreProcessor, RetryOptions} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -34,32 +34,17 @@ let defaultBasePath = 'https://a.klaviyo.com';
 export class AccountsApi {
 
     protected backoffOptions: BackoffOptions = new RetryOptions().options
+    session: Session
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-08-15",
-        "User-Agent": "klaviyo-api-node/5.1.0-beta.1"
+        revision: "2023-09-15",
+        "User-Agent": "klaviyo-api-node/6.0.0"
     };
     protected _useQuerystring : boolean = false;
 
-    protected _keyPrefix = "Klaviyo-API-Key"
-
-    protected authentications = {
-        'Klaviyo-API-Key': new ApiKeyAuth('header', 'Authorization'),
-    }
-
-    constructor(apiKeyInfo: string | ApiClient, retryOptions?: RetryOptions){
-        if(apiKeyInfo){
-            if (typeof apiKeyInfo == 'string') {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo)
-            } else {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo.apiKey)
-                this.backoffOptions = apiKeyInfo.retryOptions.options
-            }
-        }
-        if (retryOptions){
-            this.backoffOptions = retryOptions.options
-        }
+    constructor(session: Session){
+        this.session = session
     }
 
     set useQuerystring(value: boolean) {
@@ -82,15 +67,11 @@ export class AccountsApi {
         return this._basePath;
     }
 
-    public setApiKey(key: KlaviyoApiKey, value: string) {
-        this.authentications[key].apiKey = `${this._keyPrefix} ${value}`;
-    }
-
     /**
      * Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
      * @summary Get Account
      * @param id The ID of the account
-     * @param options Contains any of the following optional parameters: fieldsAccount, 
+     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getAccount (id: string, options: { fieldsAccount?: Array<'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponse;  }> {
 
@@ -115,7 +96,6 @@ export class AccountsApi {
             localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -125,16 +105,7 @@ export class AccountsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetAccountResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetAccountResponse;  }>((resolve, reject) => {
@@ -148,13 +119,13 @@ export class AccountsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
      * @summary Get Accounts
      
-     * @param options Contains any of the following optional parameters: fieldsAccount, 
+     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getAccounts (options: { fieldsAccount?: Array<'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }> {
 
@@ -173,7 +144,6 @@ export class AccountsApi {
             localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -183,16 +153,7 @@ export class AccountsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetAccountResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }>((resolve, reject) => {
@@ -206,6 +167,6 @@ export class AccountsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
 }

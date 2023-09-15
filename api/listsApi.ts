@@ -11,16 +11,16 @@
 
 
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import http from 'http';
 import { backOff, BackoffOptions } from 'exponential-backoff';
+import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetListListResponseCollectionCompoundDocument } from '../model/getListListResponseCollectionCompoundDocument';
+import { GetListMemberResponseCollection } from '../model/getListMemberResponseCollection';
 import { GetListRelationshipsResponseCollection } from '../model/getListRelationshipsResponseCollection';
 import { GetListRetrieveResponseCompoundDocument } from '../model/getListRetrieveResponseCompoundDocument';
 import { GetListTagRelationshipListResponseCollection } from '../model/getListTagRelationshipListResponseCollection';
-import { GetProfileResponseCollection } from '../model/getProfileResponseCollection';
 import { GetTagResponseCollection } from '../model/getTagResponseCollection';
 import { ListCreateQuery } from '../model/listCreateQuery';
 import { ListMembersAddQuery } from '../model/listMembersAddQuery';
@@ -32,7 +32,7 @@ import { PostListCreateResponse } from '../model/postListCreateResponse';
 import { ObjectSerializer, Authentication } from '../model/models';
 import { ApiKeyAuth } from '../model/models';
 
-import {ApiClient, KlaviyoApiKey, queryParamPreProcessor, RetryOptions} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -44,32 +44,17 @@ let defaultBasePath = 'https://a.klaviyo.com';
 export class ListsApi {
 
     protected backoffOptions: BackoffOptions = new RetryOptions().options
+    session: Session
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-08-15",
-        "User-Agent": "klaviyo-api-node/5.1.0-beta.1"
+        revision: "2023-09-15",
+        "User-Agent": "klaviyo-api-node/6.0.0"
     };
     protected _useQuerystring : boolean = false;
 
-    protected _keyPrefix = "Klaviyo-API-Key"
-
-    protected authentications = {
-        'Klaviyo-API-Key': new ApiKeyAuth('header', 'Authorization'),
-    }
-
-    constructor(apiKeyInfo: string | ApiClient, retryOptions?: RetryOptions){
-        if(apiKeyInfo){
-            if (typeof apiKeyInfo == 'string') {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo)
-            } else {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo.apiKey)
-                this.backoffOptions = apiKeyInfo.retryOptions.options
-            }
-        }
-        if (retryOptions){
-            this.backoffOptions = retryOptions.options
-        }
+    constructor(session: Session){
+        this.session = session
     }
 
     set useQuerystring(value: boolean) {
@@ -90,10 +75,6 @@ export class ListsApi {
 
     get basePath() {
         return this._basePath;
-    }
-
-    public setApiKey(key: KlaviyoApiKey, value: string) {
-        this.authentications[key].apiKey = `${this._keyPrefix} ${value}`;
     }
 
     /**
@@ -120,7 +101,6 @@ export class ListsApi {
             throw new Error('Required parameter listCreateQuery was null or undefined when calling createList.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -131,16 +111,7 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listCreateQuery, "ListCreateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PostListCreateResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PostListCreateResponse;  }>((resolve, reject) => {
@@ -154,7 +125,7 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Add a profile to a list with the given list ID.  It is recommended that you use the [Subscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/subscribe_profiles) if you\'re trying to give a profile consent to receive email marketing.  This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `list:write` `profiles:write`
@@ -186,7 +157,6 @@ export class ListsApi {
             throw new Error('Required parameter listMembersAddQuery was null or undefined when calling createListRelationships.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -197,16 +167,7 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listMembersAddQuery, "ListMembersAddQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -219,7 +180,7 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Delete a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `list:write`
@@ -246,7 +207,6 @@ export class ListsApi {
             throw new Error('Required parameter id was null or undefined when calling deleteList.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -256,16 +216,7 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -278,7 +229,7 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Remove a profile from a list with the given list ID.  The provided profile will no longer receive marketing from this particular list once removed.  Removing a profile from a list will not impact the profile\'s consent status or subscription status in general. To update a profile\'s subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles).  This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `list:write` `profiles:write`
@@ -310,7 +261,6 @@ export class ListsApi {
             throw new Error('Required parameter listMembersDeleteQuery was null or undefined when calling deleteListRelationships.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -321,16 +271,7 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listMembersDeleteQuery, "ListMembersDeleteQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -343,13 +284,13 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
-     * Get a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[list]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2023-08-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `list:read`
+     * Get a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[list]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2023-09-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `list:read`
      * @summary Get List
      * @param id Primary key that uniquely identifies this list. Generated by Klaviyo.
-     * @param options Contains any of the following optional parameters: additionalFieldsList, fieldsList, fieldsTag, include, 
+     * @param additionalFieldsList Request additional fields not included by default in the response. Supported values: \&#39;profile_count\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships
      */
     public async getList (id: string, options: { additionalFieldsList?: Array<'profile_count'>, fieldsList?: Array<'name' | 'created' | 'updated' | 'profile_count'>, fieldsTag?: Array<'name'>, include?: Array<'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }> {
 
@@ -386,7 +327,6 @@ export class ListsApi {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'tags'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -396,16 +336,7 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }>((resolve, reject) => {
@@ -419,15 +350,15 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
-     * Get all profiles within a list with the given list ID.  Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, and `push_token` fields.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2023-08-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `list:read` `profiles:read`
+     * Get all profiles within a list with the given list ID.  Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2023-09-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `list:read` `profiles:read`
      * @summary Get List Profiles
      * @param id 
-     * @param options Contains any of the following optional parameters: additionalFieldsProfile, fieldsProfile, filter, pageCursor, pageSize, 
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;push_token&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;joined_group_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
-    public async getListProfiles (id: string, options: { additionalFieldsProfile?: Array<'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.timestamp' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppressions' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
+    public async getListProfiles (id: string, options: { additionalFieldsProfile?: Array<'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.timestamp' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppressions' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'joined_group_at' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'joined_group_at' | '-joined_group_at',  } = {}): Promise<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/lists/{id}/profiles/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -451,7 +382,7 @@ export class ListsApi {
         }
 
         if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.timestamp' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppressions' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.timestamp' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppressions' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'joined_group_at' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
         }
 
         if (options.filter !== undefined) {
@@ -466,6 +397,9 @@ export class ListsApi {
             localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
         }
 
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'joined_group_at' | '-joined_group_at'");
+        }
 
         queryParamPreProcessor(localVarQueryParameters)
 
@@ -476,38 +410,29 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }>((resolve, reject) => {
+        return backOff<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }>( () => {
+            return new Promise<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }>((resolve, reject) => {
                 axios(config)
                     .then(axiosResponse => {
                         let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollection");
+                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetListMemberResponseCollection");
                         resolve({ response: axiosResponse, body: body });
                     })
                     .catch(error => {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `list:read` `profiles:read`
      * @summary Get List Relationships Profiles
      * @param id 
-     * @param options Contains any of the following optional parameters: pageCursor, 
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;push_token&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;joined_group_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 1000.* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sorting
      */
-    public async getListRelationshipsProfiles (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }> {
+    public async getListRelationshipsProfiles (id: string, options: { filter?: string, pageCursor?: string, pageSize?: number, sort?: 'joined_group_at' | '-joined_group_at',  } = {}): Promise<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/lists/{id}/relationships/profiles/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -526,10 +451,21 @@ export class ListsApi {
             throw new Error('Required parameter id was null or undefined when calling getListRelationshipsProfiles.');
         }
 
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
         if (options.pageCursor !== undefined) {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'joined_group_at' | '-joined_group_at'");
+        }
 
         queryParamPreProcessor(localVarQueryParameters)
 
@@ -540,16 +476,7 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }>((resolve, reject) => {
@@ -563,7 +490,7 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Returns the tag IDs of all tags associated with the given list.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:read` `tags:read`
@@ -590,7 +517,6 @@ export class ListsApi {
             throw new Error('Required parameter id was null or undefined when calling getListRelationshipsTags.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -600,16 +526,7 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }>((resolve, reject) => {
@@ -623,13 +540,13 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Return all tags associated with the given list ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:read` `tags:read`
      * @summary Get List Tags
      * @param id 
-     * @param options Contains any of the following optional parameters: fieldsTag, 
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets
      */
     public async getListTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
@@ -654,7 +571,6 @@ export class ListsApi {
             localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -664,16 +580,7 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }>((resolve, reject) => {
@@ -687,13 +594,13 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Get all lists in an account.  Filter to request a subset of all lists. Lists can be filtered by `id`, `name`, `created`, and `updated` fields.  Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `list:read`
      * @summary Get Lists
      
-     * @param options Contains any of the following optional parameters: fieldsList, fieldsTag, filter, include, pageCursor, 
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-09-15/reference/api-overview#pagination
      */
     public async getLists (options: { fieldsList?: Array<'name' | 'created' | 'updated'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'tags'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }> {
 
@@ -728,7 +635,6 @@ export class ListsApi {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -738,16 +644,7 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }>((resolve, reject) => {
@@ -761,7 +658,7 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
     /**
      * Update the name of a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `list:write`
@@ -793,7 +690,6 @@ export class ListsApi {
             throw new Error('Required parameter listPartialUpdateQuery was null or undefined when calling updateList.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -804,16 +700,7 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listPartialUpdateQuery, "ListPartialUpdateQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }>( () => {
             return new Promise<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }>((resolve, reject) => {
@@ -827,6 +714,6 @@ export class ListsApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
 }

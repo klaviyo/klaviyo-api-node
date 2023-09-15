@@ -10,12 +10,14 @@
  */
 
 import { RequestFile } from './models';
-import { CampaignSendJobCreateQueryResourceObjectAttributes } from './campaignSendJobCreateQueryResourceObjectAttributes';
 import { CampaignSendJobEnum } from './campaignSendJobEnum';
 
 export class CampaignSendJobCreateQueryResourceObject {
     'type': CampaignSendJobEnum;
-    'attributes': CampaignSendJobCreateQueryResourceObjectAttributes;
+    /**
+    * The ID of the campaign to send
+    */
+    'id': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -26,9 +28,9 @@ export class CampaignSendJobCreateQueryResourceObject {
             "type": "CampaignSendJobEnum"
         },
         {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "CampaignSendJobCreateQueryResourceObjectAttributes"
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { CampaignEnum } from './campaignEnum';
 
-export class CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes {
+export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData {
+    'type': CampaignEnum;
     /**
-    * The ID of the campaign to perform recipient estimation
+    * The parent campaign id
     */
     'id': string;
 
@@ -21,13 +23,20 @@ export class CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "type",
+            "baseName": "type",
+            "type": "CampaignEnum"
+        },
+        {
             "name": "id",
             "baseName": "id",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return CampaignRecipientEstimationJobCreateQueryResourceObjectAttributes.attributeTypeMap;
+        return GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData.attributeTypeMap;
     }
 }
 
+export namespace GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData {
+}

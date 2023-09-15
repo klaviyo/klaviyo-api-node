@@ -11,8 +11,8 @@
 
 
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import http from 'http';
 import { backOff, BackoffOptions } from 'exponential-backoff';
+import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { DataPrivacyCreateDeletionJobQuery } from '../model/dataPrivacyCreateDeletionJobQuery';
@@ -21,7 +21,7 @@ import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { ObjectSerializer, Authentication } from '../model/models';
 import { ApiKeyAuth } from '../model/models';
 
-import {ApiClient, KlaviyoApiKey, queryParamPreProcessor, RetryOptions} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -33,32 +33,17 @@ let defaultBasePath = 'https://a.klaviyo.com';
 export class DataPrivacyApi {
 
     protected backoffOptions: BackoffOptions = new RetryOptions().options
+    session: Session
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-08-15",
-        "User-Agent": "klaviyo-api-node/5.1.0-beta.1"
+        revision: "2023-09-15",
+        "User-Agent": "klaviyo-api-node/6.0.0"
     };
     protected _useQuerystring : boolean = false;
 
-    protected _keyPrefix = "Klaviyo-API-Key"
-
-    protected authentications = {
-        'Klaviyo-API-Key': new ApiKeyAuth('header', 'Authorization'),
-    }
-
-    constructor(apiKeyInfo: string | ApiClient, retryOptions?: RetryOptions){
-        if(apiKeyInfo){
-            if (typeof apiKeyInfo == 'string') {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo)
-            } else {
-                this.setApiKey(KlaviyoApiKey.KeyName, apiKeyInfo.apiKey)
-                this.backoffOptions = apiKeyInfo.retryOptions.options
-            }
-        }
-        if (retryOptions){
-            this.backoffOptions = retryOptions.options
-        }
+    constructor(session: Session){
+        this.session = session
     }
 
     set useQuerystring(value: boolean) {
@@ -79,10 +64,6 @@ export class DataPrivacyApi {
 
     get basePath() {
         return this._basePath;
-    }
-
-    public setApiKey(key: KlaviyoApiKey, value: string) {
-        this.authentications[key].apiKey = `${this._keyPrefix} ${value}`;
     }
 
     /**
@@ -109,7 +90,6 @@ export class DataPrivacyApi {
             throw new Error('Required parameter dataPrivacyCreateDeletionJobQuery was null or undefined when calling requestProfileDeletion.');
         }
 
-
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -120,16 +100,7 @@ export class DataPrivacyApi {
             data: ObjectSerializer.serialize(dataPrivacyCreateDeletionJobQuery, "DataPrivacyCreateDeletionJobQuery")
         }
 
-        if (this.authentications["Klaviyo-API-Key"].apiKey) {
-            this.authentications["Klaviyo-API-Key"].applyToRequest(config);
-        } else {
-            if (ApiClient.instance.apiKey && config.headers) {
-                config.headers['Authorization'] = `${this._keyPrefix} ${ApiClient.instance.apiKey}`
-                this.backoffOptions = ApiClient.instance.retryOptions.options
-            } else {
-                throw Error ("No API Key set")
-            }
-        }
+        this.session.applyToRequest(config)
 
         return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
             return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
@@ -142,6 +113,6 @@ export class DataPrivacyApi {
                         reject(error);
                     })
             });
-        }, this.backoffOptions);
+        }, this.session.getRetryOptions());
     }
 }

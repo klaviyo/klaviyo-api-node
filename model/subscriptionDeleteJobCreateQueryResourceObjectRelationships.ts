@@ -10,29 +10,22 @@
  */
 
 import { RequestFile } from './models';
-import { CollectionLinks } from './collectionLinks';
-import { GetProfileResponseData } from './getProfileResponseData';
+import { SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList } from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsList';
 
-export class GetProfileResponseCollection {
-    'data': Array<GetProfileResponseData>;
-    'links': CollectionLinks;
+export class SubscriptionDeleteJobCreateQueryResourceObjectRelationships {
+    'list'?: SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "Array<GetProfileResponseData>"
-        },
-        {
-            "name": "links",
-            "baseName": "links",
-            "type": "CollectionLinks"
+            "name": "list",
+            "baseName": "list",
+            "type": "SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetProfileResponseCollection.attributeTypeMap;
+        return SubscriptionDeleteJobCreateQueryResourceObjectRelationships.attributeTypeMap;
     }
 }
 

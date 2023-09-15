@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
+import { GetEventProfilesRelationshipListResponseData } from './getEventProfilesRelationshipListResponseData';
 
 export class GetEventProfilesRelationshipListResponse {
-    'data': GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData;
+    'data': GetEventProfilesRelationshipListResponseData;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class GetEventProfilesRelationshipListResponse {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData"
+            "type": "GetEventProfilesRelationshipListResponseData"
         }    ];
 
     static getAttributeTypeMap() {

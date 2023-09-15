@@ -16,7 +16,7 @@ export class TagGroupCreateQueryResourceObjectAttributes {
     * The Tag Group name
     */
     'name': string;
-    'exclusive'?: boolean;
+    'exclusive'?: boolean = false;
 
     static discriminator: string | undefined = undefined;
 

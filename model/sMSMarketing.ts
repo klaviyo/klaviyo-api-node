@@ -27,7 +27,7 @@ export class SMSMarketing {
     /**
     * Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
     */
-    'methodDetail': string;
+    'methodDetail': string = '';
 
     static discriminator: string | undefined = undefined;
 

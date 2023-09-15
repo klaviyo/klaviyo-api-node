@@ -11,13 +11,13 @@
 
 import { RequestFile } from './models';
 import { ProfileSubscriptionBulkDeleteJobEnum } from './profileSubscriptionBulkDeleteJobEnum';
-import { SubscriptionCreateJobCreateQueryResourceObjectRelationships } from './subscriptionCreateJobCreateQueryResourceObjectRelationships';
 import { SubscriptionDeleteJobCreateQueryResourceObjectAttributes } from './subscriptionDeleteJobCreateQueryResourceObjectAttributes';
+import { SubscriptionDeleteJobCreateQueryResourceObjectRelationships } from './subscriptionDeleteJobCreateQueryResourceObjectRelationships';
 
 export class SubscriptionDeleteJobCreateQueryResourceObject {
     'type': ProfileSubscriptionBulkDeleteJobEnum;
     'attributes': SubscriptionDeleteJobCreateQueryResourceObjectAttributes;
-    'relationships'?: SubscriptionCreateJobCreateQueryResourceObjectRelationships;
+    'relationships'?: SubscriptionDeleteJobCreateQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
 
@@ -35,7 +35,7 @@ export class SubscriptionDeleteJobCreateQueryResourceObject {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "SubscriptionCreateJobCreateQueryResourceObjectRelationships"
+            "type": "SubscriptionDeleteJobCreateQueryResourceObjectRelationships"
         }    ];
 
     static getAttributeTypeMap() {

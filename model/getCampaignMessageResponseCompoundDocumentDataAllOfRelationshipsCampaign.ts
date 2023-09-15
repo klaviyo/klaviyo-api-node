@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner } from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner';
+import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData';
 import { RelationshipLinks } from './relationshipLinks';
 
 export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign {
-    'data': GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner;
+    'data': GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData;
     'links'?: RelationshipLinks;
 
     static discriminator: string | undefined = undefined;
@@ -23,7 +23,7 @@ export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCam
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner"
+            "type": "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData"
         },
         {
             "name": "links",

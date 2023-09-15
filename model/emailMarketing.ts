@@ -29,7 +29,7 @@ export class EmailMarketing {
     /**
     * Additional details about the method by which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
     */
-    'methodDetail'?: string;
+    'methodDetail'?: string = '';
     /**
     * Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
     */
