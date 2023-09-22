@@ -19,7 +19,7 @@ export class CampaignMessageAssignTemplateQueryResourceObject {
     * The message ID to be assigned to
     */
     'id': string;
-    'relationships'?: CampaignMessageAssignTemplateQueryResourceObjectRelationships;
+    'relationships': CampaignMessageAssignTemplateQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
 

@@ -10,7 +10,8 @@
  */
 
 
-import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
+const axios = require('axios');
+import {AxiosRequestConfig, AxiosResponse} from "axios";
 import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
@@ -25,8 +26,7 @@ import { TemplateCreateQuery } from '../model/templateCreateQuery';
 import { TemplateRenderQuery } from '../model/templateRenderQuery';
 import { TemplateUpdateQuery } from '../model/templateUpdateQuery';
 
-import { ObjectSerializer, Authentication } from '../model/models';
-import { ApiKeyAuth } from '../model/models';
+import { ObjectSerializer } from '../model/models';
 
 import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
 
@@ -45,7 +45,7 @@ export class TemplatesApi {
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
         revision: "2023-09-15",
-        "User-Agent": "klaviyo-api-node/6.0.0"
+        "User-Agent": "klaviyo-api-node/6.0.1"
     };
     protected _useQuerystring : boolean = false;
 

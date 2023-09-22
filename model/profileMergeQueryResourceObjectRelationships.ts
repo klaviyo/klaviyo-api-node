@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { ProfileMergeQueryResourceObjectRelationshipsProfiles } from './profileMergeQueryResourceObjectRelationshipsProfiles';
 
 export class ProfileMergeQueryResourceObjectRelationships {
-    'profiles'?: ProfileMergeQueryResourceObjectRelationshipsProfiles;
+    'profiles': ProfileMergeQueryResourceObjectRelationshipsProfiles;
 
     static discriminator: string | undefined = undefined;
 

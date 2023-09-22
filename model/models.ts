@@ -2399,23 +2399,3 @@ export class ObjectSerializer {
     }
 }
 
-export interface Authentication {
-    /**
-    * Apply authentication settings to header and query params.
-    */
-    applyToRequest(requestOptions: AxiosRequestConfig): Promise<void> | void;
-}
-
-export class ApiKeyAuth implements Authentication {
-    public apiKey: string = '';
-
-    constructor(private location: string, private paramName: string) {
-    }
-
-    applyToRequest(requestOptions: AxiosRequestConfig): void {
-        if (requestOptions && requestOptions.headers) {
-            requestOptions.headers[this.paramName] = this.apiKey;
-        }
-    }
-}
-
