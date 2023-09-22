@@ -17,7 +17,7 @@ import { CatalogVariantEnum } from './catalogVariantEnum';
 export class CatalogVariantCreateQueryResourceObject {
     'type': CatalogVariantEnum;
     'attributes': CatalogVariantCreateQueryResourceObjectAttributes;
-    'relationships'?: CatalogVariantCreateQueryResourceObjectRelationships;
+    'relationships': CatalogVariantCreateQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
 

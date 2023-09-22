@@ -17,7 +17,7 @@ import { CouponCodeEnum } from './couponCodeEnum';
 export class CouponCodeCreateQueryResourceObject {
     'type': CouponCodeEnum;
     'attributes': CouponCodeCreateQueryResourceObjectAttributes;
-    'relationships'?: CouponCodeCreateQueryResourceObjectRelationships;
+    'relationships': CouponCodeCreateQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
 

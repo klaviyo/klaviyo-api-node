@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { SubscriptionCreateJobCreateQueryResourceObjectRelationshipsList } from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsList';
 
 export class SubscriptionCreateJobCreateQueryResourceObjectRelationships {
-    'list'?: SubscriptionCreateJobCreateQueryResourceObjectRelationshipsList;
+    'list': SubscriptionCreateJobCreateQueryResourceObjectRelationshipsList;
 
     static discriminator: string | undefined = undefined;
 

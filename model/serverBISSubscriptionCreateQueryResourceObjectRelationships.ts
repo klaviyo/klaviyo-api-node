@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariant';
 
 export class ServerBISSubscriptionCreateQueryResourceObjectRelationships {
-    'variant'?: ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant;
+    'variant': ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant;
 
     static discriminator: string | undefined = undefined;
 

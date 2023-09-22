@@ -17,7 +17,7 @@ import { ServerBISSubscriptionCreateQueryResourceObjectRelationships } from './s
 export class ServerBISSubscriptionCreateQueryResourceObject {
     'type': BackInStockSubscriptionEnum;
     'attributes': ServerBISSubscriptionCreateQueryResourceObjectAttributes;
-    'relationships'?: ServerBISSubscriptionCreateQueryResourceObjectRelationships;
+    'relationships': ServerBISSubscriptionCreateQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
 

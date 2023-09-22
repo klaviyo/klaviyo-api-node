@@ -17,7 +17,7 @@ import { SubscriptionCreateJobCreateQueryResourceObjectRelationships } from './s
 export class SubscriptionCreateJobCreateQueryResourceObject {
     'type': ProfileSubscriptionBulkCreateJobEnum;
     'attributes': SubscriptionCreateJobCreateQueryResourceObjectAttributes;
-    'relationships'?: SubscriptionCreateJobCreateQueryResourceObjectRelationships;
+    'relationships': SubscriptionCreateJobCreateQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
 

@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [6.0.1] - revision 2023-09-15
+### Fixed
+- `Relationship` and its child attributes were incorrectly marked as optional for the following endpoints
+  - `createBackInStockSubscription`
+  - `createCampaignMessageAssignTemplate`
+  - `spawnCreateVariantsJob`
+  - `createCatalogVariant`
+  - `spawnCouponCodeBulkCreateJob`
+  - `createCouponCode`
+  - `mergeProfiles`
+  - `subscribeProfiles`
+- Removed unused dependencies from `package.json` that were requiring a higher node version than necessary
+
 ## [6.0.0] - revision 2023-09-15
 ### Added
 
@@ -12,7 +25,7 @@ All notable changes to this project will be documented in this file.
     - `get_image`
     - `get_images`
     - `update_image`
-    - `upload_image_from_file` - You can se `fs.createReadStream` to pass the file into the function
+    - `upload_image_from_file` - You can use `fs.createReadStream` to pass the file into the function
     - `upload_image_from_url`
 - `Coupons` API
   - We now support CRUD operations for both Coupons and Coupon Codes

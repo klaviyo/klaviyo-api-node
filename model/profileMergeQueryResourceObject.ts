@@ -19,7 +19,7 @@ export class ProfileMergeQueryResourceObject {
     * The ID of the destination profile to merge into
     */
     'id': string;
-    'relationships'?: ProfileMergeQueryResourceObjectRelationships;
+    'relationships': ProfileMergeQueryResourceObjectRelationships;
 
     static discriminator: string | undefined = undefined;
 

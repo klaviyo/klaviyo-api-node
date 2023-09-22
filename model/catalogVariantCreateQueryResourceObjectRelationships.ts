@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { CatalogVariantCreateQueryResourceObjectRelationshipsItem } from './catalogVariantCreateQueryResourceObjectRelationshipsItem';
 
 export class CatalogVariantCreateQueryResourceObjectRelationships {
-    'item'?: CatalogVariantCreateQueryResourceObjectRelationshipsItem;
+    'item': CatalogVariantCreateQueryResourceObjectRelationshipsItem;
 
     static discriminator: string | undefined = undefined;
 

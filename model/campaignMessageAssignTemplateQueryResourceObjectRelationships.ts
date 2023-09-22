@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate } from './campaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate';
 
 export class CampaignMessageAssignTemplateQueryResourceObjectRelationships {
-    'template'?: CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate;
+    'template': CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate;
 
     static discriminator: string | undefined = undefined;
 
