@@ -46,6 +46,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Relationship Standardization
+  - **Note**: this is a major refactor, affecting commonly used endpoints like `createEvents`. We highly recommend reading our [migration guide](https://developers.klaviyo.com/en/docs/migrate_to_2023_07_15_relationships) 
   - We are making a number of changes across endpoints to standardize how we handle [relationships](https://developers.klaviyo.com/en/docs/relationships_) in our APIs and leverage consistently typed objects across endpoints. For example, you can create a profile in our APIs in the same shape, regardless of whether you're calling the profiles endpoint or the events endpoint.
   - The changes include:
     - Updating 1:1 relationships to use singular tense and an object (instead of plural and an array) 
