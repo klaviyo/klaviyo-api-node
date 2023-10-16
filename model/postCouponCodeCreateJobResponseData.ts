@@ -12,13 +12,13 @@
 import { RequestFile } from './models';
 import { CouponCodeBulkCreateJobEnum } from './couponCodeBulkCreateJobEnum';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
-import { GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships';
+import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 
 export class PostCouponCodeCreateJobResponseData {
     'type': CouponCodeBulkCreateJobEnum;
     'attributes': CouponCodeCreateJobResponseObjectResourceAttributes;
-    'relationships'?: GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships;
+    'relationships'?: GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
     static discriminator: string | undefined = undefined;
@@ -37,7 +37,7 @@ export class PostCouponCodeCreateJobResponseData {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships"
+            "type": "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
         },
         {
             "name": "links",

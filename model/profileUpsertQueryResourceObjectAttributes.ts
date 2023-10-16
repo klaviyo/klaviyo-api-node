@@ -31,6 +31,10 @@ export class ProfileUpsertQueryResourceObjectAttributes {
     */
     'anonymousId'?: string;
     /**
+    * Also known as the `exchange_id`, this is an encrypted identifier used for identifying a profile by Klaviyo\'s web tracking.  You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.
+    */
+    'kx'?: string;
+    /**
     * Individual\'s first name
     */
     'firstName'?: string;
@@ -78,6 +82,11 @@ export class ProfileUpsertQueryResourceObjectAttributes {
         {
             "name": "anonymousId",
             "baseName": "anonymous_id",
+            "type": "string"
+        },
+        {
+            "name": "kx",
+            "baseName": "_kx",
             "type": "string"
         },
         {

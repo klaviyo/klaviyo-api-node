@@ -13,13 +13,17 @@ import { RequestFile } from './models';
 
 export class SMSMarketing {
     /**
+    * Whether or not this profile is subscribed to receive SMS marketing.
+    */
+    'canReceiveSmsMarketing': boolean;
+    /**
     * The consent status for SMS marketing.
     */
     'consent': string;
     /**
-    * The timestamp when consent record or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+    * The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'timestamp': Date;
+    'consentTimestamp': Date;
     /**
     * The method by which the profile was subscribed to SMS marketing.
     */
@@ -28,18 +32,27 @@ export class SMSMarketing {
     * Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
     */
     'methodDetail': string = '';
+    /**
+    * The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+    */
+    'lastUpdated': Date;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "canReceiveSmsMarketing",
+            "baseName": "can_receive_sms_marketing",
+            "type": "boolean"
+        },
         {
             "name": "consent",
             "baseName": "consent",
             "type": "string"
         },
         {
-            "name": "timestamp",
-            "baseName": "timestamp",
+            "name": "consentTimestamp",
+            "baseName": "consent_timestamp",
             "type": "Date"
         },
         {
@@ -51,6 +64,11 @@ export class SMSMarketing {
             "name": "methodDetail",
             "baseName": "method_detail",
             "type": "string"
+        },
+        {
+            "name": "lastUpdated",
+            "baseName": "last_updated",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {

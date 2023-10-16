@@ -10,12 +10,12 @@
  */
 
 import { RequestFile } from './models';
-import { CollectionLinks } from './collectionLinks';
+import { CouponResponseObjectResource } from './couponResponseObjectResource';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInner } from './getCouponCodeResponseCollectionCompoundDocumentDataInner';
 
-export class GetCouponCodeResponseCollection {
-    'data': Array<GetCouponCodeResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+export class GetCouponCodeResponseCompoundDocument {
+    'data': GetCouponCodeResponseCollectionCompoundDocumentDataInner;
+    'included'?: Array<CouponResponseObjectResource>;
 
     static discriminator: string | undefined = undefined;
 
@@ -23,16 +23,16 @@ export class GetCouponCodeResponseCollection {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetCouponCodeResponseCollectionCompoundDocumentDataInner>"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInner"
         },
         {
-            "name": "links",
-            "baseName": "links",
-            "type": "CollectionLinks"
+            "name": "included",
+            "baseName": "included",
+            "type": "Array<CouponResponseObjectResource>"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeResponseCollection.attributeTypeMap;
+        return GetCouponCodeResponseCompoundDocument.attributeTypeMap;
     }
 }
 

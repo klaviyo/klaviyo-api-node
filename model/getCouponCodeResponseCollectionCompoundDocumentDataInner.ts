@@ -13,11 +13,11 @@ import { RequestFile } from './models';
 import { CouponCodeEnum } from './couponCodeEnum';
 import { CouponCodeResponseObjectResource } from './couponCodeResponseObjectResource';
 import { CouponCodeResponseObjectResourceAttributes } from './couponCodeResponseObjectResourceAttributes';
-import { GetCouponCodeResponseCollectionDataInnerAllOfRelationships } from './getCouponCodeResponseCollectionDataInnerAllOfRelationships';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 
-export class GetCouponCodeResponseCollectionDataInner extends CouponCodeResponseObjectResource {
-    'relationships'?: GetCouponCodeResponseCollectionDataInnerAllOfRelationships;
+export class GetCouponCodeResponseCollectionCompoundDocumentDataInner extends CouponCodeResponseObjectResource {
+    'relationships'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
     static discriminator: string | undefined = undefined;
 
@@ -25,13 +25,13 @@ export class GetCouponCodeResponseCollectionDataInner extends CouponCodeResponse
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCouponCodeResponseCollectionDataInnerAllOfRelationships"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(GetCouponCodeResponseCollectionDataInner.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(GetCouponCodeResponseCollectionCompoundDocumentDataInner.attributeTypeMap);
     }
 }
 
-export namespace GetCouponCodeResponseCollectionDataInner {
+export namespace GetCouponCodeResponseCollectionCompoundDocumentDataInner {
 }

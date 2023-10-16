@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { CouponCodeEnum } from './couponCodeEnum';
 import { CouponCodeResponseObjectResourceAttributes } from './couponCodeResponseObjectResourceAttributes';
-import { GetCouponCodeResponseCollectionDataInnerAllOfRelationships } from './getCouponCodeResponseCollectionDataInnerAllOfRelationships';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 
 export class PostCouponCodeResponseData {
@@ -22,7 +22,7 @@ export class PostCouponCodeResponseData {
     */
     'id': string;
     'attributes': CouponCodeResponseObjectResourceAttributes;
-    'relationships'?: GetCouponCodeResponseCollectionDataInnerAllOfRelationships;
+    'relationships'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
     static discriminator: string | undefined = undefined;
@@ -46,7 +46,7 @@ export class PostCouponCodeResponseData {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCouponCodeResponseCollectionDataInnerAllOfRelationships"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
         },
         {
             "name": "links",

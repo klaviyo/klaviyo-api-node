@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships';
+import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 
-export class GetCouponCodeCreateJobResponseCollectionDataInnerAllOf {
-    'relationships'?: GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships;
+export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf {
+    'relationships'?: GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,11 +21,11 @@ export class GetCouponCodeCreateJobResponseCollectionDataInnerAllOf {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships"
+            "type": "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeCreateJobResponseCollectionDataInnerAllOf.attributeTypeMap;
+        return GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf.attributeTypeMap;
     }
 }
 

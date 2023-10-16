@@ -10,16 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { EmailSubscriptionParameters } from './emailSubscriptionParameters';
+import { SMSSubscriptionParameters } from './sMSSubscriptionParameters';
 
 export class SubscriptionChannels {
-    /**
-    * The communication types to subscribe to on the \"EMAIL\" Channel. Currently supports \"MARKETING\".
-    */
-    'email'?: Array<SubscriptionChannels.EmailEnum>;
-    /**
-    * The communication types to subscribe to on the \"SMS\" Channel. Currently supports \"MARKETING\".
-    */
-    'sms'?: Array<SubscriptionChannels.SmsEnum>;
+    'email'?: EmailSubscriptionParameters;
+    'sms'?: SMSSubscriptionParameters;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,12 +23,12 @@ export class SubscriptionChannels {
         {
             "name": "email",
             "baseName": "email",
-            "type": "Array<SubscriptionChannels.EmailEnum>"
+            "type": "EmailSubscriptionParameters"
         },
         {
             "name": "sms",
             "baseName": "sms",
-            "type": "Array<SubscriptionChannels.SmsEnum>"
+            "type": "SMSSubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {
@@ -40,11 +36,3 @@ export class SubscriptionChannels {
     }
 }
 
-export namespace SubscriptionChannels {
-    export enum EmailEnum {
-        Marketing = <any> 'MARKETING'
-    }
-    export enum SmsEnum {
-        Marketing = <any> 'MARKETING'
-    }
-}
