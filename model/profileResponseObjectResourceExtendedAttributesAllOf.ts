@@ -11,13 +11,20 @@
 
 import { RequestFile } from './models';
 import { PredictiveAnalytics } from './predictiveAnalytics';
+import { Subscriptions } from './subscriptions';
 
 export class ProfileResponseObjectResourceExtendedAttributesAllOf {
+    'subscriptions'?: Subscriptions;
     'predictiveAnalytics'?: PredictiveAnalytics;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "subscriptions",
+            "baseName": "subscriptions",
+            "type": "Subscriptions"
+        },
         {
             "name": "predictiveAnalytics",
             "baseName": "predictive_analytics",

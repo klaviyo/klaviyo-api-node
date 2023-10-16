@@ -44,6 +44,10 @@ export class ProfileLocation {
     * Time zone name. We recommend using time zones from the IANA Time Zone Database.
     */
     'timezone'?: string;
+    /**
+    * IP Address
+    */
+    'ip'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -91,6 +95,11 @@ export class ProfileLocation {
         {
             "name": "timezone",
             "baseName": "timezone",
+            "type": "string"
+        },
+        {
+            "name": "ip",
+            "baseName": "ip",
             "type": "string"
         }    ];
 

@@ -10,30 +10,22 @@
  */
 
 import { RequestFile } from './models';
-import { CouponEnum } from './couponEnum';
+import { MarketingSubscriptionParameters } from './marketingSubscriptionParameters';
 
-export class GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData {
-    'type': CouponEnum;
-    'id': string;
+export class SMSSubscriptionParameters {
+    'marketing': MarketingSubscriptionParameters;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "CouponEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
+            "name": "marketing",
+            "baseName": "marketing",
+            "type": "MarketingSubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData.attributeTypeMap;
+        return SMSSubscriptionParameters.attributeTypeMap;
     }
 }
 
-export namespace GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData {
-}

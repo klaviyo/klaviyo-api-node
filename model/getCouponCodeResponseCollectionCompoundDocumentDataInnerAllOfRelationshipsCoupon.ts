@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData } from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData';
 import { RelationshipLinks } from './relationshipLinks';
 
-export class GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile {
-    'data': GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData;
+export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon {
+    'data': GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData;
     'links'?: RelationshipLinks;
 
     static discriminator: string | undefined = undefined;
@@ -23,7 +23,7 @@ export class GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData"
         },
         {
             "name": "links",
@@ -32,7 +32,7 @@ export class GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile {
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile.attributeTypeMap;
+        return GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon.attributeTypeMap;
     }
 }
 

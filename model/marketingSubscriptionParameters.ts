@@ -10,22 +10,29 @@
  */
 
 import { RequestFile } from './models';
-import { GetCouponCodeResponseCollectionDataInner } from './getCouponCodeResponseCollectionDataInner';
 
-export class GetCouponCodeResponse {
-    'data': GetCouponCodeResponseCollectionDataInner;
+export class MarketingSubscriptionParameters {
+    /**
+    * The Consent status to subscribe to for the \"Marketing\" type. Currently supports \"SUBSCRIBED\".
+    */
+    'consent': MarketingSubscriptionParameters.ConsentEnum;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "GetCouponCodeResponseCollectionDataInner"
+            "name": "consent",
+            "baseName": "consent",
+            "type": "MarketingSubscriptionParameters.ConsentEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeResponse.attributeTypeMap;
+        return MarketingSubscriptionParameters.attributeTypeMap;
     }
 }
 
+export namespace MarketingSubscriptionParameters {
+    export enum ConsentEnum {
+        Subscribed = <any> 'SUBSCRIBED'
+    }
+}
