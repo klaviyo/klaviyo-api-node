@@ -47,8 +47,9 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@7.0.0`
-
+```bash
+npm install klaviyo-api@7.0.0
+```
 
 ## source code
 
@@ -71,6 +72,16 @@ Sample file:
 If you want to test out the repo but don't have a consuming app, you can run our sample typescript file, make whatever edits you want to `sample.ts` in the `sample` folder and use
 ```
 npm run sample --pk=<YOUR PRIVATE KEY HERE>
+```
+## OAuth Beta
+
+To read about our OAuth beta for users who want to write multi-user integrations, check out this [help center article](https://help.klaviyo.com/hc/en-us/articles/18819413031067#h_01HACEKGF33GHFEH733YK2JKTT)
+
+If you already are in the OAuth beta, read the documentation in the [`oauth-beta` branch](https://github.com/klaviyo/klaviyo-api-node/tree/oauth-beta) in this repo or check out the [example application](https://github.com/klaviyo-labs/node-integration-example).
+
+Install the beta package with the following command:
+```bash
+npm i klaviyo-api@beta
 ```
 
 # Usage Example
