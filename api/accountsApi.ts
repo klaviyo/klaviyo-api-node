@@ -37,10 +37,7 @@ export class AccountsApi {
     session: Session
 
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders : any = {
-        revision: "2023-10-15",
-        "User-Agent": "klaviyo-api-node/7.0.0"
-    };
+    protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
 
     constructor(session: Session){
@@ -105,21 +102,27 @@ export class AccountsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetAccountResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetAccountResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetAccountResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetAccountResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetAccountResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetAccountResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
@@ -153,20 +156,26 @@ export class AccountsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetAccountResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetAccountResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetAccountResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetAccountResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
 }

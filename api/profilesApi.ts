@@ -52,10 +52,7 @@ export class ProfilesApi {
     session: Session
 
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders : any = {
-        revision: "2023-10-15",
-        "User-Agent": "klaviyo-api-node/7.0.0"
-    };
+    protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
 
     constructor(session: Session){
@@ -116,21 +113,27 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(profileCreateQuery, "ProfileCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostProfileResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostProfileResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostProfileResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users\' devices.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `push-tokens:write`
@@ -166,20 +169,26 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(pushTokenCreateQuery, "PushTokenCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
@@ -235,21 +244,27 @@ export class ProfilesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCompoundDocument");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:read` `profiles:read`
@@ -289,21 +304,27 @@ export class ProfilesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:read` `profiles:read`
@@ -339,21 +360,27 @@ export class ProfilesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileListRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileListRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
@@ -389,21 +416,27 @@ export class ProfilesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileSegmentRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileSegmentRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
@@ -443,21 +476,27 @@ export class ProfilesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2023-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
@@ -511,21 +550,27 @@ export class ProfilesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollectionCompoundDocument");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Merge a given related profile into a profile with the given profile ID.  The profile provided under `relationships` (the \"source\" profile) will be merged into the profile provided by the ID in the base data object (the \"destination\" profile). This endpoint queues an asynchronous task which will merge data from the source profile into the destination profile, deleting the source profile in the process. This endpoint accepts only one source profile.  To learn more about how profile data is preserved or overwritten during a merge, please [visit our Help Center](https://help.klaviyo.com/hc/en-us/articles/115005073847#merge-2-profiles3).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:write`
@@ -561,21 +606,27 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(profileMergeQuery, "ProfileMergeQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostProfileMergeResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostProfileMergeResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileMergeResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostProfileMergeResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileMergeResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostProfileMergeResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Subscribe one or more profiles to email marketing, SMS marketing, or both. If the list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message.  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about suppressed profiles in [this document](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profile can be submitted for subscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `list:write` `profiles:write` `subscriptions:write`
@@ -611,20 +662,26 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(subscriptionCreateJobCreateQuery, "SubscriptionCreateJobCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Manually suppress one or more profiles. Such profiles will have `USER_SUPPRESSED` as their suppression reason. Manually suppressed profiles _will not_ receive email marketing. Learn more about suppressed profiles [in this document](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Not supported for SMS marketing.  Maximum number of profile can be submitted for suppression: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `subscriptions:write`
@@ -660,20 +717,26 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(suppressionCreateJobCreateQuery, "SuppressionCreateJobCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Unsubscribe one or more profiles to email marketing, SMS marketing, or both.  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `list:write` `profiles:write` `subscriptions:write`
@@ -709,20 +772,26 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(subscriptionDeleteJobCreateQuery, "SubscriptionDeleteJobCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Unsuppress one or more profiles, this will remove any Manual Suppressions (USER_SUPPRESSED) on these profiles. A profile may receive email marketing after a manual suppression is removed so long as they have not revoked consent, i.e. unsubscribed.  Not supported for SMS marketing. Only manual suppressions (USER_SUPPRESSED) will be removed. `UNSUBSCRIBE` and `SPAM_REPORT` suppressions are removed whenever a [profile resubscribes](https://developers.klaviyo.com/en/reference/subscribe_profiles). `INVALID_EMAIL` and `HARD_BOUNCE` suppressions cannot be removed by the API.  Maximum number of profile can be submitted for unsuppression: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:write`
@@ -758,20 +827,26 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(suppressionDeleteJobCreateQuery, "SuppressionDeleteJobCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Update the profile with the given profile ID.  If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you\'ll need to include at least one other identifier attribute (`email` or `external_id`) in addition to the `phone_number` attribute for the API call to work.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
@@ -813,20 +888,26 @@ export class ProfilesApi {
             data: ObjectSerializer.serialize(profilePartialUpdateQuery, "ProfilePartialUpdateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PatchProfileResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PatchProfileResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PatchProfileResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchProfileResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchProfileResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PatchProfileResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
 }

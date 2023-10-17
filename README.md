@@ -1,6 +1,6 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 7.0.0
+- SDK version: 7.0.0-beta.1
 
 - Revision: 2023-10-15
 
@@ -47,7 +47,7 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@7.0.0`
+`npm install klaviyo-api@7.0.0-beta.1`
 
 
 ## source code
@@ -205,6 +205,170 @@ Profiles.getProfiles().then(result => {
   console.log(error.response.statusText)
 });
 ```
+
+## Using OAuth to connect to multiple Klaviyo accounts.
+
+For users creating integrations or managing multiple Klaviyo accounts, Klaviyo's OAuth authentication will make these tasks easier.
+
+### Getting started with OAuth
+
+First, configure an integration. If you haven't set up an integration, learn about it in this [guide](https://help.klaviyo.com/hc/en-us/articles/18819413031067#h_01HACEKGF2DBDMGJ4JG6TV4AMN)
+
+### Making API Calls with OAuth
+The `klaviyo-api` package can keep your `access token` up to date. If you have already developed a system for refreshing tokens or would like a more minimalist option, skip to [OAuthBasicSession](#oauthbasicsession)
+
+#### TokenStorage
+For the OAuthApi to be storage agnostic, this interface must be implemented for the `OAuthApi` to retrieve and save you `access` and `refresh` tokens.
+Implement the `retrieve` and `save` functions outlined in the interface. If you need help getting started, check out the `storageHelpers.ts` in the [Klaviyo Example Typescript Integration](https://github.com/klaviyo-labs/node-integration-example)
+
+Your implementation needs to include two methods:
+1. `save` is called after creating a new `access token` via the authorization flow or after refreshing the `access token`.
+    Your code needs to update (and insert if you are going to be using `createTokens()`) the new `access` or `refresh` token information into storage
+    to keep track of which of your integration users' access information you are referencing, the `customerIdentifer` is a unique value to help with lookup later.
+    ```typescript
+    save(customerIdentifier: string, tokens: CreatedTokens): Promise<void> | void
+    ```
+2. `retrieve` leverages the `customerIdentifier` to look up the saved token information and returns it for the `OAuthApi` to use
+    ```typescript
+    retrieve(customerIdentifier: string): Promise<RetrievedTokens> | RetrievedTokens
+    ```
+
+```typescript
+import { TokenStorage } from 'klaviyo-api';
+class <Your Token Storage Class Name Here> implements TokenStorage
+```
+
+#### OAuthApi
+This class holds the information about your specific integration. It takes three inputs:
+1. `clientId` - This is the id of your integration. Retrieve it from your integration's settings page
+2. `clientSecret` - This is the secret for your integration. The secret is generated upon the creation of your integration.
+3. `tokenStorage` - This is an instance of your implementation of `TokenStorage` and is called automatically when creating and refreshing `access tokens`
+
+
+```typescript
+import { OAuthApi } from 'klaviyo-api';
+
+const oauthApi = new OAuthApi("<client id>", "<client secret>", <instance of your TokenStorage implimentation>)
+```
+
+#### `OAuthSession`
+To make an API call, you need to create an `OAuthSession` instance. This session object is the OAuth equivalent of `ApiKeySession` and is used similarly.
+
+It takes two properties
+1. `customerIdentifier` - This is how the session is going to grab a user's authentication information and let your implementation of `TokenStorage` know where to save any update `access token`
+2. `oauthApi` - This is the instance of `OAuthApi` created above. It will dictate how the session `saves` and `retrieves` the `access tokens`
+3. `retryOptions` - OPTIONAL - the `RetryOptions` instance outlines your desired exponential backoff retry options, outlined in [Retry Options](#retry-options) above
+
+```typescript
+import { OAuthSession, ProfilesApi } from 'klaviyo-api';
+
+const session = new OAuthSession(customerIdentifier, oauthApi)
+
+//Pass the session into the API you want to use
+const profileApi = new ProfilesApi(session)
+```
+
+#### `OAuthBasicSession`
+If you don't want to deal with any of the helpers above or don't want `klaviyo-api` to refresh your tokens for you, this is the alternative.
+
+The `OAuthBasicSession` takes up to two parameters
+1. `accessToken` - The token is used in the API calls' authentication
+2. `retryOptions` - OPTIONAL - the `RetryOptions` instance outlines your desired exponential backoff retry options, outlined in [Retry Options](#retry-options) above
+
+```typescript
+import { OAuthBasicSession } from 'klaviyo-api';
+
+const session = new OAuthBasicSession("<access token>")
+
+//Pass the session into the API you want to use
+const profileApi = new ProfilesApi(session)
+```
+
+Remember to check for `401` errors. A 401 means that your token is probably expired.
+
+#### `KlaviyoTokenError`
+
+If an error occurred during an API call, check the error type with `isKlaviyoTokenError`. The name property will reflect which step the error occurred, reflecting whether it happened during creating, refreshing, saving, or retrieving the `name` tokens. The `cause` property will hold the error object of whatever specific error occurred.
+
+### Authorization Flow
+
+Build The authorization flow in the same application as with the rest of your integrations business logic or separately.
+There is no requirement that the authorization flow has to be backend and can be implemented entirely in a frontend application (in that case, you can ignore this section, as this repo shouldn't use this for frontend code)
+
+To understand the authorization flow, there are two major resources to help:
+1. [OAuth authorization guide](https://help.klaviyo.com/hc/en-us/articles/18819413031067)
+2. [Node Integration Example](https://github.com/klaviyo-labs/node-integration-example)
+
+If you implement your authorization flow on a node server, you can use these exposed helper functions.
+
+#### OAuthApi
+
+The OAuthApi class also exposes helpful Authorization flow utilities.
+
+1. `generateAuthorizeUrl` - This helps correctly format the Klaviyo `/oauth/authorize` URL the application needs to redirect to so a user can approve your integration.
+   1. `state` - This is the only way to identify which user just authorized your application (or failed to). `state` is passed back via query parameter to your `redirectUrl`.
+   2. `scope` - The permissions the created `access tokens` will have. The user will be displayed these scopes during the authorization flow. For these permissions to work, also add them to your app settings in Klaviyo [here](www.klaviyo.com/oauth/client)
+   3. `codeChallenge` - This is the value generated above by the `generateCode` function.
+   4. `redirectUrl` - This is the URL that Klaviyo will redirect the user to once Authorization is completed (even if it is denied or has an error).
+   Remember to whitelist this redirect URL in your integration's settings in Klaviyo.
+   ```typescript
+    import { OAuthApi } from 'klaviyo-api'
+
+    const oauthApi = new OAuthApi("<client id>", "<client secret>", <TokenStorage implementation instance>)
+    oauthApi.generateAuthorizeUrl(
+      state, // It's suggested to use your internal identifier for the Klaviyo account that is authorizing
+      scopes,
+      codeChallenge,
+      redirectUrl
+    )
+    ```
+2. `createTokens` - Uses Klaviyo `/oauth/token/` endpoint to create `access` and `refresh` tokens
+   1. `customerIdentifier` - This ID is NOT sent to Klaviyo's API. If the `/token` API call this method wraps is successful, the created tokens will be passed into your `save` method along with this `customerIdentifier`  in your implementation of `TokenStorage`.
+   2. `codeVerifier` - The verifier code must match the challenge code in the authorized URL redirect.
+   3. `authorizationCode`- A User approving your integration creates this temporary authorization code. Your specified redirect URL receives this under a `code` query parameter.
+   4. `redirectUrl` - The endpoint set in `generateAuthorizeUrl`. Whitelist the URL in your application settings.
+
+   ```typescript
+    import { OAuthApi } from 'klaviyo-api'
+
+    const oauthApi = new OAuthApi("<client id>", "<client secret>", <TokenStorage implementation instance>)
+    await oauthApi.createTokens(
+      customerIdentifier,
+      codeVerifier,
+      authorizationCode,
+      redirectUrl
+    )
+   ```
+3. `OAuthCallbackQueryParams` For typescript users, this object is an interface representing the possible query parameters sent to your redirect endpoint
+
+
+
+#### Proof Key of Code Exchange (PKCE)
+
+All the PKCE helper functions live within the `Pkce` namespace. Read about PKCE [here](https://help.klaviyo.com/hc/en-us/articles/18819413031067#h_01HACEKGF3AZ2KFGVPSSZNR5QW)
+
+```typescript
+import { Pkce } from 'klaviyo-api'
+```
+
+The `Pkce` namespace holds two different helper utilities
+1. `generateCodes` - This method will create the `codeVerifier` and `codeChallenge` needed later in the authorization flow.
+
+    ```typescript
+    import { Pkce } from 'klaviyo-api'
+
+    const pkceCodes = new Pkce.generateCodes()
+    // the two codes can be accessed by
+    const codeVerifier: string = pkceCodes.codeVerifier
+    const codeChallenge: string = pkceCodes.codeChallenge
+    ```
+
+2. `CodeStorage` - This is an OPTIONAL interface to help keep your code organized, to relate a `customerIdentifier` to their generated PKCE code
+
+    ```typescript
+    import { Pkce } from 'klaviyo-api'
+    class <Your Code Storage Class Here> implements Pkce.CodeStorage
+    ```
 
 ## Optional Parameters and [JSON:API](https://jsonapi.org/) features
 
