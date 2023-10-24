@@ -10,10 +10,13 @@
  */
 
 import { RequestFile } from './models';
-import { ProfileEnum } from './profileEnum';
+import { CouponCodeEnum } from './couponCodeEnum';
 
-export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData {
-    'type': ProfileEnum;
+export class GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner {
+    'type': CouponCodeEnum;
+    /**
+    * IDs of the created coupon codes.
+    */
     'id': string;
 
     static discriminator: string | undefined = undefined;
@@ -22,7 +25,7 @@ export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelati
         {
             "name": "type",
             "baseName": "type",
-            "type": "ProfileEnum"
+            "type": "CouponCodeEnum"
         },
         {
             "name": "id",
@@ -31,9 +34,9 @@ export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelati
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData.attributeTypeMap;
+        return GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner.attributeTypeMap;
     }
 }
 
-export namespace GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData {
+export namespace GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner {
 }

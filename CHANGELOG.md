@@ -1,56 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [7.0.0] - revision 2023-10-15
-
-### Added
-
-- Support for returning list suppressions via the [/profiles endpoint](https://developers.klaviyo.com/en/reference/get_profiles)
-
-  Rules for suppression [filtering](https://developers.klaviyo.com/en/docs/filtering_):  
-
-  - You may not mix-and-match list and global filters  
-  - You may only specify a single date filter  
-  - You may or may not specify a reason  
-  - You must specify a list_id to filter on any list suppression properties
-
-  Examples:
-
-  ```
-  {filter: 'greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z)'}
-  {filter: 'greater-than(subscriptions.email.marketing.list_suppressions.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.list_suppressions.list_id,”LIST_ID”')
-  {filter: 'greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.suppression.reason,"user_suppressed"')
-  ```
-- Optionally retrieve subscription status on:
-  - `getListProfiles`
-  - `getSegmentProfiles`
-  - `getEventProfile`
-  
-  Use `{additionalFieldsProfile: ['subscriptions']}` on these endpoints to include subscription information.
-
-### Changed
-
-- Subscription object not returned by default on Get Profile / Get Profiles
-
-  The subscription object is no longer returned by default with get profile(s) requests. However, it can be included by adding  `?additional-fields[profile]=subscriptions` to the request. This change will allow us to provide a more performant experience when making requests to `GetProfiles` without including the subscriptions object.
-
-- Profile Subscription Fields Renamed
-
-  In the interest of providing more clarity and information on the subscription object, we have renamed several fields, and added several as well. This will provide more context on a contact's subscriptions and consent, as well as boolean fields to see who you can or cannot message.
-
-  For SMSMarketing:
-
-  - `timestamp` is now `consentTimestamp`
-  - `lastUpdated` is a new field that mirrors `consenTimestamp`
-  - `canReceiveSmsMarketing` is a new field which is `True` if the profile is consented for SMS 
-
-  For EmailMarketing:
-
-  - `timestamp` is now `consentTimestamp`
-  - `canReceiveEmailMarketing` is True if the profile does not have a global suppression
-  - `suppressions` is now `suppression`
-  - `lastUpdated` is a new field that is the most recent of all the dates on the object
-
 ## [6.0.1] - revision 2023-09-15
 ### Fixed
 - `Relationship` and its child attributes were incorrectly marked as optional for the following endpoints

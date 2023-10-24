@@ -190,7 +190,6 @@ export * from './emailMarketingListSuppression';
 export * from './emailMarketingSuppression';
 export * from './emailMessageContent';
 export * from './emailSendOptionsSubObject';
-export * from './emailSubscriptionParameters';
 export * from './emailTrackingOptions';
 export * from './emailTrackingOptionsSubObject';
 export * from './errorSource';
@@ -335,25 +334,24 @@ export * from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDat
 export * from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
 export * from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
 export * from './getCatalogVariantUpdateJobResponseCompoundDocument';
-export * from './getCouponCodeCreateJobResponseCollectionCompoundDocument';
-export * from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner';
-export * from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
-export * from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-export * from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes';
-export * from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner';
-export * from './getCouponCodeCreateJobResponseCompoundDocument';
+export * from './getCouponCodeCreateJobResponse';
+export * from './getCouponCodeCreateJobResponseCollection';
+export * from './getCouponCodeCreateJobResponseCollectionDataInner';
+export * from './getCouponCodeCreateJobResponseCollectionDataInnerAllOf';
+export * from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships';
+export * from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodes';
+export * from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner';
 export * from './getCouponCodeRelationshipCouponResponse';
 export * from './getCouponCodeRelationshipCouponResponseData';
+export * from './getCouponCodeResponse';
 export * from './getCouponCodeResponseCollection';
-export * from './getCouponCodeResponseCollectionCompoundDocument';
-export * from './getCouponCodeResponseCollectionCompoundDocumentDataInner';
-export * from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOf';
-export * from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-export * from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon';
-export * from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData';
-export * from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
-export * from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
-export * from './getCouponCodeResponseCompoundDocument';
+export * from './getCouponCodeResponseCollectionDataInner';
+export * from './getCouponCodeResponseCollectionDataInnerAllOf';
+export * from './getCouponCodeResponseCollectionDataInnerAllOfRelationships';
+export * from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsCoupon';
+export * from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData';
+export * from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile';
+export * from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData';
 export * from './getCouponRelationshipCouponCodesListResponseCollection';
 export * from './getCouponRelationshipCouponCodesListResponseCollectionDataInner';
 export * from './getCouponResponse';
@@ -511,7 +509,6 @@ export * from './listRetrieveResponseObjectResourceAttributes';
 export * from './listRetrieveResponseObjectResourceExtended';
 export * from './listRetrieveResponseObjectResourceExtendedAttributes';
 export * from './listRetrieveResponseObjectResourceExtendedAttributesAllOf';
-export * from './marketingSubscriptionParameters';
 export * from './metricAggregateEnum';
 export * from './metricAggregateQuery';
 export * from './metricAggregateQueryResourceObject';
@@ -653,7 +650,6 @@ export * from './sMSMarketing';
 export * from './sMSMessageContent';
 export * from './sMSRenderOptions';
 export * from './sMSSendOptionsSubObject';
-export * from './sMSSubscriptionParameters';
 export * from './sMSTrackingOptions';
 export * from './sMSTrackingOptionsSubObject';
 export * from './sTOScheduleOptions';
@@ -944,7 +940,6 @@ import { EmailMarketingListSuppression } from './emailMarketingListSuppression';
 import { EmailMarketingSuppression } from './emailMarketingSuppression';
 import { EmailMessageContent } from './emailMessageContent';
 import { EmailSendOptionsSubObject } from './emailSendOptionsSubObject';
-import { EmailSubscriptionParameters } from './emailSubscriptionParameters';
 import { EmailTrackingOptions } from './emailTrackingOptions';
 import { EmailTrackingOptionsSubObject } from './emailTrackingOptionsSubObject';
 import { ErrorSource } from './errorSource';
@@ -1089,25 +1084,24 @@ import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAl
 import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
 import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
 import { GetCatalogVariantUpdateJobResponseCompoundDocument } from './getCatalogVariantUpdateJobResponseCompoundDocument';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocument } from './getCouponCodeCreateJobResponseCollectionCompoundDocument';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner';
-import { GetCouponCodeCreateJobResponseCompoundDocument } from './getCouponCodeCreateJobResponseCompoundDocument';
+import { GetCouponCodeCreateJobResponse } from './getCouponCodeCreateJobResponse';
+import { GetCouponCodeCreateJobResponseCollection } from './getCouponCodeCreateJobResponseCollection';
+import { GetCouponCodeCreateJobResponseCollectionDataInner } from './getCouponCodeCreateJobResponseCollectionDataInner';
+import { GetCouponCodeCreateJobResponseCollectionDataInnerAllOf } from './getCouponCodeCreateJobResponseCollectionDataInnerAllOf';
+import { GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships';
+import { GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodes } from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodes';
+import { GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner } from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner';
 import { GetCouponCodeRelationshipCouponResponse } from './getCouponCodeRelationshipCouponResponse';
 import { GetCouponCodeRelationshipCouponResponseData } from './getCouponCodeRelationshipCouponResponseData';
+import { GetCouponCodeResponse } from './getCouponCodeResponse';
 import { GetCouponCodeResponseCollection } from './getCouponCodeResponseCollection';
-import { GetCouponCodeResponseCollectionCompoundDocument } from './getCouponCodeResponseCollectionCompoundDocument';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInner } from './getCouponCodeResponseCollectionCompoundDocumentDataInner';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOf } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOf';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
-import { GetCouponCodeResponseCompoundDocument } from './getCouponCodeResponseCompoundDocument';
+import { GetCouponCodeResponseCollectionDataInner } from './getCouponCodeResponseCollectionDataInner';
+import { GetCouponCodeResponseCollectionDataInnerAllOf } from './getCouponCodeResponseCollectionDataInnerAllOf';
+import { GetCouponCodeResponseCollectionDataInnerAllOfRelationships } from './getCouponCodeResponseCollectionDataInnerAllOfRelationships';
+import { GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCoupon } from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsCoupon';
+import { GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData } from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData';
+import { GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile';
+import { GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData } from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData';
 import { GetCouponRelationshipCouponCodesListResponseCollection } from './getCouponRelationshipCouponCodesListResponseCollection';
 import { GetCouponRelationshipCouponCodesListResponseCollectionDataInner } from './getCouponRelationshipCouponCodesListResponseCollectionDataInner';
 import { GetCouponResponse } from './getCouponResponse';
@@ -1265,7 +1259,6 @@ import { ListRetrieveResponseObjectResourceAttributes } from './listRetrieveResp
 import { ListRetrieveResponseObjectResourceExtended } from './listRetrieveResponseObjectResourceExtended';
 import { ListRetrieveResponseObjectResourceExtendedAttributes } from './listRetrieveResponseObjectResourceExtendedAttributes';
 import { ListRetrieveResponseObjectResourceExtendedAttributesAllOf } from './listRetrieveResponseObjectResourceExtendedAttributesAllOf';
-import { MarketingSubscriptionParameters } from './marketingSubscriptionParameters';
 import { MetricAggregateEnum } from './metricAggregateEnum';
 import { MetricAggregateQuery } from './metricAggregateQuery';
 import { MetricAggregateQueryResourceObject } from './metricAggregateQueryResourceObject';
@@ -1407,7 +1400,6 @@ import { SMSMarketing } from './sMSMarketing';
 import { SMSMessageContent } from './sMSMessageContent';
 import { SMSRenderOptions } from './sMSRenderOptions';
 import { SMSSendOptionsSubObject } from './sMSSendOptionsSubObject';
-import { SMSSubscriptionParameters } from './sMSSubscriptionParameters';
 import { SMSTrackingOptions } from './sMSTrackingOptions';
 import { SMSTrackingOptionsSubObject } from './sMSTrackingOptionsSubObject';
 import { STOScheduleOptions } from './sTOScheduleOptions';
@@ -1563,7 +1555,6 @@ let enumsMap: {[index: string]: any} = {
         "FlowResponseObjectResourceAttributes.TriggerTypeEnum": FlowResponseObjectResourceAttributes.TriggerTypeEnum,
         "ImageEnum": ImageEnum,
         "ListEnum": ListEnum,
-        "MarketingSubscriptionParameters.ConsentEnum": MarketingSubscriptionParameters.ConsentEnum,
         "MetricAggregateEnum": MetricAggregateEnum,
         "MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum": MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum,
         "MetricAggregateQueryResourceObjectAttributes.IntervalEnum": MetricAggregateQueryResourceObjectAttributes.IntervalEnum,
@@ -1583,6 +1574,8 @@ let enumsMap: {[index: string]: any} = {
         "PushTokenEnum": PushTokenEnum,
         "SegmentEnum": SegmentEnum,
         "ServerBISSubscriptionCreateQueryResourceObjectAttributes.ChannelsEnum": ServerBISSubscriptionCreateQueryResourceObjectAttributes.ChannelsEnum,
+        "SubscriptionChannels.EmailEnum": SubscriptionChannels.EmailEnum,
+        "SubscriptionChannels.SmsEnum": SubscriptionChannels.SmsEnum,
         "TagEnum": TagEnum,
         "TagGroupEnum": TagGroupEnum,
         "TemplateEnum": TemplateEnum,
@@ -1755,7 +1748,6 @@ let typeMap: {[index: string]: any} = {
     "EmailMarketingSuppression": EmailMarketingSuppression,
     "EmailMessageContent": EmailMessageContent,
     "EmailSendOptionsSubObject": EmailSendOptionsSubObject,
-    "EmailSubscriptionParameters": EmailSubscriptionParameters,
     "EmailTrackingOptions": EmailTrackingOptions,
     "EmailTrackingOptionsSubObject": EmailTrackingOptionsSubObject,
     "ErrorSource": ErrorSource,
@@ -1896,25 +1888,24 @@ let typeMap: {[index: string]: any} = {
     "GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants": GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants,
     "GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner": GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner,
     "GetCatalogVariantUpdateJobResponseCompoundDocument": GetCatalogVariantUpdateJobResponseCompoundDocument,
-    "GetCouponCodeCreateJobResponseCollectionCompoundDocument": GetCouponCodeCreateJobResponseCollectionCompoundDocument,
-    "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner": GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner,
-    "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf": GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf,
-    "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
-    "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes": GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes,
-    "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner": GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner,
-    "GetCouponCodeCreateJobResponseCompoundDocument": GetCouponCodeCreateJobResponseCompoundDocument,
+    "GetCouponCodeCreateJobResponse": GetCouponCodeCreateJobResponse,
+    "GetCouponCodeCreateJobResponseCollection": GetCouponCodeCreateJobResponseCollection,
+    "GetCouponCodeCreateJobResponseCollectionDataInner": GetCouponCodeCreateJobResponseCollectionDataInner,
+    "GetCouponCodeCreateJobResponseCollectionDataInnerAllOf": GetCouponCodeCreateJobResponseCollectionDataInnerAllOf,
+    "GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships": GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships,
+    "GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodes": GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodes,
+    "GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner": GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationshipsCouponCodesDataInner,
     "GetCouponCodeRelationshipCouponResponse": GetCouponCodeRelationshipCouponResponse,
     "GetCouponCodeRelationshipCouponResponseData": GetCouponCodeRelationshipCouponResponseData,
+    "GetCouponCodeResponse": GetCouponCodeResponse,
     "GetCouponCodeResponseCollection": GetCouponCodeResponseCollection,
-    "GetCouponCodeResponseCollectionCompoundDocument": GetCouponCodeResponseCollectionCompoundDocument,
-    "GetCouponCodeResponseCollectionCompoundDocumentDataInner": GetCouponCodeResponseCollectionCompoundDocumentDataInner,
-    "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOf": GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOf,
-    "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
-    "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon": GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon,
-    "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData": GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData,
-    "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile": GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile,
-    "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData": GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData,
-    "GetCouponCodeResponseCompoundDocument": GetCouponCodeResponseCompoundDocument,
+    "GetCouponCodeResponseCollectionDataInner": GetCouponCodeResponseCollectionDataInner,
+    "GetCouponCodeResponseCollectionDataInnerAllOf": GetCouponCodeResponseCollectionDataInnerAllOf,
+    "GetCouponCodeResponseCollectionDataInnerAllOfRelationships": GetCouponCodeResponseCollectionDataInnerAllOfRelationships,
+    "GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCoupon": GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCoupon,
+    "GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData": GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData,
+    "GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile": GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfile,
+    "GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData": GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsProfileData,
     "GetCouponRelationshipCouponCodesListResponseCollection": GetCouponRelationshipCouponCodesListResponseCollection,
     "GetCouponRelationshipCouponCodesListResponseCollectionDataInner": GetCouponRelationshipCouponCodesListResponseCollectionDataInner,
     "GetCouponResponse": GetCouponResponse,
@@ -2070,7 +2061,6 @@ let typeMap: {[index: string]: any} = {
     "ListRetrieveResponseObjectResourceExtended": ListRetrieveResponseObjectResourceExtended,
     "ListRetrieveResponseObjectResourceExtendedAttributes": ListRetrieveResponseObjectResourceExtendedAttributes,
     "ListRetrieveResponseObjectResourceExtendedAttributesAllOf": ListRetrieveResponseObjectResourceExtendedAttributesAllOf,
-    "MarketingSubscriptionParameters": MarketingSubscriptionParameters,
     "MetricAggregateQuery": MetricAggregateQuery,
     "MetricAggregateQueryResourceObject": MetricAggregateQueryResourceObject,
     "MetricAggregateQueryResourceObjectAttributes": MetricAggregateQueryResourceObjectAttributes,
@@ -2203,7 +2193,6 @@ let typeMap: {[index: string]: any} = {
     "SMSMessageContent": SMSMessageContent,
     "SMSRenderOptions": SMSRenderOptions,
     "SMSSendOptionsSubObject": SMSSendOptionsSubObject,
-    "SMSSubscriptionParameters": SMSSubscriptionParameters,
     "SMSTrackingOptions": SMSTrackingOptions,
     "SMSTrackingOptionsSubObject": SMSTrackingOptionsSubObject,
     "STOScheduleOptions": STOScheduleOptions,

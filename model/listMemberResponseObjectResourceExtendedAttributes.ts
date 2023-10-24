@@ -16,17 +16,11 @@ import { ProfileLocation } from './profileLocation';
 import { Subscriptions } from './subscriptions';
 
 export class ListMemberResponseObjectResourceExtendedAttributes extends ListMemberResponseObjectResourceAttributes {
-    'subscriptions'?: Subscriptions;
     'predictiveAnalytics'?: PredictiveAnalytics;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "subscriptions",
-            "baseName": "subscriptions",
-            "type": "Subscriptions"
-        },
         {
             "name": "predictiveAnalytics",
             "baseName": "predictive_analytics",

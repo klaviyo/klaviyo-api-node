@@ -10,22 +10,22 @@
  */
 
 import { RequestFile } from './models';
-import { MarketingSubscriptionParameters } from './marketingSubscriptionParameters';
+import { GetCouponCodeCreateJobResponseCollectionDataInner } from './getCouponCodeCreateJobResponseCollectionDataInner';
 
-export class EmailSubscriptionParameters {
-    'marketing': MarketingSubscriptionParameters;
+export class GetCouponCodeCreateJobResponse {
+    'data': GetCouponCodeCreateJobResponseCollectionDataInner;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "marketing",
-            "baseName": "marketing",
-            "type": "MarketingSubscriptionParameters"
+            "name": "data",
+            "baseName": "data",
+            "type": "GetCouponCodeCreateJobResponseCollectionDataInner"
         }    ];
 
     static getAttributeTypeMap() {
-        return EmailSubscriptionParameters.attributeTypeMap;
+        return GetCouponCodeCreateJobResponse.attributeTypeMap;
     }
 }
 

@@ -15,27 +15,19 @@ import { EmailMarketingSuppression } from './emailMarketingSuppression';
 
 export class EmailMarketing {
     /**
-    * Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
-    */
-    'canReceiveEmailMarketing': boolean;
-    /**
     * The consent status for email marketing.
     */
     'consent': string;
     /**
-    * The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+    * The timestamp when consent record or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'consentTimestamp'?: Date;
-    /**
-    * The timestamp when a field on the email marketing object was last modified.
-    */
-    'lastUpdated'?: Date;
+    'timestamp'?: Date;
     /**
     * The method by which the profile was subscribed to email marketing.
     */
-    'method'?: string;
+    'method': string;
     /**
-    * Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
+    * Additional details about the method by which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
     */
     'methodDetail'?: string = '';
     /**
@@ -47,9 +39,9 @@ export class EmailMarketing {
     */
     'doubleOptin'?: boolean;
     /**
-    * The global email marketing suppression for this profile.
+    * The global email marketing suppressions for this profile.
     */
-    'suppression'?: Array<EmailMarketingSuppression>;
+    'suppressions'?: Array<EmailMarketingSuppression>;
     /**
     * The list suppressions for this profile.
     */
@@ -59,23 +51,13 @@ export class EmailMarketing {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "canReceiveEmailMarketing",
-            "baseName": "can_receive_email_marketing",
-            "type": "boolean"
-        },
-        {
             "name": "consent",
             "baseName": "consent",
             "type": "string"
         },
         {
-            "name": "consentTimestamp",
-            "baseName": "consent_timestamp",
-            "type": "Date"
-        },
-        {
-            "name": "lastUpdated",
-            "baseName": "last_updated",
+            "name": "timestamp",
+            "baseName": "timestamp",
             "type": "Date"
         },
         {
@@ -99,8 +81,8 @@ export class EmailMarketing {
             "type": "boolean"
         },
         {
-            "name": "suppression",
-            "baseName": "suppression",
+            "name": "suppressions",
+            "baseName": "suppressions",
             "type": "Array<EmailMarketingSuppression>"
         },
         {

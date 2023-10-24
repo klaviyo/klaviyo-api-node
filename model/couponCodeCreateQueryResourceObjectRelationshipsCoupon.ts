@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData';
+import { GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData } from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData';
 
 export class CouponCodeCreateQueryResourceObjectRelationshipsCoupon {
-    'data': GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData;
+    'data': GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData;
 
     static discriminator: string | undefined = undefined;
 
@@ -21,7 +21,7 @@ export class CouponCodeCreateQueryResourceObjectRelationshipsCoupon {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData"
+            "type": "GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData"
         }    ];
 
     static getAttributeTypeMap() {

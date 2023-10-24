@@ -13,11 +13,11 @@ import { RequestFile } from './models';
 import { CouponCodeBulkCreateJobEnum } from './couponCodeBulkCreateJobEnum';
 import { CouponCodeCreateJobResponseObjectResource } from './couponCodeCreateJobResponseObjectResource';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 
-export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner extends CouponCodeCreateJobResponseObjectResource {
-    'relationships'?: GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+export class GetCouponCodeCreateJobResponseCollectionDataInner extends CouponCodeCreateJobResponseObjectResource {
+    'relationships'?: GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships;
 
     static discriminator: string | undefined = undefined;
 
@@ -25,13 +25,13 @@ export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner e
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "GetCouponCodeCreateJobResponseCollectionDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(GetCouponCodeCreateJobResponseCollectionDataInner.attributeTypeMap);
     }
 }
 
-export namespace GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner {
+export namespace GetCouponCodeCreateJobResponseCollectionDataInner {
 }

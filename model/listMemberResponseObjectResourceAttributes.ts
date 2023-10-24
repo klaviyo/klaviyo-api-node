@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 import { ProfileLocation } from './profileLocation';
+import { Subscriptions } from './subscriptions';
 
 export class ListMemberResponseObjectResourceAttributes {
     /**
@@ -62,6 +63,7 @@ export class ListMemberResponseObjectResourceAttributes {
     * An object containing key/value pairs for any custom properties assigned to this profile
     */
     'properties'?: object;
+    'subscriptions'?: Subscriptions;
     /**
     * The datetime when this profile most recently joined the list.
     */
@@ -134,6 +136,11 @@ export class ListMemberResponseObjectResourceAttributes {
             "name": "properties",
             "baseName": "properties",
             "type": "object"
+        },
+        {
+            "name": "subscriptions",
+            "baseName": "subscriptions",
+            "type": "Subscriptions"
         },
         {
             "name": "joinedGroupAt",

@@ -16,17 +16,11 @@ import { SegmentMemberResponseObjectResourceAttributes } from './segmentMemberRe
 import { Subscriptions } from './subscriptions';
 
 export class SegmentMemberResponseObjectResourceExtendedAttributes extends SegmentMemberResponseObjectResourceAttributes {
-    'subscriptions'?: Subscriptions;
     'predictiveAnalytics'?: PredictiveAnalytics;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "subscriptions",
-            "baseName": "subscriptions",
-            "type": "Subscriptions"
-        },
         {
             "name": "predictiveAnalytics",
             "baseName": "predictive_analytics",

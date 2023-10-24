@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 import { ProfileLocation } from './profileLocation';
+import { Subscriptions } from './subscriptions';
 
 export class ProfileResponseObjectResourceAttributes {
     /**
@@ -62,6 +63,7 @@ export class ProfileResponseObjectResourceAttributes {
     * An object containing key/value pairs for any custom properties assigned to this profile
     */
     'properties'?: object;
+    'subscriptions'?: Subscriptions;
 
     static discriminator: string | undefined = undefined;
 
@@ -130,6 +132,11 @@ export class ProfileResponseObjectResourceAttributes {
             "name": "properties",
             "baseName": "properties",
             "type": "object"
+        },
+        {
+            "name": "subscriptions",
+            "baseName": "subscriptions",
+            "type": "Subscriptions"
         }    ];
 
     static getAttributeTypeMap() {

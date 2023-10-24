@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner';
+import { GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData } from './getCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData';
 import { RelationshipLinks } from './relationshipLinks';
 
-export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes {
-    'data': Array<GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner>;
+export class GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCoupon {
+    'data': GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData;
     'links'?: RelationshipLinks;
 
     static discriminator: string | undefined = undefined;
@@ -23,7 +23,7 @@ export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAl
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner>"
+            "type": "GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCouponData"
         },
         {
             "name": "links",
@@ -32,7 +32,7 @@ export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAl
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes.attributeTypeMap;
+        return GetCouponCodeResponseCollectionDataInnerAllOfRelationshipsCoupon.attributeTypeMap;
     }
 }
 
