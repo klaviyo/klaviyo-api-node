@@ -16,40 +16,16 @@ import { FlowMessageResponseObjectResourceAttributes } from './flowMessageRespon
 import { FlowResponseObjectResource } from './flowResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 
-export class GetFlowActionResponseCompoundDocumentIncludedInner {
-    'type': FlowMessageEnum;
-    'id': string;
-    'attributes': FlowMessageResponseObjectResourceAttributes;
-    'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "FlowMessageEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
-        {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "FlowMessageResponseObjectResourceAttributes"
-        },
-        {
-            "name": "links",
-            "baseName": "links",
-            "type": "ObjectLinks"
-        }    ];
 
-    static getAttributeTypeMap() {
-        return GetFlowActionResponseCompoundDocumentIncludedInner.attributeTypeMap;
+    export type GetFlowActionResponseCompoundDocumentIncludedInner = FlowResponseObjectResource | FlowMessageResponseObjectResource
+
+    export class GetFlowActionResponseCompoundDocumentIncludedInnerHelper {
+        static mapping: {[index: string]: any} = {
+            "flow": "FlowResponseObjectResource",
+            "flow-message": "FlowMessageResponseObjectResource",
+        }
+        static discriminator: string | undefined = "type";
     }
-}
 
-export namespace GetFlowActionResponseCompoundDocumentIncludedInner {
-}

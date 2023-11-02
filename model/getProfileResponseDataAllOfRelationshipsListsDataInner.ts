@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { ListEnum } from './listEnum';
 
 export class GetProfileResponseDataAllOfRelationshipsListsDataInner {
-    'type': ListEnum;
+    'type': ListEnum | 'list';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

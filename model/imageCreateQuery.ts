@@ -15,7 +15,6 @@ import { ImageCreateQueryResourceObject } from './imageCreateQueryResourceObject
 export class ImageCreateQuery {
     'data': ImageCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

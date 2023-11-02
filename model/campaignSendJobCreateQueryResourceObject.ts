@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CampaignSendJobEnum } from './campaignSendJobEnum';
 
 export class CampaignSendJobCreateQueryResourceObject {
-    'type': CampaignSendJobEnum;
+    'type': CampaignSendJobEnum | 'campaign-send-job';
     /**
     * The ID of the campaign to send
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

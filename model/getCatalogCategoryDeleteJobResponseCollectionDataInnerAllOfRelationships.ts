@@ -15,7 +15,6 @@ import { GetCatalogCategoryDeleteJobResponseCollectionDataInnerAllOfRelationship
 export class GetCatalogCategoryDeleteJobResponseCollectionDataInnerAllOfRelationships {
     'categories'?: GetCatalogCategoryDeleteJobResponseCollectionDataInnerAllOfRelationshipsCategories;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

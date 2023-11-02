@@ -15,7 +15,6 @@ import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationsh
 export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOf {
     'relationships'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

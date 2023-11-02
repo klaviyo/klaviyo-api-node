@@ -15,7 +15,7 @@ import { ObjectLinks } from './objectLinks';
 import { PostMetricAggregateResponseDataAttributes } from './postMetricAggregateResponseDataAttributes';
 
 export class PostMetricAggregateResponseData {
-    'type': MetricAggregateEnum;
+    'type': MetricAggregateEnum | 'metric-aggregate';
     /**
     * Ephemeral ID associated with the aggregation query
     */
@@ -23,7 +23,6 @@ export class PostMetricAggregateResponseData {
     'attributes': PostMetricAggregateResponseDataAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

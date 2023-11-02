@@ -15,7 +15,6 @@ import { GetFlowResponseCollectionCompoundDocumentDataInner } from './getFlowRes
 export class GetFlowResponse {
     'data': GetFlowResponseCollectionCompoundDocumentDataInner;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

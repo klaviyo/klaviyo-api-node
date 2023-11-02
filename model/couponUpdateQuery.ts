@@ -15,7 +15,6 @@ import { CouponUpdateQueryResourceObject } from './couponUpdateQueryResourceObje
 export class CouponUpdateQuery {
     'data': CouponUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

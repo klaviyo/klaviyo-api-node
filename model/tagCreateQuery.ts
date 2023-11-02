@@ -15,7 +15,6 @@ import { TagCreateQueryResourceObject } from './tagCreateQueryResourceObject';
 export class TagCreateQuery {
     'data': TagCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

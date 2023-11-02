@@ -23,7 +23,6 @@ export class GetTagResponseCollectionDataInnerAllOfRelationships {
     'campaigns'?: GetTagResponseCollectionDataInnerAllOfRelationshipsCampaigns;
     'flows'?: GetTagResponseCollectionDataInnerAllOfRelationshipsFlows;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

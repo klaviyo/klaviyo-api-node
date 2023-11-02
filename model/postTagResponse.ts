@@ -15,7 +15,6 @@ import { PostTagResponseData } from './postTagResponseData';
 export class PostTagResponse {
     'data': PostTagResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { TemplateRenderQueryResourceObject } from './templateRenderQueryResource
 export class TemplateRenderQuery {
     'data': TemplateRenderQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

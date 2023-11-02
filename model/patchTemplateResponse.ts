@@ -15,7 +15,6 @@ import { PostTemplateResponseData } from './postTemplateResponseData';
 export class PatchTemplateResponse {
     'data': PostTemplateResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

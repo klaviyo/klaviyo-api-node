@@ -14,10 +14,9 @@ import { TagGroupCreateQueryResourceObjectAttributes } from './tagGroupCreateQue
 import { TagGroupEnum } from './tagGroupEnum';
 
 export class TagGroupCreateQueryResourceObject {
-    'type': TagGroupEnum;
+    'type': TagGroupEnum | 'tag-group';
     'attributes': TagGroupCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

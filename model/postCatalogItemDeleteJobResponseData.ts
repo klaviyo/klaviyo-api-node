@@ -16,12 +16,11 @@ import { GetCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationships } 
 import { ObjectLinks } from './objectLinks';
 
 export class PostCatalogItemDeleteJobResponseData {
-    'type': CatalogItemBulkDeleteJobEnum;
+    'type': CatalogItemBulkDeleteJobEnum | 'catalog-item-bulk-delete-job';
     'attributes': CouponCodeCreateJobResponseObjectResourceAttributes;
     'relationships'?: GetCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -14,10 +14,9 @@ import { TemplateCreateQueryResourceObjectAttributes } from './templateCreateQue
 import { TemplateEnum } from './templateEnum';
 
 export class TemplateCreateQueryResourceObject {
-    'type': TemplateEnum;
+    'type': TemplateEnum | 'template';
     'attributes': TemplateCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

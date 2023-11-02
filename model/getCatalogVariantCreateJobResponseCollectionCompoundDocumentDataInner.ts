@@ -19,7 +19,6 @@ import { ObjectLinks } from './objectLinks';
 export class GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner extends CatalogVariantCreateJobResponseObjectResource {
     'relationships'?: GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

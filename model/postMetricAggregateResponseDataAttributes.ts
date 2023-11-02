@@ -22,7 +22,6 @@ export class PostMetricAggregateResponseDataAttributes {
     */
     'data': Array<MetricAggregateRowDTO>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

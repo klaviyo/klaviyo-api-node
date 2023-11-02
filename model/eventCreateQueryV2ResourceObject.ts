@@ -14,10 +14,9 @@ import { EventCreateQueryV2ResourceObjectAttributes } from './eventCreateQueryV2
 import { EventEnum } from './eventEnum';
 
 export class EventCreateQueryV2ResourceObject {
-    'type': EventEnum;
+    'type': EventEnum | 'event';
     'attributes': EventCreateQueryV2ResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

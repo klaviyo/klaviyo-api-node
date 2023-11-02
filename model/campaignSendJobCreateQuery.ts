@@ -15,7 +15,6 @@ import { CampaignSendJobCreateQueryResourceObject } from './campaignSendJobCreat
 export class CampaignSendJobCreateQuery {
     'data': CampaignSendJobCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

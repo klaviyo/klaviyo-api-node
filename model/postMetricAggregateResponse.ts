@@ -15,7 +15,6 @@ import { PostMetricAggregateResponseData } from './postMetricAggregateResponseDa
 export class PostMetricAggregateResponse {
     'data': PostMetricAggregateResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

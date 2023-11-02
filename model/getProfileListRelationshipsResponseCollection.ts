@@ -15,7 +15,6 @@ import { GetProfileResponseDataAllOfRelationshipsListsDataInner } from './getPro
 export class GetProfileListRelationshipsResponseCollection {
     'data': Array<GetProfileResponseDataAllOfRelationshipsListsDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

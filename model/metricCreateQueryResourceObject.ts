@@ -14,10 +14,9 @@ import { MetricCreateQueryResourceObjectAttributes } from './metricCreateQueryRe
 import { MetricEnum } from './metricEnum';
 
 export class MetricCreateQueryResourceObject {
-    'type': MetricEnum;
+    'type': MetricEnum | 'metric';
     'attributes': MetricCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

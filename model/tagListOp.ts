@@ -15,7 +15,6 @@ import { TagListOpDataInner } from './tagListOpDataInner';
 export class TagListOp {
     'data': Array<TagListOpDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

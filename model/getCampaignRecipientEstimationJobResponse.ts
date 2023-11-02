@@ -15,7 +15,6 @@ import { CampaignRecipientEstimationJobResponseObjectResource } from './campaign
 export class GetCampaignRecipientEstimationJobResponse {
     'data': CampaignRecipientEstimationJobResponseObjectResource;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

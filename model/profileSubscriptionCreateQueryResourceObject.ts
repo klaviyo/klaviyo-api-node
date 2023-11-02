@@ -14,14 +14,13 @@ import { ProfileEnum } from './profileEnum';
 import { ProfileSubscriptionCreateQueryResourceObjectAttributes } from './profileSubscriptionCreateQueryResourceObjectAttributes';
 
 export class ProfileSubscriptionCreateQueryResourceObject {
-    'type': ProfileEnum;
+    'type': ProfileEnum | 'profile';
     /**
     * The ID of the profile to subscribe. If provided, this will be used to perform the lookup.
     */
     'id'?: string;
     'attributes': ProfileSubscriptionCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

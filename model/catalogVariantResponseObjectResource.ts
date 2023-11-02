@@ -15,7 +15,7 @@ import { CatalogVariantResponseObjectResourceAttributes } from './catalogVariant
 import { ObjectLinks } from './objectLinks';
 
 export class CatalogVariantResponseObjectResource {
-    'type': CatalogVariantEnum;
+    'type': CatalogVariantEnum | 'catalog-variant';
     /**
     * The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
     */
@@ -23,7 +23,6 @@ export class CatalogVariantResponseObjectResource {
     'attributes': CatalogVariantResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

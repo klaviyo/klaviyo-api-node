@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
 
 export class GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItemsDataInner {
-    'type': CatalogItemEnum;
+    'type': CatalogItemEnum | 'catalog-item';
     /**
     * IDs of the created catalog items.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

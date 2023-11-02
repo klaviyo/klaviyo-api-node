@@ -14,14 +14,13 @@ import { ImageEnum } from './imageEnum';
 import { ImagePartialUpdateQueryResourceObjectAttributes } from './imagePartialUpdateQueryResourceObjectAttributes';
 
 export class ImagePartialUpdateQueryResourceObject {
-    'type': ImageEnum;
+    'type': ImageEnum | 'image';
     /**
     * The ID of the image
     */
     'id': string;
     'attributes': ImagePartialUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

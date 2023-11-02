@@ -14,14 +14,13 @@ import { CampaignMessageAssignTemplateQueryResourceObjectRelationships } from '.
 import { CampaignMessageEnum } from './campaignMessageEnum';
 
 export class CampaignMessageAssignTemplateQueryResourceObject {
-    'type': CampaignMessageEnum;
+    'type': CampaignMessageEnum | 'campaign-message';
     /**
     * The message ID to be assigned to
     */
     'id': string;
     'relationships': CampaignMessageAssignTemplateQueryResourceObjectRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

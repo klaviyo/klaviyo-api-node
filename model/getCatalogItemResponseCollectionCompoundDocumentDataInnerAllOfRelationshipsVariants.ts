@@ -17,7 +17,6 @@ export class GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelat
     'data': Array<GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner>;
     'links'?: RelationshipLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

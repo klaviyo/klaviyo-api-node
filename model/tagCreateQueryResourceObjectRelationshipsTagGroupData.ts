@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { TagGroupEnum } from './tagGroupEnum';
 
 export class TagCreateQueryResourceObjectRelationshipsTagGroupData {
-    'type': TagGroupEnum;
+    'type': TagGroupEnum | 'tag-group';
     /**
     * The ID of the Tag Group to associate the Tag with. If this field is not specified, the Tag will be associated with the company\'s Default Tag Group.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

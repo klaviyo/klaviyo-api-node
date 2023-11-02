@@ -20,7 +20,7 @@ export class CouponCodeCreateJobResponseObjectResourceAttributes {
     /**
     * Status of the asynchronous job.
     */
-    'status': CouponCodeCreateJobResponseObjectResourceAttributes.StatusEnum;
+    'status': CouponCodeCreateJobResponseObjectResourceAttributes.StatusEnum | 'cancelled' | 'complete' | 'processing' | 'queued';
     /**
     * The date and time the job was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
@@ -50,7 +50,6 @@ export class CouponCodeCreateJobResponseObjectResourceAttributes {
     */
     'expiresAt'?: Date;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

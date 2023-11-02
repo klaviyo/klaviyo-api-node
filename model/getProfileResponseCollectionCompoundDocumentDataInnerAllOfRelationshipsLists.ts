@@ -15,7 +15,6 @@ import { RelationshipLinks } from './relationshipLinks';
 export class GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists {
     'links'?: RelationshipLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

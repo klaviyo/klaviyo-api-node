@@ -25,7 +25,6 @@ export class ContactInformation {
     'organizationName': string;
     'streetAddress': StreetAddress;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

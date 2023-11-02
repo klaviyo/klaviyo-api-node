@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { CampaignMessageEnum } from './campaignMessageEnum';
 
 export class GetCampaignMessagesRelationshipListResponseCollectionDataInner {
-    'type': CampaignMessageEnum;
+    'type': CampaignMessageEnum | 'campaign-message';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

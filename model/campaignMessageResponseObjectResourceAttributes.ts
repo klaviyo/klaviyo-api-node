@@ -38,7 +38,6 @@ export class CampaignMessageResponseObjectResourceAttributes {
     */
     'updatedAt'?: Date;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

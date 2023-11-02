@@ -14,14 +14,13 @@ import { FlowEnum } from './flowEnum';
 import { FlowUpdateQueryResourceObjectAttributes } from './flowUpdateQueryResourceObjectAttributes';
 
 export class FlowUpdateQueryResourceObject {
-    'type': FlowEnum;
+    'type': FlowEnum | 'flow';
     /**
     * ID of the Flow to update. Ex: XVTP5Q
     */
     'id': string;
     'attributes': FlowUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

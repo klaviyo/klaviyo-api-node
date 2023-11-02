@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CampaignEnum } from './campaignEnum';
 
 export class GetTagCampaignRelationshipsResponseCollectionDataInner {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     /**
     * The IDs of all campaigns that are associated with the Tag
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

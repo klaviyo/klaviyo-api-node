@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { TemplateEnum } from './templateEnum';
 
 export class CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData {
-    'type': TemplateEnum;
+    'type': TemplateEnum | 'template';
     /**
     * The template ID to assign
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,12 +15,11 @@ import { AccountResponseObjectResourceAttributes } from './accountResponseObject
 import { ObjectLinks } from './objectLinks';
 
 export class AccountResponseObjectResource {
-    'type': AccountEnum;
+    'type': AccountEnum | 'account';
     'id': string;
     'attributes': AccountResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

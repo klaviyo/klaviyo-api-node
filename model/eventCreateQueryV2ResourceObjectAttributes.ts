@@ -33,7 +33,6 @@ export class EventCreateQueryV2ResourceObjectAttributes {
     'metric': EventCreateQueryV2ResourceObjectAttributesMetric;
     'profile': EventCreateQueryV2ResourceObjectAttributesProfile;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

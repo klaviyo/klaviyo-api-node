@@ -15,7 +15,6 @@ import { TemplateCloneQueryResourceObject } from './templateCloneQueryResourceOb
 export class TemplateCloneQuery {
     'data': TemplateCloneQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogCategoryEnum } from './catalogCategoryEnum';
 
 export class GetCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategoriesDataInner {
-    'type': CatalogCategoryEnum;
+    'type': CatalogCategoryEnum | 'catalog-category';
     /**
     * IDs of the updated catalog categories.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

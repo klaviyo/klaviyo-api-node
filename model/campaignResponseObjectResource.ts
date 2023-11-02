@@ -15,7 +15,7 @@ import { CampaignResponseObjectResourceAttributes } from './campaignResponseObje
 import { ObjectLinks } from './objectLinks';
 
 export class CampaignResponseObjectResource {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     /**
     * The campaign ID
     */
@@ -23,7 +23,6 @@ export class CampaignResponseObjectResource {
     'attributes': CampaignResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

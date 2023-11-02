@@ -18,7 +18,6 @@ import { CatalogVariantUpdateQueryResourceObject } from './catalogVariantUpdateQ
 export class CatalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants {
     'data': Array<CatalogVariantUpdateQueryResourceObject>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

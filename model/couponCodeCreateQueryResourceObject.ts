@@ -15,11 +15,10 @@ import { CouponCodeCreateQueryResourceObjectRelationships } from './couponCodeCr
 import { CouponCodeEnum } from './couponCodeEnum';
 
 export class CouponCodeCreateQueryResourceObject {
-    'type': CouponCodeEnum;
+    'type': CouponCodeEnum | 'coupon-code';
     'attributes': CouponCodeCreateQueryResourceObjectAttributes;
     'relationships': CouponCodeCreateQueryResourceObjectRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

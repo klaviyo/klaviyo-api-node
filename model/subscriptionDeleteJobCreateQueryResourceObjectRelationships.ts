@@ -15,7 +15,6 @@ import { SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList } from 
 export class SubscriptionDeleteJobCreateQueryResourceObjectRelationships {
     'list'?: SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

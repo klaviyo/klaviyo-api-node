@@ -14,10 +14,9 @@ import { ImageCreateQueryResourceObjectAttributes } from './imageCreateQueryReso
 import { ImageEnum } from './imageEnum';
 
 export class ImageCreateQueryResourceObject {
-    'type': ImageEnum;
+    'type': ImageEnum | 'image';
     'attributes': ImageCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

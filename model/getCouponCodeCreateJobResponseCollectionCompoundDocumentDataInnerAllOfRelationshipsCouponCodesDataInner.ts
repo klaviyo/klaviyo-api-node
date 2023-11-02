@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CouponCodeEnum } from './couponCodeEnum';
 
 export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner {
-    'type': CouponCodeEnum;
+    'type': CouponCodeEnum | 'coupon-code';
     /**
     * IDs of the created coupon codes.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

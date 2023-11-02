@@ -15,7 +15,6 @@ import { ProfileCreateQueryResourceObject } from './profileCreateQueryResourceOb
 export class ProfileCreateQuery {
     'data': ProfileCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

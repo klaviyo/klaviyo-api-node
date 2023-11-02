@@ -17,7 +17,6 @@ export class GetCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationship
     'data': Array<GetCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationshipsItemsDataInner>;
     'links'?: RelationshipLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

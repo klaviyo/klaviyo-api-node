@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { FlowEnum } from './flowEnum';
 
 export class GetTagFlowRelationshipsResponseCollectionDataInner {
-    'type': FlowEnum;
+    'type': FlowEnum | 'flow';
     /**
     * The IDs of all flows that are associated with the Tag
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
