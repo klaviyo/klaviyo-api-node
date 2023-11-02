@@ -23,7 +23,6 @@ export class SendStrategySubObject {
     'optionsThrottled'?: ThrottledScheduleOptions;
     'optionsSto'?: STOScheduleOptions;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

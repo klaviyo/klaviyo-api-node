@@ -15,7 +15,6 @@ import { PatchFlowResponseData } from './patchFlowResponseData';
 export class PatchFlowResponse {
     'data': PatchFlowResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

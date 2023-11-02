@@ -14,14 +14,13 @@ import { CatalogVariantEnum } from './catalogVariantEnum';
 import { CatalogVariantUpdateQueryResourceObjectAttributes } from './catalogVariantUpdateQueryResourceObjectAttributes';
 
 export class CatalogVariantUpdateQueryResourceObject {
-    'type': CatalogVariantEnum;
+    'type': CatalogVariantEnum | 'catalog-variant';
     /**
     * The catalog variant ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
     */
     'id': string;
     'attributes': CatalogVariantUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

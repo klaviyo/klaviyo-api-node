@@ -15,7 +15,6 @@ import { ListPartialUpdateQueryResourceObject } from './listPartialUpdateQueryRe
 export class ListPartialUpdateQuery {
     'data': ListPartialUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

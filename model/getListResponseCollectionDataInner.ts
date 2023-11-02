@@ -19,7 +19,6 @@ import { ObjectLinks } from './objectLinks';
 export class GetListResponseCollectionDataInner extends ListResponseObjectResource {
     'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

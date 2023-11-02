@@ -15,7 +15,6 @@ import { EventCreateQueryV2ResourceObject } from './eventCreateQueryV2ResourceOb
 export class EventCreateQueryV2 {
     'data': EventCreateQueryV2ResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

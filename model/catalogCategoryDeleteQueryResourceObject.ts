@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogCategoryEnum } from './catalogCategoryEnum';
 
 export class CatalogCategoryDeleteQueryResourceObject {
-    'type': CatalogCategoryEnum;
+    'type': CatalogCategoryEnum | 'catalog-category';
     /**
     * The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

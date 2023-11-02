@@ -15,7 +15,6 @@ import { GetFlowMessageResponseCollectionDataInnerAllOfRelationships } from './g
 export class GetFlowMessageResponseCollectionDataInnerAllOf {
     'relationships'?: GetFlowMessageResponseCollectionDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

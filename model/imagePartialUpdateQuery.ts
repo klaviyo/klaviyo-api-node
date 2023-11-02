@@ -15,7 +15,6 @@ import { ImagePartialUpdateQueryResourceObject } from './imagePartialUpdateQuery
 export class ImagePartialUpdateQuery {
     'data': ImagePartialUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

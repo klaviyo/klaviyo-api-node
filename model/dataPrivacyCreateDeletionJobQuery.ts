@@ -15,7 +15,6 @@ import { DataPrivacyCreateDeletionJobQueryResourceObject } from './dataPrivacyCr
 export class DataPrivacyCreateDeletionJobQuery {
     'data': DataPrivacyCreateDeletionJobQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

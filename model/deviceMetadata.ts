@@ -19,7 +19,7 @@ export class DeviceMetadata {
     /**
     * The name of the SDK used to create the push token.
     */
-    'klaviyoSdk'?: DeviceMetadata.KlaviyoSdkEnum;
+    'klaviyoSdk'?: DeviceMetadata.KlaviyoSdkEnum | 'android' | 'swift';
     /**
     * The version of the SDK used to create the push token
     */
@@ -31,7 +31,7 @@ export class DeviceMetadata {
     /**
     * The name of the operating system on the device.
     */
-    'osName'?: DeviceMetadata.OsNameEnum;
+    'osName'?: DeviceMetadata.OsNameEnum | 'android' | 'ios' | 'ipados' | 'macos' | 'tvos';
     /**
     * The version of the operating system on the device
     */
@@ -59,9 +59,8 @@ export class DeviceMetadata {
     /**
     * The environment in which the push token was created
     */
-    'environment'?: DeviceMetadata.EnvironmentEnum;
+    'environment'?: DeviceMetadata.EnvironmentEnum | 'debug' | 'release';
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

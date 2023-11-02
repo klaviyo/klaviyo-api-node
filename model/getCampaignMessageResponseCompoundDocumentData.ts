@@ -19,7 +19,6 @@ import { ObjectLinks } from './objectLinks';
 export class GetCampaignMessageResponseCompoundDocumentData extends CampaignMessageResponseObjectResource {
     'relationships'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { GetTagGroupResponseCollectionDataInner } from './getTagGroupResponseCol
 export class GetTagGroupResponse {
     'data': GetTagGroupResponseCollectionDataInner;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

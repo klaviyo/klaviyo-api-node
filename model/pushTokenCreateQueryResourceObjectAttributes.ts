@@ -21,23 +21,22 @@ export class PushTokenCreateQueryResourceObjectAttributes {
     /**
     * The platform on which the push token was created.
     */
-    'platform': PushTokenCreateQueryResourceObjectAttributes.PlatformEnum;
+    'platform': PushTokenCreateQueryResourceObjectAttributes.PlatformEnum | 'android' | 'ios';
     /**
     * This is the enablement status for the individual push token.
     */
-    'enablementStatus'?: PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum = PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum.Authorized;
+    'enablementStatus'?: PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum | 'AUTHORIZED' | 'DENIED' | 'NOT_DETERMINED' | 'PROVISIONAL' | 'UNAUTHORIZED' = PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum.Authorized;
     /**
     * The vendor of the push token.
     */
-    'vendor': PushTokenCreateQueryResourceObjectAttributes.VendorEnum;
+    'vendor': PushTokenCreateQueryResourceObjectAttributes.VendorEnum | 'apns' | 'fcm';
     /**
     * The background state of the push token.
     */
-    'background'?: PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum = PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum.Available;
+    'background'?: PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum | 'AVAILABLE' | 'DENIED' | 'RESTRICTED' = PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum.Available;
     'deviceMetadata'?: DeviceMetadata;
     'profile': PushTokenCreateQueryResourceObjectAttributesProfile;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

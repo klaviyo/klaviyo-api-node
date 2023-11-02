@@ -14,10 +14,9 @@ import { CampaignCreateQueryResourceObjectAttributes } from './campaignCreateQue
 import { CampaignEnum } from './campaignEnum';
 
 export class CampaignCreateQueryResourceObject {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     'attributes': CampaignCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

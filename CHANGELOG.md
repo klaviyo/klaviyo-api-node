@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [7.1.0-beta.1] - revision 2023-10-15
+
+### Changed
+
+  - Creating objects can now take the type as a string as well as an enum
+    ```typescript
+    let profile: ProfileCreateQuery = {
+      data: {
+        type:  'profile',
+        attributes: {
+          email: "typescript_literals_test@klaviyo-demo.com"
+        }
+      }
+    }
+    ```
+  - Endpoints with multiple included properties will now deserialize both included objects correctly
+    - i.e. `eventsApi.getEvent("${EVENT_ID}", {include: ['metric', 'profile']})`
+  - Models that were supposed to support two primitive types but were serializing incorrectly now support one but work correctly
+    - i.e. `updateProfile`'s `unset` value now takes a list of strings and serializes correctly. 
+
 ## [7.0.0-beta.1] - revision 2023-10-15
 
 ### Added

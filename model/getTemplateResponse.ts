@@ -15,7 +15,6 @@ import { TemplateResponseObjectResource } from './templateResponseObjectResource
 export class GetTemplateResponse {
     'data': TemplateResponseObjectResource;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

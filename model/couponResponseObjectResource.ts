@@ -15,7 +15,7 @@ import { CouponResponseObjectResourceAttributes } from './couponResponseObjectRe
 import { ObjectLinks } from './objectLinks';
 
 export class CouponResponseObjectResource {
-    'type': CouponEnum;
+    'type': CouponEnum | 'coupon';
     /**
     * The internal id of a Coupon is equivalent to its external id stored within an integration.
     */
@@ -23,7 +23,6 @@ export class CouponResponseObjectResource {
     'attributes': CouponResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

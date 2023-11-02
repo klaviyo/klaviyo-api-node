@@ -15,7 +15,6 @@ import { GetCatalogCategoryItemListResponseCollectionDataInner } from './getCata
 export class CatalogCategoryItemOp {
     'data': Array<GetCatalogCategoryItemListResponseCollectionDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

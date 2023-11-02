@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { TagEnum } from './tagEnum';
 
 export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner {
-    'type': TagEnum;
+    'type': TagEnum | 'tag';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

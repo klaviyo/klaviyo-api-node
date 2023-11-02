@@ -17,7 +17,6 @@ export class GetCatalogVariantDeleteJobResponseCollection {
     'data': Array<GetCatalogVariantDeleteJobResponseCollectionDataInner>;
     'links': CollectionLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

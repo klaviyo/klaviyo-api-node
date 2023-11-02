@@ -15,7 +15,6 @@ import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData
 export class GetCampaignMessageTemplateRelationshipListResponse {
     'data': GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -16,13 +16,12 @@ import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships } 
 import { ObjectLinks } from './objectLinks';
 
 export class PatchFlowResponseData {
-    'type': FlowEnum;
+    'type': FlowEnum | 'flow';
     'id': string;
     'attributes': FlowResponseObjectResourceAttributes;
     'relationships'?: GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

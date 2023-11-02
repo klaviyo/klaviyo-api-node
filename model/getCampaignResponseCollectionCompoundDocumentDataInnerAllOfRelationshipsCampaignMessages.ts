@@ -17,7 +17,6 @@ export class GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelation
     'data': Array<GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner>;
     'links'?: RelationshipLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

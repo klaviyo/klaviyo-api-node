@@ -14,10 +14,9 @@ import { PushTokenCreateQueryResourceObjectAttributes } from './pushTokenCreateQ
 import { PushTokenEnum } from './pushTokenEnum';
 
 export class PushTokenCreateQueryResourceObject {
-    'type': PushTokenEnum;
+    'type': PushTokenEnum | 'push-token';
     'attributes': PushTokenCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

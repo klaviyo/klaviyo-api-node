@@ -15,7 +15,6 @@ import { MetricResponseObjectResource } from './metricResponseObjectResource';
 export class GetMetricResponse {
     'data': MetricResponseObjectResource;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

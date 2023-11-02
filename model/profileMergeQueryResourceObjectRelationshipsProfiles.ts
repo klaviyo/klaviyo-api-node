@@ -15,7 +15,6 @@ import { ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner } from '.
 export class ProfileMergeQueryResourceObjectRelationshipsProfiles {
     'data': Array<ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

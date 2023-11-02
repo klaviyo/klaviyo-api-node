@@ -16,40 +16,16 @@ import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 import { SegmentResponseObjectResource } from './segmentResponseObjectResource';
 
-export class GetProfileResponseCompoundDocumentIncludedInner {
-    'type': SegmentEnum;
-    'id': string;
-    'attributes': SegmentListResponseObjectResourceAttributes;
-    'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "SegmentEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
-        {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "SegmentListResponseObjectResourceAttributes"
-        },
-        {
-            "name": "links",
-            "baseName": "links",
-            "type": "ObjectLinks"
-        }    ];
 
-    static getAttributeTypeMap() {
-        return GetProfileResponseCompoundDocumentIncludedInner.attributeTypeMap;
+    export type GetProfileResponseCompoundDocumentIncludedInner = ListResponseObjectResource | SegmentResponseObjectResource
+
+    export class GetProfileResponseCompoundDocumentIncludedInnerHelper {
+        static mapping: {[index: string]: any} = {
+            "list": "ListResponseObjectResource",
+            "segment": "SegmentResponseObjectResource",
+        }
+        static discriminator: string | undefined = "type";
     }
-}
 
-export namespace GetProfileResponseCompoundDocumentIncludedInner {
-}

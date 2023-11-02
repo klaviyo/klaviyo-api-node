@@ -15,7 +15,6 @@ import { ServerBISSubscriptionCreateQueryResourceObject } from './serverBISSubsc
 export class ServerBISSubscriptionCreateQuery {
     'data': ServerBISSubscriptionCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

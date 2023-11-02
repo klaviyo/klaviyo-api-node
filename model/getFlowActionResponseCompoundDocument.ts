@@ -17,7 +17,6 @@ export class GetFlowActionResponseCompoundDocument {
     'data': GetFlowActionResponseCollectionDataInner;
     'included'?: Array<GetFlowActionResponseCompoundDocumentIncludedInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { TagFlowOpDataInner } from './tagFlowOpDataInner';
 export class TagFlowOp {
     'data': Array<TagFlowOpDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

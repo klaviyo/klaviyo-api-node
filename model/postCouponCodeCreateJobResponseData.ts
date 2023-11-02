@@ -16,12 +16,11 @@ import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfR
 import { ObjectLinks } from './objectLinks';
 
 export class PostCouponCodeCreateJobResponseData {
-    'type': CouponCodeBulkCreateJobEnum;
+    'type': CouponCodeBulkCreateJobEnum | 'coupon-code-bulk-create-job';
     'attributes': CouponCodeCreateJobResponseObjectResourceAttributes;
     'relationships'?: GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

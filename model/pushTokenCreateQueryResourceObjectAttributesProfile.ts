@@ -18,7 +18,6 @@ import { ProfileUpsertQueryResourceObject } from './profileUpsertQueryResourceOb
 export class PushTokenCreateQueryResourceObjectAttributesProfile {
     'data': ProfileUpsertQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

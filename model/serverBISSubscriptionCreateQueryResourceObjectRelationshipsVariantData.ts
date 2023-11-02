@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 
 export class ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData {
-    'type': CatalogVariantEnum;
+    'type': CatalogVariantEnum | 'catalog-variant';
     /**
     * The catalog variant ID for which the profile is subscribing to back in stock notifications. This ID is made up of the integration type, catalog ID, and and the external ID of the variant like so: `integrationType:::catalogId:::externalId`. If the integration you are using is not set up for multi-catalog storage, the \'catalogId\' will be `$default`. For Shopify `$shopify:::$default:::33001893429341`
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

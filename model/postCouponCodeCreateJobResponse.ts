@@ -15,7 +15,6 @@ import { PostCouponCodeCreateJobResponseData } from './postCouponCodeCreateJobRe
 export class PostCouponCodeCreateJobResponse {
     'data': PostCouponCodeCreateJobResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

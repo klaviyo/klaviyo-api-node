@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { TagGroupEnum } from './tagGroupEnum';
 
 export class GetTagResponseCollectionDataInnerAllOfRelationshipsTagGroupData {
-    'type': TagGroupEnum;
+    'type': TagGroupEnum | 'tag-group';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

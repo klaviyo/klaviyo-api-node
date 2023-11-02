@@ -19,7 +19,6 @@ import { SegmentListResponseObjectResourceAttributes } from './segmentListRespon
 export class GetSegmentListResponseCollectionCompoundDocumentDataInner extends SegmentListResponseObjectResource {
     'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

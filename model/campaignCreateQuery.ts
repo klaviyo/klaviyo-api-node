@@ -15,7 +15,6 @@ import { CampaignCreateQueryResourceObject } from './campaignCreateQueryResource
 export class CampaignCreateQuery {
     'data': CampaignCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

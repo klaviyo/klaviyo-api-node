@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogCategoryEnum } from './catalogCategoryEnum';
 
 export class GetCatalogItemCategoryListResponseCollectionDataInner {
-    'type': CatalogCategoryEnum;
+    'type': CatalogCategoryEnum | 'catalog-category';
     /**
     * A list of catalog category IDs representing the categories the item is in
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

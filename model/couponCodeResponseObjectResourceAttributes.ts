@@ -23,9 +23,8 @@ export class CouponCodeResponseObjectResourceAttributes {
     /**
     * The current status of the coupon code.
     */
-    'status'?: CouponCodeResponseObjectResourceAttributes.StatusEnum;
+    'status'?: CouponCodeResponseObjectResourceAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE';
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -14,14 +14,13 @@ import { TagEnum } from './tagEnum';
 import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
 
 export class TagUpdateQueryResourceObject {
-    'type': TagEnum;
+    'type': TagEnum | 'tag';
     /**
     * The Tag ID
     */
     'id': string;
     'attributes': TagResponseObjectResourceAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

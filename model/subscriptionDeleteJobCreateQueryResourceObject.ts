@@ -15,11 +15,10 @@ import { SubscriptionDeleteJobCreateQueryResourceObjectAttributes } from './subs
 import { SubscriptionDeleteJobCreateQueryResourceObjectRelationships } from './subscriptionDeleteJobCreateQueryResourceObjectRelationships';
 
 export class SubscriptionDeleteJobCreateQueryResourceObject {
-    'type': ProfileSubscriptionBulkDeleteJobEnum;
+    'type': ProfileSubscriptionBulkDeleteJobEnum | 'profile-subscription-bulk-delete-job';
     'attributes': SubscriptionDeleteJobCreateQueryResourceObjectAttributes;
     'relationships'?: SubscriptionDeleteJobCreateQueryResourceObjectRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -56,7 +56,6 @@ export class OnsiteProfileCreateQueryResourceObjectAttributes {
     */
     'properties'?: object;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -16,7 +16,7 @@ import { TagGroupEnum } from './tagGroupEnum';
 import { TagGroupResponseObjectResourceAttributes } from './tagGroupResponseObjectResourceAttributes';
 
 export class PostTagGroupResponseData {
-    'type': TagGroupEnum;
+    'type': TagGroupEnum | 'tag-group';
     /**
     * The Tag Group ID
     */
@@ -25,7 +25,6 @@ export class PostTagGroupResponseData {
     'relationships'?: GetTagGroupResponseCollectionDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -14,14 +14,13 @@ import { TemplateEnum } from './templateEnum';
 import { TemplateUpdateQueryResourceObjectAttributes } from './templateUpdateQueryResourceObjectAttributes';
 
 export class TemplateUpdateQueryResourceObject {
-    'type': TemplateEnum;
+    'type': TemplateEnum | 'template';
     /**
     * The ID of template
     */
     'id': string;
     'attributes': TemplateUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

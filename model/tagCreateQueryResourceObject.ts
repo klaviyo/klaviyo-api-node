@@ -15,11 +15,10 @@ import { TagEnum } from './tagEnum';
 import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
 
 export class TagCreateQueryResourceObject {
-    'type': TagEnum;
+    'type': TagEnum | 'tag';
     'attributes': TagResponseObjectResourceAttributes;
     'relationships'?: TagCreateQueryResourceObjectRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

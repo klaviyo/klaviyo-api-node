@@ -15,7 +15,6 @@ import { OnsiteProfileCreateQueryResourceObject } from './onsiteProfileCreateQue
 export class EventCreateQueryV2ResourceObjectAttributesProfile {
     'data': OnsiteProfileCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

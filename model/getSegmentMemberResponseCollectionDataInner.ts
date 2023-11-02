@@ -19,7 +19,6 @@ import { SegmentMemberResponseObjectResourceExtendedAttributes } from './segment
 export class GetSegmentMemberResponseCollectionDataInner extends SegmentMemberResponseObjectResourceExtended {
     'relationships'?: GetProfileResponseDataAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

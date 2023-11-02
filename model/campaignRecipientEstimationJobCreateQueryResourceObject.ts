@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CampaignRecipientEstimationJobEnum } from './campaignRecipientEstimationJobEnum';
 
 export class CampaignRecipientEstimationJobCreateQueryResourceObject {
-    'type': CampaignRecipientEstimationJobEnum;
+    'type': CampaignRecipientEstimationJobEnum | 'campaign-recipient-estimation-job';
     /**
     * The ID of the campaign to perform recipient estimation
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

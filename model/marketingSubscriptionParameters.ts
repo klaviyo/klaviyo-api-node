@@ -15,9 +15,8 @@ export class MarketingSubscriptionParameters {
     /**
     * The Consent status to subscribe to for the \"Marketing\" type. Currently supports \"SUBSCRIBED\".
     */
-    'consent': MarketingSubscriptionParameters.ConsentEnum;
+    'consent': MarketingSubscriptionParameters.ConsentEnum | 'SUBSCRIBED';
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

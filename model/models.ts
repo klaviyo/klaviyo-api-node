@@ -606,8 +606,6 @@ export * from './profileEnum';
 export * from './profileIdentifierDTOResourceObject';
 export * from './profileIdentifierDTOResourceObjectAttributes';
 export * from './profileLocation';
-export * from './profileLocationLatitude';
-export * from './profileLocationLongitude';
 export * from './profileMergeEnum';
 export * from './profileMergeQuery';
 export * from './profileMergeQueryResourceObject';
@@ -616,7 +614,6 @@ export * from './profileMergeQueryResourceObjectRelationshipsProfiles';
 export * from './profileMergeQueryResourceObjectRelationshipsProfilesDataInner';
 export * from './profileMeta';
 export * from './profileMetaPatchProperties';
-export * from './profileMetaPatchPropertiesUnset';
 export * from './profilePartialUpdateQuery';
 export * from './profilePartialUpdateQueryResourceObject';
 export * from './profilePartialUpdateQueryResourceObjectAttributes';
@@ -986,7 +983,7 @@ import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaig
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData';
-import { GetCampaignMessageResponseCompoundDocumentIncludedInner } from './getCampaignMessageResponseCompoundDocumentIncludedInner';
+import {  } from './getCampaignMessageResponseCompoundDocumentIncludedInner';
 import { GetCampaignMessageTemplateRelationshipListResponse } from './getCampaignMessageTemplateRelationshipListResponse';
 import { GetCampaignMessagesRelationshipListResponseCollection } from './getCampaignMessagesRelationshipListResponseCollection';
 import { GetCampaignMessagesRelationshipListResponseCollectionDataInner } from './getCampaignMessagesRelationshipListResponseCollectionDataInner';
@@ -998,7 +995,7 @@ import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOf } from './g
 import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages';
 import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner';
-import { GetCampaignResponseCollectionCompoundDocumentIncludedInner } from './getCampaignResponseCollectionCompoundDocumentIncludedInner';
+import {  } from './getCampaignResponseCollectionCompoundDocumentIncludedInner';
 import { GetCampaignResponseCompoundDocument } from './getCampaignResponseCompoundDocument';
 import { GetCampaignSendJobResponse } from './getCampaignSendJobResponse';
 import { GetCampaignTagRelationshipListResponseCollection } from './getCampaignTagRelationshipListResponseCollection';
@@ -1124,7 +1121,7 @@ import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMe
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
-import { GetEventResponseCollectionCompoundDocumentIncludedInner } from './getEventResponseCollectionCompoundDocumentIncludedInner';
+import {  } from './getEventResponseCollectionCompoundDocumentIncludedInner';
 import { GetEventResponseCompoundDocument } from './getEventResponseCompoundDocument';
 import { GetFlowActionFlowMessageRelationshipResponseCollection } from './getFlowActionFlowMessageRelationshipResponseCollection';
 import { GetFlowActionFlowRelationshipResponse } from './getFlowActionFlowRelationshipResponse';
@@ -1137,7 +1134,7 @@ import { GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlow } from '
 import { GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages';
 import { GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner';
 import { GetFlowActionResponseCompoundDocument } from './getFlowActionResponseCompoundDocument';
-import { GetFlowActionResponseCompoundDocumentIncludedInner } from './getFlowActionResponseCompoundDocumentIncludedInner';
+import {  } from './getFlowActionResponseCompoundDocumentIncludedInner';
 import { GetFlowFlowActionRelationshipListResponseCollection } from './getFlowFlowActionRelationshipListResponseCollection';
 import { GetFlowMessageFlowActionRelationshipResponse } from './getFlowMessageFlowActionRelationshipResponse';
 import { GetFlowMessageResponseCollection } from './getFlowMessageResponseCollection';
@@ -1148,7 +1145,7 @@ import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction }
 import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate';
 import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData';
 import { GetFlowMessageResponseCompoundDocument } from './getFlowMessageResponseCompoundDocument';
-import { GetFlowMessageResponseCompoundDocumentIncludedInner } from './getFlowMessageResponseCompoundDocumentIncludedInner';
+import {  } from './getFlowMessageResponseCompoundDocumentIncludedInner';
 import { GetFlowMessageTemplateRelationshipResponse } from './getFlowMessageTemplateRelationshipResponse';
 import { GetFlowResponse } from './getFlowResponse';
 import { GetFlowResponseCollectionCompoundDocument } from './getFlowResponseCollectionCompoundDocument';
@@ -1157,7 +1154,7 @@ import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOf } from './getFl
 import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions';
 import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner';
-import { GetFlowResponseCollectionCompoundDocumentIncludedInner } from './getFlowResponseCollectionCompoundDocumentIncludedInner';
+import {  } from './getFlowResponseCollectionCompoundDocumentIncludedInner';
 import { GetFlowResponseCompoundDocument } from './getFlowResponseCompoundDocument';
 import { GetFlowTagRelationshipListResponseCollection } from './getFlowTagRelationshipListResponseCollection';
 import { GetImageResponse } from './getImageResponse';
@@ -1188,7 +1185,7 @@ import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOf } from './ge
 import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
 import { GetProfileResponseCompoundDocument } from './getProfileResponseCompoundDocument';
-import { GetProfileResponseCompoundDocumentIncludedInner } from './getProfileResponseCompoundDocumentIncludedInner';
+import {  } from './getProfileResponseCompoundDocumentIncludedInner';
 import { GetProfileResponseData } from './getProfileResponseData';
 import { GetProfileResponseDataAllOf } from './getProfileResponseDataAllOf';
 import { GetProfileResponseDataAllOfRelationships } from './getProfileResponseDataAllOfRelationships';
@@ -1360,8 +1357,6 @@ import { ProfileEnum } from './profileEnum';
 import { ProfileIdentifierDTOResourceObject } from './profileIdentifierDTOResourceObject';
 import { ProfileIdentifierDTOResourceObjectAttributes } from './profileIdentifierDTOResourceObjectAttributes';
 import { ProfileLocation } from './profileLocation';
-import { ProfileLocationLatitude } from './profileLocationLatitude';
-import { ProfileLocationLongitude } from './profileLocationLongitude';
 import { ProfileMergeEnum } from './profileMergeEnum';
 import { ProfileMergeQuery } from './profileMergeQuery';
 import { ProfileMergeQueryResourceObject } from './profileMergeQueryResourceObject';
@@ -1370,7 +1365,6 @@ import { ProfileMergeQueryResourceObjectRelationshipsProfiles } from './profileM
 import { ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner } from './profileMergeQueryResourceObjectRelationshipsProfilesDataInner';
 import { ProfileMeta } from './profileMeta';
 import { ProfileMetaPatchProperties } from './profileMetaPatchProperties';
-import { ProfileMetaPatchPropertiesUnset } from './profileMetaPatchPropertiesUnset';
 import { ProfilePartialUpdateQuery } from './profilePartialUpdateQuery';
 import { ProfilePartialUpdateQueryResourceObject } from './profilePartialUpdateQueryResourceObject';
 import { ProfilePartialUpdateQueryResourceObjectAttributes } from './profilePartialUpdateQueryResourceObjectAttributes';
@@ -1505,6 +1499,753 @@ import { TemplateUpdateQueryResourceObjectAttributes } from './templateUpdateQue
 import { ThrottledScheduleOptions } from './throttledScheduleOptions';
 import { UTMParamsSubObject } from './uTMParamsSubObject';
 import { UtmParamInfo } from './utmParamInfo';
+import {  } from './aPIJobErrorPayload';
+import {  } from './accountEnum';
+import {  } from './accountResponseObjectResource';
+import {  } from './accountResponseObjectResourceAttributes';
+import {  } from './audiencesSubObject';
+import {  } from './backInStockSubscriptionEnum';
+import {  } from './campaignCloneQuery';
+import {  } from './campaignCloneQueryResourceObject';
+import {  } from './campaignCloneQueryResourceObjectAttributes';
+import {  } from './campaignCreateQuery';
+import {  } from './campaignCreateQueryResourceObject';
+import {  } from './campaignCreateQueryResourceObjectAttributes';
+import {  } from './campaignCreateQueryResourceObjectAttributesCampaignMessages';
+import {  } from './campaignEnum';
+import {  } from './campaignMessageAssignTemplateQuery';
+import {  } from './campaignMessageAssignTemplateQueryResourceObject';
+import {  } from './campaignMessageAssignTemplateQueryResourceObjectRelationships';
+import {  } from './campaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate';
+import {  } from './campaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData';
+import {  } from './campaignMessageCreateQueryResourceObject';
+import {  } from './campaignMessageCreateQueryResourceObjectAttributes';
+import {  } from './campaignMessageCreateQueryResourceObjectAttributesContent';
+import {  } from './campaignMessageEnum';
+import {  } from './campaignMessagePartialUpdateQuery';
+import {  } from './campaignMessagePartialUpdateQueryResourceObject';
+import {  } from './campaignMessagePartialUpdateQueryResourceObjectAttributes';
+import {  } from './campaignMessageResponseObjectResource';
+import {  } from './campaignMessageResponseObjectResourceAttributes';
+import {  } from './campaignMessageResponseObjectResourceAttributesContent';
+import {  } from './campaignPartialUpdateQuery';
+import {  } from './campaignPartialUpdateQueryResourceObject';
+import {  } from './campaignPartialUpdateQueryResourceObjectAttributes';
+import {  } from './campaignRecipientEstimationEnum';
+import {  } from './campaignRecipientEstimationJobCreateQuery';
+import {  } from './campaignRecipientEstimationJobCreateQueryResourceObject';
+import {  } from './campaignRecipientEstimationJobEnum';
+import {  } from './campaignRecipientEstimationJobResponseObjectResource';
+import {  } from './campaignRecipientEstimationJobResponseObjectResourceAttributes';
+import {  } from './campaignRecipientEstimationResponseObjectResource';
+import {  } from './campaignRecipientEstimationResponseObjectResourceAttributes';
+import {  } from './campaignResponseObjectResource';
+import {  } from './campaignResponseObjectResourceAttributes';
+import {  } from './campaignResponseObjectResourceAttributesSendOptions';
+import {  } from './campaignResponseObjectResourceAttributesTrackingOptions';
+import {  } from './campaignSendJobCreateQuery';
+import {  } from './campaignSendJobCreateQueryResourceObject';
+import {  } from './campaignSendJobEnum';
+import {  } from './campaignSendJobPartialUpdateQuery';
+import {  } from './campaignSendJobPartialUpdateQueryResourceObject';
+import {  } from './campaignSendJobPartialUpdateQueryResourceObjectAttributes';
+import {  } from './campaignSendJobResponseObjectResource';
+import {  } from './campaignSendJobResponseObjectResourceAttributes';
+import {  } from './catalogCategoryBulkCreateJobEnum';
+import {  } from './catalogCategoryBulkDeleteJobEnum';
+import {  } from './catalogCategoryBulkUpdateJobEnum';
+import {  } from './catalogCategoryCreateJobCreateQuery';
+import {  } from './catalogCategoryCreateJobCreateQueryResourceObject';
+import {  } from './catalogCategoryCreateJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogCategoryCreateJobCreateQueryResourceObjectAttributesCategories';
+import {  } from './catalogCategoryCreateJobResponseObjectResource';
+import {  } from './catalogCategoryCreateQuery';
+import {  } from './catalogCategoryCreateQueryResourceObject';
+import {  } from './catalogCategoryCreateQueryResourceObjectAttributes';
+import {  } from './catalogCategoryCreateQueryResourceObjectRelationships';
+import {  } from './catalogCategoryCreateQueryResourceObjectRelationshipsItems';
+import {  } from './catalogCategoryDeleteJobCreateQuery';
+import {  } from './catalogCategoryDeleteJobCreateQueryResourceObject';
+import {  } from './catalogCategoryDeleteJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogCategoryDeleteJobCreateQueryResourceObjectAttributesCategories';
+import {  } from './catalogCategoryDeleteJobResponseObjectResource';
+import {  } from './catalogCategoryDeleteQueryResourceObject';
+import {  } from './catalogCategoryEnum';
+import {  } from './catalogCategoryItemOp';
+import {  } from './catalogCategoryResponseObjectResource';
+import {  } from './catalogCategoryResponseObjectResourceAttributes';
+import {  } from './catalogCategoryUpdateJobCreateQuery';
+import {  } from './catalogCategoryUpdateJobCreateQueryResourceObject';
+import {  } from './catalogCategoryUpdateJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogCategoryUpdateJobCreateQueryResourceObjectAttributesCategories';
+import {  } from './catalogCategoryUpdateJobResponseObjectResource';
+import {  } from './catalogCategoryUpdateQuery';
+import {  } from './catalogCategoryUpdateQueryResourceObject';
+import {  } from './catalogCategoryUpdateQueryResourceObjectAttributes';
+import {  } from './catalogItemBulkCreateJobEnum';
+import {  } from './catalogItemBulkDeleteJobEnum';
+import {  } from './catalogItemBulkUpdateJobEnum';
+import {  } from './catalogItemCategoryOp';
+import {  } from './catalogItemCreateJobCreateQuery';
+import {  } from './catalogItemCreateJobCreateQueryResourceObject';
+import {  } from './catalogItemCreateJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogItemCreateJobCreateQueryResourceObjectAttributesItems';
+import {  } from './catalogItemCreateJobResponseObjectResource';
+import {  } from './catalogItemCreateQuery';
+import {  } from './catalogItemCreateQueryResourceObject';
+import {  } from './catalogItemCreateQueryResourceObjectAttributes';
+import {  } from './catalogItemCreateQueryResourceObjectRelationships';
+import {  } from './catalogItemCreateQueryResourceObjectRelationshipsCategories';
+import {  } from './catalogItemDeleteJobCreateQuery';
+import {  } from './catalogItemDeleteJobCreateQueryResourceObject';
+import {  } from './catalogItemDeleteJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogItemDeleteJobCreateQueryResourceObjectAttributesItems';
+import {  } from './catalogItemDeleteJobResponseObjectResource';
+import {  } from './catalogItemDeleteQueryResourceObject';
+import {  } from './catalogItemEnum';
+import {  } from './catalogItemResponseObjectResource';
+import {  } from './catalogItemResponseObjectResourceAttributes';
+import {  } from './catalogItemUpdateJobCreateQuery';
+import {  } from './catalogItemUpdateJobCreateQueryResourceObject';
+import {  } from './catalogItemUpdateJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogItemUpdateJobCreateQueryResourceObjectAttributesItems';
+import {  } from './catalogItemUpdateJobResponseObjectResource';
+import {  } from './catalogItemUpdateQuery';
+import {  } from './catalogItemUpdateQueryResourceObject';
+import {  } from './catalogItemUpdateQueryResourceObjectAttributes';
+import {  } from './catalogVariantBulkCreateJobEnum';
+import {  } from './catalogVariantBulkDeleteJobEnum';
+import {  } from './catalogVariantBulkUpdateJobEnum';
+import {  } from './catalogVariantCreateJobCreateQuery';
+import {  } from './catalogVariantCreateJobCreateQueryResourceObject';
+import {  } from './catalogVariantCreateJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogVariantCreateJobCreateQueryResourceObjectAttributesVariants';
+import {  } from './catalogVariantCreateJobResponseObjectResource';
+import {  } from './catalogVariantCreateQuery';
+import {  } from './catalogVariantCreateQueryResourceObject';
+import {  } from './catalogVariantCreateQueryResourceObjectAttributes';
+import {  } from './catalogVariantCreateQueryResourceObjectRelationships';
+import {  } from './catalogVariantCreateQueryResourceObjectRelationshipsItem';
+import {  } from './catalogVariantCreateQueryResourceObjectRelationshipsItemData';
+import {  } from './catalogVariantDeleteJobCreateQuery';
+import {  } from './catalogVariantDeleteJobCreateQueryResourceObject';
+import {  } from './catalogVariantDeleteJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants';
+import {  } from './catalogVariantDeleteJobResponseObjectResource';
+import {  } from './catalogVariantDeleteQueryResourceObject';
+import {  } from './catalogVariantEnum';
+import {  } from './catalogVariantResponseObjectResource';
+import {  } from './catalogVariantResponseObjectResourceAttributes';
+import {  } from './catalogVariantUpdateJobCreateQuery';
+import {  } from './catalogVariantUpdateJobCreateQueryResourceObject';
+import {  } from './catalogVariantUpdateJobCreateQueryResourceObjectAttributes';
+import {  } from './catalogVariantUpdateJobCreateQueryResourceObjectAttributesVariants';
+import {  } from './catalogVariantUpdateJobResponseObjectResource';
+import {  } from './catalogVariantUpdateQuery';
+import {  } from './catalogVariantUpdateQueryResourceObject';
+import {  } from './catalogVariantUpdateQueryResourceObjectAttributes';
+import {  } from './collectionLinks';
+import {  } from './contactInformation';
+import {  } from './couponCodeBulkCreateJobEnum';
+import {  } from './couponCodeCreateJobCreateQuery';
+import {  } from './couponCodeCreateJobCreateQueryResourceObject';
+import {  } from './couponCodeCreateJobCreateQueryResourceObjectAttributes';
+import {  } from './couponCodeCreateJobCreateQueryResourceObjectAttributesCouponCodes';
+import {  } from './couponCodeCreateJobResponseObjectResource';
+import {  } from './couponCodeCreateJobResponseObjectResourceAttributes';
+import {  } from './couponCodeCreateQuery';
+import {  } from './couponCodeCreateQueryResourceObject';
+import {  } from './couponCodeCreateQueryResourceObjectAttributes';
+import {  } from './couponCodeCreateQueryResourceObjectRelationships';
+import {  } from './couponCodeCreateQueryResourceObjectRelationshipsCoupon';
+import {  } from './couponCodeEnum';
+import {  } from './couponCodeResponseObjectResource';
+import {  } from './couponCodeResponseObjectResourceAttributes';
+import {  } from './couponCodeUpdateQuery';
+import {  } from './couponCodeUpdateQueryResourceObject';
+import {  } from './couponCodeUpdateQueryResourceObjectAttributes';
+import {  } from './couponCreateQuery';
+import {  } from './couponCreateQueryResourceObject';
+import {  } from './couponEnum';
+import {  } from './couponResponseObjectResource';
+import {  } from './couponResponseObjectResourceAttributes';
+import {  } from './couponUpdateQuery';
+import {  } from './couponUpdateQueryResourceObject';
+import {  } from './couponUpdateQueryResourceObjectAttributes';
+import {  } from './dataPrivacyCreateDeletionJobQuery';
+import {  } from './dataPrivacyCreateDeletionJobQueryResourceObject';
+import {  } from './dataPrivacyCreateDeletionJobQueryResourceObjectAttributes';
+import {  } from './dataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile';
+import {  } from './dataPrivacyDeletionJobEnum';
+import {  } from './dataPrivacyProfileQueryResourceObject';
+import {  } from './dataPrivacyProfileQueryResourceObjectAttributes';
+import {  } from './deleteTagGroupResponse';
+import {  } from './deviceMetadata';
+import {  } from './emailChannel';
+import {  } from './emailContentSubObject';
+import {  } from './emailMarketing';
+import {  } from './emailMarketingListSuppression';
+import {  } from './emailMarketingSuppression';
+import {  } from './emailMessageContent';
+import {  } from './emailSendOptionsSubObject';
+import {  } from './emailSubscriptionParameters';
+import {  } from './emailTrackingOptions';
+import {  } from './emailTrackingOptionsSubObject';
+import {  } from './errorSource';
+import {  } from './eventCreateQueryV2';
+import {  } from './eventCreateQueryV2ResourceObject';
+import {  } from './eventCreateQueryV2ResourceObjectAttributes';
+import {  } from './eventCreateQueryV2ResourceObjectAttributesMetric';
+import {  } from './eventCreateQueryV2ResourceObjectAttributesProfile';
+import {  } from './eventEnum';
+import {  } from './eventResponseObjectResource';
+import {  } from './eventResponseObjectResourceAttributes';
+import {  } from './flowActionEnum';
+import {  } from './flowActionResponseObjectResource';
+import {  } from './flowActionResponseObjectResourceAttributes';
+import {  } from './flowActionResponseObjectResourceAttributesTrackingOptions';
+import {  } from './flowEnum';
+import {  } from './flowMessageEnum';
+import {  } from './flowMessageResponseObjectResource';
+import {  } from './flowMessageResponseObjectResourceAttributes';
+import {  } from './flowMessageResponseObjectResourceAttributesContent';
+import {  } from './flowResponseObjectResource';
+import {  } from './flowResponseObjectResourceAttributes';
+import {  } from './flowUpdateQuery';
+import {  } from './flowUpdateQueryResourceObject';
+import {  } from './flowUpdateQueryResourceObjectAttributes';
+import {  } from './getAccountResponse';
+import {  } from './getAccountResponseCollection';
+import {  } from './getAccounts4XXResponse';
+import {  } from './getAccounts4XXResponseErrorsInner';
+import {  } from './getAccounts4XXResponseErrorsInnerSource';
+import {  } from './getCampaignMessageCampaignRelationshipListResponse';
+import {  } from './getCampaignMessageResponse';
+import {  } from './getCampaignMessageResponseCollectionCompoundDocument';
+import {  } from './getCampaignMessageResponseCompoundDocument';
+import {  } from './getCampaignMessageResponseCompoundDocumentData';
+import {  } from './getCampaignMessageResponseCompoundDocumentDataAllOf';
+import {  } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationships';
+import {  } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign';
+import {  } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData';
+import {  } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate';
+import {  } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData';
+import { GetCampaignMessageResponseCompoundDocumentIncludedInnerHelper } from './getCampaignMessageResponseCompoundDocumentIncludedInner';
+import {  } from './getCampaignMessageTemplateRelationshipListResponse';
+import {  } from './getCampaignMessagesRelationshipListResponseCollection';
+import {  } from './getCampaignMessagesRelationshipListResponseCollectionDataInner';
+import {  } from './getCampaignRecipientEstimationJobResponse';
+import {  } from './getCampaignRecipientEstimationResponse';
+import {  } from './getCampaignResponseCollectionCompoundDocument';
+import {  } from './getCampaignResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages';
+import {  } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner';
+import { GetCampaignResponseCollectionCompoundDocumentIncludedInnerHelper } from './getCampaignResponseCollectionCompoundDocumentIncludedInner';
+import {  } from './getCampaignResponseCompoundDocument';
+import {  } from './getCampaignSendJobResponse';
+import {  } from './getCampaignTagRelationshipListResponseCollection';
+import {  } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocument';
+import {  } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories';
+import {  } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategoriesDataInner';
+import {  } from './getCatalogCategoryCreateJobResponseCompoundDocument';
+import {  } from './getCatalogCategoryDeleteJobResponse';
+import {  } from './getCatalogCategoryDeleteJobResponseCollection';
+import {  } from './getCatalogCategoryDeleteJobResponseCollectionDataInner';
+import {  } from './getCatalogCategoryDeleteJobResponseCollectionDataInnerAllOf';
+import {  } from './getCatalogCategoryDeleteJobResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getCatalogCategoryDeleteJobResponseCollectionDataInnerAllOfRelationshipsCategories';
+import {  } from './getCatalogCategoryDeleteJobResponseCollectionDataInnerAllOfRelationshipsCategoriesDataInner';
+import {  } from './getCatalogCategoryItemListResponseCollection';
+import {  } from './getCatalogCategoryItemListResponseCollectionDataInner';
+import {  } from './getCatalogCategoryResponse';
+import {  } from './getCatalogCategoryResponseCollection';
+import {  } from './getCatalogCategoryResponseCollectionDataInner';
+import {  } from './getCatalogCategoryResponseCollectionDataInnerAllOf';
+import {  } from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems';
+import {  } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocument';
+import {  } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories';
+import {  } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategoriesDataInner';
+import {  } from './getCatalogCategoryUpdateJobResponseCompoundDocument';
+import {  } from './getCatalogItemCategoryListResponseCollection';
+import {  } from './getCatalogItemCategoryListResponseCollectionDataInner';
+import {  } from './getCatalogItemCreateJobResponseCollectionCompoundDocument';
+import {  } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems';
+import {  } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItemsDataInner';
+import {  } from './getCatalogItemCreateJobResponseCompoundDocument';
+import {  } from './getCatalogItemDeleteJobResponse';
+import {  } from './getCatalogItemDeleteJobResponseCollection';
+import {  } from './getCatalogItemDeleteJobResponseCollectionDataInner';
+import {  } from './getCatalogItemDeleteJobResponseCollectionDataInnerAllOf';
+import {  } from './getCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationshipsItems';
+import {  } from './getCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationshipsItemsDataInner';
+import {  } from './getCatalogItemResponseCollectionCompoundDocument';
+import {  } from './getCatalogItemResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
+import {  } from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
+import {  } from './getCatalogItemResponseCompoundDocument';
+import {  } from './getCatalogItemUpdateJobResponseCollectionCompoundDocument';
+import {  } from './getCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems';
+import {  } from './getCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItemsDataInner';
+import {  } from './getCatalogItemUpdateJobResponseCompoundDocument';
+import {  } from './getCatalogVariantCreateJobResponseCollectionCompoundDocument';
+import {  } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
+import {  } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
+import {  } from './getCatalogVariantCreateJobResponseCompoundDocument';
+import {  } from './getCatalogVariantDeleteJobResponse';
+import {  } from './getCatalogVariantDeleteJobResponseCollection';
+import {  } from './getCatalogVariantDeleteJobResponseCollectionDataInner';
+import {  } from './getCatalogVariantDeleteJobResponseCollectionDataInnerAllOf';
+import {  } from './getCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariants';
+import {  } from './getCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariantsDataInner';
+import {  } from './getCatalogVariantResponse';
+import {  } from './getCatalogVariantResponseCollection';
+import {  } from './getCatalogVariantResponseCollectionDataInner';
+import {  } from './getCatalogVariantResponseCollectionDataInnerAllOf';
+import {  } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItem';
+import {  } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItemData';
+import {  } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocument';
+import {  } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
+import {  } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
+import {  } from './getCatalogVariantUpdateJobResponseCompoundDocument';
+import {  } from './getCouponCodeCreateJobResponseCollectionCompoundDocument';
+import {  } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes';
+import {  } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner';
+import {  } from './getCouponCodeCreateJobResponseCompoundDocument';
+import {  } from './getCouponCodeRelationshipCouponResponse';
+import {  } from './getCouponCodeRelationshipCouponResponseData';
+import {  } from './getCouponCodeResponseCollection';
+import {  } from './getCouponCodeResponseCollectionCompoundDocument';
+import {  } from './getCouponCodeResponseCollectionCompoundDocumentDataInner';
+import {  } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon';
+import {  } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData';
+import {  } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
+import {  } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
+import {  } from './getCouponCodeResponseCompoundDocument';
+import {  } from './getCouponRelationshipCouponCodesListResponseCollection';
+import {  } from './getCouponRelationshipCouponCodesListResponseCollectionDataInner';
+import {  } from './getCouponResponse';
+import {  } from './getCouponResponseCollection';
+import {  } from './getEventMetricsRelationshipListResponse';
+import {  } from './getEventMetricsRelationshipListResponseData';
+import {  } from './getEventProfilesRelationshipListResponse';
+import {  } from './getEventProfilesRelationshipListResponseData';
+import {  } from './getEventResponseCollectionCompoundDocument';
+import {  } from './getEventResponseCollectionCompoundDocumentDataInner';
+import {  } from './getEventResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetric';
+import {  } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData';
+import {  } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
+import {  } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
+import { GetEventResponseCollectionCompoundDocumentIncludedInnerHelper } from './getEventResponseCollectionCompoundDocumentIncludedInner';
+import {  } from './getEventResponseCompoundDocument';
+import {  } from './getFlowActionFlowMessageRelationshipResponseCollection';
+import {  } from './getFlowActionFlowRelationshipResponse';
+import {  } from './getFlowActionResponse';
+import {  } from './getFlowActionResponseCollection';
+import {  } from './getFlowActionResponseCollectionDataInner';
+import {  } from './getFlowActionResponseCollectionDataInnerAllOf';
+import {  } from './getFlowActionResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlow';
+import {  } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages';
+import {  } from './getFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner';
+import {  } from './getFlowActionResponseCompoundDocument';
+import { GetFlowActionResponseCompoundDocumentIncludedInnerHelper } from './getFlowActionResponseCompoundDocumentIncludedInner';
+import {  } from './getFlowFlowActionRelationshipListResponseCollection';
+import {  } from './getFlowMessageFlowActionRelationshipResponse';
+import {  } from './getFlowMessageResponseCollection';
+import {  } from './getFlowMessageResponseCollectionDataInner';
+import {  } from './getFlowMessageResponseCollectionDataInnerAllOf';
+import {  } from './getFlowMessageResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction';
+import {  } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate';
+import {  } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData';
+import {  } from './getFlowMessageResponseCompoundDocument';
+import { GetFlowMessageResponseCompoundDocumentIncludedInnerHelper } from './getFlowMessageResponseCompoundDocumentIncludedInner';
+import {  } from './getFlowMessageTemplateRelationshipResponse';
+import {  } from './getFlowResponse';
+import {  } from './getFlowResponseCollectionCompoundDocument';
+import {  } from './getFlowResponseCollectionCompoundDocumentDataInner';
+import {  } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions';
+import {  } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner';
+import { GetFlowResponseCollectionCompoundDocumentIncludedInnerHelper } from './getFlowResponseCollectionCompoundDocumentIncludedInner';
+import {  } from './getFlowResponseCompoundDocument';
+import {  } from './getFlowTagRelationshipListResponseCollection';
+import {  } from './getImageResponse';
+import {  } from './getImageResponseCollection';
+import {  } from './getListListResponseCollectionCompoundDocument';
+import {  } from './getListListResponseCollectionCompoundDocumentDataInner';
+import {  } from './getListListResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
+import {  } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner';
+import {  } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
+import {  } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner';
+import {  } from './getListMemberResponseCollection';
+import {  } from './getListMemberResponseCollectionDataInner';
+import {  } from './getListRelationshipsResponseCollection';
+import {  } from './getListResponseCollection';
+import {  } from './getListResponseCollectionDataInner';
+import {  } from './getListRetrieveResponseCompoundDocument';
+import {  } from './getListRetrieveResponseCompoundDocumentData';
+import {  } from './getListTagRelationshipListResponseCollection';
+import {  } from './getMetricResponse';
+import {  } from './getMetricResponseCollection';
+import {  } from './getProfileListRelationshipsResponseCollection';
+import {  } from './getProfileResponse';
+import {  } from './getProfileResponseCollectionCompoundDocument';
+import {  } from './getProfileResponseCollectionCompoundDocumentDataInner';
+import {  } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
+import {  } from './getProfileResponseCompoundDocument';
+import { GetProfileResponseCompoundDocumentIncludedInnerHelper } from './getProfileResponseCompoundDocumentIncludedInner';
+import {  } from './getProfileResponseData';
+import {  } from './getProfileResponseDataAllOf';
+import {  } from './getProfileResponseDataAllOfRelationships';
+import {  } from './getProfileResponseDataAllOfRelationshipsLists';
+import {  } from './getProfileResponseDataAllOfRelationshipsListsDataInner';
+import {  } from './getProfileResponseDataAllOfRelationshipsSegments';
+import {  } from './getProfileResponseDataAllOfRelationshipsSegmentsDataInner';
+import {  } from './getProfileSegmentRelationshipsResponseCollection';
+import {  } from './getSegmentListResponseCollectionCompoundDocument';
+import {  } from './getSegmentListResponseCollectionCompoundDocumentDataInner';
+import {  } from './getSegmentMemberResponseCollection';
+import {  } from './getSegmentMemberResponseCollectionDataInner';
+import {  } from './getSegmentRelationshipsResponseCollection';
+import {  } from './getSegmentResponseCollection';
+import {  } from './getSegmentResponseCollectionDataInner';
+import {  } from './getSegmentRetrieveResponseCompoundDocument';
+import {  } from './getSegmentRetrieveResponseCompoundDocumentData';
+import {  } from './getSegmentTagRelationshipListResponseCollection';
+import {  } from './getTagCampaignRelationshipsResponseCollection';
+import {  } from './getTagCampaignRelationshipsResponseCollectionDataInner';
+import {  } from './getTagFlowRelationshipsResponseCollection';
+import {  } from './getTagFlowRelationshipsResponseCollectionDataInner';
+import {  } from './getTagGroupResponse';
+import {  } from './getTagGroupResponseCollection';
+import {  } from './getTagGroupResponseCollectionDataInner';
+import {  } from './getTagGroupResponseCollectionDataInnerAllOf';
+import {  } from './getTagGroupResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getTagGroupTagRelationshipsResponseCollection';
+import {  } from './getTagGroupTagRelationshipsResponseCollectionDataInner';
+import {  } from './getTagListRelationshipsResponseCollection';
+import {  } from './getTagListRelationshipsResponseCollectionDataInner';
+import {  } from './getTagResponseCollection';
+import {  } from './getTagResponseCollectionCompoundDocument';
+import {  } from './getTagResponseCollectionDataInner';
+import {  } from './getTagResponseCollectionDataInnerAllOf';
+import {  } from './getTagResponseCollectionDataInnerAllOfRelationships';
+import {  } from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaigns';
+import {  } from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner';
+import {  } from './getTagResponseCollectionDataInnerAllOfRelationshipsFlows';
+import {  } from './getTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner';
+import {  } from './getTagResponseCollectionDataInnerAllOfRelationshipsTagGroup';
+import {  } from './getTagResponseCollectionDataInnerAllOfRelationshipsTagGroupData';
+import {  } from './getTagResponseCompoundDocument';
+import {  } from './getTagSegmentRelationshipsResponseCollection';
+import {  } from './getTagSegmentRelationshipsResponseCollectionDataInner';
+import {  } from './getTagTagGroupRelationshipsResponse';
+import {  } from './getTagTagGroupRelationshipsResponseData';
+import {  } from './getTemplateResponse';
+import {  } from './getTemplateResponseCollection';
+import {  } from './imageCreateQuery';
+import {  } from './imageCreateQueryResourceObject';
+import {  } from './imageCreateQueryResourceObjectAttributes';
+import {  } from './imageEnum';
+import {  } from './imagePartialUpdateQuery';
+import {  } from './imagePartialUpdateQueryResourceObject';
+import {  } from './imagePartialUpdateQueryResourceObjectAttributes';
+import {  } from './imageResponseObjectResource';
+import {  } from './imageResponseObjectResourceAttributes';
+import {  } from './listCreateQuery';
+import {  } from './listCreateQueryResourceObject';
+import {  } from './listCreateQueryResourceObjectAttributes';
+import {  } from './listEnum';
+import {  } from './listListResponseObjectResource';
+import {  } from './listListResponseObjectResourceAttributes';
+import {  } from './listMemberResponseObjectResourceAttributes';
+import {  } from './listMemberResponseObjectResourceExtended';
+import {  } from './listMemberResponseObjectResourceExtendedAttributes';
+import {  } from './listMembersAddQuery';
+import {  } from './listMembersDeleteQuery';
+import {  } from './listPartialUpdateQuery';
+import {  } from './listPartialUpdateQueryResourceObject';
+import {  } from './listResponseObjectResource';
+import {  } from './listRetrieveResponseObjectResourceAttributes';
+import {  } from './listRetrieveResponseObjectResourceExtended';
+import {  } from './listRetrieveResponseObjectResourceExtendedAttributes';
+import {  } from './listRetrieveResponseObjectResourceExtendedAttributesAllOf';
+import {  } from './marketingSubscriptionParameters';
+import {  } from './metricAggregateEnum';
+import {  } from './metricAggregateQuery';
+import {  } from './metricAggregateQueryResourceObject';
+import {  } from './metricAggregateQueryResourceObjectAttributes';
+import {  } from './metricAggregateRowDTO';
+import {  } from './metricCreateQueryResourceObject';
+import {  } from './metricCreateQueryResourceObjectAttributes';
+import {  } from './metricEnum';
+import {  } from './metricResponseObjectResource';
+import {  } from './metricResponseObjectResourceAttributes';
+import {  } from './objectLinks';
+import {  } from './onsiteProfileCreateQueryResourceObject';
+import {  } from './onsiteProfileCreateQueryResourceObjectAttributes';
+import {  } from './onsiteProfileMeta';
+import {  } from './patchCampaignMessageResponse';
+import {  } from './patchCampaignResponse';
+import {  } from './patchCatalogCategoryResponse';
+import {  } from './patchCatalogItemResponse';
+import {  } from './patchCatalogVariantResponse';
+import {  } from './patchCouponCodeResponse';
+import {  } from './patchCouponResponse';
+import {  } from './patchFlowResponse';
+import {  } from './patchFlowResponseData';
+import {  } from './patchImageResponse';
+import {  } from './patchListPartialUpdateResponse';
+import {  } from './patchProfileResponse';
+import {  } from './patchSegmentPartialUpdateResponse';
+import {  } from './patchSegmentPartialUpdateResponseData';
+import {  } from './patchTagGroupResponse';
+import {  } from './patchTemplateResponse';
+import {  } from './postCampaignMessageResponse';
+import {  } from './postCampaignMessageResponseData';
+import {  } from './postCampaignRecipientEstimationJobResponse';
+import {  } from './postCampaignRecipientEstimationJobResponseData';
+import {  } from './postCampaignResponse';
+import {  } from './postCampaignResponseData';
+import {  } from './postCampaignSendJobResponse';
+import {  } from './postCampaignSendJobResponseData';
+import {  } from './postCatalogCategoryCreateJobResponse';
+import {  } from './postCatalogCategoryCreateJobResponseData';
+import {  } from './postCatalogCategoryDeleteJobResponse';
+import {  } from './postCatalogCategoryDeleteJobResponseData';
+import {  } from './postCatalogCategoryResponse';
+import {  } from './postCatalogCategoryResponseData';
+import {  } from './postCatalogCategoryUpdateJobResponse';
+import {  } from './postCatalogCategoryUpdateJobResponseData';
+import {  } from './postCatalogItemCreateJobResponse';
+import {  } from './postCatalogItemCreateJobResponseData';
+import {  } from './postCatalogItemDeleteJobResponse';
+import {  } from './postCatalogItemDeleteJobResponseData';
+import {  } from './postCatalogItemResponse';
+import {  } from './postCatalogItemResponseData';
+import {  } from './postCatalogItemUpdateJobResponse';
+import {  } from './postCatalogItemUpdateJobResponseData';
+import {  } from './postCatalogVariantCreateJobResponse';
+import {  } from './postCatalogVariantCreateJobResponseData';
+import {  } from './postCatalogVariantDeleteJobResponse';
+import {  } from './postCatalogVariantDeleteJobResponseData';
+import {  } from './postCatalogVariantResponse';
+import {  } from './postCatalogVariantResponseData';
+import {  } from './postCatalogVariantUpdateJobResponse';
+import {  } from './postCatalogVariantUpdateJobResponseData';
+import {  } from './postCouponCodeCreateJobResponse';
+import {  } from './postCouponCodeCreateJobResponseData';
+import {  } from './postCouponCodeResponse';
+import {  } from './postCouponCodeResponseData';
+import {  } from './postCouponResponse';
+import {  } from './postCouponResponseData';
+import {  } from './postImageResponse';
+import {  } from './postImageResponseData';
+import {  } from './postListCreateResponse';
+import {  } from './postListCreateResponseData';
+import {  } from './postMetricAggregateResponse';
+import {  } from './postMetricAggregateResponseData';
+import {  } from './postMetricAggregateResponseDataAttributes';
+import {  } from './postProfileMergeResponse';
+import {  } from './postProfileMergeResponseData';
+import {  } from './postProfileResponse';
+import {  } from './postProfileResponseData';
+import {  } from './postProfileResponseDataAttributes';
+import {  } from './postTagGroupResponse';
+import {  } from './postTagGroupResponseData';
+import {  } from './postTagResponse';
+import {  } from './postTagResponseData';
+import {  } from './postTemplateResponse';
+import {  } from './postTemplateResponseData';
+import {  } from './predictiveAnalytics';
+import {  } from './profileCreateQuery';
+import {  } from './profileCreateQueryResourceObject';
+import {  } from './profileCreateQueryResourceObjectAttributes';
+import {  } from './profileEnum';
+import {  } from './profileIdentifierDTOResourceObject';
+import {  } from './profileIdentifierDTOResourceObjectAttributes';
+import {  } from './profileLocation';
+import {  } from './profileMergeEnum';
+import {  } from './profileMergeQuery';
+import {  } from './profileMergeQueryResourceObject';
+import {  } from './profileMergeQueryResourceObjectRelationships';
+import {  } from './profileMergeQueryResourceObjectRelationshipsProfiles';
+import {  } from './profileMergeQueryResourceObjectRelationshipsProfilesDataInner';
+import {  } from './profileMeta';
+import {  } from './profileMetaPatchProperties';
+import {  } from './profilePartialUpdateQuery';
+import {  } from './profilePartialUpdateQueryResourceObject';
+import {  } from './profilePartialUpdateQueryResourceObjectAttributes';
+import {  } from './profileResponseObjectResource';
+import {  } from './profileResponseObjectResourceAttributes';
+import {  } from './profileResponseObjectResourceExtended';
+import {  } from './profileResponseObjectResourceExtendedAttributes';
+import {  } from './profileResponseObjectResourceExtendedAttributesAllOf';
+import {  } from './profileSubscriptionBulkCreateJobEnum';
+import {  } from './profileSubscriptionBulkDeleteJobEnum';
+import {  } from './profileSubscriptionCreateQueryResourceObject';
+import {  } from './profileSubscriptionCreateQueryResourceObjectAttributes';
+import {  } from './profileSubscriptionDeleteQueryResourceObject';
+import {  } from './profileSubscriptionDeleteQueryResourceObjectAttributes';
+import {  } from './profileSuppressionBulkCreateJobEnum';
+import {  } from './profileSuppressionBulkDeleteJobEnum';
+import {  } from './profileSuppressionCreateQueryResourceObject';
+import {  } from './profileSuppressionCreateQueryResourceObjectAttributes';
+import {  } from './profileSuppressionDeleteQueryResourceObject';
+import {  } from './profileSuppressionDeleteQueryResourceObjectAttributes';
+import {  } from './profileUpsertQueryResourceObject';
+import {  } from './profileUpsertQueryResourceObjectAttributes';
+import {  } from './pushTokenCreateQuery';
+import {  } from './pushTokenCreateQueryResourceObject';
+import {  } from './pushTokenCreateQueryResourceObjectAttributes';
+import {  } from './pushTokenCreateQueryResourceObjectAttributesProfile';
+import {  } from './pushTokenEnum';
+import {  } from './relationshipLinks';
+import {  } from './renderOptionsSubObject';
+import {  } from './sMSChannel';
+import {  } from './sMSContentSubObject';
+import {  } from './sMSContentSubObjectCreate';
+import {  } from './sMSMarketing';
+import {  } from './sMSMessageContent';
+import {  } from './sMSRenderOptions';
+import {  } from './sMSSendOptionsSubObject';
+import {  } from './sMSSubscriptionParameters';
+import {  } from './sMSTrackingOptions';
+import {  } from './sMSTrackingOptionsSubObject';
+import {  } from './sTOScheduleOptions';
+import {  } from './segmentEnum';
+import {  } from './segmentListResponseObjectResource';
+import {  } from './segmentListResponseObjectResourceAttributes';
+import {  } from './segmentMemberResponseObjectResourceAttributes';
+import {  } from './segmentMemberResponseObjectResourceExtended';
+import {  } from './segmentMemberResponseObjectResourceExtendedAttributes';
+import {  } from './segmentPartialUpdateQuery';
+import {  } from './segmentPartialUpdateQueryResourceObject';
+import {  } from './segmentPartialUpdateQueryResourceObjectAttributes';
+import {  } from './segmentResponseObjectResource';
+import {  } from './segmentRetrieveResponseObjectResourceAttributes';
+import {  } from './segmentRetrieveResponseObjectResourceExtended';
+import {  } from './segmentRetrieveResponseObjectResourceExtendedAttributes';
+import {  } from './sendOptions';
+import {  } from './sendStrategySubObject';
+import {  } from './sendTimeSubObject';
+import {  } from './serverBISSubscriptionCreateQuery';
+import {  } from './serverBISSubscriptionCreateQueryResourceObject';
+import {  } from './serverBISSubscriptionCreateQueryResourceObjectAttributes';
+import {  } from './serverBISSubscriptionCreateQueryResourceObjectAttributesProfile';
+import {  } from './serverBISSubscriptionCreateQueryResourceObjectRelationships';
+import {  } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariant';
+import {  } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData';
+import {  } from './staticScheduleOptions';
+import {  } from './streetAddress';
+import {  } from './subscriptionChannels';
+import {  } from './subscriptionCreateJobCreateQuery';
+import {  } from './subscriptionCreateJobCreateQueryResourceObject';
+import {  } from './subscriptionCreateJobCreateQueryResourceObjectAttributes';
+import {  } from './subscriptionCreateJobCreateQueryResourceObjectAttributesProfiles';
+import {  } from './subscriptionCreateJobCreateQueryResourceObjectRelationships';
+import {  } from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsList';
+import {  } from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsListData';
+import {  } from './subscriptionDeleteJobCreateQuery';
+import {  } from './subscriptionDeleteJobCreateQueryResourceObject';
+import {  } from './subscriptionDeleteJobCreateQueryResourceObjectAttributes';
+import {  } from './subscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles';
+import {  } from './subscriptionDeleteJobCreateQueryResourceObjectRelationships';
+import {  } from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsList';
+import {  } from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData';
+import {  } from './subscriptions';
+import {  } from './suppressionCreateJobCreateQuery';
+import {  } from './suppressionCreateJobCreateQueryResourceObject';
+import {  } from './suppressionCreateJobCreateQueryResourceObjectAttributes';
+import {  } from './suppressionCreateJobCreateQueryResourceObjectAttributesProfiles';
+import {  } from './suppressionDeleteJobCreateQuery';
+import {  } from './suppressionDeleteJobCreateQueryResourceObject';
+import {  } from './suppressionDeleteJobCreateQueryResourceObjectAttributes';
+import {  } from './suppressionDeleteJobCreateQueryResourceObjectAttributesProfiles';
+import {  } from './tagCampaignOp';
+import {  } from './tagCampaignOpDataInner';
+import {  } from './tagCreateQuery';
+import {  } from './tagCreateQueryResourceObject';
+import {  } from './tagCreateQueryResourceObjectRelationships';
+import {  } from './tagCreateQueryResourceObjectRelationshipsTagGroup';
+import {  } from './tagCreateQueryResourceObjectRelationshipsTagGroupData';
+import {  } from './tagEnum';
+import {  } from './tagFlowOp';
+import {  } from './tagFlowOpDataInner';
+import {  } from './tagGroupCreateQuery';
+import {  } from './tagGroupCreateQueryResourceObject';
+import {  } from './tagGroupCreateQueryResourceObjectAttributes';
+import {  } from './tagGroupEnum';
+import {  } from './tagGroupResponseObjectResource';
+import {  } from './tagGroupResponseObjectResourceAttributes';
+import {  } from './tagGroupUpdateQuery';
+import {  } from './tagGroupUpdateQueryResourceObject';
+import {  } from './tagGroupUpdateQueryResourceObjectAttributes';
+import {  } from './tagListOp';
+import {  } from './tagListOpDataInner';
+import {  } from './tagResponseObjectResource';
+import {  } from './tagResponseObjectResourceAttributes';
+import {  } from './tagSegmentOp';
+import {  } from './tagSegmentOpDataInner';
+import {  } from './tagUpdateQuery';
+import {  } from './tagUpdateQueryResourceObject';
+import {  } from './templateCloneQuery';
+import {  } from './templateCloneQueryResourceObject';
+import {  } from './templateCloneQueryResourceObjectAttributes';
+import {  } from './templateCreateQuery';
+import {  } from './templateCreateQueryResourceObject';
+import {  } from './templateCreateQueryResourceObjectAttributes';
+import {  } from './templateEnum';
+import {  } from './templateRenderQuery';
+import {  } from './templateRenderQueryResourceObject';
+import {  } from './templateRenderQueryResourceObjectAttributes';
+import {  } from './templateResponseObjectResource';
+import {  } from './templateResponseObjectResourceAttributes';
+import {  } from './templateUpdateQuery';
+import {  } from './templateUpdateQueryResourceObject';
+import {  } from './templateUpdateQueryResourceObjectAttributes';
+import {  } from './throttledScheduleOptions';
+import {  } from './uTMParamsSubObject';
+import {  } from './utmParamInfo';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -1793,7 +2534,6 @@ let typeMap: {[index: string]: any} = {
     "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData": GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaignData,
     "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate": GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate,
     "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData": GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData,
-    "GetCampaignMessageResponseCompoundDocumentIncludedInner": GetCampaignMessageResponseCompoundDocumentIncludedInner,
     "GetCampaignMessageTemplateRelationshipListResponse": GetCampaignMessageTemplateRelationshipListResponse,
     "GetCampaignMessagesRelationshipListResponseCollection": GetCampaignMessagesRelationshipListResponseCollection,
     "GetCampaignMessagesRelationshipListResponseCollectionDataInner": GetCampaignMessagesRelationshipListResponseCollectionDataInner,
@@ -1805,7 +2545,6 @@ let typeMap: {[index: string]: any} = {
     "GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
     "GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages": GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages,
     "GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner": GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner,
-    "GetCampaignResponseCollectionCompoundDocumentIncludedInner": GetCampaignResponseCollectionCompoundDocumentIncludedInner,
     "GetCampaignResponseCompoundDocument": GetCampaignResponseCompoundDocument,
     "GetCampaignSendJobResponse": GetCampaignSendJobResponse,
     "GetCampaignTagRelationshipListResponseCollection": GetCampaignTagRelationshipListResponseCollection,
@@ -1931,7 +2670,6 @@ let typeMap: {[index: string]: any} = {
     "GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData": GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData,
     "GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile": GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile,
     "GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData": GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData,
-    "GetEventResponseCollectionCompoundDocumentIncludedInner": GetEventResponseCollectionCompoundDocumentIncludedInner,
     "GetEventResponseCompoundDocument": GetEventResponseCompoundDocument,
     "GetFlowActionFlowMessageRelationshipResponseCollection": GetFlowActionFlowMessageRelationshipResponseCollection,
     "GetFlowActionFlowRelationshipResponse": GetFlowActionFlowRelationshipResponse,
@@ -1944,7 +2682,6 @@ let typeMap: {[index: string]: any} = {
     "GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages": GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessages,
     "GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner": GetFlowActionResponseCollectionDataInnerAllOfRelationshipsFlowMessagesDataInner,
     "GetFlowActionResponseCompoundDocument": GetFlowActionResponseCompoundDocument,
-    "GetFlowActionResponseCompoundDocumentIncludedInner": GetFlowActionResponseCompoundDocumentIncludedInner,
     "GetFlowFlowActionRelationshipListResponseCollection": GetFlowFlowActionRelationshipListResponseCollection,
     "GetFlowMessageFlowActionRelationshipResponse": GetFlowMessageFlowActionRelationshipResponse,
     "GetFlowMessageResponseCollection": GetFlowMessageResponseCollection,
@@ -1955,7 +2692,6 @@ let typeMap: {[index: string]: any} = {
     "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate": GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate,
     "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData": GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData,
     "GetFlowMessageResponseCompoundDocument": GetFlowMessageResponseCompoundDocument,
-    "GetFlowMessageResponseCompoundDocumentIncludedInner": GetFlowMessageResponseCompoundDocumentIncludedInner,
     "GetFlowMessageTemplateRelationshipResponse": GetFlowMessageTemplateRelationshipResponse,
     "GetFlowResponse": GetFlowResponse,
     "GetFlowResponseCollectionCompoundDocument": GetFlowResponseCollectionCompoundDocument,
@@ -1964,7 +2700,6 @@ let typeMap: {[index: string]: any} = {
     "GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
     "GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions": GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions,
     "GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner": GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner,
-    "GetFlowResponseCollectionCompoundDocumentIncludedInner": GetFlowResponseCollectionCompoundDocumentIncludedInner,
     "GetFlowResponseCompoundDocument": GetFlowResponseCompoundDocument,
     "GetFlowTagRelationshipListResponseCollection": GetFlowTagRelationshipListResponseCollection,
     "GetImageResponse": GetImageResponse,
@@ -1995,7 +2730,6 @@ let typeMap: {[index: string]: any} = {
     "GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
     "GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists": GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists,
     "GetProfileResponseCompoundDocument": GetProfileResponseCompoundDocument,
-    "GetProfileResponseCompoundDocumentIncludedInner": GetProfileResponseCompoundDocumentIncludedInner,
     "GetProfileResponseData": GetProfileResponseData,
     "GetProfileResponseDataAllOf": GetProfileResponseDataAllOf,
     "GetProfileResponseDataAllOfRelationships": GetProfileResponseDataAllOfRelationships,
@@ -2162,8 +2896,6 @@ let typeMap: {[index: string]: any} = {
     "ProfileIdentifierDTOResourceObject": ProfileIdentifierDTOResourceObject,
     "ProfileIdentifierDTOResourceObjectAttributes": ProfileIdentifierDTOResourceObjectAttributes,
     "ProfileLocation": ProfileLocation,
-    "ProfileLocationLatitude": ProfileLocationLatitude,
-    "ProfileLocationLongitude": ProfileLocationLongitude,
     "ProfileMergeQuery": ProfileMergeQuery,
     "ProfileMergeQueryResourceObject": ProfileMergeQueryResourceObject,
     "ProfileMergeQueryResourceObjectRelationships": ProfileMergeQueryResourceObjectRelationships,
@@ -2171,7 +2903,6 @@ let typeMap: {[index: string]: any} = {
     "ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner": ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner,
     "ProfileMeta": ProfileMeta,
     "ProfileMetaPatchProperties": ProfileMetaPatchProperties,
-    "ProfileMetaPatchPropertiesUnset": ProfileMetaPatchPropertiesUnset,
     "ProfilePartialUpdateQuery": ProfilePartialUpdateQuery,
     "ProfilePartialUpdateQueryResourceObject": ProfilePartialUpdateQueryResourceObject,
     "ProfilePartialUpdateQueryResourceObjectAttributes": ProfilePartialUpdateQueryResourceObjectAttributes,
@@ -2299,6 +3030,16 @@ let typeMap: {[index: string]: any} = {
     "UtmParamInfo": UtmParamInfo,
 }
 
+const oneOfMap: {[index: string]: any} = {
+                "GetCampaignMessageResponseCompoundDocumentIncludedInner": GetCampaignMessageResponseCompoundDocumentIncludedInnerHelper,
+                "GetCampaignResponseCollectionCompoundDocumentIncludedInner": GetCampaignResponseCollectionCompoundDocumentIncludedInnerHelper,
+                "GetEventResponseCollectionCompoundDocumentIncludedInner": GetEventResponseCollectionCompoundDocumentIncludedInnerHelper,
+                "GetFlowActionResponseCompoundDocumentIncludedInner": GetFlowActionResponseCompoundDocumentIncludedInnerHelper,
+                "GetFlowMessageResponseCompoundDocumentIncludedInner": GetFlowMessageResponseCompoundDocumentIncludedInnerHelper,
+                "GetFlowResponseCollectionCompoundDocumentIncludedInner": GetFlowResponseCollectionCompoundDocumentIncludedInnerHelper,
+                "GetProfileResponseCompoundDocumentIncludedInner": GetProfileResponseCompoundDocumentIncludedInnerHelper,
+}
+
 export class ObjectSerializer {
     public static findCorrectType(data: any, expectedType: string) {
         if (data == undefined) {
@@ -2312,19 +3053,16 @@ export class ObjectSerializer {
                 return expectedType;
             }
 
-            if (!typeMap[expectedType]) {
-                return expectedType; // w/e we don't know the type
-            }
-
+            const discriminatorHelper = oneOfMap[expectedType]
             // Check the discriminator
-            let discriminatorProperty = typeMap[expectedType].discriminator;
-            if (discriminatorProperty == null) {
+            if (!discriminatorHelper || !discriminatorHelper.discriminator) {
                 return expectedType; // the type does not have a discriminator. use it.
             } else {
+                let discriminatorProperty = discriminatorHelper.discriminator;
                 if (data[discriminatorProperty]) {
                     var discriminatorType = data[discriminatorProperty];
-                    if(typeMap[discriminatorType]){
-                        return discriminatorType; // use the type given in the discriminator
+                    if(discriminatorHelper.mapping[discriminatorType]){
+                        return discriminatorHelper.mapping[discriminatorType]; // use the type given in the discriminator
                     } else {
                         return expectedType; // discriminator did not map to a type
                     }

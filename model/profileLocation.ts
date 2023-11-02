@@ -10,8 +10,6 @@
  */
 
 import { RequestFile } from './models';
-import { ProfileLocationLatitude } from './profileLocationLatitude';
-import { ProfileLocationLongitude } from './profileLocationLongitude';
 
 export class ProfileLocation {
     /**
@@ -30,8 +28,14 @@ export class ProfileLocation {
     * Country name
     */
     'country'?: string;
-    'latitude'?: ProfileLocationLatitude;
-    'longitude'?: ProfileLocationLongitude;
+    /**
+    * Latitude coordinate. We recommend providing a precision of four decimal places.
+    */
+    'latitude'?: string;
+    /**
+    * Longitude coordinate. We recommend providing a precision of four decimal places.
+    */
+    'longitude'?: string;
     /**
     * Region within a country, such as state or province
     */
@@ -49,7 +53,6 @@ export class ProfileLocation {
     */
     'ip'?: string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -75,12 +78,12 @@ export class ProfileLocation {
         {
             "name": "latitude",
             "baseName": "latitude",
-            "type": "ProfileLocationLatitude"
+            "type": "string"
         },
         {
             "name": "longitude",
             "baseName": "longitude",
-            "type": "ProfileLocationLongitude"
+            "type": "string"
         },
         {
             "name": "region",
