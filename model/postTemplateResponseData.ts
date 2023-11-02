@@ -15,7 +15,7 @@ import { TemplateEnum } from './templateEnum';
 import { TemplateResponseObjectResourceAttributes } from './templateResponseObjectResourceAttributes';
 
 export class PostTemplateResponseData {
-    'type': TemplateEnum;
+    'type': TemplateEnum | 'template';
     /**
     * The ID of template
     */
@@ -23,7 +23,6 @@ export class PostTemplateResponseData {
     'attributes': TemplateResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

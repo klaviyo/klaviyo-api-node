@@ -15,7 +15,6 @@ import { GetCampaignMessagesRelationshipListResponseCollectionDataInner } from '
 export class GetCampaignMessagesRelationshipListResponseCollection {
     'data': Array<GetCampaignMessagesRelationshipListResponseCollectionDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

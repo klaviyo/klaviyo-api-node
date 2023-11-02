@@ -15,12 +15,11 @@ import { FlowMessageResponseObjectResourceAttributes } from './flowMessageRespon
 import { ObjectLinks } from './objectLinks';
 
 export class FlowMessageResponseObjectResource {
-    'type': FlowMessageEnum;
+    'type': FlowMessageEnum | 'flow-message';
     'id': string;
     'attributes': FlowMessageResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

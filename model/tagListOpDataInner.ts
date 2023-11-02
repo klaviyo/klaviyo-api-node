@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { ListEnum } from './listEnum';
 
 export class TagListOpDataInner {
-    'type': ListEnum;
+    'type': ListEnum | 'list';
     /**
     * The IDs of the lists to link or unlink with the given Tag ID
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

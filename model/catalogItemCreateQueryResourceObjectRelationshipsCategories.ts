@@ -15,7 +15,6 @@ import { GetCatalogItemCategoryListResponseCollectionDataInner } from './getCata
 export class CatalogItemCreateQueryResourceObjectRelationshipsCategories {
     'data': Array<GetCatalogItemCategoryListResponseCollectionDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

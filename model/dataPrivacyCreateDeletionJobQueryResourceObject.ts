@@ -14,10 +14,9 @@ import { DataPrivacyCreateDeletionJobQueryResourceObjectAttributes } from './dat
 import { DataPrivacyDeletionJobEnum } from './dataPrivacyDeletionJobEnum';
 
 export class DataPrivacyCreateDeletionJobQueryResourceObject {
-    'type': DataPrivacyDeletionJobEnum;
+    'type': DataPrivacyDeletionJobEnum | 'data-privacy-deletion-job';
     'attributes': DataPrivacyCreateDeletionJobQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

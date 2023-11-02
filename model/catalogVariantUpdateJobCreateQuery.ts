@@ -15,7 +15,6 @@ import { CatalogVariantUpdateJobCreateQueryResourceObject } from './catalogVaria
 export class CatalogVariantUpdateJobCreateQuery {
     'data': CatalogVariantUpdateJobCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { CampaignEnum } from './campaignEnum';
 
 export class GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

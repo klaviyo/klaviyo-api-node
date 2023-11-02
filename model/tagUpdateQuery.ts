@@ -15,7 +15,6 @@ import { TagUpdateQueryResourceObject } from './tagUpdateQueryResourceObject';
 export class TagUpdateQuery {
     'data': TagUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

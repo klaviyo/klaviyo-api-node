@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
 
 export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData {
-    'type': ProfileEnum;
+    'type': ProfileEnum | 'profile';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

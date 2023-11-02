@@ -15,7 +15,6 @@ import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAl
 export class GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOf {
     'relationships'?: GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -17,7 +17,6 @@ export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshi
     'profile'?: GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
     'metric'?: GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetric;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

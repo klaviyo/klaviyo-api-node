@@ -39,7 +39,7 @@ export class AccountsApi {
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
         revision: "2023-10-15",
-        "User-Agent": "klaviyo-api-node/7.0.0"
+        "User-Agent": "klaviyo-api-node/7.1.0"
     };
     protected _useQuerystring : boolean = false;
 

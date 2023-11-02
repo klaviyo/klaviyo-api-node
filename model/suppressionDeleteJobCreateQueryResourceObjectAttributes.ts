@@ -15,7 +15,6 @@ import { SuppressionDeleteJobCreateQueryResourceObjectAttributesProfiles } from 
 export class SuppressionDeleteJobCreateQueryResourceObjectAttributes {
     'profiles': SuppressionDeleteJobCreateQueryResourceObjectAttributesProfiles;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

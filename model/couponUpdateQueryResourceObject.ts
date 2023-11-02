@@ -14,14 +14,13 @@ import { CouponEnum } from './couponEnum';
 import { CouponUpdateQueryResourceObjectAttributes } from './couponUpdateQueryResourceObjectAttributes';
 
 export class CouponUpdateQueryResourceObject {
-    'type': CouponEnum;
+    'type': CouponEnum | 'coupon';
     /**
     * The internal id of a Coupon is equivalent to its external id stored within an integration.
     */
     'id': string;
     'attributes': CouponUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

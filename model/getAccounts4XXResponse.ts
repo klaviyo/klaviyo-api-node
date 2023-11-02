@@ -15,7 +15,6 @@ import { GetAccounts4XXResponseErrorsInner } from './getAccounts4XXResponseError
 export class GetAccounts4XXResponse {
     'errors': Array<GetAccounts4XXResponseErrorsInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

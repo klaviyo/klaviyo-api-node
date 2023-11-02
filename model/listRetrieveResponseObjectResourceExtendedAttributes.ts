@@ -15,7 +15,6 @@ import { ListRetrieveResponseObjectResourceAttributes } from './listRetrieveResp
 export class ListRetrieveResponseObjectResourceExtendedAttributes extends ListRetrieveResponseObjectResourceAttributes {
     'profileCount'?: number;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

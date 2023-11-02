@@ -20,9 +20,8 @@ export class FlowResponseObjectResourceAttributes {
     /**
     * Corresponds to the object which triggered the flow.
     */
-    'triggerType'?: FlowResponseObjectResourceAttributes.TriggerTypeEnum;
+    'triggerType'?: FlowResponseObjectResourceAttributes.TriggerTypeEnum | 'Added to List' | 'Date Based' | 'Metric' | 'Price Drop' | 'Unconfigured';
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

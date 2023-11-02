@@ -15,7 +15,6 @@ import { TagSegmentOpDataInner } from './tagSegmentOpDataInner';
 export class TagSegmentOp {
     'data': Array<TagSegmentOpDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { FlowActionEnum } from './flowActionEnum';
 
 export class GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner {
-    'type': FlowActionEnum;
+    'type': FlowActionEnum | 'flow-action';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

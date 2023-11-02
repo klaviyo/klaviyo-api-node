@@ -15,11 +15,10 @@ import { SubscriptionCreateJobCreateQueryResourceObjectAttributes } from './subs
 import { SubscriptionCreateJobCreateQueryResourceObjectRelationships } from './subscriptionCreateJobCreateQueryResourceObjectRelationships';
 
 export class SubscriptionCreateJobCreateQueryResourceObject {
-    'type': ProfileSubscriptionBulkCreateJobEnum;
+    'type': ProfileSubscriptionBulkCreateJobEnum | 'profile-subscription-bulk-create-job';
     'attributes': SubscriptionCreateJobCreateQueryResourceObjectAttributes;
     'relationships': SubscriptionCreateJobCreateQueryResourceObjectRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

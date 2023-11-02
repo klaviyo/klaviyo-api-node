@@ -15,7 +15,6 @@ import { GetProfileResponseData } from './getProfileResponseData';
 export class GetProfileResponse {
     'data': GetProfileResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

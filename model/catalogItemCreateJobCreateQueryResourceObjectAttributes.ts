@@ -15,7 +15,6 @@ import { CatalogItemCreateJobCreateQueryResourceObjectAttributesItems } from './
 export class CatalogItemCreateJobCreateQueryResourceObjectAttributes {
     'items': CatalogItemCreateJobCreateQueryResourceObjectAttributesItems;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -16,7 +16,7 @@ import { GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships } from 
 import { ObjectLinks } from './objectLinks';
 
 export class PostCatalogCategoryResponseData {
-    'type': CatalogCategoryEnum;
+    'type': CatalogCategoryEnum | 'catalog-category';
     /**
     * The catalog category ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
     */
@@ -25,7 +25,6 @@ export class PostCatalogCategoryResponseData {
     'relationships'?: GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

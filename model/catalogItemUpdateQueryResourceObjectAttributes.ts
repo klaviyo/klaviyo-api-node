@@ -49,7 +49,6 @@ export class CatalogItemUpdateQueryResourceObjectAttributes {
     */
     'published'?: boolean;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

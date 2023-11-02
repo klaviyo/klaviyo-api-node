@@ -15,7 +15,6 @@ import { PostListCreateResponseData } from './postListCreateResponseData';
 export class PatchListPartialUpdateResponse {
     'data': PostListCreateResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

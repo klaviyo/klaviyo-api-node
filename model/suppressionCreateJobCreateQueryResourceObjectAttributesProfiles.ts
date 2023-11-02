@@ -18,7 +18,6 @@ import { ProfileSuppressionCreateQueryResourceObject } from './profileSuppressio
 export class SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles {
     'data': Array<ProfileSuppressionCreateQueryResourceObject>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

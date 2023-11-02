@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
 
 export class CatalogVariantCreateQueryResourceObjectRelationshipsItemData {
-    'type': CatalogItemEnum;
+    'type': CatalogItemEnum | 'catalog-item';
     /**
     * The original catalog item ID for which this is a variant.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

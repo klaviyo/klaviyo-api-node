@@ -15,11 +15,10 @@ import { CatalogVariantCreateQueryResourceObjectRelationships } from './catalogV
 import { CatalogVariantEnum } from './catalogVariantEnum';
 
 export class CatalogVariantCreateQueryResourceObject {
-    'type': CatalogVariantEnum;
+    'type': CatalogVariantEnum | 'catalog-variant';
     'attributes': CatalogVariantCreateQueryResourceObjectAttributes;
     'relationships': CatalogVariantCreateQueryResourceObjectRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

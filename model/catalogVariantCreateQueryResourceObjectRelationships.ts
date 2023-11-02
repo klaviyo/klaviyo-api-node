@@ -15,7 +15,6 @@ import { CatalogVariantCreateQueryResourceObjectRelationshipsItem } from './cata
 export class CatalogVariantCreateQueryResourceObjectRelationships {
     'item': CatalogVariantCreateQueryResourceObjectRelationshipsItem;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

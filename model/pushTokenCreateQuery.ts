@@ -15,7 +15,6 @@ import { PushTokenCreateQueryResourceObject } from './pushTokenCreateQueryResour
 export class PushTokenCreateQuery {
     'data': PushTokenCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

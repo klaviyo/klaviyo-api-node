@@ -19,7 +19,6 @@ import { ObjectLinks } from './objectLinks';
 export class GetCatalogCategoryResponseCollectionDataInner extends CatalogCategoryResponseObjectResource {
     'relationships'?: GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

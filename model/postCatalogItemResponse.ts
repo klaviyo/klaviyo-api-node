@@ -15,7 +15,6 @@ import { PostCatalogItemResponseData } from './postCatalogItemResponseData';
 export class PostCatalogItemResponse {
     'data': PostCatalogItemResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

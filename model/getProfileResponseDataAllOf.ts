@@ -15,7 +15,6 @@ import { GetProfileResponseDataAllOfRelationships } from './getProfileResponseDa
 export class GetProfileResponseDataAllOf {
     'relationships'?: GetProfileResponseDataAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

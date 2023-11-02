@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { TemplateEnum } from './templateEnum';
 
 export class GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplateData {
-    'type': TemplateEnum;
+    'type': TemplateEnum | 'template';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

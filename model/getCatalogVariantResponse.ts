@@ -15,7 +15,6 @@ import { GetCatalogVariantResponseCollectionDataInner } from './getCatalogVarian
 export class GetCatalogVariantResponse {
     'data': GetCatalogVariantResponseCollectionDataInner;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

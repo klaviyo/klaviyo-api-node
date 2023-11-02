@@ -15,7 +15,7 @@ import { EventResponseObjectResourceAttributes } from './eventResponseObjectReso
 import { ObjectLinks } from './objectLinks';
 
 export class EventResponseObjectResource {
-    'type': EventEnum;
+    'type': EventEnum | 'event';
     /**
     * The Event ID
     */
@@ -23,7 +23,6 @@ export class EventResponseObjectResource {
     'attributes': EventResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

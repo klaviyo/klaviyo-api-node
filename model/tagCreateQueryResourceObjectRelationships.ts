@@ -15,7 +15,6 @@ import { TagCreateQueryResourceObjectRelationshipsTagGroup } from './tagCreateQu
 export class TagCreateQueryResourceObjectRelationships {
     'tagGroup'?: TagCreateQueryResourceObjectRelationshipsTagGroup;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { GetTagResponseCollectionDataInnerAllOfRelationships } from './getTagRes
 export class GetTagResponseCollectionDataInnerAllOf {
     'relationships'?: GetTagResponseCollectionDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

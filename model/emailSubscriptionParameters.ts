@@ -15,7 +15,6 @@ import { MarketingSubscriptionParameters } from './marketingSubscriptionParamete
 export class EmailSubscriptionParameters {
     'marketing': MarketingSubscriptionParameters;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

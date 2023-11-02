@@ -15,7 +15,6 @@ import { CouponCodeCreateJobCreateQueryResourceObject } from './couponCodeCreate
 export class CouponCodeCreateJobCreateQuery {
     'data': CouponCodeCreateJobCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

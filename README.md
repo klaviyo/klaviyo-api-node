@@ -1,6 +1,6 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 7.0.0
+- SDK version: 7.1.0
 
 - Revision: 2023-10-15
 
@@ -47,9 +47,8 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-```bash
-npm install klaviyo-api@7.0.0
-```
+`npm install klaviyo-api@7.1.0`
+
 
 ## source code
 
@@ -73,6 +72,7 @@ If you want to test out the repo but don't have a consuming app, you can run our
 ```
 npm run sample --pk=<YOUR PRIVATE KEY HERE>
 ```
+
 ## OAuth Beta
 
 To read about our OAuth beta for users who want to write multi-user integrations, check out this [help center article](https://help.klaviyo.com/hc/en-us/articles/18819413031067#h_01HACEKGF33GHFEH733YK2JKTT)

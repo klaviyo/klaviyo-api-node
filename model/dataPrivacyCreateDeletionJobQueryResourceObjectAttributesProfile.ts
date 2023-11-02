@@ -15,7 +15,6 @@ import { DataPrivacyProfileQueryResourceObject } from './dataPrivacyProfileQuery
 export class DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile {
     'data': DataPrivacyProfileQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

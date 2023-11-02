@@ -14,14 +14,13 @@ import { CouponCodeEnum } from './couponCodeEnum';
 import { CouponCodeUpdateQueryResourceObjectAttributes } from './couponCodeUpdateQueryResourceObjectAttributes';
 
 export class CouponCodeUpdateQueryResourceObject {
-    'type': CouponCodeEnum;
+    'type': CouponCodeEnum | 'coupon-code';
     /**
     * The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     */
     'id': string;
     'attributes': CouponCodeUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

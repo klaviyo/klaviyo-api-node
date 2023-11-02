@@ -15,7 +15,6 @@ import { SuppressionCreateJobCreateQueryResourceObject } from './suppressionCrea
 export class SuppressionCreateJobCreateQuery {
     'data': SuppressionCreateJobCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

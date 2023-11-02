@@ -14,10 +14,9 @@ import { ProfileSuppressionBulkDeleteJobEnum } from './profileSuppressionBulkDel
 import { SuppressionDeleteJobCreateQueryResourceObjectAttributes } from './suppressionDeleteJobCreateQueryResourceObjectAttributes';
 
 export class SuppressionDeleteJobCreateQueryResourceObject {
-    'type': ProfileSuppressionBulkDeleteJobEnum;
+    'type': ProfileSuppressionBulkDeleteJobEnum | 'profile-suppression-bulk-delete-job';
     'attributes': SuppressionDeleteJobCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

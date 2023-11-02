@@ -15,11 +15,10 @@ import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCod
 import { ObjectLinks } from './objectLinks';
 
 export class CatalogVariantUpdateJobResponseObjectResource {
-    'type': CatalogVariantBulkUpdateJobEnum;
+    'type': CatalogVariantBulkUpdateJobEnum | 'catalog-variant-bulk-update-job';
     'attributes': CouponCodeCreateJobResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

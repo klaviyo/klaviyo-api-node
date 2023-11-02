@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
 
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData {
-    'type': ProfileEnum;
+    'type': ProfileEnum | 'profile';
     /**
     * Profile ID of the associated profile, if available
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

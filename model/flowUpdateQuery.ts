@@ -15,7 +15,6 @@ import { FlowUpdateQueryResourceObject } from './flowUpdateQueryResourceObject';
 export class FlowUpdateQuery {
     'data': FlowUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

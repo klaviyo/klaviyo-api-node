@@ -16,7 +16,7 @@ import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationship
 import { ObjectLinks } from './objectLinks';
 
 export class PostCampaignResponseData {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     /**
     * The campaign ID
     */
@@ -25,7 +25,6 @@ export class PostCampaignResponseData {
     'relationships'?: GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

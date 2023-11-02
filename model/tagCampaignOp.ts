@@ -15,7 +15,6 @@ import { TagCampaignOpDataInner } from './tagCampaignOpDataInner';
 export class TagCampaignOp {
     'data': Array<TagCampaignOpDataInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
