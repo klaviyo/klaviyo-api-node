@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CampaignEnum } from './campaignEnum';
 
 export class TagCampaignOpDataInner {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     /**
     * The IDs of the campaigns to link or unlink with the given Tag ID
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

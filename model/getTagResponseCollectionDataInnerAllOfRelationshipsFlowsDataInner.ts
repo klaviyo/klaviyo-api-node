@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { FlowEnum } from './flowEnum';
 
 export class GetTagResponseCollectionDataInnerAllOfRelationshipsFlowsDataInner {
-    'type': FlowEnum;
+    'type': FlowEnum | 'flow';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

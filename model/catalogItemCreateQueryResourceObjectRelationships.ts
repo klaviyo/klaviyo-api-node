@@ -15,7 +15,6 @@ import { CatalogItemCreateQueryResourceObjectRelationshipsCategories } from './c
 export class CatalogItemCreateQueryResourceObjectRelationships {
     'categories'?: CatalogItemCreateQueryResourceObjectRelationshipsCategories;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

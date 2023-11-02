@@ -15,7 +15,6 @@ import { PostCatalogVariantResponseData } from './postCatalogVariantResponseData
 export class PatchCatalogVariantResponse {
     'data': PostCatalogVariantResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

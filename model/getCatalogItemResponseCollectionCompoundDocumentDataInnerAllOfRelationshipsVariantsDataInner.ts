@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 
 export class GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner {
-    'type': CatalogVariantEnum;
+    'type': CatalogVariantEnum | 'catalog-variant';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

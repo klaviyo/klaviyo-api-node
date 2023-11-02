@@ -15,7 +15,6 @@ import { GetCatalogVariantDeleteJobResponseCollectionDataInner } from './getCata
 export class GetCatalogVariantDeleteJobResponse {
     'data': GetCatalogVariantDeleteJobResponseCollectionDataInner;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

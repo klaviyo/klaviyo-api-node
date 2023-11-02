@@ -16,43 +16,16 @@ import { TemplateEnum } from './templateEnum';
 import { TemplateResponseObjectResource } from './templateResponseObjectResource';
 import { TemplateResponseObjectResourceAttributes } from './templateResponseObjectResourceAttributes';
 
-export class GetCampaignMessageResponseCompoundDocumentIncludedInner {
-    'type': TemplateEnum;
-    /**
-    * The ID of template
-    */
-    'id': string;
-    'attributes': TemplateResponseObjectResourceAttributes;
-    'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "TemplateEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
-        {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "TemplateResponseObjectResourceAttributes"
-        },
-        {
-            "name": "links",
-            "baseName": "links",
-            "type": "ObjectLinks"
-        }    ];
 
-    static getAttributeTypeMap() {
-        return GetCampaignMessageResponseCompoundDocumentIncludedInner.attributeTypeMap;
+    export type GetCampaignMessageResponseCompoundDocumentIncludedInner = CampaignResponseObjectResource | TemplateResponseObjectResource
+
+    export class GetCampaignMessageResponseCompoundDocumentIncludedInnerHelper {
+        static mapping: {[index: string]: any} = {
+            "campaign": "CampaignResponseObjectResource",
+            "template": "TemplateResponseObjectResource",
+        }
+        static discriminator: string | undefined = "type";
     }
-}
 
-export namespace GetCampaignMessageResponseCompoundDocumentIncludedInner {
-}

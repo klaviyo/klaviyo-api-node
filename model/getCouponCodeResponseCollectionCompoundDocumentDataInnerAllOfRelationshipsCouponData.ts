@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { CouponEnum } from './couponEnum';
 
 export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData {
-    'type': CouponEnum;
+    'type': CouponEnum | 'coupon';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
 
 export class GetCatalogVariantResponseCollectionDataInnerAllOfRelationshipsItemData {
-    'type': CatalogItemEnum;
+    'type': CatalogItemEnum | 'catalog-item';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

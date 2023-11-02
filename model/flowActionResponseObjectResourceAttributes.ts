@@ -24,7 +24,6 @@ export class FlowActionResponseObjectResourceAttributes {
     'sendOptions'?: SendOptions;
     'renderOptions'?: SMSRenderOptions;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

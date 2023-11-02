@@ -15,7 +15,6 @@ import { ProfileMetaPatchProperties } from './profileMetaPatchProperties';
 export class OnsiteProfileMeta {
     'patchProperties'?: ProfileMetaPatchProperties;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

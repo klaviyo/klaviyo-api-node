@@ -31,7 +31,6 @@ export class APIJobErrorPayload {
     'detail': string;
     'source': ErrorSource;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

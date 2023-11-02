@@ -15,7 +15,6 @@ import { TemplateUpdateQueryResourceObject } from './templateUpdateQueryResource
 export class TemplateUpdateQuery {
     'data': TemplateUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

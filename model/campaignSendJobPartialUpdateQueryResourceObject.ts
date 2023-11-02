@@ -14,14 +14,13 @@ import { CampaignSendJobEnum } from './campaignSendJobEnum';
 import { CampaignSendJobPartialUpdateQueryResourceObjectAttributes } from './campaignSendJobPartialUpdateQueryResourceObjectAttributes';
 
 export class CampaignSendJobPartialUpdateQueryResourceObject {
-    'type': CampaignSendJobEnum;
+    'type': CampaignSendJobEnum | 'campaign-send-job';
     /**
     * The ID of the currently sending campaign to cancel or revert
     */
     'id': string;
     'attributes': CampaignSendJobPartialUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -14,14 +14,13 @@ import { TemplateCloneQueryResourceObjectAttributes } from './templateCloneQuery
 import { TemplateEnum } from './templateEnum';
 
 export class TemplateCloneQueryResourceObject {
-    'type': TemplateEnum;
+    'type': TemplateEnum | 'template';
     /**
     * The ID of template to be cloned
     */
     'id': string;
     'attributes': TemplateCloneQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

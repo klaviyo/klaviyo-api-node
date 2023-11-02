@@ -15,7 +15,6 @@ import { TemplateCreateQueryResourceObject } from './templateCreateQueryResource
 export class TemplateCreateQuery {
     'data': TemplateCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

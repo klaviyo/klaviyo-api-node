@@ -15,7 +15,6 @@ import { MetricCreateQueryResourceObject } from './metricCreateQueryResourceObje
 export class EventCreateQueryV2ResourceObjectAttributesMetric {
     'data': MetricCreateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

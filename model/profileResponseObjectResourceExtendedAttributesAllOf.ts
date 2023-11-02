@@ -17,7 +17,6 @@ export class ProfileResponseObjectResourceExtendedAttributesAllOf {
     'subscriptions'?: Subscriptions;
     'predictiveAnalytics'?: PredictiveAnalytics;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

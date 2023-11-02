@@ -17,7 +17,6 @@ export class Subscriptions {
     'email'?: EmailChannel;
     'sms'?: SMSChannel;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

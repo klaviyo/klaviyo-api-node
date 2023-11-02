@@ -14,14 +14,13 @@ import { TagGroupEnum } from './tagGroupEnum';
 import { TagGroupUpdateQueryResourceObjectAttributes } from './tagGroupUpdateQueryResourceObjectAttributes';
 
 export class TagGroupUpdateQueryResourceObject {
-    'type': TagGroupEnum;
+    'type': TagGroupEnum | 'tag-group';
     /**
     * The Tag Group ID
     */
     'id': string;
     'attributes': TagGroupUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

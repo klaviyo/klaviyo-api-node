@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 
 export class GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner {
-    'type': CatalogVariantEnum;
+    'type': CatalogVariantEnum | 'catalog-variant';
     /**
     * IDs of the updated catalog variants.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

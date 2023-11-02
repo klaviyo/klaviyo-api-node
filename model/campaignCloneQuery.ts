@@ -15,7 +15,6 @@ import { CampaignCloneQueryResourceObject } from './campaignCloneQueryResourceOb
 export class CampaignCloneQuery {
     'data': CampaignCloneQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

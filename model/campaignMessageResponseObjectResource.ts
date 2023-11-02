@@ -15,7 +15,7 @@ import { CampaignMessageResponseObjectResourceAttributes } from './campaignMessa
 import { ObjectLinks } from './objectLinks';
 
 export class CampaignMessageResponseObjectResource {
-    'type': CampaignMessageEnum;
+    'type': CampaignMessageEnum | 'campaign-message';
     /**
     * The message ID
     */
@@ -23,7 +23,6 @@ export class CampaignMessageResponseObjectResource {
     'attributes': CampaignMessageResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

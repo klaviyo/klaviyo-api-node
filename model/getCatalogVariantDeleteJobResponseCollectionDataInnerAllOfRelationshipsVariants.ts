@@ -17,7 +17,6 @@ export class GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelations
     'data': Array<GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariantsDataInner>;
     'links'?: RelationshipLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

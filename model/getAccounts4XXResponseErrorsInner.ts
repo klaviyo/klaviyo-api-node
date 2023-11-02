@@ -19,7 +19,6 @@ export class GetAccounts4XXResponseErrorsInner {
     'detail': string;
     'source'?: GetAccounts4XXResponseErrorsInnerSource;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

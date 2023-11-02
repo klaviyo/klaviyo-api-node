@@ -13,10 +13,9 @@ import { RequestFile } from './models';
 import { SegmentEnum } from './segmentEnum';
 
 export class GetProfileResponseDataAllOfRelationshipsSegmentsDataInner {
-    'type': SegmentEnum;
+    'type': SegmentEnum | 'segment';
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

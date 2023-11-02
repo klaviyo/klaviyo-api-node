@@ -17,7 +17,6 @@ export class GetCatalogItemCreateJobResponseCollectionCompoundDocument {
     'data': Array<GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { CampaignSendJobPartialUpdateQueryResourceObject } from './campaignSendJ
 export class CampaignSendJobPartialUpdateQuery {
     'data': CampaignSendJobPartialUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

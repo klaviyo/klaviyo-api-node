@@ -17,7 +17,6 @@ export class GetTagResponseCompoundDocument {
     'data': GetTagResponseCollectionDataInner;
     'included'?: Array<TagGroupResponseObjectResource>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants } fr
 export class CatalogVariantDeleteJobCreateQueryResourceObjectAttributes {
     'variants': CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

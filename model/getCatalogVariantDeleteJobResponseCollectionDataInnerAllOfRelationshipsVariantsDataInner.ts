@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 
 export class GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariantsDataInner {
-    'type': CatalogVariantEnum;
+    'type': CatalogVariantEnum | 'catalog-variant';
     /**
     * IDs of the deleted catalog variants.
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

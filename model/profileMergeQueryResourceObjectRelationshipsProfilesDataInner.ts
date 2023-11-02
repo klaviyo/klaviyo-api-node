@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
 
 export class ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner {
-    'type': ProfileEnum;
+    'type': ProfileEnum | 'profile';
     /**
     * The ID of a source profile to merge into the destination profile
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

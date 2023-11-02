@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-import { ProfileMetaPatchPropertiesUnset } from './profileMetaPatchPropertiesUnset';
 
 export class ProfileMetaPatchProperties {
     /**
@@ -21,9 +20,11 @@ export class ProfileMetaPatchProperties {
     * Remove a simple value or values from this property array
     */
     'unappend'?: object;
-    'unset'?: ProfileMetaPatchPropertiesUnset;
+    /**
+    * Remove a key or keys (and their values) completely from properties
+    */
+    'unset'?: Array<string>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
@@ -39,7 +40,7 @@ export class ProfileMetaPatchProperties {
         {
             "name": "unset",
             "baseName": "unset",
-            "type": "ProfileMetaPatchPropertiesUnset"
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {

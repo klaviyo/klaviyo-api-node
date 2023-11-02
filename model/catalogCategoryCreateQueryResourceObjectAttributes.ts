@@ -23,13 +23,12 @@ export class CatalogCategoryCreateQueryResourceObjectAttributes {
     /**
     * The integration type. Currently only \"$custom\" is supported.
     */
-    'integrationType'?: CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum = CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
+    'integrationType'?: CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum | '$custom' = CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
     /**
     * The type of catalog. Currently only \"$default\" is supported.
     */
     'catalogType'?: string = '$default';
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { PostCatalogVariantDeleteJobResponseData } from './postCatalogVariantDel
 export class PostCatalogVariantDeleteJobResponse {
     'data': PostCatalogVariantDeleteJobResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

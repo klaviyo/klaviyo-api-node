@@ -15,7 +15,6 @@ import { CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate }
 export class CampaignMessageAssignTemplateQueryResourceObjectRelationships {
     'template': CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,9 +15,8 @@ export class CampaignSendJobResponseObjectResourceAttributes {
     /**
     * The status of the send job
     */
-    'status': CampaignSendJobResponseObjectResourceAttributes.StatusEnum;
+    'status': CampaignSendJobResponseObjectResourceAttributes.StatusEnum | 'cancelled' | 'complete' | 'processing' | 'queued';
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { PostProfileResponseData } from './postProfileResponseData';
 export class PatchProfileResponse {
     'data': PostProfileResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

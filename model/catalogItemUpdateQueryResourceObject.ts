@@ -15,7 +15,7 @@ import { CatalogItemEnum } from './catalogItemEnum';
 import { CatalogItemUpdateQueryResourceObjectAttributes } from './catalogItemUpdateQueryResourceObjectAttributes';
 
 export class CatalogItemUpdateQueryResourceObject {
-    'type': CatalogItemEnum;
+    'type': CatalogItemEnum | 'catalog-item';
     /**
     * The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
     */
@@ -23,7 +23,6 @@ export class CatalogItemUpdateQueryResourceObject {
     'attributes': CatalogItemUpdateQueryResourceObjectAttributes;
     'relationships'?: CatalogItemCreateQueryResourceObjectRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

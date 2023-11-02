@@ -16,13 +16,12 @@ import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 
 export class PatchSegmentPartialUpdateResponseData {
-    'type': SegmentEnum;
+    'type': SegmentEnum | 'segment';
     'id': string;
     'attributes': SegmentListResponseObjectResourceAttributes;
     'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

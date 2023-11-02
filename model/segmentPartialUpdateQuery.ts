@@ -15,7 +15,6 @@ import { SegmentPartialUpdateQueryResourceObject } from './segmentPartialUpdateQ
 export class SegmentPartialUpdateQuery {
     'data': SegmentPartialUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

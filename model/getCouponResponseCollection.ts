@@ -17,7 +17,6 @@ export class GetCouponResponseCollection {
     'data': Array<CouponResponseObjectResource>;
     'links': CollectionLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

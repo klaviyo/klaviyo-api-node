@@ -15,12 +15,11 @@ import { FlowResponseObjectResourceAttributes } from './flowResponseObjectResour
 import { ObjectLinks } from './objectLinks';
 
 export class FlowResponseObjectResource {
-    'type': FlowEnum;
+    'type': FlowEnum | 'flow';
     'id': string;
     'attributes': FlowResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

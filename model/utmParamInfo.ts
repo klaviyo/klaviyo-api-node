@@ -15,7 +15,6 @@ export class UtmParamInfo {
     'name': string;
     'value': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

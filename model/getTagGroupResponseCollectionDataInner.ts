@@ -19,7 +19,6 @@ import { TagGroupResponseObjectResourceAttributes } from './tagGroupResponseObje
 export class GetTagGroupResponseCollectionDataInner extends TagGroupResponseObjectResource {
     'relationships'?: GetTagGroupResponseCollectionDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

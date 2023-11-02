@@ -15,7 +15,6 @@ import { PostImageResponseData } from './postImageResponseData';
 export class PostImageResponse {
     'data': PostImageResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

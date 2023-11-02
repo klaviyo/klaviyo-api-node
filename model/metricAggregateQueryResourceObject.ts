@@ -14,10 +14,9 @@ import { MetricAggregateEnum } from './metricAggregateEnum';
 import { MetricAggregateQueryResourceObjectAttributes } from './metricAggregateQueryResourceObjectAttributes';
 
 export class MetricAggregateQueryResourceObject {
-    'type': MetricAggregateEnum;
+    'type': MetricAggregateEnum | 'metric-aggregate';
     'attributes': MetricAggregateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

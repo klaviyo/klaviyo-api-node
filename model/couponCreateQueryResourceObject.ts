@@ -14,10 +14,9 @@ import { CouponEnum } from './couponEnum';
 import { CouponResponseObjectResourceAttributes } from './couponResponseObjectResourceAttributes';
 
 export class CouponCreateQueryResourceObject {
-    'type': CouponEnum;
+    'type': CouponEnum | 'coupon';
     'attributes': CouponResponseObjectResourceAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,12 +15,11 @@ import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 
 export class SegmentResponseObjectResource {
-    'type': SegmentEnum;
+    'type': SegmentEnum | 'segment';
     'id': string;
     'attributes': SegmentListResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

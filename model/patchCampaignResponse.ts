@@ -15,7 +15,6 @@ import { PostCampaignResponseData } from './postCampaignResponseData';
 export class PatchCampaignResponse {
     'data': PostCampaignResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { MetricEnum } from './metricEnum';
 
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData {
-    'type': MetricEnum;
+    'type': MetricEnum | 'metric';
     /**
     * The Metric ID
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

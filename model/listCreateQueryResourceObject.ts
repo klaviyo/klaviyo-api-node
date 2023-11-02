@@ -14,10 +14,9 @@ import { ListCreateQueryResourceObjectAttributes } from './listCreateQueryResour
 import { ListEnum } from './listEnum';
 
 export class ListCreateQueryResourceObject {
-    'type': ListEnum;
+    'type': ListEnum | 'list';
     'attributes': ListCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
