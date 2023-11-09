@@ -285,7 +285,7 @@ interface TokenServerResponse {
 export class OAuthApi {
 
     protected authorizeUrl = "https://klaviyo.com/oauth/authorize"
-    protected tokenUrl = "https://klaviyo.com/oauth/token"
+    protected tokenUrl = "https://a.klaviyo.com/oauth/token"
 
     constructor(
         readonly clientId: string,
