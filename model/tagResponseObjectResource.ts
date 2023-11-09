@@ -15,7 +15,7 @@ import { TagEnum } from './tagEnum';
 import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
 
 export class TagResponseObjectResource {
-    'type': TagEnum;
+    'type': TagEnum | 'tag';
     /**
     * The Tag ID
     */
@@ -23,7 +23,6 @@ export class TagResponseObjectResource {
     'attributes': TagResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -14,10 +14,9 @@ import { ProfileCreateQueryResourceObjectAttributes } from './profileCreateQuery
 import { ProfileEnum } from './profileEnum';
 
 export class ProfileCreateQueryResourceObject {
-    'type': ProfileEnum;
+    'type': ProfileEnum | 'profile';
     'attributes': ProfileCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

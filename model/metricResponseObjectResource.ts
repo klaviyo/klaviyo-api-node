@@ -15,7 +15,7 @@ import { MetricResponseObjectResourceAttributes } from './metricResponseObjectRe
 import { ObjectLinks } from './objectLinks';
 
 export class MetricResponseObjectResource {
-    'type': MetricEnum;
+    'type': MetricEnum | 'metric';
     /**
     * The Metric ID
     */
@@ -23,7 +23,6 @@ export class MetricResponseObjectResource {
     'attributes': MetricResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

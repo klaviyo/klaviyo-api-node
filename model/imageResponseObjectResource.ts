@@ -15,7 +15,7 @@ import { ImageResponseObjectResourceAttributes } from './imageResponseObjectReso
 import { ObjectLinks } from './objectLinks';
 
 export class ImageResponseObjectResource {
-    'type': ImageEnum;
+    'type': ImageEnum | 'image';
     /**
     * The ID of the image
     */
@@ -23,7 +23,6 @@ export class ImageResponseObjectResource {
     'attributes': ImageResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

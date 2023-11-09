@@ -15,13 +15,12 @@ export class CouponCodeUpdateQueryResourceObjectAttributes {
     /**
     * The API status of our coupon codes.
     */
-    'status'?: CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum;
+    'status'?: CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE';
     /**
     * The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
     */
     'expiresAt'?: Date;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -22,12 +22,11 @@ export class CampaignCreateQueryResourceObjectAttributes {
     */
     'name': string;
     'audiences': AudiencesSubObject;
-    'sendStrategy': SendStrategySubObject;
+    'sendStrategy'?: SendStrategySubObject;
     'sendOptions'?: CampaignResponseObjectResourceAttributesSendOptions;
     'trackingOptions'?: CampaignResponseObjectResourceAttributesTrackingOptions;
     'campaignMessages': CampaignCreateQueryResourceObjectAttributesCampaignMessages;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

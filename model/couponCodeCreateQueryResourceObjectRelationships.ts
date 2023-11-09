@@ -15,7 +15,6 @@ import { CouponCodeCreateQueryResourceObjectRelationshipsCoupon } from './coupon
 export class CouponCodeCreateQueryResourceObjectRelationships {
     'coupon': CouponCodeCreateQueryResourceObjectRelationshipsCoupon;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

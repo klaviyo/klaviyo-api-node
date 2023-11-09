@@ -19,7 +19,6 @@ import { ProfileResponseObjectResourceExtendedAttributes } from './profileRespon
 export class GetProfileResponseData extends ProfileResponseObjectResourceExtended {
     'relationships'?: GetProfileResponseDataAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

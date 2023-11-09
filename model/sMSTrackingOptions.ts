@@ -16,7 +16,6 @@ export class SMSTrackingOptions {
     'addUtm': boolean;
     'utmParams': Array<UtmParamInfo>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

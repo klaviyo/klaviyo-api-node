@@ -15,7 +15,6 @@ import { PostCatalogItemUpdateJobResponseData } from './postCatalogItemUpdateJob
 export class PostCatalogItemUpdateJobResponse {
     'data': PostCatalogItemUpdateJobResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

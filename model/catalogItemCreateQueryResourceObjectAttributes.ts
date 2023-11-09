@@ -19,7 +19,7 @@ export class CatalogItemCreateQueryResourceObjectAttributes {
     /**
     * The integration type. Currently only \"$custom\" is supported.
     */
-    'integrationType'?: CatalogItemCreateQueryResourceObjectAttributes.IntegrationTypeEnum = CatalogItemCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
+    'integrationType'?: CatalogItemCreateQueryResourceObjectAttributes.IntegrationTypeEnum | '$custom' = CatalogItemCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
     /**
     * The title of the catalog item.
     */
@@ -61,7 +61,6 @@ export class CatalogItemCreateQueryResourceObjectAttributes {
     */
     'published'?: boolean = true;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

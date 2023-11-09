@@ -17,7 +17,6 @@ export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelation
     'data': Array<GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner>;
     'links'?: RelationshipLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

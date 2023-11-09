@@ -16,7 +16,6 @@ export class GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelations
     'lists'?: GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists;
     'segments'?: GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

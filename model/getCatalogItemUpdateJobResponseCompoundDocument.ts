@@ -17,7 +17,6 @@ export class GetCatalogItemUpdateJobResponseCompoundDocument {
     'data': GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<CatalogItemResponseObjectResource>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

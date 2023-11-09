@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { SegmentEnum } from './segmentEnum';
 
 export class GetTagSegmentRelationshipsResponseCollectionDataInner {
-    'type': SegmentEnum;
+    'type': SegmentEnum | 'segment';
     /**
     * The IDs of all segments that are associated with the Tag
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

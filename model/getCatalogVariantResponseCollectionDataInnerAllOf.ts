@@ -15,7 +15,6 @@ import { GetCatalogVariantResponseCollectionDataInnerAllOfRelationships } from '
 export class GetCatalogVariantResponseCollectionDataInnerAllOf {
     'relationships'?: GetCatalogVariantResponseCollectionDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

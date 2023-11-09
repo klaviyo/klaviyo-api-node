@@ -15,7 +15,6 @@ import { PostCatalogCategoryCreateJobResponseData } from './postCatalogCategoryC
 export class PostCatalogCategoryCreateJobResponse {
     'data': PostCatalogCategoryCreateJobResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

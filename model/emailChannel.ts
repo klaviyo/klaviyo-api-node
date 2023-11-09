@@ -15,7 +15,6 @@ import { EmailMarketing } from './emailMarketing';
 export class EmailChannel {
     'marketing'?: EmailMarketing;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

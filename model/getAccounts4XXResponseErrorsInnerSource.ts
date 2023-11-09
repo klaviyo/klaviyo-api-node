@@ -15,7 +15,6 @@ export class GetAccounts4XXResponseErrorsInnerSource {
     'pointer'?: string;
     'parameter'?: string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

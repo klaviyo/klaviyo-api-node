@@ -15,7 +15,6 @@ import { CatalogItemUpdateQueryResourceObject } from './catalogItemUpdateQueryRe
 export class CatalogItemUpdateQuery {
     'data': CatalogItemUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { TagGroupEnum } from './tagGroupEnum';
 
 export class GetTagTagGroupRelationshipsResponseData {
-    'type': TagGroupEnum;
+    'type': TagGroupEnum | 'tag-group';
     /**
     * The ID of the Tag Group the Tag is associated with
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

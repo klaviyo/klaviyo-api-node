@@ -14,14 +14,13 @@ import { CampaignEnum } from './campaignEnum';
 import { CampaignPartialUpdateQueryResourceObjectAttributes } from './campaignPartialUpdateQueryResourceObjectAttributes';
 
 export class CampaignPartialUpdateQueryResourceObject {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     /**
     * The campaign ID to be retrieved
     */
     'id': string;
     'attributes': CampaignPartialUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

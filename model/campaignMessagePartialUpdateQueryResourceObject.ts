@@ -14,14 +14,13 @@ import { CampaignMessageEnum } from './campaignMessageEnum';
 import { CampaignMessagePartialUpdateQueryResourceObjectAttributes } from './campaignMessagePartialUpdateQueryResourceObjectAttributes';
 
 export class CampaignMessagePartialUpdateQueryResourceObject {
-    'type': CampaignMessageEnum;
+    'type': CampaignMessageEnum | 'campaign-message';
     /**
     * The message ID to be retrieved
     */
     'id': string;
     'attributes': CampaignMessagePartialUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { ListEnum } from './listEnum';
 
 export class SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsListData {
-    'type': ListEnum;
+    'type': ListEnum | 'list';
     /**
-    * Optional, the list to remove the profiles from
+    * The list to remove the profiles from
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

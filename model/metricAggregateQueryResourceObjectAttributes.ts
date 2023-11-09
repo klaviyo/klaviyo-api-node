@@ -23,11 +23,11 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Measurement key, e.g. `unique`, `sum_value`, `count`
     */
-    'measurements': Array<MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum>;
+    'measurements': Array<MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum> | 'count' | 'sum_value' | 'unique';
     /**
     * Aggregation interval, e.g. \"hour\", \"day\", \"week\", \"month\"
     */
-    'interval'?: MetricAggregateQueryResourceObjectAttributes.IntervalEnum = MetricAggregateQueryResourceObjectAttributes.IntervalEnum.Day;
+    'interval'?: MetricAggregateQueryResourceObjectAttributes.IntervalEnum | 'day' | 'hour' | 'month' | 'week' = MetricAggregateQueryResourceObjectAttributes.IntervalEnum.Day;
     /**
     * Alter the maximum number of returned rows in a single page of aggregation results
     */
@@ -35,7 +35,7 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Optional attribute(s) used for partitioning by the aggregation function
     */
-    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum>;
+    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum> | '$attributed_channel' | '$attributed_flow' | '$attributed_message' | '$attributed_variation' | '$campaign_channel' | '$flow' | '$flow_channel' | '$message' | '$message_send_cohort' | '$variation' | '$variation_send_cohort' | 'Bounce Type' | 'Campaign Name' | 'Client Canonical' | 'Client Name' | 'Client Type' | 'Email Domain' | 'Failure Source' | 'Failure Type' | 'From Number' | 'From Phone Region' | 'List' | 'Message Name' | 'Message Type' | 'Method' | 'Subject' | 'To Number' | 'To Phone Region' | 'URL' | 'form_id';
     /**
     * Provide fields to limit the returned data
     */
@@ -51,9 +51,8 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Provide a sort key (e.g. -$message)
     */
-    'sort'?: MetricAggregateQueryResourceObjectAttributes.SortEnum;
+    'sort'?: MetricAggregateQueryResourceObjectAttributes.SortEnum | '$attributed_channel' | '-$attributed_channel' | '$attributed_flow' | '-$attributed_flow' | '$attributed_message' | '-$attributed_message' | '$attributed_variation' | '-$attributed_variation' | '$campaign_channel' | '-$campaign_channel' | '$flow' | '-$flow' | '$flow_channel' | '-$flow_channel' | '$message' | '-$message' | '$message_send_cohort' | '-$message_send_cohort' | '$variation' | '-$variation' | '$variation_send_cohort' | '-$variation_send_cohort' | 'Bounce Type' | '-Bounce Type' | 'Campaign Name' | '-Campaign Name' | 'Client Canonical' | '-Client Canonical' | 'Client Name' | '-Client Name' | 'Client Type' | '-Client Type' | 'Email Domain' | '-Email Domain' | 'Failure Source' | '-Failure Source' | 'Failure Type' | '-Failure Type' | 'From Number' | '-From Number' | 'From Phone Region' | '-From Phone Region' | 'List' | '-List' | 'Message Name' | '-Message Name' | 'Message Type' | '-Message Type' | 'Method' | '-Method' | 'Subject' | '-Subject' | 'To Number' | '-To Number' | 'To Phone Region' | '-To Phone Region' | 'URL' | '-URL' | 'count' | '-count' | 'form_id' | '-form_id' | 'sum_value' | '-sum_value' | 'unique' | '-unique';
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

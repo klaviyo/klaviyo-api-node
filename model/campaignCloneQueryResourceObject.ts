@@ -14,14 +14,13 @@ import { CampaignCloneQueryResourceObjectAttributes } from './campaignCloneQuery
 import { CampaignEnum } from './campaignEnum';
 
 export class CampaignCloneQueryResourceObject {
-    'type': CampaignEnum;
+    'type': CampaignEnum | 'campaign';
     /**
     * The campaign ID to be cloned
     */
     'id': string;
     'attributes': CampaignCloneQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

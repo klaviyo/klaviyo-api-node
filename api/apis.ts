@@ -34,7 +34,7 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axi
 export { RequestFile } from '../model/models';
 
 const revision =  "2023-10-15";
-const userAgent = "klaviyo-api-node/7.0.0-beta.1";
+const userAgent = "klaviyo-api-node/7.1.0-beta.2";
 
 export class RetryOptions {
 
@@ -284,8 +284,8 @@ interface TokenServerResponse {
 
 export class OAuthApi {
 
-    protected authorizeUrl = "https://a.klaviyo.com/oauth/authorize"
-    protected tokenUrl = "https://a.klaviyo.com/oauth/token"
+    protected authorizeUrl = "https://klaviyo.com/oauth/authorize"
+    protected tokenUrl = "https://klaviyo.com/oauth/token"
 
     constructor(
         readonly clientId: string,

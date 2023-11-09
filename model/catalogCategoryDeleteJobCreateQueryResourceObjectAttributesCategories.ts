@@ -18,7 +18,6 @@ import { CatalogCategoryDeleteQueryResourceObject } from './catalogCategoryDelet
 export class CatalogCategoryDeleteJobCreateQueryResourceObjectAttributesCategories {
     'data': Array<CatalogCategoryDeleteQueryResourceObject>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

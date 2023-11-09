@@ -15,7 +15,7 @@ import { CouponCodeResponseObjectResourceAttributes } from './couponCodeResponse
 import { ObjectLinks } from './objectLinks';
 
 export class CouponCodeResponseObjectResource {
-    'type': CouponCodeEnum;
+    'type': CouponCodeEnum | 'coupon-code';
     /**
     * The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     */
@@ -23,7 +23,6 @@ export class CouponCodeResponseObjectResource {
     'attributes': CouponCodeResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -19,7 +19,6 @@ export class GetTagResponseCollectionCompoundDocument {
     'links': CollectionLinks;
     'included'?: Array<TagGroupResponseObjectResource>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

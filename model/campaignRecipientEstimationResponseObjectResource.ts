@@ -15,7 +15,7 @@ import { CampaignRecipientEstimationResponseObjectResourceAttributes } from './c
 import { ObjectLinks } from './objectLinks';
 
 export class CampaignRecipientEstimationResponseObjectResource {
-    'type': CampaignRecipientEstimationEnum;
+    'type': CampaignRecipientEstimationEnum | 'campaign-recipient-estimation';
     /**
     * The ID of the campaign for which to get the estimated number of recipients
     */
@@ -23,7 +23,6 @@ export class CampaignRecipientEstimationResponseObjectResource {
     'attributes': CampaignRecipientEstimationResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

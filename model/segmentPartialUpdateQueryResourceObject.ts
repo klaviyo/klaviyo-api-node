@@ -14,11 +14,10 @@ import { SegmentEnum } from './segmentEnum';
 import { SegmentPartialUpdateQueryResourceObjectAttributes } from './segmentPartialUpdateQueryResourceObjectAttributes';
 
 export class SegmentPartialUpdateQueryResourceObject {
-    'type': SegmentEnum;
+    'type': SegmentEnum | 'segment';
     'id': string;
     'attributes': SegmentPartialUpdateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

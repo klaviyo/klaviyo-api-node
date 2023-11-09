@@ -15,7 +15,6 @@ import { GetEventProfilesRelationshipListResponseData } from './getEventProfiles
 export class GetEventProfilesRelationshipListResponse {
     'data': GetEventProfilesRelationshipListResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

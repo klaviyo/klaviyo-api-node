@@ -15,7 +15,6 @@ import { CampaignPartialUpdateQueryResourceObject } from './campaignPartialUpdat
 export class CampaignPartialUpdateQuery {
     'data': CampaignPartialUpdateQueryResourceObject;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships
 export class GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships {
     'variants'?: GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariants;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

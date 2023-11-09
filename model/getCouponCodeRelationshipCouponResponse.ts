@@ -15,7 +15,6 @@ import { GetCouponCodeRelationshipCouponResponseData } from './getCouponCodeRela
 export class GetCouponCodeRelationshipCouponResponse {
     'data': GetCouponCodeRelationshipCouponResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

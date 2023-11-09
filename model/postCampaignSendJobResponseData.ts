@@ -15,7 +15,7 @@ import { CampaignSendJobResponseObjectResourceAttributes } from './campaignSendJ
 import { ObjectLinks } from './objectLinks';
 
 export class PostCampaignSendJobResponseData {
-    'type': CampaignSendJobEnum;
+    'type': CampaignSendJobEnum | 'campaign-send-job';
     /**
     * The ID of the campaign to send
     */
@@ -23,7 +23,6 @@ export class PostCampaignSendJobResponseData {
     'attributes': CampaignSendJobResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

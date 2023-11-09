@@ -17,7 +17,6 @@ export class GetCouponCodeResponseCompoundDocument {
     'data': GetCouponCodeResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<CouponResponseObjectResource>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

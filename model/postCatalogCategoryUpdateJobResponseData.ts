@@ -16,12 +16,11 @@ import { GetCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerA
 import { ObjectLinks } from './objectLinks';
 
 export class PostCatalogCategoryUpdateJobResponseData {
-    'type': CatalogCategoryBulkUpdateJobEnum;
+    'type': CatalogCategoryBulkUpdateJobEnum | 'catalog-category-bulk-update-job';
     'attributes': CouponCodeCreateJobResponseObjectResourceAttributes;
     'relationships'?: GetCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

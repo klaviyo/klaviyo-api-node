@@ -19,7 +19,6 @@ export class GetCampaignResponseCollectionCompoundDocument {
     'links': CollectionLinks;
     'included'?: Array<GetCampaignResponseCollectionCompoundDocumentIncludedInner>;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

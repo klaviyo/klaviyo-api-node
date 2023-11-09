@@ -15,7 +15,6 @@ import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationship
 export class GetListListResponseCollectionCompoundDocumentDataInnerAllOf {
     'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

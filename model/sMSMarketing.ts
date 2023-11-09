@@ -31,13 +31,12 @@ export class SMSMarketing {
     /**
     * Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
     */
-    'methodDetail': string = '';
+    'methodDetail'?: string = '';
     /**
     * The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
     'lastUpdated': Date;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

@@ -15,7 +15,6 @@ import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfR
 export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'couponCodes'?: GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

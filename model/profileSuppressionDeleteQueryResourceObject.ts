@@ -14,10 +14,9 @@ import { ProfileEnum } from './profileEnum';
 import { ProfileSuppressionDeleteQueryResourceObjectAttributes } from './profileSuppressionDeleteQueryResourceObjectAttributes';
 
 export class ProfileSuppressionDeleteQueryResourceObject {
-    'type': ProfileEnum;
+    'type': ProfileEnum | 'profile';
     'attributes': ProfileSuppressionDeleteQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

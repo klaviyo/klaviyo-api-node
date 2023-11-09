@@ -15,7 +15,6 @@ import { PatchSegmentPartialUpdateResponseData } from './patchSegmentPartialUpda
 export class PatchSegmentPartialUpdateResponse {
     'data': PatchSegmentPartialUpdateResponseData;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

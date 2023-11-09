@@ -14,14 +14,13 @@ import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
 
 export class PostProfileMergeResponseData {
-    'type': ProfileEnum;
+    'type': ProfileEnum | 'profile';
     /**
     * The ID of the destination profile that was merged into
     */
     'id': string;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

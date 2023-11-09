@@ -14,10 +14,9 @@ import { CatalogCategoryBulkDeleteJobEnum } from './catalogCategoryBulkDeleteJob
 import { CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes } from './catalogCategoryDeleteJobCreateQueryResourceObjectAttributes';
 
 export class CatalogCategoryDeleteJobCreateQueryResourceObject {
-    'type': CatalogCategoryBulkDeleteJobEnum;
+    'type': CatalogCategoryBulkDeleteJobEnum | 'catalog-category-bulk-delete-job';
     'attributes': CatalogCategoryDeleteJobCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

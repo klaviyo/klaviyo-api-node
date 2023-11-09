@@ -14,10 +14,9 @@ import { CouponCodeBulkCreateJobEnum } from './couponCodeBulkCreateJobEnum';
 import { CouponCodeCreateJobCreateQueryResourceObjectAttributes } from './couponCodeCreateJobCreateQueryResourceObjectAttributes';
 
 export class CouponCodeCreateJobCreateQueryResourceObject {
-    'type': CouponCodeBulkCreateJobEnum;
+    'type': CouponCodeBulkCreateJobEnum | 'coupon-code-bulk-create-job';
     'attributes': CouponCodeCreateJobCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

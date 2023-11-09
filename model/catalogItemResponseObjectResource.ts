@@ -15,7 +15,7 @@ import { CatalogItemResponseObjectResourceAttributes } from './catalogItemRespon
 import { ObjectLinks } from './objectLinks';
 
 export class CatalogItemResponseObjectResource {
-    'type': CatalogItemEnum;
+    'type': CatalogItemEnum | 'catalog-item';
     /**
     * The catalog item ID is a compound ID (string), with format: `{integration}:::{catalog}:::{external_id}`. Currently, the only supported integration type is `$custom`, and the only supported catalog is `$default`.
     */
@@ -23,7 +23,6 @@ export class CatalogItemResponseObjectResource {
     'attributes': CatalogItemResponseObjectResourceAttributes;
     'links': ObjectLinks;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

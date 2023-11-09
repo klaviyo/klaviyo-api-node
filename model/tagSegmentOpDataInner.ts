@@ -13,13 +13,12 @@ import { RequestFile } from './models';
 import { SegmentEnum } from './segmentEnum';
 
 export class TagSegmentOpDataInner {
-    'type': SegmentEnum;
+    'type': SegmentEnum | 'segment';
     /**
     * The IDs of the segments to link or unlink with the given Tag ID
     */
     'id': string;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {

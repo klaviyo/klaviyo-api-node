@@ -14,10 +14,9 @@ import { CatalogCategoryBulkCreateJobEnum } from './catalogCategoryBulkCreateJob
 import { CatalogCategoryCreateJobCreateQueryResourceObjectAttributes } from './catalogCategoryCreateJobCreateQueryResourceObjectAttributes';
 
 export class CatalogCategoryCreateJobCreateQueryResourceObject {
-    'type': CatalogCategoryBulkCreateJobEnum;
+    'type': CatalogCategoryBulkCreateJobEnum | 'catalog-category-bulk-create-job';
     'attributes': CatalogCategoryCreateJobCreateQueryResourceObjectAttributes;
 
-    static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
