@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [7.1.0-beta.2] - revision 2023-10-15
+
+### Fixed
+  - OAuth authorization redirect url fixed to `https://klaviyo.com/oauth/authorize`
+
+
 ## [7.1.0-beta.1] - revision 2023-10-15
 
 ### Changed
