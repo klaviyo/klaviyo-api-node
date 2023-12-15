@@ -17,7 +17,7 @@ import { SubscriptionCreateJobCreateQueryResourceObjectRelationships } from './s
 export class SubscriptionCreateJobCreateQueryResourceObject {
     'type': ProfileSubscriptionBulkCreateJobEnum | 'profile-subscription-bulk-create-job';
     'attributes': SubscriptionCreateJobCreateQueryResourceObjectAttributes;
-    'relationships': SubscriptionCreateJobCreateQueryResourceObjectRelationships;
+    'relationships'?: SubscriptionCreateJobCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

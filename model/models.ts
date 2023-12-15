@@ -408,6 +408,7 @@ export * from './getFlowResponseCompoundDocument';
 export * from './getFlowTagRelationshipListResponseCollection';
 export * from './getImageResponse';
 export * from './getImageResponseCollection';
+export * from './getImportErrorResponseCollection';
 export * from './getListListResponseCollectionCompoundDocument';
 export * from './getListListResponseCollectionCompoundDocumentDataInner';
 export * from './getListListResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -426,8 +427,22 @@ export * from './getListRetrieveResponseCompoundDocumentData';
 export * from './getListTagRelationshipListResponseCollection';
 export * from './getMetricResponse';
 export * from './getMetricResponseCollection';
+export * from './getProfileImportJobListRelationshipsResponseCollection';
+export * from './getProfileImportJobProfileRelationshipsResponseCollection';
+export * from './getProfileImportJobResponseCollectionCompoundDocument';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInner';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrorsDataInner';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
+export * from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner';
+export * from './getProfileImportJobResponseCompoundDocument';
 export * from './getProfileListRelationshipsResponseCollection';
 export * from './getProfileResponse';
+export * from './getProfileResponseCollection';
 export * from './getProfileResponseCollectionCompoundDocument';
 export * from './getProfileResponseCollectionCompoundDocumentDataInner';
 export * from './getProfileResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -493,6 +508,9 @@ export * from './imagePartialUpdateQueryResourceObject';
 export * from './imagePartialUpdateQueryResourceObjectAttributes';
 export * from './imageResponseObjectResource';
 export * from './imageResponseObjectResourceAttributes';
+export * from './importErrorEnum';
+export * from './importErrorResponseObjectResource';
+export * from './importErrorResponseObjectResourceAttributes';
 export * from './listCreateQuery';
 export * from './listCreateQueryResourceObject';
 export * from './listCreateQueryResourceObjectAttributes';
@@ -587,6 +605,8 @@ export * from './postListCreateResponseData';
 export * from './postMetricAggregateResponse';
 export * from './postMetricAggregateResponseData';
 export * from './postMetricAggregateResponseDataAttributes';
+export * from './postProfileImportJobResponse';
+export * from './postProfileImportJobResponseData';
 export * from './postProfileMergeResponse';
 export * from './postProfileMergeResponseData';
 export * from './postProfileResponse';
@@ -599,12 +619,22 @@ export * from './postTagResponseData';
 export * from './postTemplateResponse';
 export * from './postTemplateResponseData';
 export * from './predictiveAnalytics';
+export * from './profileBulkImportJobEnum';
 export * from './profileCreateQuery';
 export * from './profileCreateQueryResourceObject';
 export * from './profileCreateQueryResourceObjectAttributes';
 export * from './profileEnum';
 export * from './profileIdentifierDTOResourceObject';
 export * from './profileIdentifierDTOResourceObjectAttributes';
+export * from './profileImportJobCreateQuery';
+export * from './profileImportJobCreateQueryResourceObject';
+export * from './profileImportJobCreateQueryResourceObjectAttributes';
+export * from './profileImportJobCreateQueryResourceObjectAttributesProfiles';
+export * from './profileImportJobCreateQueryResourceObjectRelationships';
+export * from './profileImportJobCreateQueryResourceObjectRelationshipsLists';
+export * from './profileImportJobCreateQueryResourceObjectRelationshipsListsDataInner';
+export * from './profileImportJobResponseObjectResource';
+export * from './profileImportJobResponseObjectResourceAttributes';
 export * from './profileLocation';
 export * from './profileMergeEnum';
 export * from './profileMergeQuery';
@@ -1159,6 +1189,7 @@ import { GetFlowResponseCompoundDocument } from './getFlowResponseCompoundDocume
 import { GetFlowTagRelationshipListResponseCollection } from './getFlowTagRelationshipListResponseCollection';
 import { GetImageResponse } from './getImageResponse';
 import { GetImageResponseCollection } from './getImageResponseCollection';
+import { GetImportErrorResponseCollection } from './getImportErrorResponseCollection';
 import { GetListListResponseCollectionCompoundDocument } from './getListListResponseCollectionCompoundDocument';
 import { GetListListResponseCollectionCompoundDocumentDataInner } from './getListListResponseCollectionCompoundDocumentDataInner';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOf } from './getListListResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -1177,8 +1208,22 @@ import { GetListRetrieveResponseCompoundDocumentData } from './getListRetrieveRe
 import { GetListTagRelationshipListResponseCollection } from './getListTagRelationshipListResponseCollection';
 import { GetMetricResponse } from './getMetricResponse';
 import { GetMetricResponseCollection } from './getMetricResponseCollection';
+import { GetProfileImportJobListRelationshipsResponseCollection } from './getProfileImportJobListRelationshipsResponseCollection';
+import { GetProfileImportJobProfileRelationshipsResponseCollection } from './getProfileImportJobProfileRelationshipsResponseCollection';
+import { GetProfileImportJobResponseCollectionCompoundDocument } from './getProfileImportJobResponseCollectionCompoundDocument';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInner } from './getProfileImportJobResponseCollectionCompoundDocumentDataInner';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrorsDataInner } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrorsDataInner';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner';
+import { GetProfileImportJobResponseCompoundDocument } from './getProfileImportJobResponseCompoundDocument';
 import { GetProfileListRelationshipsResponseCollection } from './getProfileListRelationshipsResponseCollection';
 import { GetProfileResponse } from './getProfileResponse';
+import { GetProfileResponseCollection } from './getProfileResponseCollection';
 import { GetProfileResponseCollectionCompoundDocument } from './getProfileResponseCollectionCompoundDocument';
 import { GetProfileResponseCollectionCompoundDocumentDataInner } from './getProfileResponseCollectionCompoundDocumentDataInner';
 import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOf } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -1244,6 +1289,9 @@ import { ImagePartialUpdateQueryResourceObject } from './imagePartialUpdateQuery
 import { ImagePartialUpdateQueryResourceObjectAttributes } from './imagePartialUpdateQueryResourceObjectAttributes';
 import { ImageResponseObjectResource } from './imageResponseObjectResource';
 import { ImageResponseObjectResourceAttributes } from './imageResponseObjectResourceAttributes';
+import { ImportErrorEnum } from './importErrorEnum';
+import { ImportErrorResponseObjectResource } from './importErrorResponseObjectResource';
+import { ImportErrorResponseObjectResourceAttributes } from './importErrorResponseObjectResourceAttributes';
 import { ListCreateQuery } from './listCreateQuery';
 import { ListCreateQueryResourceObject } from './listCreateQueryResourceObject';
 import { ListCreateQueryResourceObjectAttributes } from './listCreateQueryResourceObjectAttributes';
@@ -1338,6 +1386,8 @@ import { PostListCreateResponseData } from './postListCreateResponseData';
 import { PostMetricAggregateResponse } from './postMetricAggregateResponse';
 import { PostMetricAggregateResponseData } from './postMetricAggregateResponseData';
 import { PostMetricAggregateResponseDataAttributes } from './postMetricAggregateResponseDataAttributes';
+import { PostProfileImportJobResponse } from './postProfileImportJobResponse';
+import { PostProfileImportJobResponseData } from './postProfileImportJobResponseData';
 import { PostProfileMergeResponse } from './postProfileMergeResponse';
 import { PostProfileMergeResponseData } from './postProfileMergeResponseData';
 import { PostProfileResponse } from './postProfileResponse';
@@ -1350,12 +1400,22 @@ import { PostTagResponseData } from './postTagResponseData';
 import { PostTemplateResponse } from './postTemplateResponse';
 import { PostTemplateResponseData } from './postTemplateResponseData';
 import { PredictiveAnalytics } from './predictiveAnalytics';
+import { ProfileBulkImportJobEnum } from './profileBulkImportJobEnum';
 import { ProfileCreateQuery } from './profileCreateQuery';
 import { ProfileCreateQueryResourceObject } from './profileCreateQueryResourceObject';
 import { ProfileCreateQueryResourceObjectAttributes } from './profileCreateQueryResourceObjectAttributes';
 import { ProfileEnum } from './profileEnum';
 import { ProfileIdentifierDTOResourceObject } from './profileIdentifierDTOResourceObject';
 import { ProfileIdentifierDTOResourceObjectAttributes } from './profileIdentifierDTOResourceObjectAttributes';
+import { ProfileImportJobCreateQuery } from './profileImportJobCreateQuery';
+import { ProfileImportJobCreateQueryResourceObject } from './profileImportJobCreateQueryResourceObject';
+import { ProfileImportJobCreateQueryResourceObjectAttributes } from './profileImportJobCreateQueryResourceObjectAttributes';
+import { ProfileImportJobCreateQueryResourceObjectAttributesProfiles } from './profileImportJobCreateQueryResourceObjectAttributesProfiles';
+import { ProfileImportJobCreateQueryResourceObjectRelationships } from './profileImportJobCreateQueryResourceObjectRelationships';
+import { ProfileImportJobCreateQueryResourceObjectRelationshipsLists } from './profileImportJobCreateQueryResourceObjectRelationshipsLists';
+import { ProfileImportJobCreateQueryResourceObjectRelationshipsListsDataInner } from './profileImportJobCreateQueryResourceObjectRelationshipsListsDataInner';
+import { ProfileImportJobResponseObjectResource } from './profileImportJobResponseObjectResource';
+import { ProfileImportJobResponseObjectResourceAttributes } from './profileImportJobResponseObjectResourceAttributes';
 import { ProfileLocation } from './profileLocation';
 import { ProfileMergeEnum } from './profileMergeEnum';
 import { ProfileMergeQuery } from './profileMergeQuery';
@@ -1906,6 +1966,7 @@ import {  } from './getFlowResponseCompoundDocument';
 import {  } from './getFlowTagRelationshipListResponseCollection';
 import {  } from './getImageResponse';
 import {  } from './getImageResponseCollection';
+import {  } from './getImportErrorResponseCollection';
 import {  } from './getListListResponseCollectionCompoundDocument';
 import {  } from './getListListResponseCollectionCompoundDocumentDataInner';
 import {  } from './getListListResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -1924,8 +1985,22 @@ import {  } from './getListRetrieveResponseCompoundDocumentData';
 import {  } from './getListTagRelationshipListResponseCollection';
 import {  } from './getMetricResponse';
 import {  } from './getMetricResponseCollection';
+import {  } from './getProfileImportJobListRelationshipsResponseCollection';
+import {  } from './getProfileImportJobProfileRelationshipsResponseCollection';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocument';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInner';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrorsDataInner';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
+import {  } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner';
+import {  } from './getProfileImportJobResponseCompoundDocument';
 import {  } from './getProfileListRelationshipsResponseCollection';
 import {  } from './getProfileResponse';
+import {  } from './getProfileResponseCollection';
 import {  } from './getProfileResponseCollectionCompoundDocument';
 import {  } from './getProfileResponseCollectionCompoundDocumentDataInner';
 import {  } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOf';
@@ -1991,6 +2066,9 @@ import {  } from './imagePartialUpdateQueryResourceObject';
 import {  } from './imagePartialUpdateQueryResourceObjectAttributes';
 import {  } from './imageResponseObjectResource';
 import {  } from './imageResponseObjectResourceAttributes';
+import {  } from './importErrorEnum';
+import {  } from './importErrorResponseObjectResource';
+import {  } from './importErrorResponseObjectResourceAttributes';
 import {  } from './listCreateQuery';
 import {  } from './listCreateQueryResourceObject';
 import {  } from './listCreateQueryResourceObjectAttributes';
@@ -2085,6 +2163,8 @@ import {  } from './postListCreateResponseData';
 import {  } from './postMetricAggregateResponse';
 import {  } from './postMetricAggregateResponseData';
 import {  } from './postMetricAggregateResponseDataAttributes';
+import {  } from './postProfileImportJobResponse';
+import {  } from './postProfileImportJobResponseData';
 import {  } from './postProfileMergeResponse';
 import {  } from './postProfileMergeResponseData';
 import {  } from './postProfileResponse';
@@ -2097,12 +2177,22 @@ import {  } from './postTagResponseData';
 import {  } from './postTemplateResponse';
 import {  } from './postTemplateResponseData';
 import {  } from './predictiveAnalytics';
+import {  } from './profileBulkImportJobEnum';
 import {  } from './profileCreateQuery';
 import {  } from './profileCreateQueryResourceObject';
 import {  } from './profileCreateQueryResourceObjectAttributes';
 import {  } from './profileEnum';
 import {  } from './profileIdentifierDTOResourceObject';
 import {  } from './profileIdentifierDTOResourceObjectAttributes';
+import {  } from './profileImportJobCreateQuery';
+import {  } from './profileImportJobCreateQueryResourceObject';
+import {  } from './profileImportJobCreateQueryResourceObjectAttributes';
+import {  } from './profileImportJobCreateQueryResourceObjectAttributesProfiles';
+import {  } from './profileImportJobCreateQueryResourceObjectRelationships';
+import {  } from './profileImportJobCreateQueryResourceObjectRelationshipsLists';
+import {  } from './profileImportJobCreateQueryResourceObjectRelationshipsListsDataInner';
+import {  } from './profileImportJobResponseObjectResource';
+import {  } from './profileImportJobResponseObjectResourceAttributes';
 import {  } from './profileLocation';
 import {  } from './profileMergeEnum';
 import {  } from './profileMergeQuery';
@@ -2303,6 +2393,7 @@ let enumsMap: {[index: string]: any} = {
         "FlowMessageEnum": FlowMessageEnum,
         "FlowResponseObjectResourceAttributes.TriggerTypeEnum": FlowResponseObjectResourceAttributes.TriggerTypeEnum,
         "ImageEnum": ImageEnum,
+        "ImportErrorEnum": ImportErrorEnum,
         "ListEnum": ListEnum,
         "MarketingSubscriptionParameters.ConsentEnum": MarketingSubscriptionParameters.ConsentEnum,
         "MetricAggregateEnum": MetricAggregateEnum,
@@ -2311,7 +2402,9 @@ let enumsMap: {[index: string]: any} = {
         "MetricAggregateQueryResourceObjectAttributes.ByEnum": MetricAggregateQueryResourceObjectAttributes.ByEnum,
         "MetricAggregateQueryResourceObjectAttributes.SortEnum": MetricAggregateQueryResourceObjectAttributes.SortEnum,
         "MetricEnum": MetricEnum,
+        "ProfileBulkImportJobEnum": ProfileBulkImportJobEnum,
         "ProfileEnum": ProfileEnum,
+        "ProfileImportJobResponseObjectResourceAttributes.StatusEnum": ProfileImportJobResponseObjectResourceAttributes.StatusEnum,
         "ProfileMergeEnum": ProfileMergeEnum,
         "ProfileSubscriptionBulkCreateJobEnum": ProfileSubscriptionBulkCreateJobEnum,
         "ProfileSubscriptionBulkDeleteJobEnum": ProfileSubscriptionBulkDeleteJobEnum,
@@ -2704,6 +2797,7 @@ let typeMap: {[index: string]: any} = {
     "GetFlowTagRelationshipListResponseCollection": GetFlowTagRelationshipListResponseCollection,
     "GetImageResponse": GetImageResponse,
     "GetImageResponseCollection": GetImageResponseCollection,
+    "GetImportErrorResponseCollection": GetImportErrorResponseCollection,
     "GetListListResponseCollectionCompoundDocument": GetListListResponseCollectionCompoundDocument,
     "GetListListResponseCollectionCompoundDocumentDataInner": GetListListResponseCollectionCompoundDocumentDataInner,
     "GetListListResponseCollectionCompoundDocumentDataInnerAllOf": GetListListResponseCollectionCompoundDocumentDataInnerAllOf,
@@ -2722,8 +2816,22 @@ let typeMap: {[index: string]: any} = {
     "GetListTagRelationshipListResponseCollection": GetListTagRelationshipListResponseCollection,
     "GetMetricResponse": GetMetricResponse,
     "GetMetricResponseCollection": GetMetricResponseCollection,
+    "GetProfileImportJobListRelationshipsResponseCollection": GetProfileImportJobListRelationshipsResponseCollection,
+    "GetProfileImportJobProfileRelationshipsResponseCollection": GetProfileImportJobProfileRelationshipsResponseCollection,
+    "GetProfileImportJobResponseCollectionCompoundDocument": GetProfileImportJobResponseCollectionCompoundDocument,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInner": GetProfileImportJobResponseCollectionCompoundDocumentDataInner,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrorsDataInner": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrorsDataInner,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles,
+    "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner": GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfilesDataInner,
+    "GetProfileImportJobResponseCompoundDocument": GetProfileImportJobResponseCompoundDocument,
     "GetProfileListRelationshipsResponseCollection": GetProfileListRelationshipsResponseCollection,
     "GetProfileResponse": GetProfileResponse,
+    "GetProfileResponseCollection": GetProfileResponseCollection,
     "GetProfileResponseCollectionCompoundDocument": GetProfileResponseCollectionCompoundDocument,
     "GetProfileResponseCollectionCompoundDocumentDataInner": GetProfileResponseCollectionCompoundDocumentDataInner,
     "GetProfileResponseCollectionCompoundDocumentDataInnerAllOf": GetProfileResponseCollectionCompoundDocumentDataInnerAllOf,
@@ -2787,6 +2895,8 @@ let typeMap: {[index: string]: any} = {
     "ImagePartialUpdateQueryResourceObjectAttributes": ImagePartialUpdateQueryResourceObjectAttributes,
     "ImageResponseObjectResource": ImageResponseObjectResource,
     "ImageResponseObjectResourceAttributes": ImageResponseObjectResourceAttributes,
+    "ImportErrorResponseObjectResource": ImportErrorResponseObjectResource,
+    "ImportErrorResponseObjectResourceAttributes": ImportErrorResponseObjectResourceAttributes,
     "ListCreateQuery": ListCreateQuery,
     "ListCreateQueryResourceObject": ListCreateQueryResourceObject,
     "ListCreateQueryResourceObjectAttributes": ListCreateQueryResourceObjectAttributes,
@@ -2878,6 +2988,8 @@ let typeMap: {[index: string]: any} = {
     "PostMetricAggregateResponse": PostMetricAggregateResponse,
     "PostMetricAggregateResponseData": PostMetricAggregateResponseData,
     "PostMetricAggregateResponseDataAttributes": PostMetricAggregateResponseDataAttributes,
+    "PostProfileImportJobResponse": PostProfileImportJobResponse,
+    "PostProfileImportJobResponseData": PostProfileImportJobResponseData,
     "PostProfileMergeResponse": PostProfileMergeResponse,
     "PostProfileMergeResponseData": PostProfileMergeResponseData,
     "PostProfileResponse": PostProfileResponse,
@@ -2895,6 +3007,15 @@ let typeMap: {[index: string]: any} = {
     "ProfileCreateQueryResourceObjectAttributes": ProfileCreateQueryResourceObjectAttributes,
     "ProfileIdentifierDTOResourceObject": ProfileIdentifierDTOResourceObject,
     "ProfileIdentifierDTOResourceObjectAttributes": ProfileIdentifierDTOResourceObjectAttributes,
+    "ProfileImportJobCreateQuery": ProfileImportJobCreateQuery,
+    "ProfileImportJobCreateQueryResourceObject": ProfileImportJobCreateQueryResourceObject,
+    "ProfileImportJobCreateQueryResourceObjectAttributes": ProfileImportJobCreateQueryResourceObjectAttributes,
+    "ProfileImportJobCreateQueryResourceObjectAttributesProfiles": ProfileImportJobCreateQueryResourceObjectAttributesProfiles,
+    "ProfileImportJobCreateQueryResourceObjectRelationships": ProfileImportJobCreateQueryResourceObjectRelationships,
+    "ProfileImportJobCreateQueryResourceObjectRelationshipsLists": ProfileImportJobCreateQueryResourceObjectRelationshipsLists,
+    "ProfileImportJobCreateQueryResourceObjectRelationshipsListsDataInner": ProfileImportJobCreateQueryResourceObjectRelationshipsListsDataInner,
+    "ProfileImportJobResponseObjectResource": ProfileImportJobResponseObjectResource,
+    "ProfileImportJobResponseObjectResourceAttributes": ProfileImportJobResponseObjectResourceAttributes,
     "ProfileLocation": ProfileLocation,
     "ProfileMergeQuery": ProfileMergeQuery,
     "ProfileMergeQueryResourceObject": ProfileMergeQueryResourceObject,

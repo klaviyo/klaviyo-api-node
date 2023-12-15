@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [7.2.0-beta.1] - revision 2023-12-15
+
+### Added
+
+- New Endpoints: Bulk Profile Imports:
+    - `Profiles.spawnBulkProfileImportJob`
+    - `Profiles.getBulkProfileImportJob`
+    - `Profiles.getBulkProfileImportJobs`
+    - `Profiles.getBulkProfileImportJobLists`
+    - `Profiles.getBulkProfileImportJobProfiles`
+    - `Profiles.getBulkProfileImportJobImportErrors`
+    - `Profiles.getBulkProfileImportJobRelationshipsProfiles`
+    - `Profiles.getBulkProfileImportJobRelationshipsLists`
+  
+### Changed
+
+- The `relationships` field of Profiles.subscribeProfiles payload is now optional. (see [subscribeProfiles reference](https://developers.klaviyo.com/en/reference/subscribe_profiles) for details).
+
 ## [7.1.0-beta.2] - revision 2023-10-15
 
 ### Fixed
