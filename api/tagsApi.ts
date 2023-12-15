@@ -320,7 +320,7 @@ export class TagsApi {
         );
     }
     /**
-     * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:write` `tags:write`
+     * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
      * @summary Create Tag Relationships Lists
      * @param id * @param tagListOp 
      
@@ -675,7 +675,7 @@ export class TagsApi {
         );
     }
     /**
-     * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:write` `tags:write`
+     * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
      * @summary Delete Tag Relationships Lists
      * @param id * @param tagListOp 
      
@@ -800,7 +800,7 @@ export class TagsApi {
      * Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag
      * @param id The Tag ID
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#relationships
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships
      */
     public async getTag (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, fieldsTag?: Array<'name'>, include?: Array<'tag-group'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }> {
 
@@ -868,7 +868,7 @@ export class TagsApi {
      * Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Group
      * @param id The Tag Group ID
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagGroup (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
@@ -984,7 +984,7 @@ export class TagsApi {
      * Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Group Tags
      * @param id 
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagGroupTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
@@ -1044,7 +1044,7 @@ export class TagsApi {
      * List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Groups
      
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sorting
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sorting
      */
     public async getTagGroups (options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, filter?: string, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }> {
 
@@ -1219,7 +1219,7 @@ export class TagsApi {
         );
     }
     /**
-     * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `list:read` `tags:read`
+     * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
      * @summary Get Tag Relationships Lists
      * @param id 
      
@@ -1390,7 +1390,7 @@ export class TagsApi {
      * Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Tag Group
      * @param id 
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagTagGroup (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
@@ -1450,7 +1450,7 @@ export class TagsApi {
      * List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tags
      
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sorting
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sorting
      */
     public async getTags (options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'tag-group'>, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }> {
 

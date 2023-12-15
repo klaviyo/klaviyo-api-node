@@ -429,7 +429,7 @@ export class CampaignsApi {
      * Returns a specific campaign based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign
      * @param id The campaign ID to be retrieved
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships
      */
     public async getCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }> {
 
@@ -501,7 +501,7 @@ export class CampaignsApi {
      * Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Campaign Messages
      * @param id 
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships
      */
     public async getCampaignCampaignMessages (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> {
 
@@ -573,7 +573,7 @@ export class CampaignsApi {
      * Returns a specific message based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Message
      * @param id The message ID to be retrieved
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships
      */
     public async getCampaignMessage (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }> {
 
@@ -645,7 +645,7 @@ export class CampaignsApi {
      * Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Message Campaign
      * @param id 
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignMessageCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponse;  }> {
 
@@ -817,7 +817,7 @@ export class CampaignsApi {
      * Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
      * @summary Get Campaign Message Template
      * @param id 
-     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignMessageTemplate (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
 
@@ -877,7 +877,7 @@ export class CampaignsApi {
      * Get the estimated recipient count for a campaign with the provided campaign ID. You can refresh this count by using the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation
      * @param id The ID of the campaign for which to get the estimated number of recipients
-     * @param fieldsCampaignRecipientEstimation For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignRecipientEstimation For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimation (id: string, options: { fieldsCampaignRecipientEstimation?: Array<'estimated_recipient_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }> {
 
@@ -937,7 +937,7 @@ export class CampaignsApi {
      * Retrieve the status of a recipient estimation job triggered with the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation Job
      * @param id The ID of the campaign to get recipient estimation status
-     * @param fieldsCampaignRecipientEstimationJob For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignRecipientEstimationJob For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimationJob (id: string, options: { fieldsCampaignRecipientEstimationJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }> {
 
@@ -1109,7 +1109,7 @@ export class CampaignsApi {
      * Get a campaign send job<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Send Job
      * @param id The ID of the campaign to send
-     * @param fieldsCampaignSendJob For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignSendJob For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignSendJob (id: string, options: { fieldsCampaignSendJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }> {
 
@@ -1169,7 +1169,7 @@ export class CampaignsApi {
      * Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
      * @summary Get Campaign Tags
      * @param id 
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
@@ -1228,8 +1228,8 @@ export class CampaignsApi {
     /**
      * Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,\'email\')` to list email campaigns, or `?filter=equals(messages.channel,\'sms\')` to list SMS campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaigns
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-10-15/reference/api-overview#sorting
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sorting
      */
     public async getCampaigns (filter: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>, pageCursor?: string, sort?: 'created_at' | '-created_at' | 'id' | '-id' | 'name' | '-name' | 'scheduled_at' | '-scheduled_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }> {
 
