@@ -21,7 +21,7 @@ export class EventResponseObjectResourceAttributes {
     */
     'eventProperties'?: object;
     /**
-    * Event timestamp in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
+    * Event timestamp in string format (YYYY-MM-DD HH:MM:SS+hh:mm)
     */
     'datetime'?: string;
     /**

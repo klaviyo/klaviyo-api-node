@@ -37,8 +37,8 @@ export class DataPrivacyApi {
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-10-15",
-        "User-Agent": "klaviyo-api-node/7.1.0"
+        revision: "2023-12-15",
+        "User-Agent": "klaviyo-api-node/7.2.0"
     };
     protected _useQuerystring : boolean = false;
 
