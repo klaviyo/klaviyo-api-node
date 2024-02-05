@@ -28,6 +28,8 @@ import { TagsApi } from './tagsApi';
 export * from './templatesApi';
 import { TemplatesApi } from './templatesApi';
 
+export * from './filterBuilder';
+
 import {AxiosRequestConfig} from "axios/index";
 
 export { RequestFile } from '../model/models';
