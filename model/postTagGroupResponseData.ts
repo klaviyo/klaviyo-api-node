@@ -10,8 +10,8 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagGroupResponseCollectionDataInnerAllOfRelationships } from './getTagGroupResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
+import { PostTagGroupResponseDataRelationships } from './postTagGroupResponseDataRelationships';
 import { TagGroupEnum } from './tagGroupEnum';
 import { TagGroupResponseObjectResourceAttributes } from './tagGroupResponseObjectResourceAttributes';
 
@@ -22,7 +22,7 @@ export class PostTagGroupResponseData {
     */
     'id': string;
     'attributes': TagGroupResponseObjectResourceAttributes;
-    'relationships'?: GetTagGroupResponseCollectionDataInnerAllOfRelationships;
+    'relationships'?: PostTagGroupResponseDataRelationships;
     'links': ObjectLinks;
 
 
@@ -45,7 +45,7 @@ export class PostTagGroupResponseData {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetTagGroupResponseCollectionDataInnerAllOfRelationships"
+            "type": "PostTagGroupResponseDataRelationships"
         },
         {
             "name": "links",

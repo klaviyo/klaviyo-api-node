@@ -16,6 +16,10 @@ export class MarketingSubscriptionParameters {
     * The Consent status to subscribe to for the \"Marketing\" type. Currently supports \"SUBSCRIBED\".
     */
     'consent': MarketingSubscriptionParameters.ConsentEnum | 'SUBSCRIBED';
+    /**
+    * The timestamp of when the profile\'s consent was gathered
+    */
+    'consentedAt'?: Date;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -23,6 +27,11 @@ export class MarketingSubscriptionParameters {
             "name": "consent",
             "baseName": "consent",
             "type": "MarketingSubscriptionParameters.ConsentEnum"
+        },
+        {
+            "name": "consentedAt",
+            "baseName": "consented_at",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {

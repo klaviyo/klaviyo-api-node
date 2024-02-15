@@ -10,17 +10,17 @@
  */
 
 import { RequestFile } from './models';
-import { GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariants } from './getCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariants';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 
 export class GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships {
-    'variants'?: GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariants;
+    'variants'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "variants",
             "baseName": "variants",
-            "type": "GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationshipsVariants"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 
     static getAttributeTypeMap() {

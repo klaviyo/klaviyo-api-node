@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagResponseCollectionDataInner } from './getTagResponseCollectionDataInner';
+import { GetTagResponseCollectionCompoundDocumentDataInner } from './getTagResponseCollectionCompoundDocumentDataInner';
 import { TagGroupResponseObjectResource } from './tagGroupResponseObjectResource';
 
 export class GetTagResponseCompoundDocument {
-    'data': GetTagResponseCollectionDataInner;
+    'data': GetTagResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<TagGroupResponseObjectResource>;
 
 
@@ -22,7 +22,7 @@ export class GetTagResponseCompoundDocument {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetTagResponseCollectionDataInner"
+            "type": "GetTagResponseCollectionCompoundDocumentDataInner"
         },
         {
             "name": "included",

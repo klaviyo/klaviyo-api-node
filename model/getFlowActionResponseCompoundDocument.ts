@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowActionResponseCollectionDataInner } from './getFlowActionResponseCollectionDataInner';
+import { GetFlowActionResponseCompoundDocumentData } from './getFlowActionResponseCompoundDocumentData';
 import { GetFlowActionResponseCompoundDocumentIncludedInner } from './getFlowActionResponseCompoundDocumentIncludedInner';
 
 export class GetFlowActionResponseCompoundDocument {
-    'data': GetFlowActionResponseCollectionDataInner;
+    'data': GetFlowActionResponseCompoundDocumentData;
     'included'?: Array<GetFlowActionResponseCompoundDocumentIncludedInner>;
 
 
@@ -22,7 +22,7 @@ export class GetFlowActionResponseCompoundDocument {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetFlowActionResponseCollectionDataInner"
+            "type": "GetFlowActionResponseCompoundDocumentData"
         },
         {
             "name": "included",

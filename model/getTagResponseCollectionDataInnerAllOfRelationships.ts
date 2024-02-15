@@ -10,45 +10,41 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseDataAllOfRelationshipsLists } from './getProfileResponseDataAllOfRelationshipsLists';
-import { GetProfileResponseDataAllOfRelationshipsSegments } from './getProfileResponseDataAllOfRelationshipsSegments';
-import { GetTagResponseCollectionDataInnerAllOfRelationshipsCampaigns } from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaigns';
-import { GetTagResponseCollectionDataInnerAllOfRelationshipsFlows } from './getTagResponseCollectionDataInnerAllOfRelationshipsFlows';
-import { GetTagResponseCollectionDataInnerAllOfRelationshipsTagGroup } from './getTagResponseCollectionDataInnerAllOfRelationshipsTagGroup';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 
 export class GetTagResponseCollectionDataInnerAllOfRelationships {
-    'tagGroup'?: GetTagResponseCollectionDataInnerAllOfRelationshipsTagGroup;
-    'lists'?: GetProfileResponseDataAllOfRelationshipsLists;
-    'segments'?: GetProfileResponseDataAllOfRelationshipsSegments;
-    'campaigns'?: GetTagResponseCollectionDataInnerAllOfRelationshipsCampaigns;
-    'flows'?: GetTagResponseCollectionDataInnerAllOfRelationshipsFlows;
+    'tagGroup'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'lists'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'segments'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'campaigns'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'flows'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "tagGroup",
             "baseName": "tag-group",
-            "type": "GetTagResponseCollectionDataInnerAllOfRelationshipsTagGroup"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "lists",
             "baseName": "lists",
-            "type": "GetProfileResponseDataAllOfRelationshipsLists"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "segments",
             "baseName": "segments",
-            "type": "GetProfileResponseDataAllOfRelationshipsSegments"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "campaigns",
             "baseName": "campaigns",
-            "type": "GetTagResponseCollectionDataInnerAllOfRelationshipsCampaigns"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "flows",
             "baseName": "flows",
-            "type": "GetTagResponseCollectionDataInnerAllOfRelationshipsFlows"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 
     static getAttributeTypeMap() {

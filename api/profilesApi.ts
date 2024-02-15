@@ -37,6 +37,7 @@ import { ProfileCreateQuery } from '../model/profileCreateQuery';
 import { ProfileImportJobCreateQuery } from '../model/profileImportJobCreateQuery';
 import { ProfileMergeQuery } from '../model/profileMergeQuery';
 import { ProfilePartialUpdateQuery } from '../model/profilePartialUpdateQuery';
+import { ProfileUpsertQuery } from '../model/profileUpsertQuery';
 import { PushTokenCreateQuery } from '../model/pushTokenCreateQuery';
 import { SubscriptionCreateJobCreateQuery } from '../model/subscriptionCreateJobCreateQuery';
 import { SubscriptionDeleteJobCreateQuery } from '../model/subscriptionDeleteJobCreateQuery';
@@ -87,6 +88,62 @@ export class ProfilesApi {
         return this._basePath;
     }
 
+    /**
+     * Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+     * @summary Create or Update Profile
+     * @param profileUpsertQuery 
+     
+     */
+    public async createOrUpdateProfile (profileUpsertQuery: ProfileUpsertQuery, ): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-import/';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'profileUpsertQuery' is not null or undefined
+        if (profileUpsertQuery === null || profileUpsertQuery === undefined) {
+            throw new Error('Required parameter profileUpsertQuery was null or undefined when calling createOrUpdateProfile.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(profileUpsertQuery, "ProfileUpsertQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostProfileResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
     /**
      * Create a new profile.  If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you\'ll need to include at least one other identifier attribute (`email` or `external_id`) in addition to the `phone_number` attribute for the API call to work.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
      * @summary Create Profile
@@ -202,9 +259,9 @@ export class ProfilesApi {
      * Get a bulk profile import job with the given job ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
      * @summary Get Bulk Profile Import Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#relationships
      */
-    public async getBulkProfileImportJob (jobId: string, options: { fieldsList?: Array<'name' | 'created' | 'updated'>, fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, include?: Array<'lists'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCompoundDocument;  }> {
+    public async getBulkProfileImportJob (jobId: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, include?: Array<'lists'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{job_id}/'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
@@ -224,7 +281,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsList !== undefined) {
-            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated'>");
+            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
         }
 
         if (options.fieldsProfileBulkImportJob !== undefined) {
@@ -268,9 +325,9 @@ export class ProfilesApi {
     }
     /**
      * Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
-     * @summary Get Bulk Profile Import Job Import Errors
+     * @summary Get Bulk Profile Import Job Errors
      * @param id 
-     * @param fieldsImportError For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param fieldsImportError For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getBulkProfileImportJobImportErrors (id: string, options: { fieldsImportError?: Array<'code' | 'title' | 'detail' | 'source' | 'source.pointer' | 'original_payload'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }> {
 
@@ -338,9 +395,9 @@ export class ProfilesApi {
      * Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
      * @summary Get Bulk Profile Import Job Lists
      * @param id 
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
      */
-    public async getBulkProfileImportJobLists (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
+    public async getBulkProfileImportJobLists (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/lists/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -360,7 +417,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsList !== undefined) {
-            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated'>");
+            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -398,7 +455,7 @@ export class ProfilesApi {
      * Get profiles for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
      * @summary Get Bulk Profile Import Job Profiles
      * @param id 
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getBulkProfileImportJobProfiles (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
 
@@ -526,7 +583,7 @@ export class ProfilesApi {
      * Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
      * @summary Get Bulk Profile Import Job Relationships Profiles
      * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getBulkProfileImportJobRelationshipsProfiles (id: string, options: { pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> {
 
@@ -590,7 +647,7 @@ export class ProfilesApi {
      * Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
      * @summary Get Bulk Profile Import Jobs
      
-     * @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sorting
+     * @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sorting
      */
     public async getBulkProfileImportJobs (options: { fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCollectionCompoundDocument;  }> {
 
@@ -660,9 +717,9 @@ export class ProfilesApi {
      * Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
      * @summary Get Profile
      * @param id 
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#relationships
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#relationships
      */
-    public async getProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsList?: Array<'name' | 'created' | 'updated'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, fieldsSegment?: Array<'name' | 'created' | 'updated'>, include?: Array<'lists' | 'segments'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> {
+    public async getProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, fieldsSegment?: Array<'name' | 'created' | 'updated'>, include?: Array<'lists' | 'segments'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/profiles/{id}/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -686,7 +743,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsList !== undefined) {
-            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated'>");
+            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
         }
 
         if (options.fieldsProfile !== undefined) {
@@ -736,9 +793,9 @@ export class ProfilesApi {
      * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
      * @summary Get Profile Lists
      * @param id 
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
      */
-    public async getProfileLists (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
+    public async getProfileLists (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/profiles/{id}/lists/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -758,7 +815,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsList !== undefined) {
-            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated'>");
+            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -908,7 +965,7 @@ export class ProfilesApi {
      * Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
      * @summary Get Profile Segments
      * @param id 
-     * @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
      */
     public async getProfileSegments (id: string, options: { fieldsSegment?: Array<'name' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> {
 
@@ -965,10 +1022,10 @@ export class ProfilesApi {
         );
     }
     /**
-     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2023-12-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-02-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
      * @summary Get Profiles
      
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sorting
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sorting
      */
     public async getProfiles (options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'email' | '-email' | 'id' | '-id' | 'updated' | '-updated' | 'subscriptions.email.marketing.list_suppressions.timestamp' | '-subscriptions.email.marketing.list_suppressions.timestamp' | 'subscriptions.email.marketing.suppression.timestamp' | '-subscriptions.email.marketing.suppression.timestamp',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> {
 
@@ -1095,7 +1152,7 @@ export class ProfilesApi {
         );
     }
     /**
-     * *Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
+     * Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
      * @summary Spawn Bulk Profile Import Job
      * @param profileImportJobCreateQuery 
      
@@ -1151,7 +1208,7 @@ export class ProfilesApi {
         );
     }
     /**
-     * Subscribe one or more profiles to email marketing, SMS marketing, or both. If the list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message.  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about suppressed profiles in [this document](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
+     * Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
      * @summary Subscribe Profiles
      * @param subscriptionCreateJobCreateQuery Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
      
@@ -1261,7 +1318,7 @@ export class ProfilesApi {
         );
     }
     /**
-     * Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
+     * Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
      * @summary Unsubscribe Profiles
      * @param subscriptionDeleteJobCreateQuery Unsubscribes one or more profiles from marketing. Currently, supports email and SMS only. All profiles will be removed from the provided list. Either email or phone number is required. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
      

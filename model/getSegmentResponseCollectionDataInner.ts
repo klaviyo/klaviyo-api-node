@@ -10,21 +10,21 @@
  */
 
 import { RequestFile } from './models';
-import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetListResponseCollectionDataInnerAllOfRelationships } from './getListResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 import { SegmentResponseObjectResource } from './segmentResponseObjectResource';
 
 export class GetSegmentResponseCollectionDataInner extends SegmentResponseObjectResource {
-    'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+    'relationships'?: GetListResponseCollectionDataInnerAllOfRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "GetListResponseCollectionDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {

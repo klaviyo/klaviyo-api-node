@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
+import { ProfileMeta } from './profileMeta';
 import { ProfileUpsertQueryResourceObjectAttributes } from './profileUpsertQueryResourceObjectAttributes';
 
 export class ProfileUpsertQueryResourceObject {
@@ -20,6 +21,7 @@ export class ProfileUpsertQueryResourceObject {
     */
     'id'?: string;
     'attributes': ProfileUpsertQueryResourceObjectAttributes;
+    'meta'?: ProfileMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -37,6 +39,11 @@ export class ProfileUpsertQueryResourceObject {
             "name": "attributes",
             "baseName": "attributes",
             "type": "ProfileUpsertQueryResourceObjectAttributes"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ProfileMeta"
         }    ];
 
     static getAttributeTypeMap() {

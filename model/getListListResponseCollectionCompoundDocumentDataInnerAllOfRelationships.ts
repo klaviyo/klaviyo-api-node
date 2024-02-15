@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
 
 export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
-    'profiles'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles;
+    'profiles'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
     'tags'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags;
 
 
@@ -22,7 +22,7 @@ export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelation
         {
             "name": "profiles",
             "baseName": "profiles",
-            "type": "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "tags",

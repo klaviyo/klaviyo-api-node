@@ -11,10 +11,10 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInner } from './getCouponCodeResponseCollectionCompoundDocumentDataInner';
+import { GetCouponCodeResponseCollectionDataInner } from './getCouponCodeResponseCollectionDataInner';
 
 export class GetCouponCodeResponseCollection {
-    'data': Array<GetCouponCodeResponseCollectionCompoundDocumentDataInner>;
+    'data': Array<GetCouponCodeResponseCollectionDataInner>;
     'links': CollectionLinks;
 
 
@@ -22,7 +22,7 @@ export class GetCouponCodeResponseCollection {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetCouponCodeResponseCollectionCompoundDocumentDataInner>"
+            "type": "Array<GetCouponCodeResponseCollectionDataInner>"
         },
         {
             "name": "links",

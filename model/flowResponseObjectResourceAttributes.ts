@@ -20,7 +20,7 @@ export class FlowResponseObjectResourceAttributes {
     /**
     * Corresponds to the object which triggered the flow.
     */
-    'triggerType'?: FlowResponseObjectResourceAttributes.TriggerTypeEnum | 'Added to List' | 'Date Based' | 'Metric' | 'Price Drop' | 'Unconfigured';
+    'triggerType'?: FlowResponseObjectResourceAttributes.TriggerTypeEnum | 'Added to List' | 'Date Based' | 'Low Inventory' | 'Metric' | 'Price Drop' | 'Unconfigured';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -64,6 +64,7 @@ export namespace FlowResponseObjectResourceAttributes {
     export enum TriggerTypeEnum {
         AddedToList = <any> 'Added to List',
         DateBased = <any> 'Date Based',
+        LowInventory = <any> 'Low Inventory',
         Metric = <any> 'Metric',
         PriceDrop = <any> 'Price Drop',
         Unconfigured = <any> 'Unconfigured'

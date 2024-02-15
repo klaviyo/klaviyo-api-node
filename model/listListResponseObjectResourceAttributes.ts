@@ -24,6 +24,10 @@ export class ListListResponseObjectResourceAttributes {
     * Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
     'updated'?: Date;
+    /**
+    * The opt-in process for this list.  Could be either \'single_opt_in\' or \'double_opt_in\'.
+    */
+    'optInProcess'?: ListListResponseObjectResourceAttributes.OptInProcessEnum | 'double_opt_in' | 'single_opt_in';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -41,6 +45,11 @@ export class ListListResponseObjectResourceAttributes {
             "name": "updated",
             "baseName": "updated",
             "type": "Date"
+        },
+        {
+            "name": "optInProcess",
+            "baseName": "opt_in_process",
+            "type": "ListListResponseObjectResourceAttributes.OptInProcessEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -48,3 +57,9 @@ export class ListListResponseObjectResourceAttributes {
     }
 }
 
+export namespace ListListResponseObjectResourceAttributes {
+    export enum OptInProcessEnum {
+        DoubleOptIn = <any> 'double_opt_in',
+        SingleOptIn = <any> 'single_opt_in'
+    }
+}

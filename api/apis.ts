@@ -21,6 +21,8 @@ export * from './metricsApi';
 import { MetricsApi } from './metricsApi';
 export * from './profilesApi';
 import { ProfilesApi } from './profilesApi';
+export * from './reportingApi';
+import { ReportingApi } from './reportingApi';
 export * from './segmentsApi';
 import { SegmentsApi } from './segmentsApi';
 export * from './tagsApi';
@@ -33,8 +35,8 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axi
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2023-12-15";
-const userAgent = "klaviyo-api-node/7.2.0-beta.1";
+const revision =  "2024-02-15";
+const userAgent = "klaviyo-api-node/8.0.0-beta.1";
 
 export class RetryOptions {
 
@@ -498,6 +500,8 @@ export namespace Pkce {
 
     export const Profiles = new ProfilesApi(new GlobalApiKeySession())
 
+    export const Reporting = new ReportingApi(new GlobalApiKeySession())
+
     export const Segments = new SegmentsApi(new GlobalApiKeySession())
 
     export const Tags = new TagsApi(new GlobalApiKeySession())
@@ -516,4 +520,4 @@ export const Auth = {
     Pkce,
 }
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates };
+export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates };

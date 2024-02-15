@@ -17,13 +17,13 @@ export class EventResponseObjectResourceAttributes {
     */
     'timestamp'?: number;
     /**
-    * Event properties, can include attribution data, identifiers and extra properties
+    * Event properties, can include identifiers and extra properties
     */
     'eventProperties'?: object;
     /**
-    * Event timestamp in string format (YYYY-MM-DD HH:MM:SS+hh:mm)
+    * Event timestamp in ISO8601 format (YYYY-MM-DDTHH:MM:SS+hh:mm)
     */
-    'datetime'?: string;
+    'datetime'?: Date;
     /**
     * A unique identifier for the event, this can be used as a cursor in pagination
     */
@@ -44,7 +44,7 @@ export class EventResponseObjectResourceAttributes {
         {
             "name": "datetime",
             "baseName": "datetime",
-            "type": "string"
+            "type": "Date"
         },
         {
             "name": "uuid",
