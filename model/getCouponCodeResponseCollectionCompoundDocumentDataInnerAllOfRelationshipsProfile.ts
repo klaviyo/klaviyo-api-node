@@ -10,20 +10,13 @@
  */
 
 import { RequestFile } from './models';
-import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
 import { RelationshipLinks } from './relationshipLinks';
 
 export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile {
-    'data': GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData;
     'links'?: RelationshipLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "data",
-            "baseName": "data",
-            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData"
-        },
         {
             "name": "links",
             "baseName": "links",

@@ -10,24 +10,23 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction';
-import { GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate } from './getFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 
 export class GetFlowMessageResponseCollectionDataInnerAllOfRelationships {
-    'flowAction'?: GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction;
-    'template'?: GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate;
+    'flowAction'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'template'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "flowAction",
             "baseName": "flow-action",
-            "type": "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsFlowAction"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "template",
             "baseName": "template",
-            "type": "GetFlowMessageResponseCollectionDataInnerAllOfRelationshipsTemplate"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 
     static getAttributeTypeMap() {

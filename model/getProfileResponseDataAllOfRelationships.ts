@@ -10,24 +10,23 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseDataAllOfRelationshipsLists } from './getProfileResponseDataAllOfRelationshipsLists';
-import { GetProfileResponseDataAllOfRelationshipsSegments } from './getProfileResponseDataAllOfRelationshipsSegments';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 
 export class GetProfileResponseDataAllOfRelationships {
-    'lists'?: GetProfileResponseDataAllOfRelationshipsLists;
-    'segments'?: GetProfileResponseDataAllOfRelationshipsSegments;
+    'lists'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'segments'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "lists",
             "baseName": "lists",
-            "type": "GetProfileResponseDataAllOfRelationshipsLists"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "segments",
             "baseName": "segments",
-            "type": "GetProfileResponseDataAllOfRelationshipsSegments"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 
     static getAttributeTypeMap() {

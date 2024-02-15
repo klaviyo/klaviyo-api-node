@@ -10,8 +10,8 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
+import { PostProfileImportJobResponseDataRelationships } from './postProfileImportJobResponseDataRelationships';
 import { ProfileBulkImportJobEnum } from './profileBulkImportJobEnum';
 import { ProfileImportJobResponseObjectResourceAttributes } from './profileImportJobResponseObjectResourceAttributes';
 
@@ -22,7 +22,7 @@ export class PostProfileImportJobResponseData {
     */
     'id': string;
     'attributes': ProfileImportJobResponseObjectResourceAttributes;
-    'relationships'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+    'relationships'?: PostProfileImportJobResponseDataRelationships;
     'links': ObjectLinks;
 
 
@@ -45,7 +45,7 @@ export class PostProfileImportJobResponseData {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "PostProfileImportJobResponseDataRelationships"
         },
         {
             "name": "links",

@@ -10,17 +10,17 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner } from './getTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner';
+import { GetCampaignMessageCampaignRelationshipListResponseData } from './getCampaignMessageCampaignRelationshipListResponseData';
 
 export class GetCampaignMessageCampaignRelationshipListResponse {
-    'data': GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner;
+    'data': GetCampaignMessageCampaignRelationshipListResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetTagResponseCollectionDataInnerAllOfRelationshipsCampaignsDataInner"
+            "type": "GetCampaignMessageCampaignRelationshipListResponseData"
         }    ];
 
     static getAttributeTypeMap() {

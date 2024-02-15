@@ -28,3 +28,5 @@ export class ListRetrieveResponseObjectResourceExtendedAttributes extends ListRe
     }
 }
 
+export namespace ListRetrieveResponseObjectResourceExtendedAttributes {
+}

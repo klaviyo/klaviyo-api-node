@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ListEnum } from './listEnum';
 import { ListListResponseObjectResourceAttributes } from './listListResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
+import { PostListCreateResponseDataRelationships } from './postListCreateResponseDataRelationships';
 
 export class PostListCreateResponseData {
     'type': ListEnum | 'list';
@@ -22,7 +22,7 @@ export class PostListCreateResponseData {
     */
     'id': string;
     'attributes': ListListResponseObjectResourceAttributes;
-    'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+    'relationships'?: PostListCreateResponseDataRelationships;
     'links': ObjectLinks;
 
 
@@ -45,7 +45,7 @@ export class PostListCreateResponseData {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "PostListCreateResponseDataRelationships"
         },
         {
             "name": "links",

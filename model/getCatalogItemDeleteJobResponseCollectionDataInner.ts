@@ -13,18 +13,18 @@ import { RequestFile } from './models';
 import { CatalogItemBulkDeleteJobEnum } from './catalogItemBulkDeleteJobEnum';
 import { CatalogItemDeleteJobResponseObjectResource } from './catalogItemDeleteJobResponseObjectResource';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
-import { GetCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationships } from './getCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationships';
+import { GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships } from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 
 export class GetCatalogItemDeleteJobResponseCollectionDataInner extends CatalogItemDeleteJobResponseObjectResource {
-    'relationships'?: GetCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationships;
+    'relationships'?: GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCatalogItemDeleteJobResponseCollectionDataInnerAllOfRelationships"
+            "type": "GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {
