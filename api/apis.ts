@@ -21,6 +21,8 @@ export * from './metricsApi';
 import { MetricsApi } from './metricsApi';
 export * from './profilesApi';
 import { ProfilesApi } from './profilesApi';
+export * from './reportingApi';
+import { ReportingApi } from './reportingApi';
 export * from './segmentsApi';
 import { SegmentsApi } from './segmentsApi';
 export * from './tagsApi';
@@ -185,6 +187,8 @@ export function ConfigWrapper(apiKey: string, opts: {numOfAttempts?: number, tim
 
     export const Profiles = new ProfilesApi(new GlobalApiKeySession())
 
+    export const Reporting = new ReportingApi(new GlobalApiKeySession())
+
     export const Segments = new SegmentsApi(new GlobalApiKeySession())
 
     export const Tags = new TagsApi(new GlobalApiKeySession())
@@ -194,4 +198,4 @@ export function ConfigWrapper(apiKey: string, opts: {numOfAttempts?: number, tim
 
 export const Auth = { ApiKeySession, GlobalApiKeySession, GlobalApiKeySettings}
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates };
+export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates };

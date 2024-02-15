@@ -10,6 +10,8 @@
  */
 
 import { RequestFile } from './models';
+import { AttributionResponseObjectResource } from './attributionResponseObjectResource';
+import { AttributionResponseObjectResourceRelationships } from './attributionResponseObjectResourceRelationships';
 import { MetricResponseObjectResource } from './metricResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
@@ -19,10 +21,11 @@ import { ProfileResponseObjectResourceAttributes } from './profileResponseObject
 
 
 
-    export type GetEventResponseCollectionCompoundDocumentIncludedInner = MetricResponseObjectResource | ProfileResponseObjectResource
+    export type GetEventResponseCollectionCompoundDocumentIncludedInner = AttributionResponseObjectResource | MetricResponseObjectResource | ProfileResponseObjectResource
 
     export class GetEventResponseCollectionCompoundDocumentIncludedInnerHelper {
         static mapping: {[index: string]: any} = {
+            "attribution": "AttributionResponseObjectResource",
             "metric": "MetricResponseObjectResource",
             "profile": "ProfileResponseObjectResource",
         }

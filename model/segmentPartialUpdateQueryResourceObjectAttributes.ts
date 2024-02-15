@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 
 export class SegmentPartialUpdateQueryResourceObjectAttributes {
-    'name': string;
+    'name'?: string;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

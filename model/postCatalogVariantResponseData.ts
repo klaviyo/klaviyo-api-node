@@ -12,8 +12,8 @@
 import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 import { CatalogVariantResponseObjectResourceAttributes } from './catalogVariantResponseObjectResourceAttributes';
-import { GetCatalogVariantResponseCollectionDataInnerAllOfRelationships } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
+import { PostCatalogVariantResponseDataRelationships } from './postCatalogVariantResponseDataRelationships';
 
 export class PostCatalogVariantResponseData {
     'type': CatalogVariantEnum | 'catalog-variant';
@@ -22,7 +22,7 @@ export class PostCatalogVariantResponseData {
     */
     'id': string;
     'attributes': CatalogVariantResponseObjectResourceAttributes;
-    'relationships'?: GetCatalogVariantResponseCollectionDataInnerAllOfRelationships;
+    'relationships'?: PostCatalogVariantResponseDataRelationships;
     'links': ObjectLinks;
 
 
@@ -45,7 +45,7 @@ export class PostCatalogVariantResponseData {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCatalogVariantResponseCollectionDataInnerAllOfRelationships"
+            "type": "PostCatalogVariantResponseDataRelationships"
         },
         {
             "name": "links",

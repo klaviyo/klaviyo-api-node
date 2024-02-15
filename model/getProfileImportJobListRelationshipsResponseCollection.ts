@@ -10,17 +10,17 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseDataAllOfRelationshipsListsDataInner } from './getProfileResponseDataAllOfRelationshipsListsDataInner';
+import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner';
 
 export class GetProfileImportJobListRelationshipsResponseCollection {
-    'data': Array<GetProfileResponseDataAllOfRelationshipsListsDataInner>;
+    'data': Array<GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetProfileResponseDataAllOfRelationshipsListsDataInner>"
+            "type": "Array<GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner>"
         }    ];
 
     static getAttributeTypeMap() {

@@ -44,8 +44,8 @@ export class TemplatesApi {
 
     protected _basePath = defaultBasePath;
     protected _defaultHeaders : any = {
-        revision: "2023-12-15",
-        "User-Agent": "klaviyo-api-node/7.2.0"
+        revision: "2024-02-15",
+        "User-Agent": "klaviyo-api-node/8.0.0"
     };
     protected _useQuerystring : boolean = false;
 
@@ -124,7 +124,7 @@ export class TemplatesApi {
         }, this.session.getRetryOptions());
     }
     /**
-     * Create a clone of a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
+     * Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
      * @summary Create Template Clone
      * @param templateCloneQuery 
      
@@ -276,7 +276,7 @@ export class TemplatesApi {
      * Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
      * @summary Get Template
      * @param id The ID of template
-     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
      */
     public async getTemplate (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
 
@@ -330,7 +330,7 @@ export class TemplatesApi {
      * Get all templates in an account.  Filter to request a subset of all templates. Templates can be sorted by the following fields, in ascending and descending order: `id`, `name`, `created`, `updated`  Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
      * @summary Get Templates
      
-     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2023-12-15/reference/api-overview#sorting
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sorting
      */
     public async getTemplates (options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponseCollection;  }> {
 

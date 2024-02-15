@@ -11,10 +11,10 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
-import { GetProfileResponseCollectionCompoundDocumentDataInner } from './getProfileResponseCollectionCompoundDocumentDataInner';
+import { GetProfileResponseData } from './getProfileResponseData';
 
 export class GetProfileResponseCollectionCompoundDocument {
-    'data': Array<GetProfileResponseCollectionCompoundDocumentDataInner>;
+    'data': Array<GetProfileResponseData>;
     'links': CollectionLinks;
 
 
@@ -22,7 +22,7 @@ export class GetProfileResponseCollectionCompoundDocument {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetProfileResponseCollectionCompoundDocumentDataInner>"
+            "type": "Array<GetProfileResponseData>"
         },
         {
             "name": "links",

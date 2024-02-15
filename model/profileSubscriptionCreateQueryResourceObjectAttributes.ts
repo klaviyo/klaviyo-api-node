@@ -18,7 +18,7 @@ export class ProfileSubscriptionCreateQueryResourceObjectAttributes {
     */
     'email'?: string;
     /**
-    * The phone number to subscribe or to set on the profile if `channels` is specified and the SMS channel is omitted.
+    * The phone number to subscribe or to set on the profile if `channels` is specified and the SMS channel is omitted. This must be in E.164 format.
     */
     'phoneNumber'?: string;
     'subscriptions'?: SubscriptionChannels;
