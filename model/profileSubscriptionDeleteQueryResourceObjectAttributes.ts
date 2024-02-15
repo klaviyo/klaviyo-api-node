@@ -17,7 +17,7 @@ export class ProfileSubscriptionDeleteQueryResourceObjectAttributes {
     */
     'email'?: string;
     /**
-    * The phone number to unsubscribe.
+    * The phone number to unsubscribe. This must be in E.164 format.
     */
     'phoneNumber'?: string;
 

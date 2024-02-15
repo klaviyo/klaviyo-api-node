@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileLocation } from './profileLocation';
-import { ProfileMeta } from './profileMeta';
 
 export class ProfileUpsertQueryResourceObjectAttributes {
     /**
@@ -59,7 +58,6 @@ export class ProfileUpsertQueryResourceObjectAttributes {
     * An object containing key/value pairs for any custom properties assigned to this profile
     */
     'properties'?: object;
-    'meta'?: ProfileMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -122,11 +120,6 @@ export class ProfileUpsertQueryResourceObjectAttributes {
             "name": "properties",
             "baseName": "properties",
             "type": "object"
-        },
-        {
-            "name": "meta",
-            "baseName": "meta",
-            "type": "ProfileMeta"
         }    ];
 
     static getAttributeTypeMap() {

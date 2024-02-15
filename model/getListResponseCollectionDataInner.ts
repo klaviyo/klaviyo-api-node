@@ -10,21 +10,21 @@
  */
 
 import { RequestFile } from './models';
-import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetListResponseCollectionDataInnerAllOfRelationships } from './getListResponseCollectionDataInnerAllOfRelationships';
 import { ListEnum } from './listEnum';
 import { ListListResponseObjectResourceAttributes } from './listListResponseObjectResourceAttributes';
 import { ListResponseObjectResource } from './listResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 
 export class GetListResponseCollectionDataInner extends ListResponseObjectResource {
-    'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+    'relationships'?: GetListResponseCollectionDataInnerAllOfRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "GetListResponseCollectionDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {

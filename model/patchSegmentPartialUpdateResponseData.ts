@@ -10,8 +10,8 @@
  */
 
 import { RequestFile } from './models';
-import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
+import { PostListCreateResponseDataRelationships } from './postListCreateResponseDataRelationships';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 
@@ -19,7 +19,7 @@ export class PatchSegmentPartialUpdateResponseData {
     'type': SegmentEnum | 'segment';
     'id': string;
     'attributes': SegmentListResponseObjectResourceAttributes;
-    'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
+    'relationships'?: PostListCreateResponseDataRelationships;
     'links': ObjectLinks;
 
 
@@ -42,7 +42,7 @@ export class PatchSegmentPartialUpdateResponseData {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships"
+            "type": "PostListCreateResponseDataRelationships"
         },
         {
             "name": "links",

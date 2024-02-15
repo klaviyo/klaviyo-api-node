@@ -10,17 +10,17 @@
  */
 
 import { RequestFile } from './models';
-import { GetCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems } from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 
 export class GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships {
-    'items'?: GetCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems;
+    'items'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "items",
             "baseName": "items",
-            "type": "GetCatalogCategoryResponseCollectionDataInnerAllOfRelationshipsItems"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 
     static getAttributeTypeMap() {

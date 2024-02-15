@@ -10,14 +10,13 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors';
+import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
-import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles';
 
 export class GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'lists'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists;
-    'profiles'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles;
-    'importErrors'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors;
+    'profiles'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'importErrors'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -29,12 +28,12 @@ export class GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf
         {
             "name": "profiles",
             "baseName": "profiles",
-            "type": "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfiles"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         },
         {
             "name": "importErrors",
             "baseName": "import-errors",
-            "type": "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors"
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 
     static getAttributeTypeMap() {
