@@ -16,7 +16,7 @@ export class CampaignValuesRequestDTOResourceObjectAttributes {
     /**
     * List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
     */
-    'statistics': Array<CampaignValuesRequestDTOResourceObjectAttributes.StatisticsEnum> | 'average_order_value' | 'bounce_rate' | 'bounced' | 'bounced_or_failed' | 'bounced_or_failed_rate' | 'click_rate' | 'click_to_open_rate' | 'clicks' | 'clicks_unique' | 'conversion_rate' | 'conversion_uniques' | 'conversion_value' | 'conversions' | 'delivered' | 'delivery_rate' | 'failed' | 'failed_rate' | 'open_rate' | 'opens' | 'opens_unique' | 'recipients' | 'revenue_per_recipient' | 'spam_complaint_rate' | 'spam_complaints' | 'unsubscribe_rate' | 'unsubscribe_uniques' | 'unsubscribes';
+    'statistics': Array<CampaignValuesRequestDTOResourceObjectAttributes.StatisticsEnum | 'average_order_value' | 'bounce_rate' | 'bounced' | 'bounced_or_failed' | 'bounced_or_failed_rate' | 'click_rate' | 'click_to_open_rate' | 'clicks' | 'clicks_unique' | 'conversion_rate' | 'conversion_uniques' | 'conversion_value' | 'conversions' | 'delivered' | 'delivery_rate' | 'failed' | 'failed_rate' | 'open_rate' | 'opens' | 'opens_unique' | 'recipients' | 'revenue_per_recipient' | 'spam_complaint_rate' | 'spam_complaints' | 'unsubscribe_rate' | 'unsubscribe_uniques' | 'unsubscribes'>;
     'timeframe': CampaignValuesRequestDTOResourceObjectAttributesTimeframe;
     /**
     * ID of the metric to be used for conversion statistics
