@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner';
-
 export class GetCouponCodeCreateJobResponseCollectionCompoundDocument {
     'data': Array<GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;

@@ -14,7 +14,6 @@ import { FlowSeriesReportEnum } from './flowSeriesReportEnum';
 import { ObjectLinks } from './objectLinks';
 import { PostFlowSeriesResponseDTODataAttributes } from './postFlowSeriesResponseDTODataAttributes';
 import { PostFlowValuesResponseDTODataRelationships } from './postFlowValuesResponseDTODataRelationships';
-
 export class PostFlowSeriesResponseDTOData {
     'type': FlowSeriesReportEnum | 'flow-series-report';
     'attributes': PostFlowSeriesResponseDTODataAttributes;

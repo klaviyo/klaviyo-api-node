@@ -10,21 +10,19 @@
  */
 
 import { RequestFile } from './models';
-import { GetCampaignResponseDataAllOfRelationships } from './getCampaignResponseDataAllOfRelationships';
-
-export class GetCampaignResponseDataAllOf {
-    'relationships'?: GetCampaignResponseDataAllOfRelationships;
+export class OnlyRelatedLinks {
+    'related': string;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "relationships",
-            "baseName": "relationships",
-            "type": "GetCampaignResponseDataAllOfRelationships"
+            "name": "related",
+            "baseName": "related",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCampaignResponseDataAllOf.attributeTypeMap;
+        return OnlyRelatedLinks.attributeTypeMap;
     }
 }
 

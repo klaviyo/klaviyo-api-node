@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CouponResponseObjectResourceAttributes {
     /**
     * This is the id that is stored in an integration such as Shopify or Magento.
@@ -19,7 +18,7 @@ export class CouponResponseObjectResourceAttributes {
     /**
     * A description of the coupon.
     */
-    'description'?: string;
+    'description'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostTagResponseData } from './postTagResponseData';
-
 export class PostTagResponse {
     'data': PostTagResponseData;
 

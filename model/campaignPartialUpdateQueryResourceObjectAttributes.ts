@@ -11,18 +11,17 @@
 
 import { RequestFile } from './models';
 import { AudiencesSubObject } from './audiencesSubObject';
-import { CampaignResponseObjectResourceAttributesSendOptions } from './campaignResponseObjectResourceAttributesSendOptions';
-import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
+import { CampaignCreateQueryResourceObjectAttributesSendOptions } from './campaignCreateQueryResourceObjectAttributesSendOptions';
+import { CampaignCreateQueryResourceObjectAttributesTrackingOptions } from './campaignCreateQueryResourceObjectAttributesTrackingOptions';
 import { SendStrategySubObject } from './sendStrategySubObject';
-
 export class CampaignPartialUpdateQueryResourceObjectAttributes {
     /**
     * The campaign name
     */
-    'name'?: string;
+    'name'?: string | null;
     'audiences'?: AudiencesSubObject;
-    'sendOptions'?: CampaignResponseObjectResourceAttributesSendOptions;
-    'trackingOptions'?: CampaignResponseObjectResourceAttributesTrackingOptions;
+    'sendOptions'?: CampaignCreateQueryResourceObjectAttributesSendOptions | null;
+    'trackingOptions'?: CampaignCreateQueryResourceObjectAttributesTrackingOptions | null;
     'sendStrategy'?: SendStrategySubObject;
 
 
@@ -40,12 +39,12 @@ export class CampaignPartialUpdateQueryResourceObjectAttributes {
         {
             "name": "sendOptions",
             "baseName": "send_options",
-            "type": "CampaignResponseObjectResourceAttributesSendOptions"
+            "type": "CampaignCreateQueryResourceObjectAttributesSendOptions"
         },
         {
             "name": "trackingOptions",
             "baseName": "tracking_options",
-            "type": "CampaignResponseObjectResourceAttributesTrackingOptions"
+            "type": "CampaignCreateQueryResourceObjectAttributesTrackingOptions"
         },
         {
             "name": "sendStrategy",

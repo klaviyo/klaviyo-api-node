@@ -10,24 +10,23 @@
  */
 
 import { RequestFile } from './models';
-
 export class ListRetrieveResponseObjectResourceAttributes {
     /**
     * A helpful name to label the list
     */
-    'name'?: string;
+    'name'?: string | null;
     /**
     * Date and time when the list was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'created'?: Date;
+    'created'?: Date | null;
     /**
     * Date and time when the list was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'updated'?: Date;
+    'updated'?: Date | null;
     /**
     * The opt-in process for this list.  Could be either \'single_opt_in\' or \'double_opt_in\'.
     */
-    'optInProcess'?: ListRetrieveResponseObjectResourceAttributes.OptInProcessEnum | 'double_opt_in' | 'single_opt_in';
+    'optInProcess'?: ListRetrieveResponseObjectResourceAttributes.OptInProcessEnum | 'double_opt_in' | 'single_opt_in' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

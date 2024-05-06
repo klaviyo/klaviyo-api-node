@@ -12,10 +12,11 @@
 import { RequestFile } from './models';
 import { ProfileSuppressionBulkDeleteJobEnum } from './profileSuppressionBulkDeleteJobEnum';
 import { SuppressionDeleteJobCreateQueryResourceObjectAttributes } from './suppressionDeleteJobCreateQueryResourceObjectAttributes';
-
+import { SuppressionDeleteJobCreateQueryResourceObjectRelationships } from './suppressionDeleteJobCreateQueryResourceObjectRelationships';
 export class SuppressionDeleteJobCreateQueryResourceObject {
     'type': ProfileSuppressionBulkDeleteJobEnum | 'profile-suppression-bulk-delete-job';
     'attributes': SuppressionDeleteJobCreateQueryResourceObjectAttributes;
+    'relationships'?: SuppressionDeleteJobCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -28,6 +29,11 @@ export class SuppressionDeleteJobCreateQueryResourceObject {
             "name": "attributes",
             "baseName": "attributes",
             "type": "SuppressionDeleteJobCreateQueryResourceObjectAttributes"
+        },
+        {
+            "name": "relationships",
+            "baseName": "relationships",
+            "type": "SuppressionDeleteJobCreateQueryResourceObjectRelationships"
         }    ];
 
     static getAttributeTypeMap() {

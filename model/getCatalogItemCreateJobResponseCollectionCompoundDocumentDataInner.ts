@@ -15,7 +15,6 @@ import { CatalogItemCreateJobResponseObjectResource } from './catalogItemCreateJ
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner extends CatalogItemCreateJobResponseObjectResource {
     'relationships'?: GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 

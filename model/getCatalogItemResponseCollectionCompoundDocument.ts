@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CatalogVariantResponseObjectResource } from './catalogVariantResponseObjectResource';
 import { CollectionLinks } from './collectionLinks';
 import { GetCatalogItemResponseCollectionCompoundDocumentDataInner } from './getCatalogItemResponseCollectionCompoundDocumentDataInner';
-
 export class GetCatalogItemResponseCollectionCompoundDocument {
     'data': Array<GetCatalogItemResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { AccountResponseObjectResource } from './accountResponseObjectResource';
-
 export class GetAccountResponse {
     'data': AccountResponseObjectResource;
 

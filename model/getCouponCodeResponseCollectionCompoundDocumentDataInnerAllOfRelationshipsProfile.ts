@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile {
     'links'?: RelationshipLinks;
 

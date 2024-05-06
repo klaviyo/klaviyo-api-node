@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ImagePartialUpdateQueryResourceObject } from './imagePartialUpdateQueryResourceObject';
-
 export class ImagePartialUpdateQuery {
     'data': ImagePartialUpdateQueryResourceObject;
 

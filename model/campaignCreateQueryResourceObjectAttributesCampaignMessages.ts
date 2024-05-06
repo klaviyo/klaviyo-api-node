@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignMessageCreateQueryResourceObject } from './campaignMessageCreateQueryResourceObject';
-
 /**
 * The message(s) associated with the campaign
 */

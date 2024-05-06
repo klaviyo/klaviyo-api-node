@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { STOScheduleOptions } from './sTOScheduleOptions';
 import { StaticScheduleOptions } from './staticScheduleOptions';
 import { ThrottledScheduleOptions } from './throttledScheduleOptions';
-
 export class SendStrategySubObject {
     /**
     * Describes the shape of the options object. Allowed values: [\'static\', \'throttled\', \'immediate\', \'smart_send_time\']

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetTagResponseCollectionCompoundDocumentDataInner } from './getTagResponseCollectionCompoundDocumentDataInner';
 import { TagGroupResponseObjectResource } from './tagGroupResponseObjectResource';
-
 export class GetTagResponseCompoundDocument {
     'data': GetTagResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<TagGroupResponseObjectResource>;

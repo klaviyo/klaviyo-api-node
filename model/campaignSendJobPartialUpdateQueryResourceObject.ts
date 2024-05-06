@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CampaignSendJobEnum } from './campaignSendJobEnum';
 import { CampaignSendJobPartialUpdateQueryResourceObjectAttributes } from './campaignSendJobPartialUpdateQueryResourceObjectAttributes';
-
 export class CampaignSendJobPartialUpdateQueryResourceObject {
     'type': CampaignSendJobEnum | 'campaign-send-job';
     /**

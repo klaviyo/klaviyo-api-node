@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetTagCampaignRelationshipsResponseCollectionDataInner } from './getTagCampaignRelationshipsResponseCollectionDataInner';
-
 export class GetTagCampaignRelationshipsResponseCollection {
     'data': Array<GetTagCampaignRelationshipsResponseCollectionDataInner>;
 

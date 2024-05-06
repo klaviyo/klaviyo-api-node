@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetTagResponseCollectionCompoundDocumentDataInner } from './getTagResponseCollectionCompoundDocumentDataInner';
 import { TagGroupResponseObjectResource } from './tagGroupResponseObjectResource';
-
 export class GetTagResponseCollectionCompoundDocument {
     'data': Array<GetTagResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;

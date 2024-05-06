@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetEventResponseCollectionCompoundDocumentDataInner } from './getEventResponseCollectionCompoundDocumentDataInner';
 import { GetEventResponseCollectionCompoundDocumentIncludedInner } from './getEventResponseCollectionCompoundDocumentIncludedInner';
-
 export class GetEventResponseCollectionCompoundDocument {
     'data': Array<GetEventResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;

@@ -10,44 +10,43 @@
  */
 
 import { RequestFile } from './models';
-
 export class CatalogItemUpdateQueryResourceObjectAttributes {
     /**
     * The title of the catalog item.
     */
-    'title'?: string;
+    'title'?: string | null;
     /**
     * This field can be used to set the price on the catalog item, which is what gets displayed for the item when included in emails. For most price-update use cases, you will also want to update the `price` on any child variants, using the [Update Catalog Variant Endpoint](https://developers.klaviyo.com/en/reference/update_catalog_variant).
     */
-    'price'?: number;
+    'price'?: number | null;
     /**
     * A description of the catalog item.
     */
-    'description'?: string;
+    'description'?: string | null;
     /**
     * URL pointing to the location of the catalog item on your website.
     */
-    'url'?: string;
+    'url'?: string | null;
     /**
     * URL pointing to the location of a full image of the catalog item.
     */
-    'imageFullUrl'?: string;
+    'imageFullUrl'?: string | null;
     /**
     * URL pointing to the location of an image thumbnail of the catalog item
     */
-    'imageThumbnailUrl'?: string;
+    'imageThumbnailUrl'?: string | null;
     /**
     * List of URLs pointing to the locations of images of the catalog item.
     */
-    'images'?: Array<string>;
+    'images'?: Array<string> | null;
     /**
     * Flat JSON blob to provide custom metadata about the catalog item. May not exceed 100kb.
     */
-    'customMetadata'?: object;
+    'customMetadata'?: object | null;
     /**
     * Boolean value indicating whether the catalog item is published.
     */
-    'published'?: boolean;
+    'published'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

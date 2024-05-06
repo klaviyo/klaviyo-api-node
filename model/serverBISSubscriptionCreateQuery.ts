@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ServerBISSubscriptionCreateQueryResourceObject } from './serverBISSubscriptionCreateQueryResourceObject';
-
 export class ServerBISSubscriptionCreateQuery {
     'data': ServerBISSubscriptionCreateQueryResourceObject;
 

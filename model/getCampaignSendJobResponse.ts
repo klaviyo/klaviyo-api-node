@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignSendJobResponseObjectResource } from './campaignSendJobResponseObjectResource';
-
 export class GetCampaignSendJobResponse {
     'data': CampaignSendJobResponseObjectResource;
 

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { AccountResponseObjectResource } from './accountResponseObjectResource';
 import { CollectionLinks } from './collectionLinks';
-
 export class GetAccountResponseCollection {
     'data': Array<AccountResponseObjectResource>;
     'links': CollectionLinks;

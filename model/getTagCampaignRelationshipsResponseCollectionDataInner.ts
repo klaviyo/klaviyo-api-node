@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignEnum } from './campaignEnum';
-
 export class GetTagCampaignRelationshipsResponseCollectionDataInner {
     'type': CampaignEnum | 'campaign';
     /**

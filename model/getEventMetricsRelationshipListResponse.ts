@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetEventMetricsRelationshipListResponseData } from './getEventMetricsRelationshipListResponseData';
-
 export class GetEventMetricsRelationshipListResponse {
     'data': GetEventMetricsRelationshipListResponseData;
 

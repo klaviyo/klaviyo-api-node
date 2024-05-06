@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetCampaignMessageCampaignRelationshipListResponseData } from './getCampaignMessageCampaignRelationshipListResponseData';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class PostTagResponseDataRelationshipsCampaigns {
-    'data': Array<GetCampaignMessageCampaignRelationshipListResponseData>;
+    'data'?: Array<GetCampaignMessageCampaignRelationshipListResponseData>;
     'links'?: RelationshipLinks;
 
 

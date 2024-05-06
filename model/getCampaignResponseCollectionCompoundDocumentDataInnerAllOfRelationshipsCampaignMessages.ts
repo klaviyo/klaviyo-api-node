@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages {
-    'data': Array<GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner>;
+    'data'?: Array<GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessagesDataInner>;
     'links'?: RelationshipLinks;
 
 

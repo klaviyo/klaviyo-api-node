@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignSendJobPartialUpdateQueryResourceObject } from './campaignSendJobPartialUpdateQueryResourceObject';
-
 export class CampaignSendJobPartialUpdateQuery {
     'data': CampaignSendJobPartialUpdateQueryResourceObject;
 

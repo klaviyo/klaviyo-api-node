@@ -12,13 +12,12 @@
 import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
 import { ProfileSubscriptionCreateQueryResourceObjectAttributes } from './profileSubscriptionCreateQueryResourceObjectAttributes';
-
 export class ProfileSubscriptionCreateQueryResourceObject {
     'type': ProfileEnum | 'profile';
     /**
     * The ID of the profile to subscribe. If provided, this will be used to perform the lookup.
     */
-    'id'?: string;
+    'id'?: string | null;
     'attributes': ProfileSubscriptionCreateQueryResourceObjectAttributes;
 
 

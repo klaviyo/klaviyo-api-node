@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentPartialUpdateQueryResourceObjectAttributes } from './segmentPartialUpdateQueryResourceObjectAttributes';
-
 export class SegmentPartialUpdateQueryResourceObject {
     'type': SegmentEnum | 'segment';
     'id': string;

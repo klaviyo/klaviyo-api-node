@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagGroupEnum } from './tagGroupEnum';
-
 export class GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData {
     'type': TagGroupEnum | 'tag-group';
     'id': string;

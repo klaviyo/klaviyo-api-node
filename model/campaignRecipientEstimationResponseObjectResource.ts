@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CampaignRecipientEstimationEnum } from './campaignRecipientEstimationEnum';
 import { CampaignRecipientEstimationResponseObjectResourceAttributes } from './campaignRecipientEstimationResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CampaignRecipientEstimationResponseObjectResource {
     'type': CampaignRecipientEstimationEnum | 'campaign-recipient-estimation';
     /**

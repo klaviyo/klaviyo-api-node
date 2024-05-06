@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum EventEnum {
     Event = <any> 'event'
 }

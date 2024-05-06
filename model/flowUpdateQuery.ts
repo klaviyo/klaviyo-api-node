@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { FlowUpdateQueryResourceObject } from './flowUpdateQueryResourceObject';
-
 export class FlowUpdateQuery {
     'data': FlowUpdateQueryResourceObject;
 

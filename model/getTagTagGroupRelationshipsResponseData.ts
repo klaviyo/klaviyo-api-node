@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagGroupEnum } from './tagGroupEnum';
-
 export class GetTagTagGroupRelationshipsResponseData {
     'type': TagGroupEnum | 'tag-group';
     /**

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CouponCodeEnum } from './couponCodeEnum';
-
 export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodesDataInner {
     'type': CouponCodeEnum | 'coupon-code';
     /**

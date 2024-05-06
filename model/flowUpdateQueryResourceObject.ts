@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { FlowEnum } from './flowEnum';
 import { FlowUpdateQueryResourceObjectAttributes } from './flowUpdateQueryResourceObjectAttributes';
-
 export class FlowUpdateQueryResourceObject {
     'type': FlowEnum | 'flow';
     /**

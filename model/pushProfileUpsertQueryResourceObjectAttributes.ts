@@ -11,58 +11,57 @@
 
 import { RequestFile } from './models';
 import { ProfileLocation } from './profileLocation';
-
-export class OnsiteProfileCreateQueryResourceObjectAttributes {
-    /**
-    * Individual\'s email address
-    */
-    'email'?: string;
+import { ProfileMeta } from './profileMeta';
+export class PushProfileUpsertQueryResourceObjectAttributes {
     /**
     * Individual\'s phone number in E.164 format
     */
-    'phoneNumber'?: string;
+    'phoneNumber'?: string | null;
     /**
     * A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
     */
-    'externalId'?: string;
-    'anonymousId'?: string;
+    'externalId'?: string | null;
+    /**
+    * Id that can be used to identify a profile when other identifiers are not available
+    */
+    'anonymousId'?: string | null;
     /**
     * Also known as the `exchange_id`, this is an encrypted identifier used for identifying a profile by Klaviyo\'s web tracking.  You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.
     */
-    'kx'?: string;
+    'kx'?: string | null;
     /**
     * Individual\'s first name
     */
-    'firstName'?: string;
+    'firstName'?: string | null;
     /**
     * Individual\'s last name
     */
-    'lastName'?: string;
+    'lastName'?: string | null;
     /**
     * Name of the company or organization within the company for whom the individual works
     */
-    'organization'?: string;
+    'organization'?: string | null;
     /**
     * Individual\'s job title
     */
-    'title'?: string;
+    'title'?: string | null;
     /**
     * URL pointing to the location of a profile image
     */
-    'image'?: string;
+    'image'?: string | null;
     'location'?: ProfileLocation;
     /**
     * An object containing key/value pairs for any custom properties assigned to this profile
     */
-    'properties'?: object;
+    'properties'?: object | null;
+    'meta'?: ProfileMeta;
+    /**
+    * Individual\'s email address
+    */
+    'email'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "email",
-            "baseName": "email",
-            "type": "string"
-        },
         {
             "name": "phoneNumber",
             "baseName": "phone_number",
@@ -117,10 +116,20 @@ export class OnsiteProfileCreateQueryResourceObjectAttributes {
             "name": "properties",
             "baseName": "properties",
             "type": "object"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ProfileMeta"
+        },
+        {
+            "name": "email",
+            "baseName": "email",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return OnsiteProfileCreateQueryResourceObjectAttributes.attributeTypeMap;
+        return PushProfileUpsertQueryResourceObjectAttributes.attributeTypeMap;
     }
 }
 

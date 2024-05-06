@@ -14,7 +14,6 @@ import { ListMemberResponseObjectResourceAttributes } from './listMemberResponse
 import { PredictiveAnalytics } from './predictiveAnalytics';
 import { ProfileLocation } from './profileLocation';
 import { Subscriptions } from './subscriptions';
-
 export class ListMemberResponseObjectResourceExtendedAttributes extends ListMemberResponseObjectResourceAttributes {
     'subscriptions'?: Subscriptions;
     'predictiveAnalytics'?: PredictiveAnalytics;

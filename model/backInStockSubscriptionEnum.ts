@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum BackInStockSubscriptionEnum {
     BackInStockSubscription = <any> 'back-in-stock-subscription'
 }

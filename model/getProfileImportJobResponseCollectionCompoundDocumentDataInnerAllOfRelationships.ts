@@ -11,12 +11,12 @@
 
 import { RequestFile } from './models';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
+import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors';
 import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
-
 export class GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'lists'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists;
     'profiles'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
-    'importErrors'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'importErrors'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -33,7 +33,7 @@ export class GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOf
         {
             "name": "importErrors",
             "baseName": "import-errors",
-            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
+            "type": "GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsImportErrors"
         }    ];
 
     static getAttributeTypeMap() {

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { MetricAggregateQueryResourceObject } from './metricAggregateQueryResourceObject';
-
 export class MetricAggregateQuery {
     'data': MetricAggregateQueryResourceObject;
 

@@ -10,20 +10,19 @@
  */
 
 import { RequestFile } from './models';
-
 export class TemplateUpdateQueryResourceObjectAttributes {
     /**
     * The name of the template
     */
-    'name'?: string;
+    'name'?: string | null;
     /**
     * The HTML of the template
     */
-    'html'?: string;
+    'html'?: string | null;
     /**
     * The plaintext of the template
     */
-    'text'?: string;
+    'text'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

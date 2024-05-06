@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages } from './getFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages';
 import { PostTagResponseDataRelationshipsFlows } from './postTagResponseDataRelationshipsFlows';
-
 export class PostFlowValuesResponseDTODataRelationships {
     'flows'?: PostTagResponseDataRelationshipsFlows;
     'flowMessages'?: GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages;

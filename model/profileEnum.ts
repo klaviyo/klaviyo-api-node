@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum ProfileEnum {
     Profile = <any> 'profile'
 }

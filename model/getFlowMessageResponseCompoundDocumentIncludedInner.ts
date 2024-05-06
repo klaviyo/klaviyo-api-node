@@ -18,7 +18,6 @@ import { TemplateResponseObjectResourceAttributes } from './templateResponseObje
 
 
 
-
     export type GetFlowMessageResponseCompoundDocumentIncludedInner = FlowActionResponseObjectResource | TemplateResponseObjectResource
 
     export class GetFlowMessageResponseCompoundDocumentIncludedInnerHelper {

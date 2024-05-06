@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetFlowResponseCollectionCompoundDocumentDataInner } from './getFlowResponseCollectionCompoundDocumentDataInner';
 import { GetFlowResponseCollectionCompoundDocumentIncludedInner } from './getFlowResponseCollectionCompoundDocumentIncludedInner';
-
 export class GetFlowResponseCollectionCompoundDocument {
     'data': Array<GetFlowResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;

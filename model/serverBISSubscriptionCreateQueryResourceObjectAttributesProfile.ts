@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileIdentifierDTOResourceObject } from './profileIdentifierDTOResourceObject';
-
 export class ServerBISSubscriptionCreateQueryResourceObjectAttributesProfile {
     'data': ProfileIdentifierDTOResourceObject;
 

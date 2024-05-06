@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CatalogCategoryBulkDeleteJobEnum {
     CatalogCategoryBulkDeleteJob = <any> 'catalog-category-bulk-delete-job'
 }

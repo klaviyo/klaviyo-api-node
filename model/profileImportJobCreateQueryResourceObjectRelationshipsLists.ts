@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { ProfileImportJobCreateQueryResourceObjectRelationshipsListsDataInner } from './profileImportJobCreateQueryResourceObjectRelationshipsListsDataInner';
-
 export class ProfileImportJobCreateQueryResourceObjectRelationshipsLists {
-    'data': Array<ProfileImportJobCreateQueryResourceObjectRelationshipsListsDataInner>;
+    'data'?: Array<ProfileImportJobCreateQueryResourceObjectRelationshipsListsDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

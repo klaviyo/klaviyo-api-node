@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogCategoryEnum } from './catalogCategoryEnum';
-
 export class PostCatalogCategoryDeleteJobResponseDataRelationshipsCategoriesDataInner {
     'type': CatalogCategoryEnum | 'catalog-category';
     /**

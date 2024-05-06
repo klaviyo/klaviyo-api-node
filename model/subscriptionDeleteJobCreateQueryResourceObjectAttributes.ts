@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles } from './subscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles';
-
 export class SubscriptionDeleteJobCreateQueryResourceObjectAttributes {
     'profiles': SubscriptionDeleteJobCreateQueryResourceObjectAttributesProfiles;
 

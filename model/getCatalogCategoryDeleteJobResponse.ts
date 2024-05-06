@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCatalogCategoryDeleteJobResponseCollectionDataInner } from './getCatalogCategoryDeleteJobResponseCollectionDataInner';
-
 export class GetCatalogCategoryDeleteJobResponse {
     'data': GetCatalogCategoryDeleteJobResponseCollectionDataInner;
 

@@ -14,7 +14,6 @@ import { CatalogVariantBulkCreateJobEnum } from './catalogVariantBulkCreateJobEn
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class PostCatalogVariantCreateJobResponseData {
     'type': CatalogVariantBulkCreateJobEnum | 'catalog-variant-bulk-create-job';
     /**

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class ValuesData {
     /**
     * Applied groupings and the values for this object

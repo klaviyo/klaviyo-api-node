@@ -15,7 +15,6 @@ import { CatalogVariantCreateJobResponseObjectResource } from './catalogVariantC
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner extends CatalogVariantCreateJobResponseObjectResource {
     'relationships'?: GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 

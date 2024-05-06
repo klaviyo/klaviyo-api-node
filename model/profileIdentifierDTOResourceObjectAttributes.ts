@@ -10,21 +10,20 @@
  */
 
 import { RequestFile } from './models';
-
 export class ProfileIdentifierDTOResourceObjectAttributes {
     /**
     * Individual\'s email address
     */
-    'email'?: string;
+    'email'?: string | null;
     /**
     * Individual\'s phone number in E.164 format
     */
-    'phoneNumber'?: string;
+    'phoneNumber'?: string | null;
     /**
     * A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
     */
-    'externalId'?: string;
-    'anonymousId'?: string;
+    'externalId'?: string | null;
+    'anonymousId'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class TemplateCloneQueryResourceObjectAttributes {
     /**
     * The name of the template
     */
-    'name'?: string;
+    'name'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

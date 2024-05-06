@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class SMSSendOptionsSubObject {
     /**
     * Use smart sending. Defaults to True
     */
-    'useSmartSending'?: boolean;
+    'useSmartSending'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

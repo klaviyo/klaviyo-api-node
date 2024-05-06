@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagUpdateQueryResourceObject } from './tagUpdateQueryResourceObject';
-
 export class TagUpdateQuery {
     'data': TagUpdateQueryResourceObject;
 

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CatalogItemBulkUpdateJobEnum {
     CatalogItemBulkUpdateJob = <any> 'catalog-item-bulk-update-job'
 }

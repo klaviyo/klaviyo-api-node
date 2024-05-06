@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ListCreateQueryResourceObject } from './listCreateQueryResourceObject';
-
 export class ListCreateQuery {
     'data': ListCreateQueryResourceObject;
 

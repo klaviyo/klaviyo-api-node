@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsFlowAction } from './getFlowMessageResponseCompoundDocumentDataAllOfRelationshipsFlowAction';
 import { GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate } from './getFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate';
-
 export class GetFlowMessageResponseCompoundDocumentDataAllOfRelationships {
     'flowAction'?: GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsFlowAction;
     'template'?: GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate;

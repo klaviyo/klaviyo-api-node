@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CampaignValuesReportEnum } from './campaignValuesReportEnum';
 import { CampaignValuesRequestDTOResourceObjectAttributes } from './campaignValuesRequestDTOResourceObjectAttributes';
-
 export class CampaignValuesRequestDTOResourceObject {
     'type': CampaignValuesReportEnum | 'campaign-values-report';
     'attributes': CampaignValuesRequestDTOResourceObjectAttributes;

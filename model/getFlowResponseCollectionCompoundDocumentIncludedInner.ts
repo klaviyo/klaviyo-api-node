@@ -18,7 +18,6 @@ import { TagResponseObjectResourceAttributes } from './tagResponseObjectResource
 
 
 
-
     export type GetFlowResponseCollectionCompoundDocumentIncludedInner = FlowActionResponseObjectResource | TagResponseObjectResource
 
     export class GetFlowResponseCollectionCompoundDocumentIncludedInnerHelper {

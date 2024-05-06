@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignRecipientEstimationResponseObjectResource } from './campaignRecipientEstimationResponseObjectResource';
-
 export class GetCampaignRecipientEstimationResponse {
     'data': CampaignRecipientEstimationResponseObjectResource;
 

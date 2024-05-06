@@ -15,7 +15,6 @@ import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
 import { ProfileResponseObjectResourceExtended } from './profileResponseObjectResourceExtended';
 import { ProfileResponseObjectResourceExtendedAttributes } from './profileResponseObjectResourceExtendedAttributes';
-
 export class GetProfileResponseCompoundDocumentData extends ProfileResponseObjectResourceExtended {
     'relationships'?: GetProfileResponseCompoundDocumentDataAllOfRelationships;
 

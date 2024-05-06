@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CouponCodeResponseObjectResource } from './couponCodeResponseObjectResource';
 import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner';
-
 export class GetCouponCodeCreateJobResponseCompoundDocument {
     'data': GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<CouponCodeResponseObjectResource>;

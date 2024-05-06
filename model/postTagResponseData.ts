@@ -14,7 +14,6 @@ import { ObjectLinks } from './objectLinks';
 import { PostTagResponseDataRelationships } from './postTagResponseDataRelationships';
 import { TagEnum } from './tagEnum';
 import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
-
 export class PostTagResponseData {
     'type': TagEnum | 'tag';
     /**

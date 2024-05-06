@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class EmailMarketingSuppression {
     /**
     * The reason the profile was suppressed from the list.

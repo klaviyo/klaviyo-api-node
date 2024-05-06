@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileSuppressionDeleteQueryResourceObject } from './profileSuppressionDeleteQueryResourceObject';
-
 /**
 * The profile(s) to remove suppressions for.
 */

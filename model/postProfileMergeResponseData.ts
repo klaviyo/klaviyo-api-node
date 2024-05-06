@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
-
 export class PostProfileMergeResponseData {
     'type': ProfileEnum | 'profile';
     /**

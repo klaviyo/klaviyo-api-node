@@ -15,7 +15,6 @@ import { ObjectLinks } from './objectLinks';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 import { SegmentResponseObjectResource } from './segmentResponseObjectResource';
-
 export class GetSegmentResponseCollectionDataInner extends SegmentResponseObjectResource {
     'relationships'?: GetListResponseCollectionDataInnerAllOfRelationships;
 

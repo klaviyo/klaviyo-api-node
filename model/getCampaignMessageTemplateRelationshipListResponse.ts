@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData } from './getFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData';
-
 export class GetCampaignMessageTemplateRelationshipListResponse {
     'data': GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData;
 

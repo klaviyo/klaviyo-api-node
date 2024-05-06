@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetCampaignMessageResponseCompoundDocumentData } from './getCampaignMessageResponseCompoundDocumentData';
 import { GetCampaignMessageResponseCompoundDocumentIncludedInner } from './getCampaignMessageResponseCompoundDocumentIncludedInner';
-
 export class GetCampaignMessageResponseCollectionCompoundDocument {
     'data': Array<GetCampaignMessageResponseCompoundDocumentData>;
     'links': CollectionLinks;

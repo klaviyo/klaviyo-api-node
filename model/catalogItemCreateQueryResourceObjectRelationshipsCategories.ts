@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { GetCatalogItemCategoryListResponseCollectionDataInner } from './getCatalogItemCategoryListResponseCollectionDataInner';
-
 export class CatalogItemCreateQueryResourceObjectRelationshipsCategories {
-    'data': Array<GetCatalogItemCategoryListResponseCollectionDataInner>;
+    'data'?: Array<GetCatalogItemCategoryListResponseCollectionDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

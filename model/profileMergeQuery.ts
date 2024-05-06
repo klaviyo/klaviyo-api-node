@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileMergeQueryResourceObject } from './profileMergeQueryResourceObject';
-
 export class ProfileMergeQuery {
     'data': ProfileMergeQueryResourceObject;
 

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
-
 export class CatalogItemDeleteQueryResourceObject {
     'type': CatalogItemEnum | 'catalog-item';
     /**

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCatalogCategoryResponseDataRelationshipsItems } from './postCatalogCategoryResponseDataRelationshipsItems';
-
 export class PostCatalogCategoryResponseDataRelationships {
     'items'?: PostCatalogCategoryResponseDataRelationshipsItems;
 

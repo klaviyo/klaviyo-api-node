@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ListEnum } from './listEnum';
-
 export class TagListOpDataInner {
     'type': ListEnum | 'list';
     /**

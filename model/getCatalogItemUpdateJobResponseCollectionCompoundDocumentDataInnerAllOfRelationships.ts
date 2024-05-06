@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems } from './getCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems';
-
 export class GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'items'?: GetCatalogItemUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItems;
 

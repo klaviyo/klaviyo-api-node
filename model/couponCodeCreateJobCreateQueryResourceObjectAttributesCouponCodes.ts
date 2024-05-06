@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CouponCodeCreateQueryResourceObject } from './couponCodeCreateQueryResourceObject';
-
 /**
 * Array of coupon codes to create.
 */

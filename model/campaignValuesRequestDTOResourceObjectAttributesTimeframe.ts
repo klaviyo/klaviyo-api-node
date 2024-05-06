@@ -9,11 +9,7 @@
  * Do not edit the class manually.
  */
 
+import { RequestFile } from './models';
 import { CustomTimeframe } from './customTimeframe';
 import { Timeframe } from './timeframe';
-
-/**
-* The timeframe to query for data within. The max length a timeframe can be is 1 year
-*/
-export type CampaignValuesRequestDTOResourceObjectAttributesTimeframe = CustomTimeframe | Timeframe;
-
+export type CampaignValuesRequestDTOResourceObjectAttributesTimeframe = Timeframe | CustomTimeframe;

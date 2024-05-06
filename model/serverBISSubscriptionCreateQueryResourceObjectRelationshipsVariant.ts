@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData';
-
 export class ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant {
-    'data': ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData;
+    'data'?: ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

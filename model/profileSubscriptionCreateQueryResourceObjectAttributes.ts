@@ -11,16 +11,15 @@
 
 import { RequestFile } from './models';
 import { SubscriptionChannels } from './subscriptionChannels';
-
 export class ProfileSubscriptionCreateQueryResourceObjectAttributes {
     /**
     * The email address to subscribe or to set on the profile if `channels` is specified and the email channel is omitted.
     */
-    'email'?: string;
+    'email'?: string | null;
     /**
     * The phone number to subscribe or to set on the profile if `channels` is specified and the SMS channel is omitted. This must be in E.164 format.
     */
-    'phoneNumber'?: string;
+    'phoneNumber'?: string | null;
     'subscriptions'?: SubscriptionChannels;
 
 

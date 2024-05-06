@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { AccountEnum } from './accountEnum';
 import { AccountResponseObjectResourceAttributes } from './accountResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class AccountResponseObjectResource {
     'type': AccountEnum | 'account';
     'id': string;

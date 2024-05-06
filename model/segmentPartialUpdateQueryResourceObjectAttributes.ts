@@ -10,9 +10,9 @@
  */
 
 import { RequestFile } from './models';
-
 export class SegmentPartialUpdateQueryResourceObjectAttributes {
-    'name'?: string;
+    'name'?: string | null;
+    'isStarred'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -20,6 +20,11 @@ export class SegmentPartialUpdateQueryResourceObjectAttributes {
             "name": "name",
             "baseName": "name",
             "type": "string"
+        },
+        {
+            "name": "isStarred",
+            "baseName": "is_starred",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

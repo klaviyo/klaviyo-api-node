@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum FlowValuesReportEnum {
     FlowValuesReport = <any> 'flow-values-report'
 }

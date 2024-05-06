@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { AttributionResponseObjectResourceRelationshipsFlowMessageData } from './attributionResponseObjectResourceRelationshipsFlowMessageData';
-
 export class AttributionResponseObjectResourceRelationshipsFlowMessage {
-    'data': AttributionResponseObjectResourceRelationshipsFlowMessageData;
+    'data'?: AttributionResponseObjectResourceRelationshipsFlowMessageData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

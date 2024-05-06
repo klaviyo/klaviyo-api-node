@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetProfileResponseData } from './getProfileResponseData';
-
 export class GetProfileResponseCollection {
     'data': Array<GetProfileResponseData>;
     'links': CollectionLinks;

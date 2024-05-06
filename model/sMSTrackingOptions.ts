@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { UtmParamInfo } from './utmParamInfo';
-
 export class SMSTrackingOptions {
     'addUtm': boolean;
     'utmParams': Array<UtmParamInfo>;

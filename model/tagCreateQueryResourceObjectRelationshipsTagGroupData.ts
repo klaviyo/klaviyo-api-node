@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagGroupEnum } from './tagGroupEnum';
-
 export class TagCreateQueryResourceObjectRelationshipsTagGroupData {
     'type': TagGroupEnum | 'tag-group';
     /**

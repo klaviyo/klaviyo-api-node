@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile {
-    'data': GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData;
+    'data'?: GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfileData;
     'links'?: RelationshipLinks;
 
 

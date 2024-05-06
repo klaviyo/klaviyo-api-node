@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostProfileMergeResponseData } from './postProfileMergeResponseData';
-
 export class PostProfileMergeResponse {
     'data': PostProfileMergeResponseData;
 

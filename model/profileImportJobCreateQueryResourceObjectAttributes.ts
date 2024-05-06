@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileImportJobCreateQueryResourceObjectAttributesProfiles } from './profileImportJobCreateQueryResourceObjectAttributesProfiles';
-
 export class ProfileImportJobCreateQueryResourceObjectAttributes {
     'profiles': ProfileImportJobCreateQueryResourceObjectAttributesProfiles;
 

@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantCreateQueryResourceObjectRelationshipsItemData } from './catalogVariantCreateQueryResourceObjectRelationshipsItemData';
-
 export class CatalogVariantCreateQueryResourceObjectRelationshipsItem {
-    'data': CatalogVariantCreateQueryResourceObjectRelationshipsItemData;
+    'data'?: CatalogVariantCreateQueryResourceObjectRelationshipsItemData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

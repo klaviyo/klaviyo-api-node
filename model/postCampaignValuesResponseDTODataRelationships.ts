@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostTagResponseDataRelationshipsCampaigns } from './postTagResponseDataRelationshipsCampaigns';
-
 export class PostCampaignValuesResponseDTODataRelationships {
     'campaigns'?: PostTagResponseDataRelationshipsCampaigns;
 

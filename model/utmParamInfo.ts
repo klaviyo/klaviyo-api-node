@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class UtmParamInfo {
     'name': string;
     'value': string;

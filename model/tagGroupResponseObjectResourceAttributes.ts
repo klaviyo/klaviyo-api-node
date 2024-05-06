@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class TagGroupResponseObjectResourceAttributes {
     /**
     * The Tag Group name

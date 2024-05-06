@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PatchFlowResponseData } from './patchFlowResponseData';
-
 export class PatchFlowResponse {
     'data': PatchFlowResponseData;
 

@@ -10,20 +10,19 @@
  */
 
 import { RequestFile } from './models';
-
 export class CatalogCategoryResponseObjectResourceAttributes {
     /**
     * The ID of the catalog category in an external system.
     */
-    'externalId'?: string;
+    'externalId'?: string | null;
     /**
     * The name of the catalog category.
     */
-    'name'?: string;
+    'name'?: string | null;
     /**
     * Date and time when the catalog category was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'updated'?: Date;
+    'updated'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class FlowUpdateQueryResourceObjectAttributes {
     /**
     * Status you want to update the flow to. [\'draft\', \'manual\', or \'live\']

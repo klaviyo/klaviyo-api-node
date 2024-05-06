@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ImportErrorEnum } from './importErrorEnum';
-
 export class PostProfileImportJobResponseDataRelationshipsImportErrorsDataInner {
     'type': ImportErrorEnum | 'import-error';
     /**

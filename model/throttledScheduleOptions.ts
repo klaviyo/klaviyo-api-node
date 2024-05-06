@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class ThrottledScheduleOptions {
     /**
     * The time to send at

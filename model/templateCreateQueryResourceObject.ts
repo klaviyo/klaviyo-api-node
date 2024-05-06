@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { TemplateCreateQueryResourceObjectAttributes } from './templateCreateQueryResourceObjectAttributes';
 import { TemplateEnum } from './templateEnum';
-
 export class TemplateCreateQueryResourceObject {
     'type': TemplateEnum | 'template';
     'attributes': TemplateCreateQueryResourceObjectAttributes;

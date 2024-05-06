@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagSegmentOpDataInner } from './tagSegmentOpDataInner';
-
 export class TagSegmentOp {
     'data': Array<TagSegmentOpDataInner>;
 

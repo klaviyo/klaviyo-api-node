@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CampaignEnum {
     Campaign = <any> 'campaign'
 }

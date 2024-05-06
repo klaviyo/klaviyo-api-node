@@ -12,26 +12,4 @@
 import { RequestFile } from './models';
 import { EmailSendOptionsSubObject } from './emailSendOptionsSubObject';
 import { SMSSendOptionsSubObject } from './sMSSendOptionsSubObject';
-
-/**
-* Options to use when sending a campaign
-*/
-export class CampaignResponseObjectResourceAttributesSendOptions {
-    /**
-    * Use smart sending. Defaults to True
-    */
-    'useSmartSending'?: boolean;
-
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "useSmartSending",
-            "baseName": "use_smart_sending",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return CampaignResponseObjectResourceAttributesSendOptions.attributeTypeMap;
-    }
-}
-
+export type CampaignResponseObjectResourceAttributesSendOptions = EmailSendOptionsSubObject | SMSSendOptionsSubObject;

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
-
 export class PostTagGroupResponseDataRelationships {
     'tags'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags;
 

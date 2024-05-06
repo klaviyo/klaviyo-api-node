@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagCampaignOpDataInner } from './tagCampaignOpDataInner';
-
 export class TagCampaignOp {
     'data': Array<TagCampaignOpDataInner>;
 

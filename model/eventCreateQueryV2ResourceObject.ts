@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { EventCreateQueryV2ResourceObjectAttributes } from './eventCreateQueryV2ResourceObjectAttributes';
 import { EventEnum } from './eventEnum';
-
 export class EventCreateQueryV2ResourceObject {
     'type': EventEnum | 'event';
     'attributes': EventCreateQueryV2ResourceObjectAttributes;

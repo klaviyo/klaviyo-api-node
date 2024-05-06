@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CouponEnum } from './couponEnum';
-
 export class GetCouponCodeRelationshipCouponResponseData {
     'type': CouponEnum | 'coupon';
     /**

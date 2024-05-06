@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
-
 export class ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner {
     'type': ProfileEnum | 'profile';
     /**

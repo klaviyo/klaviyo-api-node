@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum ProfileSuppressionBulkCreateJobEnum {
     ProfileSuppressionBulkCreateJob = <any> 'profile-suppression-bulk-create-job'
 }

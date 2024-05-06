@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants } from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
-
 export class GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'variants'?: GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants;
 

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ListCreateQueryResourceObjectAttributes } from './listCreateQueryResourceObjectAttributes';
 import { ListEnum } from './listEnum';
-
 export class ListCreateQueryResourceObject {
     'type': ListEnum | 'list';
     'attributes': ListCreateQueryResourceObjectAttributes;

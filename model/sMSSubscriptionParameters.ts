@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { MarketingSubscriptionParameters } from './marketingSubscriptionParameters';
-
 export class SMSSubscriptionParameters {
     'marketing': MarketingSubscriptionParameters;
 

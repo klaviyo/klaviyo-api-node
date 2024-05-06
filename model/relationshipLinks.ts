@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class RelationshipLinks {
     'self': string;
     'related': string;

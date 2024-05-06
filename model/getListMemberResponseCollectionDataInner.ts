@@ -15,7 +15,6 @@ import { ListMemberResponseObjectResourceExtended } from './listMemberResponseOb
 import { ListMemberResponseObjectResourceExtendedAttributes } from './listMemberResponseObjectResourceExtendedAttributes';
 import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
-
 export class GetListMemberResponseCollectionDataInner extends ListMemberResponseObjectResourceExtended {
     'relationships'?: GetProfileResponseDataAllOfRelationships;
 

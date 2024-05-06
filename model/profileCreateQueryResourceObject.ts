@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ProfileCreateQueryResourceObjectAttributes } from './profileCreateQueryResourceObjectAttributes';
 import { ProfileEnum } from './profileEnum';
-
 export class ProfileCreateQueryResourceObject {
     'type': ProfileEnum | 'profile';
     'attributes': ProfileCreateQueryResourceObjectAttributes;

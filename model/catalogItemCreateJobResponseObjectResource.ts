@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CatalogItemBulkCreateJobEnum } from './catalogItemBulkCreateJobEnum';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CatalogItemCreateJobResponseObjectResource {
     'type': CatalogItemBulkCreateJobEnum | 'catalog-item-bulk-create-job';
     /**

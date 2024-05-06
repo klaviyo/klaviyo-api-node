@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetProfileResponseCompoundDocumentData } from './getProfileResponseCompoundDocumentData';
 import { GetProfileResponseCompoundDocumentIncludedInner } from './getProfileResponseCompoundDocumentIncludedInner';
-
 export class GetProfileResponseCompoundDocument {
     'data': GetProfileResponseCompoundDocumentData;
     'included'?: Array<GetProfileResponseCompoundDocumentIncludedInner>;

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CatalogItemEnum {
     CatalogItem = <any> 'catalog-item'
 }

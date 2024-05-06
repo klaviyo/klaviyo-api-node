@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemCreateJobCreateQueryResourceObject } from './catalogItemCreateJobCreateQueryResourceObject';
-
 export class CatalogItemCreateJobCreateQuery {
     'data': CatalogItemCreateJobCreateQueryResourceObject;
 

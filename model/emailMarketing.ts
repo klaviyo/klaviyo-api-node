@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { EmailMarketingListSuppression } from './emailMarketingListSuppression';
 import { EmailMarketingSuppression } from './emailMarketingSuppression';
-
 export class EmailMarketing {
     /**
     * Whether or not this profile has implicit consent to receive email marketing. True if it does profile does not have any global suppressions.
@@ -25,35 +24,35 @@ export class EmailMarketing {
     /**
     * The timestamp when consent was recorded or updated for email marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'consentTimestamp'?: Date;
+    'consentTimestamp'?: Date | null;
     /**
     * The timestamp when a field on the email marketing object was last modified.
     */
-    'lastUpdated'?: Date;
+    'lastUpdated'?: Date | null;
     /**
     * The method by which the profile was subscribed to email marketing.
     */
-    'method'?: string;
+    'method'?: string | null;
     /**
     * Additional details about the method by which the profile was subscribed to email marketing. This may be empty if no details were provided.
     */
-    'methodDetail'?: string = '';
+    'methodDetail'?: string | null = '';
     /**
     * Additional detail provided by the caller when the profile was subscribed. This may be empty if no details were provided.
     */
-    'customMethodDetail'?: string;
+    'customMethodDetail'?: string | null;
     /**
     * Whether the profile was subscribed to email marketing using a double opt-in.
     */
-    'doubleOptin'?: boolean;
+    'doubleOptin'?: boolean | null;
     /**
     * The global email marketing suppression for this profile.
     */
-    'suppression'?: Array<EmailMarketingSuppression>;
+    'suppression'?: Array<EmailMarketingSuppression> | null;
     /**
     * The list suppressions for this profile.
     */
-    'listSuppressions'?: Array<EmailMarketingListSuppression>;
+    'listSuppressions'?: Array<EmailMarketingListSuppression> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

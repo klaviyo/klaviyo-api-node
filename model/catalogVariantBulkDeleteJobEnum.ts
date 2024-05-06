@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CatalogVariantBulkDeleteJobEnum {
     CatalogVariantBulkDeleteJob = <any> 'catalog-variant-bulk-delete-job'
 }

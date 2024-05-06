@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { MetricResponseObjectResource } from './metricResponseObjectResource';
-
 export class GetMetricResponseCollection {
     'data': Array<MetricResponseObjectResource>;
     'links': CollectionLinks;

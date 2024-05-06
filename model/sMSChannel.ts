@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SMSMarketing } from './sMSMarketing';
-
 export class SMSChannel {
     'marketing'?: SMSMarketing;
 

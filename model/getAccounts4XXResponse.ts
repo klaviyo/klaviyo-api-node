@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetAccounts4XXResponseErrorsInner } from './getAccounts4XXResponseErrorsInner';
-
 export class GetAccounts4XXResponse {
     'errors': Array<GetAccounts4XXResponseErrorsInner>;
 

@@ -10,24 +10,23 @@
  */
 
 import { RequestFile } from './models';
-
 export class EventResponseObjectResourceAttributes {
     /**
     * Event timestamp in seconds
     */
-    'timestamp'?: number;
+    'timestamp'?: number | null;
     /**
     * Event properties, can include identifiers and extra properties
     */
-    'eventProperties'?: object;
+    'eventProperties'?: object | null;
     /**
     * Event timestamp in ISO8601 format (YYYY-MM-DDTHH:MM:SS+hh:mm)
     */
-    'datetime'?: Date;
+    'datetime'?: Date | null;
     /**
     * A unique identifier for the event, this can be used as a cursor in pagination
     */
-    'uuid'?: string;
+    'uuid'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

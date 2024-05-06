@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TemplateRenderQueryResourceObject } from './templateRenderQueryResourceObject';
-
 export class TemplateRenderQuery {
     'data': TemplateRenderQueryResourceObject;
 

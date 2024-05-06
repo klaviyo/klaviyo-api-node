@@ -10,16 +10,15 @@
  */
 
 import { RequestFile } from './models';
-
 export class ImagePartialUpdateQueryResourceObjectAttributes {
     /**
     * A name for the image.
     */
-    'name'?: string;
+    'name'?: string | null;
     /**
     * If true, this image is not shown in the asset library.
     */
-    'hidden'?: boolean;
+    'hidden'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

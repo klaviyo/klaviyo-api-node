@@ -10,56 +10,55 @@
  */
 
 import { RequestFile } from './models';
-
 export class DeviceMetadata {
     /**
     * Relatively stable ID for the device. Will update on app uninstall and reinstall
     */
-    'deviceId'?: string;
+    'deviceId'?: string | null;
     /**
     * The name of the SDK used to create the push token.
     */
-    'klaviyoSdk'?: DeviceMetadata.KlaviyoSdkEnum | 'android' | 'swift';
+    'klaviyoSdk'?: DeviceMetadata.KlaviyoSdkEnum | 'android' | 'swift' | null;
     /**
     * The version of the SDK used to create the push token
     */
-    'sdkVersion'?: string;
+    'sdkVersion'?: string | null;
     /**
     * The model of the device
     */
-    'deviceModel'?: string;
+    'deviceModel'?: string | null;
     /**
     * The name of the operating system on the device.
     */
-    'osName'?: DeviceMetadata.OsNameEnum | 'android' | 'ios' | 'ipados' | 'macos' | 'tvos';
+    'osName'?: DeviceMetadata.OsNameEnum | 'android' | 'ios' | 'ipados' | 'macos' | 'tvos' | null;
     /**
     * The version of the operating system on the device
     */
-    'osVersion'?: string;
+    'osVersion'?: string | null;
     /**
     * The manufacturer of the device
     */
-    'manufacturer'?: string;
+    'manufacturer'?: string | null;
     /**
     * The name of the app that created the push token
     */
-    'appName'?: string;
+    'appName'?: string | null;
     /**
     * The version of the app that created the push token
     */
-    'appVersion'?: string;
+    'appVersion'?: string | null;
     /**
     * The build of the app that created the push token
     */
-    'appBuild'?: string;
+    'appBuild'?: string | null;
     /**
     * The ID of the app that created the push token
     */
-    'appId'?: string;
+    'appId'?: string | null;
     /**
     * The environment in which the push token was created
     */
-    'environment'?: DeviceMetadata.EnvironmentEnum | 'debug' | 'release';
+    'environment'?: DeviceMetadata.EnvironmentEnum | 'debug' | 'release' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

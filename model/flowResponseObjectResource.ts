@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { FlowEnum } from './flowEnum';
 import { FlowResponseObjectResourceAttributes } from './flowResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class FlowResponseObjectResource {
     'type': FlowEnum | 'flow';
     'id': string;

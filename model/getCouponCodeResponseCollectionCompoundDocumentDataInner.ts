@@ -15,7 +15,6 @@ import { CouponCodeResponseObjectResource } from './couponCodeResponseObjectReso
 import { CouponCodeResponseObjectResourceAttributes } from './couponCodeResponseObjectResourceAttributes';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCouponCodeResponseCollectionCompoundDocumentDataInner extends CouponCodeResponseObjectResource {
     'relationships'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 

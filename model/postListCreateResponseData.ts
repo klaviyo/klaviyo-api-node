@@ -14,7 +14,6 @@ import { ListEnum } from './listEnum';
 import { ListListResponseObjectResourceAttributes } from './listListResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
 import { PostListCreateResponseDataRelationships } from './postListCreateResponseDataRelationships';
-
 export class PostListCreateResponseData {
     'type': ListEnum | 'list';
     /**

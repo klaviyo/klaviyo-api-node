@@ -10,20 +10,19 @@
  */
 
 import { RequestFile } from './models';
-
 export class ProfileMetaPatchProperties {
     /**
     * Append a simple value or values to this property array
     */
-    'append'?: object;
+    'append'?: object | null;
     /**
     * Remove a simple value or values from this property array
     */
-    'unappend'?: object;
+    'unappend'?: object | null;
     /**
     * Remove a key or keys (and their values) completely from properties
     */
-    'unset'?: Array<string>;
+    'unset'?: Array<string> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

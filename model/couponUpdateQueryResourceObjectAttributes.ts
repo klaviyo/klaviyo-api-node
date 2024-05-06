@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class CouponUpdateQueryResourceObjectAttributes {
     /**
     * A description of the coupon.
     */
-    'description'?: string;
+    'description'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

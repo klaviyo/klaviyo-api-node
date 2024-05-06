@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class SMSContentSubObjectCreate {
     /**
     * The message body
     */
-    'body'?: string;
+    'body'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

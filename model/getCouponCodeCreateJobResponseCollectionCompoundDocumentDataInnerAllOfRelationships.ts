@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes';
-
 export class GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'couponCodes'?: GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponCodes;
 

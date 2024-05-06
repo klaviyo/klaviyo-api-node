@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CatalogVariantCreateQueryResourceObjectAttributes {
     /**
     * The ID of the catalog item variant in an external system.
@@ -19,11 +18,11 @@ export class CatalogVariantCreateQueryResourceObjectAttributes {
     /**
     * The type of catalog. Currently only \"$default\" is supported.
     */
-    'catalogType'?: string = '$default';
+    'catalogType'?: string | null = '$default';
     /**
     * The integration type. Currently only \"$custom\" is supported.
     */
-    'integrationType'?: CatalogVariantCreateQueryResourceObjectAttributes.IntegrationTypeEnum | '$custom' = CatalogVariantCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
+    'integrationType'?: CatalogVariantCreateQueryResourceObjectAttributes.IntegrationTypeEnum | '$custom' | null = CatalogVariantCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
     /**
     * The title of the catalog item variant.
     */
@@ -39,7 +38,7 @@ export class CatalogVariantCreateQueryResourceObjectAttributes {
     /**
     * This field controls the visibility of this catalog item variant in product feeds/blocks. This field supports the following values: `1`: a product will not appear in dynamic product recommendation feeds and blocks if it is out of stock. `0` or `2`: a product can appear in dynamic product recommendation feeds and blocks regardless of inventory quantity.
     */
-    'inventoryPolicy'?: CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum | 0 | 1 | 2 = CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum.NUMBER_0;
+    'inventoryPolicy'?: CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum | 0 | 1 | 2 | null = CatalogVariantCreateQueryResourceObjectAttributes.InventoryPolicyEnum.NUMBER_0;
     /**
     * The quantity of the catalog item variant currently in stock.
     */
@@ -55,23 +54,23 @@ export class CatalogVariantCreateQueryResourceObjectAttributes {
     /**
     * URL pointing to the location of a full image of the catalog item variant.
     */
-    'imageFullUrl'?: string;
+    'imageFullUrl'?: string | null;
     /**
     * URL pointing to the location of an image thumbnail of the catalog item variant.
     */
-    'imageThumbnailUrl'?: string;
+    'imageThumbnailUrl'?: string | null;
     /**
     * List of URLs pointing to the locations of images of the catalog item variant.
     */
-    'images'?: Array<string>;
+    'images'?: Array<string> | null;
     /**
     * Flat JSON blob to provide custom metadata about the catalog item variant. May not exceed 100kb.
     */
-    'customMetadata'?: object;
+    'customMetadata'?: object | null;
     /**
     * Boolean value indicating whether the catalog item variant is published.
     */
-    'published'?: boolean = true;
+    'published'?: boolean | null = true;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

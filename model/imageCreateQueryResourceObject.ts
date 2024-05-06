@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ImageCreateQueryResourceObjectAttributes } from './imageCreateQueryResourceObjectAttributes';
 import { ImageEnum } from './imageEnum';
-
 export class ImageCreateQueryResourceObject {
     'type': ImageEnum | 'image';
     'attributes': ImageCreateQueryResourceObjectAttributes;

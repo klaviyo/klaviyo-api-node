@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists';
 import { PostProfileImportJobResponseDataRelationshipsImportErrors } from './postProfileImportJobResponseDataRelationshipsImportErrors';
 import { PostProfileImportJobResponseDataRelationshipsProfiles } from './postProfileImportJobResponseDataRelationshipsProfiles';
-
 export class PostProfileImportJobResponseDataRelationships {
     'lists'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists;
     'profiles'?: PostProfileImportJobResponseDataRelationshipsProfiles;

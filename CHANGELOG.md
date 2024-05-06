@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [9.0.0] - revision 2024-02-15
+
+### Changed
+
+- OAuth support has been moved to GA, view the [building a new integration guide](https://developers.klaviyo.com/en/docs/build_your_integration) for more information.
+
 ## [8.0.0] - revision 2024-02-15
 
 ### Added: 

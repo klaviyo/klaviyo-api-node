@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantDeleteQueryResourceObject } from './catalogVariantDeleteQueryResourceObject';
-
 /**
 * Array of catalog variants to delete.
 */

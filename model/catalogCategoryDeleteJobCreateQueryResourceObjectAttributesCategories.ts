@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogCategoryDeleteQueryResourceObject } from './catalogCategoryDeleteQueryResourceObject';
-
 /**
 * Array of catalog categories to delete.
 */

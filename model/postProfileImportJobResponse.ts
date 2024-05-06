@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostProfileImportJobResponseData } from './postProfileImportJobResponseData';
-
 export class PostProfileImportJobResponse {
     'data': PostProfileImportJobResponseData;
 

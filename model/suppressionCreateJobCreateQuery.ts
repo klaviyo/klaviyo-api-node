@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SuppressionCreateJobCreateQueryResourceObject } from './suppressionCreateJobCreateQueryResourceObject';
-
 export class SuppressionCreateJobCreateQuery {
     'data': SuppressionCreateJobCreateQueryResourceObject;
 

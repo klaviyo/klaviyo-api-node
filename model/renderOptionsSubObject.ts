@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class RenderOptionsSubObject {
-    'shortenLinks'?: boolean = true;
-    'addOrgPrefix'?: boolean = true;
-    'addInfoLink'?: boolean = true;
-    'addOptOutLanguage'?: boolean = false;
+    'shortenLinks'?: boolean | null = true;
+    'addOrgPrefix'?: boolean | null = true;
+    'addInfoLink'?: boolean | null = true;
+    'addOptOutLanguage'?: boolean | null = false;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

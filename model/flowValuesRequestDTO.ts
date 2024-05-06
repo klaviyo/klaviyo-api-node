@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { FlowValuesRequestDTOResourceObject } from './flowValuesRequestDTOResourceObject';
-
 export class FlowValuesRequestDTO {
     'data': FlowValuesRequestDTOResourceObject;
 

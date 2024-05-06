@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetCatalogCategoryResponseCollectionDataInner } from './getCatalogCategoryResponseCollectionDataInner';
-
 export class GetCatalogCategoryResponseCollection {
     'data': Array<GetCatalogCategoryResponseCollectionDataInner>;
     'links': CollectionLinks;

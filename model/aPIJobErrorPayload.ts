@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ErrorSource } from './errorSource';
-
 export class APIJobErrorPayload {
     /**
     * Unique identifier for the error.

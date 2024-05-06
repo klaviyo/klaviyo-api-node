@@ -18,7 +18,6 @@ import { TagResponseObjectResourceAttributes } from './tagResponseObjectResource
 
 
 
-
     export type GetCampaignResponseCollectionCompoundDocumentIncludedInner = CampaignMessageResponseObjectResource | TagResponseObjectResource
 
     export class GetCampaignResponseCollectionCompoundDocumentIncludedInnerHelper {

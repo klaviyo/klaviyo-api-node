@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CouponCodeCreateQueryResourceObjectAttributes {
     /**
     * This is a unique string that will be or is assigned to each customer/profile and is associated with a coupon.
@@ -19,7 +18,7 @@ export class CouponCodeCreateQueryResourceObjectAttributes {
     /**
     * The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
     */
-    'expiresAt'?: Date;
+    'expiresAt'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

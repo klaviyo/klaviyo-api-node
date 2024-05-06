@@ -15,7 +15,6 @@ import { FlowResponseObjectResource } from './flowResponseObjectResource';
 import { FlowResponseObjectResourceAttributes } from './flowResponseObjectResourceAttributes';
 import { GetFlowResponseDataAllOfRelationships } from './getFlowResponseDataAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetFlowResponseData extends FlowResponseObjectResource {
     'relationships'?: GetFlowResponseDataAllOfRelationships;
 

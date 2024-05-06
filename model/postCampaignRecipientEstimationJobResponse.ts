@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCampaignRecipientEstimationJobResponseData } from './postCampaignRecipientEstimationJobResponseData';
-
 export class PostCampaignRecipientEstimationJobResponse {
     'data': PostCampaignRecipientEstimationJobResponseData;
 

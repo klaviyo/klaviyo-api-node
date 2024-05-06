@@ -15,7 +15,6 @@ import { EventResponseObjectResource } from './eventResponseObjectResource';
 import { EventResponseObjectResourceAttributes } from './eventResponseObjectResourceAttributes';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetEventResponseCollectionCompoundDocumentDataInner extends EventResponseObjectResource {
     'relationships'?: GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 

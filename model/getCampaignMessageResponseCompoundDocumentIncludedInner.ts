@@ -18,7 +18,6 @@ import { TemplateResponseObjectResourceAttributes } from './templateResponseObje
 
 
 
-
     export type GetCampaignMessageResponseCompoundDocumentIncludedInner = CampaignResponseObjectResource | TemplateResponseObjectResource
 
     export class GetCampaignMessageResponseCompoundDocumentIncludedInnerHelper {

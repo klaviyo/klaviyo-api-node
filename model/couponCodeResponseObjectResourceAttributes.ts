@@ -10,20 +10,19 @@
  */
 
 import { RequestFile } from './models';
-
 export class CouponCodeResponseObjectResourceAttributes {
     /**
     * This is a unique string that will be or is assigned to each customer/profile and is associated with a coupon.
     */
-    'uniqueCode'?: string;
+    'uniqueCode'?: string | null;
     /**
     * The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
     */
-    'expiresAt'?: Date;
+    'expiresAt'?: Date | null;
     /**
     * The current status of the coupon code.
     */
-    'status'?: CouponCodeResponseObjectResourceAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE';
+    'status'?: CouponCodeResponseObjectResourceAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

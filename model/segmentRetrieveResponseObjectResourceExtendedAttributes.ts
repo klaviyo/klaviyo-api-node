@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { SegmentRetrieveResponseObjectResourceAttributes } from './segmentRetrieveResponseObjectResourceAttributes';
-
 export class SegmentRetrieveResponseObjectResourceExtendedAttributes extends SegmentRetrieveResponseObjectResourceAttributes {
-    'profileCount'?: number;
+    'profileCount'?: number | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

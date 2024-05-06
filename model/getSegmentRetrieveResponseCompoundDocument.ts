@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetSegmentRetrieveResponseCompoundDocumentData } from './getSegmentRetrieveResponseCompoundDocumentData';
 import { TagResponseObjectResource } from './tagResponseObjectResource';
-
 export class GetSegmentRetrieveResponseCompoundDocument {
     'data': GetSegmentRetrieveResponseCompoundDocumentData;
     'included'?: Array<TagResponseObjectResource>;

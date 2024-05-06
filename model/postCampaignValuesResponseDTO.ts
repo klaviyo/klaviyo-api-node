@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCampaignValuesResponseDTOData } from './postCampaignValuesResponseDTOData';
-
 export class PostCampaignValuesResponseDTO {
     'data': PostCampaignValuesResponseDTOData;
 

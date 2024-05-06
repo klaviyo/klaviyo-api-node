@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories } from './getCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories';
-
 export class GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'categories'?: GetCatalogCategoryCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCategories;
 

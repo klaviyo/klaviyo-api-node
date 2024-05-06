@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { SubscriptionCreateJobCreateQueryResourceObjectRelationshipsListData } from './subscriptionCreateJobCreateQueryResourceObjectRelationshipsListData';
-
 export class SubscriptionCreateJobCreateQueryResourceObjectRelationshipsList {
-    'data': SubscriptionCreateJobCreateQueryResourceObjectRelationshipsListData;
+    'data'?: SubscriptionCreateJobCreateQueryResourceObjectRelationshipsListData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

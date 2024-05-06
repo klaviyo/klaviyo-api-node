@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetFlowActionResponseCollectionDataInner } from './getFlowActionResponseCollectionDataInner';
-
 export class GetFlowActionResponse {
     'data': GetFlowActionResponseCollectionDataInner;
 

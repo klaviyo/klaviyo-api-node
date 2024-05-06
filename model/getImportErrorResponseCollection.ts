@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { ImportErrorResponseObjectResource } from './importErrorResponseObjectResource';
-
 export class GetImportErrorResponseCollection {
     'data': Array<ImportErrorResponseObjectResource>;
     'links': CollectionLinks;

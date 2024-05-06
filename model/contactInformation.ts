@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { StreetAddress } from './streetAddress';
-
 export class ContactInformation {
     /**
     * This field is used to auto-populate the default sender name on flow and campaign emails.

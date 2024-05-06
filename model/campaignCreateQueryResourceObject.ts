@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CampaignCreateQueryResourceObjectAttributes } from './campaignCreateQueryResourceObjectAttributes';
 import { CampaignEnum } from './campaignEnum';
-
 export class CampaignCreateQueryResourceObject {
     'type': CampaignEnum | 'campaign';
     'attributes': CampaignCreateQueryResourceObjectAttributes;

@@ -10,20 +10,22 @@
  */
 
 import { RequestFile } from './models';
-
 export class SegmentListResponseObjectResourceAttributes {
     /**
     * A helpful name to label the segment
     */
-    'name'?: string;
+    'name'?: string | null;
     /**
     * Date and time when the segment was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'created'?: Date;
+    'created'?: Date | null;
     /**
     * Date and time when the segment was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'updated'?: Date;
+    'updated'?: Date | null;
+    'isActive': boolean;
+    'isProcessing': boolean;
+    'isStarred': boolean;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -41,6 +43,21 @@ export class SegmentListResponseObjectResourceAttributes {
             "name": "updated",
             "baseName": "updated",
             "type": "Date"
+        },
+        {
+            "name": "isActive",
+            "baseName": "is_active",
+            "type": "boolean"
+        },
+        {
+            "name": "isProcessing",
+            "baseName": "is_processing",
+            "type": "boolean"
+        },
+        {
+            "name": "isStarred",
+            "baseName": "is_starred",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

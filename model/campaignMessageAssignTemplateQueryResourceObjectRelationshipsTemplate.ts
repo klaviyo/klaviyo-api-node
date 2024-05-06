@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData } from './campaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData';
-
 export class CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplate {
-    'data': CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData;
+    'data'?: CampaignMessageAssignTemplateQueryResourceObjectRelationshipsTemplateData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

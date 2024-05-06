@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignValuesRequestDTOResourceObject } from './campaignValuesRequestDTOResourceObject';
-
 export class CampaignValuesRequestDTO {
     'data': CampaignValuesRequestDTOResourceObject;
 

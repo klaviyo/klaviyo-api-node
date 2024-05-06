@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class ErrorSource {
     /**
     * A pointer to the source of the error in the request payload.
     */
-    'pointer': string = '/data';
+    'pointer'?: string = '/data';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

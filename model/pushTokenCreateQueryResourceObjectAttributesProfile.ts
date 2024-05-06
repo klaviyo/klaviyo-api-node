@@ -10,20 +10,19 @@
  */
 
 import { RequestFile } from './models';
-import { ProfileUpsertQueryResourceObject } from './profileUpsertQueryResourceObject';
-
+import { PushProfileUpsertQueryResourceObject } from './pushProfileUpsertQueryResourceObject';
 /**
 * The profile associated with the push token to create/update
 */
 export class PushTokenCreateQueryResourceObjectAttributesProfile {
-    'data': ProfileUpsertQueryResourceObject;
+    'data': PushProfileUpsertQueryResourceObject;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "ProfileUpsertQueryResourceObject"
+            "type": "PushProfileUpsertQueryResourceObject"
         }    ];
 
     static getAttributeTypeMap() {

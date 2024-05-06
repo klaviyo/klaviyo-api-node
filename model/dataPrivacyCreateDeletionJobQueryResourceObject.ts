@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { DataPrivacyCreateDeletionJobQueryResourceObjectAttributes } from './dataPrivacyCreateDeletionJobQueryResourceObjectAttributes';
 import { DataPrivacyDeletionJobEnum } from './dataPrivacyDeletionJobEnum';
-
 export class DataPrivacyCreateDeletionJobQueryResourceObject {
     'type': DataPrivacyDeletionJobEnum | 'data-privacy-deletion-job';
     'attributes': DataPrivacyCreateDeletionJobQueryResourceObjectAttributes;

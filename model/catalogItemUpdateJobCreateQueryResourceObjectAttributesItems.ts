@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemUpdateQueryResourceObject } from './catalogItemUpdateQueryResourceObject';
-
 /**
 * Array of catalog items to update.
 */

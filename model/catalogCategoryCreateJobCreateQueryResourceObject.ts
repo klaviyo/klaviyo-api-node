@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CatalogCategoryBulkCreateJobEnum } from './catalogCategoryBulkCreateJobEnum';
 import { CatalogCategoryCreateJobCreateQueryResourceObjectAttributes } from './catalogCategoryCreateJobCreateQueryResourceObjectAttributes';
-
 export class CatalogCategoryCreateJobCreateQueryResourceObject {
     'type': CatalogCategoryBulkCreateJobEnum | 'catalog-category-bulk-create-job';
     'attributes': CatalogCategoryCreateJobCreateQueryResourceObjectAttributes;

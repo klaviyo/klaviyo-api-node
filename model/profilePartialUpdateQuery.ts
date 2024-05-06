@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfilePartialUpdateQueryResourceObject } from './profilePartialUpdateQueryResourceObject';
-
 export class ProfilePartialUpdateQuery {
     'data': ProfilePartialUpdateQueryResourceObject;
 

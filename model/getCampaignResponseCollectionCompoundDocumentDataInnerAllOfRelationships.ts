@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages } from './getCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
-
 export class GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'campaignMessages'?: GetCampaignResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCampaignMessages;
     'tags'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags;

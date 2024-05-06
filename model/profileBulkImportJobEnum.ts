@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum ProfileBulkImportJobEnum {
     ProfileBulkImportJob = <any> 'profile-bulk-import-job'
 }

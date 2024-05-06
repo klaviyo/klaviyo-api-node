@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CouponCodeBulkCreateJobEnum } from './couponCodeBulkCreateJobEnum';
 import { CouponCodeCreateJobCreateQueryResourceObjectAttributes } from './couponCodeCreateJobCreateQueryResourceObjectAttributes';
-
 export class CouponCodeCreateJobCreateQueryResourceObject {
     'type': CouponCodeBulkCreateJobEnum | 'coupon-code-bulk-create-job';
     'attributes': CouponCodeCreateJobCreateQueryResourceObjectAttributes;

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { TagGroupCreateQueryResourceObjectAttributes } from './tagGroupCreateQueryResourceObjectAttributes';
 import { TagGroupEnum } from './tagGroupEnum';
-
 export class TagGroupCreateQueryResourceObject {
     'type': TagGroupEnum | 'tag-group';
     'attributes': TagGroupCreateQueryResourceObjectAttributes;

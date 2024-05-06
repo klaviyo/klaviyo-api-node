@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignSendJobEnum } from './campaignSendJobEnum';
-
 export class CampaignSendJobCreateQueryResourceObject {
     'type': CampaignSendJobEnum | 'campaign-send-job';
     /**

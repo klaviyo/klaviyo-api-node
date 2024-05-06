@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCatalogVariantResponseCollectionDataInner } from './getCatalogVariantResponseCollectionDataInner';
-
 export class GetCatalogVariantResponse {
     'data': GetCatalogVariantResponseCollectionDataInner;
 

@@ -14,7 +14,6 @@ import { PredictiveAnalytics } from './predictiveAnalytics';
 import { ProfileLocation } from './profileLocation';
 import { SegmentMemberResponseObjectResourceAttributes } from './segmentMemberResponseObjectResourceAttributes';
 import { Subscriptions } from './subscriptions';
-
 export class SegmentMemberResponseObjectResourceExtendedAttributes extends SegmentMemberResponseObjectResourceAttributes {
     'subscriptions'?: Subscriptions;
     'predictiveAnalytics'?: PredictiveAnalytics;

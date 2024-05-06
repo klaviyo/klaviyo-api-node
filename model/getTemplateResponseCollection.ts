@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { TemplateResponseObjectResource } from './templateResponseObjectResource';
-
 export class GetTemplateResponseCollection {
     'data': Array<TemplateResponseObjectResource>;
     'links': CollectionLinks;

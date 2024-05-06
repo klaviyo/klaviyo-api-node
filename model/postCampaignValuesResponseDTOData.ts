@@ -14,7 +14,6 @@ import { CampaignValuesReportEnum } from './campaignValuesReportEnum';
 import { ObjectLinks } from './objectLinks';
 import { PostCampaignValuesResponseDTODataAttributes } from './postCampaignValuesResponseDTODataAttributes';
 import { PostCampaignValuesResponseDTODataRelationships } from './postCampaignValuesResponseDTODataRelationships';
-
 export class PostCampaignValuesResponseDTOData {
     'type': CampaignValuesReportEnum | 'campaign-values-report';
     'attributes': PostCampaignValuesResponseDTODataAttributes;

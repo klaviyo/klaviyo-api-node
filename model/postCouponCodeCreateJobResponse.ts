@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCouponCodeCreateJobResponseData } from './postCouponCodeCreateJobResponseData';
-
 export class PostCouponCodeCreateJobResponse {
     'data': PostCouponCodeCreateJobResponseData;
 

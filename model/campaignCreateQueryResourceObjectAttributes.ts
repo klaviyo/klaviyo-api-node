@@ -12,10 +12,9 @@
 import { RequestFile } from './models';
 import { AudiencesSubObject } from './audiencesSubObject';
 import { CampaignCreateQueryResourceObjectAttributesCampaignMessages } from './campaignCreateQueryResourceObjectAttributesCampaignMessages';
-import { CampaignResponseObjectResourceAttributesSendOptions } from './campaignResponseObjectResourceAttributesSendOptions';
-import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
+import { CampaignCreateQueryResourceObjectAttributesSendOptions } from './campaignCreateQueryResourceObjectAttributesSendOptions';
+import { CampaignCreateQueryResourceObjectAttributesTrackingOptions } from './campaignCreateQueryResourceObjectAttributesTrackingOptions';
 import { SendStrategySubObject } from './sendStrategySubObject';
-
 export class CampaignCreateQueryResourceObjectAttributes {
     /**
     * The campaign name
@@ -23,8 +22,8 @@ export class CampaignCreateQueryResourceObjectAttributes {
     'name': string;
     'audiences': AudiencesSubObject;
     'sendStrategy'?: SendStrategySubObject;
-    'sendOptions'?: CampaignResponseObjectResourceAttributesSendOptions;
-    'trackingOptions'?: CampaignResponseObjectResourceAttributesTrackingOptions;
+    'sendOptions'?: CampaignCreateQueryResourceObjectAttributesSendOptions | null;
+    'trackingOptions'?: CampaignCreateQueryResourceObjectAttributesTrackingOptions | null;
     'campaignMessages': CampaignCreateQueryResourceObjectAttributesCampaignMessages;
 
 
@@ -47,12 +46,12 @@ export class CampaignCreateQueryResourceObjectAttributes {
         {
             "name": "sendOptions",
             "baseName": "send_options",
-            "type": "CampaignResponseObjectResourceAttributesSendOptions"
+            "type": "CampaignCreateQueryResourceObjectAttributesSendOptions"
         },
         {
             "name": "trackingOptions",
             "baseName": "tracking_options",
-            "type": "CampaignResponseObjectResourceAttributesTrackingOptions"
+            "type": "CampaignCreateQueryResourceObjectAttributesTrackingOptions"
         },
         {
             "name": "campaignMessages",

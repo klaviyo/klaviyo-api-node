@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class MetricCreateQueryResourceObjectAttributes {
     /**
     * Name of the event. Must be less than 128 characters.
@@ -19,7 +18,7 @@ export class MetricCreateQueryResourceObjectAttributes {
     /**
     * This is for advanced usage. For api requests, this should use the default, which is set to api.
     */
-    'service'?: string;
+    'service'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

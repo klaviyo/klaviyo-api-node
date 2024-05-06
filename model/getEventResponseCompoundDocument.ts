@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetEventResponseCollectionCompoundDocumentDataInner } from './getEventResponseCollectionCompoundDocumentDataInner';
 import { GetEventResponseCollectionCompoundDocumentIncludedInner } from './getEventResponseCollectionCompoundDocumentIncludedInner';
-
 export class GetEventResponseCompoundDocument {
     'data': GetEventResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<GetEventResponseCollectionCompoundDocumentIncludedInner>;

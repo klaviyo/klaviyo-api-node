@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCouponRelationshipCouponCodesListResponseCollectionDataInner } from './getCouponRelationshipCouponCodesListResponseCollectionDataInner';
-
 export class GetCouponRelationshipCouponCodesListResponseCollection {
     'data': Array<GetCouponRelationshipCouponCodesListResponseCollectionDataInner>;
 

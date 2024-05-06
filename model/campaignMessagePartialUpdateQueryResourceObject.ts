@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CampaignMessageEnum } from './campaignMessageEnum';
 import { CampaignMessagePartialUpdateQueryResourceObjectAttributes } from './campaignMessagePartialUpdateQueryResourceObjectAttributes';
-
 export class CampaignMessagePartialUpdateQueryResourceObject {
     'type': CampaignMessageEnum | 'campaign-message';
     /**

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
-
 export class GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'flowActions'?: GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActions;
     'tags'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags;

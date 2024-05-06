@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
 import { PostListCreateResponseDataRelationshipsProfiles } from './postListCreateResponseDataRelationshipsProfiles';
-
 export class PostListCreateResponseDataRelationships {
     'profiles'?: PostListCreateResponseDataRelationshipsProfiles;
     'tags'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags;

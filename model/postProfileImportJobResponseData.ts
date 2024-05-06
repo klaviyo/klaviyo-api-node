@@ -14,7 +14,6 @@ import { ObjectLinks } from './objectLinks';
 import { PostProfileImportJobResponseDataRelationships } from './postProfileImportJobResponseDataRelationships';
 import { ProfileBulkImportJobEnum } from './profileBulkImportJobEnum';
 import { ProfileImportJobResponseObjectResourceAttributes } from './profileImportJobResponseObjectResourceAttributes';
-
 export class PostProfileImportJobResponseData {
     'type': ProfileBulkImportJobEnum | 'profile-bulk-import-job';
     /**

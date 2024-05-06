@@ -14,7 +14,6 @@ import { CatalogCategoryEnum } from './catalogCategoryEnum';
 import { CatalogCategoryResponseObjectResourceAttributes } from './catalogCategoryResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
 import { PostCatalogCategoryResponseDataRelationships } from './postCatalogCategoryResponseDataRelationships';
-
 export class PostCatalogCategoryResponseData {
     'type': CatalogCategoryEnum | 'catalog-category';
     /**

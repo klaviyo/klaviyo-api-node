@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { ListRetrieveResponseObjectResourceAttributes } from './listRetrieveResponseObjectResourceAttributes';
-
 export class ListRetrieveResponseObjectResourceExtendedAttributes extends ListRetrieveResponseObjectResourceAttributes {
-    'profileCount'?: number;
+    'profileCount'?: number | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

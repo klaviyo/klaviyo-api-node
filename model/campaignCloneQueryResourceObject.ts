@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CampaignCloneQueryResourceObjectAttributes } from './campaignCloneQueryResourceObjectAttributes';
 import { CampaignEnum } from './campaignEnum';
-
 export class CampaignCloneQueryResourceObject {
     'type': CampaignEnum | 'campaign';
     /**

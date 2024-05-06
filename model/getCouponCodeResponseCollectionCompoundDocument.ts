@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { CouponResponseObjectResource } from './couponResponseObjectResource';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInner } from './getCouponCodeResponseCollectionCompoundDocumentDataInner';
-
 export class GetCouponCodeResponseCollectionCompoundDocument {
     'data': Array<GetCouponCodeResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;

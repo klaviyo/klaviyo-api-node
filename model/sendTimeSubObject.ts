@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class SendTimeSubObject {
     /**
     * The datetime that the message is to be sent

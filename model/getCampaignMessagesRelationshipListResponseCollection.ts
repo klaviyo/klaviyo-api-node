@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCampaignMessagesRelationshipListResponseCollectionDataInner } from './getCampaignMessagesRelationshipListResponseCollectionDataInner';
-
 export class GetCampaignMessagesRelationshipListResponseCollection {
     'data': Array<GetCampaignMessagesRelationshipListResponseCollectionDataInner>;
 

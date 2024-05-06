@@ -14,7 +14,6 @@ import { CouponCodeEnum } from './couponCodeEnum';
 import { CouponCodeResponseObjectResourceAttributes } from './couponCodeResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
 import { PostCouponCodeResponseDataRelationships } from './postCouponCodeResponseDataRelationships';
-
 export class PostCouponCodeResponseData {
     'type': CouponCodeEnum | 'coupon-code';
     /**

@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { TagCreateQueryResourceObjectRelationshipsTagGroupData } from './tagCreateQueryResourceObjectRelationshipsTagGroupData';
-
 export class TagCreateQueryResourceObjectRelationshipsTagGroup {
-    'data': TagCreateQueryResourceObjectRelationshipsTagGroupData;
+    'data'?: TagCreateQueryResourceObjectRelationshipsTagGroupData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

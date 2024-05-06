@@ -15,7 +15,6 @@ import { ObjectLinks } from './objectLinks';
 import { ProfileBulkImportJobEnum } from './profileBulkImportJobEnum';
 import { ProfileImportJobResponseObjectResource } from './profileImportJobResponseObjectResource';
 import { ProfileImportJobResponseObjectResourceAttributes } from './profileImportJobResponseObjectResourceAttributes';
-
 export class GetProfileImportJobResponseCollectionCompoundDocumentDataInner extends ProfileImportJobResponseObjectResource {
     'relationships'?: GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 

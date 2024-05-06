@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantCreateJobCreateQueryResourceObject } from './catalogVariantCreateJobCreateQueryResourceObject';
-
 export class CatalogVariantCreateJobCreateQuery {
     'data': CatalogVariantCreateJobCreateQueryResourceObject;
 

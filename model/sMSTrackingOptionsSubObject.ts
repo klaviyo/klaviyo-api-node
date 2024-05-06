@@ -11,16 +11,15 @@
 
 import { RequestFile } from './models';
 import { UTMParamsSubObject } from './uTMParamsSubObject';
-
 export class SMSTrackingOptionsSubObject {
     /**
     * Whether the campaign needs UTM parameters. If set to False, UTM params will not be used.
     */
-    'isAddUtm'?: boolean;
+    'isAddUtm'?: boolean | null;
     /**
     * A list of UTM parameters. If an empty list is given and is_add_utm is True, uses company defaults.
     */
-    'utmParams'?: Array<UTMParamsSubObject>;
+    'utmParams'?: Array<UTMParamsSubObject> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

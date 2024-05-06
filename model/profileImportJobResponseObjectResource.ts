@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { ProfileBulkImportJobEnum } from './profileBulkImportJobEnum';
 import { ProfileImportJobResponseObjectResourceAttributes } from './profileImportJobResponseObjectResourceAttributes';
-
 export class ProfileImportJobResponseObjectResource {
     'type': ProfileBulkImportJobEnum | 'profile-bulk-import-job';
     /**

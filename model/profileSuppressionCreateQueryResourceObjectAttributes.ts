@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class ProfileSuppressionCreateQueryResourceObjectAttributes {
     /**
     * The email of the profile to suppress.
     */
-    'email'?: string;
+    'email'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantCreateQueryResourceObject } from './catalogVariantCreateQueryResourceObject';
-
 /**
 * Array of catalog variants to create.
 */

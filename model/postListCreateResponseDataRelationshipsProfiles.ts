@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetListRelationshipsResponseCollectionDataInner } from './getListRelationshipsResponseCollectionDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class PostListCreateResponseDataRelationshipsProfiles {
-    'data': Array<GetListRelationshipsResponseCollectionDataInner>;
+    'data'?: Array<GetListRelationshipsResponseCollectionDataInner>;
     'links'?: RelationshipLinks;
 
 

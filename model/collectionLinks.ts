@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CollectionLinks {
     'self': string;
     'first'?: string;

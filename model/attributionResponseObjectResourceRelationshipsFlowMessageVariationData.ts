@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { FlowMessageEnum } from './flowMessageEnum';
-
 export class AttributionResponseObjectResourceRelationshipsFlowMessageVariationData {
     'type': FlowMessageEnum | 'flow-message';
     /**

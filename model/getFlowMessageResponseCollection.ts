@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetFlowMessageResponseCollectionDataInner } from './getFlowMessageResponseCollectionDataInner';
-
 export class GetFlowMessageResponseCollection {
     'data': Array<GetFlowMessageResponseCollectionDataInner>;
     'links': CollectionLinks;

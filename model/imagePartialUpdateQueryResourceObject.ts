@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ImageEnum } from './imageEnum';
 import { ImagePartialUpdateQueryResourceObjectAttributes } from './imagePartialUpdateQueryResourceObjectAttributes';
-
 export class ImagePartialUpdateQueryResourceObject {
     'type': ImageEnum | 'image';
     /**

@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CampaignRecipientEstimationJobEnum } from './campaignRecipientEstimationJobEnum';
 import { CampaignRecipientEstimationJobResponseObjectResourceAttributes } from './campaignRecipientEstimationJobResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class PostCampaignRecipientEstimationJobResponseData {
     'type': CampaignRecipientEstimationJobEnum | 'campaign-recipient-estimation-job';
     /**

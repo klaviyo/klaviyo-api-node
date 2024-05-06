@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetFlowResponseData } from './getFlowResponseData';
-
 export class GetFlowResponse {
     'data': GetFlowResponseData;
 

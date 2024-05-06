@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ImageEnum } from './imageEnum';
 import { ImageResponseObjectResourceAttributes } from './imageResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class PostImageResponseData {
     'type': ImageEnum | 'image';
     /**

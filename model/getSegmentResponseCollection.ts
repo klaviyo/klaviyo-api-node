@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetSegmentResponseCollectionDataInner } from './getSegmentResponseCollectionDataInner';
-
 export class GetSegmentResponseCollection {
     'data': Array<GetSegmentResponseCollectionDataInner>;
     'links': CollectionLinks;

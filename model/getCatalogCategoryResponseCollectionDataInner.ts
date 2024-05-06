@@ -15,7 +15,6 @@ import { CatalogCategoryResponseObjectResource } from './catalogCategoryResponse
 import { CatalogCategoryResponseObjectResourceAttributes } from './catalogCategoryResponseObjectResourceAttributes';
 import { GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships } from './getCatalogCategoryResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCatalogCategoryResponseCollectionDataInner extends CatalogCategoryResponseObjectResource {
     'relationships'?: GetCatalogCategoryResponseCollectionDataInnerAllOfRelationships;
 

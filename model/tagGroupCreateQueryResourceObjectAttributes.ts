@@ -10,13 +10,12 @@
  */
 
 import { RequestFile } from './models';
-
 export class TagGroupCreateQueryResourceObjectAttributes {
     /**
     * The Tag Group name
     */
     'name': string;
-    'exclusive'?: boolean = false;
+    'exclusive'?: boolean | null = false;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

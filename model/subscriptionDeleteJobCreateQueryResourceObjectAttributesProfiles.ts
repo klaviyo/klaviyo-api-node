@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileSubscriptionDeleteQueryResourceObject } from './profileSubscriptionDeleteQueryResourceObject';
-
 /**
 * The profile(s) to unsubscribe
 */

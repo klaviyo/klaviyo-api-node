@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { MetricCreateQueryResourceObject } from './metricCreateQueryResourceObject';
-
 export class EventCreateQueryV2ResourceObjectAttributesMetric {
     'data': MetricCreateQueryResourceObject;
 

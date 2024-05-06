@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CampaignRecipientEstimationJobResponseObjectResourceAttributes {
     /**
     * The status of the recipient estimation job

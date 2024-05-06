@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostListCreateResponseData } from './postListCreateResponseData';
-
 export class PatchListPartialUpdateResponse {
     'data': PostListCreateResponseData;
 

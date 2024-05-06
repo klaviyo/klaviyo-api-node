@@ -10,24 +10,23 @@
  */
 
 import { RequestFile } from './models';
-
 export class MetricResponseObjectResourceAttributes {
     /**
     * The name of the metric
     */
-    'name'?: string;
+    'name'?: string | null;
     /**
     * Creation time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'created'?: string;
+    'created'?: string | null;
     /**
     * Last updated time in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'updated'?: string;
+    'updated'?: string | null;
     /**
     * The integration associated with the event
     */
-    'integration'?: object;
+    'integration'?: object | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

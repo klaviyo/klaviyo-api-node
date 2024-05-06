@@ -17,7 +17,6 @@ import { AttributionResponseObjectResourceRelationshipsEvent } from './attributi
 import { AttributionResponseObjectResourceRelationshipsFlow } from './attributionResponseObjectResourceRelationshipsFlow';
 import { AttributionResponseObjectResourceRelationshipsFlowMessage } from './attributionResponseObjectResourceRelationshipsFlowMessage';
 import { AttributionResponseObjectResourceRelationshipsFlowMessageVariation } from './attributionResponseObjectResourceRelationshipsFlowMessageVariation';
-
 export class AttributionResponseObjectResourceRelationships {
     'event'?: AttributionResponseObjectResourceRelationshipsEvent;
     'attributedEvent'?: AttributionResponseObjectResourceRelationshipsAttributedEvent;

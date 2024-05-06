@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TemplateCloneQueryResourceObject } from './templateCloneQueryResourceObject';
-
 export class TemplateCloneQuery {
     'data': TemplateCloneQueryResourceObject;
 

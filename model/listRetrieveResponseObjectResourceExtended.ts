@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ListEnum } from './listEnum';
 import { ListRetrieveResponseObjectResourceExtendedAttributes } from './listRetrieveResponseObjectResourceExtendedAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class ListRetrieveResponseObjectResourceExtended {
     'type': ListEnum | 'list';
     /**

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CatalogVariantBulkDeleteJobEnum } from './catalogVariantBulkDeleteJobEnum';
 import { CatalogVariantDeleteJobCreateQueryResourceObjectAttributes } from './catalogVariantDeleteJobCreateQueryResourceObjectAttributes';
-
 export class CatalogVariantDeleteJobCreateQueryResourceObject {
     'type': CatalogVariantBulkDeleteJobEnum | 'catalog-variant-bulk-delete-job';
     'attributes': CatalogVariantDeleteJobCreateQueryResourceObjectAttributes;

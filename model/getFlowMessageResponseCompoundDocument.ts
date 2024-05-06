@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetFlowMessageResponseCompoundDocumentData } from './getFlowMessageResponseCompoundDocumentData';
 import { GetFlowMessageResponseCompoundDocumentIncludedInner } from './getFlowMessageResponseCompoundDocumentIncludedInner';
-
 export class GetFlowMessageResponseCompoundDocument {
     'data': GetFlowMessageResponseCompoundDocumentData;
     'included'?: Array<GetFlowMessageResponseCompoundDocumentIncludedInner>;

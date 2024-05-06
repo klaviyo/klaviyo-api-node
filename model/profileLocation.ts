@@ -10,48 +10,47 @@
  */
 
 import { RequestFile } from './models';
-
 export class ProfileLocation {
     /**
     * First line of street address
     */
-    'address1'?: string;
+    'address1'?: string | null;
     /**
     * Second line of street address
     */
-    'address2'?: string;
+    'address2'?: string | null;
     /**
     * City name
     */
-    'city'?: string;
+    'city'?: string | null;
     /**
     * Country name
     */
-    'country'?: string;
+    'country'?: string | null;
     /**
     * Latitude coordinate. We recommend providing a precision of four decimal places.
     */
-    'latitude'?: string;
+    'latitude'?: string | null;
     /**
     * Longitude coordinate. We recommend providing a precision of four decimal places.
     */
-    'longitude'?: string;
+    'longitude'?: string | null;
     /**
     * Region within a country, such as state or province
     */
-    'region'?: string;
+    'region'?: string | null;
     /**
     * Zip code
     */
-    'zip'?: string;
+    'zip'?: string | null;
     /**
     * Time zone name. We recommend using time zones from the IANA Time Zone Database.
     */
-    'timezone'?: string;
+    'timezone'?: string | null;
     /**
     * IP Address
     */
-    'ip'?: string;
+    'ip'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

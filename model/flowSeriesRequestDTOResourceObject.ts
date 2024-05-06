@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { FlowSeriesReportEnum } from './flowSeriesReportEnum';
 import { FlowSeriesRequestDTOResourceObjectAttributes } from './flowSeriesRequestDTOResourceObjectAttributes';
-
 export class FlowSeriesRequestDTOResourceObject {
     'type': FlowSeriesReportEnum | 'flow-series-report';
     'attributes': FlowSeriesRequestDTOResourceObjectAttributes;

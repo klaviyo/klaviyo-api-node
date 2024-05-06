@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { CouponResponseObjectResource } from './couponResponseObjectResource';
-
 export class GetCouponResponseCollection {
     'data': Array<CouponResponseObjectResource>;
     'links': CollectionLinks;

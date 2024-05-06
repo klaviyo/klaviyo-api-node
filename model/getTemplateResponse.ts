@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TemplateResponseObjectResource } from './templateResponseObjectResource';
-
 export class GetTemplateResponse {
     'data': TemplateResponseObjectResource;
 
