@@ -13,38 +13,4 @@ import { RequestFile } from './models';
 import { EmailTrackingOptions } from './emailTrackingOptions';
 import { SMSTrackingOptions } from './sMSTrackingOptions';
 import { UtmParamInfo } from './utmParamInfo';
-
-export class FlowActionResponseObjectResourceAttributesTrackingOptions {
-    'addUtm': boolean;
-    'utmParams': Array<UtmParamInfo>;
-    'isTrackingOpens': boolean;
-    'isTrackingClicks': boolean;
-
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "addUtm",
-            "baseName": "add_utm",
-            "type": "boolean"
-        },
-        {
-            "name": "utmParams",
-            "baseName": "utm_params",
-            "type": "Array<UtmParamInfo>"
-        },
-        {
-            "name": "isTrackingOpens",
-            "baseName": "is_tracking_opens",
-            "type": "boolean"
-        },
-        {
-            "name": "isTrackingClicks",
-            "baseName": "is_tracking_clicks",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return FlowActionResponseObjectResourceAttributesTrackingOptions.attributeTypeMap;
-    }
-}
-
+export type FlowActionResponseObjectResourceAttributesTrackingOptions = EmailTrackingOptions | SMSTrackingOptions;

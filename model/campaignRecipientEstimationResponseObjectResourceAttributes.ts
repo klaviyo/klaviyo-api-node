@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CampaignRecipientEstimationResponseObjectResourceAttributes {
     /**
     * The estimated number of unique recipients the campaign will send to

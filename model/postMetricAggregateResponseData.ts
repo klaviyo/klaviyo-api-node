@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { MetricAggregateEnum } from './metricAggregateEnum';
 import { ObjectLinks } from './objectLinks';
 import { PostMetricAggregateResponseDataAttributes } from './postMetricAggregateResponseDataAttributes';
-
 export class PostMetricAggregateResponseData {
     'type': MetricAggregateEnum | 'metric-aggregate';
     /**

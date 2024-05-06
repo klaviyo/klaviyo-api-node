@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class TemplateResponseObjectResourceAttributes {
     /**
     * The name of the template
@@ -27,15 +26,15 @@ export class TemplateResponseObjectResourceAttributes {
     /**
     * The template plain_text
     */
-    'text'?: string;
+    'text'?: string | null;
     /**
     * The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'created'?: Date;
+    'created'?: Date | null;
     /**
     * The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'updated'?: Date;
+    'updated'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

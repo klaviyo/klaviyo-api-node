@@ -10,15 +10,14 @@
  */
 
 import { RequestFile } from './models';
-
 export class EmailMessageContent {
     'subject': string;
     'previewText': string;
     'fromEmail': string;
     'fromLabel': string;
-    'replyToEmail'?: string;
-    'ccEmail'?: string;
-    'bccEmail'?: string;
+    'replyToEmail'?: string | null;
+    'ccEmail'?: string | null;
+    'bccEmail'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

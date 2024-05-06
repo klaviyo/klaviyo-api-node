@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { PostCouponCodeResponseDataRelationshipsProfileData } from './postCouponCodeResponseDataRelationshipsProfileData';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class PostCouponCodeResponseDataRelationshipsProfile {
-    'data': PostCouponCodeResponseDataRelationshipsProfileData;
+    'data'?: PostCouponCodeResponseDataRelationshipsProfileData;
     'links'?: RelationshipLinks;
 
 

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
-
 export class GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsItemsDataInner {
     'type': CatalogItemEnum | 'catalog-item';
     /**

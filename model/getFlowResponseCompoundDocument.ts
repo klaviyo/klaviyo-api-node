@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetFlowResponseCollectionCompoundDocumentDataInner } from './getFlowResponseCollectionCompoundDocumentDataInner';
 import { GetFlowResponseCollectionCompoundDocumentIncludedInner } from './getFlowResponseCollectionCompoundDocumentIncludedInner';
-
 export class GetFlowResponseCompoundDocument {
     'data': GetFlowResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<GetFlowResponseCollectionCompoundDocumentIncludedInner>;

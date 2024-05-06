@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributions } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributions';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetric } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetric';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
-
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'profile'?: GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
     'metric'?: GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetric;

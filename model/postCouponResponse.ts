@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCouponResponseData } from './postCouponResponseData';
-
 export class PostCouponResponse {
     'data': PostCouponResponseData;
 

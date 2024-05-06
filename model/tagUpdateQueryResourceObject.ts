@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { TagEnum } from './tagEnum';
 import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
-
 export class TagUpdateQueryResourceObject {
     'type': TagEnum | 'tag';
     /**

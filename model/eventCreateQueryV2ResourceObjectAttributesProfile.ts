@@ -10,17 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { OnsiteProfileCreateQueryResourceObject } from './onsiteProfileCreateQueryResourceObject';
-
+import { EventProfileCreateQueryResourceObject } from './eventProfileCreateQueryResourceObject';
 export class EventCreateQueryV2ResourceObjectAttributesProfile {
-    'data': OnsiteProfileCreateQueryResourceObject;
+    'data': EventProfileCreateQueryResourceObject;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "OnsiteProfileCreateQueryResourceObject"
+            "type": "EventProfileCreateQueryResourceObject"
         }    ];
 
     static getAttributeTypeMap() {

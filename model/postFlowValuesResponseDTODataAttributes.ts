@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ValuesData } from './valuesData';
-
 export class PostFlowValuesResponseDTODataAttributes {
     /**
     * An array of all the returned values data. Each object in the array represents one unique grouping and the results for that grouping.

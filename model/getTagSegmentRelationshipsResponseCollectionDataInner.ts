@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SegmentEnum } from './segmentEnum';
-
 export class GetTagSegmentRelationshipsResponseCollectionDataInner {
     'type': SegmentEnum | 'segment';
     /**

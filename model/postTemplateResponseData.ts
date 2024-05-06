@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { TemplateEnum } from './templateEnum';
 import { TemplateResponseObjectResourceAttributes } from './templateResponseObjectResourceAttributes';
-
 export class PostTemplateResponseData {
     'type': TemplateEnum | 'template';
     /**

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon';
 import { PostCouponCodeResponseDataRelationshipsProfile } from './postCouponCodeResponseDataRelationshipsProfile';
-
 export class PostCouponCodeResponseDataRelationships {
     'coupon'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCoupon;
     'profile'?: PostCouponCodeResponseDataRelationshipsProfile;

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { APIJobErrorPayload } from './aPIJobErrorPayload';
-
 export class CouponCodeCreateJobResponseObjectResourceAttributes {
     /**
     * Status of the asynchronous job.
@@ -28,23 +27,23 @@ export class CouponCodeCreateJobResponseObjectResourceAttributes {
     /**
     * The total number of operations that have been completed by the job.
     */
-    'completedCount'?: number = 0;
+    'completedCount'?: number | null = 0;
     /**
     * The total number of operations that have failed as part of the job.
     */
-    'failedCount'?: number = 0;
+    'failedCount'?: number | null = 0;
     /**
     * Date and time the job was completed in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'completedAt'?: Date;
+    'completedAt'?: Date | null;
     /**
     * Array of errors encountered during the processing of the job.
     */
-    'errors'?: Array<APIJobErrorPayload>;
+    'errors'?: Array<APIJobErrorPayload> | null;
     /**
     * Date and time the job expires in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'expiresAt'?: Date;
+    'expiresAt'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

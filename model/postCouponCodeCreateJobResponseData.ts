@@ -14,7 +14,6 @@ import { CouponCodeBulkCreateJobEnum } from './couponCodeBulkCreateJobEnum';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class PostCouponCodeCreateJobResponseData {
     'type': CouponCodeBulkCreateJobEnum | 'coupon-code-bulk-create-job';
     /**

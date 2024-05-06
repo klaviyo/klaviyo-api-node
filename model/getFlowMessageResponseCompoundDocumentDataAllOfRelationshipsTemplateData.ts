@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TemplateEnum } from './templateEnum';
-
 export class GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData {
     'type': TemplateEnum | 'template';
     'id': string;

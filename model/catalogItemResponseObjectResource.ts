@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
 import { CatalogItemResponseObjectResourceAttributes } from './catalogItemResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CatalogItemResponseObjectResource {
     'type': CatalogItemEnum | 'catalog-item';
     /**

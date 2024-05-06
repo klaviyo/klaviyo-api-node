@@ -13,14 +13,13 @@ import { RequestFile } from './models';
 import { FlowActionResponseObjectResourceAttributesTrackingOptions } from './flowActionResponseObjectResourceAttributesTrackingOptions';
 import { SMSRenderOptions } from './sMSRenderOptions';
 import { SendOptions } from './sendOptions';
-
 export class FlowActionResponseObjectResourceAttributes {
-    'actionType'?: string;
-    'status'?: string;
-    'created'?: Date;
-    'updated'?: Date;
-    'settings'?: object;
-    'trackingOptions'?: FlowActionResponseObjectResourceAttributesTrackingOptions;
+    'actionType'?: string | null;
+    'status'?: string | null;
+    'created'?: Date | null;
+    'updated'?: Date | null;
+    'settings'?: object | null;
+    'trackingOptions'?: FlowActionResponseObjectResourceAttributesTrackingOptions | null;
     'sendOptions'?: SendOptions;
     'renderOptions'?: SMSRenderOptions;
 

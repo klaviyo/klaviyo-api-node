@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostTagGroupResponseData } from './postTagGroupResponseData';
-
 export class DeleteTagGroupResponse {
     'data': PostTagGroupResponseData;
 

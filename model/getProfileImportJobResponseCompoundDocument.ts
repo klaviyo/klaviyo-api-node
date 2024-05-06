@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetProfileImportJobResponseCollectionCompoundDocumentDataInner } from './getProfileImportJobResponseCollectionCompoundDocumentDataInner';
 import { ListResponseObjectResource } from './listResponseObjectResource';
-
 export class GetProfileImportJobResponseCompoundDocument {
     'data': GetProfileImportJobResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<ListResponseObjectResource>;

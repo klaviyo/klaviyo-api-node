@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CampaignMessageCreateQueryResourceObjectAttributesContent } from './campaignMessageCreateQueryResourceObjectAttributesContent';
 import { RenderOptionsSubObject } from './renderOptionsSubObject';
-
 export class CampaignMessageCreateQueryResourceObjectAttributes {
     /**
     * The channel the message is to be sent on (email or sms, for example)
@@ -21,8 +20,8 @@ export class CampaignMessageCreateQueryResourceObjectAttributes {
     /**
     * The label or name on the message
     */
-    'label'?: string;
-    'content'?: CampaignMessageCreateQueryResourceObjectAttributesContent;
+    'label'?: string | null;
+    'content'?: CampaignMessageCreateQueryResourceObjectAttributesContent | null;
     'renderOptions'?: RenderOptionsSubObject;
 
 

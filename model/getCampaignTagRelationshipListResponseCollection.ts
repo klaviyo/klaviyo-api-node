@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner';
-
 export class GetCampaignTagRelationshipListResponseCollection {
     'data': Array<GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner>;
 

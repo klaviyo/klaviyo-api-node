@@ -15,7 +15,6 @@ import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments } from
 import { GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroup } from './getTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroup';
 import { PostTagResponseDataRelationshipsCampaigns } from './postTagResponseDataRelationshipsCampaigns';
 import { PostTagResponseDataRelationshipsFlows } from './postTagResponseDataRelationshipsFlows';
-
 export class PostTagResponseDataRelationships {
     'tagGroup'?: GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroup;
     'lists'?: GetProfileResponseCompoundDocumentDataAllOfRelationshipsLists;

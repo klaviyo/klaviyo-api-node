@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CatalogVariantResponseObjectResource } from './catalogVariantResponseObjectResource';
 import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner';
-
 export class GetCatalogVariantUpdateJobResponseCompoundDocument {
     'data': GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<CatalogVariantResponseObjectResource>;

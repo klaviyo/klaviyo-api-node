@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class SendOptions {
     'useSmartSending': boolean;
     'isTransactional': boolean;

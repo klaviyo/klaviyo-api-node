@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostImageResponseData } from './postImageResponseData';
-
 export class PatchImageResponse {
     'data': PostImageResponseData;
 

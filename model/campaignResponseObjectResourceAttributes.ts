@@ -14,7 +14,6 @@ import { AudiencesSubObject } from './audiencesSubObject';
 import { CampaignResponseObjectResourceAttributesSendOptions } from './campaignResponseObjectResourceAttributesSendOptions';
 import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
 import { SendStrategySubObject } from './sendStrategySubObject';
-
 export class CampaignResponseObjectResourceAttributes {
     /**
     * The campaign name
@@ -39,7 +38,7 @@ export class CampaignResponseObjectResourceAttributes {
     /**
     * The datetime when the campaign was scheduled for future sending
     */
-    'scheduledAt': Date;
+    'scheduledAt'?: Date | null;
     /**
     * The datetime when the campaign was last updated by a user or the system
     */
@@ -47,7 +46,7 @@ export class CampaignResponseObjectResourceAttributes {
     /**
     * The datetime when the campaign will be / was sent or None if not yet scheduled by a send_job.
     */
-    'sendTime': Date;
+    'sendTime'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

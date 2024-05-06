@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCatalogCategoryDeleteJobResponseDataRelationshipsCategories } from './postCatalogCategoryDeleteJobResponseDataRelationshipsCategories';
-
 export class PostCatalogCategoryDeleteJobResponseDataRelationships {
     'categories'?: PostCatalogCategoryDeleteJobResponseDataRelationshipsCategories;
 

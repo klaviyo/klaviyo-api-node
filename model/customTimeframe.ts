@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CustomTimeframe {
     'start': Date;
     'end': Date;

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CatalogVariantEnum {
     CatalogVariant = <any> 'catalog-variant'
 }

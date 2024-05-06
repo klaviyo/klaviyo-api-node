@@ -13,11 +13,10 @@ import { RequestFile } from './models';
 import { CatalogVariantCreateQueryResourceObjectAttributes } from './catalogVariantCreateQueryResourceObjectAttributes';
 import { CatalogVariantCreateQueryResourceObjectRelationships } from './catalogVariantCreateQueryResourceObjectRelationships';
 import { CatalogVariantEnum } from './catalogVariantEnum';
-
 export class CatalogVariantCreateQueryResourceObject {
     'type': CatalogVariantEnum | 'catalog-variant';
     'attributes': CatalogVariantCreateQueryResourceObjectAttributes;
-    'relationships': CatalogVariantCreateQueryResourceObjectRelationships;
+    'relationships'?: CatalogVariantCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

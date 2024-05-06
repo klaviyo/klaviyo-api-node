@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileCreateQueryResourceObject } from './profileCreateQueryResourceObject';
-
 export class ProfileCreateQuery {
     'data': ProfileCreateQueryResourceObject;
 

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagListOpDataInner } from './tagListOpDataInner';
-
 export class TagListOp {
     'data': Array<TagListOpDataInner>;
 

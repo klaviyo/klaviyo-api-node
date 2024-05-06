@@ -10,17 +10,16 @@
  */
 
 import { RequestFile } from './models';
-
 export class FlowResponseObjectResourceAttributes {
-    'name'?: string;
-    'status'?: string;
-    'archived'?: boolean;
-    'created'?: Date;
-    'updated'?: Date;
+    'name'?: string | null;
+    'status'?: string | null;
+    'archived'?: boolean | null;
+    'created'?: Date | null;
+    'updated'?: Date | null;
     /**
     * Corresponds to the object which triggered the flow.
     */
-    'triggerType'?: FlowResponseObjectResourceAttributes.TriggerTypeEnum | 'Added to List' | 'Date Based' | 'Low Inventory' | 'Metric' | 'Price Drop' | 'Unconfigured';
+    'triggerType'?: FlowResponseObjectResourceAttributes.TriggerTypeEnum | 'Added to List' | 'Date Based' | 'Low Inventory' | 'Metric' | 'Price Drop' | 'Unconfigured' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

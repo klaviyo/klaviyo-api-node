@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CouponEnum {
     Coupon = <any> 'coupon'
 }

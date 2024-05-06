@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CouponCodeCreateQueryResourceObject } from './couponCodeCreateQueryResourceObject';
-
 export class CouponCodeCreateQuery {
     'data': CouponCodeCreateQueryResourceObject;
 

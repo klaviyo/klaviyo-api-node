@@ -12,14 +12,13 @@
 import { RequestFile } from './models';
 import { CampaignMessageAssignTemplateQueryResourceObjectRelationships } from './campaignMessageAssignTemplateQueryResourceObjectRelationships';
 import { CampaignMessageEnum } from './campaignMessageEnum';
-
 export class CampaignMessageAssignTemplateQueryResourceObject {
     'type': CampaignMessageEnum | 'campaign-message';
     /**
     * The message ID to be assigned to
     */
     'id': string;
-    'relationships': CampaignMessageAssignTemplateQueryResourceObjectRelationships;
+    'relationships'?: CampaignMessageAssignTemplateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

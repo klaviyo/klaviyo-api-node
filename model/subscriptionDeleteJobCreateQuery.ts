@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SubscriptionDeleteJobCreateQueryResourceObject } from './subscriptionDeleteJobCreateQueryResourceObject';
-
 export class SubscriptionDeleteJobCreateQuery {
     'data': SubscriptionDeleteJobCreateQueryResourceObject;
 

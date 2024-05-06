@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants';
-
 export class GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'variants'?: GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants;
 

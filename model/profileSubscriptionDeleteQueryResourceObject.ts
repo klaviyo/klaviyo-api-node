@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
 import { ProfileSubscriptionDeleteQueryResourceObjectAttributes } from './profileSubscriptionDeleteQueryResourceObjectAttributes';
-
 export class ProfileSubscriptionDeleteQueryResourceObject {
     'type': ProfileEnum | 'profile';
     'attributes': ProfileSubscriptionDeleteQueryResourceObjectAttributes;

@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CampaignSendJobEnum } from './campaignSendJobEnum';
 import { CampaignSendJobResponseObjectResourceAttributes } from './campaignSendJobResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class PostCampaignSendJobResponseData {
     'type': CampaignSendJobEnum | 'campaign-send-job';
     /**

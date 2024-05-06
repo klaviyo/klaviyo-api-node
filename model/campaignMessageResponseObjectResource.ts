@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CampaignMessageEnum } from './campaignMessageEnum';
 import { CampaignMessageResponseObjectResourceAttributes } from './campaignMessageResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CampaignMessageResponseObjectResource {
     'type': CampaignMessageEnum | 'campaign-message';
     /**

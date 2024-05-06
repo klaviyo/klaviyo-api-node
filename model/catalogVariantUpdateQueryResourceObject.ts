@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 import { CatalogVariantUpdateQueryResourceObjectAttributes } from './catalogVariantUpdateQueryResourceObjectAttributes';
-
 export class CatalogVariantUpdateQueryResourceObject {
     'type': CatalogVariantEnum | 'catalog-variant';
     /**

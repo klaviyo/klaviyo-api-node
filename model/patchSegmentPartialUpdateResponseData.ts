@@ -14,7 +14,6 @@ import { ObjectLinks } from './objectLinks';
 import { PostListCreateResponseDataRelationships } from './postListCreateResponseDataRelationships';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
-
 export class PatchSegmentPartialUpdateResponseData {
     'type': SegmentEnum | 'segment';
     'id': string;

@@ -14,7 +14,6 @@ import { CatalogVariantEnum } from './catalogVariantEnum';
 import { CatalogVariantResponseObjectResourceAttributes } from './catalogVariantResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
 import { PostCatalogVariantResponseDataRelationships } from './postCatalogVariantResponseDataRelationships';
-
 export class PostCatalogVariantResponseData {
     'type': CatalogVariantEnum | 'catalog-variant';
     /**

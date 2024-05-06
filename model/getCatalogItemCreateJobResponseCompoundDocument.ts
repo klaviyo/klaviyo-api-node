@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CatalogItemResponseObjectResource } from './catalogItemResponseObjectResource';
 import { GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner';
-
 export class GetCatalogItemCreateJobResponseCompoundDocument {
     'data': GetCatalogItemCreateJobResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<CatalogItemResponseObjectResource>;

@@ -18,7 +18,6 @@ import { SegmentResponseObjectResource } from './segmentResponseObjectResource';
 
 
 
-
     export type GetProfileResponseCompoundDocumentIncludedInner = ListResponseObjectResource | SegmentResponseObjectResource
 
     export class GetProfileResponseCompoundDocumentIncludedInnerHelper {

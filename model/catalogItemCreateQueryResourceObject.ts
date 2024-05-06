@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CatalogItemCreateQueryResourceObjectAttributes } from './catalogItemCreateQueryResourceObjectAttributes';
 import { CatalogItemCreateQueryResourceObjectRelationships } from './catalogItemCreateQueryResourceObjectRelationships';
 import { CatalogItemEnum } from './catalogItemEnum';
-
 export class CatalogItemCreateQueryResourceObject {
     'type': CatalogItemEnum | 'catalog-item';
     'attributes': CatalogItemCreateQueryResourceObjectAttributes;

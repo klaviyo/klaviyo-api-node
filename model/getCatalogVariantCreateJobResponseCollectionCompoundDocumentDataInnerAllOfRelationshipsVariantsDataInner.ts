@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
-
 export class GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner {
     'type': CatalogVariantEnum | 'catalog-variant';
     /**

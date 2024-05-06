@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { MetricAggregateEnum } from './metricAggregateEnum';
 import { MetricAggregateQueryResourceObjectAttributes } from './metricAggregateQueryResourceObjectAttributes';
-
 export class MetricAggregateQueryResourceObject {
     'type': MetricAggregateEnum | 'metric-aggregate';
     'attributes': MetricAggregateQueryResourceObjectAttributes;

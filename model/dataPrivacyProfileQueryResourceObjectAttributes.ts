@@ -10,16 +10,15 @@
  */
 
 import { RequestFile } from './models';
-
 export class DataPrivacyProfileQueryResourceObjectAttributes {
     /**
     * Individual\'s email address
     */
-    'email'?: string;
+    'email'?: string | null;
     /**
     * Individual\'s phone number in E.164 format
     */
-    'phoneNumber'?: string;
+    'phoneNumber'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

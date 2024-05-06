@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
-
 export class GetCatalogCategoryItemListResponseCollectionDataInner {
     'type': CatalogItemEnum | 'catalog-item';
     /**

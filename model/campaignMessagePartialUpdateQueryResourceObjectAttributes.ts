@@ -12,13 +12,12 @@
 import { RequestFile } from './models';
 import { CampaignMessageCreateQueryResourceObjectAttributesContent } from './campaignMessageCreateQueryResourceObjectAttributesContent';
 import { RenderOptionsSubObject } from './renderOptionsSubObject';
-
 export class CampaignMessagePartialUpdateQueryResourceObjectAttributes {
     /**
     * The label or name on the message
     */
-    'label'?: string;
-    'content'?: CampaignMessageCreateQueryResourceObjectAttributesContent;
+    'label'?: string | null;
+    'content'?: CampaignMessageCreateQueryResourceObjectAttributesContent | null;
     'renderOptions'?: RenderOptionsSubObject;
 
 

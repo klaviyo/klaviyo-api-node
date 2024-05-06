@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class GetAccounts4XXResponseErrorsInnerSource {
     'pointer'?: string;
     'parameter'?: string;

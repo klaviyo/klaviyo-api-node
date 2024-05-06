@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * The metric ID used in the aggregation.
@@ -23,23 +22,23 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Measurement key, e.g. `unique`, `sum_value`, `count`
     */
-    'measurements': Array<MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum> | 'count' | 'sum_value' | 'unique';
+    'measurements': Array<MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum> | Array<'count' | 'sum_value' | 'unique'>;
     /**
     * Aggregation interval, e.g. \"hour\", \"day\", \"week\", \"month\"
     */
-    'interval'?: MetricAggregateQueryResourceObjectAttributes.IntervalEnum | 'day' | 'hour' | 'month' | 'week' = MetricAggregateQueryResourceObjectAttributes.IntervalEnum.Day;
+    'interval'?: MetricAggregateQueryResourceObjectAttributes.IntervalEnum | 'day' | 'hour' | 'month' | 'week' | null = MetricAggregateQueryResourceObjectAttributes.IntervalEnum.Day;
     /**
     * Alter the maximum number of returned rows in a single page of aggregation results
     */
-    'pageSize'?: number = 500;
+    'pageSize'?: number | null = 500;
     /**
     * Optional attribute(s) used for partitioning by the aggregation function
     */
-    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum> | '$attributed_channel' | '$attributed_flow' | '$attributed_message' | '$attributed_variation' | '$campaign_channel' | '$flow' | '$flow_channel' | '$message' | '$message_send_cohort' | '$variation' | '$variation_send_cohort' | 'Bounce Type' | 'Campaign Name' | 'Client Canonical' | 'Client Name' | 'Client Type' | 'Email Domain' | 'Failure Source' | 'Failure Type' | 'From Number' | 'From Phone Region' | 'List' | 'Message Name' | 'Message Type' | 'Method' | 'Subject' | 'To Number' | 'To Phone Region' | 'URL' | 'form_id';
+    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum> | Array<'$attributed_channel' | '$attributed_flow' | '$attributed_message' | '$attributed_variation' | '$campaign_channel' | '$flow' | '$flow_channel' | '$message' | '$message_send_cohort' | '$variation' | '$variation_send_cohort' | 'Bounce Type' | 'Campaign Name' | 'Client Canonical' | 'Client Name' | 'Client Type' | 'Email Domain' | 'Failure Source' | 'Failure Type' | 'From Number' | 'From Phone Region' | 'List' | 'Message Name' | 'Message Type' | 'Method' | 'Subject' | 'To Number' | 'To Phone Region' | 'URL' | 'form_id'> | null;
     /**
     * Provide fields to limit the returned data
     */
-    'returnFields'?: Array<string>;
+    'returnFields'?: Array<string> | null;
     /**
     * List of filters, must include time range using ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).             These filters follow a similar format to those in `GET` requests, the primary difference is that this endpoint asks for a list.             The time range can be filtered by providing a `greater-or-equal` and a `less-than` filter on the `datetime` field.
     */
@@ -47,7 +46,7 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * The timezone used for processing the query, e.g. `\'America/New_York\'`.             This field is validated against a list of common timezones from the [IANA Time Zone Database](https://www.iana.org/time-zones).             While most are supported, a few notable exceptions are `Factory`, `Europe/Kyiv` and `Pacific/Kanton`. This field is case-sensitive.
     */
-    'timezone'?: string = 'UTC';
+    'timezone'?: string | null = 'UTC';
     /**
     * Provide a sort key (e.g. -$message)
     */

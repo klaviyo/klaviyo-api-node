@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetFlowActionResponseCollectionDataInner } from './getFlowActionResponseCollectionDataInner';
-
 export class GetFlowActionResponseCollection {
     'data': Array<GetFlowActionResponseCollectionDataInner>;
     'links': CollectionLinks;

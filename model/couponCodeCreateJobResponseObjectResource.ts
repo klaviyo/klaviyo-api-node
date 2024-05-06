@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CouponCodeBulkCreateJobEnum } from './couponCodeBulkCreateJobEnum';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CouponCodeCreateJobResponseObjectResource {
     'type': CouponCodeBulkCreateJobEnum | 'coupon-code-bulk-create-job';
     /**

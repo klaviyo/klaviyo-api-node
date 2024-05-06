@@ -13,11 +13,10 @@ import { RequestFile } from './models';
 import { BackInStockSubscriptionEnum } from './backInStockSubscriptionEnum';
 import { ServerBISSubscriptionCreateQueryResourceObjectAttributes } from './serverBISSubscriptionCreateQueryResourceObjectAttributes';
 import { ServerBISSubscriptionCreateQueryResourceObjectRelationships } from './serverBISSubscriptionCreateQueryResourceObjectRelationships';
-
 export class ServerBISSubscriptionCreateQueryResourceObject {
     'type': BackInStockSubscriptionEnum | 'back-in-stock-subscription';
     'attributes': ServerBISSubscriptionCreateQueryResourceObjectAttributes;
-    'relationships': ServerBISSubscriptionCreateQueryResourceObjectRelationships;
+    'relationships'?: ServerBISSubscriptionCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

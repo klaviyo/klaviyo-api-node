@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileMetaPatchProperties } from './profileMetaPatchProperties';
-
 export class OnsiteProfileMeta {
     'patchProperties'?: ProfileMetaPatchProperties;
 

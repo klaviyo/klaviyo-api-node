@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PatchSegmentPartialUpdateResponseData } from './patchSegmentPartialUpdateResponseData';
-
 export class PatchSegmentPartialUpdateResponse {
     'data': PatchSegmentPartialUpdateResponseData;
 

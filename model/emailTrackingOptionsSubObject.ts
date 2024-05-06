@@ -11,24 +11,23 @@
 
 import { RequestFile } from './models';
 import { UTMParamsSubObject } from './uTMParamsSubObject';
-
 export class EmailTrackingOptionsSubObject {
     /**
     * Whether the campaign needs UTM parameters. If set to False, UTM params will not be used.
     */
-    'isAddUtm'?: boolean;
+    'isAddUtm'?: boolean | null;
     /**
     * A list of UTM parameters. If an empty list is given and is_add_utm is True, uses company defaults.
     */
-    'utmParams'?: Array<UTMParamsSubObject>;
+    'utmParams'?: Array<UTMParamsSubObject> | null;
     /**
     * Whether the campaign is tracking click events. If not specified, uses company defaults.
     */
-    'isTrackingClicks'?: boolean;
+    'isTrackingClicks'?: boolean | null;
     /**
     * Whether the campaign is tracking open events. If not specified, uses company defaults.
     */
-    'isTrackingOpens'?: boolean;
+    'isTrackingOpens'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

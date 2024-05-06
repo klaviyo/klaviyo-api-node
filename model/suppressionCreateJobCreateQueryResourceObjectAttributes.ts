@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles } from './suppressionCreateJobCreateQueryResourceObjectAttributesProfiles';
-
 export class SuppressionCreateJobCreateQueryResourceObjectAttributes {
-    'profiles': SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles;
+    'profiles'?: SuppressionCreateJobCreateQueryResourceObjectAttributesProfiles | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

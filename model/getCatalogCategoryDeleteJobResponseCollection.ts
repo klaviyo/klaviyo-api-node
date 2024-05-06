@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetCatalogCategoryDeleteJobResponseCollectionDataInner } from './getCatalogCategoryDeleteJobResponseCollectionDataInner';
-
 export class GetCatalogCategoryDeleteJobResponseCollection {
     'data': Array<GetCatalogCategoryDeleteJobResponseCollectionDataInner>;
     'links': CollectionLinks;

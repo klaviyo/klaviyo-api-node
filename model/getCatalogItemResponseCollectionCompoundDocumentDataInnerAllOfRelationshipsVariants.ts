@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner } from './getCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariants {
-    'data': Array<GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner>;
+    'data'?: Array<GetCatalogItemResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsVariantsDataInner>;
     'links'?: RelationshipLinks;
 
 

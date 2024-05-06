@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SeriesData } from './seriesData';
-
 export class PostFlowSeriesResponseDTODataAttributes {
     /**
     * An array of all the returned values data. Each object in the array represents one unique grouping and the results for that grouping. Each value in the results array corresponds to the date time at the same index.

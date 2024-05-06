@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagCreateQueryResourceObject } from './tagCreateQueryResourceObject';
-
 export class TagCreateQuery {
     'data': TagCreateQueryResourceObject;
 

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ImageResponseObjectResource } from './imageResponseObjectResource';
-
 export class GetImageResponse {
     'data': ImageResponseObjectResource;
 

@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { AttributionResponseObjectResourceRelationshipsEventData } from './attributionResponseObjectResourceRelationshipsEventData';
-
 export class AttributionResponseObjectResourceRelationshipsEvent {
-    'data': AttributionResponseObjectResourceRelationshipsEventData;
+    'data'?: AttributionResponseObjectResourceRelationshipsEventData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

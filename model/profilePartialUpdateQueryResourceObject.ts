@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
 import { ProfileMeta } from './profileMeta';
 import { ProfilePartialUpdateQueryResourceObjectAttributes } from './profilePartialUpdateQueryResourceObjectAttributes';
-
 export class ProfilePartialUpdateQueryResourceObject {
     'type': ProfileEnum | 'profile';
     /**

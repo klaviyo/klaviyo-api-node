@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostFlowSeriesResponseDTOData } from './postFlowSeriesResponseDTOData';
-
 export class PostFlowSeriesResponseDTO {
     'data': PostFlowSeriesResponseDTOData;
 

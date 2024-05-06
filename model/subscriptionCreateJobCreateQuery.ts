@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SubscriptionCreateJobCreateQueryResourceObject } from './subscriptionCreateJobCreateQueryResourceObject';
-
 export class SubscriptionCreateJobCreateQuery {
     'data': SubscriptionCreateJobCreateQueryResourceObject;
 

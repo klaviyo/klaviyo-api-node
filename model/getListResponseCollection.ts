@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetListResponseCollectionDataInner } from './getListResponseCollectionDataInner';
-
 export class GetListResponseCollection {
     'data': Array<GetListResponseCollectionDataInner>;
     'links': CollectionLinks;

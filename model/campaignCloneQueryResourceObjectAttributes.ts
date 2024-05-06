@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class CampaignCloneQueryResourceObjectAttributes {
     /**
     * The name for the new cloned campaign
     */
-    'newName'?: string;
+    'newName'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

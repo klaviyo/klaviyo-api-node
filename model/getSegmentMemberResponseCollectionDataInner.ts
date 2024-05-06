@@ -15,7 +15,6 @@ import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
 import { SegmentMemberResponseObjectResourceExtended } from './segmentMemberResponseObjectResourceExtended';
 import { SegmentMemberResponseObjectResourceExtendedAttributes } from './segmentMemberResponseObjectResourceExtendedAttributes';
-
 export class GetSegmentMemberResponseCollectionDataInner extends SegmentMemberResponseObjectResourceExtended {
     'relationships'?: GetProfileResponseDataAllOfRelationships;
 

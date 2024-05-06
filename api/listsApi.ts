@@ -47,10 +47,7 @@ export class ListsApi {
     session: Session
 
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders : any = {
-        revision: "2024-02-15",
-        "User-Agent": "klaviyo-api-node/8.0.0"
-    };
+    protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
 
     constructor(session: Session){
@@ -111,21 +108,27 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listCreateQuery, "ListCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostListCreateResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostListCreateResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostListCreateResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostListCreateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostListCreateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostListCreateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Add a profile to a list with the given list ID.  It is recommended that you use the [Subscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/subscribe_profiles) if you\'re trying to give a profile [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) to receive email marketing, SMS marketing, or both.  This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
@@ -167,20 +170,26 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listMembersAddQuery, "ListMembersAddQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Delete a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write`
@@ -216,20 +225,26 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Remove a profile from a list with the given list ID.  The provided profile will no longer receive marketing from this particular list once removed.  Removing a profile from a list will not impact the profile\'s [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) status or subscription status in general. To update a profile\'s subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles).  This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
@@ -271,20 +286,26 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listMembersDeleteQuery, "ListMembersDeleteQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[list]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-02-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `lists:read`
@@ -336,21 +357,27 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetListRetrieveResponseCompoundDocument");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListRetrieveResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get all profiles within a list with the given list ID.  Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-02-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `lists:read` `profiles:read`
@@ -410,21 +437,27 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetListMemberResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListMemberResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:read` `profiles:read`
@@ -476,21 +509,27 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetListRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the tag IDs of all tags associated with the given list.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
@@ -526,21 +565,27 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetListTagRelationshipListResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListTagRelationshipListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Return all tags associated with the given list ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
@@ -580,21 +625,27 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get all lists in an account.  Filter to request a subset of all lists. Lists can be filtered by `id`, `name`, `created`, and `updated` fields.  Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:read`
@@ -644,21 +695,27 @@ export class ListsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetListListResponseCollectionCompoundDocument");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListListResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Update the name of a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write`
@@ -700,20 +757,26 @@ export class ListsApi {
             data: ObjectSerializer.serialize(listPartialUpdateQuery, "ListPartialUpdateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PatchListPartialUpdateResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchListPartialUpdateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
 }

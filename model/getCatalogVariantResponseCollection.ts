@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetCatalogVariantResponseCollectionDataInner } from './getCatalogVariantResponseCollectionDataInner';
-
 export class GetCatalogVariantResponseCollection {
     'data': Array<GetCatalogVariantResponseCollectionDataInner>;
     'links': CollectionLinks;

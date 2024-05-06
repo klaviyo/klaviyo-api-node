@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { AttributionEnum } from './attributionEnum';
-
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributionsDataInner {
     'type': AttributionEnum | 'attribution';
     /**

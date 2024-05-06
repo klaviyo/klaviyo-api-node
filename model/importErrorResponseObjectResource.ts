@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ImportErrorEnum } from './importErrorEnum';
 import { ImportErrorResponseObjectResourceAttributes } from './importErrorResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class ImportErrorResponseObjectResource {
     'type': ImportErrorEnum | 'import-error';
     /**

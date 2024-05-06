@@ -11,8 +11,11 @@
 
 import { RequestFile } from './models';
 import { ContactInformation } from './contactInformation';
-
 export class AccountResponseObjectResourceAttributes {
+    /**
+    * Indicates if the account is a test account. Test accounts are not a separate testing engineering environment. Test accounts use the same production environment as normal Klaviyo accounts. This feature is primarily UI based to reduce human errors
+    */
+    'testAccount': boolean;
     'contactInformation': ContactInformation;
     /**
     * The kind of business and/or types of goods that the business sells. This is leveraged in Klaviyo analytics and guidance.
@@ -33,6 +36,11 @@ export class AccountResponseObjectResourceAttributes {
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "testAccount",
+            "baseName": "test_account",
+            "type": "boolean"
+        },
         {
             "name": "contactInformation",
             "baseName": "contact_information",

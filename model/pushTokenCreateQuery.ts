@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PushTokenCreateQueryResourceObject } from './pushTokenCreateQueryResourceObject';
-
 export class PushTokenCreateQuery {
     'data': PushTokenCreateQueryResourceObject;
 

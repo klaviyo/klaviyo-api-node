@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class MetricAggregateRowDTO {
     /**
     * List of dimensions associated with this set of measurements

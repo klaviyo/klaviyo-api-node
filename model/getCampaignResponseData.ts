@@ -15,7 +15,6 @@ import { CampaignResponseObjectResource } from './campaignResponseObjectResource
 import { CampaignResponseObjectResourceAttributes } from './campaignResponseObjectResourceAttributes';
 import { GetCampaignResponseDataAllOfRelationships } from './getCampaignResponseDataAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCampaignResponseData extends CampaignResponseObjectResource {
     'relationships'?: GetCampaignResponseDataAllOfRelationships;
 

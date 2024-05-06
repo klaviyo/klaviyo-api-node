@@ -10,16 +10,15 @@
  */
 
 import { RequestFile } from './models';
-
 export class AudiencesSubObject {
     /**
     * A list of included audiences
     */
-    'included'?: Array<string>;
+    'included'?: Array<string> | null;
     /**
     * An optional list of excluded audiences
     */
-    'excluded'?: Array<string>;
+    'excluded'?: Array<string> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

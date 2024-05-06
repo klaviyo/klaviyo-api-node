@@ -11,12 +11,11 @@
 
 import { RequestFile } from './models';
 import { SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles } from './subscriptionCreateJobCreateQueryResourceObjectAttributesProfiles';
-
 export class SubscriptionCreateJobCreateQueryResourceObjectAttributes {
     /**
     * A custom method detail or source to store on the consent records.
     */
-    'customSource'?: string;
+    'customSource'?: string | null;
     'profiles': SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles;
 
 

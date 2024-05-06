@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { MetricResponseObjectResource } from './metricResponseObjectResource';
-
 export class GetMetricResponse {
     'data': MetricResponseObjectResource;
 

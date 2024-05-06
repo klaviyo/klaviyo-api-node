@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsLists } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsLists';
 import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsSegments';
-
 export class GetProfileResponseCompoundDocumentDataAllOfRelationships {
     'lists'?: GetProfileResponseCompoundDocumentDataAllOfRelationshipsLists;
     'segments'?: GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments;

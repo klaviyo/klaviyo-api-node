@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ListCreateQueryResourceObjectAttributes } from './listCreateQueryResourceObjectAttributes';
 import { ListEnum } from './listEnum';
-
 export class ListPartialUpdateQueryResourceObject {
     'type': ListEnum | 'list';
     /**

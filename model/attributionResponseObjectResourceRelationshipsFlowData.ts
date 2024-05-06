@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { FlowEnum } from './flowEnum';
-
 export class AttributionResponseObjectResourceRelationshipsFlowData {
     'type': FlowEnum | 'flow';
     /**

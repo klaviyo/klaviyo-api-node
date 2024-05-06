@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CouponEnum } from './couponEnum';
 import { CouponResponseObjectResourceAttributes } from './couponResponseObjectResourceAttributes';
-
 export class CouponCreateQueryResourceObject {
     'type': CouponEnum | 'coupon';
     'attributes': CouponResponseObjectResourceAttributes;

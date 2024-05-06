@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { EventEnum } from './eventEnum';
 import { EventResponseObjectResourceAttributes } from './eventResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class EventResponseObjectResource {
     'type': EventEnum | 'event';
     /**

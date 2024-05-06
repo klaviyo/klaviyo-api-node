@@ -15,7 +15,6 @@ import { FlowMessageResponseObjectResource } from './flowMessageResponseObjectRe
 import { FlowMessageResponseObjectResourceAttributes } from './flowMessageResponseObjectResourceAttributes';
 import { GetFlowMessageResponseCompoundDocumentDataAllOfRelationships } from './getFlowMessageResponseCompoundDocumentDataAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetFlowMessageResponseCompoundDocumentData extends FlowMessageResponseObjectResource {
     'relationships'?: GetFlowMessageResponseCompoundDocumentDataAllOfRelationships;
 

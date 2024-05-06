@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner } from './profileMergeQueryResourceObjectRelationshipsProfilesDataInner';
-
 export class ProfileMergeQueryResourceObjectRelationshipsProfiles {
-    'data': Array<ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner>;
+    'data'?: Array<ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

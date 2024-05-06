@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { AttributionResponseObjectResourceRelationshipsCampaignMessageData } from './attributionResponseObjectResourceRelationshipsCampaignMessageData';
-
 export class AttributionResponseObjectResourceRelationshipsCampaignMessage {
-    'data': AttributionResponseObjectResourceRelationshipsCampaignMessageData;
+    'data'?: AttributionResponseObjectResourceRelationshipsCampaignMessageData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

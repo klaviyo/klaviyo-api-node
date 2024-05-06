@@ -10,36 +10,35 @@
  */
 
 import { RequestFile } from './models';
-
 export class EmailContentSubObject {
     /**
     * The subject of the message
     */
-    'subject'?: string;
+    'subject'?: string | null;
     /**
     * Preview text associated with the message
     */
-    'previewText'?: string;
+    'previewText'?: string | null;
     /**
     * The email the message should be sent from
     */
-    'fromEmail'?: string;
+    'fromEmail'?: string | null;
     /**
     * The label associated with the from_email
     */
-    'fromLabel'?: string;
+    'fromLabel'?: string | null;
     /**
     * Optional Reply-To email address
     */
-    'replyToEmail'?: string;
+    'replyToEmail'?: string | null;
     /**
     * Optional CC email address
     */
-    'ccEmail'?: string;
+    'ccEmail'?: string | null;
     /**
     * Optional BCC email address
     */
-    'bccEmail'?: string;
+    'bccEmail'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

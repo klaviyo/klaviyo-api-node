@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner';
-
 export class GetCatalogVariantCreateJobResponseCollectionCompoundDocument {
     'data': Array<GetCatalogVariantCreateJobResponseCollectionCompoundDocumentDataInner>;
     'links': CollectionLinks;

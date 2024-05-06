@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class Timeframe {
     /**
     * Pre-defined key that represents a set timeframe

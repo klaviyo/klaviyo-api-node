@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
-
 export class SegmentResponseObjectResource {
     'type': SegmentEnum | 'segment';
     'id': string;

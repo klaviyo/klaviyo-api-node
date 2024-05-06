@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { MetricCreateQueryResourceObjectAttributes } from './metricCreateQueryResourceObjectAttributes';
 import { MetricEnum } from './metricEnum';
-
 export class MetricCreateQueryResourceObject {
     'type': MetricEnum | 'metric';
     'attributes': MetricCreateQueryResourceObjectAttributes;

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { DeviceMetadata } from './deviceMetadata';
 import { PushTokenCreateQueryResourceObjectAttributesProfile } from './pushTokenCreateQueryResourceObjectAttributesProfile';
-
 export class PushTokenCreateQueryResourceObjectAttributes {
     /**
     * A push token from APNS or FCM.
@@ -25,7 +24,7 @@ export class PushTokenCreateQueryResourceObjectAttributes {
     /**
     * This is the enablement status for the individual push token.
     */
-    'enablementStatus'?: PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum | 'AUTHORIZED' | 'DENIED' | 'NOT_DETERMINED' | 'PROVISIONAL' | 'UNAUTHORIZED' = PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum.Authorized;
+    'enablementStatus'?: PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum | 'AUTHORIZED' | 'DENIED' | 'NOT_DETERMINED' | 'PROVISIONAL' | 'UNAUTHORIZED' | null = PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum.Authorized;
     /**
     * The vendor of the push token.
     */
@@ -33,7 +32,7 @@ export class PushTokenCreateQueryResourceObjectAttributes {
     /**
     * The background state of the push token.
     */
-    'background'?: PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum | 'AVAILABLE' | 'DENIED' | 'RESTRICTED' = PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum.Available;
+    'background'?: PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum | 'AVAILABLE' | 'DENIED' | 'RESTRICTED' | null = PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum.Available;
     'deviceMetadata'?: DeviceMetadata;
     'profile': PushTokenCreateQueryResourceObjectAttributesProfile;
 

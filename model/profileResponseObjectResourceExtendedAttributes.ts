@@ -14,7 +14,6 @@ import { PredictiveAnalytics } from './predictiveAnalytics';
 import { ProfileLocation } from './profileLocation';
 import { ProfileResponseObjectResourceAttributes } from './profileResponseObjectResourceAttributes';
 import { Subscriptions } from './subscriptions';
-
 export class ProfileResponseObjectResourceExtendedAttributes extends ProfileResponseObjectResourceAttributes {
     'subscriptions'?: Subscriptions;
     'predictiveAnalytics'?: PredictiveAnalytics;

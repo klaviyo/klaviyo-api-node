@@ -58,10 +58,7 @@ export class TagsApi {
     session: Session
 
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders : any = {
-        revision: "2024-02-15",
-        "User-Agent": "klaviyo-api-node/8.0.0"
-    };
+    protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
 
     constructor(session: Session){
@@ -122,21 +119,27 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagCreateQuery, "TagCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostTagResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostTagResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostTagResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTagResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostTagResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostTagResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Create a tag group. An account cannot have more than **50** unique tag groups.  If `exclusive` is not specified `true` or `false`, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -172,21 +175,27 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagGroupCreateQuery, "TagGroupCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostTagGroupResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostTagGroupResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostTagGroupResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTagGroupResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostTagGroupResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostTagGroupResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
@@ -228,20 +237,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
@@ -283,20 +298,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
@@ -338,20 +359,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagListOp, "TagListOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
@@ -393,20 +420,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -442,20 +475,26 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -491,21 +530,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "DeleteTagGroupResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "DeleteTagGroupResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Remove a tag\'s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
@@ -547,20 +592,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Remove a tag\'s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
@@ -602,20 +653,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
@@ -657,20 +714,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagListOp, "TagListOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Remove a tag\'s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
@@ -712,20 +775,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -773,21 +842,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCompoundDocument");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -827,21 +902,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -877,21 +958,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupTagRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupTagRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -931,21 +1018,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -991,21 +1084,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
@@ -1041,21 +1140,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagCampaignRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagCampaignRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
@@ -1091,21 +1196,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagFlowRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagFlowRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
@@ -1141,21 +1252,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagListRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagListRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
@@ -1191,21 +1308,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagSegmentRelationshipsResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagSegmentRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -1241,21 +1364,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagTagGroupRelationshipsResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagTagGroupRelationshipsResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -1295,21 +1424,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -1363,21 +1498,27 @@ export class TagsApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollectionCompoundDocument");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Update the tag with the given tag ID.  Only a tag\'s `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -1419,20 +1560,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagUpdateQuery, "TagUpdateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Update the tag group with the given tag group ID.  Only a tag group\'s `name` can be changed. A tag group\'s `exclusive` or `default` value cannot be changed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -1474,20 +1621,26 @@ export class TagsApi {
             data: ObjectSerializer.serialize(tagGroupUpdateQuery, "TagGroupUpdateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PatchTagGroupResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PatchTagGroupResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PatchTagGroupResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchTagGroupResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchTagGroupResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PatchTagGroupResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
 }

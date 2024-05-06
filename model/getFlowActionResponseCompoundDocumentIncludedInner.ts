@@ -18,7 +18,6 @@ import { ObjectLinks } from './objectLinks';
 
 
 
-
     export type GetFlowActionResponseCompoundDocumentIncludedInner = FlowResponseObjectResource | FlowMessageResponseObjectResource
 
     export class GetFlowActionResponseCompoundDocumentIncludedInnerHelper {

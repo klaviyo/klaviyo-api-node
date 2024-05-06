@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegmentsDataInner } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsSegmentsDataInner';
-
 export class GetProfileSegmentRelationshipsResponseCollection {
     'data': Array<GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegmentsDataInner>;
 

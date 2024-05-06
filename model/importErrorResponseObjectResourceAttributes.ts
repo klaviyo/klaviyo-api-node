@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ErrorSource } from './errorSource';
-
 export class ImportErrorResponseObjectResourceAttributes {
     /**
     * A code for classifying the error type.
@@ -26,7 +25,7 @@ export class ImportErrorResponseObjectResourceAttributes {
     */
     'detail': string;
     'source': ErrorSource;
-    'originalPayload'?: object;
+    'originalPayload'?: object | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

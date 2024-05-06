@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CouponCodeBulkCreateJobEnum {
     CouponCodeBulkCreateJob = <any> 'coupon-code-bulk-create-job'
 }

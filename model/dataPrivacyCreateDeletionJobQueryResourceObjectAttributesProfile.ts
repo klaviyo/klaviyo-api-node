@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { DataPrivacyProfileQueryResourceObject } from './dataPrivacyProfileQueryResourceObject';
-
 export class DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile {
     'data': DataPrivacyProfileQueryResourceObject;
 

@@ -14,7 +14,6 @@ import { FlowEnum } from './flowEnum';
 import { FlowResponseObjectResourceAttributes } from './flowResponseObjectResourceAttributes';
 import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class PatchFlowResponseData {
     'type': FlowEnum | 'flow';
     'id': string;

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileUpsertQueryResourceObject } from './profileUpsertQueryResourceObject';
-
 export class ProfileUpsertQuery {
     'data': ProfileUpsertQueryResourceObject;
 

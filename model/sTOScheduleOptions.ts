@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class STOScheduleOptions {
     /**
     * The day to send on

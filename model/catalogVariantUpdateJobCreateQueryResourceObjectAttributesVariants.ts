@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantUpdateQueryResourceObject } from './catalogVariantUpdateQueryResourceObject';
-
 /**
 * Array of catalog variants to update.
 */

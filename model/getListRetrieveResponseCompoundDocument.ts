@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetListRetrieveResponseCompoundDocumentData } from './getListRetrieveResponseCompoundDocumentData';
 import { TagResponseObjectResource } from './tagResponseObjectResource';
-
 export class GetListRetrieveResponseCompoundDocument {
     'data': GetListRetrieveResponseCompoundDocumentData;
     'included'?: Array<TagResponseObjectResource>;

@@ -15,7 +15,6 @@ import { CatalogVariantDeleteJobResponseObjectResource } from './catalogVariantD
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships } from './getCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCatalogVariantDeleteJobResponseCollectionDataInner extends CatalogVariantDeleteJobResponseObjectResource {
     'relationships'?: GetCatalogVariantDeleteJobResponseCollectionDataInnerAllOfRelationships;
 

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCatalogCategoryCreateJobResponseData } from './postCatalogCategoryCreateJobResponseData';
-
 export class PostCatalogCategoryCreateJobResponse {
     'data': PostCatalogCategoryCreateJobResponseData;
 

@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { FlowValuesReportEnum } from './flowValuesReportEnum';
 import { FlowValuesRequestDTOResourceObjectAttributes } from './flowValuesRequestDTOResourceObjectAttributes';
-
 export class FlowValuesRequestDTOResourceObject {
     'type': FlowValuesReportEnum | 'flow-values-report';
     'attributes': FlowValuesRequestDTOResourceObjectAttributes;

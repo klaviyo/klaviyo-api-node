@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class CatalogCategoryUpdateQueryResourceObjectAttributes {
     /**
     * The name of the catalog category.
     */
-    'name'?: string;
+    'name'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

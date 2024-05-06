@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { AttributionEnum } from './attributionEnum';
 import { AttributionResponseObjectResourceRelationships } from './attributionResponseObjectResourceRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class AttributionResponseObjectResource {
     'type': AttributionEnum | 'attribution';
     /**

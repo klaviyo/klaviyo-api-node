@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { ImageResponseObjectResource } from './imageResponseObjectResource';
-
 export class GetImageResponseCollection {
     'data': Array<ImageResponseObjectResource>;
     'links': CollectionLinks;

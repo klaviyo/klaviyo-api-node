@@ -20,7 +20,6 @@ import { ProfileResponseObjectResourceAttributes } from './profileResponseObject
 
 
 
-
     export type GetEventResponseCollectionCompoundDocumentIncludedInner = AttributionResponseObjectResource | MetricResponseObjectResource | ProfileResponseObjectResource
 
     export class GetEventResponseCollectionCompoundDocumentIncludedInnerHelper {

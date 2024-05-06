@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner } from './getProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsLists {
-    'data': Array<GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner>;
+    'data'?: Array<GetProfileImportJobResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsListsDataInner>;
     'links'?: RelationshipLinks;
 
 

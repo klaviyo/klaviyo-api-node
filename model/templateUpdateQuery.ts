@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TemplateUpdateQueryResourceObject } from './templateUpdateQueryResourceObject';
-
 export class TemplateUpdateQuery {
     'data': TemplateUpdateQueryResourceObject;
 

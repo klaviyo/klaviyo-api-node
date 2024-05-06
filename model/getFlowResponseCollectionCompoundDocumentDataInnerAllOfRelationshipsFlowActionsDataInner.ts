@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { FlowActionEnum } from './flowActionEnum';
-
 export class GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner {
     'type': FlowActionEnum | 'flow-action';
     'id': string;

@@ -11,12 +11,11 @@
 
 import { RequestFile } from './models';
 import { CampaignValuesRequestDTOResourceObjectAttributesTimeframe } from './campaignValuesRequestDTOResourceObjectAttributesTimeframe';
-
 export class FlowSeriesRequestDTOResourceObjectAttributes {
     /**
     * List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
     */
-    'statistics': Array<FlowSeriesRequestDTOResourceObjectAttributes.StatisticsEnum> | 'average_order_value' | 'bounce_rate' | 'bounced' | 'bounced_or_failed' | 'bounced_or_failed_rate' | 'click_rate' | 'click_to_open_rate' | 'clicks' | 'clicks_unique' | 'conversion_rate' | 'conversion_uniques' | 'conversion_value' | 'conversions' | 'delivered' | 'delivery_rate' | 'failed' | 'failed_rate' | 'open_rate' | 'opens' | 'opens_unique' | 'recipients' | 'revenue_per_recipient' | 'spam_complaint_rate' | 'spam_complaints' | 'unsubscribe_rate' | 'unsubscribe_uniques' | 'unsubscribes';
+    'statistics': Array<FlowSeriesRequestDTOResourceObjectAttributes.StatisticsEnum> | Array<'average_order_value' | 'bounce_rate' | 'bounced' | 'bounced_or_failed' | 'bounced_or_failed_rate' | 'click_rate' | 'click_to_open_rate' | 'clicks' | 'clicks_unique' | 'conversion_rate' | 'conversion_uniques' | 'conversion_value' | 'conversions' | 'delivered' | 'delivery_rate' | 'failed' | 'failed_rate' | 'open_rate' | 'opens' | 'opens_unique' | 'recipients' | 'revenue_per_recipient' | 'spam_complaint_rate' | 'spam_complaints' | 'unsubscribe_rate' | 'unsubscribe_uniques' | 'unsubscribes'>;
     'timeframe': CampaignValuesRequestDTOResourceObjectAttributesTimeframe;
     /**
     * The interval used to aggregate data within the series request. If hourly is used, the timeframe cannot be longer than 7 days. If daily is used, the timeframe cannot be longer than 60 days. If monthly is used, the timeframe cannot be longer than 52 weeks.
@@ -27,9 +26,9 @@ export class FlowSeriesRequestDTOResourceObjectAttributes {
     */
     'conversionMetricId': string;
     /**
-    * API filter string used to filter the query. Allowed filters are flow_id, send_channel, flow_message_id. Allowed operators are equals, contains-any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter.
+    * API filter string used to filter the query. Allowed filters are flow_id, send_channel, flow_message_id. Allowed operators are equals, contains-any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter. When filtering on send_channel, allowed values are email, push-notification, sms.
     */
-    'filter'?: string;
+    'filter'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

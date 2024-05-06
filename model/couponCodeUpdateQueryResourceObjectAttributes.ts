@@ -10,16 +10,15 @@
  */
 
 import { RequestFile } from './models';
-
 export class CouponCodeUpdateQueryResourceObjectAttributes {
     /**
     * The API status of our coupon codes.
     */
-    'status'?: CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE';
+    'status'?: CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE' | null;
     /**
     * The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
     */
-    'expiresAt'?: Date;
+    'expiresAt'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

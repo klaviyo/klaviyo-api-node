@@ -10,13 +10,12 @@
  */
 
 import { RequestFile } from './models';
-
 export class TagGroupUpdateQueryResourceObjectAttributes {
     /**
     * The Tag Group name
     */
     'name': string;
-    'returnFields'?: Array<string>;
+    'returnFields'?: Array<string> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

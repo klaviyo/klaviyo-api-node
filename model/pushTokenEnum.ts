@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum PushTokenEnum {
     PushToken = <any> 'push-token'
 }

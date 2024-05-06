@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CampaignSendJobResponseObjectResourceAttributes {
     /**
     * The status of the send job

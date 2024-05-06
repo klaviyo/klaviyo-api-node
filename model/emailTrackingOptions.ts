@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { UtmParamInfo } from './utmParamInfo';
-
 export class EmailTrackingOptions {
     'addUtm': boolean;
     'utmParams': Array<UtmParamInfo>;

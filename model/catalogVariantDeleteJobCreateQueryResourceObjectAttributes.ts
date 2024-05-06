@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants } from './catalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants';
-
 export class CatalogVariantDeleteJobCreateQueryResourceObjectAttributes {
     'variants': CatalogVariantDeleteJobCreateQueryResourceObjectAttributesVariants;
 

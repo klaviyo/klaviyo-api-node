@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { PushTokenCreateQueryResourceObjectAttributes } from './pushTokenCreateQueryResourceObjectAttributes';
 import { PushTokenEnum } from './pushTokenEnum';
-
 export class PushTokenCreateQueryResourceObject {
     'type': PushTokenEnum | 'push-token';
     'attributes': PushTokenCreateQueryResourceObjectAttributes;

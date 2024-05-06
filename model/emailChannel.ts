@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { EmailMarketing } from './emailMarketing';
-
 export class EmailChannel {
     'marketing'?: EmailMarketing;
 

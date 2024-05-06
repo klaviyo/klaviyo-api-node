@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCatalogVariantDeleteJobResponseCollectionDataInner } from './getCatalogVariantDeleteJobResponseCollectionDataInner';
-
 export class GetCatalogVariantDeleteJobResponse {
     'data': GetCatalogVariantDeleteJobResponseCollectionDataInner;
 

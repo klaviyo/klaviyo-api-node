@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class SMSRenderOptions {
     'shortenLinks': boolean;
     'addOrgPrefix': boolean;

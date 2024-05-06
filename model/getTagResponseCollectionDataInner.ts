@@ -15,7 +15,6 @@ import { ObjectLinks } from './objectLinks';
 import { TagEnum } from './tagEnum';
 import { TagResponseObjectResource } from './tagResponseObjectResource';
 import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
-
 export class GetTagResponseCollectionDataInner extends TagResponseObjectResource {
     'relationships'?: GetTagResponseCollectionDataInnerAllOfRelationships;
 

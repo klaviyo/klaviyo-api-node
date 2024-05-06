@@ -14,7 +14,6 @@ import { CatalogVariantBulkUpdateJobEnum } from './catalogVariantBulkUpdateJobEn
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class PostCatalogVariantUpdateJobResponseData {
     'type': CatalogVariantBulkUpdateJobEnum | 'catalog-variant-bulk-update-job';
     /**

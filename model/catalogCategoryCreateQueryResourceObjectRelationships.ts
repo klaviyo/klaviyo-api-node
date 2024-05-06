@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogCategoryCreateQueryResourceObjectRelationshipsItems } from './catalogCategoryCreateQueryResourceObjectRelationshipsItems';
-
 export class CatalogCategoryCreateQueryResourceObjectRelationships {
     'items'?: CatalogCategoryCreateQueryResourceObjectRelationshipsItems;
 

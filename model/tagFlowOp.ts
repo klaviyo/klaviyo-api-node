@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagFlowOpDataInner } from './tagFlowOpDataInner';
-
 export class TagFlowOp {
     'data': Array<TagFlowOpDataInner>;
 

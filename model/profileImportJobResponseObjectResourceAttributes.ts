@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class ProfileImportJobResponseObjectResourceAttributes {
     /**
     * Status of the asynchronous job.
@@ -27,23 +26,23 @@ export class ProfileImportJobResponseObjectResourceAttributes {
     /**
     * The total number of operations that have been completed by the job.
     */
-    'completedCount'?: number = 0;
+    'completedCount'?: number | null = 0;
     /**
     * The total number of operations that have failed as part of the job.
     */
-    'failedCount'?: number = 0;
+    'failedCount'?: number | null = 0;
     /**
     * Date and time the job was completed in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'completedAt'?: Date;
+    'completedAt'?: Date | null;
     /**
     * Date and time the job expires in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'expiresAt'?: Date;
+    'expiresAt'?: Date | null;
     /**
     * Date and time the job started processing in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'startedAt'?: Date;
+    'startedAt'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -10,10 +10,9 @@
  */
 
 import { RequestFile } from './models';
-
 export class SMSMessageContent {
     'body': string;
-    'mediaUrl'?: string;
+    'mediaUrl'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

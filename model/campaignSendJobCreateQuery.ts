@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignSendJobCreateQueryResourceObject } from './campaignSendJobCreateQueryResourceObject';
-
 export class CampaignSendJobCreateQuery {
     'data': CampaignSendJobCreateQueryResourceObject;
 

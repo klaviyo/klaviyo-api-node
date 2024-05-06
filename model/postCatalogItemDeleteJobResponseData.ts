@@ -14,7 +14,6 @@ import { CatalogItemBulkDeleteJobEnum } from './catalogItemBulkDeleteJobEnum';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
 import { PostCatalogItemDeleteJobResponseDataRelationships } from './postCatalogItemDeleteJobResponseDataRelationships';
-
 export class PostCatalogItemDeleteJobResponseData {
     'type': CatalogItemBulkDeleteJobEnum | 'catalog-item-bulk-delete-job';
     /**

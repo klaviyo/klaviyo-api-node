@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
-
 export class ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData {
     'type': CatalogVariantEnum | 'catalog-variant';
     /**

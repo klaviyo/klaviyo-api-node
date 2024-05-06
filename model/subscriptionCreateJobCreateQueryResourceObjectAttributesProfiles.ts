@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileSubscriptionCreateQueryResourceObject } from './profileSubscriptionCreateQueryResourceObject';
-
 /**
 * The profile(s) to subscribe
 */

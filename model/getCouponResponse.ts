@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CouponResponseObjectResource } from './couponResponseObjectResource';
-
 export class GetCouponResponse {
     'data': CouponResponseObjectResource;
 

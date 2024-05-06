@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ImageCreateQueryResourceObject } from './imageCreateQueryResourceObject';
-
 export class ImageCreateQuery {
     'data': ImageCreateQueryResourceObject;
 

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner';
-
 export class GetFlowFlowActionRelationshipListResponseCollection {
     'data': Array<GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner>;
 

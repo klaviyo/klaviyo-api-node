@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { TagCreateQueryResourceObjectRelationships } from './tagCreateQueryResourceObjectRelationships';
 import { TagEnum } from './tagEnum';
 import { TagResponseObjectResourceAttributes } from './tagResponseObjectResourceAttributes';
-
 export class TagCreateQueryResourceObject {
     'type': TagEnum | 'tag';
     'attributes': TagResponseObjectResourceAttributes;

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum CampaignSendJobEnum {
     CampaignSendJob = <any> 'campaign-send-job'
 }

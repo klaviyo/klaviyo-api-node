@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ProfileSubscriptionBulkDeleteJobEnum } from './profileSubscriptionBulkDeleteJobEnum';
 import { SubscriptionDeleteJobCreateQueryResourceObjectAttributes } from './subscriptionDeleteJobCreateQueryResourceObjectAttributes';
 import { SubscriptionDeleteJobCreateQueryResourceObjectRelationships } from './subscriptionDeleteJobCreateQueryResourceObjectRelationships';
-
 export class SubscriptionDeleteJobCreateQueryResourceObject {
     'type': ProfileSubscriptionBulkDeleteJobEnum | 'profile-subscription-bulk-delete-job';
     'attributes': SubscriptionDeleteJobCreateQueryResourceObjectAttributes;

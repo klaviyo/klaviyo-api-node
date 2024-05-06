@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
-
 export class ImageCreateQueryResourceObjectAttributes {
     /**
     * A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
     */
-    'name'?: string;
+    'name'?: string | null;
     /**
     * An existing image url to import the image from. Alternatively, you may specify a base-64 encoded data-uri (`data:image/...`). Supported image formats: jpeg,png,gif. Maximum image size: 5MB.
     */
@@ -23,7 +22,7 @@ export class ImageCreateQueryResourceObjectAttributes {
     /**
     * If true, this image is not shown in the asset library.
     */
-    'hidden'?: boolean = false;
+    'hidden'?: boolean | null = false;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

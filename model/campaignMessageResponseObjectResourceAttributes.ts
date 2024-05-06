@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CampaignMessageResponseObjectResourceAttributesContent } from './campaignMessageResponseObjectResourceAttributesContent';
 import { RenderOptionsSubObject } from './renderOptionsSubObject';
 import { SendTimeSubObject } from './sendTimeSubObject';
-
 export class CampaignMessageResponseObjectResourceAttributes {
     /**
     * The label or name on the message
@@ -27,16 +26,16 @@ export class CampaignMessageResponseObjectResourceAttributes {
     /**
     * The list of appropriate Send Time Sub-objects associated with the message
     */
-    'sendTimes'?: Array<SendTimeSubObject>;
+    'sendTimes'?: Array<SendTimeSubObject> | null;
     'renderOptions'?: RenderOptionsSubObject;
     /**
     * The datetime when the message was created
     */
-    'createdAt'?: Date;
+    'createdAt'?: Date | null;
     /**
     * The datetime when the message was last updated
     */
-    'updatedAt'?: Date;
+    'updatedAt'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

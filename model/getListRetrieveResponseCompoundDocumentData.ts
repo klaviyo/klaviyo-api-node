@@ -15,7 +15,6 @@ import { ListEnum } from './listEnum';
 import { ListRetrieveResponseObjectResourceExtended } from './listRetrieveResponseObjectResourceExtended';
 import { ListRetrieveResponseObjectResourceExtendedAttributes } from './listRetrieveResponseObjectResourceExtendedAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class GetListRetrieveResponseCompoundDocumentData extends ListRetrieveResponseObjectResourceExtended {
     'relationships'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships;
 

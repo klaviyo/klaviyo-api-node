@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CatalogVariantBulkDeleteJobEnum } from './catalogVariantBulkDeleteJobEnum';
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CatalogVariantDeleteJobResponseObjectResource {
     'type': CatalogVariantBulkDeleteJobEnum | 'catalog-variant-bulk-delete-job';
     /**

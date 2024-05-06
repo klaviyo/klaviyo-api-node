@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetListRelationshipsResponseCollectionDataInner } from './getListRelationshipsResponseCollectionDataInner';
-
 export class ListMembersDeleteQuery {
     'data': Array<GetListRelationshipsResponseCollectionDataInner>;
 

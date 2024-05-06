@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { MetricAggregateRowDTO } from './metricAggregateRowDTO';
-
 export class PostMetricAggregateResponseDataAttributes {
     /**
     * The dates of the query range

@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { PostCatalogVariantResponseDataRelationshipsItemData } from './postCatalogVariantResponseDataRelationshipsItemData';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class PostCatalogCategoryResponseDataRelationshipsItems {
-    'data': Array<PostCatalogVariantResponseDataRelationshipsItemData>;
+    'data'?: Array<PostCatalogVariantResponseDataRelationshipsItemData>;
     'links'?: RelationshipLinks;
 
 

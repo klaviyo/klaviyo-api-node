@@ -10,16 +10,15 @@
  */
 
 import { RequestFile } from './models';
-
 export class MarketingSubscriptionParameters {
     /**
     * The Consent status to subscribe to for the \"Marketing\" type. Currently supports \"SUBSCRIBED\".
     */
     'consent': MarketingSubscriptionParameters.ConsentEnum | 'SUBSCRIBED';
     /**
-    * The timestamp of when the profile\'s consent was gathered
+    * The timestamp of when the profile\'s consent was gathered. This is only supported for single opt-in.
     */
-    'consentedAt'?: Date;
+    'consentedAt'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

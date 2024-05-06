@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetProfileResponseData } from './getProfileResponseData';
-
 export class GetProfileResponse {
     'data': GetProfileResponseData;
 

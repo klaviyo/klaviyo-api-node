@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class TemplateCreateQueryResourceObjectAttributes {
     /**
     * The name of the template
@@ -23,11 +22,11 @@ export class TemplateCreateQueryResourceObjectAttributes {
     /**
     * The HTML contents of the template
     */
-    'html'?: string;
+    'html'?: string | null;
     /**
     * The plaintext version of the template
     */
-    'text'?: string;
+    'text'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

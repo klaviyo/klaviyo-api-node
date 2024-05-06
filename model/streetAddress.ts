@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class StreetAddress {
     'address1': string;
     'address2': string;

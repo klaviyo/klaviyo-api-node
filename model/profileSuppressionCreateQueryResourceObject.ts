@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ProfileEnum } from './profileEnum';
 import { ProfileSuppressionCreateQueryResourceObjectAttributes } from './profileSuppressionCreateQueryResourceObjectAttributes';
-
 export class ProfileSuppressionCreateQueryResourceObject {
     'type': ProfileEnum | 'profile';
     'attributes': ProfileSuppressionCreateQueryResourceObjectAttributes;

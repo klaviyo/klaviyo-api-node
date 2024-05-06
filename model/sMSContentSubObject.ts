@@ -10,16 +10,15 @@
  */
 
 import { RequestFile } from './models';
-
 export class SMSContentSubObject {
     /**
     * The message body
     */
-    'body'?: string;
+    'body'?: string | null;
     /**
     * URL for included media
     */
-    'mediaUrl'?: string;
+    'mediaUrl'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

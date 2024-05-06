@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetTagGroupResponseCollectionDataInner } from './getTagGroupResponseCollectionDataInner';
-
 export class GetTagGroupResponseCollection {
     'data': Array<GetTagGroupResponseCollectionDataInner>;
     'links': CollectionLinks;

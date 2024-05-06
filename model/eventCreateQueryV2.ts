@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { EventCreateQueryV2ResourceObject } from './eventCreateQueryV2ResourceObject';
-
 export class EventCreateQueryV2 {
     'data': EventCreateQueryV2ResourceObject;
 

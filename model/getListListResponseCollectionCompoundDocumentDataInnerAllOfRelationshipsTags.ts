@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags {
-    'data': Array<GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner>;
+    'data'?: Array<GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagsDataInner>;
     'links'?: RelationshipLinks;
 
 

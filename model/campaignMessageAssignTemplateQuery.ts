@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignMessageAssignTemplateQueryResourceObject } from './campaignMessageAssignTemplateQueryResourceObject';
-
 export class CampaignMessageAssignTemplateQuery {
     'data': CampaignMessageAssignTemplateQueryResourceObject;
 

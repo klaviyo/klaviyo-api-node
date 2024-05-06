@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemDeleteJobCreateQueryResourceObjectAttributesItems } from './catalogItemDeleteJobCreateQueryResourceObjectAttributesItems';
-
 export class CatalogItemDeleteJobCreateQueryResourceObjectAttributes {
     'items': CatalogItemDeleteJobCreateQueryResourceObjectAttributesItems;
 

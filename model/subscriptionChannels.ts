@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { EmailSubscriptionParameters } from './emailSubscriptionParameters';
 import { SMSSubscriptionParameters } from './sMSSubscriptionParameters';
-
 export class SubscriptionChannels {
     'email'?: EmailSubscriptionParameters;
     'sms'?: SMSSubscriptionParameters;

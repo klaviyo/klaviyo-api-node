@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CatalogVariantEnum } from './catalogVariantEnum';
 import { CatalogVariantResponseObjectResourceAttributes } from './catalogVariantResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CatalogVariantResponseObjectResource {
     'type': CatalogVariantEnum | 'catalog-variant';
     /**

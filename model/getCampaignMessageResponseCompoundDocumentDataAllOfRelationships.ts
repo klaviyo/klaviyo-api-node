@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate';
-
 export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships {
     'campaign'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign;
     'template'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate;

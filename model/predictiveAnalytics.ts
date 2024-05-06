@@ -10,44 +10,43 @@
  */
 
 import { RequestFile } from './models';
-
 export class PredictiveAnalytics {
     /**
     * Total value of all historically placed orders
     */
-    'historicClv'?: number;
+    'historicClv'?: number | null;
     /**
     * Predicted value of all placed orders in the next 365 days
     */
-    'predictedClv'?: number;
+    'predictedClv'?: number | null;
     /**
     * Sum of historic and predicted CLV
     */
-    'totalClv'?: number;
+    'totalClv'?: number | null;
     /**
     * Number of already placed orders
     */
-    'historicNumberOfOrders'?: number;
+    'historicNumberOfOrders'?: number | null;
     /**
     * Predicted number of placed orders in the next 365 days
     */
-    'predictedNumberOfOrders'?: number;
+    'predictedNumberOfOrders'?: number | null;
     /**
     * Average number of days between orders (None if only one order has been placed)
     */
-    'averageDaysBetweenOrders'?: number;
+    'averageDaysBetweenOrders'?: number | null;
     /**
     * Average value of placed orders
     */
-    'averageOrderValue'?: number;
+    'averageOrderValue'?: number | null;
     /**
     * Probability the customer has churned
     */
-    'churnProbability'?: number;
+    'churnProbability'?: number | null;
     /**
     * Expected date of next order, as calculated at the time of their most recent order
     */
-    'expectedDateOfNextOrder'?: Date;
+    'expectedDateOfNextOrder'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

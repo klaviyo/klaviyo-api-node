@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum DataPrivacyDeletionJobEnum {
     DataPrivacyDeletionJob = <any> 'data-privacy-deletion-job'
 }

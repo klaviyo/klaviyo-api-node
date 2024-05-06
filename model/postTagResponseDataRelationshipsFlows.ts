@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowData } from './getFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowData';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class PostTagResponseDataRelationshipsFlows {
-    'data': Array<GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowData>;
+    'data'?: Array<GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowData>;
     'links'?: RelationshipLinks;
 
 

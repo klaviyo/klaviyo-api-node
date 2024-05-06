@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { TagGroupCreateQueryResourceObject } from './tagGroupCreateQueryResourceObject';
-
 export class TagGroupCreateQuery {
     'data': TagGroupCreateQueryResourceObject;
 

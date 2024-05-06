@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostMetricAggregateResponseData } from './postMetricAggregateResponseData';
-
 export class PostMetricAggregateResponse {
     'data': PostMetricAggregateResponseData;
 

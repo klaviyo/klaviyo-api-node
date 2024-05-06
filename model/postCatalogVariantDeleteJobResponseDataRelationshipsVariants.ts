@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { PostCatalogVariantDeleteJobResponseDataRelationshipsVariantsDataInner } from './postCatalogVariantDeleteJobResponseDataRelationshipsVariantsDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class PostCatalogVariantDeleteJobResponseDataRelationshipsVariants {
-    'data': Array<PostCatalogVariantDeleteJobResponseDataRelationshipsVariantsDataInner>;
+    'data'?: Array<PostCatalogVariantDeleteJobResponseDataRelationshipsVariantsDataInner>;
     'links'?: RelationshipLinks;
 
 

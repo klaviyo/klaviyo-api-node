@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { EventEnum } from './eventEnum';
-
 export class AttributionResponseObjectResourceRelationshipsEventData {
     'type': EventEnum | 'event';
     /**

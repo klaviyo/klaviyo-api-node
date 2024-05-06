@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { GetCampaignResponseCollectionCompoundDocumentDataInner } from './getCampaignResponseCollectionCompoundDocumentDataInner';
 import { GetCampaignResponseCollectionCompoundDocumentIncludedInner } from './getCampaignResponseCollectionCompoundDocumentIncludedInner';
-
 export class GetCampaignResponseCompoundDocument {
     'data': GetCampaignResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<GetCampaignResponseCollectionCompoundDocumentIncludedInner>;

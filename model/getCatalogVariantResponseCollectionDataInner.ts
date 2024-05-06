@@ -15,7 +15,6 @@ import { CatalogVariantResponseObjectResource } from './catalogVariantResponseOb
 import { CatalogVariantResponseObjectResourceAttributes } from './catalogVariantResponseObjectResourceAttributes';
 import { GetCatalogVariantResponseCollectionDataInnerAllOfRelationships } from './getCatalogVariantResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCatalogVariantResponseCollectionDataInner extends CatalogVariantResponseObjectResource {
     'relationships'?: GetCatalogVariantResponseCollectionDataInnerAllOfRelationships;
 

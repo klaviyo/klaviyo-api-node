@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class TagResponseObjectResourceAttributes {
     /**
     * The Tag name

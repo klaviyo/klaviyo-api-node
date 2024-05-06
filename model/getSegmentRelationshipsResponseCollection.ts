@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetListRelationshipsResponseCollectionDataInner } from './getListRelationshipsResponseCollectionDataInner';
-
 export class GetSegmentRelationshipsResponseCollection {
     'data': Array<GetListRelationshipsResponseCollectionDataInner>;
 

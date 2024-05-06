@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCatalogItemUpdateJobResponseData } from './postCatalogItemUpdateJobResponseData';
-
 export class PostCatalogItemUpdateJobResponse {
     'data': PostCatalogItemUpdateJobResponseData;
 

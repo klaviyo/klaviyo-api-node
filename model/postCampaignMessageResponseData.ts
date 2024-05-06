@@ -14,7 +14,6 @@ import { CampaignMessageEnum } from './campaignMessageEnum';
 import { CampaignMessageResponseObjectResourceAttributes } from './campaignMessageResponseObjectResourceAttributes';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class PostCampaignMessageResponseData {
     'type': CampaignMessageEnum | 'campaign-message';
     /**

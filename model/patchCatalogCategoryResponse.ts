@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostCatalogCategoryResponseData } from './postCatalogCategoryResponseData';
-
 export class PatchCatalogCategoryResponse {
     'data': PostCatalogCategoryResponseData;
 

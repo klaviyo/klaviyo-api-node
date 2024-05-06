@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class EmailMarketingListSuppression {
     /**
     * The ID of list to which the suppression applies.

@@ -10,12 +10,11 @@
  */
 
 import { RequestFile } from './models';
+import { OnlyRelatedLinks } from './onlyRelatedLinks';
 import { PostProfileImportJobResponseDataRelationshipsImportErrorsDataInner } from './postProfileImportJobResponseDataRelationshipsImportErrorsDataInner';
-import { RelationshipLinks } from './relationshipLinks';
-
 export class PostProfileImportJobResponseDataRelationshipsImportErrors {
-    'data': Array<PostProfileImportJobResponseDataRelationshipsImportErrorsDataInner>;
-    'links'?: RelationshipLinks;
+    'data'?: Array<PostProfileImportJobResponseDataRelationshipsImportErrorsDataInner>;
+    'links'?: OnlyRelatedLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,7 +26,7 @@ export class PostProfileImportJobResponseDataRelationshipsImportErrors {
         {
             "name": "links",
             "baseName": "links",
-            "type": "RelationshipLinks"
+            "type": "OnlyRelatedLinks"
         }    ];
 
     static getAttributeTypeMap() {

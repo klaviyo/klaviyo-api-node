@@ -11,9 +11,8 @@
 
 import { RequestFile } from './models';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData';
-
 export class CouponCodeCreateQueryResourceObjectRelationshipsCoupon {
-    'data': GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData;
+    'data'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsCouponData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

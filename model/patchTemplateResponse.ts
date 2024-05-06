@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { PostTemplateResponseData } from './postTemplateResponseData';
-
 export class PatchTemplateResponse {
     'data': PostTemplateResponseData;
 

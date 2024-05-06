@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class StaticScheduleOptions {
     /**
     * The time to send at
@@ -19,11 +18,11 @@ export class StaticScheduleOptions {
     /**
     * If the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time. Defaults to False.
     */
-    'isLocal'?: boolean;
+    'isLocal'?: boolean | null;
     /**
     * Determines if we should send to local recipient timezone if the given time has passed. Only applicable to local sends. Defaults to False.
     */
-    'sendPastRecipientsImmediately'?: boolean;
+    'sendPastRecipientsImmediately'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

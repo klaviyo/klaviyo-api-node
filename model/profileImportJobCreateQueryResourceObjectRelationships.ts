@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileImportJobCreateQueryResourceObjectRelationshipsLists } from './profileImportJobCreateQueryResourceObjectRelationshipsLists';
-
 export class ProfileImportJobCreateQueryResourceObjectRelationships {
     'lists'?: ProfileImportJobCreateQueryResourceObjectRelationshipsLists;
 

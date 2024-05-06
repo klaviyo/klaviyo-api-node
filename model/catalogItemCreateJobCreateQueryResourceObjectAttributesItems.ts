@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemCreateQueryResourceObject } from './catalogItemCreateQueryResourceObject';
-
 /**
 * Array of catalog items to create.
 */

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CatalogCategoryCreateQueryResourceObjectAttributes {
     /**
     * The ID of the catalog category in an external system.
@@ -23,11 +22,11 @@ export class CatalogCategoryCreateQueryResourceObjectAttributes {
     /**
     * The integration type. Currently only \"$custom\" is supported.
     */
-    'integrationType'?: CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum | '$custom' = CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
+    'integrationType'?: CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum | '$custom' | null = CatalogCategoryCreateQueryResourceObjectAttributes.IntegrationTypeEnum.Custom;
     /**
     * The type of catalog. Currently only \"$default\" is supported.
     */
-    'catalogType'?: string = '$default';
+    'catalogType'?: string | null = '$default';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ProfileBulkImportJobEnum } from './profileBulkImportJobEnum';
 import { ProfileImportJobCreateQueryResourceObjectAttributes } from './profileImportJobCreateQueryResourceObjectAttributes';
 import { ProfileImportJobCreateQueryResourceObjectRelationships } from './profileImportJobCreateQueryResourceObjectRelationships';
-
 export class ProfileImportJobCreateQueryResourceObject {
     'type': ProfileBulkImportJobEnum | 'profile-bulk-import-job';
     'attributes': ProfileImportJobCreateQueryResourceObjectAttributes;

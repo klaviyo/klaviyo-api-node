@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { MetricEnum } from './metricEnum';
 import { MetricResponseObjectResourceAttributes } from './metricResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class MetricResponseObjectResource {
     'type': MetricEnum | 'metric';
     /**

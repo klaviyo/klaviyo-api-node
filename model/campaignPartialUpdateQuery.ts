@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignPartialUpdateQueryResourceObject } from './campaignPartialUpdateQueryResourceObject';
-
 export class CampaignPartialUpdateQuery {
     'data': CampaignPartialUpdateQueryResourceObject;
 

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class CampaignSendJobPartialUpdateQueryResourceObjectAttributes {
     /**
     * The action you would like to take with this send job from among \'cancel\' and \'revert\'

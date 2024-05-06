@@ -14,7 +14,6 @@ import { CatalogCategoryBulkUpdateJobEnum } from './catalogCategoryBulkUpdateJob
 import { CouponCodeCreateJobResponseObjectResourceAttributes } from './couponCodeCreateJobResponseObjectResourceAttributes';
 import { GetCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getCatalogCategoryUpdateJobResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class PostCatalogCategoryUpdateJobResponseData {
     'type': CatalogCategoryBulkUpdateJobEnum | 'catalog-category-bulk-update-job';
     /**

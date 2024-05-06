@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetTagTagGroupRelationshipsResponseData } from './getTagTagGroupRelationshipsResponseData';
-
 export class GetTagTagGroupRelationshipsResponse {
     'data': GetTagTagGroupRelationshipsResponseData;
 

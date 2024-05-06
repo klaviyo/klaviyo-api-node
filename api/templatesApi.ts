@@ -43,10 +43,7 @@ export class TemplatesApi {
     session: Session
 
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders : any = {
-        revision: "2024-02-15",
-        "User-Agent": "klaviyo-api-node/8.0.0"
-    };
+    protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
 
     constructor(session: Session){
@@ -107,21 +104,27 @@ export class TemplatesApi {
             data: ObjectSerializer.serialize(templateCreateQuery, "TemplateCreateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -157,21 +160,27 @@ export class TemplatesApi {
             data: ObjectSerializer.serialize(templateCloneQuery, "TemplateCloneQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Render a template with the given template ID and context attribute. Returns the HTML and plain text versions of the email template.  **Request body parameters** (nested under `attributes`):  * `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding `context` values are treated as `FALSE` and output nothing.  Ex. `{ \"name\" : \"George Washington\", \"state\" : \"VA\" }`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
@@ -207,21 +216,27 @@ export class TemplatesApi {
             data: ObjectSerializer.serialize(templateRenderQuery, "TemplateRenderQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Delete a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -257,20 +272,26 @@ export class TemplatesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body?: any;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
@@ -310,21 +331,27 @@ export class TemplatesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Get all templates in an account.  Filter to request a subset of all templates. Templates can be sorted by the following fields, in ascending and descending order: `id`, `name`, `created`, `updated`  Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
@@ -370,21 +397,27 @@ export class TemplatesApi {
             params: localVarQueryParameters,
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponseCollection;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: GetTemplateResponseCollection;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponseCollection");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTemplateResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
     /**
      * Update a template with the given template ID. Does not currently update drag & drop templates.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -426,20 +459,26 @@ export class TemplatesApi {
             data: ObjectSerializer.serialize(templateUpdateQuery, "TemplateUpdateQuery")
         }
 
-        this.session.applyToRequest(config)
+        await this.session.applyToRequest(config)
 
-        return backOff<{ response: AxiosResponse; body: PatchTemplateResponse;  }>( () => {
-            return new Promise<{ response: AxiosResponse; body: PatchTemplateResponse;  }>((resolve, reject) => {
-                axios(config)
-                    .then(axiosResponse => {
-                        let body;
-                        body = ObjectSerializer.deserialize(axiosResponse.data, "PatchTemplateResponse");
-                        resolve({ response: axiosResponse, body: body });
-                    })
-                    .catch(error => {
-                        reject(error);
-                    })
-            });
-        }, this.session.getRetryOptions());
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchTemplateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchTemplateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PatchTemplateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
     }
 }

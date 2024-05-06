@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CampaignCreateQueryResourceObject } from './campaignCreateQueryResourceObject';
-
 export class CampaignCreateQuery {
     'data': CampaignCreateQueryResourceObject;
 

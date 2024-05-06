@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { CouponCodeEnum } from './couponCodeEnum';
 import { CouponCodeResponseObjectResourceAttributes } from './couponCodeResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
-
 export class CouponCodeResponseObjectResource {
     'type': CouponCodeEnum | 'coupon-code';
     /**

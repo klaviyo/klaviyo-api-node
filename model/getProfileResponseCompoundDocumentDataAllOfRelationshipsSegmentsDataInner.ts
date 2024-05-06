@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SegmentEnum } from './segmentEnum';
-
 export class GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegmentsDataInner {
     'type': SegmentEnum | 'segment';
     'id': string;

@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export class SMSMarketing {
     /**
     * Whether or not this profile is subscribed to receive SMS marketing.
@@ -31,7 +30,7 @@ export class SMSMarketing {
     /**
     * Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
     */
-    'methodDetail'?: string = '';
+    'methodDetail'?: string | null = '';
     /**
     * The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */

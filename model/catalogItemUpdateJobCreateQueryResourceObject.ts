@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { CatalogItemBulkUpdateJobEnum } from './catalogItemBulkUpdateJobEnum';
 import { CatalogItemUpdateJobCreateQueryResourceObjectAttributes } from './catalogItemUpdateJobCreateQueryResourceObjectAttributes';
-
 export class CatalogItemUpdateJobCreateQueryResourceObject {
     'type': CatalogItemBulkUpdateJobEnum | 'catalog-item-bulk-update-job';
     'attributes': CatalogItemUpdateJobCreateQueryResourceObjectAttributes;

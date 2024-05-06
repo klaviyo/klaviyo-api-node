@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-
 export enum TagGroupEnum {
     TagGroup = <any> 'tag-group'
 }

@@ -13,7 +13,6 @@ import { RequestFile } from './models';
 import { ProfileSubscriptionBulkCreateJobEnum } from './profileSubscriptionBulkCreateJobEnum';
 import { SubscriptionCreateJobCreateQueryResourceObjectAttributes } from './subscriptionCreateJobCreateQueryResourceObjectAttributes';
 import { SubscriptionCreateJobCreateQueryResourceObjectRelationships } from './subscriptionCreateJobCreateQueryResourceObjectRelationships';
-
 export class SubscriptionCreateJobCreateQueryResourceObject {
     'type': ProfileSubscriptionBulkCreateJobEnum | 'profile-subscription-bulk-create-job';
     'attributes': SubscriptionCreateJobCreateQueryResourceObjectAttributes;

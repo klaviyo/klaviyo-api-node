@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributionsDataInner } from './getEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributionsDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributions {
-    'data': Array<GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributionsDataInner>;
+    'data'?: Array<GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsAttributionsDataInner>;
     'links'?: RelationshipLinks;
 
 

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { CatalogItemEnum } from './catalogItemEnum';
-
 export class PostCatalogVariantResponseDataRelationshipsItemData {
     'type': CatalogItemEnum | 'catalog-item';
     'id': string;

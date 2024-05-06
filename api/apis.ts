@@ -30,13 +30,13 @@ import { TagsApi } from './tagsApi';
 export * from './templatesApi';
 import { TemplatesApi } from './templatesApi';
 
-import {AxiosRequestConfig} from "axios/index";
+const axios = require('axios')
+import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axios";
 
 export { RequestFile } from '../model/models';
 
-export enum KlaviyoApiKey {
-    KeyName = "Klaviyo-API-Key"
-}
+const revision =  "2024-02-15";
+const userAgent = "klaviyo-api-node/9.0.0";
 
 export class RetryOptions {
 
@@ -103,11 +103,9 @@ export class GlobalApiKeySettings {
 }
 
 export interface Session {
-    /**
-    * Apply authentication settings to header and query params.
-    */
     applyToRequest(requestOptions: AxiosRequestConfig): Promise<void> | void;
     getRetryOptions(): BackoffOptions
+    refreshAndRetry(error: unknown, retried: boolean): Promise<boolean> | boolean;
 }
 
 export class ApiKeySession implements Session {
@@ -127,11 +125,17 @@ export class ApiKeySession implements Session {
     applyToRequest(requestOptions: AxiosRequestConfig): void {
         if (requestOptions && requestOptions.headers) {
             requestOptions.headers["Authorization"] = `${this._apiKeyPrefix} ${this.apiKey}`;
+            requestOptions.headers['User-Agent'] = userAgent
+            requestOptions.headers['revision'] = revision
         }
     }
 
     getRetryOptions(): BackoffOptions {
         return this.retryOptions.options
+    }
+
+    refreshAndRetry(error: unknown, retried: boolean): boolean {
+        return false
     }
 }
 
@@ -143,6 +147,8 @@ export class GlobalApiKeySession implements Session {
         if (requestOptions && requestOptions.headers) {
             if (GlobalApiKeySettings.apiKey) {
                 requestOptions.headers["Authorization"] = `${this._apiKeyPrefix} ${GlobalApiKeySettings.apiKey}`;
+                requestOptions.headers['User-Agent'] = userAgent
+                requestOptions.headers['revision'] = revision
             } else {
                 throw Error ("No API Key set")
             }
@@ -152,7 +158,12 @@ export class GlobalApiKeySession implements Session {
     getRetryOptions(): BackoffOptions {
         return GlobalApiKeySettings.retryOptions.options
     }
+
+    refreshAndRetry(error: unknown, retried: boolean): boolean {
+        return false
+    }
 }
+
 
 export function ConfigWrapper(apiKey: string, opts: {numOfAttempts?: number, timeMultiple?: number, startingDelay?: number} = {}): ApiKeySession {
 
@@ -162,6 +173,308 @@ export function ConfigWrapper(apiKey: string, opts: {numOfAttempts?: number, tim
     }
     GlobalApiKeySettings.apiKey = apiKey
     return new ApiKeySession(apiKey, retryOptions)
+}
+
+
+export class OAuthSession implements Session {
+
+    retryOptions: RetryOptions
+    protected _prefix = "Bearer"
+
+    constructor(protected customerIdentifier: string, protected oAuthApi: OAuthApi, retryOptions: RetryOptions = new RetryOptions()) {
+        this.retryOptions = retryOptions
+    }
+    async applyToRequest(requestOptions: AxiosRequestConfig): Promise<void> {
+
+        let tokens = await this.oAuthApi.tokenStorage.retrieve(this.customerIdentifier)
+        if (tokens.expiresAt) {
+            if ((tokens.expiresAt.getTime() - new Date().getTime()) < (30 * 1000)) {
+                tokens = await this.oAuthApi.refreshTokens(this.customerIdentifier, tokens.refreshToken)
+            }
+        } else if (!tokens.accessToken){
+            tokens = await this.oAuthApi.refreshTokens(this.customerIdentifier, tokens.refreshToken)
+        }
+        if (requestOptions && requestOptions.headers) {
+            requestOptions.headers["Authorization"] = `${this._prefix} ${tokens.accessToken}`;
+            requestOptions.headers['User-Agent'] = userAgent
+            requestOptions.headers['revision'] = revision
+        }
+    }
+
+    getRetryOptions(): BackoffOptions {
+        return this.retryOptions.options
+    }
+
+    async refreshAndRetry(error: unknown, retried: boolean): Promise<boolean> {
+        if (!retried && isAxiosError(error) && error.response?.status === 401) {
+            await this.oAuthApi.refreshTokens(this.customerIdentifier)
+            return true
+        }
+        return false
+    }
+}
+
+export class OAuthBasicSession implements Session {
+    accessToken: string
+    retryOptions: RetryOptions
+    protected _prefix = "Bearer"
+
+    constructor(accessToken: string, retryOptions: RetryOptions = new RetryOptions()) {
+        this.accessToken = accessToken
+        this.retryOptions = retryOptions
+    }
+
+    applyToRequest(requestOptions: AxiosRequestConfig): void {
+        if (requestOptions && requestOptions.headers) {
+            requestOptions.headers["Authorization"] = `${this._prefix} ${this.accessToken}`;
+            requestOptions.headers['User-Agent'] = userAgent
+            requestOptions.headers['revision'] = revision
+        }
+    }
+
+    refreshAndRetry(error: unknown, retried: boolean): boolean {
+        return false
+    }
+
+    getRetryOptions(): BackoffOptions {
+        return this.retryOptions.options
+    }
+}
+
+export enum KlaviyoErrorName {
+    saveError = "SAVE_TOKEN_ERROR",
+    createError = "CREATE_TOKEN_ERROR",
+    retrieveError = "RETRIEVE_TOKEN_ERROR",
+    refreshError = "REFRESH_TOKEN_ERROR"
+}
+export class KlaviyoTokenError extends Error {
+
+    constructor(readonly name: KlaviyoErrorName, readonly message: string, readonly cause?: any) {
+        super();
+    }
+}
+
+export function isKlaviyoTokenError(error: any): error is KlaviyoTokenError {
+    return (error as KlaviyoTokenError).name !== undefined && Object.values(KlaviyoErrorName).includes((error as KlaviyoTokenError).name);
+}
+
+export interface RetrievedTokens {
+	accessToken: string,
+	refreshToken: string,
+    expiresAt?: Date
+}
+export interface CreatedTokens {
+	accessToken: string,
+	refreshToken: string,
+    expiresAt: Date
+}
+
+export interface TokenStorage {
+
+    retrieve(customerIdentifier: string): Promise<RetrievedTokens> | RetrievedTokens
+
+    save(customerIdentifier: string, tokens: CreatedTokens): Promise<void> | void
+}
+
+interface TokenServerResponse {
+    access_token: string,
+    token_type: string,
+    expires_in: number,
+    refresh_token: string,
+    scope: string
+}
+
+export class OAuthApi {
+
+    protected authorizeUrl = "https://klaviyo.com/oauth/authorize"
+    protected tokenUrl = "https://a.klaviyo.com/oauth/token"
+
+    constructor(
+        readonly clientId: string,
+        readonly clientSecret: string,
+        readonly tokenStorage: TokenStorage,
+    ) {}
+
+    generateAuthorizeUrl(
+        state: string,
+        scopes: string,
+        codeChallenge: string,
+        redirectUrl: string,
+    ): string {
+        const url: URL = new URL(this.authorizeUrl)
+        let querystring
+        try {
+            querystring = require('node:querystring')
+        } catch (e) {
+            querystring = require('querystring')
+        }
+
+        const params = {
+            response_type: "code",
+            code_challenge_method: "S256",
+            client_id: this.clientId,
+            state: state,
+            scope: scopes,
+            redirect_uri: redirectUrl,
+            code_challenge: codeChallenge,
+        }
+        url.search = querystring.encode(params)
+        return url.toString()
+    }
+
+    async createTokens(
+        customerIdentifier: string,
+        codeVerifier: string,
+        authorizationCode: string,
+        redirectUrl: string
+    ): Promise<CreatedTokens> {
+        const requestBody = {
+            "grant_type": "authorization_code",
+            "code": authorizationCode,
+            "code_verifier": codeVerifier,
+            "redirect_uri": redirectUrl
+        }
+
+        const requestConfig: AxiosRequestConfig = {
+            method: "POST",
+            url: this.tokenUrl,
+            headers: this.createHeaders(),
+            data: requestBody,
+        }
+        const currentDate = new Date()
+        let tokens: CreatedTokens;
+        try {
+            const axiosResponse: AxiosResponse<TokenServerResponse> = await axios(requestConfig)
+            tokens = {
+                accessToken: axiosResponse.data.access_token,
+                refreshToken: axiosResponse.data.refresh_token,
+                expiresAt: new Date(currentDate.getTime() + (axiosResponse.data.expires_in * 1000)),
+            }
+        } catch(error) {
+            const message = this.populateErrorMessage(error, 'Failed to create token')
+            throw new KlaviyoTokenError(KlaviyoErrorName.createError, message, error)
+        }
+        return this.saveToken(customerIdentifier, tokens)
+    }
+
+    async refreshTokens(
+        customerIdentifier: string,
+        refreshToken?: string
+    ): Promise<CreatedTokens> {
+        if (!refreshToken) {
+            try {
+                const tokens = await this.tokenStorage.retrieve(customerIdentifier)
+                refreshToken = tokens.refreshToken
+            } catch (error) {
+                const message = this.populateErrorMessage(error, "Failed to get refresh token")
+                throw new KlaviyoTokenError(KlaviyoErrorName.retrieveError, message, error)
+            }
+        }
+        const requestBody = {
+            "grant_type": "refresh_token",
+            "refresh_token": refreshToken,
+        }
+        const requestConfig: AxiosRequestConfig = {
+            method: "POST",
+            url: this.tokenUrl,
+            headers: this.createHeaders(),
+            data: requestBody,
+        }
+        const currentDate = new Date()
+        let tokens: CreatedTokens;
+        try {
+            const axiosResponse: AxiosResponse<TokenServerResponse> = await axios(requestConfig)
+            tokens = {
+                accessToken: axiosResponse.data.access_token,
+                refreshToken: axiosResponse.data.refresh_token,
+                expiresAt: new Date(currentDate.getTime() + (axiosResponse.data.expires_in * 1000)),
+            }
+        } catch(error) {
+            const message = this.populateErrorMessage(error, 'Failed to refresh token')
+            throw new KlaviyoTokenError(KlaviyoErrorName.refreshError, message, error);
+        }
+        return this.saveToken(customerIdentifier, tokens)
+    }
+
+    private createHeaders() {
+        const headers = new AxiosHeaders()
+        headers.set('content-type', 'application/x-www-form-urlencoded')
+        const auth = Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')
+        headers.set("Authorization", `Basic ${auth}`)
+        headers.set("User-Agent", userAgent)
+        return headers
+    }
+
+    private async saveToken(customerIdentifier: string, tokens: CreatedTokens): Promise<CreatedTokens> {
+        try {
+            await this.tokenStorage.save(customerIdentifier, tokens);
+            return tokens;
+        } catch(error) {
+            const message = this.populateErrorMessage(error, 'Failed to save token')
+            throw new KlaviyoTokenError(KlaviyoErrorName.saveError, message, error)
+        }
+    }
+
+    private populateErrorMessage(error, defaultMessage: string ): string {
+        let message = defaultMessage;
+        if (isAxiosError(error) && error.response?.data?.error && typeof error.response?.data?.error === 'string') {
+            message = error.response?.data?.error
+        } else if (error && typeof error === 'object' && 'message' in error && error.message && typeof error.message === 'string') {message = error.message}
+        return message
+    }
+}
+
+export interface OAuthCallbackQueryParams {
+ // authorization code used for getting the accessToken and refreshToken
+  code?: string;
+  state?: string;
+  error?: string;
+  error_description?: string;
+}
+
+
+export namespace Pkce {
+
+    export interface Codes {
+        codeVerifier: string
+        codeChallenge: string
+    }
+
+    export function generateCodes() {
+        let crypto;
+        try {
+          crypto = require('node:crypto');
+        } catch (error) {
+            crypto = require('crypto');
+        }
+        const base64URLEncode = (str) => {
+            return str.toString('base64')
+                .replace(/\+/g, '-')
+                .replace(/\//g, '_')
+                .replace(/=/g, '');
+        }
+        const verifier = base64URLEncode(crypto.randomBytes(32));
+
+        const sha256 = (buffer) => {
+            return crypto.createHash('sha256').update(buffer).digest();
+        }
+        const challenge = base64URLEncode(sha256(verifier));
+
+        return {
+            codeVerifier: verifier,
+            codeChallenge: challenge
+        }
+    }
+
+    export interface CodeStorage {
+
+        retrieve(customerIdentifier: string): Promise<string>
+
+        save(customerIdentifier: string, verifierCode: string ): Promise<void>
+
+        remove(customerIdentifier: string): Promise<void>
+    }
+
 }
 
 
@@ -196,6 +509,15 @@ export function ConfigWrapper(apiKey: string, opts: {numOfAttempts?: number, tim
     export const Templates = new TemplatesApi(new GlobalApiKeySession())
 
 
-export const Auth = { ApiKeySession, GlobalApiKeySession, GlobalApiKeySettings}
+export const Auth = {
+    ApiKeySession,
+    GlobalApiKeySession,
+    GlobalApiKeySettings,
+    RetryOptions,
+    OAuthApi,
+    OAuthBasicSession,
+    OAuthSession,
+    Pkce,
+}
 
 export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates };

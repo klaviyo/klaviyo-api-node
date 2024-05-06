@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ListPartialUpdateQueryResourceObject } from './listPartialUpdateQueryResourceObject';
-
 export class ListPartialUpdateQuery {
     'data': ListPartialUpdateQueryResourceObject;
 

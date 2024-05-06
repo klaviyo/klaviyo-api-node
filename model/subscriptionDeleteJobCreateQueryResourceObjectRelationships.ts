@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList } from './subscriptionDeleteJobCreateQueryResourceObjectRelationshipsList';
-
 export class SubscriptionDeleteJobCreateQueryResourceObjectRelationships {
     'list'?: SubscriptionDeleteJobCreateQueryResourceObjectRelationshipsList;
 

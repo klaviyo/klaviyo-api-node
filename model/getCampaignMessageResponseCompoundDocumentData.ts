@@ -15,7 +15,6 @@ import { CampaignMessageResponseObjectResource } from './campaignMessageResponse
 import { CampaignMessageResponseObjectResourceAttributes } from './campaignMessageResponseObjectResourceAttributes';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
-
 export class GetCampaignMessageResponseCompoundDocumentData extends CampaignMessageResponseObjectResource {
     'relationships'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships;
 

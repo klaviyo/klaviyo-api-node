@@ -12,9 +12,8 @@
 import { RequestFile } from './models';
 import { PostProfileImportJobResponseDataRelationshipsProfilesDataInner } from './postProfileImportJobResponseDataRelationshipsProfilesDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-
 export class PostProfileImportJobResponseDataRelationshipsProfiles {
-    'data': Array<PostProfileImportJobResponseDataRelationshipsProfilesDataInner>;
+    'data'?: Array<PostProfileImportJobResponseDataRelationshipsProfilesDataInner>;
     'links'?: RelationshipLinks;
 
 

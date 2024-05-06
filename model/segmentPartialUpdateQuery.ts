@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { SegmentPartialUpdateQueryResourceObject } from './segmentPartialUpdateQueryResourceObject';
-
 export class SegmentPartialUpdateQuery {
     'data': SegmentPartialUpdateQueryResourceObject;
 

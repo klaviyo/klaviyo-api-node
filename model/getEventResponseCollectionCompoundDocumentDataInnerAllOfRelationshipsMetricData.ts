@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { MetricEnum } from './metricEnum';
-
 export class GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData {
     'type': MetricEnum | 'metric';
     /**

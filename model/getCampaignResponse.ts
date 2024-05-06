@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { GetCampaignResponseData } from './getCampaignResponseData';
-
 export class GetCampaignResponse {
     'data': GetCampaignResponseData;
 
