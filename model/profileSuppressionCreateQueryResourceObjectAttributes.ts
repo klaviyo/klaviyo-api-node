@@ -14,7 +14,7 @@ export class ProfileSuppressionCreateQueryResourceObjectAttributes {
     /**
     * The email of the profile to suppress.
     */
-    'email'?: string | null;
+    'email': string;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

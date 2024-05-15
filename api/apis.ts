@@ -35,8 +35,8 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axi
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2024-02-15";
-const userAgent = "klaviyo-api-node/9.0.0";
+const revision =  "2024-05-15";
+const userAgent = "klaviyo-api-node/10.0.0";
 
 export class RetryOptions {
 

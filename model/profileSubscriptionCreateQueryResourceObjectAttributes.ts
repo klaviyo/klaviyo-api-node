@@ -21,6 +21,10 @@ export class ProfileSubscriptionCreateQueryResourceObjectAttributes {
     */
     'phoneNumber'?: string | null;
     'subscriptions'?: SubscriptionChannels;
+    /**
+    * The profile\'s date of birth. This field is required to update SMS consent for accounts using age-gating: https://help.klaviyo.com/hc/en-us/articles/17252552814875
+    */
+    'ageGatedDateOfBirth'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -38,6 +42,11 @@ export class ProfileSubscriptionCreateQueryResourceObjectAttributes {
             "name": "subscriptions",
             "baseName": "subscriptions",
             "type": "SubscriptionChannels"
+        },
+        {
+            "name": "ageGatedDateOfBirth",
+            "baseName": "age_gated_date_of_birth",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
