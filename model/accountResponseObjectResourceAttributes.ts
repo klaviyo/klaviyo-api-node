@@ -33,6 +33,10 @@ export class AccountResponseObjectResourceAttributes {
     * The Public API Key can be used for client-side API calls. [More info here](https://developers.klaviyo.com/en/docs/retrieve_api_credentials).
     */
     'publicApiKey': string;
+    /**
+    * The account\'s locale is used to determine the region and language for the account.
+    */
+    'locale': string;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -64,6 +68,11 @@ export class AccountResponseObjectResourceAttributes {
         {
             "name": "publicApiKey",
             "baseName": "public_api_key",
+            "type": "string"
+        },
+        {
+            "name": "locale",
+            "baseName": "locale",
             "type": "string"
         }    ];
 

@@ -10,22 +10,20 @@
  */
 
 import { RequestFile } from './models';
-export class ProfileSuppressionDeleteQueryResourceObjectAttributes {
-    /**
-    * The email of the profile to unsuppress.
-    */
-    'email': string;
+import { EventsBulkCreateJobResourceObject } from './eventsBulkCreateJobResourceObject';
+export class EventsBulkCreateJob {
+    'data': EventsBulkCreateJobResourceObject;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "email",
-            "baseName": "email",
-            "type": "string"
+            "name": "data",
+            "baseName": "data",
+            "type": "EventsBulkCreateJobResourceObject"
         }    ];
 
     static getAttributeTypeMap() {
-        return ProfileSuppressionDeleteQueryResourceObjectAttributes.attributeTypeMap;
+        return EventsBulkCreateJob.attributeTypeMap;
     }
 }
 

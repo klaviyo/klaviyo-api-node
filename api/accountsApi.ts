@@ -68,9 +68,9 @@ export class AccountsApi {
      * Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
      * @summary Get Account
      * @param id The ID of the account
-     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets
      */
-    public async getAccount (id: string, options: { fieldsAccount?: Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponse;  }> {
+    public async getAccount (id: string, options: { fieldsAccount?: Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key' | 'locale'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponse;  }> {
 
         const localVarPath = this.basePath + '/api/accounts/{id}/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -90,7 +90,7 @@ export class AccountsApi {
         }
 
         if (options.fieldsAccount !== undefined) {
-            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>");
+            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key' | 'locale'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -128,9 +128,9 @@ export class AccountsApi {
      * Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
      * @summary Get Accounts
      
-     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets
      */
-    public async getAccounts (options: { fieldsAccount?: Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }> {
+    public async getAccounts (options: { fieldsAccount?: Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key' | 'locale'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/accounts/';
         let localVarQueryParameters: any = {};
@@ -144,7 +144,7 @@ export class AccountsApi {
         }
 
         if (options.fieldsAccount !== undefined) {
-            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key'>");
+            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'test_account' | 'contact_information' | 'contact_information.default_sender_name' | 'contact_information.default_sender_email' | 'contact_information.website_url' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.region' | 'contact_information.street_address.country' | 'contact_information.street_address.zip' | 'industry' | 'timezone' | 'preferred_currency' | 'public_api_key' | 'locale'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)

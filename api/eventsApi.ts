@@ -17,6 +17,7 @@ import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { EventCreateQueryV2 } from '../model/eventCreateQueryV2';
+import { EventsBulkCreateJob } from '../model/eventsBulkCreateJob';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetEventMetricsRelationshipListResponse } from '../model/getEventMetricsRelationshipListResponse';
 import { GetEventProfilesRelationshipListResponse } from '../model/getEventProfilesRelationshipListResponse';
@@ -69,6 +70,61 @@ export class EventsApi {
         return this._basePath;
     }
 
+    /**
+     * Create a batch of events for one or more profiles.  Accepts up to 1,000 events per request. The maximum allowed payload size is 5MB.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `events:write`
+     * @summary Bulk Create Events
+     * @param eventsBulkCreateJob 
+     
+     */
+    public async bulkCreateEvents (eventsBulkCreateJob: EventsBulkCreateJob, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/event-bulk-create-jobs/';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'eventsBulkCreateJob' is not null or undefined
+        if (eventsBulkCreateJob === null || eventsBulkCreateJob === undefined) {
+            throw new Error('Required parameter eventsBulkCreateJob was null or undefined when calling bulkCreateEvents.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(eventsBulkCreateJob, "EventsBulkCreateJob")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
     /**
      * Create a new event to track a profile\'s activity.  Successful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:write`
      * @summary Create Event
@@ -128,7 +184,7 @@ export class EventsApi {
      * Get an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `events:read`
      * @summary Get Event
      * @param id ID of the event
-     * @param fieldsEvent For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#relationships
+     * @param fieldsEvent For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#relationships
      */
     public async getEvent (id: string, options: { fieldsEvent?: Array<'timestamp' | 'event_properties' | 'datetime' | 'uuid'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties'>, include?: Array<'attributions' | 'metric' | 'profile'>,  } = {}): Promise<{ response: AxiosResponse; body: GetEventResponseCompoundDocument;  }> {
 
@@ -200,7 +256,7 @@ export class EventsApi {
      * Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`
      * @summary Get Event Metric
      * @param id 
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets
      */
     public async getEventMetric (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> {
 
@@ -260,7 +316,7 @@ export class EventsApi {
      * Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`
      * @summary Get Event Profile
      * @param id 
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets
      */
     public async getEventProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponse;  }> {
 
@@ -436,7 +492,7 @@ export class EventsApi {
      * Get all events in an account  Requests can be sorted by the following fields: `datetime`, `timestamp`  Returns a maximum of 200 events per page.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read`
      * @summary Get Events
      
-     * @param fieldsEvent For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sorting
+     * @param fieldsEvent For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sorting
      */
     public async getEvents (options: { fieldsEvent?: Array<'timestamp' | 'event_properties' | 'datetime' | 'uuid'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties'>, filter?: string, include?: Array<'attributions' | 'metric' | 'profile'>, pageCursor?: string, sort?: 'datetime' | '-datetime' | 'timestamp' | '-timestamp',  } = {}): Promise<{ response: AxiosResponse; body: GetEventResponseCollectionCompoundDocument;  }> {
 

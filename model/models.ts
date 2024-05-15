@@ -24,6 +24,8 @@ export * from './attributionResponseObjectResourceRelationshipsFlowMessageVariat
 export * from './attributionResponseObjectResourceRelationshipsFlowMessageVariationData';
 export * from './audiencesSubObject';
 export * from './backInStockSubscriptionEnum';
+export * from './baseEventCreateQueryResourceObject';
+export * from './baseEventCreateQueryResourceObjectAttributes';
 export * from './campaignCloneQuery';
 export * from './campaignCloneQueryResourceObject';
 export * from './campaignCloneQueryResourceObjectAttributes';
@@ -219,6 +221,8 @@ export * from './emailSubscriptionParameters';
 export * from './emailTrackingOptions';
 export * from './emailTrackingOptionsSubObject';
 export * from './errorSource';
+export * from './eventBulkCreateEnum';
+export * from './eventBulkCreateJobEnum';
 export * from './eventCreateQueryV2';
 export * from './eventCreateQueryV2ResourceObject';
 export * from './eventCreateQueryV2ResourceObjectAttributes';
@@ -229,6 +233,14 @@ export * from './eventProfileCreateQueryResourceObject';
 export * from './eventProfileCreateQueryResourceObjectAttributes';
 export * from './eventResponseObjectResource';
 export * from './eventResponseObjectResourceAttributes';
+export * from './eventsBulkCreateJob';
+export * from './eventsBulkCreateJobResourceObject';
+export * from './eventsBulkCreateJobResourceObjectAttributes';
+export * from './eventsBulkCreateJobResourceObjectAttributesEventsBulkCreate';
+export * from './eventsBulkCreateQueryResourceObject';
+export * from './eventsBulkCreateQueryResourceObjectAttributes';
+export * from './eventsBulkCreateQueryResourceObjectAttributesEvents';
+export * from './eventsBulkCreateQueryResourceObjectAttributesProfile';
 export * from './flowActionEnum';
 export * from './flowActionResponseObjectResource';
 export * from './flowActionResponseObjectResourceAttributes';
@@ -547,6 +559,8 @@ export * from './metricResponseObjectResource';
 export * from './metricResponseObjectResourceAttributes';
 export * from './objectLinks';
 export * from './onlyRelatedLinks';
+export * from './onsiteProfileCreateQueryResourceObject';
+export * from './onsiteProfileCreateQueryResourceObjectAttributes';
 export * from './onsiteProfileMeta';
 export * from './patchCampaignMessageResponse';
 export * from './patchCampaignResponse';
@@ -863,6 +877,8 @@ import { AttributionResponseObjectResourceRelationshipsFlowMessageVariation } fr
 import { AttributionResponseObjectResourceRelationshipsFlowMessageVariationData } from './attributionResponseObjectResourceRelationshipsFlowMessageVariationData';
 import { AudiencesSubObject } from './audiencesSubObject';
 import { BackInStockSubscriptionEnum } from './backInStockSubscriptionEnum';
+import { BaseEventCreateQueryResourceObject } from './baseEventCreateQueryResourceObject';
+import { BaseEventCreateQueryResourceObjectAttributes } from './baseEventCreateQueryResourceObjectAttributes';
 import { CampaignCloneQuery } from './campaignCloneQuery';
 import { CampaignCloneQueryResourceObject } from './campaignCloneQueryResourceObject';
 import { CampaignCloneQueryResourceObjectAttributes } from './campaignCloneQueryResourceObjectAttributes';
@@ -1058,6 +1074,8 @@ import { EmailSubscriptionParameters } from './emailSubscriptionParameters';
 import { EmailTrackingOptions } from './emailTrackingOptions';
 import { EmailTrackingOptionsSubObject } from './emailTrackingOptionsSubObject';
 import { ErrorSource } from './errorSource';
+import { EventBulkCreateEnum } from './eventBulkCreateEnum';
+import { EventBulkCreateJobEnum } from './eventBulkCreateJobEnum';
 import { EventCreateQueryV2 } from './eventCreateQueryV2';
 import { EventCreateQueryV2ResourceObject } from './eventCreateQueryV2ResourceObject';
 import { EventCreateQueryV2ResourceObjectAttributes } from './eventCreateQueryV2ResourceObjectAttributes';
@@ -1068,6 +1086,14 @@ import { EventProfileCreateQueryResourceObject } from './eventProfileCreateQuery
 import { EventProfileCreateQueryResourceObjectAttributes } from './eventProfileCreateQueryResourceObjectAttributes';
 import { EventResponseObjectResource } from './eventResponseObjectResource';
 import { EventResponseObjectResourceAttributes } from './eventResponseObjectResourceAttributes';
+import { EventsBulkCreateJob } from './eventsBulkCreateJob';
+import { EventsBulkCreateJobResourceObject } from './eventsBulkCreateJobResourceObject';
+import { EventsBulkCreateJobResourceObjectAttributes } from './eventsBulkCreateJobResourceObjectAttributes';
+import { EventsBulkCreateJobResourceObjectAttributesEventsBulkCreate } from './eventsBulkCreateJobResourceObjectAttributesEventsBulkCreate';
+import { EventsBulkCreateQueryResourceObject } from './eventsBulkCreateQueryResourceObject';
+import { EventsBulkCreateQueryResourceObjectAttributes } from './eventsBulkCreateQueryResourceObjectAttributes';
+import { EventsBulkCreateQueryResourceObjectAttributesEvents } from './eventsBulkCreateQueryResourceObjectAttributesEvents';
+import { EventsBulkCreateQueryResourceObjectAttributesProfile } from './eventsBulkCreateQueryResourceObjectAttributesProfile';
 import { FlowActionEnum } from './flowActionEnum';
 import { FlowActionResponseObjectResource } from './flowActionResponseObjectResource';
 import { FlowActionResponseObjectResourceAttributes } from './flowActionResponseObjectResourceAttributes';
@@ -1386,6 +1412,8 @@ import { MetricResponseObjectResource } from './metricResponseObjectResource';
 import { MetricResponseObjectResourceAttributes } from './metricResponseObjectResourceAttributes';
 import { ObjectLinks } from './objectLinks';
 import { OnlyRelatedLinks } from './onlyRelatedLinks';
+import { OnsiteProfileCreateQueryResourceObject } from './onsiteProfileCreateQueryResourceObject';
+import { OnsiteProfileCreateQueryResourceObjectAttributes } from './onsiteProfileCreateQueryResourceObjectAttributes';
 import { OnsiteProfileMeta } from './onsiteProfileMeta';
 import { PatchCampaignMessageResponse } from './patchCampaignMessageResponse';
 import { PatchCampaignResponse } from './patchCampaignResponse';
@@ -1698,6 +1726,8 @@ import {  } from './attributionResponseObjectResourceRelationshipsFlowMessageVar
 import {  } from './attributionResponseObjectResourceRelationshipsFlowMessageVariationData';
 import {  } from './audiencesSubObject';
 import {  } from './backInStockSubscriptionEnum';
+import {  } from './baseEventCreateQueryResourceObject';
+import {  } from './baseEventCreateQueryResourceObjectAttributes';
 import {  } from './campaignCloneQuery';
 import {  } from './campaignCloneQueryResourceObject';
 import {  } from './campaignCloneQueryResourceObjectAttributes';
@@ -1893,6 +1923,8 @@ import {  } from './emailSubscriptionParameters';
 import {  } from './emailTrackingOptions';
 import {  } from './emailTrackingOptionsSubObject';
 import {  } from './errorSource';
+import {  } from './eventBulkCreateEnum';
+import {  } from './eventBulkCreateJobEnum';
 import {  } from './eventCreateQueryV2';
 import {  } from './eventCreateQueryV2ResourceObject';
 import {  } from './eventCreateQueryV2ResourceObjectAttributes';
@@ -1903,6 +1935,14 @@ import {  } from './eventProfileCreateQueryResourceObject';
 import {  } from './eventProfileCreateQueryResourceObjectAttributes';
 import {  } from './eventResponseObjectResource';
 import {  } from './eventResponseObjectResourceAttributes';
+import {  } from './eventsBulkCreateJob';
+import {  } from './eventsBulkCreateJobResourceObject';
+import {  } from './eventsBulkCreateJobResourceObjectAttributes';
+import {  } from './eventsBulkCreateJobResourceObjectAttributesEventsBulkCreate';
+import {  } from './eventsBulkCreateQueryResourceObject';
+import {  } from './eventsBulkCreateQueryResourceObjectAttributes';
+import {  } from './eventsBulkCreateQueryResourceObjectAttributesEvents';
+import {  } from './eventsBulkCreateQueryResourceObjectAttributesProfile';
 import {  } from './flowActionEnum';
 import {  } from './flowActionResponseObjectResource';
 import {  } from './flowActionResponseObjectResourceAttributes';
@@ -2221,6 +2261,8 @@ import {  } from './metricResponseObjectResource';
 import {  } from './metricResponseObjectResourceAttributes';
 import {  } from './objectLinks';
 import {  } from './onlyRelatedLinks';
+import {  } from './onsiteProfileCreateQueryResourceObject';
+import {  } from './onsiteProfileCreateQueryResourceObjectAttributes';
 import {  } from './onsiteProfileMeta';
 import {  } from './patchCampaignMessageResponse';
 import {  } from './patchCampaignResponse';
@@ -2564,6 +2606,8 @@ let enumsMap: {[index: string]: any} = {
         "DeviceMetadata.KlaviyoSdkEnum": DeviceMetadata.KlaviyoSdkEnum,
         "DeviceMetadata.OsNameEnum": DeviceMetadata.OsNameEnum,
         "DeviceMetadata.EnvironmentEnum": DeviceMetadata.EnvironmentEnum,
+        "EventBulkCreateEnum": EventBulkCreateEnum,
+        "EventBulkCreateJobEnum": EventBulkCreateJobEnum,
         "EventEnum": EventEnum,
         "FlowActionEnum": FlowActionEnum,
         "FlowEnum": FlowEnum,
@@ -2628,6 +2672,8 @@ let typeMap: {[index: string]: any} = {
     "AttributionResponseObjectResourceRelationshipsFlowMessageVariation": AttributionResponseObjectResourceRelationshipsFlowMessageVariation,
     "AttributionResponseObjectResourceRelationshipsFlowMessageVariationData": AttributionResponseObjectResourceRelationshipsFlowMessageVariationData,
     "AudiencesSubObject": AudiencesSubObject,
+    "BaseEventCreateQueryResourceObject": BaseEventCreateQueryResourceObject,
+    "BaseEventCreateQueryResourceObjectAttributes": BaseEventCreateQueryResourceObjectAttributes,
     "CampaignCloneQuery": CampaignCloneQuery,
     "CampaignCloneQueryResourceObject": CampaignCloneQueryResourceObject,
     "CampaignCloneQueryResourceObjectAttributes": CampaignCloneQueryResourceObjectAttributes,
@@ -2803,6 +2849,14 @@ let typeMap: {[index: string]: any} = {
     "EventProfileCreateQueryResourceObjectAttributes": EventProfileCreateQueryResourceObjectAttributes,
     "EventResponseObjectResource": EventResponseObjectResource,
     "EventResponseObjectResourceAttributes": EventResponseObjectResourceAttributes,
+    "EventsBulkCreateJob": EventsBulkCreateJob,
+    "EventsBulkCreateJobResourceObject": EventsBulkCreateJobResourceObject,
+    "EventsBulkCreateJobResourceObjectAttributes": EventsBulkCreateJobResourceObjectAttributes,
+    "EventsBulkCreateJobResourceObjectAttributesEventsBulkCreate": EventsBulkCreateJobResourceObjectAttributesEventsBulkCreate,
+    "EventsBulkCreateQueryResourceObject": EventsBulkCreateQueryResourceObject,
+    "EventsBulkCreateQueryResourceObjectAttributes": EventsBulkCreateQueryResourceObjectAttributes,
+    "EventsBulkCreateQueryResourceObjectAttributesEvents": EventsBulkCreateQueryResourceObjectAttributesEvents,
+    "EventsBulkCreateQueryResourceObjectAttributesProfile": EventsBulkCreateQueryResourceObjectAttributesProfile,
     "FlowActionResponseObjectResource": FlowActionResponseObjectResource,
     "FlowActionResponseObjectResourceAttributes": FlowActionResponseObjectResourceAttributes,
     "FlowMessageResponseObjectResource": FlowMessageResponseObjectResource,
@@ -3102,6 +3156,8 @@ let typeMap: {[index: string]: any} = {
     "MetricResponseObjectResourceAttributes": MetricResponseObjectResourceAttributes,
     "ObjectLinks": ObjectLinks,
     "OnlyRelatedLinks": OnlyRelatedLinks,
+    "OnsiteProfileCreateQueryResourceObject": OnsiteProfileCreateQueryResourceObject,
+    "OnsiteProfileCreateQueryResourceObjectAttributes": OnsiteProfileCreateQueryResourceObjectAttributes,
     "OnsiteProfileMeta": OnsiteProfileMeta,
     "PatchCampaignMessageResponse": PatchCampaignMessageResponse,
     "PatchCampaignResponse": PatchCampaignResponse,
