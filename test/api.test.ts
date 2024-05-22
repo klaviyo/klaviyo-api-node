@@ -1,5 +1,12 @@
 import {describe, expect, jest, test} from '@jest/globals';
-import {AccountsApi, ApiKeySession, OAuthBasicSession, RetryOptions} from '../api';
+import {
+  AccountsApi,
+  ApiKeySession,
+  CampaignMessageCreateQueryResourceObjectAttributes,
+  OAuthBasicSession,
+  ObjectSerializer,
+  RetryOptions
+} from '../api';
 import axios from 'axios';
 
 jest.mock('axios', () => jest.fn())
@@ -40,5 +47,26 @@ describe('retry', () => {
     } catch (e) {
       expect(mockedAxios).toHaveBeenCalledTimes(3)
     }
+  });
+});
+describe('Serialize', () => {
+  test('an oneOf item serializes correctly', async () => {
+    let campaign: CampaignMessageCreateQueryResourceObjectAttributes = {
+      channel: 'email',
+      content: {
+        subject: 'Hello',
+        fromEmail: 'foo.bar@example.com',
+        fromLabel: 'Foo Bar'
+      }
+    }
+    const serialized = ObjectSerializer.serialize(campaign, 'CampaignMessageCreateQueryResourceObjectAttributes')
+    expect(serialized).toEqual({
+      channel: 'email',
+      content: {
+        subject: 'Hello',
+        from_email: 'foo.bar@example.com',
+        from_label: 'Foo Bar'
+      }
+    })
   });
 });

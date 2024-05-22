@@ -3487,7 +3487,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
 }
 
 export class ObjectSerializer {
-    public static findCorrectType(data: any, expectedType: string) {
+    public static findCorrectType(data: any, expectedType: string, serializer: boolean) {
         if (data == undefined) {
             return expectedType;
         } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
@@ -3505,9 +3505,16 @@ export class ObjectSerializer {
                 // the type does not have a discriminator.
               if (oneOfMapNoDiscriminator[expectedType]) {
                 for (const index in oneOfMapNoDiscriminator[expectedType]) {
-                  if (ObjectSerializer.validateType(data, typeMap[oneOfMapNoDiscriminator[expectedType][index]])) {
-                    return oneOfMapNoDiscriminator[expectedType][index];
+                  if (serializer) {
+                    if (ObjectSerializer.serializerValidateType(data, typeMap[oneOfMapNoDiscriminator[expectedType][index]])) {
+                      return oneOfMapNoDiscriminator[expectedType][index];
+                    }
+                  } else {
+                    if (ObjectSerializer.deserializerValidateType(data, typeMap[oneOfMapNoDiscriminator[expectedType][index]])) {
+                      return oneOfMapNoDiscriminator[expectedType][index];
+                    }
                   }
+
                 }
               }
               return expectedType; // discriminator was not present (or an empty string)
@@ -3527,7 +3534,7 @@ export class ObjectSerializer {
         }
     }
 
-    public static validateType(data: any, potentialType: any): boolean {
+    public static deserializerValidateType(data: any, potentialType: any): boolean {
       for (const index in potentialType.getAttributeTypeMap()) {
         const attribute = potentialType.getAttributeTypeMap()[index];
         if (!data[attribute.baseName]) {
@@ -3540,6 +3547,16 @@ export class ObjectSerializer {
         }
       }
       return true;
+    }
+    public static serializerValidateType(data: Object, potentialType: any): boolean {
+      const properties = Object.getOwnPropertyNames(data)
+      for (const index in properties) {
+        const property = properties[index]
+        if( !potentialType.getAttributeTypeMap().find((attribute) => attribute.name === property)) {
+          return false
+        }
+      }
+      return true
     }
 
     public static serialize(data: any, type: string) {
@@ -3562,12 +3579,12 @@ export class ObjectSerializer {
             if (enumsMap[type]) {
                 return data;
             }
-            if (!typeMap[type]) { // in case we dont know the type
-                return data;
+            if (!typeMap[type] && !oneOfMapNoDiscriminator[type]) { // in case we dont know the type
+              return data
             }
 
             // Get the actual type of this object
-            type = this.findCorrectType(data, type);
+            type = this.findCorrectType(data, type, true);
 
             // get the map for the correct type.
             let attributeTypes = typeMap[type].getAttributeTypeMap();
@@ -3582,7 +3599,7 @@ export class ObjectSerializer {
 
     public static deserialize(data: any, type: string) {
         // polymorphism may change the actual type.
-        type = ObjectSerializer.findCorrectType(data, type);
+        type = ObjectSerializer.findCorrectType(data, type, false);
         if (data == undefined) {
             return data;
         } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
