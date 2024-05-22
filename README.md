@@ -1,6 +1,6 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 10.0.0
+- SDK version: 10.0.1
 
 - Revision: 2024-05-15
 
@@ -48,7 +48,7 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@10.0.0`
+`npm install klaviyo-api@10.0.1`
 
 
 ## source code
