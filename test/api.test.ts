@@ -3,9 +3,12 @@ import {
   AccountsApi,
   ApiKeySession,
   CampaignMessageCreateQueryResourceObjectAttributes,
+  CampaignResponseObjectResourceAttributes,
+  EmailSendOptionsSubObject,
+  EmailTrackingOptionsSubObject,
   OAuthBasicSession,
   ObjectSerializer,
-  RetryOptions
+  RetryOptions,
 } from '../api';
 import axios from 'axios';
 
@@ -68,5 +71,48 @@ describe('Serialize', () => {
         from_label: 'Foo Bar'
       }
     })
+  });
+});
+describe('deserialize', () => {
+  test('an oneOf item deserializes correctly', async () => {
+    const serialized = {
+      "name": "Email",
+      "status": "Draft",
+      "archived": false,
+      "audiences": {
+        "included": [
+          "TEST_ID"
+        ],
+        "excluded": []
+      },
+      "send_options": {
+        "use_smart_sending": true,
+        "ignore_unsubscribes": false
+      },
+      "tracking_options": {
+        "is_add_utm": false,
+        "utm_params": [],
+        "is_tracking_clicks": true,
+        "is_tracking_opens": true
+      },
+      "send_strategy": {
+        "method": "static",
+        "options_static": {
+          "datetime": "2024-05-22T19:14:32+00:00",
+          "is_local": false,
+          "send_past_recipients_immediately": null
+        },
+        "options_throttled": null,
+        "options_sto": null
+      },
+      "created_at": "2024-05-22T19:14:32.047339+00:00",
+      "scheduled_at": null,
+      "updated_at": "2024-05-22T19:14:32.140795+00:00",
+      "send_time": null
+    }
+    const deserialize: CampaignResponseObjectResourceAttributes  = ObjectSerializer.deserialize(serialized, 'CampaignResponseObjectResourceAttributes')
+    expect(deserialize.trackingOptions).toBeInstanceOf(EmailTrackingOptionsSubObject)
+    expect(deserialize.sendOptions).toBeInstanceOf(EmailSendOptionsSubObject)
+
   });
 });

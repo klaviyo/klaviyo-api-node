@@ -3537,7 +3537,7 @@ export class ObjectSerializer {
     public static deserializerValidateType(data: any, potentialType: any): boolean {
       for (const index in potentialType.getAttributeTypeMap()) {
         const attribute = potentialType.getAttributeTypeMap()[index];
-        if (!data[attribute.baseName]) {
+        if (!data.hasOwnProperty(attribute.baseName)) {
           return false;
         }
         if (enumsMap[attribute.type]) {
