@@ -14,7 +14,7 @@ import { ObjectLinks } from './objectLinks';
 import { PostListCreateResponseDataRelationships } from './postListCreateResponseDataRelationships';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
-export class PatchSegmentPartialUpdateResponseData {
+export class PostSegmentCreateResponseData {
     'type': SegmentEnum | 'segment';
     'id': string;
     'attributes': SegmentListResponseObjectResourceAttributes;
@@ -50,9 +50,9 @@ export class PatchSegmentPartialUpdateResponseData {
         }    ];
 
     static getAttributeTypeMap() {
-        return PatchSegmentPartialUpdateResponseData.attributeTypeMap;
+        return PostSegmentCreateResponseData.attributeTypeMap;
     }
 }
 
-export namespace PatchSegmentPartialUpdateResponseData {
+export namespace PostSegmentCreateResponseData {
 }
