@@ -10,11 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { SegmentDefinition } from './segmentDefinition';
 export class SegmentRetrieveResponseObjectResourceAttributes {
     /**
     * A helpful name to label the segment
     */
     'name'?: string | null;
+    'definition'?: SegmentDefinition;
     /**
     * Date and time when the segment was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
@@ -33,6 +35,11 @@ export class SegmentRetrieveResponseObjectResourceAttributes {
             "name": "name",
             "baseName": "name",
             "type": "string"
+        },
+        {
+            "name": "definition",
+            "baseName": "definition",
+            "type": "SegmentDefinition"
         },
         {
             "name": "created",

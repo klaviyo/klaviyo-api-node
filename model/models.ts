@@ -2,9 +2,14 @@ import { AxiosRequestConfig } from 'axios';
 import {ReadStream} from "fs";
 
 export * from './aPIJobErrorPayload';
+export * from './aPIMethodFilter';
 export * from './accountEnum';
 export * from './accountResponseObjectResource';
 export * from './accountResponseObjectResourceAttributes';
+export * from './alltimeDateFilter';
+export * from './anniversaryDateFilter';
+export * from './anyEnum';
+export * from './apiEnum';
 export * from './attributionEnum';
 export * from './attributionResponseObjectResource';
 export * from './attributionResponseObjectResourceRelationships';
@@ -23,9 +28,19 @@ export * from './attributionResponseObjectResourceRelationshipsFlowMessageData';
 export * from './attributionResponseObjectResourceRelationshipsFlowMessageVariation';
 export * from './attributionResponseObjectResourceRelationshipsFlowMessageVariationData';
 export * from './audiencesSubObject';
+export * from './backInStockEnum';
+export * from './backInStockMethodFilter';
 export * from './backInStockSubscriptionEnum';
 export * from './baseEventCreateQueryResourceObject';
 export * from './baseEventCreateQueryResourceObjectAttributes';
+export * from './booleanEnum';
+export * from './booleanFilter';
+export * from './bounceDateEnum';
+export * from './bounceDateFilter';
+export * from './bounceDateFilterFilter';
+export * from './bulkRemoveEnum';
+export * from './bulkRemoveMethodFilter';
+export * from './calendarDateFilter';
 export * from './campaignCloneQuery';
 export * from './campaignCloneQueryResourceObject';
 export * from './campaignCloneQueryResourceObjectAttributes';
@@ -79,6 +94,8 @@ export * from './campaignValuesRequestDTO';
 export * from './campaignValuesRequestDTOResourceObject';
 export * from './campaignValuesRequestDTOResourceObjectAttributes';
 export * from './campaignValuesRequestDTOResourceObjectAttributesTimeframe';
+export * from './carrierDeactivationEnum';
+export * from './carrierDeactivationMethodFilter';
 export * from './catalogCategoryBulkCreateJobEnum';
 export * from './catalogCategoryBulkDeleteJobEnum';
 export * from './catalogCategoryBulkUpdateJobEnum';
@@ -172,7 +189,14 @@ export * from './catalogVariantUpdateJobResponseObjectResource';
 export * from './catalogVariantUpdateQuery';
 export * from './catalogVariantUpdateQueryResourceObject';
 export * from './catalogVariantUpdateQueryResourceObjectAttributes';
+export * from './checkoutEnum';
+export * from './checkoutMethodFilter';
 export * from './collectionLinks';
+export * from './conditionGroup';
+export * from './conditionGroupConditionsInner';
+export * from './constantContactEnum';
+export * from './constantContactIntegrationFilter';
+export * from './constantContactIntegrationMethodFilter';
 export * from './contactInformation';
 export * from './couponCodeBulkCreateJobEnum';
 export * from './couponCodeCreateJobCreateQuery';
@@ -200,6 +224,8 @@ export * from './couponResponseObjectResourceAttributes';
 export * from './couponUpdateQuery';
 export * from './couponUpdateQueryResourceObject';
 export * from './couponUpdateQueryResourceObjectAttributes';
+export * from './customSourceEnum';
+export * from './customSourceFilter';
 export * from './customTimeframe';
 export * from './dataPrivacyCreateDeletionJobQuery';
 export * from './dataPrivacyCreateDeletionJobQueryResourceObject';
@@ -208,10 +234,13 @@ export * from './dataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfil
 export * from './dataPrivacyDeletionJobEnum';
 export * from './dataPrivacyProfileQueryResourceObject';
 export * from './dataPrivacyProfileQueryResourceObjectAttributes';
+export * from './dateEnum';
 export * from './deleteTagGroupResponse';
 export * from './deviceMetadata';
+export * from './doubleOptinFilter';
 export * from './emailChannel';
 export * from './emailContentSubObject';
+export * from './emailEnum';
 export * from './emailMarketing';
 export * from './emailMarketingListSuppression';
 export * from './emailMarketingSuppression';
@@ -220,6 +249,8 @@ export * from './emailSendOptionsSubObject';
 export * from './emailSubscriptionParameters';
 export * from './emailTrackingOptions';
 export * from './emailTrackingOptionsSubObject';
+export * from './equalsEnum';
+export * from './equalsStringFilter';
 export * from './errorSource';
 export * from './eventBulkCreateEnum';
 export * from './eventBulkCreateJobEnum';
@@ -241,6 +272,10 @@ export * from './eventsBulkCreateQueryResourceObject';
 export * from './eventsBulkCreateQueryResourceObjectAttributes';
 export * from './eventsBulkCreateQueryResourceObjectAttributesEvents';
 export * from './eventsBulkCreateQueryResourceObjectAttributesProfile';
+export * from './existenceEnum';
+export * from './existenceOperatorFilter';
+export * from './failedAgeGateEnum';
+export * from './failedAgeGateMethodFilter';
 export * from './flowActionEnum';
 export * from './flowActionResponseObjectResource';
 export * from './flowActionResponseObjectResourceAttributes';
@@ -263,6 +298,8 @@ export * from './flowValuesReportEnum';
 export * from './flowValuesRequestDTO';
 export * from './flowValuesRequestDTOResourceObject';
 export * from './flowValuesRequestDTOResourceObjectAttributes';
+export * from './formEnum';
+export * from './formMethodFilter';
 export * from './getAccountResponse';
 export * from './getAccountResponseCollection';
 export * from './getAccounts4XXResponse';
@@ -517,6 +554,18 @@ export * from './getTagTagGroupRelationshipsResponse';
 export * from './getTagTagGroupRelationshipsResponseData';
 export * from './getTemplateResponse';
 export * from './getTemplateResponseCollection';
+export * from './greaterThanEnum';
+export * from './hasEmailMarketing';
+export * from './hasEmailMarketingConsent';
+export * from './hasEmailMarketingConsentConsentStatus';
+export * from './hasEmailMarketingNeverSubscribed';
+export * from './hasEmailMarketingSubscribed';
+export * from './hasEmailMarketingSubscribedFiltersInner';
+export * from './hasPushMarketing';
+export * from './hasPushMarketingConsent';
+export * from './hasSMSMarketingConsent';
+export * from './hasSMSMarketingSubscribed';
+export * from './hasSMSMarketingSubscribedFiltersInner';
 export * from './imageCreateQuery';
 export * from './imageCreateQueryResourceObject';
 export * from './imageCreateQueryResourceObjectAttributes';
@@ -529,10 +578,23 @@ export * from './imageResponseObjectResourceAttributes';
 export * from './importErrorEnum';
 export * from './importErrorResponseObjectResource';
 export * from './importErrorResponseObjectResourceAttributes';
+export * from './inEnum';
+export * from './inStringArrayFilter';
+export * from './inboundMessageEnum';
+export * from './inboundMessageMethodFilter';
+export * from './integrationEnum';
+export * from './invalidEmailDateEnum';
+export * from './invalidEmailDateFilter';
+export * from './isDoubleOptInEnum';
+export * from './isSetEnum';
+export * from './isSetExistenceFilter';
+export * from './lessThanEnum';
+export * from './listContainsOperatorFilter';
 export * from './listCreateQuery';
 export * from './listCreateQueryResourceObject';
 export * from './listCreateQueryResourceObjectAttributes';
 export * from './listEnum';
+export * from './listLengthFilter';
 export * from './listListResponseObjectResource';
 export * from './listListResponseObjectResourceAttributes';
 export * from './listMemberResponseObjectResourceAttributes';
@@ -546,7 +608,21 @@ export * from './listResponseObjectResource';
 export * from './listRetrieveResponseObjectResourceAttributes';
 export * from './listRetrieveResponseObjectResourceExtended';
 export * from './listRetrieveResponseObjectResourceExtendedAttributes';
+export * from './listSetFilter';
+export * from './mailboxProviderEnum';
+export * from './mailboxProviderMethodFilter';
+export * from './manualAddEnum';
+export * from './manualAddMethodFilter';
+export * from './manualImportEnum';
+export * from './manualImportMethodFilter';
+export * from './manualRemoveEnum';
+export * from './manualRemoveMethodFilter';
+export * from './manualSuppressionDateEnum';
+export * from './manualSuppressionDateFilter';
 export * from './marketingSubscriptionParameters';
+export * from './messageBlockedEnum';
+export * from './messageBlockedMethodFilter';
+export * from './methodEnum';
 export * from './metricAggregateEnum';
 export * from './metricAggregateQuery';
 export * from './metricAggregateQueryResourceObject';
@@ -557,6 +633,26 @@ export * from './metricCreateQueryResourceObjectAttributes';
 export * from './metricEnum';
 export * from './metricResponseObjectResource';
 export * from './metricResponseObjectResourceAttributes';
+export * from './neverSubscribedEnum';
+export * from './noEmailMarketing';
+export * from './noEmailMarketingConsent';
+export * from './noEmailMarketingConsentConsentStatus';
+export * from './noEmailMarketingFiltersInner';
+export * from './noEmailMarketingNeverSubscribed';
+export * from './noEmailMarketingSubscribed';
+export * from './noEmailMarketingUnsubscribed';
+export * from './noEmailMarketingUnsubscribedFiltersInner';
+export * from './noPushMarketing';
+export * from './noPushMarketingConsent';
+export * from './noSMSMarketing';
+export * from './noSMSMarketingConsent';
+export * from './noSMSMarketingConsentConsentStatus';
+export * from './noSMSMarketingNeverSubscribed';
+export * from './noSMSMarketingUnsubscribed';
+export * from './noSMSMarketingUnsubscribedFiltersInner';
+export * from './notEqualsEnum';
+export * from './numericEnum';
+export * from './numericOperatorFilter';
 export * from './objectLinks';
 export * from './onlyRelatedLinks';
 export * from './onsiteProfileCreateQueryResourceObject';
@@ -575,7 +671,6 @@ export * from './patchImageResponse';
 export * from './patchListPartialUpdateResponse';
 export * from './patchProfileResponse';
 export * from './patchSegmentPartialUpdateResponse';
-export * from './patchSegmentPartialUpdateResponseData';
 export * from './patchTagGroupResponse';
 export * from './patchTemplateResponse';
 export * from './postCampaignMessageResponse';
@@ -665,6 +760,8 @@ export * from './postProfileMergeResponseData';
 export * from './postProfileResponse';
 export * from './postProfileResponseData';
 export * from './postProfileResponseDataAttributes';
+export * from './postSegmentCreateResponse';
+export * from './postSegmentCreateResponseData';
 export * from './postTagGroupResponse';
 export * from './postTagGroupResponseData';
 export * from './postTagGroupResponseDataRelationships';
@@ -676,11 +773,17 @@ export * from './postTagResponseDataRelationshipsFlows';
 export * from './postTemplateResponse';
 export * from './postTemplateResponseData';
 export * from './predictiveAnalytics';
+export * from './preferencePageEnum';
+export * from './preferencePageFilter';
+export * from './preferencePageMethodFilter';
 export * from './profileBulkImportJobEnum';
 export * from './profileCreateQuery';
 export * from './profileCreateQueryResourceObject';
 export * from './profileCreateQueryResourceObjectAttributes';
 export * from './profileEnum';
+export * from './profileGroupMembershipEnum';
+export * from './profileHasGroupMembershipCondition';
+export * from './profileHasGroupMembershipConditionTimeframeFilter';
 export * from './profileIdentifierDTOResourceObject';
 export * from './profileIdentifierDTOResourceObjectAttributes';
 export * from './profileImportJobCreateQuery';
@@ -693,6 +796,9 @@ export * from './profileImportJobCreateQueryResourceObjectRelationshipsListsData
 export * from './profileImportJobResponseObjectResource';
 export * from './profileImportJobResponseObjectResourceAttributes';
 export * from './profileLocation';
+export * from './profileMarketingConsentCondition';
+export * from './profileMarketingConsentConditionConsent';
+export * from './profileMarketingConsentEnum';
 export * from './profileMergeEnum';
 export * from './profileMergeQuery';
 export * from './profileMergeQueryResourceObject';
@@ -701,9 +807,27 @@ export * from './profileMergeQueryResourceObjectRelationshipsProfiles';
 export * from './profileMergeQueryResourceObjectRelationshipsProfilesDataInner';
 export * from './profileMeta';
 export * from './profileMetaPatchProperties';
+export * from './profileMetricCondition';
+export * from './profileMetricConditionTimeframeFilter';
+export * from './profileMetricEnum';
+export * from './profileMetricPropertyFilter';
+export * from './profileMetricPropertyFilterFilter';
+export * from './profileNoGroupMembershipCondition';
 export * from './profilePartialUpdateQuery';
 export * from './profilePartialUpdateQueryResourceObject';
 export * from './profilePartialUpdateQueryResourceObjectAttributes';
+export * from './profilePostalCodeDistanceCondition';
+export * from './profilePostalCodeDistanceEnum';
+export * from './profilePredictiveAnalyticsEnum';
+export * from './profilePredictiveAnalyticsNumericCondition';
+export * from './profilePredictiveAnalyticsStringCondition';
+export * from './profilePredictiveAnalyticsStringFilter';
+export * from './profilePredictiveAnalyticsStringFilterOperator';
+export * from './profilePropertyCondition';
+export * from './profilePropertyConditionFilter';
+export * from './profilePropertyEnum';
+export * from './profileRegionCondition';
+export * from './profileRegionEnum';
 export * from './profileResponseObjectResource';
 export * from './profileResponseObjectResourceAttributes';
 export * from './profileResponseObjectResourceExtended';
@@ -723,6 +847,11 @@ export * from './profileSuppressionDeleteQueryResourceObjectAttributes';
 export * from './profileUpsertQuery';
 export * from './profileUpsertQueryResourceObject';
 export * from './profileUpsertQueryResourceObjectAttributes';
+export * from './providedLandlineEnum';
+export * from './providedLandlineMethodFilter';
+export * from './providedNoAgeEnum';
+export * from './providedNoAgeMethodFilter';
+export * from './pushEnum';
 export * from './pushProfileUpsertQueryResourceObject';
 export * from './pushProfileUpsertQueryResourceObjectAttributes';
 export * from './pushTokenCreateQuery';
@@ -731,6 +860,9 @@ export * from './pushTokenCreateQueryResourceObjectAttributes';
 export * from './pushTokenCreateQueryResourceObjectAttributesProfile';
 export * from './pushTokenEnum';
 export * from './relationshipLinks';
+export * from './relativeAnniversaryDateFilter';
+export * from './relativeDateFilter';
+export * from './relativeDateRangeFilter';
 export * from './renderOptionsSubObject';
 export * from './sMSChannel';
 export * from './sMSContentSubObject';
@@ -743,6 +875,10 @@ export * from './sMSSubscriptionParameters';
 export * from './sMSTrackingOptions';
 export * from './sMSTrackingOptionsSubObject';
 export * from './sTOScheduleOptions';
+export * from './segmentCreateQuery';
+export * from './segmentCreateQueryResourceObject';
+export * from './segmentCreateQueryResourceObjectAttributes';
+export * from './segmentDefinition';
 export * from './segmentEnum';
 export * from './segmentListResponseObjectResource';
 export * from './segmentListResponseObjectResourceAttributes';
@@ -767,8 +903,26 @@ export * from './serverBISSubscriptionCreateQueryResourceObjectAttributesProfile
 export * from './serverBISSubscriptionCreateQueryResourceObjectRelationships';
 export * from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariant';
 export * from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData';
+export * from './sftpEnum';
+export * from './sftpMethodFilter';
+export * from './shopifyEnum';
+export * from './shopifyIntegrationFilter';
+export * from './shopifyIntegrationMethodFilter';
+export * from './smsEnum';
+export * from './spamComplaintEnum';
+export * from './spamComplaintMethodFilter';
+export * from './staticDateFilter';
+export * from './staticDateRangeFilter';
 export * from './staticScheduleOptions';
+export * from './statusDateEnum';
+export * from './statusDateFilter';
+export * from './statusDateFilterFilter';
 export * from './streetAddress';
+export * from './stringArrayOperatorFilter';
+export * from './stringEnum';
+export * from './stringOperatorFilter';
+export * from './stringPhoneOperatorArrayFilter';
+export * from './subscribedEnum';
 export * from './subscriptionChannels';
 export * from './subscriptionCreateJobCreateQuery';
 export * from './subscriptionCreateJobCreateQueryResourceObject';
@@ -848,6 +1002,9 @@ export * from './templateUpdateQueryResourceObjectAttributes';
 export * from './throttledScheduleOptions';
 export * from './timeframe';
 export * from './uTMParamsSubObject';
+export * from './unionPositiveNumericFilter';
+export * from './unionPositiveNumericFilterOperator';
+export * from './unsubscribedEnum';
 export * from './utmParamInfo';
 export * from './valuesData';
 
@@ -855,9 +1012,14 @@ export type RequestFile = ReadStream;
 
 
 import { APIJobErrorPayload } from './aPIJobErrorPayload';
+import { APIMethodFilter } from './aPIMethodFilter';
 import { AccountEnum } from './accountEnum';
 import { AccountResponseObjectResource } from './accountResponseObjectResource';
 import { AccountResponseObjectResourceAttributes } from './accountResponseObjectResourceAttributes';
+import { AlltimeDateFilter } from './alltimeDateFilter';
+import { AnniversaryDateFilter } from './anniversaryDateFilter';
+import { AnyEnum } from './anyEnum';
+import { ApiEnum } from './apiEnum';
 import { AttributionEnum } from './attributionEnum';
 import { AttributionResponseObjectResource } from './attributionResponseObjectResource';
 import { AttributionResponseObjectResourceRelationships } from './attributionResponseObjectResourceRelationships';
@@ -876,9 +1038,19 @@ import { AttributionResponseObjectResourceRelationshipsFlowMessageData } from '.
 import { AttributionResponseObjectResourceRelationshipsFlowMessageVariation } from './attributionResponseObjectResourceRelationshipsFlowMessageVariation';
 import { AttributionResponseObjectResourceRelationshipsFlowMessageVariationData } from './attributionResponseObjectResourceRelationshipsFlowMessageVariationData';
 import { AudiencesSubObject } from './audiencesSubObject';
+import { BackInStockEnum } from './backInStockEnum';
+import { BackInStockMethodFilter } from './backInStockMethodFilter';
 import { BackInStockSubscriptionEnum } from './backInStockSubscriptionEnum';
 import { BaseEventCreateQueryResourceObject } from './baseEventCreateQueryResourceObject';
 import { BaseEventCreateQueryResourceObjectAttributes } from './baseEventCreateQueryResourceObjectAttributes';
+import { BooleanEnum } from './booleanEnum';
+import { BooleanFilter } from './booleanFilter';
+import { BounceDateEnum } from './bounceDateEnum';
+import { BounceDateFilter } from './bounceDateFilter';
+import { BounceDateFilterFilter } from './bounceDateFilterFilter';
+import { BulkRemoveEnum } from './bulkRemoveEnum';
+import { BulkRemoveMethodFilter } from './bulkRemoveMethodFilter';
+import { CalendarDateFilter } from './calendarDateFilter';
 import { CampaignCloneQuery } from './campaignCloneQuery';
 import { CampaignCloneQueryResourceObject } from './campaignCloneQueryResourceObject';
 import { CampaignCloneQueryResourceObjectAttributes } from './campaignCloneQueryResourceObjectAttributes';
@@ -932,6 +1104,8 @@ import { CampaignValuesRequestDTO } from './campaignValuesRequestDTO';
 import { CampaignValuesRequestDTOResourceObject } from './campaignValuesRequestDTOResourceObject';
 import { CampaignValuesRequestDTOResourceObjectAttributes } from './campaignValuesRequestDTOResourceObjectAttributes';
 import { CampaignValuesRequestDTOResourceObjectAttributesTimeframe } from './campaignValuesRequestDTOResourceObjectAttributesTimeframe';
+import { CarrierDeactivationEnum } from './carrierDeactivationEnum';
+import { CarrierDeactivationMethodFilter } from './carrierDeactivationMethodFilter';
 import { CatalogCategoryBulkCreateJobEnum } from './catalogCategoryBulkCreateJobEnum';
 import { CatalogCategoryBulkDeleteJobEnum } from './catalogCategoryBulkDeleteJobEnum';
 import { CatalogCategoryBulkUpdateJobEnum } from './catalogCategoryBulkUpdateJobEnum';
@@ -1025,7 +1199,14 @@ import { CatalogVariantUpdateJobResponseObjectResource } from './catalogVariantU
 import { CatalogVariantUpdateQuery } from './catalogVariantUpdateQuery';
 import { CatalogVariantUpdateQueryResourceObject } from './catalogVariantUpdateQueryResourceObject';
 import { CatalogVariantUpdateQueryResourceObjectAttributes } from './catalogVariantUpdateQueryResourceObjectAttributes';
+import { CheckoutEnum } from './checkoutEnum';
+import { CheckoutMethodFilter } from './checkoutMethodFilter';
 import { CollectionLinks } from './collectionLinks';
+import { ConditionGroup } from './conditionGroup';
+import { ConditionGroupConditionsInner } from './conditionGroupConditionsInner';
+import { ConstantContactEnum } from './constantContactEnum';
+import { ConstantContactIntegrationFilter } from './constantContactIntegrationFilter';
+import { ConstantContactIntegrationMethodFilter } from './constantContactIntegrationMethodFilter';
 import { ContactInformation } from './contactInformation';
 import { CouponCodeBulkCreateJobEnum } from './couponCodeBulkCreateJobEnum';
 import { CouponCodeCreateJobCreateQuery } from './couponCodeCreateJobCreateQuery';
@@ -1053,6 +1234,8 @@ import { CouponResponseObjectResourceAttributes } from './couponResponseObjectRe
 import { CouponUpdateQuery } from './couponUpdateQuery';
 import { CouponUpdateQueryResourceObject } from './couponUpdateQueryResourceObject';
 import { CouponUpdateQueryResourceObjectAttributes } from './couponUpdateQueryResourceObjectAttributes';
+import { CustomSourceEnum } from './customSourceEnum';
+import { CustomSourceFilter } from './customSourceFilter';
 import { CustomTimeframe } from './customTimeframe';
 import { DataPrivacyCreateDeletionJobQuery } from './dataPrivacyCreateDeletionJobQuery';
 import { DataPrivacyCreateDeletionJobQueryResourceObject } from './dataPrivacyCreateDeletionJobQueryResourceObject';
@@ -1061,10 +1244,13 @@ import { DataPrivacyCreateDeletionJobQueryResourceObjectAttributesProfile } from
 import { DataPrivacyDeletionJobEnum } from './dataPrivacyDeletionJobEnum';
 import { DataPrivacyProfileQueryResourceObject } from './dataPrivacyProfileQueryResourceObject';
 import { DataPrivacyProfileQueryResourceObjectAttributes } from './dataPrivacyProfileQueryResourceObjectAttributes';
+import { DateEnum } from './dateEnum';
 import { DeleteTagGroupResponse } from './deleteTagGroupResponse';
 import { DeviceMetadata } from './deviceMetadata';
+import { DoubleOptinFilter } from './doubleOptinFilter';
 import { EmailChannel } from './emailChannel';
 import { EmailContentSubObject } from './emailContentSubObject';
+import { EmailEnum } from './emailEnum';
 import { EmailMarketing } from './emailMarketing';
 import { EmailMarketingListSuppression } from './emailMarketingListSuppression';
 import { EmailMarketingSuppression } from './emailMarketingSuppression';
@@ -1073,6 +1259,8 @@ import { EmailSendOptionsSubObject } from './emailSendOptionsSubObject';
 import { EmailSubscriptionParameters } from './emailSubscriptionParameters';
 import { EmailTrackingOptions } from './emailTrackingOptions';
 import { EmailTrackingOptionsSubObject } from './emailTrackingOptionsSubObject';
+import { EqualsEnum } from './equalsEnum';
+import { EqualsStringFilter } from './equalsStringFilter';
 import { ErrorSource } from './errorSource';
 import { EventBulkCreateEnum } from './eventBulkCreateEnum';
 import { EventBulkCreateJobEnum } from './eventBulkCreateJobEnum';
@@ -1094,6 +1282,10 @@ import { EventsBulkCreateQueryResourceObject } from './eventsBulkCreateQueryReso
 import { EventsBulkCreateQueryResourceObjectAttributes } from './eventsBulkCreateQueryResourceObjectAttributes';
 import { EventsBulkCreateQueryResourceObjectAttributesEvents } from './eventsBulkCreateQueryResourceObjectAttributesEvents';
 import { EventsBulkCreateQueryResourceObjectAttributesProfile } from './eventsBulkCreateQueryResourceObjectAttributesProfile';
+import { ExistenceEnum } from './existenceEnum';
+import { ExistenceOperatorFilter } from './existenceOperatorFilter';
+import { FailedAgeGateEnum } from './failedAgeGateEnum';
+import { FailedAgeGateMethodFilter } from './failedAgeGateMethodFilter';
 import { FlowActionEnum } from './flowActionEnum';
 import { FlowActionResponseObjectResource } from './flowActionResponseObjectResource';
 import { FlowActionResponseObjectResourceAttributes } from './flowActionResponseObjectResourceAttributes';
@@ -1116,6 +1308,8 @@ import { FlowValuesReportEnum } from './flowValuesReportEnum';
 import { FlowValuesRequestDTO } from './flowValuesRequestDTO';
 import { FlowValuesRequestDTOResourceObject } from './flowValuesRequestDTOResourceObject';
 import { FlowValuesRequestDTOResourceObjectAttributes } from './flowValuesRequestDTOResourceObjectAttributes';
+import { FormEnum } from './formEnum';
+import { FormMethodFilter } from './formMethodFilter';
 import { GetAccountResponse } from './getAccountResponse';
 import { GetAccountResponseCollection } from './getAccountResponseCollection';
 import { GetAccounts4XXResponse } from './getAccounts4XXResponse';
@@ -1370,6 +1564,18 @@ import { GetTagTagGroupRelationshipsResponse } from './getTagTagGroupRelationshi
 import { GetTagTagGroupRelationshipsResponseData } from './getTagTagGroupRelationshipsResponseData';
 import { GetTemplateResponse } from './getTemplateResponse';
 import { GetTemplateResponseCollection } from './getTemplateResponseCollection';
+import { GreaterThanEnum } from './greaterThanEnum';
+import { HasEmailMarketing } from './hasEmailMarketing';
+import { HasEmailMarketingConsent } from './hasEmailMarketingConsent';
+import { HasEmailMarketingConsentConsentStatus } from './hasEmailMarketingConsentConsentStatus';
+import { HasEmailMarketingNeverSubscribed } from './hasEmailMarketingNeverSubscribed';
+import { HasEmailMarketingSubscribed } from './hasEmailMarketingSubscribed';
+import { HasEmailMarketingSubscribedFiltersInner } from './hasEmailMarketingSubscribedFiltersInner';
+import { HasPushMarketing } from './hasPushMarketing';
+import { HasPushMarketingConsent } from './hasPushMarketingConsent';
+import { HasSMSMarketingConsent } from './hasSMSMarketingConsent';
+import { HasSMSMarketingSubscribed } from './hasSMSMarketingSubscribed';
+import { HasSMSMarketingSubscribedFiltersInner } from './hasSMSMarketingSubscribedFiltersInner';
 import { ImageCreateQuery } from './imageCreateQuery';
 import { ImageCreateQueryResourceObject } from './imageCreateQueryResourceObject';
 import { ImageCreateQueryResourceObjectAttributes } from './imageCreateQueryResourceObjectAttributes';
@@ -1382,10 +1588,23 @@ import { ImageResponseObjectResourceAttributes } from './imageResponseObjectReso
 import { ImportErrorEnum } from './importErrorEnum';
 import { ImportErrorResponseObjectResource } from './importErrorResponseObjectResource';
 import { ImportErrorResponseObjectResourceAttributes } from './importErrorResponseObjectResourceAttributes';
+import { InEnum } from './inEnum';
+import { InStringArrayFilter } from './inStringArrayFilter';
+import { InboundMessageEnum } from './inboundMessageEnum';
+import { InboundMessageMethodFilter } from './inboundMessageMethodFilter';
+import { IntegrationEnum } from './integrationEnum';
+import { InvalidEmailDateEnum } from './invalidEmailDateEnum';
+import { InvalidEmailDateFilter } from './invalidEmailDateFilter';
+import { IsDoubleOptInEnum } from './isDoubleOptInEnum';
+import { IsSetEnum } from './isSetEnum';
+import { IsSetExistenceFilter } from './isSetExistenceFilter';
+import { LessThanEnum } from './lessThanEnum';
+import { ListContainsOperatorFilter } from './listContainsOperatorFilter';
 import { ListCreateQuery } from './listCreateQuery';
 import { ListCreateQueryResourceObject } from './listCreateQueryResourceObject';
 import { ListCreateQueryResourceObjectAttributes } from './listCreateQueryResourceObjectAttributes';
 import { ListEnum } from './listEnum';
+import { ListLengthFilter } from './listLengthFilter';
 import { ListListResponseObjectResource } from './listListResponseObjectResource';
 import { ListListResponseObjectResourceAttributes } from './listListResponseObjectResourceAttributes';
 import { ListMemberResponseObjectResourceAttributes } from './listMemberResponseObjectResourceAttributes';
@@ -1399,7 +1618,21 @@ import { ListResponseObjectResource } from './listResponseObjectResource';
 import { ListRetrieveResponseObjectResourceAttributes } from './listRetrieveResponseObjectResourceAttributes';
 import { ListRetrieveResponseObjectResourceExtended } from './listRetrieveResponseObjectResourceExtended';
 import { ListRetrieveResponseObjectResourceExtendedAttributes } from './listRetrieveResponseObjectResourceExtendedAttributes';
+import { ListSetFilter } from './listSetFilter';
+import { MailboxProviderEnum } from './mailboxProviderEnum';
+import { MailboxProviderMethodFilter } from './mailboxProviderMethodFilter';
+import { ManualAddEnum } from './manualAddEnum';
+import { ManualAddMethodFilter } from './manualAddMethodFilter';
+import { ManualImportEnum } from './manualImportEnum';
+import { ManualImportMethodFilter } from './manualImportMethodFilter';
+import { ManualRemoveEnum } from './manualRemoveEnum';
+import { ManualRemoveMethodFilter } from './manualRemoveMethodFilter';
+import { ManualSuppressionDateEnum } from './manualSuppressionDateEnum';
+import { ManualSuppressionDateFilter } from './manualSuppressionDateFilter';
 import { MarketingSubscriptionParameters } from './marketingSubscriptionParameters';
+import { MessageBlockedEnum } from './messageBlockedEnum';
+import { MessageBlockedMethodFilter } from './messageBlockedMethodFilter';
+import { MethodEnum } from './methodEnum';
 import { MetricAggregateEnum } from './metricAggregateEnum';
 import { MetricAggregateQuery } from './metricAggregateQuery';
 import { MetricAggregateQueryResourceObject } from './metricAggregateQueryResourceObject';
@@ -1410,6 +1643,26 @@ import { MetricCreateQueryResourceObjectAttributes } from './metricCreateQueryRe
 import { MetricEnum } from './metricEnum';
 import { MetricResponseObjectResource } from './metricResponseObjectResource';
 import { MetricResponseObjectResourceAttributes } from './metricResponseObjectResourceAttributes';
+import { NeverSubscribedEnum } from './neverSubscribedEnum';
+import { NoEmailMarketing } from './noEmailMarketing';
+import { NoEmailMarketingConsent } from './noEmailMarketingConsent';
+import { NoEmailMarketingConsentConsentStatus } from './noEmailMarketingConsentConsentStatus';
+import { NoEmailMarketingFiltersInner } from './noEmailMarketingFiltersInner';
+import { NoEmailMarketingNeverSubscribed } from './noEmailMarketingNeverSubscribed';
+import { NoEmailMarketingSubscribed } from './noEmailMarketingSubscribed';
+import { NoEmailMarketingUnsubscribed } from './noEmailMarketingUnsubscribed';
+import { NoEmailMarketingUnsubscribedFiltersInner } from './noEmailMarketingUnsubscribedFiltersInner';
+import { NoPushMarketing } from './noPushMarketing';
+import { NoPushMarketingConsent } from './noPushMarketingConsent';
+import { NoSMSMarketing } from './noSMSMarketing';
+import { NoSMSMarketingConsent } from './noSMSMarketingConsent';
+import { NoSMSMarketingConsentConsentStatus } from './noSMSMarketingConsentConsentStatus';
+import { NoSMSMarketingNeverSubscribed } from './noSMSMarketingNeverSubscribed';
+import { NoSMSMarketingUnsubscribed } from './noSMSMarketingUnsubscribed';
+import { NoSMSMarketingUnsubscribedFiltersInner } from './noSMSMarketingUnsubscribedFiltersInner';
+import { NotEqualsEnum } from './notEqualsEnum';
+import { NumericEnum } from './numericEnum';
+import { NumericOperatorFilter } from './numericOperatorFilter';
 import { ObjectLinks } from './objectLinks';
 import { OnlyRelatedLinks } from './onlyRelatedLinks';
 import { OnsiteProfileCreateQueryResourceObject } from './onsiteProfileCreateQueryResourceObject';
@@ -1428,7 +1681,6 @@ import { PatchImageResponse } from './patchImageResponse';
 import { PatchListPartialUpdateResponse } from './patchListPartialUpdateResponse';
 import { PatchProfileResponse } from './patchProfileResponse';
 import { PatchSegmentPartialUpdateResponse } from './patchSegmentPartialUpdateResponse';
-import { PatchSegmentPartialUpdateResponseData } from './patchSegmentPartialUpdateResponseData';
 import { PatchTagGroupResponse } from './patchTagGroupResponse';
 import { PatchTemplateResponse } from './patchTemplateResponse';
 import { PostCampaignMessageResponse } from './postCampaignMessageResponse';
@@ -1518,6 +1770,8 @@ import { PostProfileMergeResponseData } from './postProfileMergeResponseData';
 import { PostProfileResponse } from './postProfileResponse';
 import { PostProfileResponseData } from './postProfileResponseData';
 import { PostProfileResponseDataAttributes } from './postProfileResponseDataAttributes';
+import { PostSegmentCreateResponse } from './postSegmentCreateResponse';
+import { PostSegmentCreateResponseData } from './postSegmentCreateResponseData';
 import { PostTagGroupResponse } from './postTagGroupResponse';
 import { PostTagGroupResponseData } from './postTagGroupResponseData';
 import { PostTagGroupResponseDataRelationships } from './postTagGroupResponseDataRelationships';
@@ -1529,11 +1783,17 @@ import { PostTagResponseDataRelationshipsFlows } from './postTagResponseDataRela
 import { PostTemplateResponse } from './postTemplateResponse';
 import { PostTemplateResponseData } from './postTemplateResponseData';
 import { PredictiveAnalytics } from './predictiveAnalytics';
+import { PreferencePageEnum } from './preferencePageEnum';
+import { PreferencePageFilter } from './preferencePageFilter';
+import { PreferencePageMethodFilter } from './preferencePageMethodFilter';
 import { ProfileBulkImportJobEnum } from './profileBulkImportJobEnum';
 import { ProfileCreateQuery } from './profileCreateQuery';
 import { ProfileCreateQueryResourceObject } from './profileCreateQueryResourceObject';
 import { ProfileCreateQueryResourceObjectAttributes } from './profileCreateQueryResourceObjectAttributes';
 import { ProfileEnum } from './profileEnum';
+import { ProfileGroupMembershipEnum } from './profileGroupMembershipEnum';
+import { ProfileHasGroupMembershipCondition } from './profileHasGroupMembershipCondition';
+import { ProfileHasGroupMembershipConditionTimeframeFilter } from './profileHasGroupMembershipConditionTimeframeFilter';
 import { ProfileIdentifierDTOResourceObject } from './profileIdentifierDTOResourceObject';
 import { ProfileIdentifierDTOResourceObjectAttributes } from './profileIdentifierDTOResourceObjectAttributes';
 import { ProfileImportJobCreateQuery } from './profileImportJobCreateQuery';
@@ -1546,6 +1806,9 @@ import { ProfileImportJobCreateQueryResourceObjectRelationshipsListsDataInner } 
 import { ProfileImportJobResponseObjectResource } from './profileImportJobResponseObjectResource';
 import { ProfileImportJobResponseObjectResourceAttributes } from './profileImportJobResponseObjectResourceAttributes';
 import { ProfileLocation } from './profileLocation';
+import { ProfileMarketingConsentCondition } from './profileMarketingConsentCondition';
+import { ProfileMarketingConsentConditionConsent } from './profileMarketingConsentConditionConsent';
+import { ProfileMarketingConsentEnum } from './profileMarketingConsentEnum';
 import { ProfileMergeEnum } from './profileMergeEnum';
 import { ProfileMergeQuery } from './profileMergeQuery';
 import { ProfileMergeQueryResourceObject } from './profileMergeQueryResourceObject';
@@ -1554,9 +1817,27 @@ import { ProfileMergeQueryResourceObjectRelationshipsProfiles } from './profileM
 import { ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner } from './profileMergeQueryResourceObjectRelationshipsProfilesDataInner';
 import { ProfileMeta } from './profileMeta';
 import { ProfileMetaPatchProperties } from './profileMetaPatchProperties';
+import { ProfileMetricCondition } from './profileMetricCondition';
+import { ProfileMetricConditionTimeframeFilter } from './profileMetricConditionTimeframeFilter';
+import { ProfileMetricEnum } from './profileMetricEnum';
+import { ProfileMetricPropertyFilter } from './profileMetricPropertyFilter';
+import { ProfileMetricPropertyFilterFilter } from './profileMetricPropertyFilterFilter';
+import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCondition';
 import { ProfilePartialUpdateQuery } from './profilePartialUpdateQuery';
 import { ProfilePartialUpdateQueryResourceObject } from './profilePartialUpdateQueryResourceObject';
 import { ProfilePartialUpdateQueryResourceObjectAttributes } from './profilePartialUpdateQueryResourceObjectAttributes';
+import { ProfilePostalCodeDistanceCondition } from './profilePostalCodeDistanceCondition';
+import { ProfilePostalCodeDistanceEnum } from './profilePostalCodeDistanceEnum';
+import { ProfilePredictiveAnalyticsEnum } from './profilePredictiveAnalyticsEnum';
+import { ProfilePredictiveAnalyticsNumericCondition } from './profilePredictiveAnalyticsNumericCondition';
+import { ProfilePredictiveAnalyticsStringCondition } from './profilePredictiveAnalyticsStringCondition';
+import { ProfilePredictiveAnalyticsStringFilter } from './profilePredictiveAnalyticsStringFilter';
+import { ProfilePredictiveAnalyticsStringFilterOperator } from './profilePredictiveAnalyticsStringFilterOperator';
+import { ProfilePropertyCondition } from './profilePropertyCondition';
+import { ProfilePropertyConditionFilter } from './profilePropertyConditionFilter';
+import { ProfilePropertyEnum } from './profilePropertyEnum';
+import { ProfileRegionCondition } from './profileRegionCondition';
+import { ProfileRegionEnum } from './profileRegionEnum';
 import { ProfileResponseObjectResource } from './profileResponseObjectResource';
 import { ProfileResponseObjectResourceAttributes } from './profileResponseObjectResourceAttributes';
 import { ProfileResponseObjectResourceExtended } from './profileResponseObjectResourceExtended';
@@ -1576,6 +1857,11 @@ import { ProfileSuppressionDeleteQueryResourceObjectAttributes } from './profile
 import { ProfileUpsertQuery } from './profileUpsertQuery';
 import { ProfileUpsertQueryResourceObject } from './profileUpsertQueryResourceObject';
 import { ProfileUpsertQueryResourceObjectAttributes } from './profileUpsertQueryResourceObjectAttributes';
+import { ProvidedLandlineEnum } from './providedLandlineEnum';
+import { ProvidedLandlineMethodFilter } from './providedLandlineMethodFilter';
+import { ProvidedNoAgeEnum } from './providedNoAgeEnum';
+import { ProvidedNoAgeMethodFilter } from './providedNoAgeMethodFilter';
+import { PushEnum } from './pushEnum';
 import { PushProfileUpsertQueryResourceObject } from './pushProfileUpsertQueryResourceObject';
 import { PushProfileUpsertQueryResourceObjectAttributes } from './pushProfileUpsertQueryResourceObjectAttributes';
 import { PushTokenCreateQuery } from './pushTokenCreateQuery';
@@ -1584,6 +1870,9 @@ import { PushTokenCreateQueryResourceObjectAttributes } from './pushTokenCreateQ
 import { PushTokenCreateQueryResourceObjectAttributesProfile } from './pushTokenCreateQueryResourceObjectAttributesProfile';
 import { PushTokenEnum } from './pushTokenEnum';
 import { RelationshipLinks } from './relationshipLinks';
+import { RelativeAnniversaryDateFilter } from './relativeAnniversaryDateFilter';
+import { RelativeDateFilter } from './relativeDateFilter';
+import { RelativeDateRangeFilter } from './relativeDateRangeFilter';
 import { RenderOptionsSubObject } from './renderOptionsSubObject';
 import { SMSChannel } from './sMSChannel';
 import { SMSContentSubObject } from './sMSContentSubObject';
@@ -1596,6 +1885,10 @@ import { SMSSubscriptionParameters } from './sMSSubscriptionParameters';
 import { SMSTrackingOptions } from './sMSTrackingOptions';
 import { SMSTrackingOptionsSubObject } from './sMSTrackingOptionsSubObject';
 import { STOScheduleOptions } from './sTOScheduleOptions';
+import { SegmentCreateQuery } from './segmentCreateQuery';
+import { SegmentCreateQueryResourceObject } from './segmentCreateQueryResourceObject';
+import { SegmentCreateQueryResourceObjectAttributes } from './segmentCreateQueryResourceObjectAttributes';
+import { SegmentDefinition } from './segmentDefinition';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResource } from './segmentListResponseObjectResource';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
@@ -1620,8 +1913,26 @@ import { ServerBISSubscriptionCreateQueryResourceObjectAttributesProfile } from 
 import { ServerBISSubscriptionCreateQueryResourceObjectRelationships } from './serverBISSubscriptionCreateQueryResourceObjectRelationships';
 import { ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariant';
 import { ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData';
+import { SftpEnum } from './sftpEnum';
+import { SftpMethodFilter } from './sftpMethodFilter';
+import { ShopifyEnum } from './shopifyEnum';
+import { ShopifyIntegrationFilter } from './shopifyIntegrationFilter';
+import { ShopifyIntegrationMethodFilter } from './shopifyIntegrationMethodFilter';
+import { SmsEnum } from './smsEnum';
+import { SpamComplaintEnum } from './spamComplaintEnum';
+import { SpamComplaintMethodFilter } from './spamComplaintMethodFilter';
+import { StaticDateFilter } from './staticDateFilter';
+import { StaticDateRangeFilter } from './staticDateRangeFilter';
 import { StaticScheduleOptions } from './staticScheduleOptions';
+import { StatusDateEnum } from './statusDateEnum';
+import { StatusDateFilter } from './statusDateFilter';
+import { StatusDateFilterFilter } from './statusDateFilterFilter';
 import { StreetAddress } from './streetAddress';
+import { StringArrayOperatorFilter } from './stringArrayOperatorFilter';
+import { StringEnum } from './stringEnum';
+import { StringOperatorFilter } from './stringOperatorFilter';
+import { StringPhoneOperatorArrayFilter } from './stringPhoneOperatorArrayFilter';
+import { SubscribedEnum } from './subscribedEnum';
 import { SubscriptionChannels } from './subscriptionChannels';
 import { SubscriptionCreateJobCreateQuery } from './subscriptionCreateJobCreateQuery';
 import { SubscriptionCreateJobCreateQueryResourceObject } from './subscriptionCreateJobCreateQueryResourceObject';
@@ -1701,12 +2012,20 @@ import { TemplateUpdateQueryResourceObjectAttributes } from './templateUpdateQue
 import { ThrottledScheduleOptions } from './throttledScheduleOptions';
 import { Timeframe } from './timeframe';
 import { UTMParamsSubObject } from './uTMParamsSubObject';
+import { UnionPositiveNumericFilter } from './unionPositiveNumericFilter';
+import { UnionPositiveNumericFilterOperator } from './unionPositiveNumericFilterOperator';
+import { UnsubscribedEnum } from './unsubscribedEnum';
 import { UtmParamInfo } from './utmParamInfo';
 import { ValuesData } from './valuesData';
 import {  } from './aPIJobErrorPayload';
+import {  } from './aPIMethodFilter';
 import {  } from './accountEnum';
 import {  } from './accountResponseObjectResource';
 import {  } from './accountResponseObjectResourceAttributes';
+import {  } from './alltimeDateFilter';
+import {  } from './anniversaryDateFilter';
+import {  } from './anyEnum';
+import {  } from './apiEnum';
 import {  } from './attributionEnum';
 import {  } from './attributionResponseObjectResource';
 import {  } from './attributionResponseObjectResourceRelationships';
@@ -1725,9 +2044,19 @@ import {  } from './attributionResponseObjectResourceRelationshipsFlowMessageDat
 import {  } from './attributionResponseObjectResourceRelationshipsFlowMessageVariation';
 import {  } from './attributionResponseObjectResourceRelationshipsFlowMessageVariationData';
 import {  } from './audiencesSubObject';
+import {  } from './backInStockEnum';
+import {  } from './backInStockMethodFilter';
 import {  } from './backInStockSubscriptionEnum';
 import {  } from './baseEventCreateQueryResourceObject';
 import {  } from './baseEventCreateQueryResourceObjectAttributes';
+import {  } from './booleanEnum';
+import {  } from './booleanFilter';
+import {  } from './bounceDateEnum';
+import {  } from './bounceDateFilter';
+import {  } from './bounceDateFilterFilter';
+import {  } from './bulkRemoveEnum';
+import {  } from './bulkRemoveMethodFilter';
+import {  } from './calendarDateFilter';
 import {  } from './campaignCloneQuery';
 import {  } from './campaignCloneQueryResourceObject';
 import {  } from './campaignCloneQueryResourceObjectAttributes';
@@ -1781,6 +2110,8 @@ import {  } from './campaignValuesRequestDTO';
 import {  } from './campaignValuesRequestDTOResourceObject';
 import {  } from './campaignValuesRequestDTOResourceObjectAttributes';
 import {  } from './campaignValuesRequestDTOResourceObjectAttributesTimeframe';
+import {  } from './carrierDeactivationEnum';
+import {  } from './carrierDeactivationMethodFilter';
 import {  } from './catalogCategoryBulkCreateJobEnum';
 import {  } from './catalogCategoryBulkDeleteJobEnum';
 import {  } from './catalogCategoryBulkUpdateJobEnum';
@@ -1874,7 +2205,14 @@ import {  } from './catalogVariantUpdateJobResponseObjectResource';
 import {  } from './catalogVariantUpdateQuery';
 import {  } from './catalogVariantUpdateQueryResourceObject';
 import {  } from './catalogVariantUpdateQueryResourceObjectAttributes';
+import {  } from './checkoutEnum';
+import {  } from './checkoutMethodFilter';
 import {  } from './collectionLinks';
+import {  } from './conditionGroup';
+import {  } from './conditionGroupConditionsInner';
+import {  } from './constantContactEnum';
+import {  } from './constantContactIntegrationFilter';
+import {  } from './constantContactIntegrationMethodFilter';
 import {  } from './contactInformation';
 import {  } from './couponCodeBulkCreateJobEnum';
 import {  } from './couponCodeCreateJobCreateQuery';
@@ -1902,6 +2240,8 @@ import {  } from './couponResponseObjectResourceAttributes';
 import {  } from './couponUpdateQuery';
 import {  } from './couponUpdateQueryResourceObject';
 import {  } from './couponUpdateQueryResourceObjectAttributes';
+import {  } from './customSourceEnum';
+import {  } from './customSourceFilter';
 import {  } from './customTimeframe';
 import {  } from './dataPrivacyCreateDeletionJobQuery';
 import {  } from './dataPrivacyCreateDeletionJobQueryResourceObject';
@@ -1910,10 +2250,13 @@ import {  } from './dataPrivacyCreateDeletionJobQueryResourceObjectAttributesPro
 import {  } from './dataPrivacyDeletionJobEnum';
 import {  } from './dataPrivacyProfileQueryResourceObject';
 import {  } from './dataPrivacyProfileQueryResourceObjectAttributes';
+import {  } from './dateEnum';
 import {  } from './deleteTagGroupResponse';
 import {  } from './deviceMetadata';
+import {  } from './doubleOptinFilter';
 import {  } from './emailChannel';
 import {  } from './emailContentSubObject';
+import {  } from './emailEnum';
 import {  } from './emailMarketing';
 import {  } from './emailMarketingListSuppression';
 import {  } from './emailMarketingSuppression';
@@ -1922,6 +2265,8 @@ import {  } from './emailSendOptionsSubObject';
 import {  } from './emailSubscriptionParameters';
 import {  } from './emailTrackingOptions';
 import {  } from './emailTrackingOptionsSubObject';
+import {  } from './equalsEnum';
+import {  } from './equalsStringFilter';
 import {  } from './errorSource';
 import {  } from './eventBulkCreateEnum';
 import {  } from './eventBulkCreateJobEnum';
@@ -1943,6 +2288,10 @@ import {  } from './eventsBulkCreateQueryResourceObject';
 import {  } from './eventsBulkCreateQueryResourceObjectAttributes';
 import {  } from './eventsBulkCreateQueryResourceObjectAttributesEvents';
 import {  } from './eventsBulkCreateQueryResourceObjectAttributesProfile';
+import {  } from './existenceEnum';
+import {  } from './existenceOperatorFilter';
+import {  } from './failedAgeGateEnum';
+import {  } from './failedAgeGateMethodFilter';
 import {  } from './flowActionEnum';
 import {  } from './flowActionResponseObjectResource';
 import {  } from './flowActionResponseObjectResourceAttributes';
@@ -1965,6 +2314,8 @@ import {  } from './flowValuesReportEnum';
 import {  } from './flowValuesRequestDTO';
 import {  } from './flowValuesRequestDTOResourceObject';
 import {  } from './flowValuesRequestDTOResourceObjectAttributes';
+import {  } from './formEnum';
+import {  } from './formMethodFilter';
 import {  } from './getAccountResponse';
 import {  } from './getAccountResponseCollection';
 import {  } from './getAccounts4XXResponse';
@@ -2219,6 +2570,18 @@ import {  } from './getTagTagGroupRelationshipsResponse';
 import {  } from './getTagTagGroupRelationshipsResponseData';
 import {  } from './getTemplateResponse';
 import {  } from './getTemplateResponseCollection';
+import {  } from './greaterThanEnum';
+import {  } from './hasEmailMarketing';
+import {  } from './hasEmailMarketingConsent';
+import {  } from './hasEmailMarketingConsentConsentStatus';
+import {  } from './hasEmailMarketingNeverSubscribed';
+import {  } from './hasEmailMarketingSubscribed';
+import {  } from './hasEmailMarketingSubscribedFiltersInner';
+import {  } from './hasPushMarketing';
+import {  } from './hasPushMarketingConsent';
+import {  } from './hasSMSMarketingConsent';
+import {  } from './hasSMSMarketingSubscribed';
+import {  } from './hasSMSMarketingSubscribedFiltersInner';
 import {  } from './imageCreateQuery';
 import {  } from './imageCreateQueryResourceObject';
 import {  } from './imageCreateQueryResourceObjectAttributes';
@@ -2231,10 +2594,23 @@ import {  } from './imageResponseObjectResourceAttributes';
 import {  } from './importErrorEnum';
 import {  } from './importErrorResponseObjectResource';
 import {  } from './importErrorResponseObjectResourceAttributes';
+import {  } from './inEnum';
+import {  } from './inStringArrayFilter';
+import {  } from './inboundMessageEnum';
+import {  } from './inboundMessageMethodFilter';
+import {  } from './integrationEnum';
+import {  } from './invalidEmailDateEnum';
+import {  } from './invalidEmailDateFilter';
+import {  } from './isDoubleOptInEnum';
+import {  } from './isSetEnum';
+import {  } from './isSetExistenceFilter';
+import {  } from './lessThanEnum';
+import {  } from './listContainsOperatorFilter';
 import {  } from './listCreateQuery';
 import {  } from './listCreateQueryResourceObject';
 import {  } from './listCreateQueryResourceObjectAttributes';
 import {  } from './listEnum';
+import {  } from './listLengthFilter';
 import {  } from './listListResponseObjectResource';
 import {  } from './listListResponseObjectResourceAttributes';
 import {  } from './listMemberResponseObjectResourceAttributes';
@@ -2248,7 +2624,21 @@ import {  } from './listResponseObjectResource';
 import {  } from './listRetrieveResponseObjectResourceAttributes';
 import {  } from './listRetrieveResponseObjectResourceExtended';
 import {  } from './listRetrieveResponseObjectResourceExtendedAttributes';
+import {  } from './listSetFilter';
+import {  } from './mailboxProviderEnum';
+import {  } from './mailboxProviderMethodFilter';
+import {  } from './manualAddEnum';
+import {  } from './manualAddMethodFilter';
+import {  } from './manualImportEnum';
+import {  } from './manualImportMethodFilter';
+import {  } from './manualRemoveEnum';
+import {  } from './manualRemoveMethodFilter';
+import {  } from './manualSuppressionDateEnum';
+import {  } from './manualSuppressionDateFilter';
 import {  } from './marketingSubscriptionParameters';
+import {  } from './messageBlockedEnum';
+import {  } from './messageBlockedMethodFilter';
+import {  } from './methodEnum';
 import {  } from './metricAggregateEnum';
 import {  } from './metricAggregateQuery';
 import {  } from './metricAggregateQueryResourceObject';
@@ -2259,6 +2649,26 @@ import {  } from './metricCreateQueryResourceObjectAttributes';
 import {  } from './metricEnum';
 import {  } from './metricResponseObjectResource';
 import {  } from './metricResponseObjectResourceAttributes';
+import {  } from './neverSubscribedEnum';
+import {  } from './noEmailMarketing';
+import {  } from './noEmailMarketingConsent';
+import {  } from './noEmailMarketingConsentConsentStatus';
+import {  } from './noEmailMarketingFiltersInner';
+import {  } from './noEmailMarketingNeverSubscribed';
+import {  } from './noEmailMarketingSubscribed';
+import {  } from './noEmailMarketingUnsubscribed';
+import {  } from './noEmailMarketingUnsubscribedFiltersInner';
+import {  } from './noPushMarketing';
+import {  } from './noPushMarketingConsent';
+import {  } from './noSMSMarketing';
+import {  } from './noSMSMarketingConsent';
+import {  } from './noSMSMarketingConsentConsentStatus';
+import {  } from './noSMSMarketingNeverSubscribed';
+import {  } from './noSMSMarketingUnsubscribed';
+import {  } from './noSMSMarketingUnsubscribedFiltersInner';
+import {  } from './notEqualsEnum';
+import {  } from './numericEnum';
+import {  } from './numericOperatorFilter';
 import {  } from './objectLinks';
 import {  } from './onlyRelatedLinks';
 import {  } from './onsiteProfileCreateQueryResourceObject';
@@ -2277,7 +2687,6 @@ import {  } from './patchImageResponse';
 import {  } from './patchListPartialUpdateResponse';
 import {  } from './patchProfileResponse';
 import {  } from './patchSegmentPartialUpdateResponse';
-import {  } from './patchSegmentPartialUpdateResponseData';
 import {  } from './patchTagGroupResponse';
 import {  } from './patchTemplateResponse';
 import {  } from './postCampaignMessageResponse';
@@ -2367,6 +2776,8 @@ import {  } from './postProfileMergeResponseData';
 import {  } from './postProfileResponse';
 import {  } from './postProfileResponseData';
 import {  } from './postProfileResponseDataAttributes';
+import {  } from './postSegmentCreateResponse';
+import {  } from './postSegmentCreateResponseData';
 import {  } from './postTagGroupResponse';
 import {  } from './postTagGroupResponseData';
 import {  } from './postTagGroupResponseDataRelationships';
@@ -2378,11 +2789,17 @@ import {  } from './postTagResponseDataRelationshipsFlows';
 import {  } from './postTemplateResponse';
 import {  } from './postTemplateResponseData';
 import {  } from './predictiveAnalytics';
+import {  } from './preferencePageEnum';
+import {  } from './preferencePageFilter';
+import {  } from './preferencePageMethodFilter';
 import {  } from './profileBulkImportJobEnum';
 import {  } from './profileCreateQuery';
 import {  } from './profileCreateQueryResourceObject';
 import {  } from './profileCreateQueryResourceObjectAttributes';
 import {  } from './profileEnum';
+import {  } from './profileGroupMembershipEnum';
+import {  } from './profileHasGroupMembershipCondition';
+import {  } from './profileHasGroupMembershipConditionTimeframeFilter';
 import {  } from './profileIdentifierDTOResourceObject';
 import {  } from './profileIdentifierDTOResourceObjectAttributes';
 import {  } from './profileImportJobCreateQuery';
@@ -2395,6 +2812,9 @@ import {  } from './profileImportJobCreateQueryResourceObjectRelationshipsListsD
 import {  } from './profileImportJobResponseObjectResource';
 import {  } from './profileImportJobResponseObjectResourceAttributes';
 import {  } from './profileLocation';
+import {  } from './profileMarketingConsentCondition';
+import {  } from './profileMarketingConsentConditionConsent';
+import {  } from './profileMarketingConsentEnum';
 import {  } from './profileMergeEnum';
 import {  } from './profileMergeQuery';
 import {  } from './profileMergeQueryResourceObject';
@@ -2403,9 +2823,27 @@ import {  } from './profileMergeQueryResourceObjectRelationshipsProfiles';
 import {  } from './profileMergeQueryResourceObjectRelationshipsProfilesDataInner';
 import {  } from './profileMeta';
 import {  } from './profileMetaPatchProperties';
+import {  } from './profileMetricCondition';
+import {  } from './profileMetricConditionTimeframeFilter';
+import {  } from './profileMetricEnum';
+import {  } from './profileMetricPropertyFilter';
+import {  } from './profileMetricPropertyFilterFilter';
+import {  } from './profileNoGroupMembershipCondition';
 import {  } from './profilePartialUpdateQuery';
 import {  } from './profilePartialUpdateQueryResourceObject';
 import {  } from './profilePartialUpdateQueryResourceObjectAttributes';
+import {  } from './profilePostalCodeDistanceCondition';
+import {  } from './profilePostalCodeDistanceEnum';
+import {  } from './profilePredictiveAnalyticsEnum';
+import {  } from './profilePredictiveAnalyticsNumericCondition';
+import {  } from './profilePredictiveAnalyticsStringCondition';
+import {  } from './profilePredictiveAnalyticsStringFilter';
+import {  } from './profilePredictiveAnalyticsStringFilterOperator';
+import {  } from './profilePropertyCondition';
+import {  } from './profilePropertyConditionFilter';
+import {  } from './profilePropertyEnum';
+import {  } from './profileRegionCondition';
+import {  } from './profileRegionEnum';
 import {  } from './profileResponseObjectResource';
 import {  } from './profileResponseObjectResourceAttributes';
 import {  } from './profileResponseObjectResourceExtended';
@@ -2425,6 +2863,11 @@ import {  } from './profileSuppressionDeleteQueryResourceObjectAttributes';
 import {  } from './profileUpsertQuery';
 import {  } from './profileUpsertQueryResourceObject';
 import {  } from './profileUpsertQueryResourceObjectAttributes';
+import {  } from './providedLandlineEnum';
+import {  } from './providedLandlineMethodFilter';
+import {  } from './providedNoAgeEnum';
+import {  } from './providedNoAgeMethodFilter';
+import {  } from './pushEnum';
 import {  } from './pushProfileUpsertQueryResourceObject';
 import {  } from './pushProfileUpsertQueryResourceObjectAttributes';
 import {  } from './pushTokenCreateQuery';
@@ -2433,6 +2876,9 @@ import {  } from './pushTokenCreateQueryResourceObjectAttributes';
 import {  } from './pushTokenCreateQueryResourceObjectAttributesProfile';
 import {  } from './pushTokenEnum';
 import {  } from './relationshipLinks';
+import {  } from './relativeAnniversaryDateFilter';
+import {  } from './relativeDateFilter';
+import {  } from './relativeDateRangeFilter';
 import {  } from './renderOptionsSubObject';
 import {  } from './sMSChannel';
 import {  } from './sMSContentSubObject';
@@ -2445,6 +2891,10 @@ import {  } from './sMSSubscriptionParameters';
 import {  } from './sMSTrackingOptions';
 import {  } from './sMSTrackingOptionsSubObject';
 import {  } from './sTOScheduleOptions';
+import {  } from './segmentCreateQuery';
+import {  } from './segmentCreateQueryResourceObject';
+import {  } from './segmentCreateQueryResourceObjectAttributes';
+import {  } from './segmentDefinition';
 import {  } from './segmentEnum';
 import {  } from './segmentListResponseObjectResource';
 import {  } from './segmentListResponseObjectResourceAttributes';
@@ -2469,8 +2919,26 @@ import {  } from './serverBISSubscriptionCreateQueryResourceObjectAttributesProf
 import {  } from './serverBISSubscriptionCreateQueryResourceObjectRelationships';
 import {  } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariant';
 import {  } from './serverBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData';
+import {  } from './sftpEnum';
+import {  } from './sftpMethodFilter';
+import {  } from './shopifyEnum';
+import {  } from './shopifyIntegrationFilter';
+import {  } from './shopifyIntegrationMethodFilter';
+import {  } from './smsEnum';
+import {  } from './spamComplaintEnum';
+import {  } from './spamComplaintMethodFilter';
+import {  } from './staticDateFilter';
+import {  } from './staticDateRangeFilter';
 import {  } from './staticScheduleOptions';
+import {  } from './statusDateEnum';
+import {  } from './statusDateFilter';
+import {  } from './statusDateFilterFilter';
 import {  } from './streetAddress';
+import {  } from './stringArrayOperatorFilter';
+import {  } from './stringEnum';
+import {  } from './stringOperatorFilter';
+import {  } from './stringPhoneOperatorArrayFilter';
+import {  } from './subscribedEnum';
 import {  } from './subscriptionChannels';
 import {  } from './subscriptionCreateJobCreateQuery';
 import {  } from './subscriptionCreateJobCreateQueryResourceObject';
@@ -2550,6 +3018,9 @@ import {  } from './templateUpdateQueryResourceObjectAttributes';
 import {  } from './throttledScheduleOptions';
 import {  } from './timeframe';
 import {  } from './uTMParamsSubObject';
+import {  } from './unionPositiveNumericFilter';
+import {  } from './unionPositiveNumericFilterOperator';
+import {  } from './unsubscribedEnum';
 import {  } from './utmParamInfo';
 import {  } from './valuesData';
 
@@ -2567,8 +3038,18 @@ let primitives = [
 
 let enumsMap: {[index: string]: any} = {
         "AccountEnum": AccountEnum,
+        "AlltimeDateFilter.OperatorEnum": AlltimeDateFilter.OperatorEnum,
+        "AnniversaryDateFilter.OperatorEnum": AnniversaryDateFilter.OperatorEnum,
+        "AnyEnum": AnyEnum,
+        "ApiEnum": ApiEnum,
         "AttributionEnum": AttributionEnum,
+        "BackInStockEnum": BackInStockEnum,
         "BackInStockSubscriptionEnum": BackInStockSubscriptionEnum,
+        "BooleanEnum": BooleanEnum,
+        "BooleanFilter.OperatorEnum": BooleanFilter.OperatorEnum,
+        "BounceDateEnum": BounceDateEnum,
+        "BulkRemoveEnum": BulkRemoveEnum,
+        "CalendarDateFilter.OperatorEnum": CalendarDateFilter.OperatorEnum,
         "CampaignEnum": CampaignEnum,
         "CampaignMessageEnum": CampaignMessageEnum,
         "CampaignRecipientEstimationEnum": CampaignRecipientEstimationEnum,
@@ -2578,6 +3059,7 @@ let enumsMap: {[index: string]: any} = {
         "CampaignSendJobResponseObjectResourceAttributes.StatusEnum": CampaignSendJobResponseObjectResourceAttributes.StatusEnum,
         "CampaignValuesReportEnum": CampaignValuesReportEnum,
         "CampaignValuesRequestDTOResourceObjectAttributes.StatisticsEnum": CampaignValuesRequestDTOResourceObjectAttributes.StatisticsEnum,
+        "CarrierDeactivationEnum": CarrierDeactivationEnum,
         "CatalogCategoryBulkCreateJobEnum": CatalogCategoryBulkCreateJobEnum,
         "CatalogCategoryBulkDeleteJobEnum": CatalogCategoryBulkDeleteJobEnum,
         "CatalogCategoryBulkUpdateJobEnum": CatalogCategoryBulkUpdateJobEnum,
@@ -2596,19 +3078,28 @@ let enumsMap: {[index: string]: any} = {
         "CatalogVariantEnum": CatalogVariantEnum,
         "CatalogVariantResponseObjectResourceAttributes.InventoryPolicyEnum": CatalogVariantResponseObjectResourceAttributes.InventoryPolicyEnum,
         "CatalogVariantUpdateQueryResourceObjectAttributes.InventoryPolicyEnum": CatalogVariantUpdateQueryResourceObjectAttributes.InventoryPolicyEnum,
+        "CheckoutEnum": CheckoutEnum,
+        "ConstantContactEnum": ConstantContactEnum,
         "CouponCodeBulkCreateJobEnum": CouponCodeBulkCreateJobEnum,
         "CouponCodeCreateJobResponseObjectResourceAttributes.StatusEnum": CouponCodeCreateJobResponseObjectResourceAttributes.StatusEnum,
         "CouponCodeEnum": CouponCodeEnum,
         "CouponCodeResponseObjectResourceAttributes.StatusEnum": CouponCodeResponseObjectResourceAttributes.StatusEnum,
         "CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum": CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum,
         "CouponEnum": CouponEnum,
+        "CustomSourceEnum": CustomSourceEnum,
         "DataPrivacyDeletionJobEnum": DataPrivacyDeletionJobEnum,
+        "DateEnum": DateEnum,
         "DeviceMetadata.KlaviyoSdkEnum": DeviceMetadata.KlaviyoSdkEnum,
         "DeviceMetadata.OsNameEnum": DeviceMetadata.OsNameEnum,
         "DeviceMetadata.EnvironmentEnum": DeviceMetadata.EnvironmentEnum,
+        "EmailEnum": EmailEnum,
+        "EqualsEnum": EqualsEnum,
         "EventBulkCreateEnum": EventBulkCreateEnum,
         "EventBulkCreateJobEnum": EventBulkCreateJobEnum,
         "EventEnum": EventEnum,
+        "ExistenceEnum": ExistenceEnum,
+        "ExistenceOperatorFilter.OperatorEnum": ExistenceOperatorFilter.OperatorEnum,
+        "FailedAgeGateEnum": FailedAgeGateEnum,
         "FlowActionEnum": FlowActionEnum,
         "FlowEnum": FlowEnum,
         "FlowMessageEnum": FlowMessageEnum,
@@ -2618,43 +3109,113 @@ let enumsMap: {[index: string]: any} = {
         "FlowSeriesRequestDTOResourceObjectAttributes.IntervalEnum": FlowSeriesRequestDTOResourceObjectAttributes.IntervalEnum,
         "FlowValuesReportEnum": FlowValuesReportEnum,
         "FlowValuesRequestDTOResourceObjectAttributes.StatisticsEnum": FlowValuesRequestDTOResourceObjectAttributes.StatisticsEnum,
+        "FormEnum": FormEnum,
+        "GreaterThanEnum": GreaterThanEnum,
+        "HasEmailMarketingConsent.CanReceiveMarketingEnum": HasEmailMarketingConsent.CanReceiveMarketingEnum,
+        "HasPushMarketingConsent.CanReceiveMarketingEnum": HasPushMarketingConsent.CanReceiveMarketingEnum,
+        "HasSMSMarketingConsent.CanReceiveMarketingEnum": HasSMSMarketingConsent.CanReceiveMarketingEnum,
         "ImageEnum": ImageEnum,
         "ImportErrorEnum": ImportErrorEnum,
+        "InEnum": InEnum,
+        "InboundMessageEnum": InboundMessageEnum,
+        "IntegrationEnum": IntegrationEnum,
+        "InvalidEmailDateEnum": InvalidEmailDateEnum,
+        "IsDoubleOptInEnum": IsDoubleOptInEnum,
+        "IsSetEnum": IsSetEnum,
+        "LessThanEnum": LessThanEnum,
+        "ListContainsOperatorFilter.OperatorEnum": ListContainsOperatorFilter.OperatorEnum,
         "ListEnum": ListEnum,
+        "ListLengthFilter.OperatorEnum": ListLengthFilter.OperatorEnum,
         "ListListResponseObjectResourceAttributes.OptInProcessEnum": ListListResponseObjectResourceAttributes.OptInProcessEnum,
         "ListRetrieveResponseObjectResourceAttributes.OptInProcessEnum": ListRetrieveResponseObjectResourceAttributes.OptInProcessEnum,
+        "ListSetFilter.OperatorEnum": ListSetFilter.OperatorEnum,
+        "MailboxProviderEnum": MailboxProviderEnum,
+        "ManualAddEnum": ManualAddEnum,
+        "ManualImportEnum": ManualImportEnum,
+        "ManualRemoveEnum": ManualRemoveEnum,
+        "ManualSuppressionDateEnum": ManualSuppressionDateEnum,
         "MarketingSubscriptionParameters.ConsentEnum": MarketingSubscriptionParameters.ConsentEnum,
+        "MessageBlockedEnum": MessageBlockedEnum,
+        "MethodEnum": MethodEnum,
         "MetricAggregateEnum": MetricAggregateEnum,
         "MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum": MetricAggregateQueryResourceObjectAttributes.MeasurementsEnum,
         "MetricAggregateQueryResourceObjectAttributes.IntervalEnum": MetricAggregateQueryResourceObjectAttributes.IntervalEnum,
         "MetricAggregateQueryResourceObjectAttributes.ByEnum": MetricAggregateQueryResourceObjectAttributes.ByEnum,
         "MetricAggregateQueryResourceObjectAttributes.SortEnum": MetricAggregateQueryResourceObjectAttributes.SortEnum,
         "MetricEnum": MetricEnum,
+        "NeverSubscribedEnum": NeverSubscribedEnum,
+        "NoEmailMarketingConsent.CanReceiveMarketingEnum": NoEmailMarketingConsent.CanReceiveMarketingEnum,
+        "NoPushMarketingConsent.CanReceiveMarketingEnum": NoPushMarketingConsent.CanReceiveMarketingEnum,
+        "NoSMSMarketingConsent.CanReceiveMarketingEnum": NoSMSMarketingConsent.CanReceiveMarketingEnum,
+        "NotEqualsEnum": NotEqualsEnum,
+        "NumericEnum": NumericEnum,
+        "NumericOperatorFilter.OperatorEnum": NumericOperatorFilter.OperatorEnum,
+        "PreferencePageEnum": PreferencePageEnum,
         "ProfileBulkImportJobEnum": ProfileBulkImportJobEnum,
         "ProfileEnum": ProfileEnum,
+        "ProfileGroupMembershipEnum": ProfileGroupMembershipEnum,
+        "ProfileHasGroupMembershipCondition.IsMemberEnum": ProfileHasGroupMembershipCondition.IsMemberEnum,
         "ProfileImportJobResponseObjectResourceAttributes.StatusEnum": ProfileImportJobResponseObjectResourceAttributes.StatusEnum,
+        "ProfileMarketingConsentEnum": ProfileMarketingConsentEnum,
         "ProfileMergeEnum": ProfileMergeEnum,
+        "ProfileMetricCondition.MeasurementEnum": ProfileMetricCondition.MeasurementEnum,
+        "ProfileMetricEnum": ProfileMetricEnum,
+        "ProfileNoGroupMembershipCondition.IsMemberEnum": ProfileNoGroupMembershipCondition.IsMemberEnum,
+        "ProfilePostalCodeDistanceCondition.UnitEnum": ProfilePostalCodeDistanceCondition.UnitEnum,
+        "ProfilePostalCodeDistanceEnum": ProfilePostalCodeDistanceEnum,
+        "ProfilePredictiveAnalyticsEnum": ProfilePredictiveAnalyticsEnum,
+        "ProfilePredictiveAnalyticsNumericCondition.DimensionEnum": ProfilePredictiveAnalyticsNumericCondition.DimensionEnum,
+        "ProfilePredictiveAnalyticsStringCondition.DimensionEnum": ProfilePredictiveAnalyticsStringCondition.DimensionEnum,
+        "ProfilePredictiveAnalyticsStringFilter.ValueEnum": ProfilePredictiveAnalyticsStringFilter.ValueEnum,
+        "ProfilePropertyEnum": ProfilePropertyEnum,
+        "ProfileRegionCondition.RegionEnum": ProfileRegionCondition.RegionEnum,
+        "ProfileRegionEnum": ProfileRegionEnum,
         "ProfileSubscriptionBulkCreateJobEnum": ProfileSubscriptionBulkCreateJobEnum,
         "ProfileSubscriptionBulkDeleteJobEnum": ProfileSubscriptionBulkDeleteJobEnum,
         "ProfileSuppressionBulkCreateJobEnum": ProfileSuppressionBulkCreateJobEnum,
         "ProfileSuppressionBulkDeleteJobEnum": ProfileSuppressionBulkDeleteJobEnum,
+        "ProvidedLandlineEnum": ProvidedLandlineEnum,
+        "ProvidedNoAgeEnum": ProvidedNoAgeEnum,
+        "PushEnum": PushEnum,
         "PushTokenCreateQueryResourceObjectAttributes.PlatformEnum": PushTokenCreateQueryResourceObjectAttributes.PlatformEnum,
         "PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum": PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum,
         "PushTokenCreateQueryResourceObjectAttributes.VendorEnum": PushTokenCreateQueryResourceObjectAttributes.VendorEnum,
         "PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum": PushTokenCreateQueryResourceObjectAttributes.BackgroundEnum,
         "PushTokenEnum": PushTokenEnum,
+        "RelativeAnniversaryDateFilter.OperatorEnum": RelativeAnniversaryDateFilter.OperatorEnum,
+        "RelativeAnniversaryDateFilter.UnitEnum": RelativeAnniversaryDateFilter.UnitEnum,
+        "RelativeDateFilter.OperatorEnum": RelativeDateFilter.OperatorEnum,
+        "RelativeDateFilter.UnitEnum": RelativeDateFilter.UnitEnum,
+        "RelativeDateRangeFilter.OperatorEnum": RelativeDateRangeFilter.OperatorEnum,
+        "RelativeDateRangeFilter.UnitEnum": RelativeDateRangeFilter.UnitEnum,
         "SegmentEnum": SegmentEnum,
         "ServerBISSubscriptionCreateQueryResourceObjectAttributes.ChannelsEnum": ServerBISSubscriptionCreateQueryResourceObjectAttributes.ChannelsEnum,
+        "SftpEnum": SftpEnum,
+        "ShopifyEnum": ShopifyEnum,
+        "SmsEnum": SmsEnum,
+        "SpamComplaintEnum": SpamComplaintEnum,
+        "StaticDateFilter.OperatorEnum": StaticDateFilter.OperatorEnum,
+        "StaticDateRangeFilter.OperatorEnum": StaticDateRangeFilter.OperatorEnum,
+        "StatusDateEnum": StatusDateEnum,
+        "StringArrayOperatorFilter.OperatorEnum": StringArrayOperatorFilter.OperatorEnum,
+        "StringEnum": StringEnum,
+        "StringOperatorFilter.OperatorEnum": StringOperatorFilter.OperatorEnum,
+        "StringPhoneOperatorArrayFilter.OperatorEnum": StringPhoneOperatorArrayFilter.OperatorEnum,
+        "SubscribedEnum": SubscribedEnum,
         "TagEnum": TagEnum,
         "TagGroupEnum": TagGroupEnum,
         "TemplateEnum": TemplateEnum,
         "Timeframe.KeyEnum": Timeframe.KeyEnum,
+        "UnsubscribedEnum": UnsubscribedEnum,
 }
 
 let typeMap: {[index: string]: any} = {
     "APIJobErrorPayload": APIJobErrorPayload,
+    "APIMethodFilter": APIMethodFilter,
     "AccountResponseObjectResource": AccountResponseObjectResource,
     "AccountResponseObjectResourceAttributes": AccountResponseObjectResourceAttributes,
+    "AlltimeDateFilter": AlltimeDateFilter,
+    "AnniversaryDateFilter": AnniversaryDateFilter,
     "AttributionResponseObjectResource": AttributionResponseObjectResource,
     "AttributionResponseObjectResourceRelationships": AttributionResponseObjectResourceRelationships,
     "AttributionResponseObjectResourceRelationshipsAttributedEvent": AttributionResponseObjectResourceRelationshipsAttributedEvent,
@@ -2672,8 +3233,13 @@ let typeMap: {[index: string]: any} = {
     "AttributionResponseObjectResourceRelationshipsFlowMessageVariation": AttributionResponseObjectResourceRelationshipsFlowMessageVariation,
     "AttributionResponseObjectResourceRelationshipsFlowMessageVariationData": AttributionResponseObjectResourceRelationshipsFlowMessageVariationData,
     "AudiencesSubObject": AudiencesSubObject,
+    "BackInStockMethodFilter": BackInStockMethodFilter,
     "BaseEventCreateQueryResourceObject": BaseEventCreateQueryResourceObject,
     "BaseEventCreateQueryResourceObjectAttributes": BaseEventCreateQueryResourceObjectAttributes,
+    "BooleanFilter": BooleanFilter,
+    "BounceDateFilter": BounceDateFilter,
+    "BulkRemoveMethodFilter": BulkRemoveMethodFilter,
+    "CalendarDateFilter": CalendarDateFilter,
     "CampaignCloneQuery": CampaignCloneQuery,
     "CampaignCloneQueryResourceObject": CampaignCloneQueryResourceObject,
     "CampaignCloneQueryResourceObjectAttributes": CampaignCloneQueryResourceObjectAttributes,
@@ -2714,6 +3280,7 @@ let typeMap: {[index: string]: any} = {
     "CampaignValuesRequestDTO": CampaignValuesRequestDTO,
     "CampaignValuesRequestDTOResourceObject": CampaignValuesRequestDTOResourceObject,
     "CampaignValuesRequestDTOResourceObjectAttributes": CampaignValuesRequestDTOResourceObjectAttributes,
+    "CarrierDeactivationMethodFilter": CarrierDeactivationMethodFilter,
     "CatalogCategoryCreateJobCreateQuery": CatalogCategoryCreateJobCreateQuery,
     "CatalogCategoryCreateJobCreateQueryResourceObject": CatalogCategoryCreateJobCreateQueryResourceObject,
     "CatalogCategoryCreateJobCreateQueryResourceObjectAttributes": CatalogCategoryCreateJobCreateQueryResourceObjectAttributes,
@@ -2795,7 +3362,11 @@ let typeMap: {[index: string]: any} = {
     "CatalogVariantUpdateQuery": CatalogVariantUpdateQuery,
     "CatalogVariantUpdateQueryResourceObject": CatalogVariantUpdateQueryResourceObject,
     "CatalogVariantUpdateQueryResourceObjectAttributes": CatalogVariantUpdateQueryResourceObjectAttributes,
+    "CheckoutMethodFilter": CheckoutMethodFilter,
     "CollectionLinks": CollectionLinks,
+    "ConditionGroup": ConditionGroup,
+    "ConstantContactIntegrationFilter": ConstantContactIntegrationFilter,
+    "ConstantContactIntegrationMethodFilter": ConstantContactIntegrationMethodFilter,
     "ContactInformation": ContactInformation,
     "CouponCodeCreateJobCreateQuery": CouponCodeCreateJobCreateQuery,
     "CouponCodeCreateJobCreateQueryResourceObject": CouponCodeCreateJobCreateQueryResourceObject,
@@ -2820,6 +3391,7 @@ let typeMap: {[index: string]: any} = {
     "CouponUpdateQuery": CouponUpdateQuery,
     "CouponUpdateQueryResourceObject": CouponUpdateQueryResourceObject,
     "CouponUpdateQueryResourceObjectAttributes": CouponUpdateQueryResourceObjectAttributes,
+    "CustomSourceFilter": CustomSourceFilter,
     "CustomTimeframe": CustomTimeframe,
     "DataPrivacyCreateDeletionJobQuery": DataPrivacyCreateDeletionJobQuery,
     "DataPrivacyCreateDeletionJobQueryResourceObject": DataPrivacyCreateDeletionJobQueryResourceObject,
@@ -2829,6 +3401,7 @@ let typeMap: {[index: string]: any} = {
     "DataPrivacyProfileQueryResourceObjectAttributes": DataPrivacyProfileQueryResourceObjectAttributes,
     "DeleteTagGroupResponse": DeleteTagGroupResponse,
     "DeviceMetadata": DeviceMetadata,
+    "DoubleOptinFilter": DoubleOptinFilter,
     "EmailChannel": EmailChannel,
     "EmailContentSubObject": EmailContentSubObject,
     "EmailMarketing": EmailMarketing,
@@ -2839,6 +3412,7 @@ let typeMap: {[index: string]: any} = {
     "EmailSubscriptionParameters": EmailSubscriptionParameters,
     "EmailTrackingOptions": EmailTrackingOptions,
     "EmailTrackingOptionsSubObject": EmailTrackingOptionsSubObject,
+    "EqualsStringFilter": EqualsStringFilter,
     "ErrorSource": ErrorSource,
     "EventCreateQueryV2": EventCreateQueryV2,
     "EventCreateQueryV2ResourceObject": EventCreateQueryV2ResourceObject,
@@ -2857,6 +3431,8 @@ let typeMap: {[index: string]: any} = {
     "EventsBulkCreateQueryResourceObjectAttributes": EventsBulkCreateQueryResourceObjectAttributes,
     "EventsBulkCreateQueryResourceObjectAttributesEvents": EventsBulkCreateQueryResourceObjectAttributesEvents,
     "EventsBulkCreateQueryResourceObjectAttributesProfile": EventsBulkCreateQueryResourceObjectAttributesProfile,
+    "ExistenceOperatorFilter": ExistenceOperatorFilter,
+    "FailedAgeGateMethodFilter": FailedAgeGateMethodFilter,
     "FlowActionResponseObjectResource": FlowActionResponseObjectResource,
     "FlowActionResponseObjectResourceAttributes": FlowActionResponseObjectResourceAttributes,
     "FlowMessageResponseObjectResource": FlowMessageResponseObjectResource,
@@ -2872,6 +3448,7 @@ let typeMap: {[index: string]: any} = {
     "FlowValuesRequestDTO": FlowValuesRequestDTO,
     "FlowValuesRequestDTOResourceObject": FlowValuesRequestDTOResourceObject,
     "FlowValuesRequestDTOResourceObjectAttributes": FlowValuesRequestDTOResourceObjectAttributes,
+    "FormMethodFilter": FormMethodFilter,
     "GetAccountResponse": GetAccountResponse,
     "GetAccountResponseCollection": GetAccountResponseCollection,
     "GetAccounts4XXResponse": GetAccounts4XXResponse,
@@ -3119,6 +3696,14 @@ let typeMap: {[index: string]: any} = {
     "GetTagTagGroupRelationshipsResponseData": GetTagTagGroupRelationshipsResponseData,
     "GetTemplateResponse": GetTemplateResponse,
     "GetTemplateResponseCollection": GetTemplateResponseCollection,
+    "HasEmailMarketing": HasEmailMarketing,
+    "HasEmailMarketingConsent": HasEmailMarketingConsent,
+    "HasEmailMarketingNeverSubscribed": HasEmailMarketingNeverSubscribed,
+    "HasEmailMarketingSubscribed": HasEmailMarketingSubscribed,
+    "HasPushMarketing": HasPushMarketing,
+    "HasPushMarketingConsent": HasPushMarketingConsent,
+    "HasSMSMarketingConsent": HasSMSMarketingConsent,
+    "HasSMSMarketingSubscribed": HasSMSMarketingSubscribed,
     "ImageCreateQuery": ImageCreateQuery,
     "ImageCreateQueryResourceObject": ImageCreateQueryResourceObject,
     "ImageCreateQueryResourceObjectAttributes": ImageCreateQueryResourceObjectAttributes,
@@ -3129,9 +3714,15 @@ let typeMap: {[index: string]: any} = {
     "ImageResponseObjectResourceAttributes": ImageResponseObjectResourceAttributes,
     "ImportErrorResponseObjectResource": ImportErrorResponseObjectResource,
     "ImportErrorResponseObjectResourceAttributes": ImportErrorResponseObjectResourceAttributes,
+    "InStringArrayFilter": InStringArrayFilter,
+    "InboundMessageMethodFilter": InboundMessageMethodFilter,
+    "InvalidEmailDateFilter": InvalidEmailDateFilter,
+    "IsSetExistenceFilter": IsSetExistenceFilter,
+    "ListContainsOperatorFilter": ListContainsOperatorFilter,
     "ListCreateQuery": ListCreateQuery,
     "ListCreateQueryResourceObject": ListCreateQueryResourceObject,
     "ListCreateQueryResourceObjectAttributes": ListCreateQueryResourceObjectAttributes,
+    "ListLengthFilter": ListLengthFilter,
     "ListListResponseObjectResource": ListListResponseObjectResource,
     "ListListResponseObjectResourceAttributes": ListListResponseObjectResourceAttributes,
     "ListMemberResponseObjectResourceAttributes": ListMemberResponseObjectResourceAttributes,
@@ -3145,7 +3736,14 @@ let typeMap: {[index: string]: any} = {
     "ListRetrieveResponseObjectResourceAttributes": ListRetrieveResponseObjectResourceAttributes,
     "ListRetrieveResponseObjectResourceExtended": ListRetrieveResponseObjectResourceExtended,
     "ListRetrieveResponseObjectResourceExtendedAttributes": ListRetrieveResponseObjectResourceExtendedAttributes,
+    "ListSetFilter": ListSetFilter,
+    "MailboxProviderMethodFilter": MailboxProviderMethodFilter,
+    "ManualAddMethodFilter": ManualAddMethodFilter,
+    "ManualImportMethodFilter": ManualImportMethodFilter,
+    "ManualRemoveMethodFilter": ManualRemoveMethodFilter,
+    "ManualSuppressionDateFilter": ManualSuppressionDateFilter,
     "MarketingSubscriptionParameters": MarketingSubscriptionParameters,
+    "MessageBlockedMethodFilter": MessageBlockedMethodFilter,
     "MetricAggregateQuery": MetricAggregateQuery,
     "MetricAggregateQueryResourceObject": MetricAggregateQueryResourceObject,
     "MetricAggregateQueryResourceObjectAttributes": MetricAggregateQueryResourceObjectAttributes,
@@ -3154,6 +3752,18 @@ let typeMap: {[index: string]: any} = {
     "MetricCreateQueryResourceObjectAttributes": MetricCreateQueryResourceObjectAttributes,
     "MetricResponseObjectResource": MetricResponseObjectResource,
     "MetricResponseObjectResourceAttributes": MetricResponseObjectResourceAttributes,
+    "NoEmailMarketing": NoEmailMarketing,
+    "NoEmailMarketingConsent": NoEmailMarketingConsent,
+    "NoEmailMarketingNeverSubscribed": NoEmailMarketingNeverSubscribed,
+    "NoEmailMarketingSubscribed": NoEmailMarketingSubscribed,
+    "NoEmailMarketingUnsubscribed": NoEmailMarketingUnsubscribed,
+    "NoPushMarketing": NoPushMarketing,
+    "NoPushMarketingConsent": NoPushMarketingConsent,
+    "NoSMSMarketing": NoSMSMarketing,
+    "NoSMSMarketingConsent": NoSMSMarketingConsent,
+    "NoSMSMarketingNeverSubscribed": NoSMSMarketingNeverSubscribed,
+    "NoSMSMarketingUnsubscribed": NoSMSMarketingUnsubscribed,
+    "NumericOperatorFilter": NumericOperatorFilter,
     "ObjectLinks": ObjectLinks,
     "OnlyRelatedLinks": OnlyRelatedLinks,
     "OnsiteProfileCreateQueryResourceObject": OnsiteProfileCreateQueryResourceObject,
@@ -3172,7 +3782,6 @@ let typeMap: {[index: string]: any} = {
     "PatchListPartialUpdateResponse": PatchListPartialUpdateResponse,
     "PatchProfileResponse": PatchProfileResponse,
     "PatchSegmentPartialUpdateResponse": PatchSegmentPartialUpdateResponse,
-    "PatchSegmentPartialUpdateResponseData": PatchSegmentPartialUpdateResponseData,
     "PatchTagGroupResponse": PatchTagGroupResponse,
     "PatchTemplateResponse": PatchTemplateResponse,
     "PostCampaignMessageResponse": PostCampaignMessageResponse,
@@ -3262,6 +3871,8 @@ let typeMap: {[index: string]: any} = {
     "PostProfileResponse": PostProfileResponse,
     "PostProfileResponseData": PostProfileResponseData,
     "PostProfileResponseDataAttributes": PostProfileResponseDataAttributes,
+    "PostSegmentCreateResponse": PostSegmentCreateResponse,
+    "PostSegmentCreateResponseData": PostSegmentCreateResponseData,
     "PostTagGroupResponse": PostTagGroupResponse,
     "PostTagGroupResponseData": PostTagGroupResponseData,
     "PostTagGroupResponseDataRelationships": PostTagGroupResponseDataRelationships,
@@ -3273,9 +3884,12 @@ let typeMap: {[index: string]: any} = {
     "PostTemplateResponse": PostTemplateResponse,
     "PostTemplateResponseData": PostTemplateResponseData,
     "PredictiveAnalytics": PredictiveAnalytics,
+    "PreferencePageFilter": PreferencePageFilter,
+    "PreferencePageMethodFilter": PreferencePageMethodFilter,
     "ProfileCreateQuery": ProfileCreateQuery,
     "ProfileCreateQueryResourceObject": ProfileCreateQueryResourceObject,
     "ProfileCreateQueryResourceObjectAttributes": ProfileCreateQueryResourceObjectAttributes,
+    "ProfileHasGroupMembershipCondition": ProfileHasGroupMembershipCondition,
     "ProfileIdentifierDTOResourceObject": ProfileIdentifierDTOResourceObject,
     "ProfileIdentifierDTOResourceObjectAttributes": ProfileIdentifierDTOResourceObjectAttributes,
     "ProfileImportJobCreateQuery": ProfileImportJobCreateQuery,
@@ -3288,6 +3902,7 @@ let typeMap: {[index: string]: any} = {
     "ProfileImportJobResponseObjectResource": ProfileImportJobResponseObjectResource,
     "ProfileImportJobResponseObjectResourceAttributes": ProfileImportJobResponseObjectResourceAttributes,
     "ProfileLocation": ProfileLocation,
+    "ProfileMarketingConsentCondition": ProfileMarketingConsentCondition,
     "ProfileMergeQuery": ProfileMergeQuery,
     "ProfileMergeQueryResourceObject": ProfileMergeQueryResourceObject,
     "ProfileMergeQueryResourceObjectRelationships": ProfileMergeQueryResourceObjectRelationships,
@@ -3295,9 +3910,18 @@ let typeMap: {[index: string]: any} = {
     "ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner": ProfileMergeQueryResourceObjectRelationshipsProfilesDataInner,
     "ProfileMeta": ProfileMeta,
     "ProfileMetaPatchProperties": ProfileMetaPatchProperties,
+    "ProfileMetricCondition": ProfileMetricCondition,
+    "ProfileMetricPropertyFilter": ProfileMetricPropertyFilter,
+    "ProfileNoGroupMembershipCondition": ProfileNoGroupMembershipCondition,
     "ProfilePartialUpdateQuery": ProfilePartialUpdateQuery,
     "ProfilePartialUpdateQueryResourceObject": ProfilePartialUpdateQueryResourceObject,
     "ProfilePartialUpdateQueryResourceObjectAttributes": ProfilePartialUpdateQueryResourceObjectAttributes,
+    "ProfilePostalCodeDistanceCondition": ProfilePostalCodeDistanceCondition,
+    "ProfilePredictiveAnalyticsNumericCondition": ProfilePredictiveAnalyticsNumericCondition,
+    "ProfilePredictiveAnalyticsStringCondition": ProfilePredictiveAnalyticsStringCondition,
+    "ProfilePredictiveAnalyticsStringFilter": ProfilePredictiveAnalyticsStringFilter,
+    "ProfilePropertyCondition": ProfilePropertyCondition,
+    "ProfileRegionCondition": ProfileRegionCondition,
     "ProfileResponseObjectResource": ProfileResponseObjectResource,
     "ProfileResponseObjectResourceAttributes": ProfileResponseObjectResourceAttributes,
     "ProfileResponseObjectResourceExtended": ProfileResponseObjectResourceExtended,
@@ -3313,6 +3937,8 @@ let typeMap: {[index: string]: any} = {
     "ProfileUpsertQuery": ProfileUpsertQuery,
     "ProfileUpsertQueryResourceObject": ProfileUpsertQueryResourceObject,
     "ProfileUpsertQueryResourceObjectAttributes": ProfileUpsertQueryResourceObjectAttributes,
+    "ProvidedLandlineMethodFilter": ProvidedLandlineMethodFilter,
+    "ProvidedNoAgeMethodFilter": ProvidedNoAgeMethodFilter,
     "PushProfileUpsertQueryResourceObject": PushProfileUpsertQueryResourceObject,
     "PushProfileUpsertQueryResourceObjectAttributes": PushProfileUpsertQueryResourceObjectAttributes,
     "PushTokenCreateQuery": PushTokenCreateQuery,
@@ -3320,6 +3946,9 @@ let typeMap: {[index: string]: any} = {
     "PushTokenCreateQueryResourceObjectAttributes": PushTokenCreateQueryResourceObjectAttributes,
     "PushTokenCreateQueryResourceObjectAttributesProfile": PushTokenCreateQueryResourceObjectAttributesProfile,
     "RelationshipLinks": RelationshipLinks,
+    "RelativeAnniversaryDateFilter": RelativeAnniversaryDateFilter,
+    "RelativeDateFilter": RelativeDateFilter,
+    "RelativeDateRangeFilter": RelativeDateRangeFilter,
     "RenderOptionsSubObject": RenderOptionsSubObject,
     "SMSChannel": SMSChannel,
     "SMSContentSubObject": SMSContentSubObject,
@@ -3332,6 +3961,10 @@ let typeMap: {[index: string]: any} = {
     "SMSTrackingOptions": SMSTrackingOptions,
     "SMSTrackingOptionsSubObject": SMSTrackingOptionsSubObject,
     "STOScheduleOptions": STOScheduleOptions,
+    "SegmentCreateQuery": SegmentCreateQuery,
+    "SegmentCreateQueryResourceObject": SegmentCreateQueryResourceObject,
+    "SegmentCreateQueryResourceObjectAttributes": SegmentCreateQueryResourceObjectAttributes,
+    "SegmentDefinition": SegmentDefinition,
     "SegmentListResponseObjectResource": SegmentListResponseObjectResource,
     "SegmentListResponseObjectResourceAttributes": SegmentListResponseObjectResourceAttributes,
     "SegmentMemberResponseObjectResourceAttributes": SegmentMemberResponseObjectResourceAttributes,
@@ -3355,8 +3988,18 @@ let typeMap: {[index: string]: any} = {
     "ServerBISSubscriptionCreateQueryResourceObjectRelationships": ServerBISSubscriptionCreateQueryResourceObjectRelationships,
     "ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant": ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariant,
     "ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData": ServerBISSubscriptionCreateQueryResourceObjectRelationshipsVariantData,
+    "SftpMethodFilter": SftpMethodFilter,
+    "ShopifyIntegrationFilter": ShopifyIntegrationFilter,
+    "ShopifyIntegrationMethodFilter": ShopifyIntegrationMethodFilter,
+    "SpamComplaintMethodFilter": SpamComplaintMethodFilter,
+    "StaticDateFilter": StaticDateFilter,
+    "StaticDateRangeFilter": StaticDateRangeFilter,
     "StaticScheduleOptions": StaticScheduleOptions,
+    "StatusDateFilter": StatusDateFilter,
     "StreetAddress": StreetAddress,
+    "StringArrayOperatorFilter": StringArrayOperatorFilter,
+    "StringOperatorFilter": StringOperatorFilter,
+    "StringPhoneOperatorArrayFilter": StringPhoneOperatorArrayFilter,
     "SubscriptionChannels": SubscriptionChannels,
     "SubscriptionCreateJobCreateQuery": SubscriptionCreateJobCreateQuery,
     "SubscriptionCreateJobCreateQueryResourceObject": SubscriptionCreateJobCreateQueryResourceObject,
@@ -3433,6 +4076,7 @@ let typeMap: {[index: string]: any} = {
     "ThrottledScheduleOptions": ThrottledScheduleOptions,
     "Timeframe": Timeframe,
     "UTMParamsSubObject": UTMParamsSubObject,
+    "UnionPositiveNumericFilter": UnionPositiveNumericFilter,
     "UtmParamInfo": UtmParamInfo,
     "ValuesData": ValuesData,
 }
@@ -3448,6 +4092,16 @@ const oneOfMap: {[index: string]: any} = {
 }
 
 const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
+    "BounceDateFilterFilter": [
+            "AnniversaryDateFilter",
+            "CalendarDateFilter",
+            "IsSetExistenceFilter",
+            "RelativeAnniversaryDateFilter",
+            "RelativeDateFilter",
+            "RelativeDateRangeFilter",
+            "StaticDateFilter",
+            "StaticDateRangeFilter",
+    ],
     "CampaignCreateQueryResourceObjectAttributesSendOptions": [
             "EmailSendOptionsSubObject",
             "SMSSendOptionsSubObject",
@@ -3476,6 +4130,17 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "CustomTimeframe",
             "Timeframe",
     ],
+    "ConditionGroupConditionsInner": [
+            "ProfileHasGroupMembershipCondition",
+            "ProfileMarketingConsentCondition",
+            "ProfileMetricCondition",
+            "ProfileNoGroupMembershipCondition",
+            "ProfilePostalCodeDistanceCondition",
+            "ProfilePredictiveAnalyticsNumericCondition",
+            "ProfilePredictiveAnalyticsStringCondition",
+            "ProfilePropertyCondition",
+            "ProfileRegionCondition",
+    ],
     "FlowActionResponseObjectResourceAttributesTrackingOptions": [
             "EmailTrackingOptions",
             "SMSTrackingOptions",
@@ -3483,6 +4148,140 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "FlowMessageResponseObjectResourceAttributesContent": [
             "EmailMessageContent",
             "SMSMessageContent",
+    ],
+    "HasEmailMarketingConsentConsentStatus": [
+            "HasEmailMarketing",
+            "HasEmailMarketingNeverSubscribed",
+            "HasEmailMarketingSubscribed",
+    ],
+    "HasEmailMarketingSubscribedFiltersInner": [
+            "APIMethodFilter",
+            "BackInStockMethodFilter",
+            "CustomSourceFilter",
+            "DoubleOptinFilter",
+            "FormMethodFilter",
+            "InboundMessageMethodFilter",
+            "ManualAddMethodFilter",
+            "ManualImportMethodFilter",
+            "PreferencePageFilter",
+            "SftpMethodFilter",
+            "ShopifyIntegrationMethodFilter",
+            "StatusDateFilter",
+    ],
+    "HasSMSMarketingSubscribedFiltersInner": [
+            "CheckoutMethodFilter",
+            "FormMethodFilter",
+            "InboundMessageMethodFilter",
+            "ManualAddMethodFilter",
+            "ManualImportMethodFilter",
+            "PreferencePageMethodFilter",
+            "SftpMethodFilter",
+            "ShopifyIntegrationMethodFilter",
+            "StatusDateFilter",
+    ],
+    "NoEmailMarketingConsentConsentStatus": [
+            "NoEmailMarketing",
+            "NoEmailMarketingNeverSubscribed",
+            "NoEmailMarketingSubscribed",
+            "NoEmailMarketingUnsubscribed",
+    ],
+    "NoEmailMarketingFiltersInner": [
+            "BounceDateFilter",
+            "InvalidEmailDateFilter",
+            "ManualSuppressionDateFilter",
+    ],
+    "NoEmailMarketingUnsubscribedFiltersInner": [
+            "APIMethodFilter",
+            "ConstantContactIntegrationMethodFilter",
+            "InboundMessageMethodFilter",
+            "MailboxProviderMethodFilter",
+            "ManualRemoveMethodFilter",
+            "PreferencePageMethodFilter",
+            "SpamComplaintMethodFilter",
+            "StatusDateFilter",
+    ],
+    "NoSMSMarketingConsentConsentStatus": [
+            "NoSMSMarketing",
+            "NoSMSMarketingNeverSubscribed",
+            "NoSMSMarketingUnsubscribed",
+    ],
+    "NoSMSMarketingUnsubscribedFiltersInner": [
+            "BulkRemoveMethodFilter",
+            "CarrierDeactivationMethodFilter",
+            "CheckoutMethodFilter",
+            "FailedAgeGateMethodFilter",
+            "FormMethodFilter",
+            "InboundMessageMethodFilter",
+            "ManualAddMethodFilter",
+            "ManualImportMethodFilter",
+            "ManualRemoveMethodFilter",
+            "MessageBlockedMethodFilter",
+            "PreferencePageMethodFilter",
+            "ProvidedLandlineMethodFilter",
+            "ProvidedNoAgeMethodFilter",
+            "SftpMethodFilter",
+            "ShopifyIntegrationMethodFilter",
+            "StatusDateFilter",
+    ],
+    "ProfileHasGroupMembershipConditionTimeframeFilter": [
+            "RelativeDateFilter",
+            "RelativeDateRangeFilter",
+            "StaticDateFilter",
+            "StaticDateRangeFilter",
+    ],
+    "ProfileMarketingConsentConditionConsent": [
+            "HasEmailMarketingConsent",
+            "HasPushMarketingConsent",
+            "HasSMSMarketingConsent",
+            "NoEmailMarketingConsent",
+            "NoPushMarketingConsent",
+            "NoSMSMarketingConsent",
+    ],
+    "ProfileMetricConditionTimeframeFilter": [
+            "AlltimeDateFilter",
+            "RelativeAnniversaryDateFilter",
+            "RelativeDateFilter",
+            "RelativeDateRangeFilter",
+            "StaticDateFilter",
+            "StaticDateRangeFilter",
+    ],
+    "ProfileMetricPropertyFilterFilter": [
+            "EqualsStringFilter",
+            "ListSetFilter",
+    ],
+    "ProfilePredictiveAnalyticsStringFilterOperator": [
+            "EqualsEnum",
+            "NotEqualsEnum",
+    ],
+    "ProfilePropertyConditionFilter": [
+            "AnniversaryDateFilter",
+            "BooleanFilter",
+            "CalendarDateFilter",
+            "ExistenceOperatorFilter",
+            "ListContainsOperatorFilter",
+            "ListLengthFilter",
+            "NumericOperatorFilter",
+            "RelativeAnniversaryDateFilter",
+            "RelativeDateFilter",
+            "RelativeDateRangeFilter",
+            "StaticDateFilter",
+            "StaticDateRangeFilter",
+            "StringArrayOperatorFilter",
+            "StringOperatorFilter",
+            "StringPhoneOperatorArrayFilter",
+    ],
+    "StatusDateFilterFilter": [
+            "AnniversaryDateFilter",
+            "CalendarDateFilter",
+            "RelativeAnniversaryDateFilter",
+            "RelativeDateFilter",
+            "RelativeDateRangeFilter",
+            "StaticDateFilter",
+            "StaticDateRangeFilter",
+    ],
+    "UnionPositiveNumericFilterOperator": [
+            "GreaterThanEnum",
+            "LessThanEnum",
     ],
 }
 

@@ -70,7 +70,7 @@ export class MetricsApi {
      * Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
      * @summary Get Metric
      * @param id Metric ID
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets
      */
     public async getMetric (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> {
 
@@ -130,7 +130,7 @@ export class MetricsApi {
      * Get all metrics in an account.  Requests can be filtered by the following fields: integration `name`, integration `category`  Returns a maximum of 200 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
      * @summary Get Metrics
      
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-05-15/reference/api-overview#pagination
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
      */
     public async getMetrics (options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCollection;  }> {
 

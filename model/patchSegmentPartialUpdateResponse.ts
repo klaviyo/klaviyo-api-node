@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { PatchSegmentPartialUpdateResponseData } from './patchSegmentPartialUpdateResponseData';
+import { PostSegmentCreateResponseData } from './postSegmentCreateResponseData';
 export class PatchSegmentPartialUpdateResponse {
-    'data': PatchSegmentPartialUpdateResponseData;
+    'data': PostSegmentCreateResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "PatchSegmentPartialUpdateResponseData"
+            "type": "PostSegmentCreateResponseData"
         }    ];
 
     static getAttributeTypeMap() {

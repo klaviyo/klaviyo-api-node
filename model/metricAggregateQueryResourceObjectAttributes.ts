@@ -34,7 +34,7 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Optional attribute(s) used for partitioning by the aggregation function
     */
-    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum> | Array<'$attributed_channel' | '$attributed_flow' | '$attributed_message' | '$attributed_variation' | '$campaign_channel' | '$flow' | '$flow_channel' | '$message' | '$message_send_cohort' | '$variation' | '$variation_send_cohort' | 'Bounce Type' | 'Campaign Name' | 'Client Canonical' | 'Client Name' | 'Client Type' | 'Email Domain' | 'Failure Source' | 'Failure Type' | 'From Number' | 'From Phone Region' | 'List' | 'Message Name' | 'Message Type' | 'Method' | 'Subject' | 'To Number' | 'To Phone Region' | 'URL' | 'form_id'> | null;
+    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum> | Array<'$attributed_channel' | '$attributed_flow' | '$attributed_message' | '$attributed_variation' | '$campaign_channel' | '$flow' | '$flow_channel' | '$message' | '$message_send_cohort' | '$variation' | '$variation_send_cohort' | 'Bounce Type' | 'Campaign Name' | 'Client Canonical' | 'Client Name' | 'Client Type' | 'Email Domain' | 'Failure Source' | 'Failure Type' | 'From Number' | 'From Phone Region' | 'Inbox Provider' | 'List' | 'Message Name' | 'Message Type' | 'Method' | 'Subject' | 'To Number' | 'To Phone Region' | 'URL' | 'form_id'> | null;
     /**
     * Provide fields to limit the returned data
     */
@@ -50,7 +50,7 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Provide a sort key (e.g. -$message)
     */
-    'sort'?: MetricAggregateQueryResourceObjectAttributes.SortEnum | '$attributed_channel' | '-$attributed_channel' | '$attributed_flow' | '-$attributed_flow' | '$attributed_message' | '-$attributed_message' | '$attributed_variation' | '-$attributed_variation' | '$campaign_channel' | '-$campaign_channel' | '$flow' | '-$flow' | '$flow_channel' | '-$flow_channel' | '$message' | '-$message' | '$message_send_cohort' | '-$message_send_cohort' | '$variation' | '-$variation' | '$variation_send_cohort' | '-$variation_send_cohort' | 'Bounce Type' | '-Bounce Type' | 'Campaign Name' | '-Campaign Name' | 'Client Canonical' | '-Client Canonical' | 'Client Name' | '-Client Name' | 'Client Type' | '-Client Type' | 'Email Domain' | '-Email Domain' | 'Failure Source' | '-Failure Source' | 'Failure Type' | '-Failure Type' | 'From Number' | '-From Number' | 'From Phone Region' | '-From Phone Region' | 'List' | '-List' | 'Message Name' | '-Message Name' | 'Message Type' | '-Message Type' | 'Method' | '-Method' | 'Subject' | '-Subject' | 'To Number' | '-To Number' | 'To Phone Region' | '-To Phone Region' | 'URL' | '-URL' | 'count' | '-count' | 'form_id' | '-form_id' | 'sum_value' | '-sum_value' | 'unique' | '-unique';
+    'sort'?: MetricAggregateQueryResourceObjectAttributes.SortEnum | '$attributed_channel' | '-$attributed_channel' | '$attributed_flow' | '-$attributed_flow' | '$attributed_message' | '-$attributed_message' | '$attributed_variation' | '-$attributed_variation' | '$campaign_channel' | '-$campaign_channel' | '$flow' | '-$flow' | '$flow_channel' | '-$flow_channel' | '$message' | '-$message' | '$message_send_cohort' | '-$message_send_cohort' | '$variation' | '-$variation' | '$variation_send_cohort' | '-$variation_send_cohort' | 'Bounce Type' | '-Bounce Type' | 'Campaign Name' | '-Campaign Name' | 'Client Canonical' | '-Client Canonical' | 'Client Name' | '-Client Name' | 'Client Type' | '-Client Type' | 'Email Domain' | '-Email Domain' | 'Failure Source' | '-Failure Source' | 'Failure Type' | '-Failure Type' | 'From Number' | '-From Number' | 'From Phone Region' | '-From Phone Region' | 'Inbox Provider' | '-Inbox Provider' | 'List' | '-List' | 'Message Name' | '-Message Name' | 'Message Type' | '-Message Type' | 'Method' | '-Method' | 'Subject' | '-Subject' | 'To Number' | '-To Number' | 'To Phone Region' | '-To Phone Region' | 'URL' | '-URL' | 'count' | '-count' | 'form_id' | '-form_id' | 'sum_value' | '-sum_value' | 'unique' | '-unique';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -144,6 +144,7 @@ export namespace MetricAggregateQueryResourceObjectAttributes {
         FailureType = <any> 'Failure Type',
         FromNumber = <any> 'From Number',
         FromPhoneRegion = <any> 'From Phone Region',
+        InboxProvider = <any> 'Inbox Provider',
         List = <any> 'List',
         MessageName = <any> 'Message Name',
         MessageType = <any> 'Message Type',
@@ -197,6 +198,8 @@ export namespace MetricAggregateQueryResourceObjectAttributes {
         FromNumberDesc = <any> '-From Number',
         FromPhoneRegion = <any> 'From Phone Region',
         FromPhoneRegionDesc = <any> '-From Phone Region',
+        InboxProvider = <any> 'Inbox Provider',
+        InboxProviderDesc = <any> '-Inbox Provider',
         List = <any> 'List',
         ListDesc = <any> '-List',
         MessageName = <any> 'Message Name',

@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { SegmentDefinition } from './segmentDefinition';
 import { SegmentRetrieveResponseObjectResourceAttributes } from './segmentRetrieveResponseObjectResourceAttributes';
 export class SegmentRetrieveResponseObjectResourceExtendedAttributes extends SegmentRetrieveResponseObjectResourceAttributes {
     'profileCount'?: number | null;

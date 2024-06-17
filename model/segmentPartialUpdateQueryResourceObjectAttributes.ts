@@ -10,12 +10,19 @@
  */
 
 import { RequestFile } from './models';
+import { SegmentDefinition } from './segmentDefinition';
 export class SegmentPartialUpdateQueryResourceObjectAttributes {
+    'definition'?: SegmentDefinition;
     'name'?: string | null;
     'isStarred'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "definition",
+            "baseName": "definition",
+            "type": "SegmentDefinition"
+        },
         {
             "name": "name",
             "baseName": "name",

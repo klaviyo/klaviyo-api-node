@@ -37,6 +37,10 @@ export class ListMemberResponseObjectResourceAttributes {
     */
     'organization'?: string | null;
     /**
+    * The locale of the profile, in the IETF BCP 47 language tag format (language-extlang-script-region-variant-extension-privateuse)
+    */
+    'locale'?: string | null;
+    /**
     * Individual\'s job title
     */
     'title'?: string | null;
@@ -96,6 +100,11 @@ export class ListMemberResponseObjectResourceAttributes {
         {
             "name": "organization",
             "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "locale",
+            "baseName": "locale",
             "type": "string"
         },
         {

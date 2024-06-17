@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [10.1.0] - revision 2024-06-15
+
+### Added
+  - Segments Api
+    - New create segment endpoint `SegmentsApi.createSegment()`.
+    - New delete segment endpoint `SegementsApi.deleteSegment()`.
+    - Updated exisiting segments endpoints to include the segment definition
+    - For more information, see our [Segments API overview](https://developers.klaviyo.com/en/reference/segments_api_overview).
+
+  - Flows Api
+    - New delete flows endpoint `FlowsApi.deleteFlow()`
+
 ## [10.0.0] - revision 2024-05-15
 
 ### Added
