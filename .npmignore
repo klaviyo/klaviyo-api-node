@@ -1,1 +1,6 @@
-# empty npmignore to ensure all required files (e.g., in the dist folder) are published by npm
+jest.config.js
+tsconfig.sample.json
+test/
+sample/
+.openapi-generator
+.idea
