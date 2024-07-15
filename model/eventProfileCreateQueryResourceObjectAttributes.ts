@@ -14,6 +14,10 @@ import { OnsiteProfileMeta } from './onsiteProfileMeta';
 import { ProfileLocation } from './profileLocation';
 export class EventProfileCreateQueryResourceObjectAttributes {
     /**
+    * Individual\'s email address
+    */
+    'email'?: string | null;
+    /**
     * Individual\'s phone number in E.164 format
     */
     'phoneNumber'?: string | null;
@@ -52,13 +56,14 @@ export class EventProfileCreateQueryResourceObjectAttributes {
     */
     'properties'?: object | null;
     'meta'?: OnsiteProfileMeta;
-    /**
-    * Individual\'s email address
-    */
-    'email'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "email",
+            "baseName": "email",
+            "type": "string"
+        },
         {
             "name": "phoneNumber",
             "baseName": "phone_number",
@@ -118,11 +123,6 @@ export class EventProfileCreateQueryResourceObjectAttributes {
             "name": "meta",
             "baseName": "meta",
             "type": "OnsiteProfileMeta"
-        },
-        {
-            "name": "email",
-            "baseName": "email",
-            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

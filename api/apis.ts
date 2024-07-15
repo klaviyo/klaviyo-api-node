@@ -13,6 +13,8 @@ export * from './eventsApi';
 import { EventsApi } from './eventsApi';
 export * from './flowsApi';
 import { FlowsApi } from './flowsApi';
+export * from './formsApi';
+import { FormsApi } from './formsApi';
 export * from './imagesApi';
 import { ImagesApi } from './imagesApi';
 export * from './listsApi';
@@ -29,14 +31,16 @@ export * from './tagsApi';
 import { TagsApi } from './tagsApi';
 export * from './templatesApi';
 import { TemplatesApi } from './templatesApi';
+export * from './webhooksApi';
+import { WebhooksApi } from './webhooksApi';
 
 const axios = require('axios')
 import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axios";
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2024-06-15";
-const userAgent = "klaviyo-api-node/10.1.0";
+const revision =  "2024-07-15";
+const userAgent = "klaviyo-api-node/11.0.0";
 
 export class RetryOptions {
 
@@ -492,6 +496,8 @@ export namespace Pkce {
 
     export const Flows = new FlowsApi(new GlobalApiKeySession())
 
+    export const Forms = new FormsApi(new GlobalApiKeySession())
+
     export const Images = new ImagesApi(new GlobalApiKeySession())
 
     export const Lists = new ListsApi(new GlobalApiKeySession())
@@ -508,6 +514,8 @@ export namespace Pkce {
 
     export const Templates = new TemplatesApi(new GlobalApiKeySession())
 
+    export const Webhooks = new WebhooksApi(new GlobalApiKeySession())
+
 
 export const Auth = {
     ApiKeySession,
@@ -520,4 +528,4 @@ export const Auth = {
     Pkce,
 }
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates };
+export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, WebhooksApi, Webhooks };

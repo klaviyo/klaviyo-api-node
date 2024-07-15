@@ -25,6 +25,7 @@
     "include": [
         "api.ts",
         "api/*",
-        "model/*"
+        "model/*",
+        "util/*"
     ]
 }

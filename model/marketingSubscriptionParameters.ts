@@ -16,7 +16,7 @@ export class MarketingSubscriptionParameters {
     */
     'consent': MarketingSubscriptionParameters.ConsentEnum | 'SUBSCRIBED';
     /**
-    * The timestamp of when the profile\'s consent was gathered. This should only be used when syncing over historical consent info to Klaviyo; if not included, the current time will be used. This field is only supported for single opt-in and will be ignored for double opt-in.
+    * The timestamp of when the profile\'s consent was gathered. This should only be used when syncing over historical consent info to Klaviyo; if the `historical_import` flag is not included, providing any value for this field will raise an error.
     */
     'consentedAt'?: Date | null;
 

@@ -22,7 +22,7 @@ export class CouponCodeResponseObjectResourceAttributes {
     /**
     * The current status of the coupon code.
     */
-    'status'?: CouponCodeResponseObjectResourceAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE' | null;
+    'status'?: CouponCodeResponseObjectResourceAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'USED' | 'VERSION_NOT_ACTIVE' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -53,6 +53,7 @@ export namespace CouponCodeResponseObjectResourceAttributes {
         Deleting = <any> 'DELETING',
         Processing = <any> 'PROCESSING',
         Unassigned = <any> 'UNASSIGNED',
+        Used = <any> 'USED',
         VersionNotActive = <any> 'VERSION_NOT_ACTIVE'
     }
 }

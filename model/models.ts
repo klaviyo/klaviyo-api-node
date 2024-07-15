@@ -300,6 +300,12 @@ export * from './flowValuesRequestDTOResourceObject';
 export * from './flowValuesRequestDTOResourceObjectAttributes';
 export * from './formEnum';
 export * from './formMethodFilter';
+export * from './formResponseObjectResource';
+export * from './formResponseObjectResourceAttributes';
+export * from './formVersionABTest';
+export * from './formVersionEnum';
+export * from './formVersionResponseObjectResource';
+export * from './formVersionResponseObjectResourceAttributes';
 export * from './getAccountResponse';
 export * from './getAccountResponseCollection';
 export * from './getAccounts4XXResponse';
@@ -473,6 +479,19 @@ export * from './getFlowResponseCompoundDocument';
 export * from './getFlowResponseData';
 export * from './getFlowResponseDataAllOfRelationships';
 export * from './getFlowTagRelationshipListResponseCollection';
+export * from './getFormFormVersionRelationshipsResponseCollection';
+export * from './getFormResponse';
+export * from './getFormResponseCollectionCompoundDocument';
+export * from './getFormResponseCollectionCompoundDocumentDataInner';
+export * from './getFormResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getFormResponseCompoundDocument';
+export * from './getFormResponseCompoundDocumentData';
+export * from './getFormResponseCompoundDocumentDataAllOfRelationships';
+export * from './getFormResponseCompoundDocumentDataAllOfRelationshipsFormVersions';
+export * from './getFormResponseCompoundDocumentDataAllOfRelationshipsFormVersionsDataInner';
+export * from './getFormVersionFormRelationshipResponse';
+export * from './getFormVersionFormRelationshipResponseData';
+export * from './getFormVersionResponse';
 export * from './getImageResponse';
 export * from './getImageResponseCollection';
 export * from './getImportErrorResponseCollection';
@@ -554,6 +573,14 @@ export * from './getTagTagGroupRelationshipsResponse';
 export * from './getTagTagGroupRelationshipsResponseData';
 export * from './getTemplateResponse';
 export * from './getTemplateResponseCollection';
+export * from './getWebhookResponseCollectionCompoundDocument';
+export * from './getWebhookResponseCollectionCompoundDocumentDataInner';
+export * from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+export * from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopics';
+export * from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopicsDataInner';
+export * from './getWebhookResponseCompoundDocument';
+export * from './getWebhookTopicResponse';
+export * from './getWebhookTopicResponseCollection';
 export * from './greaterThanEnum';
 export * from './hasEmailMarketing';
 export * from './hasEmailMarketingConsent';
@@ -673,6 +700,7 @@ export * from './patchProfileResponse';
 export * from './patchSegmentPartialUpdateResponse';
 export * from './patchTagGroupResponse';
 export * from './patchTemplateResponse';
+export * from './patchWebhookResponse';
 export * from './postCampaignMessageResponse';
 export * from './postCampaignMessageResponseData';
 export * from './postCampaignRecipientEstimationJobResponse';
@@ -772,6 +800,8 @@ export * from './postTagResponseDataRelationshipsCampaigns';
 export * from './postTagResponseDataRelationshipsFlows';
 export * from './postTemplateResponse';
 export * from './postTemplateResponseData';
+export * from './postWebhookResponse';
+export * from './postWebhookResponseData';
 export * from './predictiveAnalytics';
 export * from './preferencePageEnum';
 export * from './preferencePageFilter';
@@ -861,7 +891,7 @@ export * from './pushTokenCreateQueryResourceObjectAttributesProfile';
 export * from './pushTokenEnum';
 export * from './relationshipLinks';
 export * from './relativeAnniversaryDateFilter';
-export * from './relativeDateFilter';
+export * from './relativeDateOperatorBaseFilter';
 export * from './relativeDateRangeFilter';
 export * from './renderOptionsSubObject';
 export * from './sMSChannel';
@@ -1007,6 +1037,20 @@ export * from './unionPositiveNumericFilterOperator';
 export * from './unsubscribedEnum';
 export * from './utmParamInfo';
 export * from './valuesData';
+export * from './webhookCreateQuery';
+export * from './webhookCreateQueryResourceObject';
+export * from './webhookCreateQueryResourceObjectAttributes';
+export * from './webhookCreateQueryResourceObjectRelationships';
+export * from './webhookCreateQueryResourceObjectRelationshipsWebhookTopics';
+export * from './webhookCreateQueryResourceObjectRelationshipsWebhookTopicsDataInner';
+export * from './webhookEnum';
+export * from './webhookPartialUpdateQuery';
+export * from './webhookPartialUpdateQueryResourceObject';
+export * from './webhookPartialUpdateQueryResourceObjectAttributes';
+export * from './webhookResponseObjectResource';
+export * from './webhookResponseObjectResourceAttributes';
+export * from './webhookTopicEnum';
+export * from './webhookTopicResponseObjectResource';
 
 export type RequestFile = ReadStream;
 
@@ -1310,6 +1354,12 @@ import { FlowValuesRequestDTOResourceObject } from './flowValuesRequestDTOResour
 import { FlowValuesRequestDTOResourceObjectAttributes } from './flowValuesRequestDTOResourceObjectAttributes';
 import { FormEnum } from './formEnum';
 import { FormMethodFilter } from './formMethodFilter';
+import { FormResponseObjectResource } from './formResponseObjectResource';
+import { FormResponseObjectResourceAttributes } from './formResponseObjectResourceAttributes';
+import { FormVersionABTest } from './formVersionABTest';
+import { FormVersionEnum } from './formVersionEnum';
+import { FormVersionResponseObjectResource } from './formVersionResponseObjectResource';
+import { FormVersionResponseObjectResourceAttributes } from './formVersionResponseObjectResourceAttributes';
 import { GetAccountResponse } from './getAccountResponse';
 import { GetAccountResponseCollection } from './getAccountResponseCollection';
 import { GetAccounts4XXResponse } from './getAccounts4XXResponse';
@@ -1483,6 +1533,19 @@ import { GetFlowResponseCompoundDocument } from './getFlowResponseCompoundDocume
 import { GetFlowResponseData } from './getFlowResponseData';
 import { GetFlowResponseDataAllOfRelationships } from './getFlowResponseDataAllOfRelationships';
 import { GetFlowTagRelationshipListResponseCollection } from './getFlowTagRelationshipListResponseCollection';
+import { GetFormFormVersionRelationshipsResponseCollection } from './getFormFormVersionRelationshipsResponseCollection';
+import { GetFormResponse } from './getFormResponse';
+import { GetFormResponseCollectionCompoundDocument } from './getFormResponseCollectionCompoundDocument';
+import { GetFormResponseCollectionCompoundDocumentDataInner } from './getFormResponseCollectionCompoundDocumentDataInner';
+import { GetFormResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getFormResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetFormResponseCompoundDocument } from './getFormResponseCompoundDocument';
+import { GetFormResponseCompoundDocumentData } from './getFormResponseCompoundDocumentData';
+import { GetFormResponseCompoundDocumentDataAllOfRelationships } from './getFormResponseCompoundDocumentDataAllOfRelationships';
+import { GetFormResponseCompoundDocumentDataAllOfRelationshipsFormVersions } from './getFormResponseCompoundDocumentDataAllOfRelationshipsFormVersions';
+import { GetFormResponseCompoundDocumentDataAllOfRelationshipsFormVersionsDataInner } from './getFormResponseCompoundDocumentDataAllOfRelationshipsFormVersionsDataInner';
+import { GetFormVersionFormRelationshipResponse } from './getFormVersionFormRelationshipResponse';
+import { GetFormVersionFormRelationshipResponseData } from './getFormVersionFormRelationshipResponseData';
+import { GetFormVersionResponse } from './getFormVersionResponse';
 import { GetImageResponse } from './getImageResponse';
 import { GetImageResponseCollection } from './getImageResponseCollection';
 import { GetImportErrorResponseCollection } from './getImportErrorResponseCollection';
@@ -1564,6 +1627,14 @@ import { GetTagTagGroupRelationshipsResponse } from './getTagTagGroupRelationshi
 import { GetTagTagGroupRelationshipsResponseData } from './getTagTagGroupRelationshipsResponseData';
 import { GetTemplateResponse } from './getTemplateResponse';
 import { GetTemplateResponseCollection } from './getTemplateResponseCollection';
+import { GetWebhookResponseCollectionCompoundDocument } from './getWebhookResponseCollectionCompoundDocument';
+import { GetWebhookResponseCollectionCompoundDocumentDataInner } from './getWebhookResponseCollectionCompoundDocumentDataInner';
+import { GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationships } from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import { GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopics } from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopics';
+import { GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopicsDataInner } from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopicsDataInner';
+import { GetWebhookResponseCompoundDocument } from './getWebhookResponseCompoundDocument';
+import { GetWebhookTopicResponse } from './getWebhookTopicResponse';
+import { GetWebhookTopicResponseCollection } from './getWebhookTopicResponseCollection';
 import { GreaterThanEnum } from './greaterThanEnum';
 import { HasEmailMarketing } from './hasEmailMarketing';
 import { HasEmailMarketingConsent } from './hasEmailMarketingConsent';
@@ -1683,6 +1754,7 @@ import { PatchProfileResponse } from './patchProfileResponse';
 import { PatchSegmentPartialUpdateResponse } from './patchSegmentPartialUpdateResponse';
 import { PatchTagGroupResponse } from './patchTagGroupResponse';
 import { PatchTemplateResponse } from './patchTemplateResponse';
+import { PatchWebhookResponse } from './patchWebhookResponse';
 import { PostCampaignMessageResponse } from './postCampaignMessageResponse';
 import { PostCampaignMessageResponseData } from './postCampaignMessageResponseData';
 import { PostCampaignRecipientEstimationJobResponse } from './postCampaignRecipientEstimationJobResponse';
@@ -1782,6 +1854,8 @@ import { PostTagResponseDataRelationshipsCampaigns } from './postTagResponseData
 import { PostTagResponseDataRelationshipsFlows } from './postTagResponseDataRelationshipsFlows';
 import { PostTemplateResponse } from './postTemplateResponse';
 import { PostTemplateResponseData } from './postTemplateResponseData';
+import { PostWebhookResponse } from './postWebhookResponse';
+import { PostWebhookResponseData } from './postWebhookResponseData';
 import { PredictiveAnalytics } from './predictiveAnalytics';
 import { PreferencePageEnum } from './preferencePageEnum';
 import { PreferencePageFilter } from './preferencePageFilter';
@@ -1871,7 +1945,7 @@ import { PushTokenCreateQueryResourceObjectAttributesProfile } from './pushToken
 import { PushTokenEnum } from './pushTokenEnum';
 import { RelationshipLinks } from './relationshipLinks';
 import { RelativeAnniversaryDateFilter } from './relativeAnniversaryDateFilter';
-import { RelativeDateFilter } from './relativeDateFilter';
+import { RelativeDateOperatorBaseFilter } from './relativeDateOperatorBaseFilter';
 import { RelativeDateRangeFilter } from './relativeDateRangeFilter';
 import { RenderOptionsSubObject } from './renderOptionsSubObject';
 import { SMSChannel } from './sMSChannel';
@@ -2017,6 +2091,20 @@ import { UnionPositiveNumericFilterOperator } from './unionPositiveNumericFilter
 import { UnsubscribedEnum } from './unsubscribedEnum';
 import { UtmParamInfo } from './utmParamInfo';
 import { ValuesData } from './valuesData';
+import { WebhookCreateQuery } from './webhookCreateQuery';
+import { WebhookCreateQueryResourceObject } from './webhookCreateQueryResourceObject';
+import { WebhookCreateQueryResourceObjectAttributes } from './webhookCreateQueryResourceObjectAttributes';
+import { WebhookCreateQueryResourceObjectRelationships } from './webhookCreateQueryResourceObjectRelationships';
+import { WebhookCreateQueryResourceObjectRelationshipsWebhookTopics } from './webhookCreateQueryResourceObjectRelationshipsWebhookTopics';
+import { WebhookCreateQueryResourceObjectRelationshipsWebhookTopicsDataInner } from './webhookCreateQueryResourceObjectRelationshipsWebhookTopicsDataInner';
+import { WebhookEnum } from './webhookEnum';
+import { WebhookPartialUpdateQuery } from './webhookPartialUpdateQuery';
+import { WebhookPartialUpdateQueryResourceObject } from './webhookPartialUpdateQueryResourceObject';
+import { WebhookPartialUpdateQueryResourceObjectAttributes } from './webhookPartialUpdateQueryResourceObjectAttributes';
+import { WebhookResponseObjectResource } from './webhookResponseObjectResource';
+import { WebhookResponseObjectResourceAttributes } from './webhookResponseObjectResourceAttributes';
+import { WebhookTopicEnum } from './webhookTopicEnum';
+import { WebhookTopicResponseObjectResource } from './webhookTopicResponseObjectResource';
 import {  } from './aPIJobErrorPayload';
 import {  } from './aPIMethodFilter';
 import {  } from './accountEnum';
@@ -2316,6 +2404,12 @@ import {  } from './flowValuesRequestDTOResourceObject';
 import {  } from './flowValuesRequestDTOResourceObjectAttributes';
 import {  } from './formEnum';
 import {  } from './formMethodFilter';
+import {  } from './formResponseObjectResource';
+import {  } from './formResponseObjectResourceAttributes';
+import {  } from './formVersionABTest';
+import {  } from './formVersionEnum';
+import {  } from './formVersionResponseObjectResource';
+import {  } from './formVersionResponseObjectResourceAttributes';
 import {  } from './getAccountResponse';
 import {  } from './getAccountResponseCollection';
 import {  } from './getAccounts4XXResponse';
@@ -2489,6 +2583,19 @@ import {  } from './getFlowResponseCompoundDocument';
 import {  } from './getFlowResponseData';
 import {  } from './getFlowResponseDataAllOfRelationships';
 import {  } from './getFlowTagRelationshipListResponseCollection';
+import {  } from './getFormFormVersionRelationshipsResponseCollection';
+import {  } from './getFormResponse';
+import {  } from './getFormResponseCollectionCompoundDocument';
+import {  } from './getFormResponseCollectionCompoundDocumentDataInner';
+import {  } from './getFormResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getFormResponseCompoundDocument';
+import {  } from './getFormResponseCompoundDocumentData';
+import {  } from './getFormResponseCompoundDocumentDataAllOfRelationships';
+import {  } from './getFormResponseCompoundDocumentDataAllOfRelationshipsFormVersions';
+import {  } from './getFormResponseCompoundDocumentDataAllOfRelationshipsFormVersionsDataInner';
+import {  } from './getFormVersionFormRelationshipResponse';
+import {  } from './getFormVersionFormRelationshipResponseData';
+import {  } from './getFormVersionResponse';
 import {  } from './getImageResponse';
 import {  } from './getImageResponseCollection';
 import {  } from './getImportErrorResponseCollection';
@@ -2570,6 +2677,14 @@ import {  } from './getTagTagGroupRelationshipsResponse';
 import {  } from './getTagTagGroupRelationshipsResponseData';
 import {  } from './getTemplateResponse';
 import {  } from './getTemplateResponseCollection';
+import {  } from './getWebhookResponseCollectionCompoundDocument';
+import {  } from './getWebhookResponseCollectionCompoundDocumentDataInner';
+import {  } from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationships';
+import {  } from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopics';
+import {  } from './getWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopicsDataInner';
+import {  } from './getWebhookResponseCompoundDocument';
+import {  } from './getWebhookTopicResponse';
+import {  } from './getWebhookTopicResponseCollection';
 import {  } from './greaterThanEnum';
 import {  } from './hasEmailMarketing';
 import {  } from './hasEmailMarketingConsent';
@@ -2689,6 +2804,7 @@ import {  } from './patchProfileResponse';
 import {  } from './patchSegmentPartialUpdateResponse';
 import {  } from './patchTagGroupResponse';
 import {  } from './patchTemplateResponse';
+import {  } from './patchWebhookResponse';
 import {  } from './postCampaignMessageResponse';
 import {  } from './postCampaignMessageResponseData';
 import {  } from './postCampaignRecipientEstimationJobResponse';
@@ -2788,6 +2904,8 @@ import {  } from './postTagResponseDataRelationshipsCampaigns';
 import {  } from './postTagResponseDataRelationshipsFlows';
 import {  } from './postTemplateResponse';
 import {  } from './postTemplateResponseData';
+import {  } from './postWebhookResponse';
+import {  } from './postWebhookResponseData';
 import {  } from './predictiveAnalytics';
 import {  } from './preferencePageEnum';
 import {  } from './preferencePageFilter';
@@ -2877,7 +2995,7 @@ import {  } from './pushTokenCreateQueryResourceObjectAttributesProfile';
 import {  } from './pushTokenEnum';
 import {  } from './relationshipLinks';
 import {  } from './relativeAnniversaryDateFilter';
-import {  } from './relativeDateFilter';
+import {  } from './relativeDateOperatorBaseFilter';
 import {  } from './relativeDateRangeFilter';
 import {  } from './renderOptionsSubObject';
 import {  } from './sMSChannel';
@@ -3023,6 +3141,20 @@ import {  } from './unionPositiveNumericFilterOperator';
 import {  } from './unsubscribedEnum';
 import {  } from './utmParamInfo';
 import {  } from './valuesData';
+import {  } from './webhookCreateQuery';
+import {  } from './webhookCreateQueryResourceObject';
+import {  } from './webhookCreateQueryResourceObjectAttributes';
+import {  } from './webhookCreateQueryResourceObjectRelationships';
+import {  } from './webhookCreateQueryResourceObjectRelationshipsWebhookTopics';
+import {  } from './webhookCreateQueryResourceObjectRelationshipsWebhookTopicsDataInner';
+import {  } from './webhookEnum';
+import {  } from './webhookPartialUpdateQuery';
+import {  } from './webhookPartialUpdateQueryResourceObject';
+import {  } from './webhookPartialUpdateQueryResourceObjectAttributes';
+import {  } from './webhookResponseObjectResource';
+import {  } from './webhookResponseObjectResourceAttributes';
+import {  } from './webhookTopicEnum';
+import {  } from './webhookTopicResponseObjectResource';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -3110,6 +3242,10 @@ let enumsMap: {[index: string]: any} = {
         "FlowValuesReportEnum": FlowValuesReportEnum,
         "FlowValuesRequestDTOResourceObjectAttributes.StatisticsEnum": FlowValuesRequestDTOResourceObjectAttributes.StatisticsEnum,
         "FormEnum": FormEnum,
+        "FormResponseObjectResourceAttributes.StatusEnum": FormResponseObjectResourceAttributes.StatusEnum,
+        "FormVersionEnum": FormVersionEnum,
+        "FormVersionResponseObjectResourceAttributes.FormTypeEnum": FormVersionResponseObjectResourceAttributes.FormTypeEnum,
+        "FormVersionResponseObjectResourceAttributes.StatusEnum": FormVersionResponseObjectResourceAttributes.StatusEnum,
         "GreaterThanEnum": GreaterThanEnum,
         "HasEmailMarketingConsent.CanReceiveMarketingEnum": HasEmailMarketingConsent.CanReceiveMarketingEnum,
         "HasPushMarketingConsent.CanReceiveMarketingEnum": HasPushMarketingConsent.CanReceiveMarketingEnum,
@@ -3184,8 +3320,8 @@ let enumsMap: {[index: string]: any} = {
         "PushTokenEnum": PushTokenEnum,
         "RelativeAnniversaryDateFilter.OperatorEnum": RelativeAnniversaryDateFilter.OperatorEnum,
         "RelativeAnniversaryDateFilter.UnitEnum": RelativeAnniversaryDateFilter.UnitEnum,
-        "RelativeDateFilter.OperatorEnum": RelativeDateFilter.OperatorEnum,
-        "RelativeDateFilter.UnitEnum": RelativeDateFilter.UnitEnum,
+        "RelativeDateOperatorBaseFilter.OperatorEnum": RelativeDateOperatorBaseFilter.OperatorEnum,
+        "RelativeDateOperatorBaseFilter.UnitEnum": RelativeDateOperatorBaseFilter.UnitEnum,
         "RelativeDateRangeFilter.OperatorEnum": RelativeDateRangeFilter.OperatorEnum,
         "RelativeDateRangeFilter.UnitEnum": RelativeDateRangeFilter.UnitEnum,
         "SegmentEnum": SegmentEnum,
@@ -3207,6 +3343,8 @@ let enumsMap: {[index: string]: any} = {
         "TemplateEnum": TemplateEnum,
         "Timeframe.KeyEnum": Timeframe.KeyEnum,
         "UnsubscribedEnum": UnsubscribedEnum,
+        "WebhookEnum": WebhookEnum,
+        "WebhookTopicEnum": WebhookTopicEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -3449,6 +3587,11 @@ let typeMap: {[index: string]: any} = {
     "FlowValuesRequestDTOResourceObject": FlowValuesRequestDTOResourceObject,
     "FlowValuesRequestDTOResourceObjectAttributes": FlowValuesRequestDTOResourceObjectAttributes,
     "FormMethodFilter": FormMethodFilter,
+    "FormResponseObjectResource": FormResponseObjectResource,
+    "FormResponseObjectResourceAttributes": FormResponseObjectResourceAttributes,
+    "FormVersionABTest": FormVersionABTest,
+    "FormVersionResponseObjectResource": FormVersionResponseObjectResource,
+    "FormVersionResponseObjectResourceAttributes": FormVersionResponseObjectResourceAttributes,
     "GetAccountResponse": GetAccountResponse,
     "GetAccountResponseCollection": GetAccountResponseCollection,
     "GetAccounts4XXResponse": GetAccounts4XXResponse,
@@ -3616,6 +3759,19 @@ let typeMap: {[index: string]: any} = {
     "GetFlowResponseData": GetFlowResponseData,
     "GetFlowResponseDataAllOfRelationships": GetFlowResponseDataAllOfRelationships,
     "GetFlowTagRelationshipListResponseCollection": GetFlowTagRelationshipListResponseCollection,
+    "GetFormFormVersionRelationshipsResponseCollection": GetFormFormVersionRelationshipsResponseCollection,
+    "GetFormResponse": GetFormResponse,
+    "GetFormResponseCollectionCompoundDocument": GetFormResponseCollectionCompoundDocument,
+    "GetFormResponseCollectionCompoundDocumentDataInner": GetFormResponseCollectionCompoundDocumentDataInner,
+    "GetFormResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetFormResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetFormResponseCompoundDocument": GetFormResponseCompoundDocument,
+    "GetFormResponseCompoundDocumentData": GetFormResponseCompoundDocumentData,
+    "GetFormResponseCompoundDocumentDataAllOfRelationships": GetFormResponseCompoundDocumentDataAllOfRelationships,
+    "GetFormResponseCompoundDocumentDataAllOfRelationshipsFormVersions": GetFormResponseCompoundDocumentDataAllOfRelationshipsFormVersions,
+    "GetFormResponseCompoundDocumentDataAllOfRelationshipsFormVersionsDataInner": GetFormResponseCompoundDocumentDataAllOfRelationshipsFormVersionsDataInner,
+    "GetFormVersionFormRelationshipResponse": GetFormVersionFormRelationshipResponse,
+    "GetFormVersionFormRelationshipResponseData": GetFormVersionFormRelationshipResponseData,
+    "GetFormVersionResponse": GetFormVersionResponse,
     "GetImageResponse": GetImageResponse,
     "GetImageResponseCollection": GetImageResponseCollection,
     "GetImportErrorResponseCollection": GetImportErrorResponseCollection,
@@ -3696,6 +3852,14 @@ let typeMap: {[index: string]: any} = {
     "GetTagTagGroupRelationshipsResponseData": GetTagTagGroupRelationshipsResponseData,
     "GetTemplateResponse": GetTemplateResponse,
     "GetTemplateResponseCollection": GetTemplateResponseCollection,
+    "GetWebhookResponseCollectionCompoundDocument": GetWebhookResponseCollectionCompoundDocument,
+    "GetWebhookResponseCollectionCompoundDocumentDataInner": GetWebhookResponseCollectionCompoundDocumentDataInner,
+    "GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationships": GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationships,
+    "GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopics": GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopics,
+    "GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopicsDataInner": GetWebhookResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsWebhookTopicsDataInner,
+    "GetWebhookResponseCompoundDocument": GetWebhookResponseCompoundDocument,
+    "GetWebhookTopicResponse": GetWebhookTopicResponse,
+    "GetWebhookTopicResponseCollection": GetWebhookTopicResponseCollection,
     "HasEmailMarketing": HasEmailMarketing,
     "HasEmailMarketingConsent": HasEmailMarketingConsent,
     "HasEmailMarketingNeverSubscribed": HasEmailMarketingNeverSubscribed,
@@ -3784,6 +3948,7 @@ let typeMap: {[index: string]: any} = {
     "PatchSegmentPartialUpdateResponse": PatchSegmentPartialUpdateResponse,
     "PatchTagGroupResponse": PatchTagGroupResponse,
     "PatchTemplateResponse": PatchTemplateResponse,
+    "PatchWebhookResponse": PatchWebhookResponse,
     "PostCampaignMessageResponse": PostCampaignMessageResponse,
     "PostCampaignMessageResponseData": PostCampaignMessageResponseData,
     "PostCampaignRecipientEstimationJobResponse": PostCampaignRecipientEstimationJobResponse,
@@ -3883,6 +4048,8 @@ let typeMap: {[index: string]: any} = {
     "PostTagResponseDataRelationshipsFlows": PostTagResponseDataRelationshipsFlows,
     "PostTemplateResponse": PostTemplateResponse,
     "PostTemplateResponseData": PostTemplateResponseData,
+    "PostWebhookResponse": PostWebhookResponse,
+    "PostWebhookResponseData": PostWebhookResponseData,
     "PredictiveAnalytics": PredictiveAnalytics,
     "PreferencePageFilter": PreferencePageFilter,
     "PreferencePageMethodFilter": PreferencePageMethodFilter,
@@ -3947,7 +4114,7 @@ let typeMap: {[index: string]: any} = {
     "PushTokenCreateQueryResourceObjectAttributesProfile": PushTokenCreateQueryResourceObjectAttributesProfile,
     "RelationshipLinks": RelationshipLinks,
     "RelativeAnniversaryDateFilter": RelativeAnniversaryDateFilter,
-    "RelativeDateFilter": RelativeDateFilter,
+    "RelativeDateOperatorBaseFilter": RelativeDateOperatorBaseFilter,
     "RelativeDateRangeFilter": RelativeDateRangeFilter,
     "RenderOptionsSubObject": RenderOptionsSubObject,
     "SMSChannel": SMSChannel,
@@ -4079,6 +4246,18 @@ let typeMap: {[index: string]: any} = {
     "UnionPositiveNumericFilter": UnionPositiveNumericFilter,
     "UtmParamInfo": UtmParamInfo,
     "ValuesData": ValuesData,
+    "WebhookCreateQuery": WebhookCreateQuery,
+    "WebhookCreateQueryResourceObject": WebhookCreateQueryResourceObject,
+    "WebhookCreateQueryResourceObjectAttributes": WebhookCreateQueryResourceObjectAttributes,
+    "WebhookCreateQueryResourceObjectRelationships": WebhookCreateQueryResourceObjectRelationships,
+    "WebhookCreateQueryResourceObjectRelationshipsWebhookTopics": WebhookCreateQueryResourceObjectRelationshipsWebhookTopics,
+    "WebhookCreateQueryResourceObjectRelationshipsWebhookTopicsDataInner": WebhookCreateQueryResourceObjectRelationshipsWebhookTopicsDataInner,
+    "WebhookPartialUpdateQuery": WebhookPartialUpdateQuery,
+    "WebhookPartialUpdateQueryResourceObject": WebhookPartialUpdateQueryResourceObject,
+    "WebhookPartialUpdateQueryResourceObjectAttributes": WebhookPartialUpdateQueryResourceObjectAttributes,
+    "WebhookResponseObjectResource": WebhookResponseObjectResource,
+    "WebhookResponseObjectResourceAttributes": WebhookResponseObjectResourceAttributes,
+    "WebhookTopicResponseObjectResource": WebhookTopicResponseObjectResource,
 }
 
 const oneOfMap: {[index: string]: any} = {
@@ -4097,7 +4276,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "CalendarDateFilter",
             "IsSetExistenceFilter",
             "RelativeAnniversaryDateFilter",
-            "RelativeDateFilter",
+            "RelativeDateOperatorBaseFilter",
             "RelativeDateRangeFilter",
             "StaticDateFilter",
             "StaticDateRangeFilter",
@@ -4224,7 +4403,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "StatusDateFilter",
     ],
     "ProfileHasGroupMembershipConditionTimeframeFilter": [
-            "RelativeDateFilter",
+            "RelativeDateOperatorBaseFilter",
             "RelativeDateRangeFilter",
             "StaticDateFilter",
             "StaticDateRangeFilter",
@@ -4240,7 +4419,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "ProfileMetricConditionTimeframeFilter": [
             "AlltimeDateFilter",
             "RelativeAnniversaryDateFilter",
-            "RelativeDateFilter",
+            "RelativeDateOperatorBaseFilter",
             "RelativeDateRangeFilter",
             "StaticDateFilter",
             "StaticDateRangeFilter",
@@ -4262,7 +4441,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "ListLengthFilter",
             "NumericOperatorFilter",
             "RelativeAnniversaryDateFilter",
-            "RelativeDateFilter",
+            "RelativeDateOperatorBaseFilter",
             "RelativeDateRangeFilter",
             "StaticDateFilter",
             "StaticDateRangeFilter",
@@ -4274,7 +4453,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "AnniversaryDateFilter",
             "CalendarDateFilter",
             "RelativeAnniversaryDateFilter",
-            "RelativeDateFilter",
+            "RelativeDateOperatorBaseFilter",
             "RelativeDateRangeFilter",
             "StaticDateFilter",
             "StaticDateRangeFilter",
