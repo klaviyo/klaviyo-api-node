@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
   - added `historical_import` flag for importing historically consented profiles can now be optionally supplied in the payload for the Subscribe Profiles endpoint.
   - When using this flag, a `consented_at` date must be provided and must be in the past.
 
+
 ## [10.1.0] - revision 2024-06-15
 
 ### Added
