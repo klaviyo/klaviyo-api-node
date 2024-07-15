@@ -5,4 +5,4 @@ dist
 .idea/
 .openapi-generator
 sample/dist
-test/filterBuilder.integration.test.ts
+test/api/

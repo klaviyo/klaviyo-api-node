@@ -1,13 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [11.0.0] - revision 2024-07-15
+
+### Added
+
+ - Forms API
+  - New `FormsApi` class with methods to get forms, form versions and relationships.
+ - Webhooks API
+  - New `WebooksApi` class containing CRUD operations for webhooks.
+ - FilterBuilder class
+   - New class to help build filters in the correct format for endpoints that use them.
+   - See the README for more information and usage examples.
+
+### Changed
+ - `ProfilesApi.subscribe()`
+  - added `historical_import` flag for importing historically consented profiles can now be optionally supplied in the payload for the Subscribe Profiles endpoint.
+  - When using this flag, a `consented_at` date must be provided and must be in the past.
+
 ## [10.1.0] - revision 2024-06-15
 
 ### Added
   - Segments Api
     - New create segment endpoint `SegmentsApi.createSegment()`.
     - New delete segment endpoint `SegementsApi.deleteSegment()`.
-    - Updated exisiting segments endpoints to include the segment definition
+    - Updated existing segments endpoints to include the segment definition
     - For more information, see our [Segments API overview](https://developers.klaviyo.com/en/reference/segments_api_overview).
 
   - Flows Api

@@ -757,7 +757,7 @@ export class CatalogsApi {
      * Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Categories
      
-     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sorting
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
      */
     public async getCatalogCategories (options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> {
 
@@ -823,7 +823,7 @@ export class CatalogsApi {
      * Get a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Category
      * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getCatalogCategory (id: string, options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponse;  }> {
 
@@ -883,7 +883,7 @@ export class CatalogsApi {
      * Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Category Items
      * @param id 
-     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sorting
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
      */
     public async getCatalogCategoryItems (id: string, options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, include?: Array<'variants'>, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> {
 
@@ -963,7 +963,7 @@ export class CatalogsApi {
      * Get all items in the given category ID.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Category Relationships Items
      * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getCatalogCategoryRelationshipsItems (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }> {
 
@@ -1023,7 +1023,7 @@ export class CatalogsApi {
      * Get a specific catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item
      * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
     public async getCatalogItem (id: string, options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCompoundDocument;  }> {
 
@@ -1091,7 +1091,7 @@ export class CatalogsApi {
      * Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item Categories
      * @param id 
-     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sorting
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
      */
     public async getCatalogItemCategories (id: string, options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> {
 
@@ -1163,7 +1163,7 @@ export class CatalogsApi {
      * Get all catalog categories that a particular item is in.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item Relationships Categories
      * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getCatalogItemRelationshipsCategories (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }> {
 
@@ -1223,7 +1223,7 @@ export class CatalogsApi {
      * Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item Variants
      * @param id 
-     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sorting
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
      */
     public async getCatalogItemVariants (id: string, options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> {
 
@@ -1295,7 +1295,7 @@ export class CatalogsApi {
      * Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Items
      
-     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sorting
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
      */
     public async getCatalogItems (options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, include?: Array<'variants'>, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> {
 
@@ -1369,7 +1369,7 @@ export class CatalogsApi {
      * Get a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Variant
      * @param id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getCatalogVariant (id: string, options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponse;  }> {
 
@@ -1429,7 +1429,7 @@ export class CatalogsApi {
      * Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Variants
      
-     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sorting
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
      */
     public async getCatalogVariants (options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> {
 
@@ -1495,7 +1495,7 @@ export class CatalogsApi {
      * Get a catalog category bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships
+     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
     public async getCreateCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, include?: Array<'categories'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCompoundDocument;  }> {
 
@@ -1563,7 +1563,7 @@ export class CatalogsApi {
      * Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Categories Jobs
      
-     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getCreateCategoriesJobs (options: { fieldsCatalogCategoryBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCollectionCompoundDocument;  }> {
 
@@ -1625,7 +1625,7 @@ export class CatalogsApi {
      * Get a catalog item bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Items Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships
+     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
     public async getCreateItemsJob (jobId: string, options: { fieldsCatalogItemBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }> {
 
@@ -1693,7 +1693,7 @@ export class CatalogsApi {
      * Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Items Jobs
      
-     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getCreateItemsJobs (options: { fieldsCatalogItemBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }> {
 
@@ -1755,7 +1755,7 @@ export class CatalogsApi {
      * Get a catalog variant bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships
+     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
     public async getCreateVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCompoundDocument;  }> {
 
@@ -1823,7 +1823,7 @@ export class CatalogsApi {
      * Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Variants Jobs
      
-     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getCreateVariantsJobs (options: { fieldsCatalogVariantBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCollectionCompoundDocument;  }> {
 
@@ -1885,7 +1885,7 @@ export class CatalogsApi {
      * Get a catalog category bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponse;  }> {
 
@@ -1945,7 +1945,7 @@ export class CatalogsApi {
      * Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Categories Jobs
      
-     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getDeleteCategoriesJobs (options: { fieldsCatalogCategoryBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponseCollection;  }> {
 
@@ -2007,7 +2007,7 @@ export class CatalogsApi {
      * Get a catalog item bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Items Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteItemsJob (jobId: string, options: { fieldsCatalogItemBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }> {
 
@@ -2067,7 +2067,7 @@ export class CatalogsApi {
      * Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Items Jobs
      
-     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getDeleteItemsJobs (options: { fieldsCatalogItemBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }> {
 
@@ -2129,7 +2129,7 @@ export class CatalogsApi {
      * Get a catalog variant bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponse;  }> {
 
@@ -2189,7 +2189,7 @@ export class CatalogsApi {
      * Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Variants Jobs
      
-     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getDeleteVariantsJobs (options: { fieldsCatalogVariantBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponseCollection;  }> {
 
@@ -2251,7 +2251,7 @@ export class CatalogsApi {
      * Get a catalog category bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships
+     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
     public async getUpdateCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, include?: Array<'categories'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCompoundDocument;  }> {
 
@@ -2319,7 +2319,7 @@ export class CatalogsApi {
      * Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Categories Jobs
      
-     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getUpdateCategoriesJobs (options: { fieldsCatalogCategoryBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument;  }> {
 
@@ -2381,7 +2381,7 @@ export class CatalogsApi {
      * Get a catalog item bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Items Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships
+     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
     public async getUpdateItemsJob (jobId: string, options: { fieldsCatalogItemBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }> {
 
@@ -2449,7 +2449,7 @@ export class CatalogsApi {
      * Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Items Jobs
      
-     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getUpdateItemsJobs (options: { fieldsCatalogItemBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }> {
 
@@ -2511,7 +2511,7 @@ export class CatalogsApi {
      * Get a catalog variate bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#relationships
+     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
     public async getUpdateVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCompoundDocument;  }> {
 
@@ -2579,7 +2579,7 @@ export class CatalogsApi {
      * Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Variants Jobs
      
-     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-06-15/reference/api-overview#pagination
+     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
      */
     public async getUpdateVariantsJobs (options: { fieldsCatalogVariantBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCollectionCompoundDocument;  }> {
 

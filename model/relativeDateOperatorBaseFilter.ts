@@ -11,16 +11,16 @@
 
 import { RequestFile } from './models';
 import { DateEnum } from './dateEnum';
-export class RelativeDateFilter {
+export class RelativeDateOperatorBaseFilter {
     'type': DateEnum | 'date';
     /**
     * Operators for relative date filters.  e.g. \"in the last 10 days\"
     */
-    'operator': RelativeDateFilter.OperatorEnum | 'at-least' | 'in-the-last' | 'in-the-next';
+    'operator': RelativeDateOperatorBaseFilter.OperatorEnum | 'at-least' | 'in-the-last' | 'in-the-next';
     /**
     * Units for relative date filters.
     */
-    'unit': RelativeDateFilter.UnitEnum | 'day' | 'hour' | 'week';
+    'unit': RelativeDateOperatorBaseFilter.UnitEnum | 'day' | 'hour' | 'week';
     'quantity': number;
 
 
@@ -33,12 +33,12 @@ export class RelativeDateFilter {
         {
             "name": "operator",
             "baseName": "operator",
-            "type": "RelativeDateFilter.OperatorEnum"
+            "type": "RelativeDateOperatorBaseFilter.OperatorEnum"
         },
         {
             "name": "unit",
             "baseName": "unit",
-            "type": "RelativeDateFilter.UnitEnum"
+            "type": "RelativeDateOperatorBaseFilter.UnitEnum"
         },
         {
             "name": "quantity",
@@ -47,11 +47,11 @@ export class RelativeDateFilter {
         }    ];
 
     static getAttributeTypeMap() {
-        return RelativeDateFilter.attributeTypeMap;
+        return RelativeDateOperatorBaseFilter.attributeTypeMap;
     }
 }
 
-export namespace RelativeDateFilter {
+export namespace RelativeDateOperatorBaseFilter {
     export enum OperatorEnum {
         AtLeast = <any> 'at-least',
         InTheLast = <any> 'in-the-last',

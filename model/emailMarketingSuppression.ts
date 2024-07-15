@@ -12,11 +12,11 @@
 import { RequestFile } from './models';
 export class EmailMarketingSuppression {
     /**
-    * The reason the profile was suppressed from the list.
+    * The reason the profile was suppressed.
     */
     'reason': string;
     /**
-    * The timestamp when the profile was suppressed from the list, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
+    * The timestamp when the profile was suppressed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
     'timestamp': Date;
 

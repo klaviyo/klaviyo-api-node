@@ -17,6 +17,10 @@ export class SubscriptionCreateJobCreateQueryResourceObjectAttributes {
     */
     'customSource'?: string | null;
     'profiles': SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles;
+    /**
+    * Whether this subscription is part of a historical import. If true, the consented_at field must be provided for each profile.
+    */
+    'historicalImport'?: boolean | null = false;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -29,6 +33,11 @@ export class SubscriptionCreateJobCreateQueryResourceObjectAttributes {
             "name": "profiles",
             "baseName": "profiles",
             "type": "SubscriptionCreateJobCreateQueryResourceObjectAttributesProfiles"
+        },
+        {
+            "name": "historicalImport",
+            "baseName": "historical_import",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

@@ -11,8 +11,8 @@
 
 import { RequestFile } from './models';
 import { DateEnum } from './dateEnum';
-import { RelativeDateFilter } from './relativeDateFilter';
+import { RelativeDateOperatorBaseFilter } from './relativeDateOperatorBaseFilter';
 import { RelativeDateRangeFilter } from './relativeDateRangeFilter';
 import { StaticDateFilter } from './staticDateFilter';
 import { StaticDateRangeFilter } from './staticDateRangeFilter';
-export type ProfileHasGroupMembershipConditionTimeframeFilter = StaticDateFilter | StaticDateRangeFilter | RelativeDateFilter | RelativeDateRangeFilter;
+export type ProfileHasGroupMembershipConditionTimeframeFilter = StaticDateFilter | StaticDateRangeFilter | RelativeDateOperatorBaseFilter | RelativeDateRangeFilter;

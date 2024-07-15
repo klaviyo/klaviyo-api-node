@@ -14,7 +14,7 @@ export class CouponCodeUpdateQueryResourceObjectAttributes {
     /**
     * The API status of our coupon codes.
     */
-    'status'?: CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'VERSION_NOT_ACTIVE' | null;
+    'status'?: CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum | 'ASSIGNED_TO_PROFILE' | 'DELETING' | 'PROCESSING' | 'UNASSIGNED' | 'USED' | 'VERSION_NOT_ACTIVE' | null;
     /**
     * The datetime when this coupon code will expire. If not specified or set to null, it will be automatically set to 1 year.
     */
@@ -44,6 +44,7 @@ export namespace CouponCodeUpdateQueryResourceObjectAttributes {
         Deleting = <any> 'DELETING',
         Processing = <any> 'PROCESSING',
         Unassigned = <any> 'UNASSIGNED',
+        Used = <any> 'USED',
         VersionNotActive = <any> 'VERSION_NOT_ACTIVE'
     }
 }
