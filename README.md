@@ -455,7 +455,7 @@ import { ApiKeySession, ProfilesApi } from 'klaviyo-api'
 const session = new ApiKeySession("< YOUR API KEY HERE >")
 const profilesApi = new ProfilesApi(session)
 
-const profileList = await profilesApi.getProfiles({pageCursor: nextPage})
+const profileList = await profilesApi.getProfiles({pageSize: 20})
 ```
 
 ### Additional Fields
