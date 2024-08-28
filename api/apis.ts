@@ -1,3 +1,6 @@
+import querystring from 'querystring';
+import crypto from 'crypto';
+
 import {BackoffOptions} from "exponential-backoff";
 export * from './accountsApi';
 import { AccountsApi } from './accountsApi';
@@ -34,7 +37,7 @@ import { TemplatesApi } from './templatesApi';
 export * from './webhooksApi';
 import { WebhooksApi } from './webhooksApi';
 
-const axios = require('axios')
+import axios from 'axios';
 import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axios";
 
 export { RequestFile } from '../model/models';
@@ -306,12 +309,6 @@ export class OAuthApi {
         redirectUrl: string,
     ): string {
         const url: URL = new URL(this.authorizeUrl)
-        let querystring
-        try {
-            querystring = require('node:querystring')
-        } catch (e) {
-            querystring = require('querystring')
-        }
 
         const params = {
             response_type: "code",
@@ -445,12 +442,6 @@ export namespace Pkce {
     }
 
     export function generateCodes() {
-        let crypto;
-        try {
-          crypto = require('node:crypto');
-        } catch (error) {
-            crypto = require('crypto');
-        }
         const base64URLEncode = (str) => {
             return str.toString('base64')
                 .replace(/\+/g, '-')

@@ -10,7 +10,7 @@
  */
 
 
-const axios = require('axios');
+import axios from 'axios'
 import {AxiosRequestConfig, AxiosResponse} from "axios";
 import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'

@@ -12,12 +12,13 @@
         "clean": "rm -Rf node_modules/ *.js",
         "build": "tsc",
         "test": "jest",
-        "sample": "tsc --project tsconfig.sample.json && PK=$npm_config_pk node sample/dist/sample/sample.js"
+        "sample": "tsc --project tsconfig.sample.json && PK=$npm_config_pk node sample/dist/sample/sample.js",
+        "prepare": "npm run build"
     },
     "author": "Klaviyo-dev",
     "license": "MIT",
     "dependencies": {
-        "axios": "^1.4.0",
+        "axios": "^1.7.5",
         "exponential-backoff": "^3.1.1",
         "form-data": "^4.0.0"
     },
