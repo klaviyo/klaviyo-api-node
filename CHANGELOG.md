@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Added several method aliases based on previous operation IDs
 ### Fixed
 - **Breaking**
- - Removed incorrect `links` property from several DTO classes
+	- Removed incorrect `links` property from several DTO classes
 
 ## [11.0.0] - revision 2024-07-15
 
