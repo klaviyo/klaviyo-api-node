@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowData } from './getFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowData';
 import { RelationshipLinks } from './relationshipLinks';
-export class PostTagResponseDataRelationshipsFlows {
+export class PostListCreateResponseDataRelationshipsFlowTriggers {
     'data'?: Array<GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowData>;
     'links'?: RelationshipLinks;
 
@@ -30,7 +30,7 @@ export class PostTagResponseDataRelationshipsFlows {
         }    ];
 
     static getAttributeTypeMap() {
-        return PostTagResponseDataRelationshipsFlows.attributeTypeMap;
+        return PostListCreateResponseDataRelationshipsFlowTriggers.attributeTypeMap;
     }
 }
 

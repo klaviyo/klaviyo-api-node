@@ -15,7 +15,7 @@ import { GetWebhookResponseCollectionCompoundDocumentDataInner } from './getWebh
 import { WebhookTopicResponseObjectResource } from './webhookTopicResponseObjectResource';
 export class GetWebhookResponseCollectionCompoundDocument {
     'data': Array<GetWebhookResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<WebhookTopicResponseObjectResource>;
 
 

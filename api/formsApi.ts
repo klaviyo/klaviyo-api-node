@@ -515,3 +515,43 @@ export class FormsApi {
         );
     }
 }
+
+export interface FormsApi {
+    /**
+     * Alias of {@link FormsApi.getFormForFormVersion}
+     *
+     * @deprecated Use {@link FormsApi.getFormForFormVersion} instead
+     */
+    getFormVersionForm: typeof FormsApi.prototype.getFormForFormVersion;
+}
+FormsApi.prototype.getFormVersionForm = FormsApi.prototype.getFormForFormVersion
+
+export interface FormsApi {
+    /**
+     * Alias of {@link FormsApi.getFormIdForFormVersion}
+     *
+     * @deprecated Use {@link FormsApi.getFormIdForFormVersion} instead
+     */
+    getFormVersionRelationshipsForm: typeof FormsApi.prototype.getFormIdForFormVersion;
+}
+FormsApi.prototype.getFormVersionRelationshipsForm = FormsApi.prototype.getFormIdForFormVersion
+
+export interface FormsApi {
+    /**
+     * Alias of {@link FormsApi.getVersionIdsForForm}
+     *
+     * @deprecated Use {@link FormsApi.getVersionIdsForForm} instead
+     */
+    getFormRelationshipsFormVersions: typeof FormsApi.prototype.getVersionIdsForForm;
+}
+FormsApi.prototype.getFormRelationshipsFormVersions = FormsApi.prototype.getVersionIdsForForm
+
+export interface FormsApi {
+    /**
+     * Alias of {@link FormsApi.getVersionsForForm}
+     *
+     * @deprecated Use {@link FormsApi.getVersionsForForm} instead
+     */
+    getFormFormVersions: typeof FormsApi.prototype.getVersionsForForm;
+}
+FormsApi.prototype.getFormFormVersions = FormsApi.prototype.getVersionsForForm

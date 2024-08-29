@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ImportErrorEnum } from './importErrorEnum';
 import { ImportErrorResponseObjectResourceAttributes } from './importErrorResponseObjectResourceAttributes';
-import { ObjectLinks } from './objectLinks';
 export class ImportErrorResponseObjectResource {
     'type': ImportErrorEnum | 'import-error';
     /**
@@ -20,7 +19,6 @@ export class ImportErrorResponseObjectResource {
     */
     'id': string;
     'attributes': ImportErrorResponseObjectResourceAttributes;
-    'links': ObjectLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -38,11 +36,6 @@ export class ImportErrorResponseObjectResource {
             "name": "attributes",
             "baseName": "attributes",
             "type": "ImportErrorResponseObjectResourceAttributes"
-        },
-        {
-            "name": "links",
-            "baseName": "links",
-            "type": "ObjectLinks"
         }    ];
 
     static getAttributeTypeMap() {

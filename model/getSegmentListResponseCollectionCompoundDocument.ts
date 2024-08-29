@@ -15,7 +15,7 @@ import { GetSegmentListResponseCollectionCompoundDocumentDataInner } from './get
 import { TagResponseObjectResource } from './tagResponseObjectResource';
 export class GetSegmentListResponseCollectionCompoundDocument {
     'data': Array<GetSegmentListResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<TagResponseObjectResource>;
 
 

@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { ImageResponseObjectResource } from './imageResponseObjectResource';
 export class GetImageResponseCollection {
     'data': Array<ImageResponseObjectResource>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

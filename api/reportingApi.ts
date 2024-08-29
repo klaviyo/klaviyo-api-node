@@ -249,3 +249,33 @@ export class ReportingApi {
         );
     }
 }
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.queryCampaignValues}
+     *
+     * @deprecated Use {@link ReportingApi.queryCampaignValues} instead
+     */
+    createCampaignValueReport: typeof ReportingApi.prototype.queryCampaignValues;
+}
+ReportingApi.prototype.createCampaignValueReport = ReportingApi.prototype.queryCampaignValues
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.queryFlowSeries}
+     *
+     * @deprecated Use {@link ReportingApi.queryFlowSeries} instead
+     */
+    createFlowSeryReport: typeof ReportingApi.prototype.queryFlowSeries;
+}
+ReportingApi.prototype.createFlowSeryReport = ReportingApi.prototype.queryFlowSeries
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.queryFlowValues}
+     *
+     * @deprecated Use {@link ReportingApi.queryFlowValues} instead
+     */
+    createFlowValueReport: typeof ReportingApi.prototype.queryFlowValues;
+}
+ReportingApi.prototype.createFlowValueReport = ReportingApi.prototype.queryFlowValues

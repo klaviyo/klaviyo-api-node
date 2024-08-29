@@ -11,25 +11,19 @@
 
 import { RequestFile } from './models';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
-export class GetProfileResponseDataAllOfRelationships {
-    'lists'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
-    'segments'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+export class GetMetricResponseCollectionDataInnerAllOfRelationships {
+    'flowTriggers'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "lists",
-            "baseName": "lists",
-            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
-        },
-        {
-            "name": "segments",
-            "baseName": "segments",
+            "name": "flowTriggers",
+            "baseName": "flow-triggers",
             "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetProfileResponseDataAllOfRelationships.attributeTypeMap;
+        return GetMetricResponseCollectionDataInnerAllOfRelationships.attributeTypeMap;
     }
 }
 

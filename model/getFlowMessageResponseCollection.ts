@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetFlowMessageResponseCollectionDataInner } from './getFlowMessageResponseCollectionDataInner';
 export class GetFlowMessageResponseCollection {
     'data': Array<GetFlowMessageResponseCollectionDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

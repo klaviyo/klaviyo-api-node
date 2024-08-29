@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner';
 export class GetCatalogVariantUpdateJobResponseCollectionCompoundDocument {
     'data': Array<GetCatalogVariantUpdateJobResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

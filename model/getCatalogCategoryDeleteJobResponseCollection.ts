@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetCatalogCategoryDeleteJobResponseCollectionDataInner } from './getCatalogCategoryDeleteJobResponseCollectionDataInner';
 export class GetCatalogCategoryDeleteJobResponseCollection {
     'data': Array<GetCatalogCategoryDeleteJobResponseCollectionDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

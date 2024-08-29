@@ -11,14 +11,12 @@
 
 import { RequestFile } from './models';
 import { CampaignValuesReportEnum } from './campaignValuesReportEnum';
-import { ObjectLinks } from './objectLinks';
 import { PostCampaignValuesResponseDTODataAttributes } from './postCampaignValuesResponseDTODataAttributes';
 import { PostCampaignValuesResponseDTODataRelationships } from './postCampaignValuesResponseDTODataRelationships';
 export class PostCampaignValuesResponseDTOData {
     'type': CampaignValuesReportEnum | 'campaign-values-report';
     'attributes': PostCampaignValuesResponseDTODataAttributes;
     'relationships'?: PostCampaignValuesResponseDTODataRelationships;
-    'links': ObjectLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -36,11 +34,6 @@ export class PostCampaignValuesResponseDTOData {
             "name": "relationships",
             "baseName": "relationships",
             "type": "PostCampaignValuesResponseDTODataRelationships"
-        },
-        {
-            "name": "links",
-            "baseName": "links",
-            "type": "ObjectLinks"
         }    ];
 
     static getAttributeTypeMap() {

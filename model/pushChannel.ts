@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseData } from './getProfileResponseData';
-export class GetProfileResponse {
-    'data': GetProfileResponseData;
+import { PushMarketing } from './pushMarketing';
+export class PushChannel {
+    'marketing'?: PushMarketing;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "GetProfileResponseData"
+            "name": "marketing",
+            "baseName": "marketing",
+            "type": "PushMarketing"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetProfileResponse.attributeTypeMap;
+        return PushChannel.attributeTypeMap;
     }
 }
 

@@ -457,7 +457,7 @@ export class ProfilesApi {
      * @param id 
      * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
-    public async getBulkProfileImportJobProfiles (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
+    public async getBulkProfileImportJobProfiles (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/profiles/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -481,7 +481,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
         }
 
         if (options.pageCursor !== undefined) {
@@ -719,7 +719,7 @@ export class ProfilesApi {
      * @param id 
      * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
      */
-    public async getProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>, include?: Array<'lists' | 'segments'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> {
+    public async getProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>, include?: Array<'lists' | 'segments'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/profiles/{id}/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -747,7 +747,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
         }
 
         if (options.fieldsSegment !== undefined) {
@@ -1027,7 +1027,7 @@ export class ProfilesApi {
      
      * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
      */
-    public async getProfiles (options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'email' | '-email' | 'id' | '-id' | 'updated' | '-updated' | 'subscriptions.email.marketing.list_suppressions.timestamp' | '-subscriptions.email.marketing.list_suppressions.timestamp' | 'subscriptions.email.marketing.suppression.timestamp' | '-subscriptions.email.marketing.suppression.timestamp',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> {
+    public async getProfiles (options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'email' | '-email' | 'id' | '-id' | 'updated' | '-updated' | 'subscriptions.email.marketing.list_suppressions.timestamp' | '-subscriptions.email.marketing.list_suppressions.timestamp' | 'subscriptions.email.marketing.suppression.timestamp' | '-subscriptions.email.marketing.suppression.timestamp',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/profiles/';
         let localVarQueryParameters: any = {};
@@ -1045,7 +1045,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
         }
 
         if (options.filter !== undefined) {
@@ -1490,3 +1490,143 @@ export class ProfilesApi {
         );
     }
 }
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.createOrUpdateProfile}
+     *
+     * @deprecated Use {@link ProfilesApi.createOrUpdateProfile} instead
+     */
+    createProfileImport: typeof ProfilesApi.prototype.createOrUpdateProfile;
+}
+ProfilesApi.prototype.createProfileImport = ProfilesApi.prototype.createOrUpdateProfile
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkProfileImportJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJob} instead
+     */
+    getProfileBulkImportJob: typeof ProfilesApi.prototype.getBulkProfileImportJob;
+}
+ProfilesApi.prototype.getProfileBulkImportJob = ProfilesApi.prototype.getBulkProfileImportJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkProfileImportJobImportErrors}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobImportErrors} instead
+     */
+    getProfileBulkImportJobImportErrors: typeof ProfilesApi.prototype.getBulkProfileImportJobImportErrors;
+}
+ProfilesApi.prototype.getProfileBulkImportJobImportErrors = ProfilesApi.prototype.getBulkProfileImportJobImportErrors
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkProfileImportJobLists}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobLists} instead
+     */
+    getProfileBulkImportJobLists: typeof ProfilesApi.prototype.getBulkProfileImportJobLists;
+}
+ProfilesApi.prototype.getProfileBulkImportJobLists = ProfilesApi.prototype.getBulkProfileImportJobLists
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkProfileImportJobProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobProfiles} instead
+     */
+    getProfileBulkImportJobProfiles: typeof ProfilesApi.prototype.getBulkProfileImportJobProfiles;
+}
+ProfilesApi.prototype.getProfileBulkImportJobProfiles = ProfilesApi.prototype.getBulkProfileImportJobProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkProfileImportJobRelationshipsLists}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobRelationshipsLists} instead
+     */
+    getProfileBulkImportJobRelationshipsLists: typeof ProfilesApi.prototype.getBulkProfileImportJobRelationshipsLists;
+}
+ProfilesApi.prototype.getProfileBulkImportJobRelationshipsLists = ProfilesApi.prototype.getBulkProfileImportJobRelationshipsLists
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkProfileImportJobRelationshipsProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobRelationshipsProfiles} instead
+     */
+    getProfileBulkImportJobRelationshipsProfiles: typeof ProfilesApi.prototype.getBulkProfileImportJobRelationshipsProfiles;
+}
+ProfilesApi.prototype.getProfileBulkImportJobRelationshipsProfiles = ProfilesApi.prototype.getBulkProfileImportJobRelationshipsProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkProfileImportJobs}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobs} instead
+     */
+    getProfileBulkImportJobs: typeof ProfilesApi.prototype.getBulkProfileImportJobs;
+}
+ProfilesApi.prototype.getProfileBulkImportJobs = ProfilesApi.prototype.getBulkProfileImportJobs
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.mergeProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.mergeProfiles} instead
+     */
+    createProfileMerge: typeof ProfilesApi.prototype.mergeProfiles;
+}
+ProfilesApi.prototype.createProfileMerge = ProfilesApi.prototype.mergeProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.spawnBulkProfileImportJob}
+     *
+     * @deprecated Use {@link ProfilesApi.spawnBulkProfileImportJob} instead
+     */
+    createProfileBulkImportJob: typeof ProfilesApi.prototype.spawnBulkProfileImportJob;
+}
+ProfilesApi.prototype.createProfileBulkImportJob = ProfilesApi.prototype.spawnBulkProfileImportJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.subscribeProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.subscribeProfiles} instead
+     */
+    createProfileSubscriptionBulkCreateJob: typeof ProfilesApi.prototype.subscribeProfiles;
+}
+ProfilesApi.prototype.createProfileSubscriptionBulkCreateJob = ProfilesApi.prototype.subscribeProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.suppressProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.suppressProfiles} instead
+     */
+    createProfileSuppressionBulkCreateJob: typeof ProfilesApi.prototype.suppressProfiles;
+}
+ProfilesApi.prototype.createProfileSuppressionBulkCreateJob = ProfilesApi.prototype.suppressProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.unsubscribeProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.unsubscribeProfiles} instead
+     */
+    createProfileSubscriptionBulkDeleteJob: typeof ProfilesApi.prototype.unsubscribeProfiles;
+}
+ProfilesApi.prototype.createProfileSubscriptionBulkDeleteJob = ProfilesApi.prototype.unsubscribeProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.unsuppressProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.unsuppressProfiles} instead
+     */
+    createProfileSuppressionBulkDeleteJob: typeof ProfilesApi.prototype.unsuppressProfiles;
+}
+ProfilesApi.prototype.createProfileSuppressionBulkDeleteJob = ProfilesApi.prototype.unsuppressProfiles

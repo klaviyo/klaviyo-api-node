@@ -15,7 +15,7 @@ import { GetListListResponseCollectionCompoundDocumentDataInner } from './getLis
 import { TagResponseObjectResource } from './tagResponseObjectResource';
 export class GetListListResponseCollectionCompoundDocument {
     'data': Array<GetListListResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<TagResponseObjectResource>;
 
 

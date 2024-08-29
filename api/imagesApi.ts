@@ -383,3 +383,23 @@ export class ImagesApi {
         );
     }
 }
+
+export interface ImagesApi {
+    /**
+     * Alias of {@link ImagesApi.uploadImageFromFile}
+     *
+     * @deprecated Use {@link ImagesApi.uploadImageFromFile} instead
+     */
+    createImageUpload: typeof ImagesApi.prototype.uploadImageFromFile;
+}
+ImagesApi.prototype.createImageUpload = ImagesApi.prototype.uploadImageFromFile
+
+export interface ImagesApi {
+    /**
+     * Alias of {@link ImagesApi.uploadImageFromUrl}
+     *
+     * @deprecated Use {@link ImagesApi.uploadImageFromUrl} instead
+     */
+    createImage: typeof ImagesApi.prototype.uploadImageFromUrl;
+}
+ImagesApi.prototype.createImage = ImagesApi.prototype.uploadImageFromUrl

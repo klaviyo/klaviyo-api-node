@@ -15,7 +15,7 @@ import { GetFlowResponseCollectionCompoundDocumentDataInner } from './getFlowRes
 import { GetFlowResponseCollectionCompoundDocumentIncludedInner } from './getFlowResponseCollectionCompoundDocumentIncludedInner';
 export class GetFlowResponseCollectionCompoundDocument {
     'data': Array<GetFlowResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<GetFlowResponseCollectionCompoundDocumentIncludedInner>;
 
 

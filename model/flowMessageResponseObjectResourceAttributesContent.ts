@@ -11,5 +11,6 @@
 
 import { RequestFile } from './models';
 import { EmailMessageContent } from './emailMessageContent';
+import { MobilePushMessageContent } from './mobilePushMessageContent';
 import { SMSMessageContent } from './sMSMessageContent';
-export type FlowMessageResponseObjectResourceAttributesContent = EmailMessageContent | SMSMessageContent;
+export type FlowMessageResponseObjectResourceAttributesContent = EmailMessageContent | SMSMessageContent | MobilePushMessageContent;

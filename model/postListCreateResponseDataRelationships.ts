@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
+import { PostListCreateResponseDataRelationshipsFlowTriggers } from './postListCreateResponseDataRelationshipsFlowTriggers';
 import { PostListCreateResponseDataRelationshipsProfiles } from './postListCreateResponseDataRelationshipsProfiles';
 export class PostListCreateResponseDataRelationships {
     'profiles'?: PostListCreateResponseDataRelationshipsProfiles;
     'tags'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags;
+    'flowTriggers'?: PostListCreateResponseDataRelationshipsFlowTriggers;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class PostListCreateResponseDataRelationships {
             "name": "tags",
             "baseName": "tags",
             "type": "GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags"
+        },
+        {
+            "name": "flowTriggers",
+            "baseName": "flow-triggers",
+            "type": "PostListCreateResponseDataRelationshipsFlowTriggers"
         }    ];
 
     static getAttributeTypeMap() {

@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetCatalogCategoryResponseCollectionDataInner } from './getCatalogCategoryResponseCollectionDataInner';
 export class GetCatalogCategoryResponseCollection {
     'data': Array<GetCatalogCategoryResponseCollectionDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

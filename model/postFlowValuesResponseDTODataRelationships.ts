@@ -11,9 +11,9 @@
 
 import { RequestFile } from './models';
 import { GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages } from './getFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages';
-import { PostTagResponseDataRelationshipsFlows } from './postTagResponseDataRelationshipsFlows';
+import { PostListCreateResponseDataRelationshipsFlowTriggers } from './postListCreateResponseDataRelationshipsFlowTriggers';
 export class PostFlowValuesResponseDTODataRelationships {
-    'flows'?: PostTagResponseDataRelationshipsFlows;
+    'flows'?: PostListCreateResponseDataRelationshipsFlowTriggers;
     'flowMessages'?: GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages;
 
 
@@ -21,7 +21,7 @@ export class PostFlowValuesResponseDTODataRelationships {
         {
             "name": "flows",
             "baseName": "flows",
-            "type": "PostTagResponseDataRelationshipsFlows"
+            "type": "PostListCreateResponseDataRelationshipsFlowTriggers"
         },
         {
             "name": "flowMessages",

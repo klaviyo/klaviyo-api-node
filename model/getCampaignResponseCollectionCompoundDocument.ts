@@ -15,7 +15,7 @@ import { GetCampaignResponseCollectionCompoundDocumentDataInner } from './getCam
 import { GetCampaignResponseCollectionCompoundDocumentIncludedInner } from './getCampaignResponseCollectionCompoundDocumentIncludedInner';
 export class GetCampaignResponseCollectionCompoundDocument {
     'data': Array<GetCampaignResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<GetCampaignResponseCollectionCompoundDocumentIncludedInner>;
 
 

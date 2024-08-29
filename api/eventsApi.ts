@@ -23,8 +23,8 @@ import { GetEventMetricsRelationshipListResponse } from '../model/getEventMetric
 import { GetEventProfilesRelationshipListResponse } from '../model/getEventProfilesRelationshipListResponse';
 import { GetEventResponseCollectionCompoundDocument } from '../model/getEventResponseCollectionCompoundDocument';
 import { GetEventResponseCompoundDocument } from '../model/getEventResponseCompoundDocument';
-import { GetMetricResponse } from '../model/getMetricResponse';
-import { GetProfileResponse } from '../model/getProfileResponse';
+import { GetMetricResponseCollection } from '../model/getMetricResponseCollection';
+import { GetProfileResponseCollection } from '../model/getProfileResponseCollection';
 
 import { ObjectSerializer } from '../model/models';
 
@@ -258,7 +258,7 @@ export class EventsApi {
      * @param id 
      * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getEventMetric (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> {
+    public async getEventMetric (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/events/{id}/metric/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -292,11 +292,11 @@ export class EventsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -307,7 +307,7 @@ export class EventsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricResponse;  }>(
+        return backOff<{ response: AxiosResponse; body: GetMetricResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
@@ -318,7 +318,7 @@ export class EventsApi {
      * @param id 
      * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getEventProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponse;  }> {
+    public async getEventProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/events/{id}/profile/'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -342,7 +342,7 @@ export class EventsApi {
         }
 
         if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -356,11 +356,11 @@ export class EventsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -371,7 +371,7 @@ export class EventsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileResponse;  }>(
+        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
@@ -567,3 +567,13 @@ export class EventsApi {
         );
     }
 }
+
+export interface EventsApi {
+    /**
+     * Alias of {@link EventsApi.bulkCreateEvents}
+     *
+     * @deprecated Use {@link EventsApi.bulkCreateEvents} instead
+     */
+    createEventBulkCreateJob: typeof EventsApi.prototype.bulkCreateEvents;
+}
+EventsApi.prototype.createEventBulkCreateJob = EventsApi.prototype.bulkCreateEvents

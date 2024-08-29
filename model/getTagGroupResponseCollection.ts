@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetTagGroupResponseCollectionDataInner } from './getTagGroupResponseCollectionDataInner';
 export class GetTagGroupResponseCollection {
     'data': Array<GetTagGroupResponseCollectionDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

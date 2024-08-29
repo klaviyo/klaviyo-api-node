@@ -15,7 +15,7 @@ import { GetTagResponseCollectionCompoundDocumentDataInner } from './getTagRespo
 import { TagGroupResponseObjectResource } from './tagGroupResponseObjectResource';
 export class GetTagResponseCollectionCompoundDocument {
     'data': Array<GetTagResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<TagGroupResponseObjectResource>;
 
 

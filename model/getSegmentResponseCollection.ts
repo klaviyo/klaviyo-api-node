@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetSegmentResponseCollectionDataInner } from './getSegmentResponseCollectionDataInner';
 export class GetSegmentResponseCollection {
     'data': Array<GetSegmentResponseCollectionDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { TemplateResponseObjectResource } from './templateResponseObjectResource';
 export class GetTemplateResponseCollection {
     'data': Array<TemplateResponseObjectResource>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -11,14 +11,12 @@
 
 import { RequestFile } from './models';
 import { FlowValuesReportEnum } from './flowValuesReportEnum';
-import { ObjectLinks } from './objectLinks';
 import { PostFlowValuesResponseDTODataAttributes } from './postFlowValuesResponseDTODataAttributes';
 import { PostFlowValuesResponseDTODataRelationships } from './postFlowValuesResponseDTODataRelationships';
 export class PostFlowValuesResponseDTOData {
     'type': FlowValuesReportEnum | 'flow-values-report';
     'attributes': PostFlowValuesResponseDTODataAttributes;
     'relationships'?: PostFlowValuesResponseDTODataRelationships;
-    'links': ObjectLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -36,11 +34,6 @@ export class PostFlowValuesResponseDTOData {
             "name": "relationships",
             "baseName": "relationships",
             "type": "PostFlowValuesResponseDTODataRelationships"
-        },
-        {
-            "name": "links",
-            "baseName": "links",
-            "type": "ObjectLinks"
         }    ];
 
     static getAttributeTypeMap() {

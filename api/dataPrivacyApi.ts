@@ -119,3 +119,13 @@ export class DataPrivacyApi {
         );
     }
 }
+
+export interface DataPrivacyApi {
+    /**
+     * Alias of {@link DataPrivacyApi.requestProfileDeletion}
+     *
+     * @deprecated Use {@link DataPrivacyApi.requestProfileDeletion} instead
+     */
+    createDataPrivacyDeletionJob: typeof DataPrivacyApi.prototype.requestProfileDeletion;
+}
+DataPrivacyApi.prototype.createDataPrivacyDeletionJob = DataPrivacyApi.prototype.requestProfileDeletion

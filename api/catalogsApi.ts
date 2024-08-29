@@ -3450,3 +3450,293 @@ export class CatalogsApi {
         );
     }
 }
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.createCatalogCategoryRelationshipsItems}
+     *
+     * @deprecated Use {@link CatalogsApi.createCatalogCategoryRelationshipsItems} instead
+     */
+    createCatalogCategoryRelationshipsItem: typeof CatalogsApi.prototype.createCatalogCategoryRelationshipsItems;
+}
+CatalogsApi.prototype.createCatalogCategoryRelationshipsItem = CatalogsApi.prototype.createCatalogCategoryRelationshipsItems
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.createCatalogItemRelationshipsCategories}
+     *
+     * @deprecated Use {@link CatalogsApi.createCatalogItemRelationshipsCategories} instead
+     */
+    createCatalogItemRelationshipsCategory: typeof CatalogsApi.prototype.createCatalogItemRelationshipsCategories;
+}
+CatalogsApi.prototype.createCatalogItemRelationshipsCategory = CatalogsApi.prototype.createCatalogItemRelationshipsCategories
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCreateCategoriesJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getCreateCategoriesJob} instead
+     */
+    getCatalogCategoryBulkCreateJob: typeof CatalogsApi.prototype.getCreateCategoriesJob;
+}
+CatalogsApi.prototype.getCatalogCategoryBulkCreateJob = CatalogsApi.prototype.getCreateCategoriesJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCreateCategoriesJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getCreateCategoriesJobs} instead
+     */
+    getCatalogCategoryBulkCreateJobs: typeof CatalogsApi.prototype.getCreateCategoriesJobs;
+}
+CatalogsApi.prototype.getCatalogCategoryBulkCreateJobs = CatalogsApi.prototype.getCreateCategoriesJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCreateItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getCreateItemsJob} instead
+     */
+    getCatalogItemBulkCreateJob: typeof CatalogsApi.prototype.getCreateItemsJob;
+}
+CatalogsApi.prototype.getCatalogItemBulkCreateJob = CatalogsApi.prototype.getCreateItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCreateItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getCreateItemsJobs} instead
+     */
+    getCatalogItemBulkCreateJobs: typeof CatalogsApi.prototype.getCreateItemsJobs;
+}
+CatalogsApi.prototype.getCatalogItemBulkCreateJobs = CatalogsApi.prototype.getCreateItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCreateVariantsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getCreateVariantsJob} instead
+     */
+    getCatalogVariantBulkCreateJob: typeof CatalogsApi.prototype.getCreateVariantsJob;
+}
+CatalogsApi.prototype.getCatalogVariantBulkCreateJob = CatalogsApi.prototype.getCreateVariantsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCreateVariantsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getCreateVariantsJobs} instead
+     */
+    getCatalogVariantBulkCreateJobs: typeof CatalogsApi.prototype.getCreateVariantsJobs;
+}
+CatalogsApi.prototype.getCatalogVariantBulkCreateJobs = CatalogsApi.prototype.getCreateVariantsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getDeleteCategoriesJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getDeleteCategoriesJob} instead
+     */
+    getCatalogCategoryBulkDeleteJob: typeof CatalogsApi.prototype.getDeleteCategoriesJob;
+}
+CatalogsApi.prototype.getCatalogCategoryBulkDeleteJob = CatalogsApi.prototype.getDeleteCategoriesJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getDeleteCategoriesJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getDeleteCategoriesJobs} instead
+     */
+    getCatalogCategoryBulkDeleteJobs: typeof CatalogsApi.prototype.getDeleteCategoriesJobs;
+}
+CatalogsApi.prototype.getCatalogCategoryBulkDeleteJobs = CatalogsApi.prototype.getDeleteCategoriesJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getDeleteItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getDeleteItemsJob} instead
+     */
+    getCatalogItemBulkDeleteJob: typeof CatalogsApi.prototype.getDeleteItemsJob;
+}
+CatalogsApi.prototype.getCatalogItemBulkDeleteJob = CatalogsApi.prototype.getDeleteItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getDeleteItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getDeleteItemsJobs} instead
+     */
+    getCatalogItemBulkDeleteJobs: typeof CatalogsApi.prototype.getDeleteItemsJobs;
+}
+CatalogsApi.prototype.getCatalogItemBulkDeleteJobs = CatalogsApi.prototype.getDeleteItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getDeleteVariantsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getDeleteVariantsJob} instead
+     */
+    getCatalogVariantBulkDeleteJob: typeof CatalogsApi.prototype.getDeleteVariantsJob;
+}
+CatalogsApi.prototype.getCatalogVariantBulkDeleteJob = CatalogsApi.prototype.getDeleteVariantsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getDeleteVariantsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getDeleteVariantsJobs} instead
+     */
+    getCatalogVariantBulkDeleteJobs: typeof CatalogsApi.prototype.getDeleteVariantsJobs;
+}
+CatalogsApi.prototype.getCatalogVariantBulkDeleteJobs = CatalogsApi.prototype.getDeleteVariantsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getUpdateCategoriesJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getUpdateCategoriesJob} instead
+     */
+    getCatalogCategoryBulkUpdateJob: typeof CatalogsApi.prototype.getUpdateCategoriesJob;
+}
+CatalogsApi.prototype.getCatalogCategoryBulkUpdateJob = CatalogsApi.prototype.getUpdateCategoriesJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getUpdateCategoriesJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getUpdateCategoriesJobs} instead
+     */
+    getCatalogCategoryBulkUpdateJobs: typeof CatalogsApi.prototype.getUpdateCategoriesJobs;
+}
+CatalogsApi.prototype.getCatalogCategoryBulkUpdateJobs = CatalogsApi.prototype.getUpdateCategoriesJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getUpdateItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getUpdateItemsJob} instead
+     */
+    getCatalogItemBulkUpdateJob: typeof CatalogsApi.prototype.getUpdateItemsJob;
+}
+CatalogsApi.prototype.getCatalogItemBulkUpdateJob = CatalogsApi.prototype.getUpdateItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getUpdateItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getUpdateItemsJobs} instead
+     */
+    getCatalogItemBulkUpdateJobs: typeof CatalogsApi.prototype.getUpdateItemsJobs;
+}
+CatalogsApi.prototype.getCatalogItemBulkUpdateJobs = CatalogsApi.prototype.getUpdateItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getUpdateVariantsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getUpdateVariantsJob} instead
+     */
+    getCatalogVariantBulkUpdateJob: typeof CatalogsApi.prototype.getUpdateVariantsJob;
+}
+CatalogsApi.prototype.getCatalogVariantBulkUpdateJob = CatalogsApi.prototype.getUpdateVariantsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getUpdateVariantsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getUpdateVariantsJobs} instead
+     */
+    getCatalogVariantBulkUpdateJobs: typeof CatalogsApi.prototype.getUpdateVariantsJobs;
+}
+CatalogsApi.prototype.getCatalogVariantBulkUpdateJobs = CatalogsApi.prototype.getUpdateVariantsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnCreateCategoriesJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnCreateCategoriesJob} instead
+     */
+    createCatalogCategoryBulkCreateJob: typeof CatalogsApi.prototype.spawnCreateCategoriesJob;
+}
+CatalogsApi.prototype.createCatalogCategoryBulkCreateJob = CatalogsApi.prototype.spawnCreateCategoriesJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnCreateItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnCreateItemsJob} instead
+     */
+    createCatalogItemBulkCreateJob: typeof CatalogsApi.prototype.spawnCreateItemsJob;
+}
+CatalogsApi.prototype.createCatalogItemBulkCreateJob = CatalogsApi.prototype.spawnCreateItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnCreateVariantsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnCreateVariantsJob} instead
+     */
+    createCatalogVariantBulkCreateJob: typeof CatalogsApi.prototype.spawnCreateVariantsJob;
+}
+CatalogsApi.prototype.createCatalogVariantBulkCreateJob = CatalogsApi.prototype.spawnCreateVariantsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnDeleteCategoriesJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnDeleteCategoriesJob} instead
+     */
+    createCatalogCategoryBulkDeleteJob: typeof CatalogsApi.prototype.spawnDeleteCategoriesJob;
+}
+CatalogsApi.prototype.createCatalogCategoryBulkDeleteJob = CatalogsApi.prototype.spawnDeleteCategoriesJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnDeleteItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnDeleteItemsJob} instead
+     */
+    createCatalogItemBulkDeleteJob: typeof CatalogsApi.prototype.spawnDeleteItemsJob;
+}
+CatalogsApi.prototype.createCatalogItemBulkDeleteJob = CatalogsApi.prototype.spawnDeleteItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnDeleteVariantsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnDeleteVariantsJob} instead
+     */
+    createCatalogVariantBulkDeleteJob: typeof CatalogsApi.prototype.spawnDeleteVariantsJob;
+}
+CatalogsApi.prototype.createCatalogVariantBulkDeleteJob = CatalogsApi.prototype.spawnDeleteVariantsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnUpdateCategoriesJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnUpdateCategoriesJob} instead
+     */
+    createCatalogCategoryBulkUpdateJob: typeof CatalogsApi.prototype.spawnUpdateCategoriesJob;
+}
+CatalogsApi.prototype.createCatalogCategoryBulkUpdateJob = CatalogsApi.prototype.spawnUpdateCategoriesJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnUpdateItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnUpdateItemsJob} instead
+     */
+    createCatalogItemBulkUpdateJob: typeof CatalogsApi.prototype.spawnUpdateItemsJob;
+}
+CatalogsApi.prototype.createCatalogItemBulkUpdateJob = CatalogsApi.prototype.spawnUpdateItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.spawnUpdateVariantsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.spawnUpdateVariantsJob} instead
+     */
+    createCatalogVariantBulkUpdateJob: typeof CatalogsApi.prototype.spawnUpdateVariantsJob;
+}
+CatalogsApi.prototype.createCatalogVariantBulkUpdateJob = CatalogsApi.prototype.spawnUpdateVariantsJob
