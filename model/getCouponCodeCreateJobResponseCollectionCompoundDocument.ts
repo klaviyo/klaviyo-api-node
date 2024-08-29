@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner } from './getCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner';
 export class GetCouponCodeCreateJobResponseCollectionCompoundDocument {
     'data': Array<GetCouponCodeCreateJobResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

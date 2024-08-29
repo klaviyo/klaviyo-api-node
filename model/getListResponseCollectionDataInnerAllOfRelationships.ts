@@ -14,6 +14,7 @@ import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationsh
 export class GetListResponseCollectionDataInnerAllOfRelationships {
     'profiles'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
     'tags'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'flowTriggers'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -25,6 +26,11 @@ export class GetListResponseCollectionDataInnerAllOfRelationships {
         {
             "name": "tags",
             "baseName": "tags",
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
+        },
+        {
+            "name": "flowTriggers",
+            "baseName": "flow-triggers",
             "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 

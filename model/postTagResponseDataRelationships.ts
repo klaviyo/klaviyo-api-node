@@ -13,14 +13,14 @@ import { RequestFile } from './models';
 import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsLists } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsLists';
 import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsSegments';
 import { GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroup } from './getTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroup';
+import { PostListCreateResponseDataRelationshipsFlowTriggers } from './postListCreateResponseDataRelationshipsFlowTriggers';
 import { PostTagResponseDataRelationshipsCampaigns } from './postTagResponseDataRelationshipsCampaigns';
-import { PostTagResponseDataRelationshipsFlows } from './postTagResponseDataRelationshipsFlows';
 export class PostTagResponseDataRelationships {
     'tagGroup'?: GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroup;
     'lists'?: GetProfileResponseCompoundDocumentDataAllOfRelationshipsLists;
     'segments'?: GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments;
     'campaigns'?: PostTagResponseDataRelationshipsCampaigns;
-    'flows'?: PostTagResponseDataRelationshipsFlows;
+    'flows'?: PostListCreateResponseDataRelationshipsFlowTriggers;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -47,7 +47,7 @@ export class PostTagResponseDataRelationships {
         {
             "name": "flows",
             "baseName": "flows",
-            "type": "PostTagResponseDataRelationshipsFlows"
+            "type": "PostListCreateResponseDataRelationshipsFlowTriggers"
         }    ];
 
     static getAttributeTypeMap() {

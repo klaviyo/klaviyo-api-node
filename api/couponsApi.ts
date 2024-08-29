@@ -934,7 +934,7 @@ export class CouponsApi {
         );
     }
     /**
-     * Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:write`
+     * Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:write`
      * @summary Spawn Coupon Code Bulk Create Job
      * @param couponCodeCreateJobCreateQuery 
      
@@ -1114,3 +1114,33 @@ export class CouponsApi {
         );
     }
 }
+
+export interface CouponsApi {
+    /**
+     * Alias of {@link CouponsApi.getCouponCodesForCoupon}
+     *
+     * @deprecated Use {@link CouponsApi.getCouponCodesForCoupon} instead
+     */
+    getCouponCouponCodes: typeof CouponsApi.prototype.getCouponCodesForCoupon;
+}
+CouponsApi.prototype.getCouponCouponCodes = CouponsApi.prototype.getCouponCodesForCoupon
+
+export interface CouponsApi {
+    /**
+     * Alias of {@link CouponsApi.getCouponForCouponCode}
+     *
+     * @deprecated Use {@link CouponsApi.getCouponForCouponCode} instead
+     */
+    getCouponCodeCoupon: typeof CouponsApi.prototype.getCouponForCouponCode;
+}
+CouponsApi.prototype.getCouponCodeCoupon = CouponsApi.prototype.getCouponForCouponCode
+
+export interface CouponsApi {
+    /**
+     * Alias of {@link CouponsApi.spawnCouponCodeBulkCreateJob}
+     *
+     * @deprecated Use {@link CouponsApi.spawnCouponCodeBulkCreateJob} instead
+     */
+    createCouponCodeBulkCreateJob: typeof CouponsApi.prototype.spawnCouponCodeBulkCreateJob;
+}
+CouponsApi.prototype.createCouponCodeBulkCreateJob = CouponsApi.prototype.spawnCouponCodeBulkCreateJob

@@ -22,11 +22,11 @@ export class SMSMarketing {
     /**
     * The timestamp when consent was recorded or updated for SMS marketing, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'consentTimestamp': Date;
+    'consentTimestamp'?: Date | null;
     /**
     * The method by which the profile was subscribed to SMS marketing.
     */
-    'method': string;
+    'method'?: string | null;
     /**
     * Additional details about the method which the profile was subscribed to SMS marketing. This may be empty if no details were provided.
     */
@@ -34,7 +34,7 @@ export class SMSMarketing {
     /**
     * The timestamp when the SMS consent record was last modified, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
-    'lastUpdated': Date;
+    'lastUpdated'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { GetFormResponseCollectionCompoundDocumentDataInner } from './getFormResponseCollectionCompoundDocumentDataInner';
 export class GetFormResponseCollectionCompoundDocument {
     'data': Array<GetFormResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

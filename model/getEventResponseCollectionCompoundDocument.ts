@@ -15,7 +15,7 @@ import { GetEventResponseCollectionCompoundDocumentDataInner } from './getEventR
 import { GetEventResponseCollectionCompoundDocumentIncludedInner } from './getEventResponseCollectionCompoundDocumentIncludedInner';
 export class GetEventResponseCollectionCompoundDocument {
     'data': Array<GetEventResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<GetEventResponseCollectionCompoundDocumentIncludedInner>;
 
 

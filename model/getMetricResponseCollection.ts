@@ -11,17 +11,17 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
-import { MetricResponseObjectResource } from './metricResponseObjectResource';
+import { GetMetricResponseCollectionDataInner } from './getMetricResponseCollectionDataInner';
 export class GetMetricResponseCollection {
-    'data': Array<MetricResponseObjectResource>;
-    'links': CollectionLinks;
+    'data': Array<GetMetricResponseCollectionDataInner>;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<MetricResponseObjectResource>"
+            "type": "Array<GetMetricResponseCollectionDataInner>"
         },
         {
             "name": "links",

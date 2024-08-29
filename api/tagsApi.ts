@@ -1644,3 +1644,43 @@ export class TagsApi {
         );
     }
 }
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.createTagRelationshipsCampaigns}
+     *
+     * @deprecated Use {@link TagsApi.createTagRelationshipsCampaigns} instead
+     */
+    createTagRelationshipsCampaign: typeof TagsApi.prototype.createTagRelationshipsCampaigns;
+}
+TagsApi.prototype.createTagRelationshipsCampaign = TagsApi.prototype.createTagRelationshipsCampaigns
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.createTagRelationshipsFlows}
+     *
+     * @deprecated Use {@link TagsApi.createTagRelationshipsFlows} instead
+     */
+    createTagRelationshipsFlow: typeof TagsApi.prototype.createTagRelationshipsFlows;
+}
+TagsApi.prototype.createTagRelationshipsFlow = TagsApi.prototype.createTagRelationshipsFlows
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.createTagRelationshipsLists}
+     *
+     * @deprecated Use {@link TagsApi.createTagRelationshipsLists} instead
+     */
+    createTagRelationshipsList: typeof TagsApi.prototype.createTagRelationshipsLists;
+}
+TagsApi.prototype.createTagRelationshipsList = TagsApi.prototype.createTagRelationshipsLists
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.createTagRelationshipsSegments}
+     *
+     * @deprecated Use {@link TagsApi.createTagRelationshipsSegments} instead
+     */
+    createTagRelationshipsSegment: typeof TagsApi.prototype.createTagRelationshipsSegments;
+}
+TagsApi.prototype.createTagRelationshipsSegment = TagsApi.prototype.createTagRelationshipsSegments

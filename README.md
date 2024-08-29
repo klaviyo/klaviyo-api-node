@@ -1,6 +1,6 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 11.0.0
+- SDK version: 12.0.0
 
 - Revision: 2024-07-15
 
@@ -50,7 +50,7 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@11.0.0`
+`npm install klaviyo-api@12.0.0`
 
 
 ## source code
@@ -455,7 +455,7 @@ import { ApiKeySession, ProfilesApi } from 'klaviyo-api'
 const session = new ApiKeySession("< YOUR API KEY HERE >")
 const profilesApi = new ProfilesApi(session)
 
-const profileList = await profilesApi.getProfiles({pageCursor: nextPage})
+const profileList = await profilesApi.getProfiles({pageSize: 20})
 ```
 
 ### Additional Fields
@@ -887,6 +887,10 @@ _______________________________
 ```typescript
 CatalogsApi.createCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryRelationshipsItem(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+```
 _______________________________
 
 [Create Catalog Item](https://developers.klaviyo.com/en/v2024-07-15/reference/create_catalog_item)
@@ -900,6 +904,10 @@ _______________________________
 
 ```typescript
 CatalogsApi.createCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogItemRelationshipsCategory(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
 _______________________________
 
@@ -1027,12 +1035,20 @@ _______________________________
 ```typescript
 CatalogsApi.getCreateCategoriesJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkCreateJob(jobId: string, options)
+```
 _______________________________
 
 [Get Create Categories Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_categories_jobs)
 
 ```typescript
 CatalogsApi.getCreateCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkCreateJobs(options)
 ```
 _______________________________
 
@@ -1041,12 +1057,20 @@ _______________________________
 ```typescript
 CatalogsApi.getCreateItemsJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkCreateJob(jobId: string, options)
+```
 _______________________________
 
 [Get Create Items Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_items_jobs)
 
 ```typescript
 CatalogsApi.getCreateItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkCreateJobs(options)
 ```
 _______________________________
 
@@ -1055,12 +1079,20 @@ _______________________________
 ```typescript
 CatalogsApi.getCreateVariantsJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkCreateJob(jobId: string, options)
+```
 _______________________________
 
 [Get Create Variants Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_variants_jobs)
 
 ```typescript
 CatalogsApi.getCreateVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkCreateJobs(options)
 ```
 _______________________________
 
@@ -1069,12 +1101,20 @@ _______________________________
 ```typescript
 CatalogsApi.getDeleteCategoriesJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkDeleteJob(jobId: string, options)
+```
 _______________________________
 
 [Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_categories_jobs)
 
 ```typescript
 CatalogsApi.getDeleteCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkDeleteJobs(options)
 ```
 _______________________________
 
@@ -1083,12 +1123,20 @@ _______________________________
 ```typescript
 CatalogsApi.getDeleteItemsJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkDeleteJob(jobId: string, options)
+```
 _______________________________
 
 [Get Delete Items Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_items_jobs)
 
 ```typescript
 CatalogsApi.getDeleteItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkDeleteJobs(options)
 ```
 _______________________________
 
@@ -1097,12 +1145,20 @@ _______________________________
 ```typescript
 CatalogsApi.getDeleteVariantsJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkDeleteJob(jobId: string, options)
+```
 _______________________________
 
 [Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_variants_jobs)
 
 ```typescript
 CatalogsApi.getDeleteVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkDeleteJobs(options)
 ```
 _______________________________
 
@@ -1111,12 +1167,20 @@ _______________________________
 ```typescript
 CatalogsApi.getUpdateCategoriesJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkUpdateJob(jobId: string, options)
+```
 _______________________________
 
 [Get Update Categories Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_categories_jobs)
 
 ```typescript
 CatalogsApi.getUpdateCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkUpdateJobs(options)
 ```
 _______________________________
 
@@ -1125,12 +1189,20 @@ _______________________________
 ```typescript
 CatalogsApi.getUpdateItemsJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkUpdateJob(jobId: string, options)
+```
 _______________________________
 
 [Get Update Items Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_items_jobs)
 
 ```typescript
 CatalogsApi.getUpdateItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkUpdateJobs(options)
 ```
 _______________________________
 
@@ -1139,12 +1211,20 @@ _______________________________
 ```typescript
 CatalogsApi.getUpdateVariantsJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkUpdateJob(jobId: string, options)
+```
 _______________________________
 
 [Get Update Variants Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_variants_jobs)
 
 ```typescript
 CatalogsApi.getUpdateVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkUpdateJobs(options)
 ```
 _______________________________
 
@@ -1153,12 +1233,20 @@ _______________________________
 ```typescript
 CatalogsApi.spawnCreateCategoriesJob(catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryBulkCreateJob(catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery)
+```
 _______________________________
 
 [Spawn Create Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_create_items_job)
 
 ```typescript
 CatalogsApi.spawnCreateItemsJob(catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogItemBulkCreateJob(catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery)
 ```
 _______________________________
 
@@ -1167,12 +1255,20 @@ _______________________________
 ```typescript
 CatalogsApi.spawnCreateVariantsJob(catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogVariantBulkCreateJob(catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery)
+```
 _______________________________
 
 [Spawn Delete Categories Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_delete_categories_job)
 
 ```typescript
 CatalogsApi.spawnDeleteCategoriesJob(catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryBulkDeleteJob(catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery)
 ```
 _______________________________
 
@@ -1181,12 +1277,20 @@ _______________________________
 ```typescript
 CatalogsApi.spawnDeleteItemsJob(catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogItemBulkDeleteJob(catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery)
+```
 _______________________________
 
 [Spawn Delete Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_delete_variants_job)
 
 ```typescript
 CatalogsApi.spawnDeleteVariantsJob(catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogVariantBulkDeleteJob(catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery)
 ```
 _______________________________
 
@@ -1195,6 +1299,10 @@ _______________________________
 ```typescript
 CatalogsApi.spawnUpdateCategoriesJob(catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryBulkUpdateJob(catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery)
+```
 _______________________________
 
 [Spawn Update Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_update_items_job)
@@ -1202,12 +1310,20 @@ _______________________________
 ```typescript
 CatalogsApi.spawnUpdateItemsJob(catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery)
 ```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogItemBulkUpdateJob(catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery)
+```
 _______________________________
 
 [Spawn Update Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_update_variants_job)
 
 ```typescript
 CatalogsApi.spawnUpdateVariantsJob(catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogVariantBulkUpdateJob(catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery)
 ```
 _______________________________
 
@@ -1323,12 +1439,20 @@ _______________________________
 ```typescript
 CouponsApi.getCouponCodesForCoupon(id: string, options)
 ```
+##### Method alias:
+```typescript
+CouponsApi.getCouponCouponCodes(id: string, options)
+```
 _______________________________
 
 [Get Coupon For Coupon Code](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_for_coupon_code)
 
 ```typescript
 CouponsApi.getCouponForCouponCode(id: string, options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCouponCodeCoupon(id: string, options)
 ```
 _______________________________
 
@@ -1350,6 +1474,10 @@ _______________________________
 
 ```typescript
 CouponsApi.spawnCouponCodeBulkCreateJob(couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CouponsApi.createCouponCodeBulkCreateJob(couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery)
 ```
 _______________________________
 
@@ -1374,6 +1502,10 @@ _______________________________
 ```typescript
 DataPrivacyApi.requestProfileDeletion(dataPrivacyCreateDeletionJobQuery: DataPrivacyCreateDeletionJobQuery)
 ```
+##### Method alias:
+```typescript
+DataPrivacyApi.createDataPrivacyDeletionJob(dataPrivacyCreateDeletionJobQuery: DataPrivacyCreateDeletionJobQuery)
+```
 _______________________________
 ## EventsApi
 _______________________________
@@ -1382,6 +1514,10 @@ _______________________________
 
 ```typescript
 EventsApi.bulkCreateEvents(eventsBulkCreateJob: EventsBulkCreateJob)
+```
+##### Method alias:
+```typescript
+EventsApi.createEventBulkCreateJob(eventsBulkCreateJob: EventsBulkCreateJob)
 ```
 _______________________________
 
@@ -1576,12 +1712,20 @@ _______________________________
 ```typescript
 FormsApi.getFormForFormVersion(id: string, options)
 ```
+##### Method alias:
+```typescript
+FormsApi.getFormVersionForm(id: string, options)
+```
 _______________________________
 
 [Get Form ID for Form Version](https://developers.klaviyo.com/en/v2024-07-15/reference/get_form_id_for_form_version)
 
 ```typescript
 FormsApi.getFormIdForFormVersion(id: string)
+```
+##### Method alias:
+```typescript
+FormsApi.getFormVersionRelationshipsForm(id: string)
 ```
 _______________________________
 
@@ -1604,12 +1748,20 @@ _______________________________
 ```typescript
 FormsApi.getVersionIdsForForm(id: string)
 ```
+##### Method alias:
+```typescript
+FormsApi.getFormRelationshipsFormVersions(id: string)
+```
 _______________________________
 
 [Get Versions for Form](https://developers.klaviyo.com/en/v2024-07-15/reference/get_versions_for_form)
 
 ```typescript
 FormsApi.getVersionsForForm(id: string, options)
+```
+##### Method alias:
+```typescript
+FormsApi.getFormFormVersions(id: string, options)
 ```
 _______________________________
 ## ImagesApi
@@ -1641,12 +1793,20 @@ _______________________________
 ```typescript
 ImagesApi.uploadImageFromFile(file: RequestFile, )
 ```
+##### Method alias:
+```typescript
+ImagesApi.createImageUpload(file: RequestFile, )
+```
 _______________________________
 
 [Upload Image From URL](https://developers.klaviyo.com/en/v2024-07-15/reference/upload_image_from_url)
 
 ```typescript
 ImagesApi.uploadImageFromUrl(imageCreateQuery: ImageCreateQuery)
+```
+##### Method alias:
+```typescript
+ImagesApi.createImage(imageCreateQuery: ImageCreateQuery)
 ```
 _______________________________
 ## ListsApi
@@ -1664,6 +1824,10 @@ _______________________________
 ```typescript
 ListsApi.createListRelationships(id: string, listMembersAddQuery: ListMembersAddQuery)
 ```
+##### Method alias:
+```typescript
+ListsApi.createListRelationshipsProfile(id: string, listMembersAddQuery: ListMembersAddQuery)
+```
 _______________________________
 
 [Delete List](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_list)
@@ -1677,6 +1841,10 @@ _______________________________
 
 ```typescript
 ListsApi.deleteListRelationships(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
+```
+##### Method alias:
+```typescript
+ListsApi.deleteListRelationshipsProfiles(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
 ```
 _______________________________
 
@@ -1750,6 +1918,10 @@ _______________________________
 ```typescript
 MetricsApi.queryMetricAggregates(metricAggregateQuery: MetricAggregateQuery)
 ```
+##### Method alias:
+```typescript
+MetricsApi.createMetricAggregate(metricAggregateQuery: MetricAggregateQuery)
+```
 _______________________________
 ## ProfilesApi
 _______________________________
@@ -1758,6 +1930,10 @@ _______________________________
 
 ```typescript
 ProfilesApi.createOrUpdateProfile(profileUpsertQuery: ProfileUpsertQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileImport(profileUpsertQuery: ProfileUpsertQuery)
 ```
 _______________________________
 
@@ -1780,12 +1956,20 @@ _______________________________
 ```typescript
 ProfilesApi.getBulkProfileImportJob(jobId: string, options)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJob(jobId: string, options)
+```
 _______________________________
 
 [Get Bulk Profile Import Job Errors](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_import_errors)
 
 ```typescript
 ProfilesApi.getBulkProfileImportJobImportErrors(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobImportErrors(id: string, options)
 ```
 _______________________________
 
@@ -1794,12 +1978,20 @@ _______________________________
 ```typescript
 ProfilesApi.getBulkProfileImportJobLists(id: string, options)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobLists(id: string, options)
+```
 _______________________________
 
 [Get Bulk Profile Import Job Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_profiles)
 
 ```typescript
 ProfilesApi.getBulkProfileImportJobProfiles(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobProfiles(id: string, options)
 ```
 _______________________________
 
@@ -1808,6 +2000,10 @@ _______________________________
 ```typescript
 ProfilesApi.getBulkProfileImportJobRelationshipsLists(id: string)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobRelationshipsLists(id: string)
+```
 _______________________________
 
 [Get Bulk Profile Import Job Relationships Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_relationships_profiles)
@@ -1815,12 +2011,20 @@ _______________________________
 ```typescript
 ProfilesApi.getBulkProfileImportJobRelationshipsProfiles(id: string, options)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobRelationshipsProfiles(id: string, options)
+```
 _______________________________
 
 [Get Bulk Profile Import Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_jobs)
 
 ```typescript
 ProfilesApi.getBulkProfileImportJobs(options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobs(options)
 ```
 _______________________________
 
@@ -1871,12 +2075,20 @@ _______________________________
 ```typescript
 ProfilesApi.mergeProfiles(profileMergeQuery: ProfileMergeQuery)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileMerge(profileMergeQuery: ProfileMergeQuery)
+```
 _______________________________
 
 [Spawn Bulk Profile Import Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_bulk_profile_import_job)
 
 ```typescript
 ProfilesApi.spawnBulkProfileImportJob(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileBulkImportJob(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
 ```
 _______________________________
 
@@ -1885,12 +2097,20 @@ _______________________________
 ```typescript
 ProfilesApi.subscribeProfiles(subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSubscriptionBulkCreateJob(subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery)
+```
 _______________________________
 
 [Suppress Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/suppress_profiles)
 
 ```typescript
 ProfilesApi.suppressProfiles(suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSuppressionBulkCreateJob(suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery)
 ```
 _______________________________
 
@@ -1899,12 +2119,20 @@ _______________________________
 ```typescript
 ProfilesApi.unsubscribeProfiles(subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSubscriptionBulkDeleteJob(subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery)
+```
 _______________________________
 
 [Unsuppress Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/unsuppress_profiles)
 
 ```typescript
 ProfilesApi.unsuppressProfiles(suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSuppressionBulkDeleteJob(suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery)
 ```
 _______________________________
 
@@ -1922,6 +2150,10 @@ _______________________________
 ```typescript
 ReportingApi.queryCampaignValues(campaignValuesRequestDTO: CampaignValuesRequestDTO, options)
 ```
+##### Method alias:
+```typescript
+ReportingApi.createCampaignValueReport(campaignValuesRequestDTO: CampaignValuesRequestDTO, options)
+```
 _______________________________
 
 [Query Flow Series](https://developers.klaviyo.com/en/v2024-07-15/reference/query_flow_series)
@@ -1929,12 +2161,20 @@ _______________________________
 ```typescript
 ReportingApi.queryFlowSeries(flowSeriesRequestDTO: FlowSeriesRequestDTO, options)
 ```
+##### Method alias:
+```typescript
+ReportingApi.createFlowSeryReport(flowSeriesRequestDTO: FlowSeriesRequestDTO, options)
+```
 _______________________________
 
 [Query Flow Values](https://developers.klaviyo.com/en/v2024-07-15/reference/query_flow_values)
 
 ```typescript
 ReportingApi.queryFlowValues(flowValuesRequestDTO: FlowValuesRequestDTO, options)
+```
+##### Method alias:
+```typescript
+ReportingApi.createFlowValueReport(flowValuesRequestDTO: FlowValuesRequestDTO, options)
 ```
 _______________________________
 ## SegmentsApi
@@ -2024,12 +2264,20 @@ _______________________________
 ```typescript
 TagsApi.createTagRelationshipsCampaigns(id: string, tagCampaignOp: TagCampaignOp)
 ```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsCampaign(id: string, tagCampaignOp: TagCampaignOp)
+```
 _______________________________
 
 [Create Tag Relationships Flows](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag_relationships_flows)
 
 ```typescript
 TagsApi.createTagRelationshipsFlows(id: string, tagFlowOp: TagFlowOp)
+```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsFlow(id: string, tagFlowOp: TagFlowOp)
 ```
 _______________________________
 
@@ -2038,12 +2286,20 @@ _______________________________
 ```typescript
 TagsApi.createTagRelationshipsLists(id: string, tagListOp: TagListOp)
 ```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsList(id: string, tagListOp: TagListOp)
+```
 _______________________________
 
 [Create Tag Relationships Segments](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag_relationships_segments)
 
 ```typescript
 TagsApi.createTagRelationshipsSegments(id: string, tagSegmentOp: TagSegmentOp)
+```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsSegment(id: string, tagSegmentOp: TagSegmentOp)
 ```
 _______________________________
 

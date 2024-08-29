@@ -15,7 +15,7 @@ import { CouponResponseObjectResource } from './couponResponseObjectResource';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInner } from './getCouponCodeResponseCollectionCompoundDocumentDataInner';
 export class GetCouponCodeResponseCollectionCompoundDocument {
     'data': Array<GetCouponCodeResponseCollectionCompoundDocumentDataInner>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<CouponResponseObjectResource>;
 
 

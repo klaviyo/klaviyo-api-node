@@ -10,26 +10,26 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseDataAllOfRelationships } from './getProfileResponseDataAllOfRelationships';
+import { GetProfileResponseCollectionDataInnerAllOfRelationships } from './getProfileResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
 import { ProfileResponseObjectResourceExtended } from './profileResponseObjectResourceExtended';
 import { ProfileResponseObjectResourceExtendedAttributes } from './profileResponseObjectResourceExtendedAttributes';
-export class GetProfileResponseData extends ProfileResponseObjectResourceExtended {
-    'relationships'?: GetProfileResponseDataAllOfRelationships;
+export class GetProfileResponseCollectionDataInner extends ProfileResponseObjectResourceExtended {
+    'relationships'?: GetProfileResponseCollectionDataInnerAllOfRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetProfileResponseDataAllOfRelationships"
+            "type": "GetProfileResponseCollectionDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(GetProfileResponseData.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(GetProfileResponseCollectionDataInner.attributeTypeMap);
     }
 }
 
-export namespace GetProfileResponseData {
+export namespace GetProfileResponseCollectionDataInner {
 }

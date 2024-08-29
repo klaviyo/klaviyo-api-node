@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { WebhookTopicResponseObjectResource } from './webhookTopicResponseObjectResource';
 export class GetWebhookTopicResponseCollection {
     'data': Array<WebhookTopicResponseObjectResource>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

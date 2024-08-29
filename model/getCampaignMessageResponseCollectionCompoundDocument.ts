@@ -15,7 +15,7 @@ import { GetCampaignMessageResponseCompoundDocumentData } from './getCampaignMes
 import { GetCampaignMessageResponseCompoundDocumentIncludedInner } from './getCampaignMessageResponseCompoundDocumentIncludedInner';
 export class GetCampaignMessageResponseCollectionCompoundDocument {
     'data': Array<GetCampaignMessageResponseCompoundDocumentData>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
     'included'?: Array<GetCampaignMessageResponseCompoundDocumentIncludedInner>;
 
 

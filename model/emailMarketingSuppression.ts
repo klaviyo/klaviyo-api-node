@@ -14,7 +14,7 @@ export class EmailMarketingSuppression {
     /**
     * The reason the profile was suppressed.
     */
-    'reason': string;
+    'reason': EmailMarketingSuppression.ReasonEnum | 'HARD_BOUNCE' | 'INVALID_EMAIL' | 'SPAM_COMPLAINT' | 'UNSUBSCRIBE' | 'USER_SUPPRESSED';
     /**
     * The timestamp when the profile was suppressed, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm).
     */
@@ -25,7 +25,7 @@ export class EmailMarketingSuppression {
         {
             "name": "reason",
             "baseName": "reason",
-            "type": "string"
+            "type": "EmailMarketingSuppression.ReasonEnum"
         },
         {
             "name": "timestamp",
@@ -38,3 +38,12 @@ export class EmailMarketingSuppression {
     }
 }
 
+export namespace EmailMarketingSuppression {
+    export enum ReasonEnum {
+        HardBounce = <any> 'HARD_BOUNCE',
+        InvalidEmail = <any> 'INVALID_EMAIL',
+        SpamComplaint = <any> 'SPAM_COMPLAINT',
+        Unsubscribe = <any> 'UNSUBSCRIBE',
+        UserSuppressed = <any> 'USER_SUPPRESSED'
+    }
+}

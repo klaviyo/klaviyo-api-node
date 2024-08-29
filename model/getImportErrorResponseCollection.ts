@@ -14,7 +14,7 @@ import { CollectionLinks } from './collectionLinks';
 import { ImportErrorResponseObjectResource } from './importErrorResponseObjectResource';
 export class GetImportErrorResponseCollection {
     'data': Array<ImportErrorResponseObjectResource>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

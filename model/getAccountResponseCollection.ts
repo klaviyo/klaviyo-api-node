@@ -14,7 +14,7 @@ import { AccountResponseObjectResource } from './accountResponseObjectResource';
 import { CollectionLinks } from './collectionLinks';
 export class GetAccountResponseCollection {
     'data': Array<AccountResponseObjectResource>;
-    'links': CollectionLinks;
+    'links'?: CollectionLinks;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
