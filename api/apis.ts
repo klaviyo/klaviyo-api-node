@@ -40,7 +40,7 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axi
 export { RequestFile } from '../model/models';
 
 const revision =  "2024-07-15";
-const userAgent = "klaviyo-api-node/12.0.0";
+const userAgent = "klaviyo-api-node/12.0.1";
 
 export class RetryOptions {
 
