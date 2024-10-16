@@ -93,10 +93,10 @@ export class TagsApi {
      */
     public async createTag (tagCreateQuery: TagCreateQuery, ): Promise<{ response: AxiosResponse; body: PostTagResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/';
+        const localVarPath = this.basePath + '/api/tags';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -149,10 +149,10 @@ export class TagsApi {
      */
     public async createTagGroup (tagGroupCreateQuery: TagGroupCreateQuery, ): Promise<{ response: AxiosResponse; body: PostTagGroupResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/tag-groups/';
+        const localVarPath = this.basePath + '/api/tag-groups';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -198,250 +198,6 @@ export class TagsApi {
         );
     }
     /**
-     * Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
-     * @summary Create Tag Relationships Campaigns
-     * @param id * @param tagCampaignOp 
-     
-     */
-    public async createTagRelationshipsCampaigns (id: string, tagCampaignOp: TagCampaignOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/campaigns/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling createTagRelationshipsCampaigns.');
-        }
-
-        // verify required parameter 'tagCampaignOp' is not null or undefined
-        if (tagCampaignOp === null || tagCampaignOp === undefined) {
-            throw new Error('Required parameter tagCampaignOp was null or undefined when calling createTagRelationshipsCampaigns.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
-     * @summary Create Tag Relationships Flows
-     * @param id * @param tagFlowOp 
-     
-     */
-    public async createTagRelationshipsFlows (id: string, tagFlowOp: TagFlowOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/flows/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling createTagRelationshipsFlows.');
-        }
-
-        // verify required parameter 'tagFlowOp' is not null or undefined
-        if (tagFlowOp === null || tagFlowOp === undefined) {
-            throw new Error('Required parameter tagFlowOp was null or undefined when calling createTagRelationshipsFlows.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
-     * @summary Create Tag Relationships Lists
-     * @param id * @param tagListOp 
-     
-     */
-    public async createTagRelationshipsLists (id: string, tagListOp: TagListOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/lists/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling createTagRelationshipsLists.');
-        }
-
-        // verify required parameter 'tagListOp' is not null or undefined
-        if (tagListOp === null || tagListOp === undefined) {
-            throw new Error('Required parameter tagListOp was null or undefined when calling createTagRelationshipsLists.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagListOp, "TagListOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
-     * @summary Create Tag Relationships Segments
-     * @param id * @param tagSegmentOp 
-     
-     */
-    public async createTagRelationshipsSegments (id: string, tagSegmentOp: TagSegmentOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/segments/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling createTagRelationshipsSegments.');
-        }
-
-        // verify required parameter 'tagSegmentOp' is not null or undefined
-        if (tagSegmentOp === null || tagSegmentOp === undefined) {
-            throw new Error('Required parameter tagSegmentOp was null or undefined when calling createTagRelationshipsSegments.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
      * @summary Delete Tag
      * @param id The Tag ID
@@ -449,11 +205,11 @@ export class TagsApi {
      */
     public async deleteTag (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/'
+        const localVarPath = this.basePath + '/api/tags/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -504,11 +260,11 @@ export class TagsApi {
      */
     public async deleteTagGroup (id: string, ): Promise<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/tag-groups/{id}/'
+        const localVarPath = this.basePath + '/api/tag-groups/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -553,18 +309,18 @@ export class TagsApi {
         );
     }
     /**
-     * Remove a tag\'s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
-     * @summary Delete Tag Relationships Campaigns
-     * @param id * @param tagCampaignOp 
+     * Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
+     * @summary Get Campaign IDs for Tag
+     * @param id The Tag ID
      
      */
-    public async deleteTagRelationshipsCampaigns (id: string, tagCampaignOp: TagCampaignOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+    public async getCampaignIdsForTag (id: string, ): Promise<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/campaigns/'
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/campaigns'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -574,30 +330,25 @@ export class TagsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteTagRelationshipsCampaigns.');
-        }
-
-        // verify required parameter 'tagCampaignOp' is not null or undefined
-        if (tagCampaignOp === null || tagCampaignOp === undefined) {
-            throw new Error('Required parameter tagCampaignOp was null or undefined when calling deleteTagRelationshipsCampaigns.');
+            throw new Error('Required parameter id was null or undefined when calling getCampaignIdsForTag.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
-            method: 'DELETE',
+            method: 'GET',
             url: localVarPath,
             headers: localVarHeaderParams,
             params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
         }
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagCampaignRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -608,24 +359,24 @@ export class TagsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
+        return backOff<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Remove a tag\'s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
-     * @summary Delete Tag Relationships Flows
-     * @param id * @param tagFlowOp 
+     * Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
+     * @summary Get Flow IDs for Tag
+     * @param id The Tag ID
      
      */
-    public async deleteTagRelationshipsFlows (id: string, tagFlowOp: TagFlowOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+    public async getFlowIdsForTag (id: string, ): Promise<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/flows/'
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/flows'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -635,30 +386,25 @@ export class TagsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteTagRelationshipsFlows.');
-        }
-
-        // verify required parameter 'tagFlowOp' is not null or undefined
-        if (tagFlowOp === null || tagFlowOp === undefined) {
-            throw new Error('Required parameter tagFlowOp was null or undefined when calling deleteTagRelationshipsFlows.');
+            throw new Error('Required parameter id was null or undefined when calling getFlowIdsForTag.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
-            method: 'DELETE',
+            method: 'GET',
             url: localVarPath,
             headers: localVarHeaderParams,
             params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
         }
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagFlowRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -669,24 +415,24 @@ export class TagsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
+        return backOff<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
-     * @summary Delete Tag Relationships Lists
-     * @param id * @param tagListOp 
+     * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
+     * @summary Get List IDs for Tag
+     * @param id The Tag ID
      
      */
-    public async deleteTagRelationshipsLists (id: string, tagListOp: TagListOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+    public async getListIdsForTag (id: string, ): Promise<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/lists/'
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/lists'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -696,30 +442,25 @@ export class TagsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteTagRelationshipsLists.');
-        }
-
-        // verify required parameter 'tagListOp' is not null or undefined
-        if (tagListOp === null || tagListOp === undefined) {
-            throw new Error('Required parameter tagListOp was null or undefined when calling deleteTagRelationshipsLists.');
+            throw new Error('Required parameter id was null or undefined when calling getListIdsForTag.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
-            method: 'DELETE',
+            method: 'GET',
             url: localVarPath,
             headers: localVarHeaderParams,
             params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagListOp, "TagListOp")
         }
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagListRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -730,24 +471,24 @@ export class TagsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
+        return backOff<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Remove a tag\'s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
-     * @summary Delete Tag Relationships Segments
-     * @param id * @param tagSegmentOp 
+     * Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
+     * @summary Get Segment IDs for Tag
+     * @param id The Tag ID
      
      */
-    public async deleteTagRelationshipsSegments (id: string, tagSegmentOp: TagSegmentOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+    public async getSegmentIdsForTag (id: string, ): Promise<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/segments/'
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/segments'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -757,30 +498,25 @@ export class TagsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteTagRelationshipsSegments.');
-        }
-
-        // verify required parameter 'tagSegmentOp' is not null or undefined
-        if (tagSegmentOp === null || tagSegmentOp === undefined) {
-            throw new Error('Required parameter tagSegmentOp was null or undefined when calling deleteTagRelationshipsSegments.');
+            throw new Error('Required parameter id was null or undefined when calling getSegmentIdsForTag.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
-            method: 'DELETE',
+            method: 'GET',
             url: localVarPath,
             headers: localVarHeaderParams,
             params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
         }
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagSegmentRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -791,7 +527,7 @@ export class TagsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
+        return backOff<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
@@ -800,15 +536,15 @@ export class TagsApi {
      * Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag
      * @param id The Tag ID
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
     public async getTag (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, fieldsTag?: Array<'name'>, include?: Array<'tag-group'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/'
+        const localVarPath = this.basePath + '/api/tags/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -868,15 +604,15 @@ export class TagsApi {
      * Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Group
      * @param id The Tag Group ID
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagGroup (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/tag-groups/{id}/'
+        const localVarPath = this.basePath + '/api/tag-groups/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -925,18 +661,18 @@ export class TagsApi {
         );
     }
     /**
-     * Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
-     * @summary Get Tag Group Relationships Tags
-     * @param id 
-     
+     * Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * @summary Get Tag Group for Tag
+     * @param id The Tag ID
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
-    public async getTagGroupRelationshipsTags (id: string, ): Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }> {
+    public async getTagGroupForTag (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/tag-groups/{id}/relationships/tags/'
+        const localVarPath = this.basePath + '/api/tags/{id}/tag-group'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -946,7 +682,11 @@ export class TagsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagGroupRelationshipsTags.');
+            throw new Error('Required parameter id was null or undefined when calling getTagGroupForTag.');
+        }
+
+        if (options.fieldsTagGroup !== undefined) {
+            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'name' | 'exclusive' | 'default'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -960,11 +700,11 @@ export class TagsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupTagRelationshipsResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -975,24 +715,24 @@ export class TagsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }>(
+        return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
-     * @summary Get Tag Group Tags
-     * @param id 
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * @summary Get Tag Group ID for Tag
+     * @param id The Tag ID
+     
      */
-    public async getTagGroupTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
+    public async getTagGroupIdForTag (id: string, ): Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/tag-groups/{id}/tags/'
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/tag-group'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1002,11 +742,7 @@ export class TagsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagGroupTags.');
-        }
-
-        if (options.fieldsTag !== undefined) {
-            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
+            throw new Error('Required parameter id was null or undefined when calling getTagGroupIdForTag.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -1020,11 +756,11 @@ export class TagsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagTagGroupRelationshipsResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1035,7 +771,7 @@ export class TagsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
+        return backOff<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
@@ -1044,14 +780,14 @@ export class TagsApi {
      * List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tag Groups
      
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
     public async getTagGroups (options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, filter?: string, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/tag-groups/';
+        const localVarPath = this.basePath + '/api/tag-groups';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1107,18 +843,18 @@ export class TagsApi {
         );
     }
     /**
-     * Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
-     * @summary Get Tag Relationships Campaigns
-     * @param id 
+     * Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * @summary Get Tag IDs for Tag Group
+     * @param id The Tag Group ID
      
      */
-    public async getTagRelationshipsCampaigns (id: string, ): Promise<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }> {
+    public async getTagIdsForTagGroup (id: string, ): Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/campaigns/'
+        const localVarPath = this.basePath + '/api/tag-groups/{id}/relationships/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1128,7 +864,7 @@ export class TagsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsCampaigns.');
+            throw new Error('Required parameter id was null or undefined when calling getTagIdsForTagGroup.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -1142,11 +878,11 @@ export class TagsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagCampaignRelationshipsResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupTagRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1157,291 +893,7 @@ export class TagsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTagCampaignRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
-     * @summary Get Tag Relationships Flows
-     * @param id 
-     
-     */
-    public async getTagRelationshipsFlows (id: string, ): Promise<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/flows/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsFlows.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagFlowRelationshipsResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetTagFlowRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
-     * @summary Get Tag Relationships Lists
-     * @param id 
-     
-     */
-    public async getTagRelationshipsLists (id: string, ): Promise<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/lists/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsLists.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagListRelationshipsResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetTagListRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
-     * @summary Get Tag Relationships Segments
-     * @param id 
-     
-     */
-    public async getTagRelationshipsSegments (id: string, ): Promise<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/segments/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsSegments.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagSegmentRelationshipsResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetTagSegmentRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
-     * @summary Get Tag Relationships Tag Group
-     * @param id 
-     
-     */
-    public async getTagRelationshipsTagGroup (id: string, ): Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/relationships/tag-group/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagRelationshipsTagGroup.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagTagGroupRelationshipsResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
-     * @summary Get Tag Tag Group
-     * @param id 
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getTagTagGroup (id: string, options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/tags/{id}/tag-group/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getTagTagGroup.');
-        }
-
-        if (options.fieldsTagGroup !== undefined) {
-            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'name' | 'exclusive' | 'default'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetTagGroupResponse;  }>(
+        return backOff<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
@@ -1450,14 +902,14 @@ export class TagsApi {
      * List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
      * @summary Get Tags
      
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
     public async getTags (options: { fieldsTagGroup?: Array<'name' | 'exclusive' | 'default'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'tag-group'>, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/';
+        const localVarPath = this.basePath + '/api/tags';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1521,6 +973,554 @@ export class TagsApi {
         );
     }
     /**
+     * Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * @summary Get Tags for Tag Group
+     * @param id The Tag Group ID
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getTagsForTagGroup (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/tag-groups/{id}/tags'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTagsForTagGroup.');
+        }
+
+        if (options.fieldsTag !== undefined) {
+            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Remove a tag\'s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
+     * @summary Remove Tag from Campaigns
+     * @param id The Tag ID* @param tagCampaignOp 
+     
+     */
+    public async removeTagFromCampaigns (id: string, tagCampaignOp: TagCampaignOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/campaigns'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling removeTagFromCampaigns.');
+        }
+
+        // verify required parameter 'tagCampaignOp' is not null or undefined
+        if (tagCampaignOp === null || tagCampaignOp === undefined) {
+            throw new Error('Required parameter tagCampaignOp was null or undefined when calling removeTagFromCampaigns.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Remove a tag\'s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
+     * @summary Remove Tag from Flows
+     * @param id The Tag ID* @param tagFlowOp 
+     
+     */
+    public async removeTagFromFlows (id: string, tagFlowOp: TagFlowOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/flows'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling removeTagFromFlows.');
+        }
+
+        // verify required parameter 'tagFlowOp' is not null or undefined
+        if (tagFlowOp === null || tagFlowOp === undefined) {
+            throw new Error('Required parameter tagFlowOp was null or undefined when calling removeTagFromFlows.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
+     * @summary Remove Tag from Lists
+     * @param id The Tag ID* @param tagListOp 
+     
+     */
+    public async removeTagFromLists (id: string, tagListOp: TagListOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/lists'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling removeTagFromLists.');
+        }
+
+        // verify required parameter 'tagListOp' is not null or undefined
+        if (tagListOp === null || tagListOp === undefined) {
+            throw new Error('Required parameter tagListOp was null or undefined when calling removeTagFromLists.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagListOp, "TagListOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Remove a tag\'s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
+     * @summary Remove Tag from Segments
+     * @param id The Tag ID* @param tagSegmentOp 
+     
+     */
+    public async removeTagFromSegments (id: string, tagSegmentOp: TagSegmentOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/segments'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling removeTagFromSegments.');
+        }
+
+        // verify required parameter 'tagSegmentOp' is not null or undefined
+        if (tagSegmentOp === null || tagSegmentOp === undefined) {
+            throw new Error('Required parameter tagSegmentOp was null or undefined when calling removeTagFromSegments.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
+     * @summary Tag Campaigns
+     * @param id The Tag ID* @param tagCampaignOp 
+     
+     */
+    public async tagCampaigns (id: string, tagCampaignOp: TagCampaignOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/campaigns'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling tagCampaigns.');
+        }
+
+        // verify required parameter 'tagCampaignOp' is not null or undefined
+        if (tagCampaignOp === null || tagCampaignOp === undefined) {
+            throw new Error('Required parameter tagCampaignOp was null or undefined when calling tagCampaigns.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagCampaignOp, "TagCampaignOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
+     * @summary Tag Flows
+     * @param id The Tag ID* @param tagFlowOp 
+     
+     */
+    public async tagFlows (id: string, tagFlowOp: TagFlowOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/flows'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling tagFlows.');
+        }
+
+        // verify required parameter 'tagFlowOp' is not null or undefined
+        if (tagFlowOp === null || tagFlowOp === undefined) {
+            throw new Error('Required parameter tagFlowOp was null or undefined when calling tagFlows.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagFlowOp, "TagFlowOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
+     * @summary Tag Lists
+     * @param id The Tag ID* @param tagListOp 
+     
+     */
+    public async tagLists (id: string, tagListOp: TagListOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/lists'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling tagLists.');
+        }
+
+        // verify required parameter 'tagListOp' is not null or undefined
+        if (tagListOp === null || tagListOp === undefined) {
+            throw new Error('Required parameter tagListOp was null or undefined when calling tagLists.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagListOp, "TagListOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
+     * @summary Tag Segments
+     * @param id The Tag ID* @param tagSegmentOp 
+     
+     */
+    public async tagSegments (id: string, tagSegmentOp: TagSegmentOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/tags/{id}/relationships/segments'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling tagSegments.');
+        }
+
+        // verify required parameter 'tagSegmentOp' is not null or undefined
+        if (tagSegmentOp === null || tagSegmentOp === undefined) {
+            throw new Error('Required parameter tagSegmentOp was null or undefined when calling tagSegments.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(tagSegmentOp, "TagSegmentOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Update the tag with the given tag ID.  Only a tag\'s `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
      * @summary Update Tag
      * @param id The Tag ID* @param tagUpdateQuery 
@@ -1528,11 +1528,11 @@ export class TagsApi {
      */
     public async updateTag (id: string, tagUpdateQuery: TagUpdateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/tags/{id}/'
+        const localVarPath = this.basePath + '/api/tags/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1589,11 +1589,11 @@ export class TagsApi {
      */
     public async updateTagGroup (id: string, tagGroupUpdateQuery: TagGroupUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchTagGroupResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/tag-groups/{id}/'
+        const localVarPath = this.basePath + '/api/tag-groups/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1647,40 +1647,200 @@ export class TagsApi {
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.createTagRelationshipsCampaigns}
+     * Alias of {@link TagsApi.getCampaignIdsForTag}
      *
-     * @deprecated Use {@link TagsApi.createTagRelationshipsCampaigns} instead
+     * @deprecated Use {@link TagsApi.getCampaignIdsForTag} instead
      */
-    createTagRelationshipsCampaign: typeof TagsApi.prototype.createTagRelationshipsCampaigns;
+    getTagRelationshipsCampaigns: typeof TagsApi.prototype.getCampaignIdsForTag;
 }
-TagsApi.prototype.createTagRelationshipsCampaign = TagsApi.prototype.createTagRelationshipsCampaigns
+TagsApi.prototype.getTagRelationshipsCampaigns = TagsApi.prototype.getCampaignIdsForTag
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.createTagRelationshipsFlows}
+     * Alias of {@link TagsApi.getFlowIdsForTag}
      *
-     * @deprecated Use {@link TagsApi.createTagRelationshipsFlows} instead
+     * @deprecated Use {@link TagsApi.getFlowIdsForTag} instead
      */
-    createTagRelationshipsFlow: typeof TagsApi.prototype.createTagRelationshipsFlows;
+    getTagRelationshipsFlows: typeof TagsApi.prototype.getFlowIdsForTag;
 }
-TagsApi.prototype.createTagRelationshipsFlow = TagsApi.prototype.createTagRelationshipsFlows
+TagsApi.prototype.getTagRelationshipsFlows = TagsApi.prototype.getFlowIdsForTag
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.createTagRelationshipsLists}
+     * Alias of {@link TagsApi.getListIdsForTag}
      *
-     * @deprecated Use {@link TagsApi.createTagRelationshipsLists} instead
+     * @deprecated Use {@link TagsApi.getListIdsForTag} instead
      */
-    createTagRelationshipsList: typeof TagsApi.prototype.createTagRelationshipsLists;
+    getTagRelationshipsLists: typeof TagsApi.prototype.getListIdsForTag;
 }
-TagsApi.prototype.createTagRelationshipsList = TagsApi.prototype.createTagRelationshipsLists
+TagsApi.prototype.getTagRelationshipsLists = TagsApi.prototype.getListIdsForTag
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.createTagRelationshipsSegments}
+     * Alias of {@link TagsApi.getSegmentIdsForTag}
      *
-     * @deprecated Use {@link TagsApi.createTagRelationshipsSegments} instead
+     * @deprecated Use {@link TagsApi.getSegmentIdsForTag} instead
      */
-    createTagRelationshipsSegment: typeof TagsApi.prototype.createTagRelationshipsSegments;
+    getTagRelationshipsSegments: typeof TagsApi.prototype.getSegmentIdsForTag;
 }
-TagsApi.prototype.createTagRelationshipsSegment = TagsApi.prototype.createTagRelationshipsSegments
+TagsApi.prototype.getTagRelationshipsSegments = TagsApi.prototype.getSegmentIdsForTag
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.getTagGroupForTag}
+     *
+     * @deprecated Use {@link TagsApi.getTagGroupForTag} instead
+     */
+    getTagTagGroup: typeof TagsApi.prototype.getTagGroupForTag;
+}
+TagsApi.prototype.getTagTagGroup = TagsApi.prototype.getTagGroupForTag
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.getTagGroupIdForTag}
+     *
+     * @deprecated Use {@link TagsApi.getTagGroupIdForTag} instead
+     */
+    getTagRelationshipsTagGroup: typeof TagsApi.prototype.getTagGroupIdForTag;
+}
+TagsApi.prototype.getTagRelationshipsTagGroup = TagsApi.prototype.getTagGroupIdForTag
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.getTagIdsForTagGroup}
+     *
+     * @deprecated Use {@link TagsApi.getTagIdsForTagGroup} instead
+     */
+    getTagGroupRelationshipsTags: typeof TagsApi.prototype.getTagIdsForTagGroup;
+}
+TagsApi.prototype.getTagGroupRelationshipsTags = TagsApi.prototype.getTagIdsForTagGroup
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.getTagsForTagGroup}
+     *
+     * @deprecated Use {@link TagsApi.getTagsForTagGroup} instead
+     */
+    getTagGroupTags: typeof TagsApi.prototype.getTagsForTagGroup;
+}
+TagsApi.prototype.getTagGroupTags = TagsApi.prototype.getTagsForTagGroup
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.removeTagFromCampaigns}
+     *
+     * @deprecated Use {@link TagsApi.removeTagFromCampaigns} instead
+     */
+    deleteTagRelationshipsCampaigns: typeof TagsApi.prototype.removeTagFromCampaigns;
+}
+TagsApi.prototype.deleteTagRelationshipsCampaigns = TagsApi.prototype.removeTagFromCampaigns
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.removeTagFromFlows}
+     *
+     * @deprecated Use {@link TagsApi.removeTagFromFlows} instead
+     */
+    deleteTagRelationshipsFlows: typeof TagsApi.prototype.removeTagFromFlows;
+}
+TagsApi.prototype.deleteTagRelationshipsFlows = TagsApi.prototype.removeTagFromFlows
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.removeTagFromLists}
+     *
+     * @deprecated Use {@link TagsApi.removeTagFromLists} instead
+     */
+    deleteTagRelationshipsLists: typeof TagsApi.prototype.removeTagFromLists;
+}
+TagsApi.prototype.deleteTagRelationshipsLists = TagsApi.prototype.removeTagFromLists
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.removeTagFromSegments}
+     *
+     * @deprecated Use {@link TagsApi.removeTagFromSegments} instead
+     */
+    deleteTagRelationshipsSegments: typeof TagsApi.prototype.removeTagFromSegments;
+}
+TagsApi.prototype.deleteTagRelationshipsSegments = TagsApi.prototype.removeTagFromSegments
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagCampaigns}
+     *
+     * @deprecated Use {@link TagsApi.tagCampaigns} instead
+     */
+    createTagRelationshipsCampaigns: typeof TagsApi.prototype.tagCampaigns;
+}
+TagsApi.prototype.createTagRelationshipsCampaigns = TagsApi.prototype.tagCampaigns
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagCampaigns}
+     *
+     * @deprecated Use {@link TagsApi.tagCampaigns} instead
+     */
+    createTagRelationshipsCampaign: typeof TagsApi.prototype.tagCampaigns;
+}
+TagsApi.prototype.createTagRelationshipsCampaign = TagsApi.prototype.tagCampaigns
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagFlows}
+     *
+     * @deprecated Use {@link TagsApi.tagFlows} instead
+     */
+    createTagRelationshipsFlows: typeof TagsApi.prototype.tagFlows;
+}
+TagsApi.prototype.createTagRelationshipsFlows = TagsApi.prototype.tagFlows
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagFlows}
+     *
+     * @deprecated Use {@link TagsApi.tagFlows} instead
+     */
+    createTagRelationshipsFlow: typeof TagsApi.prototype.tagFlows;
+}
+TagsApi.prototype.createTagRelationshipsFlow = TagsApi.prototype.tagFlows
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagLists}
+     *
+     * @deprecated Use {@link TagsApi.tagLists} instead
+     */
+    createTagRelationshipsLists: typeof TagsApi.prototype.tagLists;
+}
+TagsApi.prototype.createTagRelationshipsLists = TagsApi.prototype.tagLists
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagLists}
+     *
+     * @deprecated Use {@link TagsApi.tagLists} instead
+     */
+    createTagRelationshipsList: typeof TagsApi.prototype.tagLists;
+}
+TagsApi.prototype.createTagRelationshipsList = TagsApi.prototype.tagLists
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagSegments}
+     *
+     * @deprecated Use {@link TagsApi.tagSegments} instead
+     */
+    createTagRelationshipsSegments: typeof TagsApi.prototype.tagSegments;
+}
+TagsApi.prototype.createTagRelationshipsSegments = TagsApi.prototype.tagSegments
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagSegments}
+     *
+     * @deprecated Use {@link TagsApi.tagSegments} instead
+     */
+    createTagRelationshipsSegment: typeof TagsApi.prototype.tagSegments;
+}
+TagsApi.prototype.createTagRelationshipsSegment = TagsApi.prototype.tagSegments

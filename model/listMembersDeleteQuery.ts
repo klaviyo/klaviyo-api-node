@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { GetListRelationshipsResponseCollectionDataInner } from './getListRelationshipsResponseCollectionDataInner';
+import { GetEventProfileRelationshipResponseData } from './getEventProfileRelationshipResponseData';
 export class ListMembersDeleteQuery {
-    'data': Array<GetListRelationshipsResponseCollectionDataInner>;
+    'data': Array<GetEventProfileRelationshipResponseData>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetListRelationshipsResponseCollectionDataInner>"
+            "type": "Array<GetEventProfileRelationshipResponseData>"
         }    ];
 
     static getAttributeTypeMap() {

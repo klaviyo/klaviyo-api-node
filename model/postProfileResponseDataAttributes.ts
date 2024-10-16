@@ -39,7 +39,7 @@ export class PostProfileResponseDataAttributes {
     */
     'organization'?: string | null;
     /**
-    * The locale of the profile, in the IETF BCP 47 language tag format (language-extlang-script-region-variant-extension-privateuse)
+    * The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
     */
     'locale'?: string | null;
     /**

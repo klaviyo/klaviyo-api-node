@@ -71,10 +71,10 @@ export class DataPrivacyApi {
      */
     public async requestProfileDeletion (dataPrivacyCreateDeletionJobQuery: DataPrivacyCreateDeletionJobQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/data-privacy-deletion-jobs/';
+        const localVarPath = this.basePath + '/api/data-privacy-deletion-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';

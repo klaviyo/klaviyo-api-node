@@ -10,13 +10,13 @@
  */
 
 import { RequestFile } from './models';
-import { TextBlock } from './textBlock';
+import { UniversalContentCreateQueryResourceObjectAttributesDefinition } from './universalContentCreateQueryResourceObjectAttributesDefinition';
 export class UniversalContentCreateQueryResourceObjectAttributes {
     /**
     * The name for this universal content
     */
     'name': string;
-    'definition': TextBlock;
+    'definition': UniversalContentCreateQueryResourceObjectAttributesDefinition;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -28,7 +28,7 @@ export class UniversalContentCreateQueryResourceObjectAttributes {
         {
             "name": "definition",
             "baseName": "definition",
-            "type": "TextBlock"
+            "type": "UniversalContentCreateQueryResourceObjectAttributesDefinition"
         }    ];
 
     static getAttributeTypeMap() {

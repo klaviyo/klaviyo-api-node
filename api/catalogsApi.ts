@@ -122,6 +122,632 @@ export class CatalogsApi {
     }
 
     /**
+     * Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Add Category to Catalog Item
+     * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogItemCategoryOp 
+     
+     */
+    public async addCategoryToCatalogItem (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling addCategoryToCatalogItem.');
+        }
+
+        // verify required parameter 'catalogItemCategoryOp' is not null or undefined
+        if (catalogItemCategoryOp === null || catalogItemCategoryOp === undefined) {
+            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling addCategoryToCatalogItem.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a new item relationship for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Add Items to Catalog Category
+     * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogCategoryItemOp 
+     
+     */
+    public async addItemsToCatalogCategory (id: string, catalogCategoryItemOp: CatalogCategoryItemOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling addItemsToCatalogCategory.');
+        }
+
+        // verify required parameter 'catalogCategoryItemOp' is not null or undefined
+        if (catalogCategoryItemOp === null || catalogCategoryItemOp === undefined) {
+            throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling addItemsToCatalogCategory.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Create Catalog Categories
+     * @param catalogCategoryCreateJobCreateQuery 
+     
+     */
+    public async bulkCreateCatalogCategories (catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogCategoryCreateJobCreateQuery' is not null or undefined
+        if (catalogCategoryCreateJobCreateQuery === null || catalogCategoryCreateJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogCategoryCreateJobCreateQuery was null or undefined when calling bulkCreateCatalogCategories.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogCategoryCreateJobCreateQuery, "CatalogCategoryCreateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogCategoryCreateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Create Catalog Items
+     * @param catalogItemCreateJobCreateQuery 
+     
+     */
+    public async bulkCreateCatalogItems (catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogItemCreateJobCreateQuery' is not null or undefined
+        if (catalogItemCreateJobCreateQuery === null || catalogItemCreateJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogItemCreateJobCreateQuery was null or undefined when calling bulkCreateCatalogItems.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogItemCreateJobCreateQuery, "CatalogItemCreateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogItemCreateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Create Catalog Variants
+     * @param catalogVariantCreateJobCreateQuery 
+     
+     */
+    public async bulkCreateCatalogVariants (catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogVariantCreateJobCreateQuery' is not null or undefined
+        if (catalogVariantCreateJobCreateQuery === null || catalogVariantCreateJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogVariantCreateJobCreateQuery was null or undefined when calling bulkCreateCatalogVariants.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogVariantCreateJobCreateQuery, "CatalogVariantCreateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogVariantCreateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Delete Catalog Categories
+     * @param catalogCategoryDeleteJobCreateQuery 
+     
+     */
+    public async bulkDeleteCatalogCategories (catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogCategoryDeleteJobCreateQuery' is not null or undefined
+        if (catalogCategoryDeleteJobCreateQuery === null || catalogCategoryDeleteJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogCategoryDeleteJobCreateQuery was null or undefined when calling bulkDeleteCatalogCategories.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogCategoryDeleteJobCreateQuery, "CatalogCategoryDeleteJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogCategoryDeleteJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Delete Catalog Items
+     * @param catalogItemDeleteJobCreateQuery 
+     
+     */
+    public async bulkDeleteCatalogItems (catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogItemDeleteJobCreateQuery' is not null or undefined
+        if (catalogItemDeleteJobCreateQuery === null || catalogItemDeleteJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogItemDeleteJobCreateQuery was null or undefined when calling bulkDeleteCatalogItems.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogItemDeleteJobCreateQuery, "CatalogItemDeleteJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogItemDeleteJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Delete Catalog Variants
+     * @param catalogVariantDeleteJobCreateQuery 
+     
+     */
+    public async bulkDeleteCatalogVariants (catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogVariantDeleteJobCreateQuery' is not null or undefined
+        if (catalogVariantDeleteJobCreateQuery === null || catalogVariantDeleteJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogVariantDeleteJobCreateQuery was null or undefined when calling bulkDeleteCatalogVariants.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogVariantDeleteJobCreateQuery, "CatalogVariantDeleteJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogVariantDeleteJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Update Catalog Categories
+     * @param catalogCategoryUpdateJobCreateQuery 
+     
+     */
+    public async bulkUpdateCatalogCategories (catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-update-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogCategoryUpdateJobCreateQuery' is not null or undefined
+        if (catalogCategoryUpdateJobCreateQuery === null || catalogCategoryUpdateJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogCategoryUpdateJobCreateQuery was null or undefined when calling bulkUpdateCatalogCategories.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogCategoryUpdateJobCreateQuery, "CatalogCategoryUpdateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogCategoryUpdateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Update Catalog Items
+     * @param catalogItemUpdateJobCreateQuery 
+     
+     */
+    public async bulkUpdateCatalogItems (catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-update-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogItemUpdateJobCreateQuery' is not null or undefined
+        if (catalogItemUpdateJobCreateQuery === null || catalogItemUpdateJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogItemUpdateJobCreateQuery was null or undefined when calling bulkUpdateCatalogItems.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogItemUpdateJobCreateQuery, "CatalogItemUpdateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogItemUpdateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Bulk Update Catalog Variants
+     * @param catalogVariantUpdateJobCreateQuery 
+     
+     */
+    public async bulkUpdateCatalogVariants (catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-update-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'catalogVariantUpdateJobCreateQuery' is not null or undefined
+        if (catalogVariantUpdateJobCreateQuery === null || catalogVariantUpdateJobCreateQuery === undefined) {
+            throw new Error('Required parameter catalogVariantUpdateJobCreateQuery was null or undefined when calling bulkUpdateCatalogVariants.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogVariantUpdateJobCreateQuery, "CatalogVariantUpdateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogVariantUpdateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Subscribe a profile to receive back in stock notifications. Check out [our Back in Stock API guide](https://developers.klaviyo.com/en/docs/how_to_set_up_custom_back_in_stock) for more details.  This endpoint is specifically designed to be called from server-side applications. To create subscriptions from client-side contexts, use [POST /client/back-in-stock-subscriptions](https://developers.klaviyo.com/en/reference/create_client_back_in_stock_subscription).<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:write` `profiles:write`
      * @summary Create Back In Stock Subscription
      * @param serverBISSubscriptionCreateQuery 
@@ -129,10 +755,10 @@ export class CatalogsApi {
      */
     public async createBackInStockSubscription (serverBISSubscriptionCreateQuery: ServerBISSubscriptionCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/back-in-stock-subscriptions/';
+        const localVarPath = this.basePath + '/api/back-in-stock-subscriptions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -184,10 +810,10 @@ export class CatalogsApi {
      */
     public async createCatalogCategory (catalogCategoryCreateQuery: CatalogCategoryCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogCategoryResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-categories/';
+        const localVarPath = this.basePath + '/api/catalog-categories';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -233,67 +859,6 @@ export class CatalogsApi {
         );
     }
     /**
-     * Create a new item relationship for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Create Catalog Category Relationships Items
-     * @param id * @param catalogCategoryItemOp 
-     
-     */
-    public async createCatalogCategoryRelationshipsItems (id: string, catalogCategoryItemOp: CatalogCategoryItemOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling createCatalogCategoryRelationshipsItems.');
-        }
-
-        // verify required parameter 'catalogCategoryItemOp' is not null or undefined
-        if (catalogCategoryItemOp === null || catalogCategoryItemOp === undefined) {
-            throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling createCatalogCategoryRelationshipsItems.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Create a new catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
      * @summary Create Catalog Item
      * @param catalogItemCreateQuery 
@@ -301,10 +866,10 @@ export class CatalogsApi {
      */
     public async createCatalogItem (catalogItemCreateQuery: CatalogItemCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogItemResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-items/';
+        const localVarPath = this.basePath + '/api/catalog-items';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -350,67 +915,6 @@ export class CatalogsApi {
         );
     }
     /**
-     * Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Create Catalog Item Relationships Categories
-     * @param id * @param catalogItemCategoryOp 
-     
-     */
-    public async createCatalogItemRelationshipsCategories (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling createCatalogItemRelationshipsCategories.');
-        }
-
-        // verify required parameter 'catalogItemCategoryOp' is not null or undefined
-        if (catalogItemCategoryOp === null || catalogItemCategoryOp === undefined) {
-            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling createCatalogItemRelationshipsCategories.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Create a new variant for a related catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
      * @summary Create Catalog Variant
      * @param catalogVariantCreateQuery 
@@ -418,10 +922,10 @@ export class CatalogsApi {
      */
     public async createCatalogVariant (catalogVariantCreateQuery: CatalogVariantCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogVariantResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variants/';
+        const localVarPath = this.basePath + '/api/catalog-variants';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -474,11 +978,11 @@ export class CatalogsApi {
      */
     public async deleteCatalogCategory (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -522,67 +1026,6 @@ export class CatalogsApi {
         );
     }
     /**
-     * Delete item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Delete Catalog Category Relationships Items
-     * @param id * @param catalogCategoryItemOp 
-     
-     */
-    public async deleteCatalogCategoryRelationshipsItems (id: string, catalogCategoryItemOp: CatalogCategoryItemOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteCatalogCategoryRelationshipsItems.');
-        }
-
-        // verify required parameter 'catalogCategoryItemOp' is not null or undefined
-        if (catalogCategoryItemOp === null || catalogCategoryItemOp === undefined) {
-            throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling deleteCatalogCategoryRelationshipsItems.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'DELETE',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Delete a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
      * @summary Delete Catalog Item
      * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
@@ -590,11 +1033,11 @@ export class CatalogsApi {
      */
     public async deleteCatalogItem (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-items/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -638,67 +1081,6 @@ export class CatalogsApi {
         );
     }
     /**
-     * Delete catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Delete Catalog Item Relationships Categories
-     * @param id * @param catalogItemCategoryOp 
-     
-     */
-    public async deleteCatalogItemRelationshipsCategories (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteCatalogItemRelationshipsCategories.');
-        }
-
-        // verify required parameter 'catalogItemCategoryOp' is not null or undefined
-        if (catalogItemCategoryOp === null || catalogItemCategoryOp === undefined) {
-            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling deleteCatalogItemRelationshipsCategories.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'DELETE',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Delete a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
      * @summary Delete Catalog Variant
      * @param id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
@@ -706,11 +1088,11 @@ export class CatalogsApi {
      */
     public async deleteCatalogVariant (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variants/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-variants/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -754,17 +1136,399 @@ export class CatalogsApi {
         );
     }
     /**
+     * Get a catalog item bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Bulk Create Catalog Items Job
+     * @param jobId ID of the job to retrieve.
+     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     */
+    public async getBulkCreateCatalogItemsJob (jobId: string, options: { fieldsCatalogItemBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-create-jobs/{job_id}'
+            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling getBulkCreateCatalogItemsJob.');
+        }
+
+        if (options.fieldsCatalogItemBulkCreateJob !== undefined) {
+            localVarQueryParameters['fields[catalog-item-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        if (options.fieldsCatalogItem !== undefined) {
+            localVarQueryParameters['fields[catalog-item]'] = ObjectSerializer.serialize(options.fieldsCatalogItem, "Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'items'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemCreateJobResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Bulk Create Catalog Items Jobs
+     
+     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     */
+    public async getBulkCreateCatalogItemsJobs (options: { fieldsCatalogItemBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsCatalogItemBulkCreateJob !== undefined) {
+            localVarQueryParameters['fields[catalog-item-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemCreateJobResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get a catalog item bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Bulk Delete Catalog Items Job
+     * @param jobId ID of the job to retrieve.
+     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getBulkDeleteCatalogItemsJob (jobId: string, options: { fieldsCatalogItemBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-delete-jobs/{job_id}'
+            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling getBulkDeleteCatalogItemsJob.');
+        }
+
+        if (options.fieldsCatalogItemBulkDeleteJob !== undefined) {
+            localVarQueryParameters['fields[catalog-item-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkDeleteJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemDeleteJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Bulk Delete Catalog Items Jobs
+     
+     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     */
+    public async getBulkDeleteCatalogItemsJobs (options: { fieldsCatalogItemBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsCatalogItemBulkDeleteJob !== undefined) {
+            localVarQueryParameters['fields[catalog-item-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkDeleteJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemDeleteJobResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get a catalog item bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Bulk Update Catalog Items Job
+     * @param jobId ID of the job to retrieve.
+     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     */
+    public async getBulkUpdateCatalogItemsJob (jobId: string, options: { fieldsCatalogItemBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-update-jobs/{job_id}'
+            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling getBulkUpdateCatalogItemsJob.');
+        }
+
+        if (options.fieldsCatalogItemBulkUpdateJob !== undefined) {
+            localVarQueryParameters['fields[catalog-item-bulk-update-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkUpdateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        if (options.fieldsCatalogItem !== undefined) {
+            localVarQueryParameters['fields[catalog-item]'] = ObjectSerializer.serialize(options.fieldsCatalogItem, "Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'items'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemUpdateJobResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Bulk Update Catalog Items Jobs
+     
+     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     */
+    public async getBulkUpdateCatalogItemsJobs (options: { fieldsCatalogItemBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-item-bulk-update-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsCatalogItemBulkUpdateJob !== undefined) {
+            localVarQueryParameters['fields[catalog-item-bulk-update-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkUpdateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemUpdateJobResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Categories
      
-     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
     public async getCatalogCategories (options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-categories/';
+        const localVarPath = this.basePath + '/api/catalog-categories';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -823,15 +1587,15 @@ export class CatalogsApi {
      * Get a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Category
      * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCatalogCategory (id: string, options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -880,158 +1644,18 @@ export class CatalogsApi {
         );
     }
     /**
-     * Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Catalog Category Items
-     * @param id 
-     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
-     */
-    public async getCatalogCategoryItems (id: string, options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, include?: Array<'variants'>, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/items/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCatalogCategoryItems.');
-        }
-
-        if (options.fieldsCatalogItem !== undefined) {
-            localVarQueryParameters['fields[catalog-item]'] = ObjectSerializer.serialize(options.fieldsCatalogItem, "Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
-        }
-
-        if (options.fieldsCatalogVariant !== undefined) {
-            localVarQueryParameters['fields[catalog-variant]'] = ObjectSerializer.serialize(options.fieldsCatalogVariant, "Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'variants'>");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemResponseCollectionCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all items in the given category ID.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Catalog Category Relationships Items
-     * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
-     */
-    public async getCatalogCategoryRelationshipsItems (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCatalogCategoryRelationshipsItems.');
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogCategoryItemListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get a specific catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Item
      * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
     public async getCatalogItem (id: string, options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-items/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1088,221 +1712,17 @@ export class CatalogsApi {
         );
     }
     /**
-     * Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Catalog Item Categories
-     * @param id 
-     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
-     */
-    public async getCatalogItemCategories (id: string, options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/categories/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCatalogItemCategories.');
-        }
-
-        if (options.fieldsCatalogCategory !== undefined) {
-            localVarQueryParameters['fields[catalog-category]'] = ObjectSerializer.serialize(options.fieldsCatalogCategory, "Array<'external_id' | 'name' | 'updated'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogCategoryResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all catalog categories that a particular item is in.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Catalog Item Relationships Categories
-     * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
-     */
-    public async getCatalogItemRelationshipsCategories (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCatalogItemRelationshipsCategories.');
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemCategoryListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Catalog Item Variants
-     * @param id 
-     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
-     */
-    public async getCatalogItemVariants (id: string, options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/variants/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCatalogItemVariants.');
-        }
-
-        if (options.fieldsCatalogVariant !== undefined) {
-            localVarQueryParameters['fields[catalog-variant]'] = ObjectSerializer.serialize(options.fieldsCatalogVariant, "Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogVariantResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Items
      
-     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
     public async getCatalogItems (options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, include?: Array<'variants'>, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-items/';
+        const localVarPath = this.basePath + '/api/catalog-items';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1369,15 +1789,15 @@ export class CatalogsApi {
      * Get a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Variant
      * @param id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
-     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCatalogVariant (id: string, options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variants/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-variants/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1429,14 +1849,14 @@ export class CatalogsApi {
      * Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Catalog Variants
      
-     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
     public async getCatalogVariants (options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variants/';
+        const localVarPath = this.basePath + '/api/catalog-variants';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1492,18 +1912,150 @@ export class CatalogsApi {
         );
     }
     /**
+     * Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Categories for Catalog Item
+     * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+     * @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     */
+    public async getCategoriesForCatalogItem (id: string, options: { fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-items/{id}/categories'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCategoriesForCatalogItem.');
+        }
+
+        if (options.fieldsCatalogCategory !== undefined) {
+            localVarQueryParameters['fields[catalog-category]'] = ObjectSerializer.serialize(options.fieldsCatalogCategory, "Array<'external_id' | 'name' | 'updated'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogCategoryResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogCategoryResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get all catalog categories that a particular item is in.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Category IDs for Catalog Item
+     * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     */
+    public async getCategoryIdsForCatalogItem (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCategoryIdsForCatalogItem.');
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemCategoryListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemCategoryListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Get a catalog category bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
     public async getCreateCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, include?: Array<'categories'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-create-jobs/{job_id}/'
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-create-jobs/{job_id}'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1563,14 +2115,14 @@ export class CatalogsApi {
      * Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Categories Jobs
      
-     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCatalogCategoryBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getCreateCategoriesJobs (options: { fieldsCatalogCategoryBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryCreateJobResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-create-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-create-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1622,148 +2174,18 @@ export class CatalogsApi {
         );
     }
     /**
-     * Get a catalog item bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Create Items Job
-     * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
-     */
-    public async getCreateItemsJob (jobId: string, options: { fieldsCatalogItemBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-create-jobs/{job_id}/'
-            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'jobId' is not null or undefined
-        if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling getCreateItemsJob.');
-        }
-
-        if (options.fieldsCatalogItemBulkCreateJob !== undefined) {
-            localVarQueryParameters['fields[catalog-item-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        if (options.fieldsCatalogItem !== undefined) {
-            localVarQueryParameters['fields[catalog-item]'] = ObjectSerializer.serialize(options.fieldsCatalogItem, "Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'items'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemCreateJobResponseCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Create Items Jobs
-     
-     * @param fieldsCatalogItemBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
-     */
-    public async getCreateItemsJobs (options: { fieldsCatalogItemBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-create-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        if (options.fieldsCatalogItemBulkCreateJob !== undefined) {
-            localVarQueryParameters['fields[catalog-item-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemCreateJobResponseCollectionCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemCreateJobResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get a catalog variant bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
     public async getCreateVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-create-jobs/{job_id}/'
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-create-jobs/{job_id}'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1823,14 +2245,14 @@ export class CatalogsApi {
      * Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Create Variants Jobs
      
-     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCatalogVariantBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getCreateVariantsJobs (options: { fieldsCatalogVariantBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantCreateJobResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-create-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-create-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1885,15 +2307,15 @@ export class CatalogsApi {
      * Get a catalog category bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-delete-jobs/{job_id}/'
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-delete-jobs/{job_id}'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1945,14 +2367,14 @@ export class CatalogsApi {
      * Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Categories Jobs
      
-     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCatalogCategoryBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getDeleteCategoriesJobs (options: { fieldsCatalogCategoryBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryDeleteJobResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-delete-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-delete-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2004,140 +2426,18 @@ export class CatalogsApi {
         );
     }
     /**
-     * Get a catalog item bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Delete Items Job
-     * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getDeleteItemsJob (jobId: string, options: { fieldsCatalogItemBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-delete-jobs/{job_id}/'
-            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'jobId' is not null or undefined
-        if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling getDeleteItemsJob.');
-        }
-
-        if (options.fieldsCatalogItemBulkDeleteJob !== undefined) {
-            localVarQueryParameters['fields[catalog-item-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkDeleteJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemDeleteJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Delete Items Jobs
-     
-     * @param fieldsCatalogItemBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
-     */
-    public async getDeleteItemsJobs (options: { fieldsCatalogItemBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-delete-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        if (options.fieldsCatalogItemBulkDeleteJob !== undefined) {
-            localVarQueryParameters['fields[catalog-item-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkDeleteJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemDeleteJobResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemDeleteJobResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get a catalog variant bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getDeleteVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-delete-jobs/{job_id}/'
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-delete-jobs/{job_id}'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2189,14 +2489,14 @@ export class CatalogsApi {
      * Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Delete Variants Jobs
      
-     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCatalogVariantBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getDeleteVariantsJobs (options: { fieldsCatalogVariantBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantDeleteJobResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-delete-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-delete-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2248,18 +2548,158 @@ export class CatalogsApi {
         );
     }
     /**
+     * Get all items in the given category ID.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Item IDs for Catalog Category
+     * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     */
+    public async getItemIdsForCatalogCategory (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getItemIdsForCatalogCategory.');
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogCategoryItemListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogCategoryItemListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Items for Catalog Category
+     * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+     * @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     */
+    public async getItemsForCatalogCategory (id: string, options: { fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, include?: Array<'variants'>, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}/items'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getItemsForCatalogCategory.');
+        }
+
+        if (options.fieldsCatalogItem !== undefined) {
+            localVarQueryParameters['fields[catalog-item]'] = ObjectSerializer.serialize(options.fieldsCatalogItem, "Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
+        }
+
+        if (options.fieldsCatalogVariant !== undefined) {
+            localVarQueryParameters['fields[catalog-variant]'] = ObjectSerializer.serialize(options.fieldsCatalogVariant, "Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'variants'>");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCatalogItemResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Get a catalog category bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Categories Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogCategory For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
     public async getUpdateCategoriesJob (jobId: string, options: { fieldsCatalogCategoryBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogCategory?: Array<'external_id' | 'name' | 'updated'>, include?: Array<'categories'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-update-jobs/{job_id}/'
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-update-jobs/{job_id}'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2319,14 +2759,14 @@ export class CatalogsApi {
      * Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Categories Jobs
      
-     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCatalogCategoryBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getUpdateCategoriesJobs (options: { fieldsCatalogCategoryBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogCategoryUpdateJobResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-update-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-category-bulk-update-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2378,148 +2818,18 @@ export class CatalogsApi {
         );
     }
     /**
-     * Get a catalog item bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Update Items Job
-     * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogItem For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
-     */
-    public async getUpdateItemsJob (jobId: string, options: { fieldsCatalogItemBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogItem?: Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'items'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-update-jobs/{job_id}/'
-            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'jobId' is not null or undefined
-        if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling getUpdateItemsJob.');
-        }
-
-        if (options.fieldsCatalogItemBulkUpdateJob !== undefined) {
-            localVarQueryParameters['fields[catalog-item-bulk-update-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkUpdateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        if (options.fieldsCatalogItem !== undefined) {
-            localVarQueryParameters['fields[catalog-item]'] = ObjectSerializer.serialize(options.fieldsCatalogItem, "Array<'external_id' | 'title' | 'description' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'items'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemUpdateJobResponseCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
-     * @summary Get Update Items Jobs
-     
-     * @param fieldsCatalogItemBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
-     */
-    public async getUpdateItemsJobs (options: { fieldsCatalogItemBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-update-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        if (options.fieldsCatalogItemBulkUpdateJob !== undefined) {
-            localVarQueryParameters['fields[catalog-item-bulk-update-job]'] = ObjectSerializer.serialize(options.fieldsCatalogItemBulkUpdateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogItemUpdateJobResponseCollectionCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCatalogItemUpdateJobResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get a catalog variate bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Variants Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
     public async getUpdateVariantsJob (jobId: string, options: { fieldsCatalogVariantBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, include?: Array<'variants'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-update-jobs/{job_id}/'
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-update-jobs/{job_id}'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2579,14 +2889,14 @@ export class CatalogsApi {
      * Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
      * @summary Get Update Variants Jobs
      
-     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCatalogVariantBulkUpdateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getUpdateVariantsJobs (options: { fieldsCatalogVariantBulkUpdateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantUpdateJobResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-update-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-variant-bulk-update-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2638,17 +2948,18 @@ export class CatalogsApi {
         );
     }
     /**
-     * Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Create Categories Job
-     * @param catalogCategoryCreateJobCreateQuery 
-     
+     * Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+     * @summary Get Variants for Catalog Item
+     * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+     * @param fieldsCatalogVariant For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
-    public async spawnCreateCategoriesJob (catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }> {
+    public async getVariantsForCatalogItem (id: string, options: { fieldsCatalogVariant?: Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-create-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-items/{id}/variants'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2656,28 +2967,43 @@ export class CatalogsApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
 
-        // verify required parameter 'catalogCategoryCreateJobCreateQuery' is not null or undefined
-        if (catalogCategoryCreateJobCreateQuery === null || catalogCategoryCreateJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogCategoryCreateJobCreateQuery was null or undefined when calling spawnCreateCategoriesJob.');
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getVariantsForCatalogItem.');
+        }
+
+        if (options.fieldsCatalogVariant !== undefined) {
+            localVarQueryParameters['fields[catalog-variant]'] = ObjectSerializer.serialize(options.fieldsCatalogVariant, "Array<'external_id' | 'title' | 'description' | 'sku' | 'inventory_policy' | 'inventory_quantity' | 'price' | 'url' | 'image_full_url' | 'image_thumbnail_url' | 'images' | 'custom_metadata' | 'published' | 'created' | 'updated'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
-            method: 'POST',
+            method: 'GET',
             url: localVarPath,
             headers: localVarHeaderParams,
             params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogCategoryCreateJobCreateQuery, "CatalogCategoryCreateJobCreateQuery")
         }
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogCategoryCreateJobResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCatalogVariantResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -2688,23 +3014,24 @@ export class CatalogsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCatalogCategoryCreateJobResponse;  }>(
+        return backOff<{ response: AxiosResponse; body: GetCatalogVariantResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Create Items Job
-     * @param catalogItemCreateJobCreateQuery 
+     * Delete catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Remove Categories from Catalog Item
+     * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogItemCategoryOp 
      
      */
-    public async spawnCreateItemsJob (catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }> {
+    public async removeCategoriesFromCatalogItem (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-create-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2712,28 +3039,32 @@ export class CatalogsApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
 
-        // verify required parameter 'catalogItemCreateJobCreateQuery' is not null or undefined
-        if (catalogItemCreateJobCreateQuery === null || catalogItemCreateJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogItemCreateJobCreateQuery was null or undefined when calling spawnCreateItemsJob.');
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling removeCategoriesFromCatalogItem.');
+        }
+
+        // verify required parameter 'catalogItemCategoryOp' is not null or undefined
+        if (catalogItemCategoryOp === null || catalogItemCategoryOp === undefined) {
+            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling removeCategoriesFromCatalogItem.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
-            method: 'POST',
+            method: 'DELETE',
             url: localVarPath,
             headers: localVarHeaderParams,
             params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogItemCreateJobCreateQuery, "CatalogItemCreateJobCreateQuery")
+            data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
         }
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogItemCreateJobResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -2744,23 +3075,24 @@ export class CatalogsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCatalogItemCreateJobResponse;  }>(
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Create Variants Job
-     * @param catalogVariantCreateJobCreateQuery 
+     * Delete item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Remove Items from Catalog Category
+     * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogCategoryItemOp 
      
      */
-    public async spawnCreateVariantsJob (catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }> {
+    public async removeItemsFromCatalogCategory (id: string, catalogCategoryItemOp: CatalogCategoryItemOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-create-jobs/';
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -2768,28 +3100,32 @@ export class CatalogsApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
 
-        // verify required parameter 'catalogVariantCreateJobCreateQuery' is not null or undefined
-        if (catalogVariantCreateJobCreateQuery === null || catalogVariantCreateJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogVariantCreateJobCreateQuery was null or undefined when calling spawnCreateVariantsJob.');
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling removeItemsFromCatalogCategory.');
+        }
+
+        // verify required parameter 'catalogCategoryItemOp' is not null or undefined
+        if (catalogCategoryItemOp === null || catalogCategoryItemOp === undefined) {
+            throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling removeItemsFromCatalogCategory.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
-            method: 'POST',
+            method: 'DELETE',
             url: localVarPath,
             headers: localVarHeaderParams,
             params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogVariantCreateJobCreateQuery, "CatalogVariantCreateJobCreateQuery")
+            data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
         }
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogVariantCreateJobResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -2800,343 +3136,7 @@ export class CatalogsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCatalogVariantCreateJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Delete Categories Job
-     * @param catalogCategoryDeleteJobCreateQuery 
-     
-     */
-    public async spawnDeleteCategoriesJob (catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-delete-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'catalogCategoryDeleteJobCreateQuery' is not null or undefined
-        if (catalogCategoryDeleteJobCreateQuery === null || catalogCategoryDeleteJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogCategoryDeleteJobCreateQuery was null or undefined when calling spawnDeleteCategoriesJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogCategoryDeleteJobCreateQuery, "CatalogCategoryDeleteJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogCategoryDeleteJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCatalogCategoryDeleteJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Delete Items Job
-     * @param catalogItemDeleteJobCreateQuery 
-     
-     */
-    public async spawnDeleteItemsJob (catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-delete-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'catalogItemDeleteJobCreateQuery' is not null or undefined
-        if (catalogItemDeleteJobCreateQuery === null || catalogItemDeleteJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogItemDeleteJobCreateQuery was null or undefined when calling spawnDeleteItemsJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogItemDeleteJobCreateQuery, "CatalogItemDeleteJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogItemDeleteJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCatalogItemDeleteJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Delete Variants Job
-     * @param catalogVariantDeleteJobCreateQuery 
-     
-     */
-    public async spawnDeleteVariantsJob (catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-delete-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'catalogVariantDeleteJobCreateQuery' is not null or undefined
-        if (catalogVariantDeleteJobCreateQuery === null || catalogVariantDeleteJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogVariantDeleteJobCreateQuery was null or undefined when calling spawnDeleteVariantsJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogVariantDeleteJobCreateQuery, "CatalogVariantDeleteJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogVariantDeleteJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCatalogVariantDeleteJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Update Categories Job
-     * @param catalogCategoryUpdateJobCreateQuery 
-     
-     */
-    public async spawnUpdateCategoriesJob (catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-category-bulk-update-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'catalogCategoryUpdateJobCreateQuery' is not null or undefined
-        if (catalogCategoryUpdateJobCreateQuery === null || catalogCategoryUpdateJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogCategoryUpdateJobCreateQuery was null or undefined when calling spawnUpdateCategoriesJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogCategoryUpdateJobCreateQuery, "CatalogCategoryUpdateJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogCategoryUpdateJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCatalogCategoryUpdateJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Update Items Job
-     * @param catalogItemUpdateJobCreateQuery 
-     
-     */
-    public async spawnUpdateItemsJob (catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-item-bulk-update-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'catalogItemUpdateJobCreateQuery' is not null or undefined
-        if (catalogItemUpdateJobCreateQuery === null || catalogItemUpdateJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogItemUpdateJobCreateQuery was null or undefined when calling spawnUpdateItemsJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogItemUpdateJobCreateQuery, "CatalogItemUpdateJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogItemUpdateJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCatalogItemUpdateJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Spawn Update Variants Job
-     * @param catalogVariantUpdateJobCreateQuery 
-     
-     */
-    public async spawnUpdateVariantsJob (catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-variant-bulk-update-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'catalogVariantUpdateJobCreateQuery' is not null or undefined
-        if (catalogVariantUpdateJobCreateQuery === null || catalogVariantUpdateJobCreateQuery === undefined) {
-            throw new Error('Required parameter catalogVariantUpdateJobCreateQuery was null or undefined when calling spawnUpdateVariantsJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogVariantUpdateJobCreateQuery, "CatalogVariantUpdateJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCatalogVariantUpdateJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCatalogVariantUpdateJobResponse;  }>(
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
@@ -3149,11 +3149,11 @@ export class CatalogsApi {
      */
     public async updateCatalogCategory (id: string, catalogCategoryUpdateQuery: CatalogCategoryUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchCatalogCategoryResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -3204,67 +3204,6 @@ export class CatalogsApi {
         );
     }
     /**
-     * Update item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Update Catalog Category Relationships Items
-     * @param id * @param catalogCategoryItemOp 
-     
-     */
-    public async updateCatalogCategoryRelationshipsItems (id: string, catalogCategoryItemOp: CatalogCategoryItemOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateCatalogCategoryRelationshipsItems.');
-        }
-
-        // verify required parameter 'catalogCategoryItemOp' is not null or undefined
-        if (catalogCategoryItemOp === null || catalogCategoryItemOp === undefined) {
-            throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling updateCatalogCategoryRelationshipsItems.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'PATCH',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Update a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
      * @summary Update Catalog Item
      * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogItemUpdateQuery 
@@ -3272,11 +3211,11 @@ export class CatalogsApi {
      */
     public async updateCatalogItem (id: string, catalogItemUpdateQuery: CatalogItemUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchCatalogItemResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-items/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -3327,67 +3266,6 @@ export class CatalogsApi {
         );
     }
     /**
-     * Update catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Update Catalog Item Relationships Categories
-     * @param id * @param catalogItemCategoryOp 
-     
-     */
-    public async updateCatalogItemRelationshipsCategories (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateCatalogItemRelationshipsCategories.');
-        }
-
-        // verify required parameter 'catalogItemCategoryOp' is not null or undefined
-        if (catalogItemCategoryOp === null || catalogItemCategoryOp === undefined) {
-            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling updateCatalogItemRelationshipsCategories.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'PATCH',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Update a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
      * @summary Update Catalog Variant
      * @param id The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogVariantUpdateQuery 
@@ -3395,11 +3273,11 @@ export class CatalogsApi {
      */
     public async updateCatalogVariant (id: string, catalogVariantUpdateQuery: CatalogVariantUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchCatalogVariantResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/catalog-variants/{id}/'
+        const localVarPath = this.basePath + '/api/catalog-variants/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -3449,27 +3327,489 @@ export class CatalogsApi {
             this.session.getRetryOptions()
         );
     }
+    /**
+     * Update catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Update Categories for Catalog Item
+     * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogItemCategoryOp 
+     
+     */
+    public async updateCategoriesForCatalogItem (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateCategoriesForCatalogItem.');
+        }
+
+        // verify required parameter 'catalogItemCategoryOp' is not null or undefined
+        if (catalogItemCategoryOp === null || catalogItemCategoryOp === undefined) {
+            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling updateCategoriesForCatalogItem.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogItemCategoryOp, "CatalogItemCategoryOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Update item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
+     * @summary Update Items for Catalog Category
+     * @param id The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogCategoryItemOp 
+     
+     */
+    public async updateItemsForCatalogCategory (id: string, catalogCategoryItemOp: CatalogCategoryItemOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/catalog-categories/{id}/relationships/items'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateItemsForCatalogCategory.');
+        }
+
+        // verify required parameter 'catalogCategoryItemOp' is not null or undefined
+        if (catalogCategoryItemOp === null || catalogCategoryItemOp === undefined) {
+            throw new Error('Required parameter catalogCategoryItemOp was null or undefined when calling updateItemsForCatalogCategory.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(catalogCategoryItemOp, "CatalogCategoryItemOp")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
 }
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.createCatalogCategoryRelationshipsItems}
+     * Alias of {@link CatalogsApi.addCategoryToCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.createCatalogCategoryRelationshipsItems} instead
+     * @deprecated Use {@link CatalogsApi.addCategoryToCatalogItem} instead
      */
-    createCatalogCategoryRelationshipsItem: typeof CatalogsApi.prototype.createCatalogCategoryRelationshipsItems;
+    createCatalogItemRelationshipsCategories: typeof CatalogsApi.prototype.addCategoryToCatalogItem;
 }
-CatalogsApi.prototype.createCatalogCategoryRelationshipsItem = CatalogsApi.prototype.createCatalogCategoryRelationshipsItems
+CatalogsApi.prototype.createCatalogItemRelationshipsCategories = CatalogsApi.prototype.addCategoryToCatalogItem
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.createCatalogItemRelationshipsCategories}
+     * Alias of {@link CatalogsApi.addCategoryToCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.createCatalogItemRelationshipsCategories} instead
+     * @deprecated Use {@link CatalogsApi.addCategoryToCatalogItem} instead
      */
-    createCatalogItemRelationshipsCategory: typeof CatalogsApi.prototype.createCatalogItemRelationshipsCategories;
+    createCatalogItemRelationshipsCategory: typeof CatalogsApi.prototype.addCategoryToCatalogItem;
 }
-CatalogsApi.prototype.createCatalogItemRelationshipsCategory = CatalogsApi.prototype.createCatalogItemRelationshipsCategories
+CatalogsApi.prototype.createCatalogItemRelationshipsCategory = CatalogsApi.prototype.addCategoryToCatalogItem
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.addItemsToCatalogCategory}
+     *
+     * @deprecated Use {@link CatalogsApi.addItemsToCatalogCategory} instead
+     */
+    createCatalogCategoryRelationshipsItems: typeof CatalogsApi.prototype.addItemsToCatalogCategory;
+}
+CatalogsApi.prototype.createCatalogCategoryRelationshipsItems = CatalogsApi.prototype.addItemsToCatalogCategory
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.addItemsToCatalogCategory}
+     *
+     * @deprecated Use {@link CatalogsApi.addItemsToCatalogCategory} instead
+     */
+    createCatalogCategoryRelationshipsItem: typeof CatalogsApi.prototype.addItemsToCatalogCategory;
+}
+CatalogsApi.prototype.createCatalogCategoryRelationshipsItem = CatalogsApi.prototype.addItemsToCatalogCategory
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkCreateCatalogCategories}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkCreateCatalogCategories} instead
+     */
+    spawnCreateCategoriesJob: typeof CatalogsApi.prototype.bulkCreateCatalogCategories;
+}
+CatalogsApi.prototype.spawnCreateCategoriesJob = CatalogsApi.prototype.bulkCreateCatalogCategories
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkCreateCatalogCategories}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkCreateCatalogCategories} instead
+     */
+    createCatalogCategoryBulkCreateJob: typeof CatalogsApi.prototype.bulkCreateCatalogCategories;
+}
+CatalogsApi.prototype.createCatalogCategoryBulkCreateJob = CatalogsApi.prototype.bulkCreateCatalogCategories
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkCreateCatalogItems}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkCreateCatalogItems} instead
+     */
+    spawnCreateItemsJob: typeof CatalogsApi.prototype.bulkCreateCatalogItems;
+}
+CatalogsApi.prototype.spawnCreateItemsJob = CatalogsApi.prototype.bulkCreateCatalogItems
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkCreateCatalogItems}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkCreateCatalogItems} instead
+     */
+    createCatalogItemBulkCreateJob: typeof CatalogsApi.prototype.bulkCreateCatalogItems;
+}
+CatalogsApi.prototype.createCatalogItemBulkCreateJob = CatalogsApi.prototype.bulkCreateCatalogItems
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkCreateCatalogVariants}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkCreateCatalogVariants} instead
+     */
+    spawnCreateVariantsJob: typeof CatalogsApi.prototype.bulkCreateCatalogVariants;
+}
+CatalogsApi.prototype.spawnCreateVariantsJob = CatalogsApi.prototype.bulkCreateCatalogVariants
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkCreateCatalogVariants}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkCreateCatalogVariants} instead
+     */
+    createCatalogVariantBulkCreateJob: typeof CatalogsApi.prototype.bulkCreateCatalogVariants;
+}
+CatalogsApi.prototype.createCatalogVariantBulkCreateJob = CatalogsApi.prototype.bulkCreateCatalogVariants
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkDeleteCatalogCategories}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkDeleteCatalogCategories} instead
+     */
+    spawnDeleteCategoriesJob: typeof CatalogsApi.prototype.bulkDeleteCatalogCategories;
+}
+CatalogsApi.prototype.spawnDeleteCategoriesJob = CatalogsApi.prototype.bulkDeleteCatalogCategories
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkDeleteCatalogCategories}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkDeleteCatalogCategories} instead
+     */
+    createCatalogCategoryBulkDeleteJob: typeof CatalogsApi.prototype.bulkDeleteCatalogCategories;
+}
+CatalogsApi.prototype.createCatalogCategoryBulkDeleteJob = CatalogsApi.prototype.bulkDeleteCatalogCategories
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkDeleteCatalogItems}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkDeleteCatalogItems} instead
+     */
+    spawnDeleteItemsJob: typeof CatalogsApi.prototype.bulkDeleteCatalogItems;
+}
+CatalogsApi.prototype.spawnDeleteItemsJob = CatalogsApi.prototype.bulkDeleteCatalogItems
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkDeleteCatalogItems}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkDeleteCatalogItems} instead
+     */
+    createCatalogItemBulkDeleteJob: typeof CatalogsApi.prototype.bulkDeleteCatalogItems;
+}
+CatalogsApi.prototype.createCatalogItemBulkDeleteJob = CatalogsApi.prototype.bulkDeleteCatalogItems
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkDeleteCatalogVariants}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkDeleteCatalogVariants} instead
+     */
+    spawnDeleteVariantsJob: typeof CatalogsApi.prototype.bulkDeleteCatalogVariants;
+}
+CatalogsApi.prototype.spawnDeleteVariantsJob = CatalogsApi.prototype.bulkDeleteCatalogVariants
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkDeleteCatalogVariants}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkDeleteCatalogVariants} instead
+     */
+    createCatalogVariantBulkDeleteJob: typeof CatalogsApi.prototype.bulkDeleteCatalogVariants;
+}
+CatalogsApi.prototype.createCatalogVariantBulkDeleteJob = CatalogsApi.prototype.bulkDeleteCatalogVariants
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkUpdateCatalogCategories}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkUpdateCatalogCategories} instead
+     */
+    spawnUpdateCategoriesJob: typeof CatalogsApi.prototype.bulkUpdateCatalogCategories;
+}
+CatalogsApi.prototype.spawnUpdateCategoriesJob = CatalogsApi.prototype.bulkUpdateCatalogCategories
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkUpdateCatalogCategories}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkUpdateCatalogCategories} instead
+     */
+    createCatalogCategoryBulkUpdateJob: typeof CatalogsApi.prototype.bulkUpdateCatalogCategories;
+}
+CatalogsApi.prototype.createCatalogCategoryBulkUpdateJob = CatalogsApi.prototype.bulkUpdateCatalogCategories
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkUpdateCatalogItems}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkUpdateCatalogItems} instead
+     */
+    spawnUpdateItemsJob: typeof CatalogsApi.prototype.bulkUpdateCatalogItems;
+}
+CatalogsApi.prototype.spawnUpdateItemsJob = CatalogsApi.prototype.bulkUpdateCatalogItems
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkUpdateCatalogItems}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkUpdateCatalogItems} instead
+     */
+    createCatalogItemBulkUpdateJob: typeof CatalogsApi.prototype.bulkUpdateCatalogItems;
+}
+CatalogsApi.prototype.createCatalogItemBulkUpdateJob = CatalogsApi.prototype.bulkUpdateCatalogItems
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkUpdateCatalogVariants}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkUpdateCatalogVariants} instead
+     */
+    spawnUpdateVariantsJob: typeof CatalogsApi.prototype.bulkUpdateCatalogVariants;
+}
+CatalogsApi.prototype.spawnUpdateVariantsJob = CatalogsApi.prototype.bulkUpdateCatalogVariants
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.bulkUpdateCatalogVariants}
+     *
+     * @deprecated Use {@link CatalogsApi.bulkUpdateCatalogVariants} instead
+     */
+    createCatalogVariantBulkUpdateJob: typeof CatalogsApi.prototype.bulkUpdateCatalogVariants;
+}
+CatalogsApi.prototype.createCatalogVariantBulkUpdateJob = CatalogsApi.prototype.bulkUpdateCatalogVariants
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkCreateCatalogItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkCreateCatalogItemsJob} instead
+     */
+    getCreateItemsJob: typeof CatalogsApi.prototype.getBulkCreateCatalogItemsJob;
+}
+CatalogsApi.prototype.getCreateItemsJob = CatalogsApi.prototype.getBulkCreateCatalogItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkCreateCatalogItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkCreateCatalogItemsJob} instead
+     */
+    getCatalogItemBulkCreateJob: typeof CatalogsApi.prototype.getBulkCreateCatalogItemsJob;
+}
+CatalogsApi.prototype.getCatalogItemBulkCreateJob = CatalogsApi.prototype.getBulkCreateCatalogItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkCreateCatalogItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkCreateCatalogItemsJobs} instead
+     */
+    getCreateItemsJobs: typeof CatalogsApi.prototype.getBulkCreateCatalogItemsJobs;
+}
+CatalogsApi.prototype.getCreateItemsJobs = CatalogsApi.prototype.getBulkCreateCatalogItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkCreateCatalogItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkCreateCatalogItemsJobs} instead
+     */
+    getCatalogItemBulkCreateJobs: typeof CatalogsApi.prototype.getBulkCreateCatalogItemsJobs;
+}
+CatalogsApi.prototype.getCatalogItemBulkCreateJobs = CatalogsApi.prototype.getBulkCreateCatalogItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkDeleteCatalogItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkDeleteCatalogItemsJob} instead
+     */
+    getDeleteItemsJob: typeof CatalogsApi.prototype.getBulkDeleteCatalogItemsJob;
+}
+CatalogsApi.prototype.getDeleteItemsJob = CatalogsApi.prototype.getBulkDeleteCatalogItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkDeleteCatalogItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkDeleteCatalogItemsJob} instead
+     */
+    getCatalogItemBulkDeleteJob: typeof CatalogsApi.prototype.getBulkDeleteCatalogItemsJob;
+}
+CatalogsApi.prototype.getCatalogItemBulkDeleteJob = CatalogsApi.prototype.getBulkDeleteCatalogItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkDeleteCatalogItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkDeleteCatalogItemsJobs} instead
+     */
+    getDeleteItemsJobs: typeof CatalogsApi.prototype.getBulkDeleteCatalogItemsJobs;
+}
+CatalogsApi.prototype.getDeleteItemsJobs = CatalogsApi.prototype.getBulkDeleteCatalogItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkDeleteCatalogItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkDeleteCatalogItemsJobs} instead
+     */
+    getCatalogItemBulkDeleteJobs: typeof CatalogsApi.prototype.getBulkDeleteCatalogItemsJobs;
+}
+CatalogsApi.prototype.getCatalogItemBulkDeleteJobs = CatalogsApi.prototype.getBulkDeleteCatalogItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkUpdateCatalogItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkUpdateCatalogItemsJob} instead
+     */
+    getUpdateItemsJob: typeof CatalogsApi.prototype.getBulkUpdateCatalogItemsJob;
+}
+CatalogsApi.prototype.getUpdateItemsJob = CatalogsApi.prototype.getBulkUpdateCatalogItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkUpdateCatalogItemsJob}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkUpdateCatalogItemsJob} instead
+     */
+    getCatalogItemBulkUpdateJob: typeof CatalogsApi.prototype.getBulkUpdateCatalogItemsJob;
+}
+CatalogsApi.prototype.getCatalogItemBulkUpdateJob = CatalogsApi.prototype.getBulkUpdateCatalogItemsJob
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkUpdateCatalogItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkUpdateCatalogItemsJobs} instead
+     */
+    getUpdateItemsJobs: typeof CatalogsApi.prototype.getBulkUpdateCatalogItemsJobs;
+}
+CatalogsApi.prototype.getUpdateItemsJobs = CatalogsApi.prototype.getBulkUpdateCatalogItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getBulkUpdateCatalogItemsJobs}
+     *
+     * @deprecated Use {@link CatalogsApi.getBulkUpdateCatalogItemsJobs} instead
+     */
+    getCatalogItemBulkUpdateJobs: typeof CatalogsApi.prototype.getBulkUpdateCatalogItemsJobs;
+}
+CatalogsApi.prototype.getCatalogItemBulkUpdateJobs = CatalogsApi.prototype.getBulkUpdateCatalogItemsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCategoriesForCatalogItem}
+     *
+     * @deprecated Use {@link CatalogsApi.getCategoriesForCatalogItem} instead
+     */
+    getCatalogItemCategories: typeof CatalogsApi.prototype.getCategoriesForCatalogItem;
+}
+CatalogsApi.prototype.getCatalogItemCategories = CatalogsApi.prototype.getCategoriesForCatalogItem
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getCategoryIdsForCatalogItem}
+     *
+     * @deprecated Use {@link CatalogsApi.getCategoryIdsForCatalogItem} instead
+     */
+    getCatalogItemRelationshipsCategories: typeof CatalogsApi.prototype.getCategoryIdsForCatalogItem;
+}
+CatalogsApi.prototype.getCatalogItemRelationshipsCategories = CatalogsApi.prototype.getCategoryIdsForCatalogItem
 
 export interface CatalogsApi {
     /**
@@ -3490,26 +3830,6 @@ export interface CatalogsApi {
     getCatalogCategoryBulkCreateJobs: typeof CatalogsApi.prototype.getCreateCategoriesJobs;
 }
 CatalogsApi.prototype.getCatalogCategoryBulkCreateJobs = CatalogsApi.prototype.getCreateCategoriesJobs
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.getCreateItemsJob}
-     *
-     * @deprecated Use {@link CatalogsApi.getCreateItemsJob} instead
-     */
-    getCatalogItemBulkCreateJob: typeof CatalogsApi.prototype.getCreateItemsJob;
-}
-CatalogsApi.prototype.getCatalogItemBulkCreateJob = CatalogsApi.prototype.getCreateItemsJob
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.getCreateItemsJobs}
-     *
-     * @deprecated Use {@link CatalogsApi.getCreateItemsJobs} instead
-     */
-    getCatalogItemBulkCreateJobs: typeof CatalogsApi.prototype.getCreateItemsJobs;
-}
-CatalogsApi.prototype.getCatalogItemBulkCreateJobs = CatalogsApi.prototype.getCreateItemsJobs
 
 export interface CatalogsApi {
     /**
@@ -3553,26 +3873,6 @@ CatalogsApi.prototype.getCatalogCategoryBulkDeleteJobs = CatalogsApi.prototype.g
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.getDeleteItemsJob}
-     *
-     * @deprecated Use {@link CatalogsApi.getDeleteItemsJob} instead
-     */
-    getCatalogItemBulkDeleteJob: typeof CatalogsApi.prototype.getDeleteItemsJob;
-}
-CatalogsApi.prototype.getCatalogItemBulkDeleteJob = CatalogsApi.prototype.getDeleteItemsJob
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.getDeleteItemsJobs}
-     *
-     * @deprecated Use {@link CatalogsApi.getDeleteItemsJobs} instead
-     */
-    getCatalogItemBulkDeleteJobs: typeof CatalogsApi.prototype.getDeleteItemsJobs;
-}
-CatalogsApi.prototype.getCatalogItemBulkDeleteJobs = CatalogsApi.prototype.getDeleteItemsJobs
-
-export interface CatalogsApi {
-    /**
      * Alias of {@link CatalogsApi.getDeleteVariantsJob}
      *
      * @deprecated Use {@link CatalogsApi.getDeleteVariantsJob} instead
@@ -3590,6 +3890,26 @@ export interface CatalogsApi {
     getCatalogVariantBulkDeleteJobs: typeof CatalogsApi.prototype.getDeleteVariantsJobs;
 }
 CatalogsApi.prototype.getCatalogVariantBulkDeleteJobs = CatalogsApi.prototype.getDeleteVariantsJobs
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getItemIdsForCatalogCategory}
+     *
+     * @deprecated Use {@link CatalogsApi.getItemIdsForCatalogCategory} instead
+     */
+    getCatalogCategoryRelationshipsItems: typeof CatalogsApi.prototype.getItemIdsForCatalogCategory;
+}
+CatalogsApi.prototype.getCatalogCategoryRelationshipsItems = CatalogsApi.prototype.getItemIdsForCatalogCategory
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.getItemsForCatalogCategory}
+     *
+     * @deprecated Use {@link CatalogsApi.getItemsForCatalogCategory} instead
+     */
+    getCatalogCategoryItems: typeof CatalogsApi.prototype.getItemsForCatalogCategory;
+}
+CatalogsApi.prototype.getCatalogCategoryItems = CatalogsApi.prototype.getItemsForCatalogCategory
 
 export interface CatalogsApi {
     /**
@@ -3613,26 +3933,6 @@ CatalogsApi.prototype.getCatalogCategoryBulkUpdateJobs = CatalogsApi.prototype.g
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.getUpdateItemsJob}
-     *
-     * @deprecated Use {@link CatalogsApi.getUpdateItemsJob} instead
-     */
-    getCatalogItemBulkUpdateJob: typeof CatalogsApi.prototype.getUpdateItemsJob;
-}
-CatalogsApi.prototype.getCatalogItemBulkUpdateJob = CatalogsApi.prototype.getUpdateItemsJob
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.getUpdateItemsJobs}
-     *
-     * @deprecated Use {@link CatalogsApi.getUpdateItemsJobs} instead
-     */
-    getCatalogItemBulkUpdateJobs: typeof CatalogsApi.prototype.getUpdateItemsJobs;
-}
-CatalogsApi.prototype.getCatalogItemBulkUpdateJobs = CatalogsApi.prototype.getUpdateItemsJobs
-
-export interface CatalogsApi {
-    /**
      * Alias of {@link CatalogsApi.getUpdateVariantsJob}
      *
      * @deprecated Use {@link CatalogsApi.getUpdateVariantsJob} instead
@@ -3653,90 +3953,50 @@ CatalogsApi.prototype.getCatalogVariantBulkUpdateJobs = CatalogsApi.prototype.ge
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.spawnCreateCategoriesJob}
+     * Alias of {@link CatalogsApi.getVariantsForCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.spawnCreateCategoriesJob} instead
+     * @deprecated Use {@link CatalogsApi.getVariantsForCatalogItem} instead
      */
-    createCatalogCategoryBulkCreateJob: typeof CatalogsApi.prototype.spawnCreateCategoriesJob;
+    getCatalogItemVariants: typeof CatalogsApi.prototype.getVariantsForCatalogItem;
 }
-CatalogsApi.prototype.createCatalogCategoryBulkCreateJob = CatalogsApi.prototype.spawnCreateCategoriesJob
+CatalogsApi.prototype.getCatalogItemVariants = CatalogsApi.prototype.getVariantsForCatalogItem
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.spawnCreateItemsJob}
+     * Alias of {@link CatalogsApi.removeCategoriesFromCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.spawnCreateItemsJob} instead
+     * @deprecated Use {@link CatalogsApi.removeCategoriesFromCatalogItem} instead
      */
-    createCatalogItemBulkCreateJob: typeof CatalogsApi.prototype.spawnCreateItemsJob;
+    deleteCatalogItemRelationshipsCategories: typeof CatalogsApi.prototype.removeCategoriesFromCatalogItem;
 }
-CatalogsApi.prototype.createCatalogItemBulkCreateJob = CatalogsApi.prototype.spawnCreateItemsJob
+CatalogsApi.prototype.deleteCatalogItemRelationshipsCategories = CatalogsApi.prototype.removeCategoriesFromCatalogItem
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.spawnCreateVariantsJob}
+     * Alias of {@link CatalogsApi.removeItemsFromCatalogCategory}
      *
-     * @deprecated Use {@link CatalogsApi.spawnCreateVariantsJob} instead
+     * @deprecated Use {@link CatalogsApi.removeItemsFromCatalogCategory} instead
      */
-    createCatalogVariantBulkCreateJob: typeof CatalogsApi.prototype.spawnCreateVariantsJob;
+    deleteCatalogCategoryRelationshipsItems: typeof CatalogsApi.prototype.removeItemsFromCatalogCategory;
 }
-CatalogsApi.prototype.createCatalogVariantBulkCreateJob = CatalogsApi.prototype.spawnCreateVariantsJob
+CatalogsApi.prototype.deleteCatalogCategoryRelationshipsItems = CatalogsApi.prototype.removeItemsFromCatalogCategory
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.spawnDeleteCategoriesJob}
+     * Alias of {@link CatalogsApi.updateCategoriesForCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.spawnDeleteCategoriesJob} instead
+     * @deprecated Use {@link CatalogsApi.updateCategoriesForCatalogItem} instead
      */
-    createCatalogCategoryBulkDeleteJob: typeof CatalogsApi.prototype.spawnDeleteCategoriesJob;
+    updateCatalogItemRelationshipsCategories: typeof CatalogsApi.prototype.updateCategoriesForCatalogItem;
 }
-CatalogsApi.prototype.createCatalogCategoryBulkDeleteJob = CatalogsApi.prototype.spawnDeleteCategoriesJob
+CatalogsApi.prototype.updateCatalogItemRelationshipsCategories = CatalogsApi.prototype.updateCategoriesForCatalogItem
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.spawnDeleteItemsJob}
+     * Alias of {@link CatalogsApi.updateItemsForCatalogCategory}
      *
-     * @deprecated Use {@link CatalogsApi.spawnDeleteItemsJob} instead
+     * @deprecated Use {@link CatalogsApi.updateItemsForCatalogCategory} instead
      */
-    createCatalogItemBulkDeleteJob: typeof CatalogsApi.prototype.spawnDeleteItemsJob;
+    updateCatalogCategoryRelationshipsItems: typeof CatalogsApi.prototype.updateItemsForCatalogCategory;
 }
-CatalogsApi.prototype.createCatalogItemBulkDeleteJob = CatalogsApi.prototype.spawnDeleteItemsJob
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.spawnDeleteVariantsJob}
-     *
-     * @deprecated Use {@link CatalogsApi.spawnDeleteVariantsJob} instead
-     */
-    createCatalogVariantBulkDeleteJob: typeof CatalogsApi.prototype.spawnDeleteVariantsJob;
-}
-CatalogsApi.prototype.createCatalogVariantBulkDeleteJob = CatalogsApi.prototype.spawnDeleteVariantsJob
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.spawnUpdateCategoriesJob}
-     *
-     * @deprecated Use {@link CatalogsApi.spawnUpdateCategoriesJob} instead
-     */
-    createCatalogCategoryBulkUpdateJob: typeof CatalogsApi.prototype.spawnUpdateCategoriesJob;
-}
-CatalogsApi.prototype.createCatalogCategoryBulkUpdateJob = CatalogsApi.prototype.spawnUpdateCategoriesJob
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.spawnUpdateItemsJob}
-     *
-     * @deprecated Use {@link CatalogsApi.spawnUpdateItemsJob} instead
-     */
-    createCatalogItemBulkUpdateJob: typeof CatalogsApi.prototype.spawnUpdateItemsJob;
-}
-CatalogsApi.prototype.createCatalogItemBulkUpdateJob = CatalogsApi.prototype.spawnUpdateItemsJob
-
-export interface CatalogsApi {
-    /**
-     * Alias of {@link CatalogsApi.spawnUpdateVariantsJob}
-     *
-     * @deprecated Use {@link CatalogsApi.spawnUpdateVariantsJob} instead
-     */
-    createCatalogVariantBulkUpdateJob: typeof CatalogsApi.prototype.spawnUpdateVariantsJob;
-}
-CatalogsApi.prototype.createCatalogVariantBulkUpdateJob = CatalogsApi.prototype.spawnUpdateVariantsJob
+CatalogsApi.prototype.updateCatalogCategoryRelationshipsItems = CatalogsApi.prototype.updateItemsForCatalogCategory

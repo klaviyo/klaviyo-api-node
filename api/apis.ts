@@ -25,12 +25,16 @@ export * from './profilesApi';
 import { ProfilesApi } from './profilesApi';
 export * from './reportingApi';
 import { ReportingApi } from './reportingApi';
+export * from './reviewsApi';
+import { ReviewsApi } from './reviewsApi';
 export * from './segmentsApi';
 import { SegmentsApi } from './segmentsApi';
 export * from './tagsApi';
 import { TagsApi } from './tagsApi';
 export * from './templatesApi';
 import { TemplatesApi } from './templatesApi';
+export * from './trackingSettingsApi';
+import { TrackingSettingsApi } from './trackingSettingsApi';
 export * from './webhooksApi';
 import { WebhooksApi } from './webhooksApi';
 
@@ -39,8 +43,8 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axi
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2024-07-15";
-const userAgent = "klaviyo-api-node/12.0.1";
+const revision =  "2024-10-15";
+const userAgent = "klaviyo-api-node/13.0.0";
 
 export class RetryOptions {
 
@@ -508,11 +512,15 @@ export namespace Pkce {
 
     export const Reporting = new ReportingApi(new GlobalApiKeySession())
 
+    export const Reviews = new ReviewsApi(new GlobalApiKeySession())
+
     export const Segments = new SegmentsApi(new GlobalApiKeySession())
 
     export const Tags = new TagsApi(new GlobalApiKeySession())
 
     export const Templates = new TemplatesApi(new GlobalApiKeySession())
+
+    export const TrackingSettings = new TrackingSettingsApi(new GlobalApiKeySession())
 
     export const Webhooks = new WebhooksApi(new GlobalApiKeySession())
 
@@ -528,4 +536,4 @@ export const Auth = {
     Pkce,
 }
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, WebhooksApi, Webhooks };
+export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebhooksApi, Webhooks };

@@ -12,11 +12,11 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetListListResponseCollectionCompoundDocumentDataInner } from './getListListResponseCollectionCompoundDocumentDataInner';
-import { TagResponseObjectResource } from './tagResponseObjectResource';
+import { GetListListResponseCollectionCompoundDocumentIncludedInner } from './getListListResponseCollectionCompoundDocumentIncludedInner';
 export class GetListListResponseCollectionCompoundDocument {
     'data': Array<GetListListResponseCollectionCompoundDocumentDataInner>;
     'links'?: CollectionLinks;
-    'included'?: Array<TagResponseObjectResource>;
+    'included'?: Array<GetListListResponseCollectionCompoundDocumentIncludedInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -33,7 +33,7 @@ export class GetListListResponseCollectionCompoundDocument {
         {
             "name": "included",
             "baseName": "included",
-            "type": "Array<TagResponseObjectResource>"
+            "type": "Array<GetListListResponseCollectionCompoundDocumentIncludedInner>"
         }    ];
 
     static getAttributeTypeMap() {

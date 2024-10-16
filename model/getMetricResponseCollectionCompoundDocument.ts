@@ -11,22 +11,29 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
-import { GetMetricResponseCollectionDataInner } from './getMetricResponseCollectionDataInner';
+import { FlowResponseObjectResource } from './flowResponseObjectResource';
+import { GetMetricResponseData } from './getMetricResponseData';
 export class GetMetricResponseCollectionCompoundDocument {
-    'data': Array<GetMetricResponseCollectionDataInner>;
+    'data': Array<GetMetricResponseData>;
     'links'?: CollectionLinks;
+    'included'?: Array<FlowResponseObjectResource>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetMetricResponseCollectionDataInner>"
+            "type": "Array<GetMetricResponseData>"
         },
         {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "included",
+            "baseName": "included",
+            "type": "Array<FlowResponseObjectResource>"
         }    ];
 
     static getAttributeTypeMap() {

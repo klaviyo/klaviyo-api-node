@@ -11,11 +11,12 @@
 
 import { RequestFile } from './models';
 import { BlockEnum } from './blockEnum';
+import { HTMLBlockData } from './hTMLBlockData';
 import { HtmlEnum } from './htmlEnum';
 export class HTMLBlock {
     'contentType': BlockEnum | 'block';
     'type': HtmlEnum | 'html';
-    'data': string | null;
+    'data': HTMLBlockData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -32,7 +33,7 @@ export class HTMLBlock {
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "HTMLBlockData"
         }    ];
 
     static getAttributeTypeMap() {
