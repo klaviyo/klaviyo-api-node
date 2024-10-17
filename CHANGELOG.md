@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [13.0.0] - 2024-10-15
+## [13.0.0] - revision 2024-10-15
 ### Added
 - Universal Content API
   - Read, update, and delete universal content
