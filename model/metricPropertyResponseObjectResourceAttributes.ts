@@ -12,13 +12,13 @@
 import { RequestFile } from './models';
 export class MetricPropertyResponseObjectResourceAttributes {
     /**
-    * The name for this metric property
+    * The label for this metric property
     */
-    'name': string;
+    'label': string;
     /**
-    * The key for this metric property
+    * The property for this metric property
     */
-    'key': string;
+    'property': string;
     /**
     * Inferred type for this metric property
     */
@@ -27,13 +27,13 @@ export class MetricPropertyResponseObjectResourceAttributes {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "label",
+            "baseName": "label",
             "type": "string"
         },
         {
-            "name": "key",
-            "baseName": "key",
+            "name": "property",
+            "baseName": "property",
             "type": "string"
         },
         {

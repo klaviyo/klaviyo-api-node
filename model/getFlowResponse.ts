@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowResponseData } from './getFlowResponseData';
+import { GetFlowResponseCollectionDataInner } from './getFlowResponseCollectionDataInner';
 export class GetFlowResponse {
-    'data': GetFlowResponseData;
+    'data': GetFlowResponseCollectionDataInner;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetFlowResponseData"
+            "type": "GetFlowResponseCollectionDataInner"
         }    ];
 
     static getAttributeTypeMap() {

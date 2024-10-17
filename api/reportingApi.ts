@@ -19,10 +19,18 @@ import FormData from 'form-data'
 import { CampaignValuesRequestDTO } from '../model/campaignValuesRequestDTO';
 import { FlowSeriesRequestDTO } from '../model/flowSeriesRequestDTO';
 import { FlowValuesRequestDTO } from '../model/flowValuesRequestDTO';
+import { FormSeriesRequestDTO } from '../model/formSeriesRequestDTO';
+import { FormValuesRequestDTO } from '../model/formValuesRequestDTO';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { PostCampaignValuesResponseDTO } from '../model/postCampaignValuesResponseDTO';
 import { PostFlowSeriesResponseDTO } from '../model/postFlowSeriesResponseDTO';
 import { PostFlowValuesResponseDTO } from '../model/postFlowValuesResponseDTO';
+import { PostFormSeriesResponseDTO } from '../model/postFormSeriesResponseDTO';
+import { PostFormValuesResponseDTO } from '../model/postFormValuesResponseDTO';
+import { PostSegmentSeriesResponseDTO } from '../model/postSegmentSeriesResponseDTO';
+import { PostSegmentValuesResponseDTO } from '../model/postSegmentValuesResponseDTO';
+import { SegmentSeriesRequestDTO } from '../model/segmentSeriesRequestDTO';
+import { SegmentValuesRequestDTO } from '../model/segmentValuesRequestDTO';
 
 import { ObjectSerializer } from '../model/models';
 
@@ -72,14 +80,14 @@ export class ReportingApi {
      * Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `campaigns:read`
      * @summary Query Campaign Values
      * @param campaignValuesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async queryCampaignValues (campaignValuesRequestDTO: CampaignValuesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostCampaignValuesResponseDTO;  }> {
 
-        const localVarPath = this.basePath + '/api/campaign-values-reports/';
+        const localVarPath = this.basePath + '/api/campaign-values-reports';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -132,14 +140,14 @@ export class ReportingApi {
      * Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
      * @summary Query Flow Series
      * @param flowSeriesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async queryFlowSeries (flowSeriesRequestDTO: FlowSeriesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowSeriesResponseDTO;  }> {
 
-        const localVarPath = this.basePath + '/api/flow-series-reports/';
+        const localVarPath = this.basePath + '/api/flow-series-reports';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -192,14 +200,14 @@ export class ReportingApi {
      * Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
      * @summary Query Flow Values
      * @param flowValuesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async queryFlowValues (flowValuesRequestDTO: FlowValuesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowValuesResponseDTO;  }> {
 
-        const localVarPath = this.basePath + '/api/flow-values-reports/';
+        const localVarPath = this.basePath + '/api/flow-values-reports';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -248,6 +256,230 @@ export class ReportingApi {
             this.session.getRetryOptions()
         );
     }
+    /**
+     * Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
+     * @summary Query Form Series
+     * @param formSeriesRequestDTO 
+     
+     */
+    public async queryFormSeries (formSeriesRequestDTO: FormSeriesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }> {
+
+        const localVarPath = this.basePath + '/api/form-series-reports';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'formSeriesRequestDTO' is not null or undefined
+        if (formSeriesRequestDTO === null || formSeriesRequestDTO === undefined) {
+            throw new Error('Required parameter formSeriesRequestDTO was null or undefined when calling queryFormSeries.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(formSeriesRequestDTO, "FormSeriesRequestDTO")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostFormSeriesResponseDTO");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
+     * @summary Query Form Values
+     * @param formValuesRequestDTO 
+     
+     */
+    public async queryFormValues (formValuesRequestDTO: FormValuesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }> {
+
+        const localVarPath = this.basePath + '/api/form-values-reports';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'formValuesRequestDTO' is not null or undefined
+        if (formValuesRequestDTO === null || formValuesRequestDTO === undefined) {
+            throw new Error('Required parameter formValuesRequestDTO was null or undefined when calling queryFormValues.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(formValuesRequestDTO, "FormValuesRequestDTO")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostFormValuesResponseDTO");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
+     * @summary Query Segment Series
+     * @param segmentSeriesRequestDTO 
+     
+     */
+    public async querySegmentSeries (segmentSeriesRequestDTO: SegmentSeriesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }> {
+
+        const localVarPath = this.basePath + '/api/segment-series-reports';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'segmentSeriesRequestDTO' is not null or undefined
+        if (segmentSeriesRequestDTO === null || segmentSeriesRequestDTO === undefined) {
+            throw new Error('Required parameter segmentSeriesRequestDTO was null or undefined when calling querySegmentSeries.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(segmentSeriesRequestDTO, "SegmentSeriesRequestDTO")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostSegmentSeriesResponseDTO");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
+     * @summary Query Segment Values
+     * @param segmentValuesRequestDTO 
+     
+     */
+    public async querySegmentValues (segmentValuesRequestDTO: SegmentValuesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }> {
+
+        const localVarPath = this.basePath + '/api/segment-values-reports';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'segmentValuesRequestDTO' is not null or undefined
+        if (segmentValuesRequestDTO === null || segmentValuesRequestDTO === undefined) {
+            throw new Error('Required parameter segmentValuesRequestDTO was null or undefined when calling querySegmentValues.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(segmentValuesRequestDTO, "SegmentValuesRequestDTO")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostSegmentValuesResponseDTO");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
 }
 
 export interface ReportingApi {
@@ -279,3 +511,43 @@ export interface ReportingApi {
     createFlowValueReport: typeof ReportingApi.prototype.queryFlowValues;
 }
 ReportingApi.prototype.createFlowValueReport = ReportingApi.prototype.queryFlowValues
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.queryFormSeries}
+     *
+     * @deprecated Use {@link ReportingApi.queryFormSeries} instead
+     */
+    createFormSeryReport: typeof ReportingApi.prototype.queryFormSeries;
+}
+ReportingApi.prototype.createFormSeryReport = ReportingApi.prototype.queryFormSeries
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.queryFormValues}
+     *
+     * @deprecated Use {@link ReportingApi.queryFormValues} instead
+     */
+    createFormValueReport: typeof ReportingApi.prototype.queryFormValues;
+}
+ReportingApi.prototype.createFormValueReport = ReportingApi.prototype.queryFormValues
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.querySegmentSeries}
+     *
+     * @deprecated Use {@link ReportingApi.querySegmentSeries} instead
+     */
+    createSegmentSeryReport: typeof ReportingApi.prototype.querySegmentSeries;
+}
+ReportingApi.prototype.createSegmentSeryReport = ReportingApi.prototype.querySegmentSeries
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.querySegmentValues}
+     *
+     * @deprecated Use {@link ReportingApi.querySegmentValues} instead
+     */
+    createSegmentValueReport: typeof ReportingApi.prototype.querySegmentValues;
+}
+ReportingApi.prototype.createSegmentValueReport = ReportingApi.prototype.querySegmentValues

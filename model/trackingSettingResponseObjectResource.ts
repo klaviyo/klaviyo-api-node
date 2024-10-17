@@ -16,7 +16,7 @@ import { TrackingSettingResponseObjectResourceAttributes } from './trackingSetti
 export class TrackingSettingResponseObjectResource {
     'type': TrackingSettingEnum | 'tracking-setting';
     /**
-    * The id of the tracking setting
+    * The id of the tracking setting (account ID).
     */
     'id': string;
     'attributes': TrackingSettingResponseObjectResourceAttributes;

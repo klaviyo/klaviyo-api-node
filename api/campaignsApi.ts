@@ -25,7 +25,7 @@ import { CampaignRecipientEstimationJobCreateQuery } from '../model/campaignReci
 import { CampaignSendJobCreateQuery } from '../model/campaignSendJobCreateQuery';
 import { CampaignSendJobPartialUpdateQuery } from '../model/campaignSendJobPartialUpdateQuery';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
-import { GetCampaignMessageCampaignRelationshipListResponse } from '../model/getCampaignMessageCampaignRelationshipListResponse';
+import { GetCampaignMessageCampaignRelationshipResponse } from '../model/getCampaignMessageCampaignRelationshipResponse';
 import { GetCampaignMessageResponseCollectionCompoundDocument } from '../model/getCampaignMessageResponseCollectionCompoundDocument';
 import { GetCampaignMessageResponseCompoundDocument } from '../model/getCampaignMessageResponseCompoundDocument';
 import { GetCampaignMessageTemplateRelationshipListResponse } from '../model/getCampaignMessageTemplateRelationshipListResponse';
@@ -91,6 +91,123 @@ export class CampaignsApi {
     }
 
     /**
+     * Creates a non-reusable version of the template and assigns it to the message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
+     * @summary Assign Template to Campaign Message
+     * @param campaignMessageAssignTemplateQuery Takes a reusable template, clones it, and assigns the non-reusable clone to the message.
+     
+     */
+    public async assignTemplateToCampaignMessage (campaignMessageAssignTemplateQuery: CampaignMessageAssignTemplateQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-message-assign-template';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'campaignMessageAssignTemplateQuery' is not null or undefined
+        if (campaignMessageAssignTemplateQuery === null || campaignMessageAssignTemplateQuery === undefined) {
+            throw new Error('Required parameter campaignMessageAssignTemplateQuery was null or undefined when calling assignTemplateToCampaignMessage.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(campaignMessageAssignTemplateQuery, "CampaignMessageAssignTemplateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignMessageResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Permanently cancel the campaign, setting the status to CANCELED or revert the campaign, setting the status back to DRAFT<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
+     * @summary Cancel Campaign Send
+     * @param id The ID of the currently sending campaign to cancel or revert* @param campaignSendJobPartialUpdateQuery Permanently cancel the campaign, setting the status to CANCELED or revert the campaign, setting the status back to DRAFT
+     
+     */
+    public async cancelCampaignSend (id: string, campaignSendJobPartialUpdateQuery: CampaignSendJobPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-send-jobs/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling cancelCampaignSend.');
+        }
+
+        // verify required parameter 'campaignSendJobPartialUpdateQuery' is not null or undefined
+        if (campaignSendJobPartialUpdateQuery === null || campaignSendJobPartialUpdateQuery === undefined) {
+            throw new Error('Required parameter campaignSendJobPartialUpdateQuery was null or undefined when calling cancelCampaignSend.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(campaignSendJobPartialUpdateQuery, "CampaignSendJobPartialUpdateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Creates a campaign given a set of parameters, then returns it.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
      * @summary Create Campaign
      * @param campaignCreateQuery Creates a campaign from parameters
@@ -98,10 +215,10 @@ export class CampaignsApi {
      */
     public async createCampaign (campaignCreateQuery: CampaignCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaigns/';
+        const localVarPath = this.basePath + '/api/campaigns';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -154,10 +271,10 @@ export class CampaignsApi {
      */
     public async createCampaignClone (campaignCloneQuery: CampaignCloneQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaign-clone/';
+        const localVarPath = this.basePath + '/api/campaign-clone';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -203,174 +320,6 @@ export class CampaignsApi {
         );
     }
     /**
-     * Creates a non-reusable version of the template and assigns it to the message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
-     * @summary Assign Campaign Message Template
-     * @param campaignMessageAssignTemplateQuery Takes a reusable template, clones it, and assigns the non-reusable clone to the message.
-     
-     */
-    public async createCampaignMessageAssignTemplate (campaignMessageAssignTemplateQuery: CampaignMessageAssignTemplateQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-message-assign-template/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'campaignMessageAssignTemplateQuery' is not null or undefined
-        if (campaignMessageAssignTemplateQuery === null || campaignMessageAssignTemplateQuery === undefined) {
-            throw new Error('Required parameter campaignMessageAssignTemplateQuery was null or undefined when calling createCampaignMessageAssignTemplate.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(campaignMessageAssignTemplateQuery, "CampaignMessageAssignTemplateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignMessageResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the `Get Campaign Recipient Estimation Job` endpoint to retrieve the status of this estimation job. Use the `Get Campaign Recipient Estimation` endpoint to retrieve the estimated recipient count for a given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
-     * @summary Create Campaign Recipient Estimation Job
-     * @param campaignRecipientEstimationJobCreateQuery Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the &#x60;Get Campaign Recipient Estimation Job&#x60; endpoint to retrieve the status of this estimation job. Use the &#x60;Get Campaign Recipient Estimation&#x60; endpoint to retrieve the estimated recipient count for a given campaign.
-     
-     */
-    public async createCampaignRecipientEstimationJob (campaignRecipientEstimationJobCreateQuery: CampaignRecipientEstimationJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-recipient-estimation-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'campaignRecipientEstimationJobCreateQuery' is not null or undefined
-        if (campaignRecipientEstimationJobCreateQuery === null || campaignRecipientEstimationJobCreateQuery === undefined) {
-            throw new Error('Required parameter campaignRecipientEstimationJobCreateQuery was null or undefined when calling createCampaignRecipientEstimationJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(campaignRecipientEstimationJobCreateQuery, "CampaignRecipientEstimationJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignRecipientEstimationJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Trigger a campaign to send asynchronously<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
-     * @summary Create Campaign Send Job
-     * @param campaignSendJobCreateQuery Trigger the campaign to send asynchronously
-     
-     */
-    public async createCampaignSendJob (campaignSendJobCreateQuery: CampaignSendJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-send-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'campaignSendJobCreateQuery' is not null or undefined
-        if (campaignSendJobCreateQuery === null || campaignSendJobCreateQuery === undefined) {
-            throw new Error('Required parameter campaignSendJobCreateQuery was null or undefined when calling createCampaignSendJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(campaignSendJobCreateQuery, "CampaignSendJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignSendJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Delete a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
      * @summary Delete Campaign
      * @param id The campaign ID to be deleted
@@ -378,11 +327,11 @@ export class CampaignsApi {
      */
     public async deleteCampaign (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/campaigns/{id}/'
+        const localVarPath = this.basePath + '/api/campaigns/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -429,15 +378,15 @@ export class CampaignsApi {
      * Returns a specific campaign based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign
      * @param id The campaign ID to be retrieved
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
-    public async getCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }> {
+    public async getCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/campaigns/{id}/'
+        const localVarPath = this.basePath + '/api/campaigns/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -451,11 +400,11 @@ export class CampaignsApi {
         }
 
         if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
         }
 
         if (options.fieldsTag !== undefined) {
@@ -498,18 +447,18 @@ export class CampaignsApi {
         );
     }
     /**
-     * Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
-     * @summary Get Campaign Campaign Messages
+     * Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
+     * @summary Get Campaign for Campaign Message
      * @param id 
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
-    public async getCampaignCampaignMessages (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> {
+    public async getCampaignForCampaignMessage (id: string, options: { fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaigns/{id}/campaign-messages/'
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}/campaign'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -519,23 +468,11 @@ export class CampaignsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignCampaignMessages.');
-        }
-
-        if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            throw new Error('Required parameter id was null or undefined when calling getCampaignForCampaignMessage.');
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
-        }
-
-        if (options.fieldsTemplate !== undefined) {
-            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'template'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -549,11 +486,11 @@ export class CampaignsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignResponse;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageResponseCollectionCompoundDocument");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -564,7 +501,63 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }>(
+        return backOff<{ response: AxiosResponse; body: GetCampaignResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Returns the ID of the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
+     * @summary Get Campaign ID for Campaign Message
+     * @param id 
+     
+     */
+    public async getCampaignIdForCampaignMessage (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}/relationships/campaign'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCampaignIdForCampaignMessage.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageCampaignRelationshipResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipResponse;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
@@ -573,15 +566,15 @@ export class CampaignsApi {
      * Returns a specific message based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Message
      * @param id The message ID to be retrieved
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
-    public async getCampaignMessage (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }> {
+    public async getCampaignMessage (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/campaign-messages/{id}/'
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -595,11 +588,11 @@ export class CampaignsApi {
         }
 
         if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
         }
 
         if (options.fieldsTemplate !== undefined) {
@@ -642,250 +635,18 @@ export class CampaignsApi {
         );
     }
     /**
-     * Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
-     * @summary Get Campaign Message Campaign
-     * @param id 
-     * @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getCampaignMessageCampaign (id: string, options: { fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-messages/{id}/campaign/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignMessageCampaign.');
-        }
-
-        if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCampaignResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the ID of the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
-     * @summary Get Campaign Message Relationships Campaign
-     * @param id 
-     
-     */
-    public async getCampaignMessageRelationshipsCampaign (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipListResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-messages/{id}/relationships/campaign/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignMessageRelationshipsCampaign.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipListResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageCampaignRelationshipListResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipListResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
-     * @summary Get Campaign Message Relationships Template
-     * @param id 
-     
-     */
-    public async getCampaignMessageRelationshipsTemplate (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-messages/{id}/relationships/template/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignMessageRelationshipsTemplate.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageTemplateRelationshipListResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
-     * @summary Get Campaign Message Template
-     * @param id 
-     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getCampaignMessageTemplate (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-messages/{id}/template/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignMessageTemplate.');
-        }
-
-        if (options.fieldsTemplate !== undefined) {
-            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get the estimated recipient count for a campaign with the provided campaign ID. You can refresh this count by using the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation
      * @param id The ID of the campaign for which to get the estimated number of recipients
-     * @param fieldsCampaignRecipientEstimation For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignRecipientEstimation For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimation (id: string, options: { fieldsCampaignRecipientEstimation?: Array<'estimated_recipient_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaign-recipient-estimations/{id}/'
+        const localVarPath = this.basePath + '/api/campaign-recipient-estimations/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -937,15 +698,15 @@ export class CampaignsApi {
      * Retrieve the status of a recipient estimation job triggered with the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation Job
      * @param id The ID of the campaign to get recipient estimation status
-     * @param fieldsCampaignRecipientEstimationJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignRecipientEstimationJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimationJob (id: string, options: { fieldsCampaignRecipientEstimationJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaign-recipient-estimation-jobs/{id}/'
+        const localVarPath = this.basePath + '/api/campaign-recipient-estimation-jobs/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -994,130 +755,18 @@ export class CampaignsApi {
         );
     }
     /**
-     * Returns the IDs of all messages associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
-     * @summary Get Campaign Relationships Campaign Messages
-     * @param id 
-     
-     */
-    public async getCampaignRelationshipsCampaignMessages (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/campaigns/{id}/relationships/campaign-messages/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignRelationshipsCampaignMessages.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessagesRelationshipListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
-     * @summary Get Campaign Relationships Tags
-     * @param id 
-     
-     */
-    public async getCampaignRelationshipsTags (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/campaigns/{id}/relationships/tags/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignRelationshipsTags.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignTagRelationshipListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get a campaign send job<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Send Job
      * @param id The ID of the campaign to send
-     * @param fieldsCampaignSendJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignSendJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignSendJob (id: string, options: { fieldsCampaignSendJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaign-send-jobs/{id}/'
+        const localVarPath = this.basePath + '/api/campaign-send-jobs/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1169,15 +818,15 @@ export class CampaignsApi {
      * Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
      * @summary Get Campaign Tags
      * @param id 
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/campaigns/{id}/tags/'
+        const localVarPath = this.basePath + '/api/campaigns/{id}/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1228,15 +877,15 @@ export class CampaignsApi {
     /**
      * Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,\'email\')` to list email campaigns, or `?filter=equals(messages.channel,\'sms\')` to list SMS campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaigns
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
-    public async getCampaigns (filter: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>, pageCursor?: string, sort?: 'created_at' | '-created_at' | 'id' | '-id' | 'name' | '-name' | 'scheduled_at' | '-scheduled_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }> {
+    public async getCampaigns (filter: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>, pageCursor?: string, sort?: 'created_at' | '-created_at' | 'id' | '-id' | 'name' | '-name' | 'scheduled_at' | '-scheduled_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/campaigns/';
+        const localVarPath = this.basePath + '/api/campaigns';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1252,11 +901,11 @@ export class CampaignsApi {
         localVarQueryParameters['filter'] = ObjectSerializer.serialize(filter, "string");
 
         if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'tracking_options' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
         }
 
         if (options.fieldsTag !== undefined) {
@@ -1307,6 +956,418 @@ export class CampaignsApi {
         );
     }
     /**
+     * Returns the IDs of all messages associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
+     * @summary Get Message IDs for Campaign
+     * @param id 
+     
+     */
+    public async getMessageIdsForCampaign (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/campaigns/{id}/relationships/campaign-messages'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getMessageIdsForCampaign.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessagesRelationshipListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
+     * @summary Get Messages for Campaign
+     * @param id 
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     */
+    public async getMessagesForCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/campaigns/{id}/campaign-messages'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getMessagesForCampaign.');
+        }
+
+        if (options.fieldsCampaignMessage !== undefined) {
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+        }
+
+        if (options.fieldsCampaign !== undefined) {
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+        }
+
+        if (options.fieldsTemplate !== undefined) {
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'template'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
+     * @summary Get Tag IDs for Campaign
+     * @param id 
+     
+     */
+    public async getTagIdsForCampaign (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/campaigns/{id}/relationships/tags'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTagIdsForCampaign.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignTagRelationshipListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
+     * @summary Get Template for Campaign Message
+     * @param id 
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getTemplateForCampaignMessage (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}/template'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTemplateForCampaignMessage.');
+        }
+
+        if (options.fieldsTemplate !== undefined) {
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
+     * @summary Get Template ID for Campaign Message
+     * @param id 
+     
+     */
+    public async getTemplateIdForCampaignMessage (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}/relationships/template'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTemplateIdForCampaignMessage.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageTemplateRelationshipListResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the `Get Campaign Recipient Estimation Job` endpoint to retrieve the status of this estimation job. Use the `Get Campaign Recipient Estimation` endpoint to retrieve the estimated recipient count for a given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
+     * @summary Refresh Campaign Recipient Estimation
+     * @param campaignRecipientEstimationJobCreateQuery Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the &#x60;Get Campaign Recipient Estimation Job&#x60; endpoint to retrieve the status of this estimation job. Use the &#x60;Get Campaign Recipient Estimation&#x60; endpoint to retrieve the estimated recipient count for a given campaign.
+     
+     */
+    public async refreshCampaignRecipientEstimation (campaignRecipientEstimationJobCreateQuery: CampaignRecipientEstimationJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-recipient-estimation-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'campaignRecipientEstimationJobCreateQuery' is not null or undefined
+        if (campaignRecipientEstimationJobCreateQuery === null || campaignRecipientEstimationJobCreateQuery === undefined) {
+            throw new Error('Required parameter campaignRecipientEstimationJobCreateQuery was null or undefined when calling refreshCampaignRecipientEstimation.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(campaignRecipientEstimationJobCreateQuery, "CampaignRecipientEstimationJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignRecipientEstimationJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Trigger a campaign to send asynchronously<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
+     * @summary Send Campaign
+     * @param campaignSendJobCreateQuery Trigger the campaign to send asynchronously
+     
+     */
+    public async sendCampaign (campaignSendJobCreateQuery: CampaignSendJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-send-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'campaignSendJobCreateQuery' is not null or undefined
+        if (campaignSendJobCreateQuery === null || campaignSendJobCreateQuery === undefined) {
+            throw new Error('Required parameter campaignSendJobCreateQuery was null or undefined when calling sendCampaign.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(campaignSendJobCreateQuery, "CampaignSendJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignSendJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Update a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
      * @summary Update Campaign
      * @param id The campaign ID to be retrieved* @param campaignPartialUpdateQuery Update a campaign and return it
@@ -1314,11 +1375,11 @@ export class CampaignsApi {
      */
     public async updateCampaign (id: string, campaignPartialUpdateQuery: CampaignPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchCampaignResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaigns/{id}/'
+        const localVarPath = this.basePath + '/api/campaigns/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1376,11 +1437,11 @@ export class CampaignsApi {
      */
     public async updateCampaignMessage (id: string, campaignMessagePartialUpdateQuery: CampaignMessagePartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchCampaignMessageResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/campaign-messages/{id}/'
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1430,65 +1491,124 @@ export class CampaignsApi {
             this.session.getRetryOptions()
         );
     }
-    /**
-     * Permanently cancel the campaign, setting the status to CANCELED or revert the campaign, setting the status back to DRAFT<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
-     * @summary Update Campaign Send Job
-     * @param id The ID of the currently sending campaign to cancel or revert* @param campaignSendJobPartialUpdateQuery Permanently cancel the campaign, setting the status to CANCELED or revert the campaign, setting the status back to DRAFT
-     
-     */
-    public async updateCampaignSendJob (id: string, campaignSendJobPartialUpdateQuery: CampaignSendJobPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/campaign-send-jobs/{id}/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateCampaignSendJob.');
-        }
-
-        // verify required parameter 'campaignSendJobPartialUpdateQuery' is not null or undefined
-        if (campaignSendJobPartialUpdateQuery === null || campaignSendJobPartialUpdateQuery === undefined) {
-            throw new Error('Required parameter campaignSendJobPartialUpdateQuery was null or undefined when calling updateCampaignSendJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'PATCH',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(campaignSendJobPartialUpdateQuery, "CampaignSendJobPartialUpdateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
 }
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.assignTemplateToCampaignMessage}
+     *
+     * @deprecated Use {@link CampaignsApi.assignTemplateToCampaignMessage} instead
+     */
+    createCampaignMessageAssignTemplate: typeof CampaignsApi.prototype.assignTemplateToCampaignMessage;
+}
+CampaignsApi.prototype.createCampaignMessageAssignTemplate = CampaignsApi.prototype.assignTemplateToCampaignMessage
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.cancelCampaignSend}
+     *
+     * @deprecated Use {@link CampaignsApi.cancelCampaignSend} instead
+     */
+    updateCampaignSendJob: typeof CampaignsApi.prototype.cancelCampaignSend;
+}
+CampaignsApi.prototype.updateCampaignSendJob = CampaignsApi.prototype.cancelCampaignSend
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.createCampaignClone}
+     *
+     * @deprecated Use {@link CampaignsApi.createCampaignClone} instead
+     */
+    cloneCampaign: typeof CampaignsApi.prototype.createCampaignClone;
+}
+CampaignsApi.prototype.cloneCampaign = CampaignsApi.prototype.createCampaignClone
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getCampaignForCampaignMessage}
+     *
+     * @deprecated Use {@link CampaignsApi.getCampaignForCampaignMessage} instead
+     */
+    getCampaignMessageCampaign: typeof CampaignsApi.prototype.getCampaignForCampaignMessage;
+}
+CampaignsApi.prototype.getCampaignMessageCampaign = CampaignsApi.prototype.getCampaignForCampaignMessage
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getCampaignIdForCampaignMessage}
+     *
+     * @deprecated Use {@link CampaignsApi.getCampaignIdForCampaignMessage} instead
+     */
+    getCampaignMessageRelationshipsCampaign: typeof CampaignsApi.prototype.getCampaignIdForCampaignMessage;
+}
+CampaignsApi.prototype.getCampaignMessageRelationshipsCampaign = CampaignsApi.prototype.getCampaignIdForCampaignMessage
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getMessageIdsForCampaign}
+     *
+     * @deprecated Use {@link CampaignsApi.getMessageIdsForCampaign} instead
+     */
+    getCampaignRelationshipsCampaignMessages: typeof CampaignsApi.prototype.getMessageIdsForCampaign;
+}
+CampaignsApi.prototype.getCampaignRelationshipsCampaignMessages = CampaignsApi.prototype.getMessageIdsForCampaign
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getMessagesForCampaign}
+     *
+     * @deprecated Use {@link CampaignsApi.getMessagesForCampaign} instead
+     */
+    getCampaignCampaignMessages: typeof CampaignsApi.prototype.getMessagesForCampaign;
+}
+CampaignsApi.prototype.getCampaignCampaignMessages = CampaignsApi.prototype.getMessagesForCampaign
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getTagIdsForCampaign}
+     *
+     * @deprecated Use {@link CampaignsApi.getTagIdsForCampaign} instead
+     */
+    getCampaignRelationshipsTags: typeof CampaignsApi.prototype.getTagIdsForCampaign;
+}
+CampaignsApi.prototype.getCampaignRelationshipsTags = CampaignsApi.prototype.getTagIdsForCampaign
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getTemplateForCampaignMessage}
+     *
+     * @deprecated Use {@link CampaignsApi.getTemplateForCampaignMessage} instead
+     */
+    getCampaignMessageTemplate: typeof CampaignsApi.prototype.getTemplateForCampaignMessage;
+}
+CampaignsApi.prototype.getCampaignMessageTemplate = CampaignsApi.prototype.getTemplateForCampaignMessage
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getTemplateIdForCampaignMessage}
+     *
+     * @deprecated Use {@link CampaignsApi.getTemplateIdForCampaignMessage} instead
+     */
+    getCampaignMessageRelationshipsTemplate: typeof CampaignsApi.prototype.getTemplateIdForCampaignMessage;
+}
+CampaignsApi.prototype.getCampaignMessageRelationshipsTemplate = CampaignsApi.prototype.getTemplateIdForCampaignMessage
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.refreshCampaignRecipientEstimation}
+     *
+     * @deprecated Use {@link CampaignsApi.refreshCampaignRecipientEstimation} instead
+     */
+    createCampaignRecipientEstimationJob: typeof CampaignsApi.prototype.refreshCampaignRecipientEstimation;
+}
+CampaignsApi.prototype.createCampaignRecipientEstimationJob = CampaignsApi.prototype.refreshCampaignRecipientEstimation
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.sendCampaign}
+     *
+     * @deprecated Use {@link CampaignsApi.sendCampaign} instead
+     */
+    createCampaignSendJob: typeof CampaignsApi.prototype.sendCampaign;
+}
+CampaignsApi.prototype.createCampaignSendJob = CampaignsApi.prototype.sendCampaign

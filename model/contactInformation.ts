@@ -20,7 +20,7 @@ export class ContactInformation {
     * This field is used to auto-populate the default sender email address on flow and campaign emails.
     */
     'defaultSenderEmail': string;
-    'websiteUrl': string;
+    'websiteUrl'?: string | null;
     'organizationName': string;
     'streetAddress': StreetAddress;
 

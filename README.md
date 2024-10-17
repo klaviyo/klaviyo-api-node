@@ -1,8 +1,8 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 12.0.1
+- SDK version: 13.0.0
 
-- Revision: 2024-07-15
+- Revision: 2024-10-15
 
 ## Helpful Resources
 
@@ -12,8 +12,8 @@
 
 ### Other Klaviyo Resources
 
-- [API Reference](https://developers.klaviyo.com/en/v2024-07-15/reference/)
-- [API Guides](https://developers.klaviyo.com/en/v2024-07-15/docs)
+- [API Reference](https://developers.klaviyo.com/en/v2024-10-15/reference/)
+- [API Guides](https://developers.klaviyo.com/en/v2024-10-15/docs)
 - [Postman Workspace](https://www.postman.com/klaviyo/workspace/klaviyo-developers)
 
 ## Design & Approach
@@ -39,9 +39,11 @@ This SDK is organized into the following resources:
 - MetricsApi
 - ProfilesApi
 - ReportingApi
+- ReviewsApi
 - SegmentsApi
 - TagsApi
 - TemplatesApi
+- TrackingSettingsApi
 - WebhooksApi
 
 # Installation
@@ -50,7 +52,7 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@12.0.1`
+`npm install klaviyo-api@13.0.0`
 
 
 ## source code
@@ -215,7 +217,7 @@ For users creating integrations or managing multiple Klaviyo accounts, Klaviyo's
 
 ### Getting started with OAuth
 
-First, configure an integration. If you haven't set up an integration, learn about it in this [guide](https://developers.klaviyo.com/en/v2024-07-15/docs/set_up_oauth)
+First, configure an integration. If you haven't set up an integration, learn about it in this [guide](https://developers.klaviyo.com/en/v2024-10-15/docs/set_up_oauth)
 
 ### Making API Calls with OAuth
 The `klaviyo-api` package can keep your `access token` up to date. If you have already developed a system for refreshing tokens or would like a more minimalist option, skip to [OAuthBasicSession](#oauthbasicsession)
@@ -299,7 +301,7 @@ Build The authorization flow in the same application as with the rest of your in
 There is no requirement that the authorization flow has to be backend and can be implemented entirely in a frontend application (in that case, you can ignore this section, as this repo shouldn't use this for frontend code)
 
 To understand the authorization flow, there are two major resources to help:
-1. [OAuth authorization guide](https://developers.klaviyo.com/en/v2024-07-15/docs/set_up_oauth#1-user-installs-your-integration)
+1. [OAuth authorization guide](https://developers.klaviyo.com/en/v2024-10-15/docs/set_up_oauth#1-user-installs-your-integration)
 2. [Node Integration Example](https://github.com/klaviyo-labs/node-integration-example)
 
 If you implement your authorization flow on a node server, you can use these exposed helper functions.
@@ -348,7 +350,7 @@ The OAuthApi class also exposes helpful Authorization flow utilities.
 
 #### Proof Key of Code Exchange (PKCE)
 
-All the PKCE helper functions live within the `Pkce` namespace. Read about PKCE [here](https://developers.klaviyo.com/en/v2024-07-15/docs/set_up_oauth#pkce-and-code-challenges)
+All the PKCE helper functions live within the `Pkce` namespace. Read about PKCE [here](https://developers.klaviyo.com/en/v2024-10-15/docs/set_up_oauth#pkce-and-code-challenges)
 
 ```typescript
 import { Pkce } from 'klaviyo-api'
@@ -486,7 +488,7 @@ console.log(profile.body.data.attributes.predictiveAnalytics)
 
 You can filter responses by passing a string into the optional parameter `filter`. Note that when filtering by a property it will be snake_case instead of camelCase, ie. `metric_id`
 
-Read more about formatting your filter strings in our [developer documentation](https://developers.klaviyo.com/en/v2024-07-15/docs/filtering_)
+Read more about formatting your filter strings in our [developer documentation](https://developers.klaviyo.com/en/v2024-10-15/docs/filtering_)
 
 Here is an example of a filter string for results between two date times: `less-than(updated,2023-04-26T00:00:00Z),greater-than(updated,2023-04-19T00:00:00Z)`
 
@@ -619,7 +621,7 @@ console.log(profile.body.included)
 
 ### Relationships
 
-The Klaviyo API has a series of endpoints to expose the relationships between different Klaviyo Items. You can read more about relationships in [our documentation](https://developers.klaviyo.com/en/v2024-07-15/docs/relationships_).
+The Klaviyo API has a series of endpoints to expose the relationships between different Klaviyo Items. You can read more about relationships in [our documentation](https://developers.klaviyo.com/en/v2024-10-15/docs/relationships_).
 
 Here are some use cases and their examples:
 
@@ -689,14 +691,14 @@ const events = await eventsApi.getEvents({fieldsEvent: ['event_properties'], sor
 ## AccountsApi
 _______________________________
 
-[Get Account](https://developers.klaviyo.com/en/v2024-07-15/reference/get_account)
+[Get Account](https://developers.klaviyo.com/en/v2024-10-15/reference/get_account)
 
 ```typescript
 AccountsApi.getAccount(id: string, options)
 ```
 _______________________________
 
-[Get Accounts](https://developers.klaviyo.com/en/v2024-07-15/reference/get_accounts)
+[Get Accounts](https://developers.klaviyo.com/en/v2024-10-15/reference/get_accounts)
 
 ```typescript
 AccountsApi.getAccounts(options)
@@ -705,203 +707,223 @@ _______________________________
 ## CampaignsApi
 _______________________________
 
-[Create Campaign](https://developers.klaviyo.com/en/v2024-07-15/reference/create_campaign)
+[Assign Template to Campaign Message](https://developers.klaviyo.com/en/v2024-10-15/reference/assign_template_to_campaign_message)
+
+```typescript
+CampaignsApi.assignTemplateToCampaignMessage(campaignMessageAssignTemplateQuery: CampaignMessageAssignTemplateQuery)
+```
+##### Method alias:
+```typescript
+CampaignsApi.createCampaignMessageAssignTemplate(campaignMessageAssignTemplateQuery: CampaignMessageAssignTemplateQuery)
+```
+_______________________________
+
+[Cancel Campaign Send](https://developers.klaviyo.com/en/v2024-10-15/reference/cancel_campaign_send)
+
+```typescript
+CampaignsApi.cancelCampaignSend(id: string, campaignSendJobPartialUpdateQuery: CampaignSendJobPartialUpdateQuery)
+```
+##### Method alias:
+```typescript
+CampaignsApi.updateCampaignSendJob(id: string, campaignSendJobPartialUpdateQuery: CampaignSendJobPartialUpdateQuery)
+```
+_______________________________
+
+[Create Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/create_campaign)
 
 ```typescript
 CampaignsApi.createCampaign(campaignCreateQuery: CampaignCreateQuery)
 ```
 _______________________________
 
-[Create Campaign Clone](https://developers.klaviyo.com/en/v2024-07-15/reference/create_campaign_clone)
+[Create Campaign Clone](https://developers.klaviyo.com/en/v2024-10-15/reference/create_campaign_clone)
 
 ```typescript
 CampaignsApi.createCampaignClone(campaignCloneQuery: CampaignCloneQuery)
 ```
-_______________________________
-
-[Assign Campaign Message Template](https://developers.klaviyo.com/en/v2024-07-15/reference/create_campaign_message_assign_template)
-
+##### Method alias:
 ```typescript
-CampaignsApi.createCampaignMessageAssignTemplate(campaignMessageAssignTemplateQuery: CampaignMessageAssignTemplateQuery)
+CampaignsApi.cloneCampaign(campaignCloneQuery: CampaignCloneQuery)
 ```
 _______________________________
 
-[Create Campaign Recipient Estimation Job](https://developers.klaviyo.com/en/v2024-07-15/reference/create_campaign_recipient_estimation_job)
-
-```typescript
-CampaignsApi.createCampaignRecipientEstimationJob(campaignRecipientEstimationJobCreateQuery: CampaignRecipientEstimationJobCreateQuery)
-```
-_______________________________
-
-[Create Campaign Send Job](https://developers.klaviyo.com/en/v2024-07-15/reference/create_campaign_send_job)
-
-```typescript
-CampaignsApi.createCampaignSendJob(campaignSendJobCreateQuery: CampaignSendJobCreateQuery)
-```
-_______________________________
-
-[Delete Campaign](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_campaign)
+[Delete Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_campaign)
 
 ```typescript
 CampaignsApi.deleteCampaign(id: string)
 ```
 _______________________________
 
-[Get Campaign](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign)
+[Get Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign)
 
 ```typescript
 CampaignsApi.getCampaign(id: string, options)
 ```
 _______________________________
 
-[Get Campaign Campaign Messages](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_campaign_messages)
+[Get Campaign for Campaign Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_for_campaign_message)
 
 ```typescript
-CampaignsApi.getCampaignCampaignMessages(id: string, options)
+CampaignsApi.getCampaignForCampaignMessage(id: string, options)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignMessageCampaign(id: string, options)
 ```
 _______________________________
 
-[Get Campaign Message](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_message)
+[Get Campaign ID for Campaign Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_id_for_campaign_message)
+
+```typescript
+CampaignsApi.getCampaignIdForCampaignMessage(id: string)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignMessageRelationshipsCampaign(id: string)
+```
+_______________________________
+
+[Get Campaign Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_message)
 
 ```typescript
 CampaignsApi.getCampaignMessage(id: string, options)
 ```
 _______________________________
 
-[Get Campaign Message Campaign](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_message_campaign)
-
-```typescript
-CampaignsApi.getCampaignMessageCampaign(id: string, options)
-```
-_______________________________
-
-[Get Campaign Message Relationships Campaign](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_message_relationships_campaign)
-
-```typescript
-CampaignsApi.getCampaignMessageRelationshipsCampaign(id: string)
-```
-_______________________________
-
-[Get Campaign Message Relationships Template](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_message_relationships_template)
-
-```typescript
-CampaignsApi.getCampaignMessageRelationshipsTemplate(id: string)
-```
-_______________________________
-
-[Get Campaign Message Template](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_message_template)
-
-```typescript
-CampaignsApi.getCampaignMessageTemplate(id: string, options)
-```
-_______________________________
-
-[Get Campaign Recipient Estimation](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_recipient_estimation)
+[Get Campaign Recipient Estimation](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_recipient_estimation)
 
 ```typescript
 CampaignsApi.getCampaignRecipientEstimation(id: string, options)
 ```
 _______________________________
 
-[Get Campaign Recipient Estimation Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_recipient_estimation_job)
+[Get Campaign Recipient Estimation Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_recipient_estimation_job)
 
 ```typescript
 CampaignsApi.getCampaignRecipientEstimationJob(id: string, options)
 ```
 _______________________________
 
-[Get Campaign Relationships Campaign Messages](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_relationships_campaign_messages)
-
-```typescript
-CampaignsApi.getCampaignRelationshipsCampaignMessages(id: string)
-```
-_______________________________
-
-[Get Campaign Relationships Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_relationships_tags)
-
-```typescript
-CampaignsApi.getCampaignRelationshipsTags(id: string)
-```
-_______________________________
-
-[Get Campaign Send Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_send_job)
+[Get Campaign Send Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_send_job)
 
 ```typescript
 CampaignsApi.getCampaignSendJob(id: string, options)
 ```
 _______________________________
 
-[Get Campaign Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaign_tags)
+[Get Campaign Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_tags)
 
 ```typescript
 CampaignsApi.getCampaignTags(id: string, options)
 ```
 _______________________________
 
-[Get Campaigns](https://developers.klaviyo.com/en/v2024-07-15/reference/get_campaigns)
+[Get Campaigns](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaigns)
 
 ```typescript
 CampaignsApi.getCampaigns(filter: string, options)
 ```
 _______________________________
 
-[Update Campaign](https://developers.klaviyo.com/en/v2024-07-15/reference/update_campaign)
+[Get Message IDs for Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/get_message_ids_for_campaign)
+
+```typescript
+CampaignsApi.getMessageIdsForCampaign(id: string)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignRelationshipsCampaignMessages(id: string)
+```
+_______________________________
+
+[Get Messages for Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/get_messages_for_campaign)
+
+```typescript
+CampaignsApi.getMessagesForCampaign(id: string, options)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignCampaignMessages(id: string, options)
+```
+_______________________________
+
+[Get Tag IDs for Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_ids_for_campaign)
+
+```typescript
+CampaignsApi.getTagIdsForCampaign(id: string)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignRelationshipsTags(id: string)
+```
+_______________________________
+
+[Get Template for Campaign Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_template_for_campaign_message)
+
+```typescript
+CampaignsApi.getTemplateForCampaignMessage(id: string, options)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignMessageTemplate(id: string, options)
+```
+_______________________________
+
+[Get Template ID for Campaign Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_template_id_for_campaign_message)
+
+```typescript
+CampaignsApi.getTemplateIdForCampaignMessage(id: string)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignMessageRelationshipsTemplate(id: string)
+```
+_______________________________
+
+[Refresh Campaign Recipient Estimation](https://developers.klaviyo.com/en/v2024-10-15/reference/refresh_campaign_recipient_estimation)
+
+```typescript
+CampaignsApi.refreshCampaignRecipientEstimation(campaignRecipientEstimationJobCreateQuery: CampaignRecipientEstimationJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CampaignsApi.createCampaignRecipientEstimationJob(campaignRecipientEstimationJobCreateQuery: CampaignRecipientEstimationJobCreateQuery)
+```
+_______________________________
+
+[Send Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/send_campaign)
+
+```typescript
+CampaignsApi.sendCampaign(campaignSendJobCreateQuery: CampaignSendJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CampaignsApi.createCampaignSendJob(campaignSendJobCreateQuery: CampaignSendJobCreateQuery)
+```
+_______________________________
+
+[Update Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/update_campaign)
 
 ```typescript
 CampaignsApi.updateCampaign(id: string, campaignPartialUpdateQuery: CampaignPartialUpdateQuery)
 ```
 _______________________________
 
-[Update Campaign Message](https://developers.klaviyo.com/en/v2024-07-15/reference/update_campaign_message)
+[Update Campaign Message](https://developers.klaviyo.com/en/v2024-10-15/reference/update_campaign_message)
 
 ```typescript
 CampaignsApi.updateCampaignMessage(id: string, campaignMessagePartialUpdateQuery: CampaignMessagePartialUpdateQuery)
 ```
 _______________________________
-
-[Update Campaign Send Job](https://developers.klaviyo.com/en/v2024-07-15/reference/update_campaign_send_job)
-
-```typescript
-CampaignsApi.updateCampaignSendJob(id: string, campaignSendJobPartialUpdateQuery: CampaignSendJobPartialUpdateQuery)
-```
-_______________________________
 ## CatalogsApi
 _______________________________
 
-[Create Back In Stock Subscription](https://developers.klaviyo.com/en/v2024-07-15/reference/create_back_in_stock_subscription)
+[Add Category to Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/add_category_to_catalog_item)
 
 ```typescript
-CatalogsApi.createBackInStockSubscription(serverBISSubscriptionCreateQuery: ServerBISSubscriptionCreateQuery)
-```
-_______________________________
-
-[Create Catalog Category](https://developers.klaviyo.com/en/v2024-07-15/reference/create_catalog_category)
-
-```typescript
-CatalogsApi.createCatalogCategory(catalogCategoryCreateQuery: CatalogCategoryCreateQuery)
-```
-_______________________________
-
-[Create Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2024-07-15/reference/create_catalog_category_relationships_items)
-
-```typescript
-CatalogsApi.createCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+CatalogsApi.addCategoryToCatalogItem(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
 ##### Method alias:
-```typescript
-CatalogsApi.createCatalogCategoryRelationshipsItem(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
-```
-_______________________________
-
-[Create Catalog Item](https://developers.klaviyo.com/en/v2024-07-15/reference/create_catalog_item)
-
-```typescript
-CatalogsApi.createCatalogItem(catalogItemCreateQuery: CatalogItemCreateQuery)
-```
-_______________________________
-
-[Create Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2024-07-15/reference/create_catalog_item_relationships_categories)
-
 ```typescript
 CatalogsApi.createCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
@@ -911,126 +933,360 @@ CatalogsApi.createCatalogItemRelationshipsCategory(id: string, catalogItemCatego
 ```
 _______________________________
 
-[Create Catalog Variant](https://developers.klaviyo.com/en/v2024-07-15/reference/create_catalog_variant)
+[Add Items to Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/add_items_to_catalog_category)
+
+```typescript
+CatalogsApi.addItemsToCatalogCategory(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryRelationshipsItem(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+```
+_______________________________
+
+[Bulk Create Catalog Categories](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_create_catalog_categories)
+
+```typescript
+CatalogsApi.bulkCreateCatalogCategories(catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnCreateCategoriesJob(catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryBulkCreateJob(catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery)
+```
+_______________________________
+
+[Bulk Create Catalog Items](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_create_catalog_items)
+
+```typescript
+CatalogsApi.bulkCreateCatalogItems(catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnCreateItemsJob(catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogItemBulkCreateJob(catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery)
+```
+_______________________________
+
+[Bulk Create Catalog Variants](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_create_catalog_variants)
+
+```typescript
+CatalogsApi.bulkCreateCatalogVariants(catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnCreateVariantsJob(catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogVariantBulkCreateJob(catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery)
+```
+_______________________________
+
+[Bulk Delete Catalog Categories](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_delete_catalog_categories)
+
+```typescript
+CatalogsApi.bulkDeleteCatalogCategories(catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnDeleteCategoriesJob(catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryBulkDeleteJob(catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery)
+```
+_______________________________
+
+[Bulk Delete Catalog Items](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_delete_catalog_items)
+
+```typescript
+CatalogsApi.bulkDeleteCatalogItems(catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnDeleteItemsJob(catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogItemBulkDeleteJob(catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery)
+```
+_______________________________
+
+[Bulk Delete Catalog Variants](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_delete_catalog_variants)
+
+```typescript
+CatalogsApi.bulkDeleteCatalogVariants(catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnDeleteVariantsJob(catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogVariantBulkDeleteJob(catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery)
+```
+_______________________________
+
+[Bulk Update Catalog Categories](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_update_catalog_categories)
+
+```typescript
+CatalogsApi.bulkUpdateCatalogCategories(catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnUpdateCategoriesJob(catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogCategoryBulkUpdateJob(catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery)
+```
+_______________________________
+
+[Bulk Update Catalog Items](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_update_catalog_items)
+
+```typescript
+CatalogsApi.bulkUpdateCatalogItems(catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnUpdateItemsJob(catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogItemBulkUpdateJob(catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery)
+```
+_______________________________
+
+[Bulk Update Catalog Variants](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_update_catalog_variants)
+
+```typescript
+CatalogsApi.bulkUpdateCatalogVariants(catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.spawnUpdateVariantsJob(catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CatalogsApi.createCatalogVariantBulkUpdateJob(catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery)
+```
+_______________________________
+
+[Create Back In Stock Subscription](https://developers.klaviyo.com/en/v2024-10-15/reference/create_back_in_stock_subscription)
+
+```typescript
+CatalogsApi.createBackInStockSubscription(serverBISSubscriptionCreateQuery: ServerBISSubscriptionCreateQuery)
+```
+_______________________________
+
+[Create Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/create_catalog_category)
+
+```typescript
+CatalogsApi.createCatalogCategory(catalogCategoryCreateQuery: CatalogCategoryCreateQuery)
+```
+_______________________________
+
+[Create Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/create_catalog_item)
+
+```typescript
+CatalogsApi.createCatalogItem(catalogItemCreateQuery: CatalogItemCreateQuery)
+```
+_______________________________
+
+[Create Catalog Variant](https://developers.klaviyo.com/en/v2024-10-15/reference/create_catalog_variant)
 
 ```typescript
 CatalogsApi.createCatalogVariant(catalogVariantCreateQuery: CatalogVariantCreateQuery)
 ```
 _______________________________
 
-[Delete Catalog Category](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_catalog_category)
+[Delete Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_catalog_category)
 
 ```typescript
 CatalogsApi.deleteCatalogCategory(id: string)
 ```
 _______________________________
 
-[Delete Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_catalog_category_relationships_items)
-
-```typescript
-CatalogsApi.deleteCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
-```
-_______________________________
-
-[Delete Catalog Item](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_catalog_item)
+[Delete Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_catalog_item)
 
 ```typescript
 CatalogsApi.deleteCatalogItem(id: string)
 ```
 _______________________________
 
-[Delete Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_catalog_item_relationships_categories)
-
-```typescript
-CatalogsApi.deleteCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
-```
-_______________________________
-
-[Delete Catalog Variant](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_catalog_variant)
+[Delete Catalog Variant](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_catalog_variant)
 
 ```typescript
 CatalogsApi.deleteCatalogVariant(id: string)
 ```
 _______________________________
 
-[Get Catalog Categories](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_categories)
+[Get Bulk Create Catalog Items Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_create_catalog_items_job)
+
+```typescript
+CatalogsApi.getBulkCreateCatalogItemsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCreateItemsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkCreateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Create Catalog Items Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_create_catalog_items_jobs)
+
+```typescript
+CatalogsApi.getBulkCreateCatalogItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCreateItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkCreateJobs(options)
+```
+_______________________________
+
+[Get Bulk Delete Catalog Items Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_delete_catalog_items_job)
+
+```typescript
+CatalogsApi.getBulkDeleteCatalogItemsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getDeleteItemsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkDeleteJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Delete Catalog Items Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_delete_catalog_items_jobs)
+
+```typescript
+CatalogsApi.getBulkDeleteCatalogItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getDeleteItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkDeleteJobs(options)
+```
+_______________________________
+
+[Get Bulk Update Catalog Items Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_update_catalog_items_job)
+
+```typescript
+CatalogsApi.getBulkUpdateCatalogItemsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getUpdateItemsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkUpdateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Update Catalog Items Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_update_catalog_items_jobs)
+
+```typescript
+CatalogsApi.getBulkUpdateCatalogItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getUpdateItemsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemBulkUpdateJobs(options)
+```
+_______________________________
+
+[Get Catalog Categories](https://developers.klaviyo.com/en/v2024-10-15/reference/get_catalog_categories)
 
 ```typescript
 CatalogsApi.getCatalogCategories(options)
 ```
 _______________________________
 
-[Get Catalog Category](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_category)
+[Get Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/get_catalog_category)
 
 ```typescript
 CatalogsApi.getCatalogCategory(id: string, options)
 ```
 _______________________________
 
-[Get Catalog Category Items](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_category_items)
-
-```typescript
-CatalogsApi.getCatalogCategoryItems(id: string, options)
-```
-_______________________________
-
-[Get Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_category_relationships_items)
-
-```typescript
-CatalogsApi.getCatalogCategoryRelationshipsItems(id: string, options)
-```
-_______________________________
-
-[Get Catalog Item](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_item)
+[Get Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/get_catalog_item)
 
 ```typescript
 CatalogsApi.getCatalogItem(id: string, options)
 ```
 _______________________________
 
-[Get Catalog Item Categories](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_item_categories)
-
-```typescript
-CatalogsApi.getCatalogItemCategories(id: string, options)
-```
-_______________________________
-
-[Get Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_item_relationships_categories)
-
-```typescript
-CatalogsApi.getCatalogItemRelationshipsCategories(id: string, options)
-```
-_______________________________
-
-[Get Catalog Item Variants](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_item_variants)
-
-```typescript
-CatalogsApi.getCatalogItemVariants(id: string, options)
-```
-_______________________________
-
-[Get Catalog Items](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_items)
+[Get Catalog Items](https://developers.klaviyo.com/en/v2024-10-15/reference/get_catalog_items)
 
 ```typescript
 CatalogsApi.getCatalogItems(options)
 ```
 _______________________________
 
-[Get Catalog Variant](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_variant)
+[Get Catalog Variant](https://developers.klaviyo.com/en/v2024-10-15/reference/get_catalog_variant)
 
 ```typescript
 CatalogsApi.getCatalogVariant(id: string, options)
 ```
 _______________________________
 
-[Get Catalog Variants](https://developers.klaviyo.com/en/v2024-07-15/reference/get_catalog_variants)
+[Get Catalog Variants](https://developers.klaviyo.com/en/v2024-10-15/reference/get_catalog_variants)
 
 ```typescript
 CatalogsApi.getCatalogVariants(options)
 ```
 _______________________________
 
-[Get Create Categories Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_categories_job)
+[Get Categories for Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/get_categories_for_catalog_item)
+
+```typescript
+CatalogsApi.getCategoriesForCatalogItem(id: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemCategories(id: string, options)
+```
+_______________________________
+
+[Get Category IDs for Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/get_category_ids_for_catalog_item)
+
+```typescript
+CatalogsApi.getCategoryIdsForCatalogItem(id: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogItemRelationshipsCategories(id: string, options)
+```
+_______________________________
+
+[Get Create Categories Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_create_categories_job)
 
 ```typescript
 CatalogsApi.getCreateCategoriesJob(jobId: string, options)
@@ -1041,7 +1297,7 @@ CatalogsApi.getCatalogCategoryBulkCreateJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Create Categories Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_categories_jobs)
+[Get Create Categories Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_create_categories_jobs)
 
 ```typescript
 CatalogsApi.getCreateCategoriesJobs(options)
@@ -1052,29 +1308,7 @@ CatalogsApi.getCatalogCategoryBulkCreateJobs(options)
 ```
 _______________________________
 
-[Get Create Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_items_job)
-
-```typescript
-CatalogsApi.getCreateItemsJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogItemBulkCreateJob(jobId: string, options)
-```
-_______________________________
-
-[Get Create Items Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_items_jobs)
-
-```typescript
-CatalogsApi.getCreateItemsJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogItemBulkCreateJobs(options)
-```
-_______________________________
-
-[Get Create Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_variants_job)
+[Get Create Variants Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_create_variants_job)
 
 ```typescript
 CatalogsApi.getCreateVariantsJob(jobId: string, options)
@@ -1085,7 +1319,7 @@ CatalogsApi.getCatalogVariantBulkCreateJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Create Variants Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_create_variants_jobs)
+[Get Create Variants Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_create_variants_jobs)
 
 ```typescript
 CatalogsApi.getCreateVariantsJobs(options)
@@ -1096,7 +1330,7 @@ CatalogsApi.getCatalogVariantBulkCreateJobs(options)
 ```
 _______________________________
 
-[Get Delete Categories Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_categories_job)
+[Get Delete Categories Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_delete_categories_job)
 
 ```typescript
 CatalogsApi.getDeleteCategoriesJob(jobId: string, options)
@@ -1107,7 +1341,7 @@ CatalogsApi.getCatalogCategoryBulkDeleteJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_categories_jobs)
+[Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_delete_categories_jobs)
 
 ```typescript
 CatalogsApi.getDeleteCategoriesJobs(options)
@@ -1118,29 +1352,7 @@ CatalogsApi.getCatalogCategoryBulkDeleteJobs(options)
 ```
 _______________________________
 
-[Get Delete Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_items_job)
-
-```typescript
-CatalogsApi.getDeleteItemsJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogItemBulkDeleteJob(jobId: string, options)
-```
-_______________________________
-
-[Get Delete Items Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_items_jobs)
-
-```typescript
-CatalogsApi.getDeleteItemsJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogItemBulkDeleteJobs(options)
-```
-_______________________________
-
-[Get Delete Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_variants_job)
+[Get Delete Variants Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_delete_variants_job)
 
 ```typescript
 CatalogsApi.getDeleteVariantsJob(jobId: string, options)
@@ -1151,7 +1363,7 @@ CatalogsApi.getCatalogVariantBulkDeleteJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_delete_variants_jobs)
+[Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_delete_variants_jobs)
 
 ```typescript
 CatalogsApi.getDeleteVariantsJobs(options)
@@ -1162,7 +1374,29 @@ CatalogsApi.getCatalogVariantBulkDeleteJobs(options)
 ```
 _______________________________
 
-[Get Update Categories Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_categories_job)
+[Get Item IDs for Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/get_item_ids_for_catalog_category)
+
+```typescript
+CatalogsApi.getItemIdsForCatalogCategory(id: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryRelationshipsItems(id: string, options)
+```
+_______________________________
+
+[Get Items for Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/get_items_for_catalog_category)
+
+```typescript
+CatalogsApi.getItemsForCatalogCategory(id: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryItems(id: string, options)
+```
+_______________________________
+
+[Get Update Categories Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_update_categories_job)
 
 ```typescript
 CatalogsApi.getUpdateCategoriesJob(jobId: string, options)
@@ -1173,7 +1407,7 @@ CatalogsApi.getCatalogCategoryBulkUpdateJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Update Categories Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_categories_jobs)
+[Get Update Categories Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_update_categories_jobs)
 
 ```typescript
 CatalogsApi.getUpdateCategoriesJobs(options)
@@ -1184,29 +1418,7 @@ CatalogsApi.getCatalogCategoryBulkUpdateJobs(options)
 ```
 _______________________________
 
-[Get Update Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_items_job)
-
-```typescript
-CatalogsApi.getUpdateItemsJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogItemBulkUpdateJob(jobId: string, options)
-```
-_______________________________
-
-[Get Update Items Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_items_jobs)
-
-```typescript
-CatalogsApi.getUpdateItemsJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogItemBulkUpdateJobs(options)
-```
-_______________________________
-
-[Get Update Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_variants_job)
+[Get Update Variants Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_update_variants_job)
 
 ```typescript
 CatalogsApi.getUpdateVariantsJob(jobId: string, options)
@@ -1217,7 +1429,7 @@ CatalogsApi.getCatalogVariantBulkUpdateJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Update Variants Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_update_variants_jobs)
+[Get Update Variants Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_update_variants_jobs)
 
 ```typescript
 CatalogsApi.getUpdateVariantsJobs(options)
@@ -1228,213 +1440,182 @@ CatalogsApi.getCatalogVariantBulkUpdateJobs(options)
 ```
 _______________________________
 
-[Spawn Create Categories Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_create_categories_job)
+[Get Variants for Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/get_variants_for_catalog_item)
 
 ```typescript
-CatalogsApi.spawnCreateCategoriesJob(catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery)
+CatalogsApi.getVariantsForCatalogItem(id: string, options)
 ```
 ##### Method alias:
 ```typescript
-CatalogsApi.createCatalogCategoryBulkCreateJob(catalogCategoryCreateJobCreateQuery: CatalogCategoryCreateJobCreateQuery)
+CatalogsApi.getCatalogItemVariants(id: string, options)
 ```
 _______________________________
 
-[Spawn Create Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_create_items_job)
+[Remove Categories from Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_categories_from_catalog_item)
 
 ```typescript
-CatalogsApi.spawnCreateItemsJob(catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery)
+CatalogsApi.removeCategoriesFromCatalogItem(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
 ##### Method alias:
 ```typescript
-CatalogsApi.createCatalogItemBulkCreateJob(catalogItemCreateJobCreateQuery: CatalogItemCreateJobCreateQuery)
+CatalogsApi.deleteCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
 _______________________________
 
-[Spawn Create Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_create_variants_job)
+[Remove Items from Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_items_from_catalog_category)
 
 ```typescript
-CatalogsApi.spawnCreateVariantsJob(catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery)
+CatalogsApi.removeItemsFromCatalogCategory(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
 ```
 ##### Method alias:
 ```typescript
-CatalogsApi.createCatalogVariantBulkCreateJob(catalogVariantCreateJobCreateQuery: CatalogVariantCreateJobCreateQuery)
+CatalogsApi.deleteCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
 ```
 _______________________________
 
-[Spawn Delete Categories Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_delete_categories_job)
-
-```typescript
-CatalogsApi.spawnDeleteCategoriesJob(catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery)
-```
-##### Method alias:
-```typescript
-CatalogsApi.createCatalogCategoryBulkDeleteJob(catalogCategoryDeleteJobCreateQuery: CatalogCategoryDeleteJobCreateQuery)
-```
-_______________________________
-
-[Spawn Delete Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_delete_items_job)
-
-```typescript
-CatalogsApi.spawnDeleteItemsJob(catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery)
-```
-##### Method alias:
-```typescript
-CatalogsApi.createCatalogItemBulkDeleteJob(catalogItemDeleteJobCreateQuery: CatalogItemDeleteJobCreateQuery)
-```
-_______________________________
-
-[Spawn Delete Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_delete_variants_job)
-
-```typescript
-CatalogsApi.spawnDeleteVariantsJob(catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery)
-```
-##### Method alias:
-```typescript
-CatalogsApi.createCatalogVariantBulkDeleteJob(catalogVariantDeleteJobCreateQuery: CatalogVariantDeleteJobCreateQuery)
-```
-_______________________________
-
-[Spawn Update Categories Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_update_categories_job)
-
-```typescript
-CatalogsApi.spawnUpdateCategoriesJob(catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery)
-```
-##### Method alias:
-```typescript
-CatalogsApi.createCatalogCategoryBulkUpdateJob(catalogCategoryUpdateJobCreateQuery: CatalogCategoryUpdateJobCreateQuery)
-```
-_______________________________
-
-[Spawn Update Items Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_update_items_job)
-
-```typescript
-CatalogsApi.spawnUpdateItemsJob(catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery)
-```
-##### Method alias:
-```typescript
-CatalogsApi.createCatalogItemBulkUpdateJob(catalogItemUpdateJobCreateQuery: CatalogItemUpdateJobCreateQuery)
-```
-_______________________________
-
-[Spawn Update Variants Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_update_variants_job)
-
-```typescript
-CatalogsApi.spawnUpdateVariantsJob(catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery)
-```
-##### Method alias:
-```typescript
-CatalogsApi.createCatalogVariantBulkUpdateJob(catalogVariantUpdateJobCreateQuery: CatalogVariantUpdateJobCreateQuery)
-```
-_______________________________
-
-[Update Catalog Category](https://developers.klaviyo.com/en/v2024-07-15/reference/update_catalog_category)
+[Update Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/update_catalog_category)
 
 ```typescript
 CatalogsApi.updateCatalogCategory(id: string, catalogCategoryUpdateQuery: CatalogCategoryUpdateQuery)
 ```
 _______________________________
 
-[Update Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2024-07-15/reference/update_catalog_category_relationships_items)
-
-```typescript
-CatalogsApi.updateCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
-```
-_______________________________
-
-[Update Catalog Item](https://developers.klaviyo.com/en/v2024-07-15/reference/update_catalog_item)
+[Update Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/update_catalog_item)
 
 ```typescript
 CatalogsApi.updateCatalogItem(id: string, catalogItemUpdateQuery: CatalogItemUpdateQuery)
 ```
 _______________________________
 
-[Update Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2024-07-15/reference/update_catalog_item_relationships_categories)
-
-```typescript
-CatalogsApi.updateCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
-```
-_______________________________
-
-[Update Catalog Variant](https://developers.klaviyo.com/en/v2024-07-15/reference/update_catalog_variant)
+[Update Catalog Variant](https://developers.klaviyo.com/en/v2024-10-15/reference/update_catalog_variant)
 
 ```typescript
 CatalogsApi.updateCatalogVariant(id: string, catalogVariantUpdateQuery: CatalogVariantUpdateQuery)
 ```
 _______________________________
+
+[Update Categories for Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/update_categories_for_catalog_item)
+
+```typescript
+CatalogsApi.updateCategoriesForCatalogItem(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
+```
+##### Method alias:
+```typescript
+CatalogsApi.updateCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
+```
+_______________________________
+
+[Update Items for Catalog Category](https://developers.klaviyo.com/en/v2024-10-15/reference/update_items_for_catalog_category)
+
+```typescript
+CatalogsApi.updateItemsForCatalogCategory(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+```
+##### Method alias:
+```typescript
+CatalogsApi.updateCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+```
+_______________________________
 ## CouponsApi
 _______________________________
 
-[Create Coupon](https://developers.klaviyo.com/en/v2024-07-15/reference/create_coupon)
+[Bulk Create Coupon Codes](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_create_coupon_codes)
+
+```typescript
+CouponsApi.bulkCreateCouponCodes(couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CouponsApi.spawnCouponCodeBulkCreateJob(couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+CouponsApi.createCouponCodeBulkCreateJob(couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery)
+```
+_______________________________
+
+[Create Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/create_coupon)
 
 ```typescript
 CouponsApi.createCoupon(couponCreateQuery: CouponCreateQuery)
 ```
 _______________________________
 
-[Create Coupon Code](https://developers.klaviyo.com/en/v2024-07-15/reference/create_coupon_code)
+[Create Coupon Code](https://developers.klaviyo.com/en/v2024-10-15/reference/create_coupon_code)
 
 ```typescript
 CouponsApi.createCouponCode(couponCodeCreateQuery: CouponCodeCreateQuery)
 ```
 _______________________________
 
-[Delete Coupon](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_coupon)
+[Delete Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_coupon)
 
 ```typescript
 CouponsApi.deleteCoupon(id: string)
 ```
 _______________________________
 
-[Delete Coupon Code](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_coupon_code)
+[Delete Coupon Code](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_coupon_code)
 
 ```typescript
 CouponsApi.deleteCouponCode(id: string)
 ```
 _______________________________
 
-[Get Coupon](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon)
+[Get Bulk Create Coupon Code Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_create_coupon_code_jobs)
+
+```typescript
+CouponsApi.getBulkCreateCouponCodeJobs(options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCouponCodeBulkCreateJobs(options)
+```
+_______________________________
+
+[Get Bulk Create Coupon Codes Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_create_coupon_codes_job)
+
+```typescript
+CouponsApi.getBulkCreateCouponCodesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCouponCodeBulkCreateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Code IDs for Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_code_ids_for_coupon)
+
+```typescript
+CouponsApi.getCodeIdsForCoupon(id: string, options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCouponCodeRelationshipsCoupon(id: string, options)
+```
+_______________________________
+
+[Get Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon)
 
 ```typescript
 CouponsApi.getCoupon(id: string, options)
 ```
 _______________________________
 
-[Get Coupon Code](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_code)
+[Get Coupon Code](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_code)
 
 ```typescript
 CouponsApi.getCouponCode(id: string, options)
 ```
 _______________________________
 
-[Get Coupon Code Bulk Create Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_code_bulk_create_job)
-
-```typescript
-CouponsApi.getCouponCodeBulkCreateJob(jobId: string, options)
-```
-_______________________________
-
-[Get Coupon Code Bulk Create Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_code_bulk_create_jobs)
-
-```typescript
-CouponsApi.getCouponCodeBulkCreateJobs(options)
-```
-_______________________________
-
-[Get Coupon Code Relationships Coupon](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_code_relationships_coupon)
-
-```typescript
-CouponsApi.getCouponCodeRelationshipsCoupon(id: string, options)
-```
-_______________________________
-
-[Get Coupon Codes](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_codes)
+[Get Coupon Codes](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes)
 
 ```typescript
 CouponsApi.getCouponCodes(options)
 ```
 _______________________________
 
-[Get Coupon Codes For Coupon](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_codes_for_coupon)
+[Get Coupon Codes For Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes_for_coupon)
 
 ```typescript
 CouponsApi.getCouponCodesForCoupon(id: string, options)
@@ -1445,7 +1626,7 @@ CouponsApi.getCouponCouponCodes(id: string, options)
 ```
 _______________________________
 
-[Get Coupon For Coupon Code](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_for_coupon_code)
+[Get Coupon For Coupon Code](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_for_coupon_code)
 
 ```typescript
 CouponsApi.getCouponForCouponCode(id: string, options)
@@ -1456,39 +1637,32 @@ CouponsApi.getCouponCodeCoupon(id: string, options)
 ```
 _______________________________
 
-[Get Coupon Relationships Coupon Codes](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupon_relationships_coupon_codes)
+[Get Coupon ID for Coupon Code](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_id_for_coupon_code)
 
+```typescript
+CouponsApi.getCouponIdForCouponCode(id: string)
+```
+##### Method alias:
 ```typescript
 CouponsApi.getCouponRelationshipsCouponCodes(id: string)
 ```
 _______________________________
 
-[Get Coupons](https://developers.klaviyo.com/en/v2024-07-15/reference/get_coupons)
+[Get Coupons](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupons)
 
 ```typescript
 CouponsApi.getCoupons(options)
 ```
 _______________________________
 
-[Spawn Coupon Code Bulk Create Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_coupon_code_bulk_create_job)
-
-```typescript
-CouponsApi.spawnCouponCodeBulkCreateJob(couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery)
-```
-##### Method alias:
-```typescript
-CouponsApi.createCouponCodeBulkCreateJob(couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery)
-```
-_______________________________
-
-[Update Coupon](https://developers.klaviyo.com/en/v2024-07-15/reference/update_coupon)
+[Update Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/update_coupon)
 
 ```typescript
 CouponsApi.updateCoupon(id: string, couponUpdateQuery: CouponUpdateQuery)
 ```
 _______________________________
 
-[Update Coupon Code](https://developers.klaviyo.com/en/v2024-07-15/reference/update_coupon_code)
+[Update Coupon Code](https://developers.klaviyo.com/en/v2024-10-15/reference/update_coupon_code)
 
 ```typescript
 CouponsApi.updateCouponCode(id: string, couponCodeUpdateQuery: CouponCodeUpdateQuery)
@@ -1497,7 +1671,7 @@ _______________________________
 ## DataPrivacyApi
 _______________________________
 
-[Request Profile Deletion](https://developers.klaviyo.com/en/v2024-07-15/reference/request_profile_deletion)
+[Request Profile Deletion](https://developers.klaviyo.com/en/v2024-10-15/reference/request_profile_deletion)
 
 ```typescript
 DataPrivacyApi.requestProfileDeletion(dataPrivacyCreateDeletionJobQuery: DataPrivacyCreateDeletionJobQuery)
@@ -1510,7 +1684,7 @@ _______________________________
 ## EventsApi
 _______________________________
 
-[Bulk Create Events](https://developers.klaviyo.com/en/v2024-07-15/reference/bulk_create_events)
+[Bulk Create Events](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_create_events)
 
 ```typescript
 EventsApi.bulkCreateEvents(eventsBulkCreateJob: EventsBulkCreateJob)
@@ -1521,177 +1695,221 @@ EventsApi.createEventBulkCreateJob(eventsBulkCreateJob: EventsBulkCreateJob)
 ```
 _______________________________
 
-[Create Event](https://developers.klaviyo.com/en/v2024-07-15/reference/create_event)
+[Create Event](https://developers.klaviyo.com/en/v2024-10-15/reference/create_event)
 
 ```typescript
 EventsApi.createEvent(eventCreateQueryV2: EventCreateQueryV2)
 ```
 _______________________________
 
-[Get Event](https://developers.klaviyo.com/en/v2024-07-15/reference/get_event)
+[Get Event](https://developers.klaviyo.com/en/v2024-10-15/reference/get_event)
 
 ```typescript
 EventsApi.getEvent(id: string, options)
 ```
 _______________________________
 
-[Get Event Metric](https://developers.klaviyo.com/en/v2024-07-15/reference/get_event_metric)
+[Get Event Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_event_metric)
 
 ```typescript
 EventsApi.getEventMetric(id: string, options)
 ```
 _______________________________
 
-[Get Event Profile](https://developers.klaviyo.com/en/v2024-07-15/reference/get_event_profile)
+[Get Event Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_event_profile)
 
 ```typescript
 EventsApi.getEventProfile(id: string, options)
 ```
 _______________________________
 
-[Get Event Relationships Metric](https://developers.klaviyo.com/en/v2024-07-15/reference/get_event_relationships_metric)
-
-```typescript
-EventsApi.getEventRelationshipsMetric(id: string)
-```
-_______________________________
-
-[Get Event Relationships Profile](https://developers.klaviyo.com/en/v2024-07-15/reference/get_event_relationships_profile)
-
-```typescript
-EventsApi.getEventRelationshipsProfile(id: string)
-```
-_______________________________
-
-[Get Events](https://developers.klaviyo.com/en/v2024-07-15/reference/get_events)
+[Get Events](https://developers.klaviyo.com/en/v2024-10-15/reference/get_events)
 
 ```typescript
 EventsApi.getEvents(options)
 ```
 _______________________________
+
+[Get Metric ID for Event](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_id_for_event)
+
+```typescript
+EventsApi.getMetricIdForEvent(id: string)
+```
+##### Method alias:
+```typescript
+EventsApi.getEventRelationshipsMetric(id: string)
+```
+_______________________________
+
+[Get Profile ID for Event](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_id_for_event)
+
+```typescript
+EventsApi.getProfileIdForEvent(id: string)
+```
+##### Method alias:
+```typescript
+EventsApi.getEventRelationshipsProfile(id: string)
+```
+_______________________________
 ## FlowsApi
 _______________________________
 
-[Delete Flow](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_flow)
+[Delete Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_flow)
 
 ```typescript
 FlowsApi.deleteFlow(id: string)
 ```
 _______________________________
 
-[Get Flow](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow)
+[Get Action ID for Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_action_id_for_flow_message)
+
+```typescript
+FlowsApi.getActionIdForFlowMessage(id: string)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowMessageRelationshipsAction(id: string)
+```
+_______________________________
+
+[Get Action IDs for Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/get_action_ids_for_flow)
+
+```typescript
+FlowsApi.getActionIdsForFlow(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowRelationshipsFlowActions(id: string, options)
+```
+_______________________________
+
+[Get Actions for Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/get_actions_for_flow)
+
+```typescript
+FlowsApi.getActionsForFlow(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowFlowActions(id: string, options)
+```
+_______________________________
+
+[Get Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow)
 
 ```typescript
 FlowsApi.getFlow(id: string, options)
 ```
 _______________________________
 
-[Get Flow Action](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_action)
+[Get Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_action)
 
 ```typescript
 FlowsApi.getFlowAction(id: string, options)
 ```
 _______________________________
 
-[Get Flow For Flow Action](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_action_flow)
+[Get Flow For Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_action_flow)
 
 ```typescript
 FlowsApi.getFlowActionFlow(id: string, options)
 ```
 _______________________________
 
-[Get Flow Action Messages](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_action_messages)
+[Get Flow ID for Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_id_for_flow_action)
 
 ```typescript
-FlowsApi.getFlowActionMessages(id: string, options)
+FlowsApi.getFlowIdForFlowAction(id: string)
 ```
-_______________________________
-
-[Get Flow Action Relationships Flow](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_action_relationships_flow)
-
+##### Method alias:
 ```typescript
 FlowsApi.getFlowActionRelationshipsFlow(id: string)
 ```
 _______________________________
 
-[Get Flow Action Relationships Messages](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_action_relationships_messages)
-
-```typescript
-FlowsApi.getFlowActionRelationshipsMessages(id: string, options)
-```
-_______________________________
-
-[Get Flow Flow Actions](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_flow_actions)
-
-```typescript
-FlowsApi.getFlowFlowActions(id: string, options)
-```
-_______________________________
-
-[Get Flow Message](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_message)
+[Get Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_message)
 
 ```typescript
 FlowsApi.getFlowMessage(id: string, options)
 ```
 _______________________________
 
-[Get Flow Action For Message](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_message_action)
+[Get Flow Action For Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_message_action)
 
 ```typescript
 FlowsApi.getFlowMessageAction(id: string, options)
 ```
 _______________________________
 
-[Get Flow Message Relationships Action](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_message_relationships_action)
-
-```typescript
-FlowsApi.getFlowMessageRelationshipsAction(id: string)
-```
-_______________________________
-
-[Get Flow Message Relationships Template](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_message_relationships_template)
-
-```typescript
-FlowsApi.getFlowMessageRelationshipsTemplate(id: string)
-```
-_______________________________
-
-[Get Flow Message Template](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_message_template)
-
-```typescript
-FlowsApi.getFlowMessageTemplate(id: string, options)
-```
-_______________________________
-
-[Get Flow Relationships Flow Actions](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_relationships_flow_actions)
-
-```typescript
-FlowsApi.getFlowRelationshipsFlowActions(id: string, options)
-```
-_______________________________
-
-[Get Flow Relationships Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_relationships_tags)
-
-```typescript
-FlowsApi.getFlowRelationshipsTags(id: string)
-```
-_______________________________
-
-[Get Flow Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flow_tags)
+[Get Flow Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_tags)
 
 ```typescript
 FlowsApi.getFlowTags(id: string, options)
 ```
 _______________________________
 
-[Get Flows](https://developers.klaviyo.com/en/v2024-07-15/reference/get_flows)
+[Get Flows](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flows)
 
 ```typescript
 FlowsApi.getFlows(options)
 ```
 _______________________________
 
-[Update Flow Status](https://developers.klaviyo.com/en/v2024-07-15/reference/update_flow)
+[Get Message IDs for Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_message_ids_for_flow_action)
+
+```typescript
+FlowsApi.getMessageIdsForFlowAction(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowActionRelationshipsMessages(id: string, options)
+```
+_______________________________
+
+[Get Messages for Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_messages_for_flow_action)
+
+```typescript
+FlowsApi.getMessagesForFlowAction(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowActionMessages(id: string, options)
+```
+_______________________________
+
+[Get Tag IDs for Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_ids_for_flow)
+
+```typescript
+FlowsApi.getTagIdsForFlow(id: string)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowRelationshipsTags(id: string)
+```
+_______________________________
+
+[Get Template for Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_template_for_flow_message)
+
+```typescript
+FlowsApi.getTemplateForFlowMessage(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowMessageTemplate(id: string, options)
+```
+_______________________________
+
+[Get Template ID for Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_template_id_for_flow_message)
+
+```typescript
+FlowsApi.getTemplateIdForFlowMessage(id: string)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowMessageRelationshipsTemplate(id: string)
+```
+_______________________________
+
+[Update Flow Status](https://developers.klaviyo.com/en/v2024-10-15/reference/update_flow)
 
 ```typescript
 FlowsApi.updateFlow(id: string, flowUpdateQuery: FlowUpdateQuery)
@@ -1700,14 +1918,14 @@ _______________________________
 ## FormsApi
 _______________________________
 
-[Get Form](https://developers.klaviyo.com/en/v2024-07-15/reference/get_form)
+[Get Form](https://developers.klaviyo.com/en/v2024-10-15/reference/get_form)
 
 ```typescript
 FormsApi.getForm(id: string, options)
 ```
 _______________________________
 
-[Get Form for Form Version](https://developers.klaviyo.com/en/v2024-07-15/reference/get_form_for_form_version)
+[Get Form for Form Version](https://developers.klaviyo.com/en/v2024-10-15/reference/get_form_for_form_version)
 
 ```typescript
 FormsApi.getFormForFormVersion(id: string, options)
@@ -1718,7 +1936,7 @@ FormsApi.getFormVersionForm(id: string, options)
 ```
 _______________________________
 
-[Get Form ID for Form Version](https://developers.klaviyo.com/en/v2024-07-15/reference/get_form_id_for_form_version)
+[Get Form ID for Form Version](https://developers.klaviyo.com/en/v2024-10-15/reference/get_form_id_for_form_version)
 
 ```typescript
 FormsApi.getFormIdForFormVersion(id: string)
@@ -1729,21 +1947,21 @@ FormsApi.getFormVersionRelationshipsForm(id: string)
 ```
 _______________________________
 
-[Get Form Version](https://developers.klaviyo.com/en/v2024-07-15/reference/get_form_version)
+[Get Form Version](https://developers.klaviyo.com/en/v2024-10-15/reference/get_form_version)
 
 ```typescript
 FormsApi.getFormVersion(id: string, options)
 ```
 _______________________________
 
-[Get Forms](https://developers.klaviyo.com/en/v2024-07-15/reference/get_forms)
+[Get Forms](https://developers.klaviyo.com/en/v2024-10-15/reference/get_forms)
 
 ```typescript
 FormsApi.getForms(options)
 ```
 _______________________________
 
-[Get Version IDs for Form](https://developers.klaviyo.com/en/v2024-07-15/reference/get_version_ids_for_form)
+[Get Version IDs for Form](https://developers.klaviyo.com/en/v2024-10-15/reference/get_version_ids_for_form)
 
 ```typescript
 FormsApi.getVersionIdsForForm(id: string)
@@ -1754,7 +1972,7 @@ FormsApi.getFormRelationshipsFormVersions(id: string)
 ```
 _______________________________
 
-[Get Versions for Form](https://developers.klaviyo.com/en/v2024-07-15/reference/get_versions_for_form)
+[Get Versions for Form](https://developers.klaviyo.com/en/v2024-10-15/reference/get_versions_for_form)
 
 ```typescript
 FormsApi.getVersionsForForm(id: string, options)
@@ -1767,28 +1985,28 @@ _______________________________
 ## ImagesApi
 _______________________________
 
-[Get Image](https://developers.klaviyo.com/en/v2024-07-15/reference/get_image)
+[Get Image](https://developers.klaviyo.com/en/v2024-10-15/reference/get_image)
 
 ```typescript
 ImagesApi.getImage(id: string, options)
 ```
 _______________________________
 
-[Get Images](https://developers.klaviyo.com/en/v2024-07-15/reference/get_images)
+[Get Images](https://developers.klaviyo.com/en/v2024-10-15/reference/get_images)
 
 ```typescript
 ImagesApi.getImages(options)
 ```
 _______________________________
 
-[Update Image](https://developers.klaviyo.com/en/v2024-07-15/reference/update_image)
+[Update Image](https://developers.klaviyo.com/en/v2024-10-15/reference/update_image)
 
 ```typescript
 ImagesApi.updateImage(id: string, imagePartialUpdateQuery: ImagePartialUpdateQuery)
 ```
 _______________________________
 
-[Upload Image From File](https://developers.klaviyo.com/en/v2024-07-15/reference/upload_image_from_file)
+[Upload Image From File](https://developers.klaviyo.com/en/v2024-10-15/reference/upload_image_from_file)
 
 ```typescript
 ImagesApi.uploadImageFromFile(file: RequestFile, )
@@ -1799,7 +2017,7 @@ ImagesApi.createImageUpload(file: RequestFile, )
 ```
 _______________________________
 
-[Upload Image From URL](https://developers.klaviyo.com/en/v2024-07-15/reference/upload_image_from_url)
+[Upload Image From URL](https://developers.klaviyo.com/en/v2024-10-15/reference/upload_image_from_url)
 
 ```typescript
 ImagesApi.uploadImageFromUrl(imageCreateQuery: ImageCreateQuery)
@@ -1812,14 +2030,14 @@ _______________________________
 ## ListsApi
 _______________________________
 
-[Create List](https://developers.klaviyo.com/en/v2024-07-15/reference/create_list)
+[Create List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list)
 
 ```typescript
 ListsApi.createList(listCreateQuery: ListCreateQuery)
 ```
 _______________________________
 
-[Add Profile To List](https://developers.klaviyo.com/en/v2024-07-15/reference/create_list_relationships)
+[Add Profile To List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list_relationships)
 
 ```typescript
 ListsApi.createListRelationships(id: string, listMembersAddQuery: ListMembersAddQuery)
@@ -1830,14 +2048,14 @@ ListsApi.createListRelationshipsProfile(id: string, listMembersAddQuery: ListMem
 ```
 _______________________________
 
-[Delete List](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_list)
+[Delete List](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_list)
 
 ```typescript
 ListsApi.deleteList(id: string)
 ```
 _______________________________
 
-[Remove Profile From List](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_list_relationships)
+[Remove Profile From List](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_list_relationships)
 
 ```typescript
 ListsApi.deleteListRelationships(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
@@ -1848,49 +2066,71 @@ ListsApi.deleteListRelationshipsProfiles(id: string, listMembersDeleteQuery: Lis
 ```
 _______________________________
 
-[Get List](https://developers.klaviyo.com/en/v2024-07-15/reference/get_list)
+[Get List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list)
 
 ```typescript
 ListsApi.getList(id: string, options)
 ```
 _______________________________
 
-[Get List Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_list_profiles)
+[Get List Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_flow_triggers)
+
+```typescript
+ListsApi.getListFlowTriggers(id: string, options)
+```
+_______________________________
+
+[Get List Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_profiles)
 
 ```typescript
 ListsApi.getListProfiles(id: string, options)
 ```
 _______________________________
 
-[Get List Relationships Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_list_relationships_profiles)
+[Get List Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_relationships_flow_triggers)
 
 ```typescript
-ListsApi.getListRelationshipsProfiles(id: string, options)
+ListsApi.getListRelationshipsFlowTriggers(id: string)
 ```
 _______________________________
 
-[Get List Relationships Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_list_relationships_tags)
-
-```typescript
-ListsApi.getListRelationshipsTags(id: string)
-```
-_______________________________
-
-[Get List Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_list_tags)
+[Get List Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_tags)
 
 ```typescript
 ListsApi.getListTags(id: string, options)
 ```
 _______________________________
 
-[Get Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/get_lists)
+[Get Lists](https://developers.klaviyo.com/en/v2024-10-15/reference/get_lists)
 
 ```typescript
 ListsApi.getLists(options)
 ```
 _______________________________
 
-[Update List](https://developers.klaviyo.com/en/v2024-07-15/reference/update_list)
+[Get Profile IDs for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_ids_for_list)
+
+```typescript
+ListsApi.getProfileIdsForList(id: string, options)
+```
+##### Method alias:
+```typescript
+ListsApi.getListRelationshipsProfiles(id: string, options)
+```
+_______________________________
+
+[Get Tag IDs for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_ids_for_list)
+
+```typescript
+ListsApi.getTagIdsForList(id: string)
+```
+##### Method alias:
+```typescript
+ListsApi.getListRelationshipsTags(id: string)
+```
+_______________________________
+
+[Update List](https://developers.klaviyo.com/en/v2024-10-15/reference/update_list)
 
 ```typescript
 ListsApi.updateList(id: string, listPartialUpdateQuery: ListPartialUpdateQuery)
@@ -1899,21 +2139,86 @@ _______________________________
 ## MetricsApi
 _______________________________
 
-[Get Metric](https://developers.klaviyo.com/en/v2024-07-15/reference/get_metric)
+[Get Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric)
 
 ```typescript
 MetricsApi.getMetric(id: string, options)
 ```
 _______________________________
 
-[Get Metrics](https://developers.klaviyo.com/en/v2024-07-15/reference/get_metrics)
+[Get Metric Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_flow_triggers)
+
+```typescript
+MetricsApi.getMetricFlowTriggers(id: string, options)
+```
+_______________________________
+
+[Get Metric for Metric Property](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_for_metric_property)
+
+```typescript
+MetricsApi.getMetricForMetricProperty(id: string, options)
+```
+##### Method alias:
+```typescript
+MetricsApi.getMetricPropertyMetric(id: string, options)
+```
+_______________________________
+
+[Get Metric ID for Metric Property](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_id_for_metric_property)
+
+```typescript
+MetricsApi.getMetricIdForMetricProperty(id: string)
+```
+##### Method alias:
+```typescript
+MetricsApi.getMetricPropertyRelationshipsMetric(id: string)
+```
+_______________________________
+
+[Get Metric Property](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_property)
+
+```typescript
+MetricsApi.getMetricProperty(id: string, options)
+```
+_______________________________
+
+[Get Metric Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_relationships_flow_triggers)
+
+```typescript
+MetricsApi.getMetricRelationshipsFlowTriggers(id: string)
+```
+_______________________________
+
+[Get Metrics](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metrics)
 
 ```typescript
 MetricsApi.getMetrics(options)
 ```
 _______________________________
 
-[Query Metric Aggregates](https://developers.klaviyo.com/en/v2024-07-15/reference/query_metric_aggregates)
+[Get Properties for Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_properties_for_metric)
+
+```typescript
+MetricsApi.getPropertiesForMetric(id: string, options)
+```
+##### Method alias:
+```typescript
+MetricsApi.getMetricMetricProperties(id: string, options)
+```
+_______________________________
+
+[Get Property IDs for Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_property_ids_for_metric)
+
+```typescript
+MetricsApi.getPropertyIdsForMetric(id: string)
+```
+##### Method alias:
+```typescript
+MetricsApi.getMetricRelationshipsMetricProperties(id: string)
+```
+_______________________________
+
+[Query Metric Aggregates](https://developers.klaviyo.com/en/v2024-10-15/reference/query_metric_aggregates)
 
 ```typescript
 MetricsApi.queryMetricAggregates(metricAggregateQuery: MetricAggregateQuery)
@@ -1926,7 +2231,67 @@ _______________________________
 ## ProfilesApi
 _______________________________
 
-[Create or Update Profile](https://developers.klaviyo.com/en/v2024-07-15/reference/create_or_update_profile)
+[Bulk Subscribe Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_subscribe_profiles)
+
+```typescript
+ProfilesApi.bulkSubscribeProfiles(subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.subscribeProfiles(subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSubscriptionBulkCreateJob(subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery)
+```
+_______________________________
+
+[Bulk Suppress Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_suppress_profiles)
+
+```typescript
+ProfilesApi.bulkSuppressProfiles(suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.suppressProfiles(suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSuppressionBulkCreateJob(suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery)
+```
+_______________________________
+
+[Bulk Unsubscribe Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_unsubscribe_profiles)
+
+```typescript
+ProfilesApi.bulkUnsubscribeProfiles(subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.unsubscribeProfiles(subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSubscriptionBulkDeleteJob(subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery)
+```
+_______________________________
+
+[Bulk Unsuppress Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_unsuppress_profiles)
+
+```typescript
+ProfilesApi.bulkUnsuppressProfiles(suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.unsuppressProfiles(suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileSuppressionBulkDeleteJob(suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery)
+```
+_______________________________
+
+[Create or Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/create_or_update_profile)
 
 ```typescript
 ProfilesApi.createOrUpdateProfile(profileUpsertQuery: ProfileUpsertQuery)
@@ -1937,22 +2302,26 @@ ProfilesApi.createProfileImport(profileUpsertQuery: ProfileUpsertQuery)
 ```
 _______________________________
 
-[Create Profile](https://developers.klaviyo.com/en/v2024-07-15/reference/create_profile)
+[Create Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/create_profile)
 
 ```typescript
 ProfilesApi.createProfile(profileCreateQuery: ProfileCreateQuery)
 ```
 _______________________________
 
-[Create or Update Push Token](https://developers.klaviyo.com/en/v2024-07-15/reference/create_push_token)
+[Create or Update Push Token](https://developers.klaviyo.com/en/v2024-10-15/reference/create_push_token)
 
 ```typescript
 ProfilesApi.createPushToken(pushTokenCreateQuery: PushTokenCreateQuery)
 ```
 _______________________________
 
-[Get Bulk Profile Import Job](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job)
+[Get Bulk Import Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_import_profiles_job)
 
+```typescript
+ProfilesApi.getBulkImportProfilesJob(jobId: string, options)
+```
+##### Method alias:
 ```typescript
 ProfilesApi.getBulkProfileImportJob(jobId: string, options)
 ```
@@ -1962,63 +2331,12 @@ ProfilesApi.getProfileBulkImportJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Bulk Profile Import Job Errors](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_import_errors)
+[Get Bulk Import Profiles Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_import_profiles_jobs)
 
 ```typescript
-ProfilesApi.getBulkProfileImportJobImportErrors(id: string, options)
+ProfilesApi.getBulkImportProfilesJobs(options)
 ```
 ##### Method alias:
-```typescript
-ProfilesApi.getProfileBulkImportJobImportErrors(id: string, options)
-```
-_______________________________
-
-[Get Bulk Profile Import Job Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_lists)
-
-```typescript
-ProfilesApi.getBulkProfileImportJobLists(id: string, options)
-```
-##### Method alias:
-```typescript
-ProfilesApi.getProfileBulkImportJobLists(id: string, options)
-```
-_______________________________
-
-[Get Bulk Profile Import Job Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_profiles)
-
-```typescript
-ProfilesApi.getBulkProfileImportJobProfiles(id: string, options)
-```
-##### Method alias:
-```typescript
-ProfilesApi.getProfileBulkImportJobProfiles(id: string, options)
-```
-_______________________________
-
-[Get Bulk Profile Import Job Relationships Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_relationships_lists)
-
-```typescript
-ProfilesApi.getBulkProfileImportJobRelationshipsLists(id: string)
-```
-##### Method alias:
-```typescript
-ProfilesApi.getProfileBulkImportJobRelationshipsLists(id: string)
-```
-_______________________________
-
-[Get Bulk Profile Import Job Relationships Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_job_relationships_profiles)
-
-```typescript
-ProfilesApi.getBulkProfileImportJobRelationshipsProfiles(id: string, options)
-```
-##### Method alias:
-```typescript
-ProfilesApi.getProfileBulkImportJobRelationshipsProfiles(id: string, options)
-```
-_______________________________
-
-[Get Bulk Profile Import Jobs](https://developers.klaviyo.com/en/v2024-07-15/reference/get_bulk_profile_import_jobs)
-
 ```typescript
 ProfilesApi.getBulkProfileImportJobs(options)
 ```
@@ -2028,49 +2346,184 @@ ProfilesApi.getProfileBulkImportJobs(options)
 ```
 _______________________________
 
-[Get Profile](https://developers.klaviyo.com/en/v2024-07-15/reference/get_profile)
+[Get Bulk Suppress Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_suppress_profiles_job)
+
+```typescript
+ProfilesApi.getBulkSuppressProfilesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileSuppressionBulkCreateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Suppress Profiles Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_suppress_profiles_jobs)
+
+```typescript
+ProfilesApi.getBulkSuppressProfilesJobs(options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileSuppressionBulkCreateJobs(options)
+```
+_______________________________
+
+[Get Bulk Unsuppress Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_unsuppress_profiles_job)
+
+```typescript
+ProfilesApi.getBulkUnsuppressProfilesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileSuppressionBulkDeleteJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Unsuppress Profiles Jobs](https://developers.klaviyo.com/en/v2024-10-15/reference/get_bulk_unsuppress_profiles_jobs)
+
+```typescript
+ProfilesApi.getBulkUnsuppressProfilesJobs(options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileSuppressionBulkDeleteJobs(options)
+```
+_______________________________
+
+[Get Errors for Bulk Import Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_errors_for_bulk_import_profiles_job)
+
+```typescript
+ProfilesApi.getErrorsForBulkImportProfilesJob(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getBulkProfileImportJobImportErrors(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobImportErrors(id: string, options)
+```
+_______________________________
+
+[Get List for Bulk Import Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_for_bulk_import_profiles_job)
+
+```typescript
+ProfilesApi.getListForBulkImportProfilesJob(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getBulkProfileImportJobLists(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobLists(id: string, options)
+```
+_______________________________
+
+[Get List IDs for Bulk Import Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_ids_for_bulk_import_profiles_job)
+
+```typescript
+ProfilesApi.getListIdsForBulkImportProfilesJob(id: string)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getBulkProfileImportJobRelationshipsLists(id: string)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobRelationshipsLists(id: string)
+```
+_______________________________
+
+[Get List IDs for Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_ids_for_profile)
+
+```typescript
+ProfilesApi.getListIdsForProfile(id: string)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileRelationshipsLists(id: string)
+```
+_______________________________
+
+[Get Lists for Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_lists_for_profile)
+
+```typescript
+ProfilesApi.getListsForProfile(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileLists(id: string, options)
+```
+_______________________________
+
+[Get Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile)
 
 ```typescript
 ProfilesApi.getProfile(id: string, options)
 ```
 _______________________________
 
-[Get Profile Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/get_profile_lists)
+[Get Profile IDs for Bulk Import Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_ids_for_bulk_import_profiles_job)
 
 ```typescript
-ProfilesApi.getProfileLists(id: string, options)
+ProfilesApi.getProfileIdsForBulkImportProfilesJob(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getBulkProfileImportJobRelationshipsProfiles(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobRelationshipsProfiles(id: string, options)
 ```
 _______________________________
 
-[Get Profile Relationships Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/get_profile_relationships_lists)
-
-```typescript
-ProfilesApi.getProfileRelationshipsLists(id: string)
-```
-_______________________________
-
-[Get Profile Relationships Segments](https://developers.klaviyo.com/en/v2024-07-15/reference/get_profile_relationships_segments)
-
-```typescript
-ProfilesApi.getProfileRelationshipsSegments(id: string)
-```
-_______________________________
-
-[Get Profile Segments](https://developers.klaviyo.com/en/v2024-07-15/reference/get_profile_segments)
-
-```typescript
-ProfilesApi.getProfileSegments(id: string, options)
-```
-_______________________________
-
-[Get Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_profiles)
+[Get Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profiles)
 
 ```typescript
 ProfilesApi.getProfiles(options)
 ```
 _______________________________
 
-[Merge Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/merge_profiles)
+[Get Profiles for Bulk Import Profiles Job](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profiles_for_bulk_import_profiles_job)
+
+```typescript
+ProfilesApi.getProfilesForBulkImportProfilesJob(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getBulkProfileImportJobProfiles(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileBulkImportJobProfiles(id: string, options)
+```
+_______________________________
+
+[Get Segment IDs for Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_ids_for_profile)
+
+```typescript
+ProfilesApi.getSegmentIdsForProfile(id: string)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileRelationshipsSegments(id: string)
+```
+_______________________________
+
+[Get Segments for Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segments_for_profile)
+
+```typescript
+ProfilesApi.getSegmentsForProfile(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileSegments(id: string, options)
+```
+_______________________________
+
+[Merge Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/merge_profiles)
 
 ```typescript
 ProfilesApi.mergeProfiles(profileMergeQuery: ProfileMergeQuery)
@@ -2081,10 +2534,14 @@ ProfilesApi.createProfileMerge(profileMergeQuery: ProfileMergeQuery)
 ```
 _______________________________
 
-[Spawn Bulk Profile Import Job](https://developers.klaviyo.com/en/v2024-07-15/reference/spawn_bulk_profile_import_job)
+[Spawn Bulk Profile Import Job](https://developers.klaviyo.com/en/v2024-10-15/reference/spawn_bulk_profile_import_job)
 
 ```typescript
 ProfilesApi.spawnBulkProfileImportJob(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.bulkImportProfiles(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
 ```
 ##### Method alias:
 ```typescript
@@ -2092,51 +2549,7 @@ ProfilesApi.createProfileBulkImportJob(profileImportJobCreateQuery: ProfileImpor
 ```
 _______________________________
 
-[Subscribe Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/subscribe_profiles)
-
-```typescript
-ProfilesApi.subscribeProfiles(subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery)
-```
-##### Method alias:
-```typescript
-ProfilesApi.createProfileSubscriptionBulkCreateJob(subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery)
-```
-_______________________________
-
-[Suppress Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/suppress_profiles)
-
-```typescript
-ProfilesApi.suppressProfiles(suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery)
-```
-##### Method alias:
-```typescript
-ProfilesApi.createProfileSuppressionBulkCreateJob(suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery)
-```
-_______________________________
-
-[Unsubscribe Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/unsubscribe_profiles)
-
-```typescript
-ProfilesApi.unsubscribeProfiles(subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery)
-```
-##### Method alias:
-```typescript
-ProfilesApi.createProfileSubscriptionBulkDeleteJob(subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery)
-```
-_______________________________
-
-[Unsuppress Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/unsuppress_profiles)
-
-```typescript
-ProfilesApi.unsuppressProfiles(suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery)
-```
-##### Method alias:
-```typescript
-ProfilesApi.createProfileSuppressionBulkDeleteJob(suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery)
-```
-_______________________________
-
-[Update Profile](https://developers.klaviyo.com/en/v2024-07-15/reference/update_profile)
+[Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/update_profile)
 
 ```typescript
 ProfilesApi.updateProfile(id: string, profilePartialUpdateQuery: ProfilePartialUpdateQuery)
@@ -2145,7 +2558,7 @@ _______________________________
 ## ReportingApi
 _______________________________
 
-[Query Campaign Values](https://developers.klaviyo.com/en/v2024-07-15/reference/query_campaign_values)
+[Query Campaign Values](https://developers.klaviyo.com/en/v2024-10-15/reference/query_campaign_values)
 
 ```typescript
 ReportingApi.queryCampaignValues(campaignValuesRequestDTO: CampaignValuesRequestDTO, options)
@@ -2156,7 +2569,7 @@ ReportingApi.createCampaignValueReport(campaignValuesRequestDTO: CampaignValuesR
 ```
 _______________________________
 
-[Query Flow Series](https://developers.klaviyo.com/en/v2024-07-15/reference/query_flow_series)
+[Query Flow Series](https://developers.klaviyo.com/en/v2024-10-15/reference/query_flow_series)
 
 ```typescript
 ReportingApi.queryFlowSeries(flowSeriesRequestDTO: FlowSeriesRequestDTO, options)
@@ -2167,7 +2580,7 @@ ReportingApi.createFlowSeryReport(flowSeriesRequestDTO: FlowSeriesRequestDTO, op
 ```
 _______________________________
 
-[Query Flow Values](https://developers.klaviyo.com/en/v2024-07-15/reference/query_flow_values)
+[Query Flow Values](https://developers.klaviyo.com/en/v2024-10-15/reference/query_flow_values)
 
 ```typescript
 ReportingApi.queryFlowValues(flowValuesRequestDTO: FlowValuesRequestDTO, options)
@@ -2177,66 +2590,156 @@ ReportingApi.queryFlowValues(flowValuesRequestDTO: FlowValuesRequestDTO, options
 ReportingApi.createFlowValueReport(flowValuesRequestDTO: FlowValuesRequestDTO, options)
 ```
 _______________________________
+
+[Query Form Series](https://developers.klaviyo.com/en/v2024-10-15/reference/query_form_series)
+
+```typescript
+ReportingApi.queryFormSeries(formSeriesRequestDTO: FormSeriesRequestDTO)
+```
+##### Method alias:
+```typescript
+ReportingApi.createFormSeryReport(formSeriesRequestDTO: FormSeriesRequestDTO)
+```
+_______________________________
+
+[Query Form Values](https://developers.klaviyo.com/en/v2024-10-15/reference/query_form_values)
+
+```typescript
+ReportingApi.queryFormValues(formValuesRequestDTO: FormValuesRequestDTO)
+```
+##### Method alias:
+```typescript
+ReportingApi.createFormValueReport(formValuesRequestDTO: FormValuesRequestDTO)
+```
+_______________________________
+
+[Query Segment Series](https://developers.klaviyo.com/en/v2024-10-15/reference/query_segment_series)
+
+```typescript
+ReportingApi.querySegmentSeries(segmentSeriesRequestDTO: SegmentSeriesRequestDTO)
+```
+##### Method alias:
+```typescript
+ReportingApi.createSegmentSeryReport(segmentSeriesRequestDTO: SegmentSeriesRequestDTO)
+```
+_______________________________
+
+[Query Segment Values](https://developers.klaviyo.com/en/v2024-10-15/reference/query_segment_values)
+
+```typescript
+ReportingApi.querySegmentValues(segmentValuesRequestDTO: SegmentValuesRequestDTO)
+```
+##### Method alias:
+```typescript
+ReportingApi.createSegmentValueReport(segmentValuesRequestDTO: SegmentValuesRequestDTO)
+```
+_______________________________
+## ReviewsApi
+_______________________________
+
+[Get Review](https://developers.klaviyo.com/en/v2024-10-15/reference/get_review)
+
+```typescript
+ReviewsApi.getReview(id: string, options)
+```
+_______________________________
+
+[Get Reviews](https://developers.klaviyo.com/en/v2024-10-15/reference/get_reviews)
+
+```typescript
+ReviewsApi.getReviews(options)
+```
+_______________________________
 ## SegmentsApi
 _______________________________
 
-[Create Segment](https://developers.klaviyo.com/en/v2024-07-15/reference/create_segment)
+[Create Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/create_segment)
 
 ```typescript
 SegmentsApi.createSegment(segmentCreateQuery: SegmentCreateQuery)
 ```
 _______________________________
 
-[Delete Segment](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_segment)
+[Delete Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_segment)
 
 ```typescript
 SegmentsApi.deleteSegment(id: string)
 ```
 _______________________________
 
-[Get Segment](https://developers.klaviyo.com/en/v2024-07-15/reference/get_segment)
+[Get Profile IDs for Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_ids_for_segment)
+
+```typescript
+SegmentsApi.getProfileIdsForSegment(id: string, options)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getSegmentRelationshipsProfiles(id: string, options)
+```
+_______________________________
+
+[Get Profiles for Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profiles_for_segment)
+
+```typescript
+SegmentsApi.getProfilesForSegment(id: string, options)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getSegmentProfiles(id: string, options)
+```
+_______________________________
+
+[Get Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment)
 
 ```typescript
 SegmentsApi.getSegment(id: string, options)
 ```
 _______________________________
 
-[Get Segment Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_segment_profiles)
+[Get Segment Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_flow_triggers)
 
 ```typescript
-SegmentsApi.getSegmentProfiles(id: string, options)
+SegmentsApi.getSegmentFlowTriggers(id: string, options)
 ```
 _______________________________
 
-[Get Segment Relationships Profiles](https://developers.klaviyo.com/en/v2024-07-15/reference/get_segment_relationships_profiles)
+[Get Segment Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_relationships_flow_triggers)
 
 ```typescript
-SegmentsApi.getSegmentRelationshipsProfiles(id: string, options)
+SegmentsApi.getSegmentRelationshipsFlowTriggers(id: string)
 ```
 _______________________________
 
-[Get Segment Relationships Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_segment_relationships_tags)
-
-```typescript
-SegmentsApi.getSegmentRelationshipsTags(id: string)
-```
-_______________________________
-
-[Get Segment Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_segment_tags)
-
-```typescript
-SegmentsApi.getSegmentTags(id: string, options)
-```
-_______________________________
-
-[Get Segments](https://developers.klaviyo.com/en/v2024-07-15/reference/get_segments)
+[Get Segments](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segments)
 
 ```typescript
 SegmentsApi.getSegments(options)
 ```
 _______________________________
 
-[Update Segment](https://developers.klaviyo.com/en/v2024-07-15/reference/update_segment)
+[Get Tag IDs for Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_ids_for_segment)
+
+```typescript
+SegmentsApi.getTagIdsForSegment(id: string)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getSegmentRelationshipsTags(id: string)
+```
+_______________________________
+
+[Get Tags for Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tags_for_segment)
+
+```typescript
+SegmentsApi.getTagsForSegment(id: string, options)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getSegmentTags(id: string, options)
+```
+_______________________________
+
+[Update Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/update_segment)
 
 ```typescript
 SegmentsApi.updateSegment(id: string, segmentPartialUpdateQuery: SegmentPartialUpdateQuery)
@@ -2245,22 +2748,200 @@ _______________________________
 ## TagsApi
 _______________________________
 
-[Create Tag](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag)
+[Create Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/create_tag)
 
 ```typescript
 TagsApi.createTag(tagCreateQuery: TagCreateQuery)
 ```
 _______________________________
 
-[Create Tag Group](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag_group)
+[Create Tag Group](https://developers.klaviyo.com/en/v2024-10-15/reference/create_tag_group)
 
 ```typescript
 TagsApi.createTagGroup(tagGroupCreateQuery: TagGroupCreateQuery)
 ```
 _______________________________
 
-[Create Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag_relationships_campaigns)
+[Delete Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_tag)
 
+```typescript
+TagsApi.deleteTag(id: string)
+```
+_______________________________
+
+[Delete Tag Group](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_tag_group)
+
+```typescript
+TagsApi.deleteTagGroup(id: string)
+```
+_______________________________
+
+[Get Campaign IDs for Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaign_ids_for_tag)
+
+```typescript
+TagsApi.getCampaignIdsForTag(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagRelationshipsCampaigns(id: string)
+```
+_______________________________
+
+[Get Flow IDs for Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_ids_for_tag)
+
+```typescript
+TagsApi.getFlowIdsForTag(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagRelationshipsFlows(id: string)
+```
+_______________________________
+
+[Get List IDs for Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_ids_for_tag)
+
+```typescript
+TagsApi.getListIdsForTag(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagRelationshipsLists(id: string)
+```
+_______________________________
+
+[Get Segment IDs for Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_ids_for_tag)
+
+```typescript
+TagsApi.getSegmentIdsForTag(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagRelationshipsSegments(id: string)
+```
+_______________________________
+
+[Get Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag)
+
+```typescript
+TagsApi.getTag(id: string, options)
+```
+_______________________________
+
+[Get Tag Group](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_group)
+
+```typescript
+TagsApi.getTagGroup(id: string, options)
+```
+_______________________________
+
+[Get Tag Group for Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_group_for_tag)
+
+```typescript
+TagsApi.getTagGroupForTag(id: string, options)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagTagGroup(id: string, options)
+```
+_______________________________
+
+[Get Tag Group ID for Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_group_id_for_tag)
+
+```typescript
+TagsApi.getTagGroupIdForTag(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagRelationshipsTagGroup(id: string)
+```
+_______________________________
+
+[Get Tag Groups](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_groups)
+
+```typescript
+TagsApi.getTagGroups(options)
+```
+_______________________________
+
+[Get Tag IDs for Tag Group](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_ids_for_tag_group)
+
+```typescript
+TagsApi.getTagIdsForTagGroup(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagGroupRelationshipsTags(id: string)
+```
+_______________________________
+
+[Get Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tags)
+
+```typescript
+TagsApi.getTags(options)
+```
+_______________________________
+
+[Get Tags for Tag Group](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tags_for_tag_group)
+
+```typescript
+TagsApi.getTagsForTagGroup(id: string, options)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagGroupTags(id: string, options)
+```
+_______________________________
+
+[Remove Tag from Campaigns](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_tag_from_campaigns)
+
+```typescript
+TagsApi.removeTagFromCampaigns(id: string, tagCampaignOp: TagCampaignOp)
+```
+##### Method alias:
+```typescript
+TagsApi.deleteTagRelationshipsCampaigns(id: string, tagCampaignOp: TagCampaignOp)
+```
+_______________________________
+
+[Remove Tag from Flows](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_tag_from_flows)
+
+```typescript
+TagsApi.removeTagFromFlows(id: string, tagFlowOp: TagFlowOp)
+```
+##### Method alias:
+```typescript
+TagsApi.deleteTagRelationshipsFlows(id: string, tagFlowOp: TagFlowOp)
+```
+_______________________________
+
+[Remove Tag from Lists](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_tag_from_lists)
+
+```typescript
+TagsApi.removeTagFromLists(id: string, tagListOp: TagListOp)
+```
+##### Method alias:
+```typescript
+TagsApi.deleteTagRelationshipsLists(id: string, tagListOp: TagListOp)
+```
+_______________________________
+
+[Remove Tag from Segments](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_tag_from_segments)
+
+```typescript
+TagsApi.removeTagFromSegments(id: string, tagSegmentOp: TagSegmentOp)
+```
+##### Method alias:
+```typescript
+TagsApi.deleteTagRelationshipsSegments(id: string, tagSegmentOp: TagSegmentOp)
+```
+_______________________________
+
+[Tag Campaigns](https://developers.klaviyo.com/en/v2024-10-15/reference/tag_campaigns)
+
+```typescript
+TagsApi.tagCampaigns(id: string, tagCampaignOp: TagCampaignOp)
+```
+##### Method alias:
 ```typescript
 TagsApi.createTagRelationshipsCampaigns(id: string, tagCampaignOp: TagCampaignOp)
 ```
@@ -2270,8 +2951,12 @@ TagsApi.createTagRelationshipsCampaign(id: string, tagCampaignOp: TagCampaignOp)
 ```
 _______________________________
 
-[Create Tag Relationships Flows](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag_relationships_flows)
+[Tag Flows](https://developers.klaviyo.com/en/v2024-10-15/reference/tag_flows)
 
+```typescript
+TagsApi.tagFlows(id: string, tagFlowOp: TagFlowOp)
+```
+##### Method alias:
 ```typescript
 TagsApi.createTagRelationshipsFlows(id: string, tagFlowOp: TagFlowOp)
 ```
@@ -2281,8 +2966,12 @@ TagsApi.createTagRelationshipsFlow(id: string, tagFlowOp: TagFlowOp)
 ```
 _______________________________
 
-[Create Tag Relationships Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag_relationships_lists)
+[Tag Lists](https://developers.klaviyo.com/en/v2024-10-15/reference/tag_lists)
 
+```typescript
+TagsApi.tagLists(id: string, tagListOp: TagListOp)
+```
+##### Method alias:
 ```typescript
 TagsApi.createTagRelationshipsLists(id: string, tagListOp: TagListOp)
 ```
@@ -2292,8 +2981,12 @@ TagsApi.createTagRelationshipsList(id: string, tagListOp: TagListOp)
 ```
 _______________________________
 
-[Create Tag Relationships Segments](https://developers.klaviyo.com/en/v2024-07-15/reference/create_tag_relationships_segments)
+[Tag Segments](https://developers.klaviyo.com/en/v2024-10-15/reference/tag_segments)
 
+```typescript
+TagsApi.tagSegments(id: string, tagSegmentOp: TagSegmentOp)
+```
+##### Method alias:
 ```typescript
 TagsApi.createTagRelationshipsSegments(id: string, tagSegmentOp: TagSegmentOp)
 ```
@@ -2303,140 +2996,14 @@ TagsApi.createTagRelationshipsSegment(id: string, tagSegmentOp: TagSegmentOp)
 ```
 _______________________________
 
-[Delete Tag](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_tag)
-
-```typescript
-TagsApi.deleteTag(id: string)
-```
-_______________________________
-
-[Delete Tag Group](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_tag_group)
-
-```typescript
-TagsApi.deleteTagGroup(id: string)
-```
-_______________________________
-
-[Delete Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_tag_relationships_campaigns)
-
-```typescript
-TagsApi.deleteTagRelationshipsCampaigns(id: string, tagCampaignOp: TagCampaignOp)
-```
-_______________________________
-
-[Delete Tag Relationships Flows](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_tag_relationships_flows)
-
-```typescript
-TagsApi.deleteTagRelationshipsFlows(id: string, tagFlowOp: TagFlowOp)
-```
-_______________________________
-
-[Delete Tag Relationships Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_tag_relationships_lists)
-
-```typescript
-TagsApi.deleteTagRelationshipsLists(id: string, tagListOp: TagListOp)
-```
-_______________________________
-
-[Delete Tag Relationships Segments](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_tag_relationships_segments)
-
-```typescript
-TagsApi.deleteTagRelationshipsSegments(id: string, tagSegmentOp: TagSegmentOp)
-```
-_______________________________
-
-[Get Tag](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag)
-
-```typescript
-TagsApi.getTag(id: string, options)
-```
-_______________________________
-
-[Get Tag Group](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_group)
-
-```typescript
-TagsApi.getTagGroup(id: string, options)
-```
-_______________________________
-
-[Get Tag Group Relationships Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_group_relationships_tags)
-
-```typescript
-TagsApi.getTagGroupRelationshipsTags(id: string)
-```
-_______________________________
-
-[Get Tag Group Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_group_tags)
-
-```typescript
-TagsApi.getTagGroupTags(id: string, options)
-```
-_______________________________
-
-[Get Tag Groups](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_groups)
-
-```typescript
-TagsApi.getTagGroups(options)
-```
-_______________________________
-
-[Get Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_relationships_campaigns)
-
-```typescript
-TagsApi.getTagRelationshipsCampaigns(id: string)
-```
-_______________________________
-
-[Get Tag Relationships Flows](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_relationships_flows)
-
-```typescript
-TagsApi.getTagRelationshipsFlows(id: string)
-```
-_______________________________
-
-[Get Tag Relationships Lists](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_relationships_lists)
-
-```typescript
-TagsApi.getTagRelationshipsLists(id: string)
-```
-_______________________________
-
-[Get Tag Relationships Segments](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_relationships_segments)
-
-```typescript
-TagsApi.getTagRelationshipsSegments(id: string)
-```
-_______________________________
-
-[Get Tag Relationships Tag Group](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_relationships_tag_group)
-
-```typescript
-TagsApi.getTagRelationshipsTagGroup(id: string)
-```
-_______________________________
-
-[Get Tag Tag Group](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tag_tag_group)
-
-```typescript
-TagsApi.getTagTagGroup(id: string, options)
-```
-_______________________________
-
-[Get Tags](https://developers.klaviyo.com/en/v2024-07-15/reference/get_tags)
-
-```typescript
-TagsApi.getTags(options)
-```
-_______________________________
-
-[Update Tag](https://developers.klaviyo.com/en/v2024-07-15/reference/update_tag)
+[Update Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/update_tag)
 
 ```typescript
 TagsApi.updateTag(id: string, tagUpdateQuery: TagUpdateQuery)
 ```
 _______________________________
 
-[Update Tag Group](https://developers.klaviyo.com/en/v2024-07-15/reference/update_tag_group)
+[Update Tag Group](https://developers.klaviyo.com/en/v2024-10-15/reference/update_tag_group)
 
 ```typescript
 TagsApi.updateTagGroup(id: string, tagGroupUpdateQuery: TagGroupUpdateQuery)
@@ -2445,100 +3012,182 @@ _______________________________
 ## TemplatesApi
 _______________________________
 
-[Create Template](https://developers.klaviyo.com/en/v2024-07-15/reference/create_template)
+[Clone Template](https://developers.klaviyo.com/en/v2024-10-15/reference/clone_template)
+
+```typescript
+TemplatesApi.cloneTemplate(templateCloneQuery: TemplateCloneQuery)
+```
+##### Method alias:
+```typescript
+TemplatesApi.createTemplateClone(templateCloneQuery: TemplateCloneQuery)
+```
+_______________________________
+
+[Create Template](https://developers.klaviyo.com/en/v2024-10-15/reference/create_template)
 
 ```typescript
 TemplatesApi.createTemplate(templateCreateQuery: TemplateCreateQuery)
 ```
 _______________________________
 
-[Create Template Clone](https://developers.klaviyo.com/en/v2024-07-15/reference/create_template_clone)
+[Create Universal Content](https://developers.klaviyo.com/en/v2024-10-15/reference/create_universal_content)
 
 ```typescript
-TemplatesApi.createTemplateClone(templateCloneQuery: TemplateCloneQuery)
+TemplatesApi.createUniversalContent(universalContentCreateQuery: UniversalContentCreateQuery)
+```
+##### Method alias:
+```typescript
+TemplatesApi.createTemplateUniversalContent(universalContentCreateQuery: UniversalContentCreateQuery)
 ```
 _______________________________
 
-[Create Template Render](https://developers.klaviyo.com/en/v2024-07-15/reference/create_template_render)
-
-```typescript
-TemplatesApi.createTemplateRender(templateRenderQuery: TemplateRenderQuery)
-```
-_______________________________
-
-[Delete Template](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_template)
+[Delete Template](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_template)
 
 ```typescript
 TemplatesApi.deleteTemplate(id: string)
 ```
 _______________________________
 
-[Get Template](https://developers.klaviyo.com/en/v2024-07-15/reference/get_template)
+[Delete Universal Content](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_universal_content)
+
+```typescript
+TemplatesApi.deleteUniversalContent(id: string)
+```
+##### Method alias:
+```typescript
+TemplatesApi.deleteTemplateUniversalContent(id: string)
+```
+_______________________________
+
+[Get All Universal Content](https://developers.klaviyo.com/en/v2024-10-15/reference/get_all_universal_content)
+
+```typescript
+TemplatesApi.getAllUniversalContent(options)
+```
+##### Method alias:
+```typescript
+TemplatesApi.getTemplateUniversalContent(options)
+```
+_______________________________
+
+[Get Template](https://developers.klaviyo.com/en/v2024-10-15/reference/get_template)
 
 ```typescript
 TemplatesApi.getTemplate(id: string, options)
 ```
 _______________________________
 
-[Get Templates](https://developers.klaviyo.com/en/v2024-07-15/reference/get_templates)
+[Get Templates](https://developers.klaviyo.com/en/v2024-10-15/reference/get_templates)
 
 ```typescript
 TemplatesApi.getTemplates(options)
 ```
 _______________________________
 
-[Update Template](https://developers.klaviyo.com/en/v2024-07-15/reference/update_template)
+[Get Universal Content](https://developers.klaviyo.com/en/v2024-10-15/reference/get_universal_content)
+
+```typescript
+TemplatesApi.getUniversalContent(id: string, options)
+```
+_______________________________
+
+[Render Template](https://developers.klaviyo.com/en/v2024-10-15/reference/render_template)
+
+```typescript
+TemplatesApi.renderTemplate(templateRenderQuery: TemplateRenderQuery)
+```
+##### Method alias:
+```typescript
+TemplatesApi.createTemplateRender(templateRenderQuery: TemplateRenderQuery)
+```
+_______________________________
+
+[Update Template](https://developers.klaviyo.com/en/v2024-10-15/reference/update_template)
 
 ```typescript
 TemplatesApi.updateTemplate(id: string, templateUpdateQuery: TemplateUpdateQuery)
 ```
 _______________________________
+
+[Update Universal Content](https://developers.klaviyo.com/en/v2024-10-15/reference/update_universal_content)
+
+```typescript
+TemplatesApi.updateUniversalContent(id: string, universalContentPartialUpdateQuery: UniversalContentPartialUpdateQuery)
+```
+##### Method alias:
+```typescript
+TemplatesApi.updateTemplateUniversalContent(id: string, universalContentPartialUpdateQuery: UniversalContentPartialUpdateQuery)
+```
+_______________________________
+## TrackingSettingsApi
+_______________________________
+
+[Get Tracking Setting](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tracking_setting)
+
+```typescript
+TrackingSettingsApi.getTrackingSetting(id: string, options)
+```
+_______________________________
+
+[Get Tracking Settings](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tracking_settings)
+
+```typescript
+TrackingSettingsApi.getTrackingSettings(options)
+```
+_______________________________
+
+[Update Tracking Setting](https://developers.klaviyo.com/en/v2024-10-15/reference/update_tracking_setting)
+
+```typescript
+TrackingSettingsApi.updateTrackingSetting(id: string, trackingSettingPartialUpdateQuery: TrackingSettingPartialUpdateQuery)
+```
+_______________________________
 ## WebhooksApi
 _______________________________
 
-[Create Webhook](https://developers.klaviyo.com/en/v2024-07-15/reference/create_webhook)
+[Create Webhook](https://developers.klaviyo.com/en/v2024-10-15/reference/create_webhook)
 
 ```typescript
 WebhooksApi.createWebhook(webhookCreateQuery: WebhookCreateQuery)
 ```
 _______________________________
 
-[Delete Webhook](https://developers.klaviyo.com/en/v2024-07-15/reference/delete_webhook)
+[Delete Webhook](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_webhook)
 
 ```typescript
 WebhooksApi.deleteWebhook(id: string)
 ```
 _______________________________
 
-[Get Webhook](https://developers.klaviyo.com/en/v2024-07-15/reference/get_webhook)
+[Get Webhook](https://developers.klaviyo.com/en/v2024-10-15/reference/get_webhook)
 
 ```typescript
 WebhooksApi.getWebhook(id: string, options)
 ```
 _______________________________
 
-[Get Webhook Topic](https://developers.klaviyo.com/en/v2024-07-15/reference/get_webhook_topic)
+[Get Webhook Topic](https://developers.klaviyo.com/en/v2024-10-15/reference/get_webhook_topic)
 
 ```typescript
 WebhooksApi.getWebhookTopic(id: string)
 ```
 _______________________________
 
-[Get Webhook Topics](https://developers.klaviyo.com/en/v2024-07-15/reference/get_webhook_topics)
+[Get Webhook Topics](https://developers.klaviyo.com/en/v2024-10-15/reference/get_webhook_topics)
 
 ```typescript
 WebhooksApi.getWebhookTopics()
 ```
 _______________________________
 
-[Get Webhooks](https://developers.klaviyo.com/en/v2024-07-15/reference/get_webhooks)
+[Get Webhooks](https://developers.klaviyo.com/en/v2024-10-15/reference/get_webhooks)
 
 ```typescript
 WebhooksApi.getWebhooks(options)
 ```
 _______________________________
 
-[Update Webhook](https://developers.klaviyo.com/en/v2024-07-15/reference/update_webhook)
+[Update Webhook](https://developers.klaviyo.com/en/v2024-10-15/reference/update_webhook)
 
 ```typescript
 WebhooksApi.updateWebhook(id: string, webhookPartialUpdateQuery: WebhookPartialUpdateQuery)

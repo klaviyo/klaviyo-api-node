@@ -11,18 +11,18 @@
 
 import { RequestFile } from './models';
 export class StreetAddress {
-    'address1': string;
-    'address2': string;
+    'address1'?: string | null;
+    'address2'?: string | null;
     'city': string;
     /**
     * State, province, or region.
     */
-    'region': string;
+    'region'?: string | null;
     /**
     * Two-letter [ISO country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
     */
-    'country': string;
-    'zip': string;
+    'country'?: string | null;
+    'zip'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

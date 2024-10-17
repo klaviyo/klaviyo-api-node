@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [13.0.0] - 2024-10-15
+### Added
+- Sample Change
+
 ## [12.0.1] - revision 2024-07-15
 ### Fixed
 - Fixed NPM package issue

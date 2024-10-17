@@ -16,7 +16,7 @@ export class ListSetFilter {
     /**
     * Operators for list contains set filters.
     */
-    'operator': ListSetFilter.OperatorEnum | 'contains-any';
+    'operator': ListSetFilter.OperatorEnum | 'contains-all' | 'contains-any' | 'not-contains-all' | 'not-contains-any';
     'value': Array<string>;
 
 
@@ -44,6 +44,9 @@ export class ListSetFilter {
 
 export namespace ListSetFilter {
     export enum OperatorEnum {
-        ContainsAny = <any> 'contains-any'
+        ContainsAll = <any> 'contains-all',
+        ContainsAny = <any> 'contains-any',
+        NotContainsAll = <any> 'not-contains-all',
+        NotContainsAny = <any> 'not-contains-any'
     }
 }

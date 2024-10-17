@@ -11,6 +11,6 @@
 
 import { RequestFile } from './models';
 import { EmailTrackingOptionsSubObject } from './emailTrackingOptionsSubObject';
+import { EmailTrackingOptionsSubObjectCustomTrackingParamsInner } from './emailTrackingOptionsSubObjectCustomTrackingParamsInner';
 import { SMSTrackingOptionsSubObject } from './sMSTrackingOptionsSubObject';
-import { UTMParamsSubObject } from './uTMParamsSubObject';
 export type CampaignResponseObjectResourceAttributesTrackingOptions = EmailTrackingOptionsSubObject | SMSTrackingOptionsSubObject;

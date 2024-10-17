@@ -20,7 +20,7 @@ export class AccountResponseObjectResourceAttributes {
     /**
     * The kind of business and/or types of goods that the business sells. This is leveraged in Klaviyo analytics and guidance.
     */
-    'industry': string;
+    'industry'?: string | null;
     /**
     * The account\'s timezone is used when displaying dates and times. This is an IANA timezone. See [the full list here ](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     */

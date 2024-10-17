@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseCollectionDataInnerAllOfRelationships } from './getProfileResponseCollectionDataInnerAllOfRelationships';
+import { GetProfileResponseDataAllOfRelationships } from './getProfileResponseDataAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 import { ProfileEnum } from './profileEnum';
 import { SegmentMemberResponseObjectResourceExtended } from './segmentMemberResponseObjectResourceExtended';
 import { SegmentMemberResponseObjectResourceExtendedAttributes } from './segmentMemberResponseObjectResourceExtendedAttributes';
 export class GetSegmentMemberResponseCollectionDataInner extends SegmentMemberResponseObjectResourceExtended {
-    'relationships'?: GetProfileResponseCollectionDataInnerAllOfRelationships;
+    'relationships'?: GetProfileResponseDataAllOfRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetProfileResponseCollectionDataInnerAllOfRelationships"
+            "type": "GetProfileResponseDataAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {
