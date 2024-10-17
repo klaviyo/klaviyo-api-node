@@ -88,11 +88,11 @@ export class FlowsApi {
      */
     public async deleteFlow (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/flows/{id}/'
+        const localVarPath = this.basePath + '/api/flows/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -136,294 +136,18 @@ export class FlowsApi {
         );
     }
     /**
-     * Get a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow
-     * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
-     */
-    public async getFlow (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsTag?: Array<'name'>, include?: Array<'flow-actions' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/flows/{id}/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlow.');
-        }
-
-        if (options.fieldsFlowAction !== undefined) {
-            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
-        }
-
-        if (options.fieldsFlow !== undefined) {
-            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
-        }
-
-        if (options.fieldsTag !== undefined) {
-            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'flow-actions' | 'tags'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get a flow action from a flow with the given flow action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Action
-     * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
-     */
-    public async getFlowAction (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'created' | 'updated'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, include?: Array<'flow' | 'flow-messages'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/flow-actions/{id}/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowAction.');
-        }
-
-        if (options.fieldsFlowAction !== undefined) {
-            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
-        }
-
-        if (options.fieldsFlowMessage !== undefined) {
-            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'created' | 'updated'>");
-        }
-
-        if (options.fieldsFlow !== undefined) {
-            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'flow' | 'flow-messages'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionResponseCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow For Flow Action
-     * @param id 
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getFlowActionFlow (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/flow-actions/{id}/flow/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowActionFlow.');
-        }
-
-        if (options.fieldsFlow !== undefined) {
-            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all flow messages associated with the given action ID.  Flow messages can be sorted by the following fields, in ascending and descending order:  ascending: `id`,  `name`, `created`, `updated` descending: `-id`,  `-name`, `-created`, `-updated`  Returns a maximum of 50 flows per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Action Messages
-     * @param id 
-     * @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageSize Default: 50. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
-     */
-    public async getFlowActionMessages (id: string, options: { fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'created' | 'updated'>, filter?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/flow-actions/{id}/flow-messages/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowActionMessages.');
-        }
-
-        if (options.fieldsFlowMessage !== undefined) {
-            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'created' | 'updated'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageSize !== undefined) {
-            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
-        }
-
-        if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated'");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Action Relationships Flow
+     * Get the [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a flow message\'s flow action, given the flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Action ID for Flow Message
      * @param id 
      
      */
-    public async getFlowActionRelationshipsFlow (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }> {
+    public async getActionIdForFlowMessage (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/flow-actions/{id}/relationships/flow/'
+        const localVarPath = this.basePath + '/api/flow-messages/{id}/relationships/flow-action'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -433,7 +157,7 @@ export class FlowsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowActionRelationshipsFlow.');
+            throw new Error('Required parameter id was null or undefined when calling getActionIdForFlowMessage.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -447,11 +171,11 @@ export class FlowsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionFlowRelationshipResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageFlowActionRelationshipResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -462,24 +186,24 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }>(
+        return backOff<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Get all relationships for flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Action Relationships Messages
-     * @param id 
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Flow action relationships can be sorted by the following fields, in ascending and descending order: `id`,  `status`, `created`, `updated`  Use filters to narrow your results.  Returns a maximum of 50 flow action relationships per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Action IDs for Flow
+     * @param id ID of the Flow to update. Ex: XVTP5Q
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;action_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageSize Default: 50. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
-    public async getFlowActionRelationshipsMessages (id: string, options: { filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }> {
+    public async getActionIdsForFlow (id: string, options: { filter?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/flow-actions/{id}/relationships/flow-messages/'
+        const localVarPath = this.basePath + '/api/flows/{id}/relationships/flow-actions'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -489,15 +213,11 @@ export class FlowsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowActionRelationshipsMessages.');
+            throw new Error('Required parameter id was null or undefined when calling getActionIdsForFlow.');
         }
 
         if (options.filter !== undefined) {
             localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
 
         if (options.pageSize !== undefined) {
@@ -505,7 +225,7 @@ export class FlowsApi {
         }
 
         if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated'");
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated'");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -519,11 +239,11 @@ export class FlowsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionFlowMessageRelationshipResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowFlowActionRelationshipListResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -534,24 +254,24 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }>(
+        return backOff<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
      * Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Flow Actions
+     * @summary Get Actions for Flow
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
-    public async getFlowFlowActions (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'action_type' | '-action_type' | 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCollection;  }> {
+    public async getActionsForFlow (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'action_type' | '-action_type' | 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/flows/{id}/flow-actions/'
+        const localVarPath = this.basePath + '/api/flows/{id}/flow-actions'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -561,11 +281,11 @@ export class FlowsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowFlowActions.');
+            throw new Error('Required parameter id was null or undefined when calling getActionsForFlow.');
         }
 
         if (options.fieldsFlowAction !== undefined) {
-            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
+            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
         }
 
         if (options.filter !== undefined) {
@@ -616,18 +336,278 @@ export class FlowsApi {
         );
     }
     /**
-     * Get the flow message of a flow with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Message
+     * Get a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Flow
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
-    public async getFlowMessage (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'created' | 'updated'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'flow-action' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCompoundDocument;  }> {
+    public async getFlow (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsTag?: Array<'name'>, include?: Array<'flow-actions' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/flow-messages/{id}/'
+        const localVarPath = this.basePath + '/api/flows/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getFlow.');
+        }
+
+        if (options.fieldsFlowAction !== undefined) {
+            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
+        }
+
+        if (options.fieldsFlow !== undefined) {
+            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
+        }
+
+        if (options.fieldsTag !== undefined) {
+            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'flow-actions' | 'tags'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get a flow action from a flow with the given flow action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Flow Action
+     * @param id 
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     */
+    public async getFlowAction (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, include?: Array<'flow' | 'flow-messages'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-actions/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getFlowAction.');
+        }
+
+        if (options.fieldsFlowAction !== undefined) {
+            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
+        }
+
+        if (options.fieldsFlowMessage !== undefined) {
+            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>");
+        }
+
+        if (options.fieldsFlow !== undefined) {
+            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'flow' | 'flow-messages'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Flow For Flow Action
+     * @param id 
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getFlowActionFlow (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-actions/{id}/flow'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getFlowActionFlow.');
+        }
+
+        if (options.fieldsFlow !== undefined) {
+            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Flow ID for Flow Action
+     * @param id 
+     
+     */
+    public async getFlowIdForFlowAction (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-actions/{id}/relationships/flow'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getFlowIdForFlowAction.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionFlowRelationshipResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get the flow message of a flow with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Flow Message
+     * @param id 
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     */
+    public async getFlowMessage (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'flow-action' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-messages/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -641,11 +621,11 @@ export class FlowsApi {
         }
 
         if (options.fieldsFlowAction !== undefined) {
-            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
+            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
         }
 
         if (options.fieldsFlowMessage !== undefined) {
-            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'created' | 'updated'>");
+            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>");
         }
 
         if (options.fieldsTemplate !== undefined) {
@@ -691,15 +671,15 @@ export class FlowsApi {
      * Get the flow action for a flow message with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Flow Action For Message
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
-    public async getFlowMessageAction (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponse;  }> {
+    public async getFlowMessageAction (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/flow-messages/{id}/flow-action/'
+        const localVarPath = this.basePath + '/api/flow-messages/{id}/flow-action'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -713,7 +693,7 @@ export class FlowsApi {
         }
 
         if (options.fieldsFlowAction !== undefined) {
-            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
+            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -748,314 +728,18 @@ export class FlowsApi {
         );
     }
     /**
-     * Get the [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a flow message\'s flow action, given the flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Message Relationships Action
-     * @param id 
-     
-     */
-    public async getFlowMessageRelationshipsAction (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/flow-messages/{id}/relationships/flow-action/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowMessageRelationshipsAction.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageFlowActionRelationshipResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
-     * @summary Get Flow Message Relationships Template
-     * @param id 
-     
-     */
-    public async getFlowMessageRelationshipsTemplate (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/flow-messages/{id}/relationships/template/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowMessageRelationshipsTemplate.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageTemplateRelationshipResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Return the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
-     * @summary Get Flow Message Template
-     * @param id 
-     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getFlowMessageTemplate (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/flow-messages/{id}/template/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowMessageTemplate.');
-        }
-
-        if (options.fieldsTemplate !== undefined) {
-            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Flow action relationships can be sorted by the following fields, in ascending and descending order: `id`,  `status`, `created`, `updated`  Use filters to narrow your results.  Returns a maximum of 50 flow action relationships per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Flow Relationships Flow Actions
-     * @param id 
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;action_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageSize Default: 50. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
-     */
-    public async getFlowRelationshipsFlowActions (id: string, options: { filter?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/flows/{id}/relationships/flow-actions/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowRelationshipsFlowActions.');
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageSize !== undefined) {
-            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
-        }
-
-        if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated'");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowFlowActionRelationshipListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Return the tag IDs of all tags associated with the given flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
-     * @summary Get Flow Relationships Tags
-     * @param id 
-     
-     */
-    public async getFlowRelationshipsTags (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/flows/{id}/relationships/tags/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getFlowRelationshipsTags.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowTagRelationshipListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Return all tags associated with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
      * @summary Get Flow Tags
      * @param id 
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getFlowTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/flows/{id}/tags/'
+        const localVarPath = this.basePath + '/api/flows/{id}/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1107,14 +791,14 @@ export class FlowsApi {
      * Get all flows in an account.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Flows
      
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
-    public async getFlows (options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'flow-actions' | 'tags'>, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'status' | '-status' | 'trigger_type' | '-trigger_type' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCollectionCompoundDocument;  }> {
+    public async getFlows (options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'flow-actions' | 'tags'>, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'status' | '-status' | 'trigger_type' | '-trigger_type' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/flows/';
+        const localVarPath = this.basePath + '/api/flows';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1123,7 +807,7 @@ export class FlowsApi {
         }
 
         if (options.fieldsFlowAction !== undefined) {
-            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
+            localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
         }
 
         if (options.fieldsFlow !== undefined) {
@@ -1186,6 +870,322 @@ export class FlowsApi {
         );
     }
     /**
+     * Get all relationships for flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Message IDs for Flow Action
+     * @param id 
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     */
+    public async getMessageIdsForFlowAction (id: string, options: { filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-actions/{id}/relationships/flow-messages'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getMessageIdsForFlowAction.');
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated'");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionFlowMessageRelationshipResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get all flow messages associated with the given action ID.  Flow messages can be sorted by the following fields, in ascending and descending order:  ascending: `id`,  `name`, `created`, `updated` descending: `-id`,  `-name`, `-created`, `-updated`  Returns a maximum of 50 flows per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Messages for Flow Action
+     * @param id 
+     * @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageSize Default: 50. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     */
+    public async getMessagesForFlowAction (id: string, options: { fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, filter?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-actions/{id}/flow-messages'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getMessagesForFlowAction.');
+        }
+
+        if (options.fieldsFlowMessage !== undefined) {
+            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated'");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Return the tag IDs of all tags associated with the given flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
+     * @summary Get Tag IDs for Flow
+     * @param id 
+     
+     */
+    public async getTagIdsForFlow (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/flows/{id}/relationships/tags'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTagIdsForFlow.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowTagRelationshipListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Return the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
+     * @summary Get Template for Flow Message
+     * @param id 
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getTemplateForFlowMessage (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-messages/{id}/template'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTemplateForFlowMessage.');
+        }
+
+        if (options.fieldsTemplate !== undefined) {
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
+     * @summary Get Template ID for Flow Message
+     * @param id 
+     
+     */
+    public async getTemplateIdForFlowMessage (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-messages/{id}/relationships/template'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTemplateIdForFlowMessage.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageTemplateRelationshipResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Update the status of a flow with the given flow ID, and all actions in that flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write`
      * @summary Update Flow Status
      * @param id ID of the Flow to update. Ex: XVTP5Q* @param flowUpdateQuery 
@@ -1193,11 +1193,11 @@ export class FlowsApi {
      */
     public async updateFlow (id: string, flowUpdateQuery: FlowUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchFlowResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/flows/{id}/'
+        const localVarPath = this.basePath + '/api/flows/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1248,3 +1248,93 @@ export class FlowsApi {
         );
     }
 }
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getActionIdForFlowMessage}
+     *
+     * @deprecated Use {@link FlowsApi.getActionIdForFlowMessage} instead
+     */
+    getFlowMessageRelationshipsAction: typeof FlowsApi.prototype.getActionIdForFlowMessage;
+}
+FlowsApi.prototype.getFlowMessageRelationshipsAction = FlowsApi.prototype.getActionIdForFlowMessage
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getActionIdsForFlow}
+     *
+     * @deprecated Use {@link FlowsApi.getActionIdsForFlow} instead
+     */
+    getFlowRelationshipsFlowActions: typeof FlowsApi.prototype.getActionIdsForFlow;
+}
+FlowsApi.prototype.getFlowRelationshipsFlowActions = FlowsApi.prototype.getActionIdsForFlow
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getActionsForFlow}
+     *
+     * @deprecated Use {@link FlowsApi.getActionsForFlow} instead
+     */
+    getFlowFlowActions: typeof FlowsApi.prototype.getActionsForFlow;
+}
+FlowsApi.prototype.getFlowFlowActions = FlowsApi.prototype.getActionsForFlow
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getFlowIdForFlowAction}
+     *
+     * @deprecated Use {@link FlowsApi.getFlowIdForFlowAction} instead
+     */
+    getFlowActionRelationshipsFlow: typeof FlowsApi.prototype.getFlowIdForFlowAction;
+}
+FlowsApi.prototype.getFlowActionRelationshipsFlow = FlowsApi.prototype.getFlowIdForFlowAction
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getMessageIdsForFlowAction}
+     *
+     * @deprecated Use {@link FlowsApi.getMessageIdsForFlowAction} instead
+     */
+    getFlowActionRelationshipsMessages: typeof FlowsApi.prototype.getMessageIdsForFlowAction;
+}
+FlowsApi.prototype.getFlowActionRelationshipsMessages = FlowsApi.prototype.getMessageIdsForFlowAction
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getMessagesForFlowAction}
+     *
+     * @deprecated Use {@link FlowsApi.getMessagesForFlowAction} instead
+     */
+    getFlowActionMessages: typeof FlowsApi.prototype.getMessagesForFlowAction;
+}
+FlowsApi.prototype.getFlowActionMessages = FlowsApi.prototype.getMessagesForFlowAction
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getTagIdsForFlow}
+     *
+     * @deprecated Use {@link FlowsApi.getTagIdsForFlow} instead
+     */
+    getFlowRelationshipsTags: typeof FlowsApi.prototype.getTagIdsForFlow;
+}
+FlowsApi.prototype.getFlowRelationshipsTags = FlowsApi.prototype.getTagIdsForFlow
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getTemplateForFlowMessage}
+     *
+     * @deprecated Use {@link FlowsApi.getTemplateForFlowMessage} instead
+     */
+    getFlowMessageTemplate: typeof FlowsApi.prototype.getTemplateForFlowMessage;
+}
+FlowsApi.prototype.getFlowMessageTemplate = FlowsApi.prototype.getTemplateForFlowMessage
+
+export interface FlowsApi {
+    /**
+     * Alias of {@link FlowsApi.getTemplateIdForFlowMessage}
+     *
+     * @deprecated Use {@link FlowsApi.getTemplateIdForFlowMessage} instead
+     */
+    getFlowMessageRelationshipsTemplate: typeof FlowsApi.prototype.getTemplateIdForFlowMessage;
+}
+FlowsApi.prototype.getFlowMessageRelationshipsTemplate = FlowsApi.prototype.getTemplateIdForFlowMessage

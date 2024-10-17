@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { MarketingSubscriptionParameters } from './marketingSubscriptionParameters';
+import { SubscriptionParameters } from './subscriptionParameters';
 export class EmailSubscriptionParameters {
-    'marketing': MarketingSubscriptionParameters;
+    'marketing': SubscriptionParameters;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "marketing",
             "baseName": "marketing",
-            "type": "MarketingSubscriptionParameters"
+            "type": "SubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {

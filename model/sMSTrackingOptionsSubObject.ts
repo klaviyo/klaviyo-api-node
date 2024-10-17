@@ -10,28 +10,28 @@
  */
 
 import { RequestFile } from './models';
-import { UTMParamsSubObject } from './uTMParamsSubObject';
+import { EmailTrackingOptionsSubObjectCustomTrackingParamsInner } from './emailTrackingOptionsSubObjectCustomTrackingParamsInner';
 export class SMSTrackingOptionsSubObject {
     /**
-    * Whether the campaign needs UTM parameters. If set to False, UTM params will not be used.
+    * Whether the campaign needs custom tracking parameters. If set to False, tracking params will not be used.
     */
-    'isAddUtm'?: boolean | null;
+    'addTrackingParams'?: boolean | null;
     /**
-    * A list of UTM parameters. If an empty list is given and is_add_utm is True, uses company defaults.
+    * A list of custom tracking parameters. If an empty list is given and add_tracking_params is True, uses company defaults.
     */
-    'utmParams'?: Array<UTMParamsSubObject> | null;
+    'customTrackingParams'?: Array<EmailTrackingOptionsSubObjectCustomTrackingParamsInner> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "isAddUtm",
-            "baseName": "is_add_utm",
+            "name": "addTrackingParams",
+            "baseName": "add_tracking_params",
             "type": "boolean"
         },
         {
-            "name": "utmParams",
-            "baseName": "utm_params",
-            "type": "Array<UTMParamsSubObject>"
+            "name": "customTrackingParams",
+            "baseName": "custom_tracking_params",
+            "type": "Array<EmailTrackingOptionsSubObjectCustomTrackingParamsInner>"
         }    ];
 
     static getAttributeTypeMap() {

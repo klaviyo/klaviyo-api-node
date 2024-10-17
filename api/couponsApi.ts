@@ -82,6 +82,62 @@ export class CouponsApi {
     }
 
     /**
+     * Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:write`
+     * @summary Bulk Create Coupon Codes
+     * @param couponCodeCreateJobCreateQuery 
+     
+     */
+    public async bulkCreateCouponCodes (couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/coupon-code-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'couponCodeCreateJobCreateQuery' is not null or undefined
+        if (couponCodeCreateJobCreateQuery === null || couponCodeCreateJobCreateQuery === undefined) {
+            throw new Error('Required parameter couponCodeCreateJobCreateQuery was null or undefined when calling bulkCreateCouponCodes.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(couponCodeCreateJobCreateQuery, "CouponCodeCreateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCouponCodeCreateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Creates a new coupon.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
      * @summary Create Coupon
      * @param couponCreateQuery 
@@ -89,10 +145,10 @@ export class CouponsApi {
      */
     public async createCoupon (couponCreateQuery: CouponCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCouponResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/coupons/';
+        const localVarPath = this.basePath + '/api/coupons';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -145,10 +201,10 @@ export class CouponsApi {
      */
     public async createCouponCode (couponCodeCreateQuery: CouponCodeCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCouponCodeResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/coupon-codes/';
+        const localVarPath = this.basePath + '/api/coupon-codes';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -201,11 +257,11 @@ export class CouponsApi {
      */
     public async deleteCoupon (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/coupons/{id}/'
+        const localVarPath = this.basePath + '/api/coupons/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -256,11 +312,11 @@ export class CouponsApi {
      */
     public async deleteCouponCode (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/coupon-codes/{id}/'
+        const localVarPath = this.basePath + '/api/coupon-codes/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -304,18 +360,208 @@ export class CouponsApi {
         );
     }
     /**
-     * Get a specific coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
-     * @summary Get Coupon
-     * @param id The internal id of a Coupon is equivalent to its external id stored within an integration.
-     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
+     * @summary Get Bulk Create Coupon Code Jobs
+     
+     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
-    public async getCoupon (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
+    public async getBulkCreateCouponCodeJobs (options: { fieldsCouponCodeBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/coupons/{id}/'
+        const localVarPath = this.basePath + '/api/coupon-code-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsCouponCodeBulkCreateJob !== undefined) {
+            localVarQueryParameters['fields[coupon-code-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCouponCodeBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeCreateJobResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get a coupon code bulk create job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
+     * @summary Get Bulk Create Coupon Codes Job
+     * @param jobId ID of the job to retrieve.
+     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     */
+    public async getBulkCreateCouponCodesJob (jobId: string, options: { fieldsCouponCodeBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, include?: Array<'coupon-codes'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/coupon-code-bulk-create-jobs/{job_id}'
+            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling getBulkCreateCouponCodesJob.');
+        }
+
+        if (options.fieldsCouponCodeBulkCreateJob !== undefined) {
+            localVarQueryParameters['fields[coupon-code-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCouponCodeBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
+        }
+
+        if (options.fieldsCouponCode !== undefined) {
+            localVarQueryParameters['fields[coupon-code]'] = ObjectSerializer.serialize(options.fieldsCouponCode, "Array<'unique_code' | 'expires_at' | 'status'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'coupon-codes'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeCreateJobResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
+     * @summary Get Code IDs for Coupon
+     * @param id The ID of the coupon to look up the relationship of.
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     */
+    public async getCodeIdsForCoupon (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/coupons/{id}/relationships/coupon-codes'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCodeIdsForCoupon.');
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponRelationshipCouponCodesListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get a specific coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
+     * @summary Get Coupon
+     * @param id The internal id of a Coupon is equivalent to its external id stored within an integration.
+     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getCoupon (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/coupons/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -367,15 +613,15 @@ export class CouponsApi {
      * Returns a Coupon Code specified by the given identifier.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Code
      * @param id The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
-     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
     public async getCouponCode (id: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, include?: Array<'coupon'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/coupon-codes/{id}/'
+        const localVarPath = this.basePath + '/api/coupon-codes/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -432,207 +678,17 @@ export class CouponsApi {
         );
     }
     /**
-     * Get a coupon code bulk create job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
-     * @summary Get Coupon Code Bulk Create Job
-     * @param jobId ID of the job to retrieve.
-     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
-     */
-    public async getCouponCodeBulkCreateJob (jobId: string, options: { fieldsCouponCodeBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, include?: Array<'coupon-codes'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/coupon-code-bulk-create-jobs/{job_id}/'
-            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'jobId' is not null or undefined
-        if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling getCouponCodeBulkCreateJob.');
-        }
-
-        if (options.fieldsCouponCodeBulkCreateJob !== undefined) {
-            localVarQueryParameters['fields[coupon-code-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCouponCodeBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        if (options.fieldsCouponCode !== undefined) {
-            localVarQueryParameters['fields[coupon-code]'] = ObjectSerializer.serialize(options.fieldsCouponCode, "Array<'unique_code' | 'expires_at' | 'status'>");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'coupon-codes'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeCreateJobResponseCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
-     * @summary Get Coupon Code Bulk Create Jobs
-     
-     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
-     */
-    public async getCouponCodeBulkCreateJobs (options: { fieldsCouponCodeBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }> {
-
-        const localVarPath = this.basePath + '/api/coupon-code-bulk-create-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        if (options.fieldsCouponCodeBulkCreateJob !== undefined) {
-            localVarQueryParameters['fields[coupon-code-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsCouponCodeBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeCreateJobResponseCollectionCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
-     * @summary Get Coupon Code Relationships Coupon
-     * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
-     */
-    public async getCouponCodeRelationshipsCoupon (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/coupons/{id}/relationships/coupon-codes/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCouponCodeRelationshipsCoupon.');
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponRelationshipCouponCodesListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Codes
      
-     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getCouponCodes (options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, filter?: string, include?: Array<'coupon'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/coupon-codes/';
+        const localVarPath = this.basePath + '/api/coupon-codes';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -695,15 +751,15 @@ export class CouponsApi {
      * Gets a list of coupon codes associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Codes For Coupon
      * @param id 
-     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getCouponCodesForCoupon (id: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/coupons/{id}/coupon-codes/'
+        const localVarPath = this.basePath + '/api/coupons/{id}/coupon-codes'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -762,16 +818,16 @@ export class CouponsApi {
     /**
      * Get the coupon associated with a given coupon code ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
      * @summary Get Coupon For Coupon Code
-     * @param id 
-     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param id The ID of the coupon to look up the relationship of.
+     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
-    public async getCouponForCouponCode (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponseCollection;  }> {
+    public async getCouponForCouponCode (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/coupon-codes/{id}/coupon/'
+        const localVarPath = this.basePath + '/api/coupon-codes/{id}/coupon'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -799,11 +855,11 @@ export class CouponsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -814,24 +870,24 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponResponseCollection;  }>(
+        return backOff<{ response: AxiosResponse; body: GetCouponResponse;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
      * Gets the coupon relationship associated with the given coupon code id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
-     * @summary Get Coupon Relationships Coupon Codes
-     * @param id 
+     * @summary Get Coupon ID for Coupon Code
+     * @param id The ID of the coupon code to look up the relationship of.
      
      */
-    public async getCouponRelationshipsCouponCodes (id: string, ): Promise<{ response: AxiosResponse; body: GetCouponCodeRelationshipCouponResponse;  }> {
+    public async getCouponIdForCouponCode (id: string, ): Promise<{ response: AxiosResponse; body: GetCouponCodeRelationshipCouponResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/coupon-codes/{id}/relationships/coupon/'
+        const localVarPath = this.basePath + '/api/coupon-codes/{id}/relationships/coupon'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -841,7 +897,7 @@ export class CouponsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCouponRelationshipsCouponCodes.');
+            throw new Error('Required parameter id was null or undefined when calling getCouponIdForCouponCode.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -879,14 +935,14 @@ export class CouponsApi {
      * Get all coupons in an account.  To learn more, see our [Coupons API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_coupons_api).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
      * @summary Get Coupons
      
-     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination
+     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
      */
     public async getCoupons (options: { fieldsCoupon?: Array<'external_id' | 'description'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/coupons/';
+        const localVarPath = this.basePath + '/api/coupons';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -934,62 +990,6 @@ export class CouponsApi {
         );
     }
     /**
-     * Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:write`
-     * @summary Spawn Coupon Code Bulk Create Job
-     * @param couponCodeCreateJobCreateQuery 
-     
-     */
-    public async spawnCouponCodeBulkCreateJob (couponCodeCreateJobCreateQuery: CouponCodeCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }> {
-
-        const localVarPath = this.basePath + '/api/coupon-code-bulk-create-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'couponCodeCreateJobCreateQuery' is not null or undefined
-        if (couponCodeCreateJobCreateQuery === null || couponCodeCreateJobCreateQuery === undefined) {
-            throw new Error('Required parameter couponCodeCreateJobCreateQuery was null or undefined when calling spawnCouponCodeBulkCreateJob.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(couponCodeCreateJobCreateQuery, "CouponCodeCreateJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PostCouponCodeCreateJobResponse");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * *Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
      * @summary Update Coupon
      * @param id The internal id of a Coupon is equivalent to its external id stored within an integration.* @param couponUpdateQuery 
@@ -997,11 +997,11 @@ export class CouponsApi {
      */
     public async updateCoupon (id: string, couponUpdateQuery: CouponUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchCouponResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/coupons/{id}/'
+        const localVarPath = this.basePath + '/api/coupons/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1059,11 +1059,11 @@ export class CouponsApi {
      */
     public async updateCouponCode (id: string, couponCodeUpdateQuery: CouponCodeUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchCouponCodeResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/coupon-codes/{id}/'
+        const localVarPath = this.basePath + '/api/coupon-codes/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1117,6 +1117,56 @@ export class CouponsApi {
 
 export interface CouponsApi {
     /**
+     * Alias of {@link CouponsApi.bulkCreateCouponCodes}
+     *
+     * @deprecated Use {@link CouponsApi.bulkCreateCouponCodes} instead
+     */
+    spawnCouponCodeBulkCreateJob: typeof CouponsApi.prototype.bulkCreateCouponCodes;
+}
+CouponsApi.prototype.spawnCouponCodeBulkCreateJob = CouponsApi.prototype.bulkCreateCouponCodes
+
+export interface CouponsApi {
+    /**
+     * Alias of {@link CouponsApi.bulkCreateCouponCodes}
+     *
+     * @deprecated Use {@link CouponsApi.bulkCreateCouponCodes} instead
+     */
+    createCouponCodeBulkCreateJob: typeof CouponsApi.prototype.bulkCreateCouponCodes;
+}
+CouponsApi.prototype.createCouponCodeBulkCreateJob = CouponsApi.prototype.bulkCreateCouponCodes
+
+export interface CouponsApi {
+    /**
+     * Alias of {@link CouponsApi.getBulkCreateCouponCodeJobs}
+     *
+     * @deprecated Use {@link CouponsApi.getBulkCreateCouponCodeJobs} instead
+     */
+    getCouponCodeBulkCreateJobs: typeof CouponsApi.prototype.getBulkCreateCouponCodeJobs;
+}
+CouponsApi.prototype.getCouponCodeBulkCreateJobs = CouponsApi.prototype.getBulkCreateCouponCodeJobs
+
+export interface CouponsApi {
+    /**
+     * Alias of {@link CouponsApi.getBulkCreateCouponCodesJob}
+     *
+     * @deprecated Use {@link CouponsApi.getBulkCreateCouponCodesJob} instead
+     */
+    getCouponCodeBulkCreateJob: typeof CouponsApi.prototype.getBulkCreateCouponCodesJob;
+}
+CouponsApi.prototype.getCouponCodeBulkCreateJob = CouponsApi.prototype.getBulkCreateCouponCodesJob
+
+export interface CouponsApi {
+    /**
+     * Alias of {@link CouponsApi.getCodeIdsForCoupon}
+     *
+     * @deprecated Use {@link CouponsApi.getCodeIdsForCoupon} instead
+     */
+    getCouponCodeRelationshipsCoupon: typeof CouponsApi.prototype.getCodeIdsForCoupon;
+}
+CouponsApi.prototype.getCouponCodeRelationshipsCoupon = CouponsApi.prototype.getCodeIdsForCoupon
+
+export interface CouponsApi {
+    /**
      * Alias of {@link CouponsApi.getCouponCodesForCoupon}
      *
      * @deprecated Use {@link CouponsApi.getCouponCodesForCoupon} instead
@@ -1137,10 +1187,10 @@ CouponsApi.prototype.getCouponCodeCoupon = CouponsApi.prototype.getCouponForCoup
 
 export interface CouponsApi {
     /**
-     * Alias of {@link CouponsApi.spawnCouponCodeBulkCreateJob}
+     * Alias of {@link CouponsApi.getCouponIdForCouponCode}
      *
-     * @deprecated Use {@link CouponsApi.spawnCouponCodeBulkCreateJob} instead
+     * @deprecated Use {@link CouponsApi.getCouponIdForCouponCode} instead
      */
-    createCouponCodeBulkCreateJob: typeof CouponsApi.prototype.spawnCouponCodeBulkCreateJob;
+    getCouponRelationshipsCouponCodes: typeof CouponsApi.prototype.getCouponIdForCouponCode;
 }
-CouponsApi.prototype.createCouponCodeBulkCreateJob = CouponsApi.prototype.spawnCouponCodeBulkCreateJob
+CouponsApi.prototype.getCouponRelationshipsCouponCodes = CouponsApi.prototype.getCouponIdForCouponCode

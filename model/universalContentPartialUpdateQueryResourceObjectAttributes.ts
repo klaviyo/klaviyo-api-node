@@ -10,13 +10,13 @@
  */
 
 import { RequestFile } from './models';
-import { TextBlock } from './textBlock';
+import { UniversalContentPartialUpdateQueryResourceObjectAttributesDefinition } from './universalContentPartialUpdateQueryResourceObjectAttributesDefinition';
 export class UniversalContentPartialUpdateQueryResourceObjectAttributes {
     /**
     * The name for this template universal content
     */
     'name'?: string | null;
-    'definition'?: TextBlock;
+    'definition'?: UniversalContentPartialUpdateQueryResourceObjectAttributesDefinition | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -28,7 +28,7 @@ export class UniversalContentPartialUpdateQueryResourceObjectAttributes {
         {
             "name": "definition",
             "baseName": "definition",
-            "type": "TextBlock"
+            "type": "UniversalContentPartialUpdateQueryResourceObjectAttributesDefinition"
         }    ];
 
     static getAttributeTypeMap() {

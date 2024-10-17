@@ -18,7 +18,7 @@ export class DeviceMetadata {
     /**
     * The name of the SDK used to create the push token.
     */
-    'klaviyoSdk'?: DeviceMetadata.KlaviyoSdkEnum | 'android' | 'swift' | null;
+    'klaviyoSdk'?: DeviceMetadata.KlaviyoSdkEnum | 'android' | 'react_native' | 'swift' | null;
     /**
     * The version of the SDK used to create the push token
     */
@@ -131,6 +131,7 @@ export class DeviceMetadata {
 export namespace DeviceMetadata {
     export enum KlaviyoSdkEnum {
         Android = <any> 'android',
+        ReactNative = <any> 'react_native',
         Swift = <any> 'swift'
     }
     export enum OsNameEnum {

@@ -12,10 +12,10 @@
 import { RequestFile } from './models';
 import { EmailChannel } from './emailChannel';
 import { PushChannel } from './pushChannel';
-import { SMSChannel } from './sMSChannel';
+import { SubscriptionsSms } from './subscriptionsSms';
 export class Subscriptions {
     'email'?: EmailChannel;
-    'sms'?: SMSChannel;
+    'sms'?: SubscriptionsSms | null;
     'mobilePush'?: PushChannel;
 
 
@@ -28,7 +28,7 @@ export class Subscriptions {
         {
             "name": "sms",
             "baseName": "sms",
-            "type": "SMSChannel"
+            "type": "SubscriptionsSms"
         },
         {
             "name": "mobilePush",

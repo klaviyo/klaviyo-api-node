@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetListRelationshipsResponseCollectionDataInner } from './getListRelationshipsResponseCollectionDataInner';
+import { GetEventProfileRelationshipResponseData } from './getEventProfileRelationshipResponseData';
 import { RelationshipLinks } from './relationshipLinks';
 export class PostListCreateResponseDataRelationshipsProfiles {
-    'data'?: Array<GetListRelationshipsResponseCollectionDataInner>;
+    'data'?: Array<GetEventProfileRelationshipResponseData>;
     'links'?: RelationshipLinks;
 
 
@@ -21,7 +21,7 @@ export class PostListCreateResponseDataRelationshipsProfiles {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetListRelationshipsResponseCollectionDataInner>"
+            "type": "Array<GetEventProfileRelationshipResponseData>"
         },
         {
             "name": "links",

@@ -17,6 +17,10 @@ import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
+import { GetBulkProfileSuppressionsCreateJobResponse } from '../model/getBulkProfileSuppressionsCreateJobResponse';
+import { GetBulkProfileSuppressionsCreateJobResponseCollection } from '../model/getBulkProfileSuppressionsCreateJobResponseCollection';
+import { GetBulkProfileSuppressionsRemoveJobResponse } from '../model/getBulkProfileSuppressionsRemoveJobResponse';
+import { GetBulkProfileSuppressionsRemoveJobResponseCollection } from '../model/getBulkProfileSuppressionsRemoveJobResponseCollection';
 import { GetImportErrorResponseCollection } from '../model/getImportErrorResponseCollection';
 import { GetListResponseCollection } from '../model/getListResponseCollection';
 import { GetProfileImportJobListRelationshipsResponseCollection } from '../model/getProfileImportJobListRelationshipsResponseCollection';
@@ -30,6 +34,8 @@ import { GetProfileResponseCompoundDocument } from '../model/getProfileResponseC
 import { GetProfileSegmentRelationshipsResponseCollection } from '../model/getProfileSegmentRelationshipsResponseCollection';
 import { GetSegmentResponseCollection } from '../model/getSegmentResponseCollection';
 import { PatchProfileResponse } from '../model/patchProfileResponse';
+import { PostBulkProfileSuppressionsCreateJobResponse } from '../model/postBulkProfileSuppressionsCreateJobResponse';
+import { PostBulkProfileSuppressionsRemoveJobResponse } from '../model/postBulkProfileSuppressionsRemoveJobResponse';
 import { PostProfileImportJobResponse } from '../model/postProfileImportJobResponse';
 import { PostProfileMergeResponse } from '../model/postProfileMergeResponse';
 import { PostProfileResponse } from '../model/postProfileResponse';
@@ -89,6 +95,228 @@ export class ProfilesApi {
     }
 
     /**
+     * Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a `historical_import` flag. If this flag is set `true`, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \"Added to list\" flows. This is useful for importing historical data where you have already collected consent. If `historical_import` is set to true, the `consented_at` field is required and must be in the past.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
+     * @summary Bulk Subscribe Profiles
+     * @param subscriptionCreateJobCreateQuery Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
+     
+     */
+    public async bulkSubscribeProfiles (subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-subscription-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'subscriptionCreateJobCreateQuery' is not null or undefined
+        if (subscriptionCreateJobCreateQuery === null || subscriptionCreateJobCreateQuery === undefined) {
+            throw new Error('Required parameter subscriptionCreateJobCreateQuery was null or undefined when calling bulkSubscribeProfiles.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(subscriptionCreateJobCreateQuery, "SubscriptionCreateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Manually suppress profiles by email address or specify a segment/list ID to suppress all current members of a segment/list.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `subscriptions:write`
+     * @summary Bulk Suppress Profiles
+     * @param suppressionCreateJobCreateQuery Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
+     
+     */
+    public async bulkSuppressProfiles (suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostBulkProfileSuppressionsCreateJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-suppression-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'suppressionCreateJobCreateQuery' is not null or undefined
+        if (suppressionCreateJobCreateQuery === null || suppressionCreateJobCreateQuery === undefined) {
+            throw new Error('Required parameter suppressionCreateJobCreateQuery was null or undefined when calling bulkSuppressProfiles.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(suppressionCreateJobCreateQuery, "SuppressionCreateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostBulkProfileSuppressionsCreateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostBulkProfileSuppressionsCreateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostBulkProfileSuppressionsCreateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
+     * @summary Bulk Unsubscribe Profiles
+     * @param subscriptionDeleteJobCreateQuery Unsubscribes one or more profiles from marketing. Currently, supports email and SMS only. All profiles will be removed from the provided list. Either email or phone number is required. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
+     
+     */
+    public async bulkUnsubscribeProfiles (subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-subscription-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'subscriptionDeleteJobCreateQuery' is not null or undefined
+        if (subscriptionDeleteJobCreateQuery === null || subscriptionDeleteJobCreateQuery === undefined) {
+            throw new Error('Required parameter subscriptionDeleteJobCreateQuery was null or undefined when calling bulkUnsubscribeProfiles.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(subscriptionDeleteJobCreateQuery, "SubscriptionDeleteJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body?: any;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Manually unsuppress profiles by email address or specify a segment/list ID to unsuppress all current members of a segment/list.  This only removes suppressions with reason USER_SUPPRESSED ; unsubscribed profiles and suppressed profiles with reason INVALID_EMAIL or HARD_BOUNCE remain unchanged. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:write`
+     * @summary Bulk Unsuppress Profiles
+     * @param suppressionDeleteJobCreateQuery Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
+     
+     */
+    public async bulkUnsuppressProfiles (suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostBulkProfileSuppressionsRemoveJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-suppression-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'suppressionDeleteJobCreateQuery' is not null or undefined
+        if (suppressionDeleteJobCreateQuery === null || suppressionDeleteJobCreateQuery === undefined) {
+            throw new Error('Required parameter suppressionDeleteJobCreateQuery was null or undefined when calling bulkUnsuppressProfiles.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(suppressionDeleteJobCreateQuery, "SuppressionDeleteJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostBulkProfileSuppressionsRemoveJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostBulkProfileSuppressionsRemoveJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: PostBulkProfileSuppressionsRemoveJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
      * @summary Create or Update Profile
      * @param profileUpsertQuery 
@@ -96,10 +324,10 @@ export class ProfilesApi {
      */
     public async createOrUpdateProfile (profileUpsertQuery: ProfileUpsertQuery, ): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/profile-import/';
+        const localVarPath = this.basePath + '/api/profile-import';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -152,10 +380,10 @@ export class ProfilesApi {
      */
     public async createProfile (profileCreateQuery: ProfileCreateQuery, ): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/profiles/';
+        const localVarPath = this.basePath + '/api/profiles';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -208,10 +436,10 @@ export class ProfilesApi {
      */
     public async createPushToken (pushTokenCreateQuery: PushTokenCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
-        const localVarPath = this.basePath + '/api/push-tokens/';
+        const localVarPath = this.basePath + '/api/push-tokens';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -257,17 +485,17 @@ export class ProfilesApi {
     }
     /**
      * Get a bulk profile import job with the given job ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
-     * @summary Get Bulk Profile Import Job
+     * @summary Get Bulk Import Profiles Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
      */
-    public async getBulkProfileImportJob (jobId: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, include?: Array<'lists'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCompoundDocument;  }> {
+    public async getBulkImportProfilesJob (jobId: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, include?: Array<'lists'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{job_id}/'
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{job_id}'
             .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -277,7 +505,7 @@ export class ProfilesApi {
 
         // verify required parameter 'jobId' is not null or undefined
         if (jobId === null || jobId === undefined) {
-            throw new Error('Required parameter jobId was null or undefined when calling getBulkProfileImportJob.');
+            throw new Error('Required parameter jobId was null or undefined when calling getBulkImportProfilesJob.');
         }
 
         if (options.fieldsList !== undefined) {
@@ -324,337 +552,17 @@ export class ProfilesApi {
         );
     }
     /**
-     * Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
-     * @summary Get Bulk Profile Import Job Errors
-     * @param id 
-     * @param fieldsImportError For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
-     */
-    public async getBulkProfileImportJobImportErrors (id: string, options: { fieldsImportError?: Array<'code' | 'title' | 'detail' | 'source' | 'source.pointer' | 'original_payload'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/import-errors/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBulkProfileImportJobImportErrors.');
-        }
-
-        if (options.fieldsImportError !== undefined) {
-            localVarQueryParameters['fields[import-error]'] = ObjectSerializer.serialize(options.fieldsImportError, "Array<'code' | 'title' | 'detail' | 'source' | 'source.pointer' | 'original_payload'>");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        if (options.pageSize !== undefined) {
-            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetImportErrorResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
-     * @summary Get Bulk Profile Import Job Lists
-     * @param id 
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getBulkProfileImportJobLists (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/lists/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBulkProfileImportJobLists.');
-        }
-
-        if (options.fieldsList !== undefined) {
-            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get profiles for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
-     * @summary Get Bulk Profile Import Job Profiles
-     * @param id 
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
-     */
-    public async getBulkProfileImportJobProfiles (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/profiles/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBulkProfileImportJobProfiles.');
-        }
-
-        if (options.additionalFieldsProfile !== undefined) {
-            localVarQueryParameters['additional-fields[profile]'] = ObjectSerializer.serialize(options.additionalFieldsProfile, "Array<'subscriptions' | 'predictive_analytics'>");
-        }
-
-        if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        if (options.pageSize !== undefined) {
-            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get list relationship for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
-     * @summary Get Bulk Profile Import Job Relationships Lists
-     * @param id 
-     
-     */
-    public async getBulkProfileImportJobRelationshipsLists (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/relationships/lists/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBulkProfileImportJobRelationshipsLists.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobListRelationshipsResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
-     * @summary Get Bulk Profile Import Job Relationships Profiles
-     * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
-     */
-    public async getBulkProfileImportJobRelationshipsProfiles (id: string, options: { pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/relationships/profiles/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBulkProfileImportJobRelationshipsProfiles.');
-        }
-
-        if (options.pageCursor !== undefined) {
-            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
-        }
-
-        if (options.pageSize !== undefined) {
-            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobProfileRelationshipsResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
-     * @summary Get Bulk Profile Import Jobs
+     * @summary Get Bulk Import Profiles Jobs
      
-     * @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
-    public async getBulkProfileImportJobs (options: { fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCollectionCompoundDocument;  }> {
+    public async getBulkImportProfilesJobs (options: { fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/';
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -714,18 +622,570 @@ export class ProfilesApi {
         );
     }
     /**
-     * Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
-     * @summary Get Profile
-     * @param id 
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#relationships
+     * Get the bulk suppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+     * @summary Get Bulk Suppress Profiles Job
+     * @param jobId ID of the job to retrieve.
+     * @param fieldsProfileSuppressionBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
      */
-    public async getProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>, include?: Array<'lists' | 'segments'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> {
+    public async getBulkSuppressProfilesJob (jobId: string, options: { fieldsProfileSuppressionBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/profiles/{id}/'
+        const localVarPath = this.basePath + '/api/profile-suppression-bulk-create-jobs/{job_id}'
+            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling getBulkSuppressProfilesJob.');
+        }
+
+        if (options.fieldsProfileSuppressionBulkCreateJob !== undefined) {
+            localVarQueryParameters['fields[profile-suppression-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsProfileSuppressionBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsCreateJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get the status of all bulk profile suppression jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+     * @summary Get Bulk Suppress Profiles Jobs
+     
+     * @param fieldsProfileSuppressionBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     */
+    public async getBulkSuppressProfilesJobs (options: { fieldsProfileSuppressionBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-suppression-bulk-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsProfileSuppressionBulkCreateJob !== undefined) {
+            localVarQueryParameters['fields[profile-suppression-bulk-create-job]'] = ObjectSerializer.serialize(options.fieldsProfileSuppressionBulkCreateJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsCreateJobResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get the bulk unsuppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+     * @summary Get Bulk Unsuppress Profiles Job
+     * @param jobId ID of the job to retrieve.
+     * @param fieldsProfileSuppressionBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getBulkUnsuppressProfilesJob (jobId: string, options: { fieldsProfileSuppressionBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-suppression-bulk-delete-jobs/{job_id}'
+            .replace('{' + 'job_id' + '}', encodeURIComponent(String(jobId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'jobId' is not null or undefined
+        if (jobId === null || jobId === undefined) {
+            throw new Error('Required parameter jobId was null or undefined when calling getBulkUnsuppressProfilesJob.');
+        }
+
+        if (options.fieldsProfileSuppressionBulkDeleteJob !== undefined) {
+            localVarQueryParameters['fields[profile-suppression-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsProfileSuppressionBulkDeleteJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponse;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsRemoveJobResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponse;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get all bulk unsuppress profiles jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+     * @summary Get Bulk Unsuppress Profiles Jobs
+     
+     * @param fieldsProfileSuppressionBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     */
+    public async getBulkUnsuppressProfilesJobs (options: { fieldsProfileSuppressionBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-suppression-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsProfileSuppressionBulkDeleteJob !== undefined) {
+            localVarQueryParameters['fields[profile-suppression-bulk-delete-job]'] = ObjectSerializer.serialize(options.fieldsProfileSuppressionBulkDeleteJob, "Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created'");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsRemoveJobResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
+     * @summary Get Errors for Bulk Import Profiles Job
+     * @param id 
+     * @param fieldsImportError For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     */
+    public async getErrorsForBulkImportProfilesJob (id: string, options: { fieldsImportError?: Array<'code' | 'title' | 'detail' | 'source' | 'source.pointer' | 'original_payload'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/import-errors'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getErrorsForBulkImportProfilesJob.');
+        }
+
+        if (options.fieldsImportError !== undefined) {
+            localVarQueryParameters['fields[import-error]'] = ObjectSerializer.serialize(options.fieldsImportError, "Array<'code' | 'title' | 'detail' | 'source' | 'source.pointer' | 'original_payload'>");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetImportErrorResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
+     * @summary Get List for Bulk Import Profiles Job
+     * @param id 
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getListForBulkImportProfilesJob (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/lists'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getListForBulkImportProfilesJob.');
+        }
+
+        if (options.fieldsList !== undefined) {
+            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get list relationship for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
+     * @summary Get List IDs for Bulk Import Profiles Job
+     * @param id 
+     
+     */
+    public async getListIdsForBulkImportProfilesJob (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/relationships/lists'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getListIdsForBulkImportProfilesJob.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobListRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
+     * @summary Get List IDs for Profile
+     * @param id 
+     
+     */
+    public async getListIdsForProfile (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profiles/{id}/relationships/lists'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getListIdsForProfile.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileListRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
+     * @summary Get Lists for Profile
+     * @param id 
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getListsForProfile (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profiles/{id}/lists'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getListsForProfile.');
+        }
+
+        if (options.fieldsList !== undefined) {
+            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
+     * @summary Get Profile
+     * @param id 
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     */
+    public async getProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>, include?: Array<'lists' | 'segments'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/profiles/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -747,7 +1207,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
         }
 
         if (options.fieldsSegment !== undefined) {
@@ -790,18 +1250,18 @@ export class ProfilesApi {
         );
     }
     /**
-     * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
-     * @summary Get Profile Lists
+     * Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
+     * @summary Get Profile IDs for Bulk Import Profiles Job
      * @param id 
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
-    public async getProfileLists (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
+    public async getProfileIdsForBulkImportProfilesJob (id: string, options: { pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> {
 
-        const localVarPath = this.basePath + '/api/profiles/{id}/lists/'
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/relationships/profiles'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -811,11 +1271,15 @@ export class ProfilesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getProfileLists.');
+            throw new Error('Required parameter id was null or undefined when calling getProfileIdsForBulkImportProfilesJob.');
         }
 
-        if (options.fieldsList !== undefined) {
-            localVarQueryParameters['fields[list]'] = ObjectSerializer.serialize(options.fieldsList, "Array<'name' | 'created' | 'updated' | 'opt_in_process'>");
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -829,11 +1293,11 @@ export class ProfilesApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await axios(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobProfileRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -844,195 +1308,23 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>(
+        return backOff<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }>(
             () => {return request(config)},
             this.session.getRetryOptions()
         );
     }
     /**
-     * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
-     * @summary Get Profile Relationships Lists
-     * @param id 
-     
-     */
-    public async getProfileRelationshipsLists (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profiles/{id}/relationships/lists/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getProfileRelationshipsLists.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileListRelationshipsResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
-     * @summary Get Profile Relationships Segments
-     * @param id 
-     
-     */
-    public async getProfileRelationshipsSegments (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profiles/{id}/relationships/segments/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getProfileRelationshipsSegments.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileSegmentRelationshipsResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
-     * @summary Get Profile Segments
-     * @param id 
-     * @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getProfileSegments (id: string, options: { fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/profiles/{id}/segments/'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getProfileSegments.');
-        }
-
-        if (options.fieldsSegment !== undefined) {
-            localVarQueryParameters['fields[segment]'] = ObjectSerializer.serialize(options.fieldsSegment, "Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-07-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
      * @summary Get Profiles
      
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60; : &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60; : &#x60;greater-than&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;, &#x60;less-or-equal&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-07-15/reference/api-overview#sorting
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
      */
-    public async getProfiles (options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'email' | '-email' | 'id' | '-id' | 'updated' | '-updated' | 'subscriptions.email.marketing.list_suppressions.timestamp' | '-subscriptions.email.marketing.list_suppressions.timestamp' | 'subscriptions.email.marketing.suppression.timestamp' | '-subscriptions.email.marketing.suppression.timestamp',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> {
+    public async getProfiles (options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'email' | '-email' | 'id' | '-id' | 'updated' | '-updated' | 'subscriptions.email.marketing.list_suppressions.timestamp' | '-subscriptions.email.marketing.list_suppressions.timestamp' | 'subscriptions.email.marketing.suppression.timestamp' | '-subscriptions.email.marketing.suppression.timestamp',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> {
 
-        const localVarPath = this.basePath + '/api/profiles/';
+        const localVarPath = this.basePath + '/api/profiles';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1045,7 +1337,7 @@ export class ProfilesApi {
         }
 
         if (options.fieldsProfile !== undefined) {
-            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
         }
 
         if (options.filter !== undefined) {
@@ -1096,6 +1388,194 @@ export class ProfilesApi {
         );
     }
     /**
+     * Get profiles for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
+     * @summary Get Profiles for Bulk Import Profiles Job
+     * @param id 
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     */
+    public async getProfilesForBulkImportProfilesJob (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/profiles'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getProfilesForBulkImportProfilesJob.');
+        }
+
+        if (options.additionalFieldsProfile !== undefined) {
+            localVarQueryParameters['additional-fields[profile]'] = ObjectSerializer.serialize(options.additionalFieldsProfile, "Array<'subscriptions' | 'predictive_analytics'>");
+        }
+
+        if (options.fieldsProfile !== undefined) {
+            localVarQueryParameters['fields[profile]'] = ObjectSerializer.serialize(options.fieldsProfile, "Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
+     * @summary Get Segment IDs for Profile
+     * @param id 
+     
+     */
+    public async getSegmentIdsForProfile (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profiles/{id}/relationships/segments'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSegmentIdsForProfile.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileSegmentRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
+     * Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
+     * @summary Get Segments for Profile
+     * @param id 
+     * @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getSegmentsForProfile (id: string, options: { fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/profiles/{id}/segments'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSegmentsForProfile.');
+        }
+
+        if (options.fieldsSegment !== undefined) {
+            localVarQueryParameters['fields[segment]'] = ObjectSerializer.serialize(options.fieldsSegment, "Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> => {
+            try {
+                const axiosResponse = await axios(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return backOff<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }>(
+            () => {return request(config)},
+            this.session.getRetryOptions()
+        );
+    }
+    /**
      * Merge a given related profile into a profile with the given profile ID.  The profile provided under `relationships` (the \"source\" profile) will be merged into the profile provided by the ID in the base data object (the \"destination\" profile). This endpoint queues an asynchronous task which will merge data from the source profile into the destination profile, deleting the source profile in the process. This endpoint accepts only one source profile.  To learn more about how profile data is preserved or overwritten during a merge, please [visit our Help Center](https://help.klaviyo.com/hc/en-us/articles/115005073847#merge-2-profiles3).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:write`
      * @summary Merge Profiles
      * @param profileMergeQuery 
@@ -1103,10 +1583,10 @@ export class ProfilesApi {
      */
     public async mergeProfiles (profileMergeQuery: ProfileMergeQuery, ): Promise<{ response: AxiosResponse; body: PostProfileMergeResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/profile-merge/';
+        const localVarPath = this.basePath + '/api/profile-merge';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1159,10 +1639,10 @@ export class ProfilesApi {
      */
     public async spawnBulkProfileImportJob (profileImportJobCreateQuery: ProfileImportJobCreateQuery, ): Promise<{ response: AxiosResponse; body: PostProfileImportJobResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/';
+        const localVarPath = this.basePath + '/api/profile-bulk-import-jobs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1208,226 +1688,6 @@ export class ProfilesApi {
         );
     }
     /**
-     * Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a `historical_import` flag. If this flag is set `true`, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \"Added to list\" flows. This is useful for importing historical data where you have already collected consent. If `historical_import` is set to true, the `consented_at` field is required and must be in the past.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
-     * @summary Subscribe Profiles
-     * @param subscriptionCreateJobCreateQuery Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
-     
-     */
-    public async subscribeProfiles (subscriptionCreateJobCreateQuery: SubscriptionCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-subscription-bulk-create-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'subscriptionCreateJobCreateQuery' is not null or undefined
-        if (subscriptionCreateJobCreateQuery === null || subscriptionCreateJobCreateQuery === undefined) {
-            throw new Error('Required parameter subscriptionCreateJobCreateQuery was null or undefined when calling subscribeProfiles.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(subscriptionCreateJobCreateQuery, "SubscriptionCreateJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Manually suppress profiles using their email address, or by specifying a segment or list ID to suppress all current members.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our [email suppressions guide](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1) and our [collecting consent guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email addresses per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `subscriptions:write`
-     * @summary Suppress Profiles
-     * @param suppressionCreateJobCreateQuery Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
-     
-     */
-    public async suppressProfiles (suppressionCreateJobCreateQuery: SuppressionCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-suppression-bulk-create-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'suppressionCreateJobCreateQuery' is not null or undefined
-        if (suppressionCreateJobCreateQuery === null || suppressionCreateJobCreateQuery === undefined) {
-            throw new Error('Required parameter suppressionCreateJobCreateQuery was null or undefined when calling suppressProfiles.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(suppressionCreateJobCreateQuery, "SuppressionCreateJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
-     * @summary Unsubscribe Profiles
-     * @param subscriptionDeleteJobCreateQuery Unsubscribes one or more profiles from marketing. Currently, supports email and SMS only. All profiles will be removed from the provided list. Either email or phone number is required. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
-     
-     */
-    public async unsubscribeProfiles (subscriptionDeleteJobCreateQuery: SubscriptionDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-subscription-bulk-delete-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'subscriptionDeleteJobCreateQuery' is not null or undefined
-        if (subscriptionDeleteJobCreateQuery === null || subscriptionDeleteJobCreateQuery === undefined) {
-            throw new Error('Required parameter subscriptionDeleteJobCreateQuery was null or undefined when calling unsubscribeProfiles.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(subscriptionDeleteJobCreateQuery, "SubscriptionDeleteJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
-     * Manually unsuppress profiles using their email address, or by specifying a segment or list ID to unsuppress all current members.  This only removes suppressions with reason `USER_SUPPRESSED`, leaving unsubscribed profiles and profiles suppressed with reason `INVALID_EMAIL` or `HARD_BOUNCE` unchanged. To learn more, see our [email suppressions guide](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1) and our [collecting consent guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email addresses per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:write`
-     * @summary Unsuppress Profiles
-     * @param suppressionDeleteJobCreateQuery Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
-     
-     */
-    public async unsuppressProfiles (suppressionDeleteJobCreateQuery: SuppressionDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
-
-        const localVarPath = this.basePath + '/api/profile-suppression-bulk-delete-jobs/';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'suppressionDeleteJobCreateQuery' is not null or undefined
-        if (suppressionDeleteJobCreateQuery === null || suppressionDeleteJobCreateQuery === undefined) {
-            throw new Error('Required parameter suppressionDeleteJobCreateQuery was null or undefined when calling unsuppressProfiles.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'POST',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-            data: ObjectSerializer.serialize(suppressionDeleteJobCreateQuery, "SuppressionDeleteJobCreateQuery")
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
-            try {
-                const axiosResponse = await axios(config)
-                let body;
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
-    }
-    /**
      * Update the profile with the given profile ID.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
      * @summary Update Profile
      * @param id Primary key that uniquely identifies this profile. Generated by Klaviyo.* @param profilePartialUpdateQuery 
@@ -1435,11 +1695,11 @@ export class ProfilesApi {
      */
     public async updateProfile (id: string, profilePartialUpdateQuery: ProfilePartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchProfileResponse;  }> {
 
-        const localVarPath = this.basePath + '/api/profiles/{id}/'
+        const localVarPath = this.basePath + '/api/profiles/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
+        const produces = ['application/vnd.api+json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';
@@ -1493,6 +1753,86 @@ export class ProfilesApi {
 
 export interface ProfilesApi {
     /**
+     * Alias of {@link ProfilesApi.bulkSubscribeProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkSubscribeProfiles} instead
+     */
+    subscribeProfiles: typeof ProfilesApi.prototype.bulkSubscribeProfiles;
+}
+ProfilesApi.prototype.subscribeProfiles = ProfilesApi.prototype.bulkSubscribeProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.bulkSubscribeProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkSubscribeProfiles} instead
+     */
+    createProfileSubscriptionBulkCreateJob: typeof ProfilesApi.prototype.bulkSubscribeProfiles;
+}
+ProfilesApi.prototype.createProfileSubscriptionBulkCreateJob = ProfilesApi.prototype.bulkSubscribeProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.bulkSuppressProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkSuppressProfiles} instead
+     */
+    suppressProfiles: typeof ProfilesApi.prototype.bulkSuppressProfiles;
+}
+ProfilesApi.prototype.suppressProfiles = ProfilesApi.prototype.bulkSuppressProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.bulkSuppressProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkSuppressProfiles} instead
+     */
+    createProfileSuppressionBulkCreateJob: typeof ProfilesApi.prototype.bulkSuppressProfiles;
+}
+ProfilesApi.prototype.createProfileSuppressionBulkCreateJob = ProfilesApi.prototype.bulkSuppressProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.bulkUnsubscribeProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkUnsubscribeProfiles} instead
+     */
+    unsubscribeProfiles: typeof ProfilesApi.prototype.bulkUnsubscribeProfiles;
+}
+ProfilesApi.prototype.unsubscribeProfiles = ProfilesApi.prototype.bulkUnsubscribeProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.bulkUnsubscribeProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkUnsubscribeProfiles} instead
+     */
+    createProfileSubscriptionBulkDeleteJob: typeof ProfilesApi.prototype.bulkUnsubscribeProfiles;
+}
+ProfilesApi.prototype.createProfileSubscriptionBulkDeleteJob = ProfilesApi.prototype.bulkUnsubscribeProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.bulkUnsuppressProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkUnsuppressProfiles} instead
+     */
+    unsuppressProfiles: typeof ProfilesApi.prototype.bulkUnsuppressProfiles;
+}
+ProfilesApi.prototype.unsuppressProfiles = ProfilesApi.prototype.bulkUnsuppressProfiles
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.bulkUnsuppressProfiles}
+     *
+     * @deprecated Use {@link ProfilesApi.bulkUnsuppressProfiles} instead
+     */
+    createProfileSuppressionBulkDeleteJob: typeof ProfilesApi.prototype.bulkUnsuppressProfiles;
+}
+ProfilesApi.prototype.createProfileSuppressionBulkDeleteJob = ProfilesApi.prototype.bulkUnsuppressProfiles
+
+export interface ProfilesApi {
+    /**
      * Alias of {@link ProfilesApi.createOrUpdateProfile}
      *
      * @deprecated Use {@link ProfilesApi.createOrUpdateProfile} instead
@@ -1503,73 +1843,223 @@ ProfilesApi.prototype.createProfileImport = ProfilesApi.prototype.createOrUpdate
 
 export interface ProfilesApi {
     /**
-     * Alias of {@link ProfilesApi.getBulkProfileImportJob}
+     * Alias of {@link ProfilesApi.getBulkImportProfilesJob}
      *
-     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJob} instead
+     * @deprecated Use {@link ProfilesApi.getBulkImportProfilesJob} instead
      */
-    getProfileBulkImportJob: typeof ProfilesApi.prototype.getBulkProfileImportJob;
+    getBulkProfileImportJob: typeof ProfilesApi.prototype.getBulkImportProfilesJob;
 }
-ProfilesApi.prototype.getProfileBulkImportJob = ProfilesApi.prototype.getBulkProfileImportJob
+ProfilesApi.prototype.getBulkProfileImportJob = ProfilesApi.prototype.getBulkImportProfilesJob
 
 export interface ProfilesApi {
     /**
-     * Alias of {@link ProfilesApi.getBulkProfileImportJobImportErrors}
+     * Alias of {@link ProfilesApi.getBulkImportProfilesJob}
      *
-     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobImportErrors} instead
+     * @deprecated Use {@link ProfilesApi.getBulkImportProfilesJob} instead
      */
-    getProfileBulkImportJobImportErrors: typeof ProfilesApi.prototype.getBulkProfileImportJobImportErrors;
+    getProfileBulkImportJob: typeof ProfilesApi.prototype.getBulkImportProfilesJob;
 }
-ProfilesApi.prototype.getProfileBulkImportJobImportErrors = ProfilesApi.prototype.getBulkProfileImportJobImportErrors
+ProfilesApi.prototype.getProfileBulkImportJob = ProfilesApi.prototype.getBulkImportProfilesJob
 
 export interface ProfilesApi {
     /**
-     * Alias of {@link ProfilesApi.getBulkProfileImportJobLists}
+     * Alias of {@link ProfilesApi.getBulkImportProfilesJobs}
      *
-     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobLists} instead
+     * @deprecated Use {@link ProfilesApi.getBulkImportProfilesJobs} instead
      */
-    getProfileBulkImportJobLists: typeof ProfilesApi.prototype.getBulkProfileImportJobLists;
+    getBulkProfileImportJobs: typeof ProfilesApi.prototype.getBulkImportProfilesJobs;
 }
-ProfilesApi.prototype.getProfileBulkImportJobLists = ProfilesApi.prototype.getBulkProfileImportJobLists
+ProfilesApi.prototype.getBulkProfileImportJobs = ProfilesApi.prototype.getBulkImportProfilesJobs
 
 export interface ProfilesApi {
     /**
-     * Alias of {@link ProfilesApi.getBulkProfileImportJobProfiles}
+     * Alias of {@link ProfilesApi.getBulkImportProfilesJobs}
      *
-     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobProfiles} instead
+     * @deprecated Use {@link ProfilesApi.getBulkImportProfilesJobs} instead
      */
-    getProfileBulkImportJobProfiles: typeof ProfilesApi.prototype.getBulkProfileImportJobProfiles;
+    getProfileBulkImportJobs: typeof ProfilesApi.prototype.getBulkImportProfilesJobs;
 }
-ProfilesApi.prototype.getProfileBulkImportJobProfiles = ProfilesApi.prototype.getBulkProfileImportJobProfiles
+ProfilesApi.prototype.getProfileBulkImportJobs = ProfilesApi.prototype.getBulkImportProfilesJobs
 
 export interface ProfilesApi {
     /**
-     * Alias of {@link ProfilesApi.getBulkProfileImportJobRelationshipsLists}
+     * Alias of {@link ProfilesApi.getBulkSuppressProfilesJob}
      *
-     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobRelationshipsLists} instead
+     * @deprecated Use {@link ProfilesApi.getBulkSuppressProfilesJob} instead
      */
-    getProfileBulkImportJobRelationshipsLists: typeof ProfilesApi.prototype.getBulkProfileImportJobRelationshipsLists;
+    getProfileSuppressionBulkCreateJob: typeof ProfilesApi.prototype.getBulkSuppressProfilesJob;
 }
-ProfilesApi.prototype.getProfileBulkImportJobRelationshipsLists = ProfilesApi.prototype.getBulkProfileImportJobRelationshipsLists
+ProfilesApi.prototype.getProfileSuppressionBulkCreateJob = ProfilesApi.prototype.getBulkSuppressProfilesJob
 
 export interface ProfilesApi {
     /**
-     * Alias of {@link ProfilesApi.getBulkProfileImportJobRelationshipsProfiles}
+     * Alias of {@link ProfilesApi.getBulkSuppressProfilesJobs}
      *
-     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobRelationshipsProfiles} instead
+     * @deprecated Use {@link ProfilesApi.getBulkSuppressProfilesJobs} instead
      */
-    getProfileBulkImportJobRelationshipsProfiles: typeof ProfilesApi.prototype.getBulkProfileImportJobRelationshipsProfiles;
+    getProfileSuppressionBulkCreateJobs: typeof ProfilesApi.prototype.getBulkSuppressProfilesJobs;
 }
-ProfilesApi.prototype.getProfileBulkImportJobRelationshipsProfiles = ProfilesApi.prototype.getBulkProfileImportJobRelationshipsProfiles
+ProfilesApi.prototype.getProfileSuppressionBulkCreateJobs = ProfilesApi.prototype.getBulkSuppressProfilesJobs
 
 export interface ProfilesApi {
     /**
-     * Alias of {@link ProfilesApi.getBulkProfileImportJobs}
+     * Alias of {@link ProfilesApi.getBulkUnsuppressProfilesJob}
      *
-     * @deprecated Use {@link ProfilesApi.getBulkProfileImportJobs} instead
+     * @deprecated Use {@link ProfilesApi.getBulkUnsuppressProfilesJob} instead
      */
-    getProfileBulkImportJobs: typeof ProfilesApi.prototype.getBulkProfileImportJobs;
+    getProfileSuppressionBulkDeleteJob: typeof ProfilesApi.prototype.getBulkUnsuppressProfilesJob;
 }
-ProfilesApi.prototype.getProfileBulkImportJobs = ProfilesApi.prototype.getBulkProfileImportJobs
+ProfilesApi.prototype.getProfileSuppressionBulkDeleteJob = ProfilesApi.prototype.getBulkUnsuppressProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getBulkUnsuppressProfilesJobs}
+     *
+     * @deprecated Use {@link ProfilesApi.getBulkUnsuppressProfilesJobs} instead
+     */
+    getProfileSuppressionBulkDeleteJobs: typeof ProfilesApi.prototype.getBulkUnsuppressProfilesJobs;
+}
+ProfilesApi.prototype.getProfileSuppressionBulkDeleteJobs = ProfilesApi.prototype.getBulkUnsuppressProfilesJobs
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getErrorsForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getErrorsForBulkImportProfilesJob} instead
+     */
+    getBulkProfileImportJobImportErrors: typeof ProfilesApi.prototype.getErrorsForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getBulkProfileImportJobImportErrors = ProfilesApi.prototype.getErrorsForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getErrorsForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getErrorsForBulkImportProfilesJob} instead
+     */
+    getProfileBulkImportJobImportErrors: typeof ProfilesApi.prototype.getErrorsForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getProfileBulkImportJobImportErrors = ProfilesApi.prototype.getErrorsForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getListForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getListForBulkImportProfilesJob} instead
+     */
+    getBulkProfileImportJobLists: typeof ProfilesApi.prototype.getListForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getBulkProfileImportJobLists = ProfilesApi.prototype.getListForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getListForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getListForBulkImportProfilesJob} instead
+     */
+    getProfileBulkImportJobLists: typeof ProfilesApi.prototype.getListForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getProfileBulkImportJobLists = ProfilesApi.prototype.getListForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getListIdsForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getListIdsForBulkImportProfilesJob} instead
+     */
+    getBulkProfileImportJobRelationshipsLists: typeof ProfilesApi.prototype.getListIdsForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getBulkProfileImportJobRelationshipsLists = ProfilesApi.prototype.getListIdsForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getListIdsForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getListIdsForBulkImportProfilesJob} instead
+     */
+    getProfileBulkImportJobRelationshipsLists: typeof ProfilesApi.prototype.getListIdsForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getProfileBulkImportJobRelationshipsLists = ProfilesApi.prototype.getListIdsForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getListIdsForProfile}
+     *
+     * @deprecated Use {@link ProfilesApi.getListIdsForProfile} instead
+     */
+    getProfileRelationshipsLists: typeof ProfilesApi.prototype.getListIdsForProfile;
+}
+ProfilesApi.prototype.getProfileRelationshipsLists = ProfilesApi.prototype.getListIdsForProfile
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getListsForProfile}
+     *
+     * @deprecated Use {@link ProfilesApi.getListsForProfile} instead
+     */
+    getProfileLists: typeof ProfilesApi.prototype.getListsForProfile;
+}
+ProfilesApi.prototype.getProfileLists = ProfilesApi.prototype.getListsForProfile
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getProfileIdsForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getProfileIdsForBulkImportProfilesJob} instead
+     */
+    getBulkProfileImportJobRelationshipsProfiles: typeof ProfilesApi.prototype.getProfileIdsForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getBulkProfileImportJobRelationshipsProfiles = ProfilesApi.prototype.getProfileIdsForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getProfileIdsForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getProfileIdsForBulkImportProfilesJob} instead
+     */
+    getProfileBulkImportJobRelationshipsProfiles: typeof ProfilesApi.prototype.getProfileIdsForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getProfileBulkImportJobRelationshipsProfiles = ProfilesApi.prototype.getProfileIdsForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getProfilesForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getProfilesForBulkImportProfilesJob} instead
+     */
+    getBulkProfileImportJobProfiles: typeof ProfilesApi.prototype.getProfilesForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getBulkProfileImportJobProfiles = ProfilesApi.prototype.getProfilesForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getProfilesForBulkImportProfilesJob}
+     *
+     * @deprecated Use {@link ProfilesApi.getProfilesForBulkImportProfilesJob} instead
+     */
+    getProfileBulkImportJobProfiles: typeof ProfilesApi.prototype.getProfilesForBulkImportProfilesJob;
+}
+ProfilesApi.prototype.getProfileBulkImportJobProfiles = ProfilesApi.prototype.getProfilesForBulkImportProfilesJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getSegmentIdsForProfile}
+     *
+     * @deprecated Use {@link ProfilesApi.getSegmentIdsForProfile} instead
+     */
+    getProfileRelationshipsSegments: typeof ProfilesApi.prototype.getSegmentIdsForProfile;
+}
+ProfilesApi.prototype.getProfileRelationshipsSegments = ProfilesApi.prototype.getSegmentIdsForProfile
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.getSegmentsForProfile}
+     *
+     * @deprecated Use {@link ProfilesApi.getSegmentsForProfile} instead
+     */
+    getProfileSegments: typeof ProfilesApi.prototype.getSegmentsForProfile;
+}
+ProfilesApi.prototype.getProfileSegments = ProfilesApi.prototype.getSegmentsForProfile
 
 export interface ProfilesApi {
     /**
@@ -1587,46 +2077,16 @@ export interface ProfilesApi {
      *
      * @deprecated Use {@link ProfilesApi.spawnBulkProfileImportJob} instead
      */
+    bulkImportProfiles: typeof ProfilesApi.prototype.spawnBulkProfileImportJob;
+}
+ProfilesApi.prototype.bulkImportProfiles = ProfilesApi.prototype.spawnBulkProfileImportJob
+
+export interface ProfilesApi {
+    /**
+     * Alias of {@link ProfilesApi.spawnBulkProfileImportJob}
+     *
+     * @deprecated Use {@link ProfilesApi.spawnBulkProfileImportJob} instead
+     */
     createProfileBulkImportJob: typeof ProfilesApi.prototype.spawnBulkProfileImportJob;
 }
 ProfilesApi.prototype.createProfileBulkImportJob = ProfilesApi.prototype.spawnBulkProfileImportJob
-
-export interface ProfilesApi {
-    /**
-     * Alias of {@link ProfilesApi.subscribeProfiles}
-     *
-     * @deprecated Use {@link ProfilesApi.subscribeProfiles} instead
-     */
-    createProfileSubscriptionBulkCreateJob: typeof ProfilesApi.prototype.subscribeProfiles;
-}
-ProfilesApi.prototype.createProfileSubscriptionBulkCreateJob = ProfilesApi.prototype.subscribeProfiles
-
-export interface ProfilesApi {
-    /**
-     * Alias of {@link ProfilesApi.suppressProfiles}
-     *
-     * @deprecated Use {@link ProfilesApi.suppressProfiles} instead
-     */
-    createProfileSuppressionBulkCreateJob: typeof ProfilesApi.prototype.suppressProfiles;
-}
-ProfilesApi.prototype.createProfileSuppressionBulkCreateJob = ProfilesApi.prototype.suppressProfiles
-
-export interface ProfilesApi {
-    /**
-     * Alias of {@link ProfilesApi.unsubscribeProfiles}
-     *
-     * @deprecated Use {@link ProfilesApi.unsubscribeProfiles} instead
-     */
-    createProfileSubscriptionBulkDeleteJob: typeof ProfilesApi.prototype.unsubscribeProfiles;
-}
-ProfilesApi.prototype.createProfileSubscriptionBulkDeleteJob = ProfilesApi.prototype.unsubscribeProfiles
-
-export interface ProfilesApi {
-    /**
-     * Alias of {@link ProfilesApi.unsuppressProfiles}
-     *
-     * @deprecated Use {@link ProfilesApi.unsuppressProfiles} instead
-     */
-    createProfileSuppressionBulkDeleteJob: typeof ProfilesApi.prototype.unsuppressProfiles;
-}
-ProfilesApi.prototype.createProfileSuppressionBulkDeleteJob = ProfilesApi.prototype.unsuppressProfiles

@@ -15,7 +15,7 @@ import { TrackingSettingPartialUpdateQueryResourceObjectAttributes } from './tra
 export class TrackingSettingPartialUpdateQueryResourceObject {
     'type': TrackingSettingEnum | 'tracking-setting';
     /**
-    * The id of the tracking setting
+    * The id of the tracking setting (account ID).
     */
     'id': string;
     'attributes': TrackingSettingPartialUpdateQueryResourceObjectAttributes;

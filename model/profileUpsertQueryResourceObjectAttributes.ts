@@ -45,6 +45,10 @@ export class ProfileUpsertQueryResourceObjectAttributes {
     */
     'organization'?: string | null;
     /**
+    * The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
+    */
+    'locale'?: string | null;
+    /**
     * Individual\'s job title
     */
     'title'?: string | null;
@@ -98,6 +102,11 @@ export class ProfileUpsertQueryResourceObjectAttributes {
         {
             "name": "organization",
             "baseName": "organization",
+            "type": "string"
+        },
+        {
+            "name": "locale",
+            "baseName": "locale",
             "type": "string"
         },
         {
