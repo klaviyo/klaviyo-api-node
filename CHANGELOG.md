@@ -3,7 +3,32 @@ All notable changes to this project will be documented in this file.
 
 ## [13.0.0] - 2024-10-15
 ### Added
-- Sample Change
+- Universal Content API
+  - Read, update, and delete universal content
+  - For more information, see our [Universal Content API overview](https://developers.klaviyo.com/en/reference/universal_content_api_overview)
+- Form Reporting API
+  - Query form performance
+  - For more information, see our [Reporting API overview](https://developers.klaviyo.com/en/reference/reporting_api_overview#forms)
+- Segment Reporting API
+  - Query segment growth data
+  - For more information, see our [Reporting API overview](https://developers.klaviyo.com/en/reference/reporting_api_overview#segments)
+- Reviews API
+  - Get and list reviews
+  - For more information, see our [Reviews API overview](https://developers.klaviyo.com/en/reference/reviews_api_overview)
+- Tracking Settings API
+  - Read and update the Tracking Settings for an account (Account -> Settings -> UTM Tracking in UI)
+  - For more information, see our [Tracking Settings API documentation](https://developers.klaviyo.com/en/reference/get_tracking_settings)
+- Metric Properties API
+  - Access the properties for a given metric (e.g. "Placed Order")
+  - For more information, see our [Metric Properties API documentation](https://developers.klaviyo.com/en/reference/get_metric_property)
+- Suppress/Unsuppress profile job APIs
+  - Monitor the status of jobs created by Suppress Profiles and Unsuppress Profiles requests
+  - For more information, see our [Suppress Profiles Job API documentation](https://developers.klaviyo.com/en/reference/get_bulk_suppress_profiles_job)
+
+### Changed
+- `ProfilesApi.createOrUpdateProfile` has been updated to an enhanced identity resolution processor to better follow the Klaviyo identity resolution identifier priority order
+- Added support for `$locale` property for `ProfilesApi`
+- Numerous methods have been renamed as part of a large renaming effort - the old methods are now deprecated aliases
 
 ## [12.0.1] - revision 2024-07-15
 ### Fixed
