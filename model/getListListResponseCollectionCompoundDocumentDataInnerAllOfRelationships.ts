@@ -12,10 +12,11 @@
 import { RequestFile } from './models';
 import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile } from './getCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile';
 import { GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags } from './getListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags';
+import { GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers } from './getMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers';
 export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
     'profiles'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
     'tags'?: GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTags;
-    'flowTriggers'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'flowTriggers'?: GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -32,7 +33,7 @@ export class GetListListResponseCollectionCompoundDocumentDataInnerAllOfRelation
         {
             "name": "flowTriggers",
             "baseName": "flow-triggers",
-            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
+            "type": "GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers"
         }    ];
 
     static getAttributeTypeMap() {

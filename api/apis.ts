@@ -1,4 +1,3 @@
-import {BackoffOptions} from "exponential-backoff";
 export * from './accountsApi';
 import { AccountsApi } from './accountsApi';
 export * from './campaignsApi';
@@ -39,49 +38,86 @@ export * from './webhooksApi';
 import { WebhooksApi } from './webhooksApi';
 
 const axios = require('axios')
-import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, isAxiosError} from "axios";
+import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, AxiosError, isAxiosError} from "axios";
 
 export { RequestFile } from '../model/models';
 
 const revision =  "2024-10-15";
-const userAgent = "klaviyo-api-node/13.0.0";
+const userAgent = "klaviyo-api-node/14.0.0";
 
-export class RetryOptions {
+export class RetryWithExponentialBackoff {
 
-    options: BackoffOptions
+    baseInterval = 0.5
+    randFactor = 0.5
+    multiplier = 1.5
 
-    constructor (options: {numOfAttempts?: number, timeMultiple?: number, startingDelay?: number} = {} ) {
-        const RETRY_CODES: Array<number> = [429, 503, 504]
-        let numOfAttempts = 3
-        let timeMultiple = 5
-        let startingDelay = 500
+    retryCodes = [429, 503, 504, 524]
+    numRetries = 3
+    maxInterval = 60
 
-        if (options['numOfAttempts']){
-            numOfAttempts = <number>options['numOfAttempts']
+    constructor (config: { retryCodes?: Array<number>, numRetries?: number, maxInterval?: number } = {}) {
+        if (config.retryCodes) {
+            this.retryCodes = config.retryCodes
         }
-        if (options['timeMultiple']){
-            startingDelay = <number>options['startingDelay']
+        if (config.numRetries !== undefined) {
+            this.numRetries = config.numRetries
         }
-        if (options['numOfAttempts']){
-            startingDelay = <number>options['startingDelay']
+        if (config.maxInterval) {
+            this.maxInterval = config.maxInterval
         }
+    }
 
-        this.options = {
-            numOfAttempts,
-            timeMultiple,
-            startingDelay,
-            retry: res => {
-                return RETRY_CODES.includes(res.status)
+    async requestWithRetry(config: AxiosRequestConfig): Promise<AxiosResponse> {
+        let lastRequestRetryAfter
+        let lastRequestTimestamp
+        let attempt = 0
+        let iteration = 0
+
+        while (true) {
+            try {
+                const currentTime = Date.now()
+                const retryAfterValueLapsed = (!lastRequestRetryAfter ||
+                    currentTime - lastRequestTimestamp > lastRequestRetryAfter)
+                if (retryAfterValueLapsed) {
+                    attempt += 1
+
+                    const axiosResponse = await axios(config)
+                    return axiosResponse
+                }
+            } catch (error) {
+                if (!isAxiosError(error) || !error.response || attempt >= this.numRetries) {
+                    throw error
+                }
+
+                const { status, headers } = error.response;
+                if (!this.retryCodes.includes(status)) {
+                    throw error
+                }
+
+                const responseHeaders = headers || {}
+                lastRequestRetryAfter = responseHeaders['Retry-After']
+                if (lastRequestRetryAfter) {
+                    lastRequestRetryAfter = parseInt(lastRequestRetryAfter, 10)
+                }
+                lastRequestTimestamp = Date.now()
             }
+            const sleepSeconds = this.exponentialBackoff(iteration)
+            await this.sleep(sleepSeconds)
+            iteration += 1
         }
     }
 
-    get backOffOptions(): BackoffOptions {
-        return this.options
+    exponentialBackoff(iteration: number): number {
+        const waitTime = Math.min(this.baseInterval * Math.pow(this.multiplier, iteration), this.maxInterval);
+    
+        // Apply randomness to avoid thundering herd
+        const delta = this.randFactor * waitTime;
+        const randomNeg1To1 = 2 * Math.random() - 1;
+        return waitTime + delta * randomNeg1To1;
     }
 
-    set backOffOptions(backoffOptions: BackoffOptions) {
-        this.options = backoffOptions
+    sleep(seconds: number): Promise<void> {
+        return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
     }
 }
 
@@ -100,33 +136,33 @@ export function queryParamPreProcessor(queryParams: any): void {
 
 export class GlobalApiKeySettings {
     static apiKey: string
-    static retryOptions: RetryOptions = new RetryOptions()
+    static retryWithExponentialBackoff: RetryWithExponentialBackoff = new RetryWithExponentialBackoff()
 
-    constructor(apiKey: string, retryOptions?: RetryOptions) {
+    constructor(apiKey: string, retryWithExponentialBackoff?: RetryWithExponentialBackoff) {
         GlobalApiKeySettings.apiKey = apiKey
-        if (retryOptions) {
-            GlobalApiKeySettings.retryOptions = retryOptions
+        if (retryWithExponentialBackoff) {
+            GlobalApiKeySettings.retryWithExponentialBackoff = retryWithExponentialBackoff
         }
     }
 }
 
 export interface Session {
     applyToRequest(requestOptions: AxiosRequestConfig): Promise<void> | void;
-    getRetryOptions(): BackoffOptions
+    requestWithRetry(config: AxiosRequestConfig, retried?: boolean): Promise<AxiosResponse>; 
     refreshAndRetry(error: unknown, retried: boolean): Promise<boolean> | boolean;
 }
 
 export class ApiKeySession implements Session {
-    retryOptions: RetryOptions
     public apiKey: string
     protected _apiKeyPrefix = "Klaviyo-API-Key"
+    retryWithExponentialBackoff: RetryWithExponentialBackoff = new RetryWithExponentialBackoff()
 
-    constructor(apiKey: string, retryOptions?: RetryOptions) {
+    constructor(apiKey: string, retryWithExponentialBackoff?: RetryWithExponentialBackoff) {
         this.apiKey = apiKey
-        if (retryOptions) {
-            this.retryOptions = retryOptions
+        if (retryWithExponentialBackoff) {
+            this.retryWithExponentialBackoff = retryWithExponentialBackoff
         } else {
-            this.retryOptions = new RetryOptions()
+            this.retryWithExponentialBackoff = new RetryWithExponentialBackoff()
         }
     }
 
@@ -138,8 +174,8 @@ export class ApiKeySession implements Session {
         }
     }
 
-    getRetryOptions(): BackoffOptions {
-        return this.retryOptions.options
+    requestWithRetry(config: AxiosRequestConfig): Promise<AxiosResponse> {
+        return this.retryWithExponentialBackoff.requestWithRetry(config)
     }
 
     refreshAndRetry(error: unknown, retried: boolean): boolean {
@@ -163,8 +199,8 @@ export class GlobalApiKeySession implements Session {
         }
     }
 
-    getRetryOptions(): BackoffOptions {
-        return GlobalApiKeySettings.retryOptions.options
+    requestWithRetry(config: AxiosRequestConfig): Promise<AxiosResponse> {
+        return GlobalApiKeySettings.retryWithExponentialBackoff.requestWithRetry(config)
     }
 
     refreshAndRetry(error: unknown, retried: boolean): boolean {
@@ -173,24 +209,24 @@ export class GlobalApiKeySession implements Session {
 }
 
 
-export function ConfigWrapper(apiKey: string, opts: {numOfAttempts?: number, timeMultiple?: number, startingDelay?: number} = {}): ApiKeySession {
+export function ConfigWrapper(apiKey: string, opts: {retryCodes?: Array<number>, numRetries?: number, maxInterval?: number} = {}): ApiKeySession {
 
-    const retryOptions = new RetryOptions(opts)
+    const retryWithExponentialBackoff = new RetryWithExponentialBackoff(opts)
     if (opts) {
-        GlobalApiKeySettings.retryOptions = retryOptions
+        GlobalApiKeySettings.retryWithExponentialBackoff = retryWithExponentialBackoff
     }
     GlobalApiKeySettings.apiKey = apiKey
-    return new ApiKeySession(apiKey, retryOptions)
+    return new ApiKeySession(apiKey, retryWithExponentialBackoff)
 }
 
 
 export class OAuthSession implements Session {
 
-    retryOptions: RetryOptions
     protected _prefix = "Bearer"
+    retryWithExponentialBackoff: RetryWithExponentialBackoff
 
-    constructor(protected customerIdentifier: string, protected oAuthApi: OAuthApi, retryOptions: RetryOptions = new RetryOptions()) {
-        this.retryOptions = retryOptions
+    constructor(protected customerIdentifier: string, protected oAuthApi: OAuthApi, retryWithExponentialBackoff: RetryWithExponentialBackoff = new RetryWithExponentialBackoff()) {
+        this.retryWithExponentialBackoff = retryWithExponentialBackoff
     }
     async applyToRequest(requestOptions: AxiosRequestConfig): Promise<void> {
 
@@ -209,8 +245,8 @@ export class OAuthSession implements Session {
         }
     }
 
-    getRetryOptions(): BackoffOptions {
-        return this.retryOptions.options
+    requestWithRetry(config: AxiosRequestConfig): Promise<AxiosResponse> {
+        return this.retryWithExponentialBackoff.requestWithRetry(config)
     }
 
     async refreshAndRetry(error: unknown, retried: boolean): Promise<boolean> {
@@ -224,12 +260,12 @@ export class OAuthSession implements Session {
 
 export class OAuthBasicSession implements Session {
     accessToken: string
-    retryOptions: RetryOptions
     protected _prefix = "Bearer"
+    retryWithExponentialBackoff: RetryWithExponentialBackoff
 
-    constructor(accessToken: string, retryOptions: RetryOptions = new RetryOptions()) {
+    constructor(accessToken: string, retryWithExponentialBackoff: RetryWithExponentialBackoff = new RetryWithExponentialBackoff()) {
         this.accessToken = accessToken
-        this.retryOptions = retryOptions
+        this.retryWithExponentialBackoff = retryWithExponentialBackoff
     }
 
     applyToRequest(requestOptions: AxiosRequestConfig): void {
@@ -244,8 +280,8 @@ export class OAuthBasicSession implements Session {
         return false
     }
 
-    getRetryOptions(): BackoffOptions {
-        return this.retryOptions.options
+    requestWithRetry(config: AxiosRequestConfig): Promise<AxiosResponse> {
+        return this.retryWithExponentialBackoff.requestWithRetry(config)
     }
 }
 
@@ -529,7 +565,7 @@ export const Auth = {
     ApiKeySession,
     GlobalApiKeySession,
     GlobalApiKeySettings,
-    RetryOptions,
+    RetryWithExponentialBackoff,
     OAuthApi,
     OAuthBasicSession,
     OAuthSession,

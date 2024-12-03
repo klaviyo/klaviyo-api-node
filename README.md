@@ -1,6 +1,6 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 13.0.0
+- SDK version: 14.0.0
 
 - Revision: 2024-10-15
 
@@ -52,7 +52,7 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@13.0.0`
+`npm install klaviyo-api@14.0.0`
 
 
 ## source code
@@ -123,22 +123,16 @@ profilesApi.createProfile(profile).then(result => {
 
 ### Retry Options
 
-Constructing an API object also has optional property `RetryOptions`, this acts as a light wrapper with some different defaults around the `exponential-backoff` library
+Constructing an API object also has optional property `RetryWithExponentialBackoff`, which attempts retries on failed API calls with exponential backoff.
 
-you can override
-    - maxRetryAttempts
-    - timeMultiple
-    - startingDelay
+The default configs are:
+- retryCodes: [429, 503, 504, 524]
+- numRetries: 3
+- maxInterval: 60
 
 ```Typescript
-const retryOptions: RetryOptions = new RetryOptions({numOfAttempts: 3, timeMultiple: 5, startingDelay: 500)
-const session = new ApiKeySession("< YOUR API KEY HERE >", retryOptions)
-```
-
-if you have used exponential backoff before you can bypass the all the settings by just setting the options with a `BackoffOptions` object
-```Typescript
-const retryOptions: RetryOptions = new RetryOptions()
-retryOptions.options = { "BUILD YOUR OWN BackoffOptions object here" }
+const retryWithExponentialBackoff: RetryWithExponentialBackoff = new RetryWithExponentialBackoff({ retryCodes: [429, 503, 504, 524], numRetries: 3, maxInterval: 60})
+const session = new ApiKeySession("< YOUR API KEY HERE >", retryWithExponentialBackoff)
 ```
 
 ### Organizational Helpers
@@ -147,7 +141,7 @@ There is also an optional `Klaviyo` import that has all the Apis and Auth, if yo
 ```Typescript
 import { Klaviyo } from 'klaviyo-api'
 
-const profilesApi = new Klaviyo.ProfilesApi(new Klaviyo.Auth.ApiKeySession("< YOUR API KEY HERE >", retryOptions))
+const profilesApi = new Klaviyo.ProfilesApi(new Klaviyo.Auth.ApiKeySession("< YOUR API KEY HERE >", retry))
 ````
 
 ### Inspecting Errors
@@ -262,7 +256,7 @@ To make an API call, you need to create an `OAuthSession` instance. This session
 It takes two properties
 1. `customerIdentifier` - This is how the session is going to grab a user's authentication information and let your implementation of `TokenStorage` know where to save any update `access token`
 2. `oauthApi` - This is the instance of `OAuthApi` created above. It will dictate how the session `saves` and `retrieves` the `access tokens`
-3. `retryOptions` - OPTIONAL - the `RetryOptions` instance outlines your desired exponential backoff retry options, outlined in [Retry Options](#retry-options) above
+3. `retryWithExponentialBackoff` - OPTIONAL - the `RetryWithExponentialBackoff` instance outlines your desired exponential backoff configs, outlined in [Retry Options](#retry-options) above
 
 ```typescript
 import { OAuthSession, ProfilesApi } from 'klaviyo-api';
@@ -278,7 +272,7 @@ If you don't want to deal with any of the helpers above or don't want `klaviyo-a
 
 The `OAuthBasicSession` takes up to two parameters
 1. `accessToken` - The token is used in the API calls' authentication
-2. `retryOptions` - OPTIONAL - the `RetryOptions` instance outlines your desired exponential backoff retry options, outlined in [Retry Options](#retry-options) above
+3. `retryWithExponentialBackoff` - OPTIONAL - the `RetryWithExponentialBackoff` instance outlines your desired exponential backoff configs, outlined in [Retry Options](#retry-options) above
 
 ```typescript
 import { OAuthBasicSession } from 'klaviyo-api';
@@ -2294,18 +2288,18 @@ _______________________________
 [Create or Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/create_or_update_profile)
 
 ```typescript
-ProfilesApi.createOrUpdateProfile(profileUpsertQuery: ProfileUpsertQuery)
+ProfilesApi.createOrUpdateProfile(profileUpsertQuery: ProfileUpsertQuery, options)
 ```
 ##### Method alias:
 ```typescript
-ProfilesApi.createProfileImport(profileUpsertQuery: ProfileUpsertQuery)
+ProfilesApi.createProfileImport(profileUpsertQuery: ProfileUpsertQuery, options)
 ```
 _______________________________
 
 [Create Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/create_profile)
 
 ```typescript
-ProfilesApi.createProfile(profileCreateQuery: ProfileCreateQuery)
+ProfilesApi.createProfile(profileCreateQuery: ProfileCreateQuery, options)
 ```
 _______________________________
 
@@ -2552,7 +2546,7 @@ _______________________________
 [Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/update_profile)
 
 ```typescript
-ProfilesApi.updateProfile(id: string, profilePartialUpdateQuery: ProfilePartialUpdateQuery)
+ProfilesApi.updateProfile(id: string, profilePartialUpdateQuery: ProfilePartialUpdateQuery, options)
 ```
 _______________________________
 ## ReportingApi

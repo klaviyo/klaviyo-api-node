@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -38,7 +37,7 @@ import { PatchFlowResponse } from '../model/patchFlowResponse';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -49,7 +48,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class FlowsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -118,7 +116,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -130,10 +128,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a flow message\'s flow action, given the flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -173,7 +168,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageFlowActionRelationshipResponse");
                 return ({response: axiosResponse, body: body});
@@ -186,10 +181,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowMessageFlowActionRelationshipResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Flow action relationships can be sorted by the following fields, in ascending and descending order: `id`,  `status`, `created`, `updated`  Use filters to narrow your results.  Returns a maximum of 50 flow action relationships per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -241,7 +233,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowFlowActionRelationshipListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -254,10 +246,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -317,7 +306,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -330,10 +319,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowActionResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -389,7 +375,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -402,10 +388,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a flow action from a flow with the given flow action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -461,7 +444,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -474,10 +457,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -521,7 +501,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponse");
                 return ({response: axiosResponse, body: body});
@@ -534,10 +514,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -577,7 +554,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionFlowRelationshipResponse");
                 return ({response: axiosResponse, body: body});
@@ -590,10 +567,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowActionFlowRelationshipResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the flow message of a flow with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -649,7 +623,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -662,10 +636,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowMessageResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the flow action for a flow message with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -709,7 +680,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionResponse");
                 return ({response: axiosResponse, body: body});
@@ -722,10 +693,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowActionResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return all tags associated with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
@@ -769,7 +737,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -782,10 +750,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flows in an account.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -851,7 +816,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -864,10 +829,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all relationships for flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -923,7 +885,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowActionFlowMessageRelationshipResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -936,10 +898,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flow messages associated with the given action ID.  Flow messages can be sorted by the following fields, in ascending and descending order:  ascending: `id`,  `name`, `created`, `updated` descending: `-id`,  `-name`, `-created`, `-updated`  Returns a maximum of 50 flows per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -995,7 +954,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1008,10 +967,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return the tag IDs of all tags associated with the given flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
@@ -1051,7 +1007,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowTagRelationshipListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1064,10 +1020,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
@@ -1111,7 +1064,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
                 return ({response: axiosResponse, body: body});
@@ -1124,10 +1077,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
@@ -1167,7 +1117,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageTemplateRelationshipResponse");
                 return ({response: axiosResponse, body: body});
@@ -1180,10 +1130,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowMessageTemplateRelationshipResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update the status of a flow with the given flow ID, and all actions in that flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write`
@@ -1229,7 +1176,7 @@ export class FlowsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchFlowResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchFlowResponse");
                 return ({response: axiosResponse, body: body});
@@ -1242,10 +1189,7 @@ export class FlowsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchFlowResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

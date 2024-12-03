@@ -13,12 +13,18 @@ import { RequestFile } from './models';
 import { SubscriptionParameters } from './subscriptionParameters';
 export class SMSSubscriptionParameters {
     'marketing'?: SubscriptionParameters;
+    'transactional'?: SubscriptionParameters;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "marketing",
             "baseName": "marketing",
+            "type": "SubscriptionParameters"
+        },
+        {
+            "name": "transactional",
+            "baseName": "transactional",
             "type": "SubscriptionParameters"
         }    ];
 

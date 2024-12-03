@@ -12,13 +12,12 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetFlowResponseCollection } from '../model/getFlowResponseCollection';
-import { GetMetricFlowTriggersRelationshipResponseCollection } from '../model/getMetricFlowTriggersRelationshipResponseCollection';
+import { GetMetricFlowTriggersRelationshipsResponseCollection } from '../model/getMetricFlowTriggersRelationshipsResponseCollection';
 import { GetMetricPropertyRelationshipMetricResponse } from '../model/getMetricPropertyRelationshipMetricResponse';
 import { GetMetricPropertyResponseCollection } from '../model/getMetricPropertyResponseCollection';
 import { GetMetricPropertyResponseCompoundDocument } from '../model/getMetricPropertyResponseCompoundDocument';
@@ -31,7 +30,7 @@ import { PostMetricAggregateResponse } from '../model/postMetricAggregateRespons
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -42,7 +41,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class MetricsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -123,7 +121,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -136,10 +134,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
@@ -183,7 +178,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -196,10 +191,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the metric for the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
@@ -243,7 +235,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponse");
                 return ({response: axiosResponse, body: body});
@@ -256,10 +248,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the ID of the metric for the given metric property.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
@@ -299,7 +288,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricPropertyRelationshipMetricResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricPropertyRelationshipMetricResponse");
                 return ({response: axiosResponse, body: body});
@@ -312,10 +301,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricPropertyRelationshipMetricResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a metric property with the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
@@ -371,7 +357,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricPropertyResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricPropertyResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -384,10 +370,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricPropertyResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
@@ -395,7 +378,7 @@ export class MetricsApi {
      * @param id 
      
      */
-    public async getMetricRelationshipsFlowTriggers (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipResponseCollection;  }> {
+    public async getMetricRelationshipsFlowTriggers (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/metrics/{id}/relationships/flow-triggers'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -425,11 +408,11 @@ export class MetricsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricFlowTriggersRelationshipResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricFlowTriggersRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -440,10 +423,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all metrics in an account.  Requests can be filtered by the following fields: integration `name`, integration `category`  Returns a maximum of 200 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
@@ -497,7 +477,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -510,10 +490,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the metric properties for the given metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
@@ -561,7 +538,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricPropertyResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricPropertyResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -574,10 +551,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricPropertyResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the IDs of metric properties for the given metric.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
@@ -617,7 +591,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricRelationshipMetricPropertyResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricRelationshipMetricPropertyResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -630,10 +604,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetMetricRelationshipMetricPropertyResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events. Queries must be passed in the JSON body of your `POST` request.  To request campaign and flow performance data that matches the data shown in Klaviyo\'s UI, we recommend the [Reporting API](https://developers.klaviyo.com/en/reference/reporting_api_overview).  Results can be filtered and grouped by time, event, or profile dimensions.  To learn more about how to use this endpoint, check out our new [Using the Query Metric Aggregates Endpoint guide](https://developers.klaviyo.com/en/docs/using-the-query-metric-aggregates-endpoint).  For a comprehensive list of request body parameters, native Klaviyo metrics, and their associated attributes for grouping and filtering, please refer to the [metrics attributes guide](https://developers.klaviyo.com/en/docs/supported_metrics_and_attributes).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
@@ -673,7 +644,7 @@ export class MetricsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostMetricAggregateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostMetricAggregateResponse");
                 return ({response: axiosResponse, body: body});
@@ -686,10 +657,7 @@ export class MetricsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostMetricAggregateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

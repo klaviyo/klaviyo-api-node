@@ -8,12 +8,21 @@ import {
   EmailTrackingOptionsSubObject,
   OAuthBasicSession,
   ObjectSerializer,
-  RetryOptions,
+  RetryWithExponentialBackoff,
 } from "../api";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 jest.mock("axios", () => jest.fn());
-const mockedAxios = axios as jest.MockedFunction<typeof axios>;
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+const mockIsAxiosError = (payload: any): payload is AxiosError => {
+    return jest.requireActual<typeof axios>('axios').isAxiosError(payload);
+};
+
+Object.defineProperty(axios, 'isAxiosError', {
+    value: mockIsAxiosError,
+    configurable: true,
+    writable: true,
+});
 
 beforeEach(() => {
   jest.resetAllMocks();
@@ -21,10 +30,15 @@ beforeEach(() => {
 
 describe("retry", () => {
   test("tests that no retry happens ", async () => {
-    mockedAxios.mockRejectedValue({ status: 401 });
+    mockedAxios.mockRejectedValue({
+      isAxiosError: true,
+      response: {
+        status: 401,
+      },
+    });
     const session = new OAuthBasicSession(
       "fake-key",
-      new RetryOptions({ numOfAttempts: 2 })
+      new RetryWithExponentialBackoff({ numRetries: 2 })
     );
     const accountsApi = new AccountsApi(session);
     try {
@@ -33,11 +47,17 @@ describe("retry", () => {
       expect(mockedAxios).toHaveBeenCalledTimes(1);
     }
   });
+
   test("tests that retry happens 2 times", async () => {
-    mockedAxios.mockRejectedValue({ status: 429 });
+    mockedAxios.mockRejectedValue({
+      isAxiosError: true,
+      response: {
+        status: 429,
+      },
+    });
     const session = new OAuthBasicSession(
       "fake-key",
-      new RetryOptions({ numOfAttempts: 2 })
+      new RetryWithExponentialBackoff({ numRetries: 2 })
     );
     const accountsApi = new AccountsApi(session);
     try {
@@ -46,8 +66,14 @@ describe("retry", () => {
       expect(mockedAxios).toHaveBeenCalledTimes(2);
     }
   });
+
   test("tests that retry happens 3 times by default", async () => {
-    mockedAxios.mockRejectedValue({ status: 429 });
+    mockedAxios.mockRejectedValue({
+      isAxiosError: true,
+      response: {
+        status: 429,
+      },
+    });
 
     const accountsApi = new AccountsApi(new ApiKeySession("fake-key"));
     try {
@@ -57,6 +83,7 @@ describe("retry", () => {
     }
   });
 });
+
 describe("Serialize", () => {
   test("an oneOf item serializes correctly", async () => {
     let campaign: CampaignMessageCreateQueryResourceObjectAttributes = {
@@ -81,6 +108,7 @@ describe("Serialize", () => {
     });
   });
 });
+
 describe("deserialize", () => {
   test("an oneOf item deserializes correctly", async () => {
     const serialized = {

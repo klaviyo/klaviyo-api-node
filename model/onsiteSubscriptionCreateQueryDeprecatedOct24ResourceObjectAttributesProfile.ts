@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { OnsiteSubscriptionCreateQueryResourceObject } from './onsiteSubscriptionCreateQueryResourceObject';
-export class OnsiteSubscriptionCreateQuery {
-    'data': OnsiteSubscriptionCreateQueryResourceObject;
+import { ProfileUpsertQueryResourceObject } from './profileUpsertQueryResourceObject';
+export class OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributesProfile {
+    'data': ProfileUpsertQueryResourceObject;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "OnsiteSubscriptionCreateQueryResourceObject"
+            "type": "ProfileUpsertQueryResourceObject"
         }    ];
 
     static getAttributeTypeMap() {
-        return OnsiteSubscriptionCreateQuery.attributeTypeMap;
+        return OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributesProfile.attributeTypeMap;
     }
 }
 

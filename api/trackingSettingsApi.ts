@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -24,7 +23,7 @@ import { TrackingSettingPartialUpdateQuery } from '../model/trackingSettingParti
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -35,7 +34,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class TrackingSettingsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -108,7 +106,7 @@ export class TrackingSettingsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTrackingSettingResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTrackingSettingResponse");
                 return ({response: axiosResponse, body: body});
@@ -121,10 +119,7 @@ export class TrackingSettingsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTrackingSettingResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all tracking settings in an account. Returns an array with a single tracking setting.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:read`
@@ -170,7 +165,7 @@ export class TrackingSettingsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTrackingSettingResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTrackingSettingResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -183,10 +178,7 @@ export class TrackingSettingsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTrackingSettingResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update the tracking setting with the given account ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:write`
@@ -232,7 +224,7 @@ export class TrackingSettingsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchTrackingSettingResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchTrackingSettingResponse");
                 return ({response: axiosResponse, body: body});
@@ -245,9 +237,6 @@ export class TrackingSettingsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchTrackingSettingResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }

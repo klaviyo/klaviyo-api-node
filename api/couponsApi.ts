@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -39,7 +38,7 @@ import { PostCouponResponse } from '../model/postCouponResponse';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -50,7 +49,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class CouponsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -119,7 +117,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCouponCodeCreateJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -132,10 +130,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCouponCodeCreateJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Creates a new coupon.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
@@ -175,7 +170,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCouponResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCouponResponse");
                 return ({response: axiosResponse, body: body});
@@ -188,10 +183,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCouponResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Synchronously creates a coupon code for the given coupon.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`
@@ -231,7 +223,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCouponCodeResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCouponCodeResponse");
                 return ({response: axiosResponse, body: body});
@@ -244,10 +236,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCouponCodeResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Delete the coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
@@ -287,7 +276,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -299,10 +288,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Deletes a coupon code specified by the given identifier synchronously. If a profile has been assigned to the coupon code, an exception will be raised<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`
@@ -342,7 +328,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -354,10 +340,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
@@ -403,7 +386,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeCreateJobResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -416,10 +399,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a coupon code bulk create job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
@@ -471,7 +451,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeCreateJobResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -484,10 +464,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
@@ -531,7 +508,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponRelationshipCouponCodesListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -544,10 +521,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a specific coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
@@ -591,7 +565,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponResponse");
                 return ({response: axiosResponse, body: body});
@@ -604,10 +578,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns a Coupon Code specified by the given identifier.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
@@ -659,7 +630,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -672,10 +643,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
@@ -729,7 +697,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -742,10 +710,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Gets a list of coupon codes associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
@@ -797,7 +762,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -810,10 +775,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the coupon associated with a given coupon code ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
@@ -857,7 +819,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponResponse");
                 return ({response: axiosResponse, body: body});
@@ -870,10 +832,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Gets the coupon relationship associated with the given coupon code id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
@@ -913,7 +872,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodeRelationshipCouponResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodeRelationshipCouponResponse");
                 return ({response: axiosResponse, body: body});
@@ -926,10 +885,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponCodeRelationshipCouponResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all coupons in an account.  To learn more, see our [Coupons API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_coupons_api).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
@@ -971,7 +927,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -984,10 +940,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCouponResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * *Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
@@ -1033,7 +986,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchCouponResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchCouponResponse");
                 return ({response: axiosResponse, body: body});
@@ -1046,10 +999,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchCouponResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Updates a coupon code specified by the given identifier synchronously. We allow updating the \'status\' and \'expires_at\' of coupon codes.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`
@@ -1095,7 +1045,7 @@ export class CouponsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchCouponCodeResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchCouponCodeResponse");
                 return ({response: axiosResponse, body: body});
@@ -1108,10 +1058,7 @@ export class CouponsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchCouponCodeResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

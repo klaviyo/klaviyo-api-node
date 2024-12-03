@@ -10,27 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages } from './getFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages';
 import { GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers } from './getMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers';
-export class PostFlowValuesResponseDTODataRelationships {
-    'flows'?: GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers;
-    'flowMessages'?: GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages;
+export class GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationships {
+    'flowTriggers'?: GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "flows",
-            "baseName": "flows",
+            "name": "flowTriggers",
+            "baseName": "flow-triggers",
             "type": "GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers"
-        },
-        {
-            "name": "flowMessages",
-            "baseName": "flow-messages",
-            "type": "GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages"
         }    ];
 
     static getAttributeTypeMap() {
-        return PostFlowValuesResponseDTODataRelationships.attributeTypeMap;
+        return GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationships.attributeTypeMap;
     }
 }
 

@@ -10,13 +10,13 @@
  */
 
 import { RequestFile } from './models';
-import { OnsiteSubscriptionCreateQueryResourceObjectAttributesProfile } from './onsiteSubscriptionCreateQueryResourceObjectAttributesProfile';
-export class OnsiteSubscriptionCreateQueryResourceObjectAttributes {
+import { OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributesProfile } from './onsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributesProfile';
+export class OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributes {
     /**
     * A custom method detail or source to store on the consent records for this subscription.
     */
     'customSource'?: string | null;
-    'profile': OnsiteSubscriptionCreateQueryResourceObjectAttributesProfile;
+    'profile': OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributesProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -28,11 +28,11 @@ export class OnsiteSubscriptionCreateQueryResourceObjectAttributes {
         {
             "name": "profile",
             "baseName": "profile",
-            "type": "OnsiteSubscriptionCreateQueryResourceObjectAttributesProfile"
+            "type": "OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributesProfile"
         }    ];
 
     static getAttributeTypeMap() {
-        return OnsiteSubscriptionCreateQueryResourceObjectAttributes.attributeTypeMap;
+        return OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectAttributes.attributeTypeMap;
     }
 }
 

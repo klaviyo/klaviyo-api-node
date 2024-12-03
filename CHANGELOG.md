@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [14.0.0] - 2024-10-15
+### Changed
+- **Breaking:** Providing `RetryWithExponentialBackoff` class for smart retries to replace the `RetryOptions` wrapper around the `exponential-backoff` package
+- **Breaking:** renamed several models:
+  - `GetCampaignMessageTemplateRelationshipListResponse` -> `GetCampaignMessageTemplateRelationshipResponse`
+  - `GetListFlowTriggersRelationshipResponseCollection` -> `GetListFlowTriggersRelationshipsResponseCollection`
+  - `GetMetricFlowTriggersRelationshipResponseCollection` -> `GetMetricFlowTriggersRelationshipsResponseCollection`
+  - `PostListCreateResponseDataRelationshipsFlowTriggers` -> `GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers`
+  - `GetMetricFlowTriggersRelationshipResponseCollectionDataInner` -> `GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner`
+### Fixed
+- Fixed `flow-triggers` relationships missing the `data` property
+
 ## [13.0.0] - revision 2024-10-15
 ### Added
 - Universal Content API
