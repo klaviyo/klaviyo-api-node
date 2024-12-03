@@ -11,9 +11,9 @@
 
 import { RequestFile } from './models';
 import { FlowResponseObjectResource } from './flowResponseObjectResource';
-import { GetMetricResponseData } from './getMetricResponseData';
+import { GetMetricResponseCollectionCompoundDocumentDataInner } from './getMetricResponseCollectionCompoundDocumentDataInner';
 export class GetMetricResponseCompoundDocument {
-    'data': GetMetricResponseData;
+    'data': GetMetricResponseCollectionCompoundDocumentDataInner;
     'included'?: Array<FlowResponseObjectResource>;
 
 
@@ -21,7 +21,7 @@ export class GetMetricResponseCompoundDocument {
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetMetricResponseData"
+            "type": "GetMetricResponseCollectionCompoundDocumentDataInner"
         },
         {
             "name": "included",

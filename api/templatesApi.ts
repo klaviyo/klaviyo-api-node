@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -34,7 +33,7 @@ import { UniversalContentPartialUpdateQuery } from '../model/universalContentPar
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -45,7 +44,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class TemplatesApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -114,7 +112,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
                 return ({response: axiosResponse, body: body});
@@ -127,10 +125,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Create a new custom HTML template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -170,7 +165,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
                 return ({response: axiosResponse, body: body});
@@ -183,10 +178,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Create universal content. Only text blocks, which can include text or HTML, are supported at this time.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -226,7 +218,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostUniversalContentResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostUniversalContentResponse");
                 return ({response: axiosResponse, body: body});
@@ -239,10 +231,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostUniversalContentResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Delete a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -282,7 +271,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -294,10 +283,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Delete the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -337,7 +323,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -349,10 +335,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all universal content in an account.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
@@ -406,7 +389,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetUniversalContentResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetUniversalContentResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -419,10 +402,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetUniversalContentResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
@@ -466,7 +446,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
                 return ({response: axiosResponse, body: body});
@@ -479,10 +459,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all templates in an account.  Filter to request a subset of all templates. Templates can be sorted by the following fields, in ascending and descending order: `id`, `name`, `created`, `updated`  Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
@@ -532,7 +509,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -545,10 +522,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:read`
@@ -592,7 +566,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetUniversalContentResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetUniversalContentResponse");
                 return ({response: axiosResponse, body: body});
@@ -605,10 +579,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetUniversalContentResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Render a template with the given template ID and context attribute. Returns the HTML and plain text versions of the email template.  **Request body parameters** (nested under `attributes`):  * `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding `context` values are treated as `FALSE` and output nothing.  Ex. `{ \"name\" : \"George Washington\", \"state\" : \"VA\" }`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
@@ -648,7 +619,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostTemplateResponse");
                 return ({response: axiosResponse, body: body});
@@ -661,10 +632,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update a template with the given template ID. Does not currently update drag & drop templates.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -710,7 +678,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchTemplateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchTemplateResponse");
                 return ({response: axiosResponse, body: body});
@@ -723,10 +691,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update universal content. The `definition` field can only be updated for text blocks at this time.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
@@ -772,7 +737,7 @@ export class TemplatesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchUniversalContentResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchUniversalContentResponse");
                 return ({response: axiosResponse, body: body});
@@ -785,10 +750,7 @@ export class TemplatesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchUniversalContentResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

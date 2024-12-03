@@ -14,7 +14,6 @@ import { BlockDisplayOptions } from './blockDisplayOptions';
 export class HTMLBlockData {
     'content': string;
     'displayOptions': BlockDisplayOptions;
-    'styles'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,11 +26,6 @@ export class HTMLBlockData {
             "name": "displayOptions",
             "baseName": "display_options",
             "type": "BlockDisplayOptions"
-        },
-        {
-            "name": "styles",
-            "baseName": "styles",
-            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

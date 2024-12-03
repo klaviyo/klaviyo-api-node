@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetMetricFlowTriggersRelationshipResponseCollectionDataInner } from './getMetricFlowTriggersRelationshipResponseCollectionDataInner';
+import { GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner } from './getMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner';
 import { RelationshipLinks } from './relationshipLinks';
-export class PostListCreateResponseDataRelationshipsFlowTriggers {
-    'data'?: Array<GetMetricFlowTriggersRelationshipResponseCollectionDataInner>;
+export class GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers {
+    'data'?: Array<GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner>;
     'links'?: RelationshipLinks;
 
 
@@ -21,7 +21,7 @@ export class PostListCreateResponseDataRelationshipsFlowTriggers {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetMetricFlowTriggersRelationshipResponseCollectionDataInner>"
+            "type": "Array<GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner>"
         },
         {
             "name": "links",
@@ -30,7 +30,7 @@ export class PostListCreateResponseDataRelationshipsFlowTriggers {
         }    ];
 
     static getAttributeTypeMap() {
-        return PostListCreateResponseDataRelationshipsFlowTriggers.attributeTypeMap;
+        return GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers.attributeTypeMap;
     }
 }
 

@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -28,7 +27,7 @@ import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetCampaignMessageCampaignRelationshipResponse } from '../model/getCampaignMessageCampaignRelationshipResponse';
 import { GetCampaignMessageResponseCollectionCompoundDocument } from '../model/getCampaignMessageResponseCollectionCompoundDocument';
 import { GetCampaignMessageResponseCompoundDocument } from '../model/getCampaignMessageResponseCompoundDocument';
-import { GetCampaignMessageTemplateRelationshipListResponse } from '../model/getCampaignMessageTemplateRelationshipListResponse';
+import { GetCampaignMessageTemplateRelationshipResponse } from '../model/getCampaignMessageTemplateRelationshipResponse';
 import { GetCampaignMessagesRelationshipListResponseCollection } from '../model/getCampaignMessagesRelationshipListResponseCollection';
 import { GetCampaignRecipientEstimationJobResponse } from '../model/getCampaignRecipientEstimationJobResponse';
 import { GetCampaignRecipientEstimationResponse } from '../model/getCampaignRecipientEstimationResponse';
@@ -48,7 +47,7 @@ import { PostCampaignSendJobResponse } from '../model/postCampaignSendJobRespons
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -59,7 +58,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class CampaignsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -128,7 +126,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignMessageResponse");
                 return ({response: axiosResponse, body: body});
@@ -141,10 +139,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCampaignMessageResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Permanently cancel the campaign, setting the status to CANCELED or revert the campaign, setting the status back to DRAFT<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -190,7 +185,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -202,10 +197,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Creates a campaign given a set of parameters, then returns it.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -245,7 +237,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignResponse");
                 return ({response: axiosResponse, body: body});
@@ -258,10 +250,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCampaignResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Clones an existing campaign, returning a new campaign based on the original with a new ID and name.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -301,7 +290,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignResponse");
                 return ({response: axiosResponse, body: body});
@@ -314,10 +303,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCampaignResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Delete a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -357,7 +343,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -369,10 +355,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns a specific campaign based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -428,7 +411,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -441,10 +424,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -488,7 +468,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignResponse");
                 return ({response: axiosResponse, body: body});
@@ -501,10 +481,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the ID of the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -544,7 +521,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageCampaignRelationshipResponse");
                 return ({response: axiosResponse, body: body});
@@ -557,10 +534,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessageCampaignRelationshipResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns a specific message based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -616,7 +590,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -629,10 +603,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the estimated recipient count for a campaign with the provided campaign ID. You can refresh this count by using the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -676,7 +647,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignRecipientEstimationResponse");
                 return ({response: axiosResponse, body: body});
@@ -689,10 +660,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Retrieve the status of a recipient estimation job triggered with the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -736,7 +704,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignRecipientEstimationJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -749,10 +717,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a campaign send job<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -796,7 +761,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignSendJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -809,10 +774,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
@@ -856,7 +818,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -869,10 +831,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,\'email\')` to list email campaigns, or `?filter=equals(messages.channel,\'sms\')` to list SMS campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -937,7 +896,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -950,10 +909,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the IDs of all messages associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -993,7 +949,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessagesRelationshipListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1006,10 +962,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -1065,7 +1018,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -1078,10 +1031,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
@@ -1121,7 +1071,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignTagRelationshipListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1134,10 +1084,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
@@ -1181,7 +1128,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTemplateResponse");
                 return ({response: axiosResponse, body: body});
@@ -1194,10 +1141,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTemplateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the ID of the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
@@ -1205,7 +1149,7 @@ export class CampaignsApi {
      * @param id 
      
      */
-    public async getTemplateIdForCampaignMessage (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }> {
+    public async getTemplateIdForCampaignMessage (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipResponse;  }> {
 
         const localVarPath = this.basePath + '/api/campaign-messages/{id}/relationships/template'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1235,11 +1179,11 @@ export class CampaignsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageTemplateRelationshipListResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageTemplateRelationshipResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1250,10 +1194,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetCampaignMessageTemplateRelationshipListResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the `Get Campaign Recipient Estimation Job` endpoint to retrieve the status of this estimation job. Use the `Get Campaign Recipient Estimation` endpoint to retrieve the estimated recipient count for a given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -1293,7 +1234,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignRecipientEstimationJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -1306,10 +1247,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCampaignRecipientEstimationJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Trigger a campaign to send asynchronously<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -1349,7 +1287,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignSendJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -1362,10 +1300,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCampaignSendJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -1411,7 +1346,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchCampaignResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchCampaignResponse");
                 return ({response: axiosResponse, body: body});
@@ -1424,10 +1359,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchCampaignResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update a campaign message<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`
@@ -1473,7 +1405,7 @@ export class CampaignsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchCampaignMessageResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchCampaignMessageResponse");
                 return ({response: axiosResponse, body: body});
@@ -1486,10 +1418,7 @@ export class CampaignsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchCampaignMessageResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { OnsiteSubscriptionCreateQueryResourceObjectRelationshipsListData } from './onsiteSubscriptionCreateQueryResourceObjectRelationshipsListData';
-export class OnsiteSubscriptionCreateQueryResourceObjectRelationshipsList {
-    'data'?: OnsiteSubscriptionCreateQueryResourceObjectRelationshipsListData;
+import { GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData } from './getFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData';
+export class GetCampaignMessageTemplateRelationshipResponse {
+    'data': GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "OnsiteSubscriptionCreateQueryResourceObjectRelationshipsListData"
+            "type": "GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData"
         }    ];
 
     static getAttributeTypeMap() {
-        return OnsiteSubscriptionCreateQueryResourceObjectRelationshipsList.attributeTypeMap;
+        return GetCampaignMessageTemplateRelationshipResponse.attributeTypeMap;
     }
 }
 

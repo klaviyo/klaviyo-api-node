@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -32,7 +31,7 @@ import { SegmentPartialUpdateQuery } from '../model/segmentPartialUpdateQuery';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -43,7 +42,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class SegmentsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -112,7 +110,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostSegmentCreateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostSegmentCreateResponse");
                 return ({response: axiosResponse, body: body});
@@ -125,10 +123,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostSegmentCreateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Delete a segment with the given segment ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write`
@@ -168,7 +163,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -180,10 +175,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given segment ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read` `segments:read`
@@ -239,7 +231,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -252,10 +244,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all profiles within a segment with the given segment ID.  Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read` `segments:read`
@@ -319,7 +308,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentMemberResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentMemberResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -332,10 +321,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentMemberResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a segment with the given segment ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[segment]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `segments:read`
@@ -395,7 +381,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentRetrieveResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentRetrieveResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -408,10 +394,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentRetrieveResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flows where the given segment ID is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `segments:read`
@@ -455,7 +438,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -468,10 +451,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flow [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) where the given segment is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `segments:read`
@@ -511,7 +491,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentFlowTriggersRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentFlowTriggersRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -524,10 +504,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentFlowTriggersRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all segments in an account.  Filter to request a subset of all segments. Segments can be filtered by `name`, `created`, and `updated` fields.  Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `segments:read`
@@ -589,7 +566,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentListResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentListResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -602,10 +579,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentListResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * If `related_resource` is `tags`, returns the tag IDs of all tags associated with the given segment ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
@@ -645,7 +619,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentTagRelationshipListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentTagRelationshipListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -658,10 +632,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentTagRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return all tags associated with the given segment ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
@@ -705,7 +676,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -718,10 +689,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update a segment with the given segment ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `100/d`  **Scopes:** `segments:write`
@@ -767,7 +735,7 @@ export class SegmentsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchSegmentPartialUpdateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchSegmentPartialUpdateResponse");
                 return ({response: axiosResponse, body: body});
@@ -780,10 +748,7 @@ export class SegmentsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchSegmentPartialUpdateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

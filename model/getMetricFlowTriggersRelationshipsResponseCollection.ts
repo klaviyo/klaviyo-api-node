@@ -11,19 +11,19 @@
 
 import { RequestFile } from './models';
 import { GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner } from './getMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner';
-export class GetFlowActionFlowRelationshipResponse {
-    'data': GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner;
+export class GetMetricFlowTriggersRelationshipsResponseCollection {
+    'data': Array<GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner"
+            "type": "Array<GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner>"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetFlowActionFlowRelationshipResponse.attributeTypeMap;
+        return GetMetricFlowTriggersRelationshipsResponseCollection.attributeTypeMap;
     }
 }
 

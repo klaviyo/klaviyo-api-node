@@ -11,7 +11,7 @@
 
 import { RequestFile } from './models';
 import { ListEnum } from './listEnum';
-export class OnsiteSubscriptionCreateQueryResourceObjectRelationshipsListData {
+export class OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationshipsListData {
     'type': ListEnum | 'list';
     /**
     * The list ID to add the newly subscribed profile to.
@@ -32,9 +32,9 @@ export class OnsiteSubscriptionCreateQueryResourceObjectRelationshipsListData {
         }    ];
 
     static getAttributeTypeMap() {
-        return OnsiteSubscriptionCreateQueryResourceObjectRelationshipsListData.attributeTypeMap;
+        return OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationshipsListData.attributeTypeMap;
     }
 }
 
-export namespace OnsiteSubscriptionCreateQueryResourceObjectRelationshipsListData {
+export namespace OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationshipsListData {
 }

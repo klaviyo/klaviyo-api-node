@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -21,7 +20,7 @@ import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -32,7 +31,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class DataPrivacyApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -101,7 +99,7 @@ export class DataPrivacyApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -113,10 +111,7 @@ export class DataPrivacyApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

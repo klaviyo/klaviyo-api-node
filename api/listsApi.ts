@@ -12,13 +12,12 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetFlowResponseCollection } from '../model/getFlowResponseCollection';
-import { GetListFlowTriggersRelationshipResponseCollection } from '../model/getListFlowTriggersRelationshipResponseCollection';
+import { GetListFlowTriggersRelationshipsResponseCollection } from '../model/getListFlowTriggersRelationshipsResponseCollection';
 import { GetListListResponseCollectionCompoundDocument } from '../model/getListListResponseCollectionCompoundDocument';
 import { GetListMemberResponseCollection } from '../model/getListMemberResponseCollection';
 import { GetListRelationshipsResponseCollection } from '../model/getListRelationshipsResponseCollection';
@@ -34,7 +33,7 @@ import { PostListCreateResponse } from '../model/postListCreateResponse';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -45,7 +44,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class ListsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -114,7 +112,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostListCreateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostListCreateResponse");
                 return ({response: axiosResponse, body: body});
@@ -127,10 +125,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostListCreateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Add a profile to a list with the given list ID.  It is recommended that you use the [Subscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/subscribe_profiles) if you\'re trying to give a profile [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) to receive email marketing, SMS marketing, or both.  This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
@@ -176,7 +171,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -188,10 +183,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Delete a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write`
@@ -231,7 +223,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -243,10 +235,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Remove a profile from a list with the given list ID.  The provided profile will no longer receive marketing from this particular list once removed.  Removing a profile from a list will not impact the profile\'s [consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api) status or subscription status in general. To update a profile\'s subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles).  This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
@@ -292,7 +281,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -304,10 +293,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[list]=profile_count` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `lists:read`
@@ -367,7 +353,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetListRetrieveResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -380,10 +366,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListRetrieveResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flows where the given lsit ID is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `lists:read`
@@ -427,7 +410,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -440,10 +423,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetFlowResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all profiles within a list with the given list ID.  Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, `push_token`, and `joined_group_at` fields. Profiles can be sorted by the following fields, in ascending and descending order: `joined_group_at`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `lists:read` `profiles:read`
@@ -507,7 +487,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetListMemberResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -520,10 +500,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListMemberResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all flow [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) where the given list is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `lists:read`
@@ -531,7 +508,7 @@ export class ListsApi {
      * @param id Primary key that uniquely identifies this list. Generated by Klaviyo.
      
      */
-    public async getListRelationshipsFlowTriggers (id: string, ): Promise<{ response: AxiosResponse; body: GetListFlowTriggersRelationshipResponseCollection;  }> {
+    public async getListRelationshipsFlowTriggers (id: string, ): Promise<{ response: AxiosResponse; body: GetListFlowTriggersRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/lists/{id}/relationships/flow-triggers'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -561,11 +538,11 @@ export class ListsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListFlowTriggersRelationshipResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListFlowTriggersRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListFlowTriggersRelationshipResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetListFlowTriggersRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -576,10 +553,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListFlowTriggersRelationshipResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Return all tags associated with the given list ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
@@ -623,7 +597,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -636,10 +610,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetTagResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all lists in an account.  Filter to request a subset of all lists. Lists can be filtered by `id`, `name`, `created`, and `updated` fields.  Returns a maximum of 10 results per page.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:read`
@@ -701,7 +672,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetListListResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -714,10 +685,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListListResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:read` `profiles:read`
@@ -773,7 +741,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetListRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -786,10 +754,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the tag IDs of all tags associated with the given list.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
@@ -829,7 +794,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetListTagRelationshipListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -842,10 +807,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListTagRelationshipListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update the name of a list with the given list ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write`
@@ -891,7 +853,7 @@ export class ListsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchListPartialUpdateResponse");
                 return ({response: axiosResponse, body: body});
@@ -904,10 +866,7 @@ export class ListsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchListPartialUpdateResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

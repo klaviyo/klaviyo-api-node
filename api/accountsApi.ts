@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -22,7 +21,7 @@ import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -33,7 +32,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class AccountsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -106,7 +104,7 @@ export class AccountsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetAccountResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetAccountResponse");
                 return ({response: axiosResponse, body: body});
@@ -119,10 +117,7 @@ export class AccountsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetAccountResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
@@ -160,7 +155,7 @@ export class AccountsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetAccountResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -173,9 +168,6 @@ export class AccountsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetAccountResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }

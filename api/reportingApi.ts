@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -34,7 +33,7 @@ import { SegmentValuesRequestDTO } from '../model/segmentValuesRequestDTO';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -45,7 +44,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class ReportingApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -118,7 +116,7 @@ export class ReportingApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostCampaignValuesResponseDTO;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostCampaignValuesResponseDTO");
                 return ({response: axiosResponse, body: body});
@@ -131,10 +129,7 @@ export class ReportingApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostCampaignValuesResponseDTO;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
@@ -178,7 +173,7 @@ export class ReportingApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostFlowSeriesResponseDTO;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostFlowSeriesResponseDTO");
                 return ({response: axiosResponse, body: body});
@@ -191,10 +186,7 @@ export class ReportingApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostFlowSeriesResponseDTO;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
@@ -238,7 +230,7 @@ export class ReportingApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostFlowValuesResponseDTO;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostFlowValuesResponseDTO");
                 return ({response: axiosResponse, body: body});
@@ -251,10 +243,7 @@ export class ReportingApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostFlowValuesResponseDTO;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
@@ -294,7 +283,7 @@ export class ReportingApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostFormSeriesResponseDTO");
                 return ({response: axiosResponse, body: body});
@@ -307,10 +296,7 @@ export class ReportingApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
@@ -350,7 +336,7 @@ export class ReportingApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostFormValuesResponseDTO");
                 return ({response: axiosResponse, body: body});
@@ -363,10 +349,7 @@ export class ReportingApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
@@ -406,7 +389,7 @@ export class ReportingApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostSegmentSeriesResponseDTO");
                 return ({response: axiosResponse, body: body});
@@ -419,10 +402,7 @@ export class ReportingApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
@@ -462,7 +442,7 @@ export class ReportingApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostSegmentValuesResponseDTO");
                 return ({response: axiosResponse, body: body});
@@ -475,10 +455,7 @@ export class ReportingApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 

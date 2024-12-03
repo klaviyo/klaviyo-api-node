@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -22,7 +21,7 @@ import { GetReviewResponseDTO20240715CompoundDocument } from '../model/getReview
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -33,7 +32,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class ReviewsApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -114,7 +112,7 @@ export class ReviewsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetReviewResponseDTO20240715CompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetReviewResponseDTO20240715CompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -127,10 +125,7 @@ export class ReviewsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetReviewResponseDTO20240715CompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all reviews.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `reviews:read`
@@ -192,7 +187,7 @@ export class ReviewsApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetReviewResponseDTO20240715CollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetReviewResponseDTO20240715CollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -205,9 +200,6 @@ export class ReviewsApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetReviewResponseDTO20240715CollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }

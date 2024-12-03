@@ -11,7 +11,7 @@
 
 import { RequestFile } from './models';
 import { FlowEnum } from './flowEnum';
-export class GetMetricFlowTriggersRelationshipResponseCollectionDataInner {
+export class GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner {
     'type': FlowEnum | 'flow';
     'id': string;
 
@@ -29,9 +29,9 @@ export class GetMetricFlowTriggersRelationshipResponseCollectionDataInner {
         }    ];
 
     static getAttributeTypeMap() {
-        return GetMetricFlowTriggersRelationshipResponseCollectionDataInner.attributeTypeMap;
+        return GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner.attributeTypeMap;
     }
 }
 
-export namespace GetMetricFlowTriggersRelationshipResponseCollectionDataInner {
+export namespace GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggersDataInner {
 }

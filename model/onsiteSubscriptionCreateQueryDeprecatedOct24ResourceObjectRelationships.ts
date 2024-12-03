@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { OnsiteSubscriptionCreateQueryResourceObjectRelationshipsList } from './onsiteSubscriptionCreateQueryResourceObjectRelationshipsList';
-export class OnsiteSubscriptionCreateQueryResourceObjectRelationships {
-    'list'?: OnsiteSubscriptionCreateQueryResourceObjectRelationshipsList;
+import { OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationshipsList } from './onsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationshipsList';
+export class OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationships {
+    'list'?: OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationshipsList;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "list",
             "baseName": "list",
-            "type": "OnsiteSubscriptionCreateQueryResourceObjectRelationshipsList"
+            "type": "OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationshipsList"
         }    ];
 
     static getAttributeTypeMap() {
-        return OnsiteSubscriptionCreateQueryResourceObjectRelationships.attributeTypeMap;
+        return OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObjectRelationships.attributeTypeMap;
     }
 }
 

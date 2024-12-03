@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -28,7 +27,7 @@ import { WebhookPartialUpdateQuery } from '../model/webhookPartialUpdateQuery';
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -39,7 +38,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class WebhooksApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -108,7 +106,7 @@ export class WebhooksApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostWebhookResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostWebhookResponse");
                 return ({response: axiosResponse, body: body});
@@ -121,10 +119,7 @@ export class WebhooksApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostWebhookResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Delete a webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
@@ -164,7 +159,7 @@ export class WebhooksApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -176,10 +171,7 @@ export class WebhooksApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
@@ -227,7 +219,7 @@ export class WebhooksApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetWebhookResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetWebhookResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -240,10 +232,7 @@ export class WebhooksApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetWebhookResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the webhook topic with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
@@ -283,7 +272,7 @@ export class WebhooksApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetWebhookTopicResponse");
                 return ({response: axiosResponse, body: body});
@@ -296,10 +285,7 @@ export class WebhooksApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetWebhookTopicResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all webhook topics in a Klaviyo account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
@@ -333,7 +319,7 @@ export class WebhooksApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetWebhookTopicResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -346,10 +332,7 @@ export class WebhooksApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetWebhookTopicResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all webhooks in an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
@@ -391,7 +374,7 @@ export class WebhooksApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetWebhookResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetWebhookResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -404,10 +387,7 @@ export class WebhooksApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetWebhookResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Update the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
@@ -453,7 +433,7 @@ export class WebhooksApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchWebhookResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchWebhookResponse");
                 return ({response: axiosResponse, body: body});
@@ -466,9 +446,6 @@ export class WebhooksApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchWebhookResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }

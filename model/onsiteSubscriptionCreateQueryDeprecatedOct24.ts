@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetMetricFlowTriggersRelationshipResponseCollectionDataInner } from './getMetricFlowTriggersRelationshipResponseCollectionDataInner';
-export class GetListFlowTriggersRelationshipResponseCollection {
-    'data': Array<GetMetricFlowTriggersRelationshipResponseCollectionDataInner>;
+import { OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObject } from './onsiteSubscriptionCreateQueryDeprecatedOct24ResourceObject';
+export class OnsiteSubscriptionCreateQueryDeprecatedOct24 {
+    'data': OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObject;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetMetricFlowTriggersRelationshipResponseCollectionDataInner>"
+            "type": "OnsiteSubscriptionCreateQueryDeprecatedOct24ResourceObject"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetListFlowTriggersRelationshipResponseCollection.attributeTypeMap;
+        return OnsiteSubscriptionCreateQueryDeprecatedOct24.attributeTypeMap;
     }
 }
 

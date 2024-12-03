@@ -12,7 +12,6 @@
 
 const axios = require('axios');
 import {AxiosRequestConfig, AxiosResponse} from "axios";
-import { backOff, BackoffOptions } from 'exponential-backoff';
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
@@ -52,7 +51,7 @@ import { SuppressionDeleteJobCreateQuery } from '../model/suppressionDeleteJobCr
 
 import { ObjectSerializer } from '../model/models';
 
-import {RequestFile, queryParamPreProcessor, RetryOptions, Session} from './apis';
+import {RequestFile, queryParamPreProcessor, RetryWithExponentialBackoff, Session} from './apis';
 
 let defaultBasePath = 'https://a.klaviyo.com';
 
@@ -63,7 +62,6 @@ let defaultBasePath = 'https://a.klaviyo.com';
 
 export class ProfilesApi {
 
-    protected backoffOptions: BackoffOptions = new RetryOptions().options
     session: Session
 
     protected _basePath = defaultBasePath;
@@ -132,7 +130,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -144,10 +142,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Manually suppress profiles by email address or specify a segment/list ID to suppress all current members of a segment/list.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `subscriptions:write`
@@ -187,7 +182,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostBulkProfileSuppressionsCreateJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostBulkProfileSuppressionsCreateJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -200,10 +195,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostBulkProfileSuppressionsCreateJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
@@ -243,7 +235,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -255,10 +247,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Manually unsuppress profiles by email address or specify a segment/list ID to unsuppress all current members of a segment/list.  This only removes suppressions with reason USER_SUPPRESSED ; unsubscribed profiles and suppressed profiles with reason INVALID_EMAIL or HARD_BOUNCE remain unchanged. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:write`
@@ -298,7 +287,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostBulkProfileSuppressionsRemoveJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostBulkProfileSuppressionsRemoveJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -311,18 +300,15 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostBulkProfileSuppressionsRemoveJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
-     * Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+     * Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
      * @summary Create or Update Profile
      * @param profileUpsertQuery 
-     
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;
      */
-    public async createOrUpdateProfile (profileUpsertQuery: ProfileUpsertQuery, ): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> {
+    public async createOrUpdateProfile (profileUpsertQuery: ProfileUpsertQuery, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>,  } = {}): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> {
 
         const localVarPath = this.basePath + '/api/profile-import';
         let localVarQueryParameters: any = {};
@@ -340,6 +326,10 @@ export class ProfilesApi {
             throw new Error('Required parameter profileUpsertQuery was null or undefined when calling createOrUpdateProfile.');
         }
 
+        if (options.additionalFieldsProfile !== undefined) {
+            localVarQueryParameters['additional-fields[profile]'] = ObjectSerializer.serialize(options.additionalFieldsProfile, "Array<'subscriptions' | 'predictive_analytics'>");
+        }
+
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -354,7 +344,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileResponse");
                 return ({response: axiosResponse, body: body});
@@ -367,18 +357,15 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostProfileResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
-     * Create a new profile.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+     * Create a new profile.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
      * @summary Create Profile
      * @param profileCreateQuery 
-     
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;
      */
-    public async createProfile (profileCreateQuery: ProfileCreateQuery, ): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> {
+    public async createProfile (profileCreateQuery: ProfileCreateQuery, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>,  } = {}): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> {
 
         const localVarPath = this.basePath + '/api/profiles';
         let localVarQueryParameters: any = {};
@@ -396,6 +383,10 @@ export class ProfilesApi {
             throw new Error('Required parameter profileCreateQuery was null or undefined when calling createProfile.');
         }
 
+        if (options.additionalFieldsProfile !== undefined) {
+            localVarQueryParameters['additional-fields[profile]'] = ObjectSerializer.serialize(options.additionalFieldsProfile, "Array<'subscriptions' | 'predictive_analytics'>");
+        }
+
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -410,7 +401,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostProfileResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileResponse");
                 return ({response: axiosResponse, body: body});
@@ -423,10 +414,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostProfileResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users\' devices.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `push-tokens:write`
@@ -466,7 +454,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 return ({response: axiosResponse, body: body});
             } catch (error) {
@@ -478,10 +466,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body?: any;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get a bulk profile import job with the given job ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
@@ -533,7 +518,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -546,10 +531,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileImportJobResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
@@ -603,7 +585,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -616,10 +598,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileImportJobResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the bulk suppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
@@ -663,7 +642,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsCreateJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -676,10 +655,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the status of all bulk profile suppression jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
@@ -729,7 +705,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsCreateJobResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -742,10 +718,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get the bulk unsuppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
@@ -789,7 +762,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsRemoveJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -802,10 +775,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get all bulk unsuppress profiles jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
@@ -855,7 +825,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetBulkProfileSuppressionsRemoveJobResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -868,10 +838,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
@@ -923,7 +890,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetImportErrorResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -936,10 +903,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
@@ -983,7 +947,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -996,10 +960,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get list relationship for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
@@ -1039,7 +1000,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobListRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1052,10 +1013,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileImportJobListRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
@@ -1095,7 +1053,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileListRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1108,10 +1066,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
@@ -1155,7 +1110,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetListResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1168,13 +1123,10 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetListResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
-     * Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
+     * Get the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
      * @summary Get Profile
      * @param id 
      * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
@@ -1231,7 +1183,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -1244,10 +1196,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
@@ -1295,7 +1244,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobProfileRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1308,13 +1257,10 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
-     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
      * @summary Get Profiles
      
      * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
@@ -1369,7 +1315,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollectionCompoundDocument");
                 return ({response: axiosResponse, body: body});
@@ -1382,10 +1328,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get profiles for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
@@ -1441,7 +1384,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1454,10 +1397,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
@@ -1497,7 +1437,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileSegmentRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1510,10 +1450,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
@@ -1557,7 +1494,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetSegmentResponseCollection");
                 return ({response: axiosResponse, body: body});
@@ -1570,10 +1507,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Merge a given related profile into a profile with the given profile ID.  The profile provided under `relationships` (the \"source\" profile) will be merged into the profile provided by the ID in the base data object (the \"destination\" profile). This endpoint queues an asynchronous task which will merge data from the source profile into the destination profile, deleting the source profile in the process. This endpoint accepts only one source profile.  To learn more about how profile data is preserved or overwritten during a merge, please [visit our Help Center](https://help.klaviyo.com/hc/en-us/articles/115005073847#merge-2-profiles3).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:write`
@@ -1613,7 +1547,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostProfileMergeResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileMergeResponse");
                 return ({response: axiosResponse, body: body});
@@ -1626,10 +1560,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostProfileMergeResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
      * Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
@@ -1669,7 +1600,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostProfileImportJobResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PostProfileImportJobResponse");
                 return ({response: axiosResponse, body: body});
@@ -1682,18 +1613,15 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PostProfileImportJobResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
     /**
-     * Update the profile with the given profile ID.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+     * Update the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
      * @summary Update Profile
      * @param id Primary key that uniquely identifies this profile. Generated by Klaviyo.* @param profilePartialUpdateQuery 
-     
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;
      */
-    public async updateProfile (id: string, profilePartialUpdateQuery: ProfilePartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchProfileResponse;  }> {
+    public async updateProfile (id: string, profilePartialUpdateQuery: ProfilePartialUpdateQuery, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchProfileResponse;  }> {
 
         const localVarPath = this.basePath + '/api/profiles/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1717,6 +1645,10 @@ export class ProfilesApi {
             throw new Error('Required parameter profilePartialUpdateQuery was null or undefined when calling updateProfile.');
         }
 
+        if (options.additionalFieldsProfile !== undefined) {
+            localVarQueryParameters['additional-fields[profile]'] = ObjectSerializer.serialize(options.additionalFieldsProfile, "Array<'subscriptions' | 'predictive_analytics'>");
+        }
+
         queryParamPreProcessor(localVarQueryParameters)
 
         let config: AxiosRequestConfig = {
@@ -1731,7 +1663,7 @@ export class ProfilesApi {
 
         const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchProfileResponse;  }> => {
             try {
-                const axiosResponse = await axios(config)
+                const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "PatchProfileResponse");
                 return ({response: axiosResponse, body: body});
@@ -1744,10 +1676,7 @@ export class ProfilesApi {
             }
         }
 
-        return backOff<{ response: AxiosResponse; body: PatchProfileResponse;  }>(
-            () => {return request(config)},
-            this.session.getRetryOptions()
-        );
+        return request(config)
     }
 }
 
