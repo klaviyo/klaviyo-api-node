@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagTagGroupRelationshipsResponseData } from './getTagTagGroupRelationshipsResponseData';
-export class GetTagTagGroupRelationshipsResponse {
-    'data': GetTagTagGroupRelationshipsResponseData;
+import { GetEventMetricRelationshipResponseData } from './getEventMetricRelationshipResponseData';
+export class GetMetricPropertyMetricRelationshipResponse {
+    'data': GetEventMetricRelationshipResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetTagTagGroupRelationshipsResponseData"
+            "type": "GetEventMetricRelationshipResponseData"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetTagTagGroupRelationshipsResponse.attributeTypeMap;
+        return GetMetricPropertyMetricRelationshipResponse.attributeTypeMap;
     }
 }
 

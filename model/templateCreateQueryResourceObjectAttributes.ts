@@ -16,7 +16,7 @@ export class TemplateCreateQueryResourceObjectAttributes {
     */
     'name': string;
     /**
-    * Restricted to CODE
+    * Restricted to CODE and USER_DRAGGABLE
     */
     'editorType': string;
     /**

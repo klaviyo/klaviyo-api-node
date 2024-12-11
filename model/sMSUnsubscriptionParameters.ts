@@ -10,28 +10,26 @@
  */
 
 import { RequestFile } from './models';
-import { FormEnum } from './formEnum';
-export class GetFormVersionFormRelationshipResponseData {
-    'type': FormEnum | 'form';
-    'id': string;
+import { UnsubscriptionParameters } from './unsubscriptionParameters';
+export class SMSUnsubscriptionParameters {
+    'marketing'?: UnsubscriptionParameters;
+    'transactional'?: UnsubscriptionParameters;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "FormEnum"
+            "name": "marketing",
+            "baseName": "marketing",
+            "type": "UnsubscriptionParameters"
         },
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
+            "name": "transactional",
+            "baseName": "transactional",
+            "type": "UnsubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetFormVersionFormRelationshipResponseData.attributeTypeMap;
+        return SMSUnsubscriptionParameters.attributeTypeMap;
     }
 }
 
-export namespace GetFormVersionFormRelationshipResponseData {
-}

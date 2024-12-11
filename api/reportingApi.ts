@@ -471,6 +471,16 @@ ReportingApi.prototype.createCampaignValueReport = ReportingApi.prototype.queryC
 
 export interface ReportingApi {
     /**
+     * Alias of {@link ReportingApi.queryCampaignValues}
+     *
+     * @deprecated Use {@link ReportingApi.queryCampaignValues} instead
+     */
+    createCampaignValuesReport: typeof ReportingApi.prototype.queryCampaignValues;
+}
+ReportingApi.prototype.createCampaignValuesReport = ReportingApi.prototype.queryCampaignValues
+
+export interface ReportingApi {
+    /**
      * Alias of {@link ReportingApi.queryFlowSeries}
      *
      * @deprecated Use {@link ReportingApi.queryFlowSeries} instead
@@ -478,6 +488,16 @@ export interface ReportingApi {
     createFlowSeryReport: typeof ReportingApi.prototype.queryFlowSeries;
 }
 ReportingApi.prototype.createFlowSeryReport = ReportingApi.prototype.queryFlowSeries
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.queryFlowSeries}
+     *
+     * @deprecated Use {@link ReportingApi.queryFlowSeries} instead
+     */
+    createFlowSeriesReport: typeof ReportingApi.prototype.queryFlowSeries;
+}
+ReportingApi.prototype.createFlowSeriesReport = ReportingApi.prototype.queryFlowSeries
 
 export interface ReportingApi {
     /**
@@ -491,6 +511,16 @@ ReportingApi.prototype.createFlowValueReport = ReportingApi.prototype.queryFlowV
 
 export interface ReportingApi {
     /**
+     * Alias of {@link ReportingApi.queryFlowValues}
+     *
+     * @deprecated Use {@link ReportingApi.queryFlowValues} instead
+     */
+    createFlowValuesReport: typeof ReportingApi.prototype.queryFlowValues;
+}
+ReportingApi.prototype.createFlowValuesReport = ReportingApi.prototype.queryFlowValues
+
+export interface ReportingApi {
+    /**
      * Alias of {@link ReportingApi.queryFormSeries}
      *
      * @deprecated Use {@link ReportingApi.queryFormSeries} instead
@@ -498,6 +528,16 @@ export interface ReportingApi {
     createFormSeryReport: typeof ReportingApi.prototype.queryFormSeries;
 }
 ReportingApi.prototype.createFormSeryReport = ReportingApi.prototype.queryFormSeries
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.queryFormSeries}
+     *
+     * @deprecated Use {@link ReportingApi.queryFormSeries} instead
+     */
+    createFormSeriesReport: typeof ReportingApi.prototype.queryFormSeries;
+}
+ReportingApi.prototype.createFormSeriesReport = ReportingApi.prototype.queryFormSeries
 
 export interface ReportingApi {
     /**
@@ -511,6 +551,16 @@ ReportingApi.prototype.createFormValueReport = ReportingApi.prototype.queryFormV
 
 export interface ReportingApi {
     /**
+     * Alias of {@link ReportingApi.queryFormValues}
+     *
+     * @deprecated Use {@link ReportingApi.queryFormValues} instead
+     */
+    createFormValuesReport: typeof ReportingApi.prototype.queryFormValues;
+}
+ReportingApi.prototype.createFormValuesReport = ReportingApi.prototype.queryFormValues
+
+export interface ReportingApi {
+    /**
      * Alias of {@link ReportingApi.querySegmentSeries}
      *
      * @deprecated Use {@link ReportingApi.querySegmentSeries} instead
@@ -521,6 +571,16 @@ ReportingApi.prototype.createSegmentSeryReport = ReportingApi.prototype.querySeg
 
 export interface ReportingApi {
     /**
+     * Alias of {@link ReportingApi.querySegmentSeries}
+     *
+     * @deprecated Use {@link ReportingApi.querySegmentSeries} instead
+     */
+    createSegmentSeriesReport: typeof ReportingApi.prototype.querySegmentSeries;
+}
+ReportingApi.prototype.createSegmentSeriesReport = ReportingApi.prototype.querySegmentSeries
+
+export interface ReportingApi {
+    /**
      * Alias of {@link ReportingApi.querySegmentValues}
      *
      * @deprecated Use {@link ReportingApi.querySegmentValues} instead
@@ -528,3 +588,13 @@ export interface ReportingApi {
     createSegmentValueReport: typeof ReportingApi.prototype.querySegmentValues;
 }
 ReportingApi.prototype.createSegmentValueReport = ReportingApi.prototype.querySegmentValues
+
+export interface ReportingApi {
+    /**
+     * Alias of {@link ReportingApi.querySegmentValues}
+     *
+     * @deprecated Use {@link ReportingApi.querySegmentValues} instead
+     */
+    createSegmentValuesReport: typeof ReportingApi.prototype.querySegmentValues;
+}
+ReportingApi.prototype.createSegmentValuesReport = ReportingApi.prototype.querySegmentValues

@@ -121,11 +121,11 @@ export class CatalogsApi {
 
     /**
      * Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
-     * @summary Add Category to Catalog Item
+     * @summary Add Categories to Catalog Item
      * @param id The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.* @param catalogItemCategoryOp 
      
      */
-    public async addCategoryToCatalogItem (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+    public async addCategoriesToCatalogItem (id: string, catalogItemCategoryOp: CatalogItemCategoryOp, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
         const localVarPath = this.basePath + '/api/catalog-items/{id}/relationships/categories'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -141,12 +141,12 @@ export class CatalogsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling addCategoryToCatalogItem.');
+            throw new Error('Required parameter id was null or undefined when calling addCategoriesToCatalogItem.');
         }
 
         // verify required parameter 'catalogItemCategoryOp' is not null or undefined
         if (catalogItemCategoryOp === null || catalogItemCategoryOp === undefined) {
-            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling addCategoryToCatalogItem.');
+            throw new Error('Required parameter catalogItemCategoryOp was null or undefined when calling addCategoriesToCatalogItem.');
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -3289,33 +3289,33 @@ export class CatalogsApi {
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.addCategoryToCatalogItem}
+     * Alias of {@link CatalogsApi.addCategoriesToCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.addCategoryToCatalogItem} instead
+     * @deprecated Use {@link CatalogsApi.addCategoriesToCatalogItem} instead
      */
-    createCatalogItemRelationshipsCategories: typeof CatalogsApi.prototype.addCategoryToCatalogItem;
+    addCategoryToCatalogItem: typeof CatalogsApi.prototype.addCategoriesToCatalogItem;
 }
-CatalogsApi.prototype.createCatalogItemRelationshipsCategories = CatalogsApi.prototype.addCategoryToCatalogItem
+CatalogsApi.prototype.addCategoryToCatalogItem = CatalogsApi.prototype.addCategoriesToCatalogItem
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.addCategoryToCatalogItem}
+     * Alias of {@link CatalogsApi.addCategoriesToCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.addCategoryToCatalogItem} instead
+     * @deprecated Use {@link CatalogsApi.addCategoriesToCatalogItem} instead
      */
-    createCatalogItemRelationshipsCategory: typeof CatalogsApi.prototype.addCategoryToCatalogItem;
+    createCatalogItemRelationshipsCategory: typeof CatalogsApi.prototype.addCategoriesToCatalogItem;
 }
-CatalogsApi.prototype.createCatalogItemRelationshipsCategory = CatalogsApi.prototype.addCategoryToCatalogItem
+CatalogsApi.prototype.createCatalogItemRelationshipsCategory = CatalogsApi.prototype.addCategoriesToCatalogItem
 
 export interface CatalogsApi {
     /**
-     * Alias of {@link CatalogsApi.addItemsToCatalogCategory}
+     * Alias of {@link CatalogsApi.addCategoriesToCatalogItem}
      *
-     * @deprecated Use {@link CatalogsApi.addItemsToCatalogCategory} instead
+     * @deprecated Use {@link CatalogsApi.addCategoriesToCatalogItem} instead
      */
-    createCatalogCategoryRelationshipsItems: typeof CatalogsApi.prototype.addItemsToCatalogCategory;
+    createCatalogItemRelationshipsCategories: typeof CatalogsApi.prototype.addCategoriesToCatalogItem;
 }
-CatalogsApi.prototype.createCatalogCategoryRelationshipsItems = CatalogsApi.prototype.addItemsToCatalogCategory
+CatalogsApi.prototype.createCatalogItemRelationshipsCategories = CatalogsApi.prototype.addCategoriesToCatalogItem
 
 export interface CatalogsApi {
     /**
@@ -3326,6 +3326,16 @@ export interface CatalogsApi {
     createCatalogCategoryRelationshipsItem: typeof CatalogsApi.prototype.addItemsToCatalogCategory;
 }
 CatalogsApi.prototype.createCatalogCategoryRelationshipsItem = CatalogsApi.prototype.addItemsToCatalogCategory
+
+export interface CatalogsApi {
+    /**
+     * Alias of {@link CatalogsApi.addItemsToCatalogCategory}
+     *
+     * @deprecated Use {@link CatalogsApi.addItemsToCatalogCategory} instead
+     */
+    createCatalogCategoryRelationshipsItems: typeof CatalogsApi.prototype.addItemsToCatalogCategory;
+}
+CatalogsApi.prototype.createCatalogCategoryRelationshipsItems = CatalogsApi.prototype.addItemsToCatalogCategory
 
 export interface CatalogsApi {
     /**

@@ -10,12 +10,9 @@
  */
 
 import { RequestFile } from './models';
-import { TagGroupEnum } from './tagGroupEnum';
-export class GetTagTagGroupRelationshipsResponseData {
-    'type': TagGroupEnum | 'tag-group';
-    /**
-    * The ID of the Tag Group the Tag is associated with
-    */
+import { CouponEnum } from './couponEnum';
+export class GetCouponCodeCouponRelationshipResponseData {
+    'type': CouponEnum | 'coupon';
     'id': string;
 
 
@@ -23,7 +20,7 @@ export class GetTagTagGroupRelationshipsResponseData {
         {
             "name": "type",
             "baseName": "type",
-            "type": "TagGroupEnum"
+            "type": "CouponEnum"
         },
         {
             "name": "id",
@@ -32,9 +29,9 @@ export class GetTagTagGroupRelationshipsResponseData {
         }    ];
 
     static getAttributeTypeMap() {
-        return GetTagTagGroupRelationshipsResponseData.attributeTypeMap;
+        return GetCouponCodeCouponRelationshipResponseData.attributeTypeMap;
     }
 }
 
-export namespace GetTagTagGroupRelationshipsResponseData {
+export namespace GetCouponCodeCouponRelationshipResponseData {
 }

@@ -43,7 +43,7 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, AxiosError, isAxiosErro
 export { RequestFile } from '../model/models';
 
 const revision =  "2024-10-15";
-const userAgent = "klaviyo-api-node/14.0.0";
+const userAgent = "klaviyo-api-node/15.0.0";
 
 export class RetryWithExponentialBackoff {
 

@@ -22,7 +22,7 @@ export class ReviewProductDTO {
     /**
     * The URL of the product image
     */
-    'imageUrl': string | null;
+    'imageUrl'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

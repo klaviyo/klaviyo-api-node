@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetMetricPropertyRelationshipMetricResponseData } from './getMetricPropertyRelationshipMetricResponseData';
-export class GetMetricPropertyRelationshipMetricResponse {
-    'data': GetMetricPropertyRelationshipMetricResponseData;
+import { UnsubscriptionParameters } from './unsubscriptionParameters';
+export class EmailUnsubscriptionParameters {
+    'marketing': UnsubscriptionParameters;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "GetMetricPropertyRelationshipMetricResponseData"
+            "name": "marketing",
+            "baseName": "marketing",
+            "type": "UnsubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetMetricPropertyRelationshipMetricResponse.attributeTypeMap;
+        return EmailUnsubscriptionParameters.attributeTypeMap;
     }
 }
 

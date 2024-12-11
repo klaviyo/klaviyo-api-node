@@ -18,11 +18,11 @@ export class FormValuesRequestDTOResourceObjectAttributes {
     'statistics': Array<FormValuesRequestDTOResourceObjectAttributes.StatisticsEnum> | Array<'closed_form' | 'closed_form_uniques' | 'qualified_form' | 'qualified_form_uniques' | 'submit_rate' | 'submits' | 'submitted_form_step' | 'submitted_form_step_uniques' | 'viewed_form' | 'viewed_form_step' | 'viewed_form_step_uniques' | 'viewed_form_uniques'>;
     'timeframe': CampaignValuesRequestDTOResourceObjectAttributesTimeframe;
     /**
-    * List of attributes to group the data by. Allowed group-bys are form_version_id, form_id. If not passed in, the data will be grouped by form_id. If a group by has prerequisites, they must be passed in together. The prerequisites for form_version_id is form_id
+    * List of attributes to group the data by. Allowed group-bys are form_id, form_version_id. If not passed in, the data will be grouped by form_id. If a group by has prerequisites, they must be passed in together. The prerequisites for form_version_id is form_id
     */
     'groupBy'?: Array<FormValuesRequestDTOResourceObjectAttributes.GroupByEnum> | Array<'form_id' | 'form_version_id'> | null;
     /**
-    * API filter string used to filter the query. Allowed filters are form_version_id, form_id. Allowed operators are equals, any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter.
+    * API filter string used to filter the query. Allowed filters are form_id, form_version_id. Allowed operators are equals, any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter.
     */
     'filter'?: string | null;
 

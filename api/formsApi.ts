@@ -526,6 +526,16 @@ FormsApi.prototype.getFormRelationshipsFormVersions = FormsApi.prototype.getVers
 
 export interface FormsApi {
     /**
+     * Alias of {@link FormsApi.getVersionIdsForForm}
+     *
+     * @deprecated Use {@link FormsApi.getVersionIdsForForm} instead
+     */
+    getFormRelationshipsVersions: typeof FormsApi.prototype.getVersionIdsForForm;
+}
+FormsApi.prototype.getFormRelationshipsVersions = FormsApi.prototype.getVersionIdsForForm
+
+export interface FormsApi {
+    /**
      * Alias of {@link FormsApi.getVersionsForForm}
      *
      * @deprecated Use {@link FormsApi.getVersionsForForm} instead
@@ -533,3 +543,13 @@ export interface FormsApi {
     getFormFormVersions: typeof FormsApi.prototype.getVersionsForForm;
 }
 FormsApi.prototype.getFormFormVersions = FormsApi.prototype.getVersionsForForm
+
+export interface FormsApi {
+    /**
+     * Alias of {@link FormsApi.getVersionsForForm}
+     *
+     * @deprecated Use {@link FormsApi.getVersionsForForm} instead
+     */
+    getFormVersions: typeof FormsApi.prototype.getVersionsForForm;
+}
+FormsApi.prototype.getFormVersions = FormsApi.prototype.getVersionsForForm

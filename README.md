@@ -1,6 +1,6 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 14.0.0
+- SDK version: 15.0.0
 
 - Revision: 2024-10-15
 
@@ -52,7 +52,7 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@14.0.0`
+`npm install klaviyo-api@15.0.0`
 
 
 ## source code
@@ -810,6 +810,10 @@ _______________________________
 ```typescript
 CampaignsApi.getCampaignTags(id: string, options)
 ```
+##### Method alias:
+```typescript
+CampaignsApi.getTagsForCampaign(id: string, options)
+```
 _______________________________
 
 [Get Campaigns](https://developers.klaviyo.com/en/v2024-10-15/reference/get_campaigns)
@@ -828,6 +832,10 @@ CampaignsApi.getMessageIdsForCampaign(id: string)
 ```typescript
 CampaignsApi.getCampaignRelationshipsCampaignMessages(id: string)
 ```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignRelationshipsMessages(id: string)
+```
 _______________________________
 
 [Get Messages for Campaign](https://developers.klaviyo.com/en/v2024-10-15/reference/get_messages_for_campaign)
@@ -838,6 +846,10 @@ CampaignsApi.getMessagesForCampaign(id: string, options)
 ##### Method alias:
 ```typescript
 CampaignsApi.getCampaignCampaignMessages(id: string, options)
+```
+##### Method alias:
+```typescript
+CampaignsApi.getCampaignMessages(id: string, options)
 ```
 _______________________________
 
@@ -912,18 +924,22 @@ _______________________________
 ## CatalogsApi
 _______________________________
 
-[Add Category to Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/add_category_to_catalog_item)
+[Add Categories to Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/add_categories_to_catalog_item)
 
+```typescript
+CatalogsApi.addCategoriesToCatalogItem(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
+```
+##### Method alias:
 ```typescript
 CatalogsApi.addCategoryToCatalogItem(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
 ##### Method alias:
 ```typescript
-CatalogsApi.createCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
+CatalogsApi.createCatalogItemRelationshipsCategory(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
 ##### Method alias:
 ```typescript
-CatalogsApi.createCatalogItemRelationshipsCategory(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
+CatalogsApi.createCatalogItemRelationshipsCategories(id: string, catalogItemCategoryOp: CatalogItemCategoryOp)
 ```
 _______________________________
 
@@ -934,11 +950,11 @@ CatalogsApi.addItemsToCatalogCategory(id: string, catalogCategoryItemOp: Catalog
 ```
 ##### Method alias:
 ```typescript
-CatalogsApi.createCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+CatalogsApi.createCatalogCategoryRelationshipsItem(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
 ```
 ##### Method alias:
 ```typescript
-CatalogsApi.createCatalogCategoryRelationshipsItem(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
+CatalogsApi.createCatalogCategoryRelationshipsItems(id: string, catalogCategoryItemOp: CatalogCategoryItemOp)
 ```
 _______________________________
 
@@ -1577,17 +1593,6 @@ CouponsApi.getCouponCodeBulkCreateJob(jobId: string, options)
 ```
 _______________________________
 
-[Get Code IDs for Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_code_ids_for_coupon)
-
-```typescript
-CouponsApi.getCodeIdsForCoupon(id: string, options)
-```
-##### Method alias:
-```typescript
-CouponsApi.getCouponCodeRelationshipsCoupon(id: string, options)
-```
-_______________________________
-
 [Get Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon)
 
 ```typescript
@@ -1602,6 +1607,25 @@ CouponsApi.getCouponCode(id: string, options)
 ```
 _______________________________
 
+[Get Coupon Code IDs for Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_code_ids_for_coupon)
+
+```typescript
+CouponsApi.getCouponCodeIdsForCoupon(id: string, options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCouponCodeRelationshipsCoupon(id: string, options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCodeIdsForCoupon(id: string, options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCouponRelationshipsCodes(id: string, options)
+```
+_______________________________
+
 [Get Coupon Codes](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes)
 
 ```typescript
@@ -1609,7 +1633,7 @@ CouponsApi.getCouponCodes(options)
 ```
 _______________________________
 
-[Get Coupon Codes For Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes_for_coupon)
+[Get Coupon Codes for Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes_for_coupon)
 
 ```typescript
 CouponsApi.getCouponCodesForCoupon(id: string, options)
@@ -1617,6 +1641,10 @@ CouponsApi.getCouponCodesForCoupon(id: string, options)
 ##### Method alias:
 ```typescript
 CouponsApi.getCouponCouponCodes(id: string, options)
+```
+##### Method alias:
+```typescript
+CouponsApi.getCodesForCoupon(id: string, options)
 ```
 _______________________________
 
@@ -1703,24 +1731,21 @@ EventsApi.getEvent(id: string, options)
 ```
 _______________________________
 
-[Get Event Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_event_metric)
-
-```typescript
-EventsApi.getEventMetric(id: string, options)
-```
-_______________________________
-
-[Get Event Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_event_profile)
-
-```typescript
-EventsApi.getEventProfile(id: string, options)
-```
-_______________________________
-
 [Get Events](https://developers.klaviyo.com/en/v2024-10-15/reference/get_events)
 
 ```typescript
 EventsApi.getEvents(options)
+```
+_______________________________
+
+[Get Metric for Event](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_for_event)
+
+```typescript
+EventsApi.getMetricForEvent(id: string, options)
+```
+##### Method alias:
+```typescript
+EventsApi.getEventMetric(id: string, options)
 ```
 _______________________________
 
@@ -1732,6 +1757,17 @@ EventsApi.getMetricIdForEvent(id: string)
 ##### Method alias:
 ```typescript
 EventsApi.getEventRelationshipsMetric(id: string)
+```
+_______________________________
+
+[Get Profile for Event](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_for_event)
+
+```typescript
+EventsApi.getProfileForEvent(id: string, options)
+```
+##### Method alias:
+```typescript
+EventsApi.getEventProfile(id: string, options)
 ```
 _______________________________
 
@@ -1755,6 +1791,17 @@ FlowsApi.deleteFlow(id: string)
 ```
 _______________________________
 
+[Get Action for Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_action_for_flow_message)
+
+```typescript
+FlowsApi.getActionForFlowMessage(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowMessageAction(id: string, options)
+```
+_______________________________
+
 [Get Action ID for Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_action_id_for_flow_message)
 
 ```typescript
@@ -1775,6 +1822,10 @@ FlowsApi.getActionIdsForFlow(id: string, options)
 ```typescript
 FlowsApi.getFlowRelationshipsFlowActions(id: string, options)
 ```
+##### Method alias:
+```typescript
+FlowsApi.getFlowRelationshipsActions(id: string, options)
+```
 _______________________________
 
 [Get Actions for Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/get_actions_for_flow)
@@ -1785,6 +1836,10 @@ FlowsApi.getActionsForFlow(id: string, options)
 ##### Method alias:
 ```typescript
 FlowsApi.getFlowFlowActions(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowActions(id: string, options)
 ```
 _______________________________
 
@@ -1802,8 +1857,12 @@ FlowsApi.getFlowAction(id: string, options)
 ```
 _______________________________
 
-[Get Flow For Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_action_flow)
+[Get Flow for Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_for_flow_action)
 
+```typescript
+FlowsApi.getFlowForFlowAction(id: string, options)
+```
+##### Method alias:
 ```typescript
 FlowsApi.getFlowActionFlow(id: string, options)
 ```
@@ -1824,20 +1883,6 @@ _______________________________
 
 ```typescript
 FlowsApi.getFlowMessage(id: string, options)
-```
-_______________________________
-
-[Get Flow Action For Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_message_action)
-
-```typescript
-FlowsApi.getFlowMessageAction(id: string, options)
-```
-_______________________________
-
-[Get Flow Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_tags)
-
-```typescript
-FlowsApi.getFlowTags(id: string, options)
 ```
 _______________________________
 
@@ -1878,6 +1923,17 @@ FlowsApi.getTagIdsForFlow(id: string)
 ##### Method alias:
 ```typescript
 FlowsApi.getFlowRelationshipsTags(id: string)
+```
+_______________________________
+
+[Get Tags for Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tags_for_flow)
+
+```typescript
+FlowsApi.getTagsForFlow(id: string, options)
+```
+##### Method alias:
+```typescript
+FlowsApi.getFlowTags(id: string, options)
 ```
 _______________________________
 
@@ -1964,6 +2020,10 @@ FormsApi.getVersionIdsForForm(id: string)
 ```typescript
 FormsApi.getFormRelationshipsFormVersions(id: string)
 ```
+##### Method alias:
+```typescript
+FormsApi.getFormRelationshipsVersions(id: string)
+```
 _______________________________
 
 [Get Versions for Form](https://developers.klaviyo.com/en/v2024-10-15/reference/get_versions_for_form)
@@ -1974,6 +2034,10 @@ FormsApi.getVersionsForForm(id: string, options)
 ##### Method alias:
 ```typescript
 FormsApi.getFormFormVersions(id: string, options)
+```
+##### Method alias:
+```typescript
+FormsApi.getFormVersions(id: string, options)
 ```
 _______________________________
 ## ImagesApi
@@ -2024,21 +2088,29 @@ _______________________________
 ## ListsApi
 _______________________________
 
-[Create List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list)
+[Add Profiles to List](https://developers.klaviyo.com/en/v2024-10-15/reference/add_profiles_to_list)
 
 ```typescript
-ListsApi.createList(listCreateQuery: ListCreateQuery)
+ListsApi.addProfilesToList(id: string, listMembersAddQuery: ListMembersAddQuery)
 ```
-_______________________________
-
-[Add Profile To List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list_relationships)
-
+##### Method alias:
 ```typescript
 ListsApi.createListRelationships(id: string, listMembersAddQuery: ListMembersAddQuery)
 ```
 ##### Method alias:
 ```typescript
 ListsApi.createListRelationshipsProfile(id: string, listMembersAddQuery: ListMembersAddQuery)
+```
+##### Method alias:
+```typescript
+ListsApi.createListRelationshipsProfiles(id: string, listMembersAddQuery: ListMembersAddQuery)
+```
+_______________________________
+
+[Create List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list)
+
+```typescript
+ListsApi.createList(listCreateQuery: ListCreateQuery)
 ```
 _______________________________
 
@@ -2049,14 +2121,33 @@ ListsApi.deleteList(id: string)
 ```
 _______________________________
 
-[Remove Profile From List](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_list_relationships)
+[Get Flows Triggered by List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flows_triggered_by_list)
 
 ```typescript
-ListsApi.deleteListRelationships(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
+ListsApi.getFlowsTriggeredByList(id: string, options)
 ```
 ##### Method alias:
 ```typescript
-ListsApi.deleteListRelationshipsProfiles(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
+ListsApi.getFlowTriggersForList(id: string, options)
+```
+##### Method alias:
+```typescript
+ListsApi.getListFlowTriggers(id: string, options)
+```
+_______________________________
+
+[Get IDs for Flows Triggered by List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_ids_for_flows_triggered_by_list)
+
+```typescript
+ListsApi.getIdsForFlowsTriggeredByList(id: string)
+```
+##### Method alias:
+```typescript
+ListsApi.getFlowTriggerIdsForList(id: string)
+```
+##### Method alias:
+```typescript
+ListsApi.getListRelationshipsFlowTriggers(id: string)
 ```
 _______________________________
 
@@ -2064,34 +2155,6 @@ _______________________________
 
 ```typescript
 ListsApi.getList(id: string, options)
-```
-_______________________________
-
-[Get List Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_flow_triggers)
-
-```typescript
-ListsApi.getListFlowTriggers(id: string, options)
-```
-_______________________________
-
-[Get List Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_profiles)
-
-```typescript
-ListsApi.getListProfiles(id: string, options)
-```
-_______________________________
-
-[Get List Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_relationships_flow_triggers)
-
-```typescript
-ListsApi.getListRelationshipsFlowTriggers(id: string)
-```
-_______________________________
-
-[Get List Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_tags)
-
-```typescript
-ListsApi.getListTags(id: string, options)
 ```
 _______________________________
 
@@ -2113,6 +2176,17 @@ ListsApi.getListRelationshipsProfiles(id: string, options)
 ```
 _______________________________
 
+[Get Profiles for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profiles_for_list)
+
+```typescript
+ListsApi.getProfilesForList(id: string, options)
+```
+##### Method alias:
+```typescript
+ListsApi.getListProfiles(id: string, options)
+```
+_______________________________
+
 [Get Tag IDs for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_ids_for_list)
 
 ```typescript
@@ -2121,6 +2195,32 @@ ListsApi.getTagIdsForList(id: string)
 ##### Method alias:
 ```typescript
 ListsApi.getListRelationshipsTags(id: string)
+```
+_______________________________
+
+[Get Tags for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tags_for_list)
+
+```typescript
+ListsApi.getTagsForList(id: string, options)
+```
+##### Method alias:
+```typescript
+ListsApi.getListTags(id: string, options)
+```
+_______________________________
+
+[Remove Profiles from List](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_profiles_from_list)
+
+```typescript
+ListsApi.removeProfilesFromList(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
+```
+##### Method alias:
+```typescript
+ListsApi.deleteListRelationships(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
+```
+##### Method alias:
+```typescript
+ListsApi.deleteListRelationshipsProfiles(id: string, listMembersDeleteQuery: ListMembersDeleteQuery)
 ```
 _______________________________
 
@@ -2133,17 +2233,40 @@ _______________________________
 ## MetricsApi
 _______________________________
 
+[Get Flows Triggered by Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flows_triggered_by_metric)
+
+```typescript
+MetricsApi.getFlowsTriggeredByMetric(id: string, options)
+```
+##### Method alias:
+```typescript
+MetricsApi.getFlowTriggersForMetric(id: string, options)
+```
+##### Method alias:
+```typescript
+MetricsApi.getMetricFlowTriggers(id: string, options)
+```
+_______________________________
+
+[Get IDs for Flows Triggered by Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_ids_for_flows_triggered_by_metric)
+
+```typescript
+MetricsApi.getIdsForFlowsTriggeredByMetric(id: string)
+```
+##### Method alias:
+```typescript
+MetricsApi.getFlowTriggerIdsForMetric(id: string)
+```
+##### Method alias:
+```typescript
+MetricsApi.getMetricRelationshipsFlowTriggers(id: string)
+```
+_______________________________
+
 [Get Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric)
 
 ```typescript
 MetricsApi.getMetric(id: string, options)
-```
-_______________________________
-
-[Get Metric Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_flow_triggers)
-
-```typescript
-MetricsApi.getMetricFlowTriggers(id: string, options)
 ```
 _______________________________
 
@@ -2176,13 +2299,6 @@ MetricsApi.getMetricProperty(id: string, options)
 ```
 _______________________________
 
-[Get Metric Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_relationships_flow_triggers)
-
-```typescript
-MetricsApi.getMetricRelationshipsFlowTriggers(id: string)
-```
-_______________________________
-
 [Get Metrics](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metrics)
 
 ```typescript
@@ -2199,6 +2315,10 @@ MetricsApi.getPropertiesForMetric(id: string, options)
 ```typescript
 MetricsApi.getMetricMetricProperties(id: string, options)
 ```
+##### Method alias:
+```typescript
+MetricsApi.getMetricProperties(id: string, options)
+```
 _______________________________
 
 [Get Property IDs for Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_property_ids_for_metric)
@@ -2209,6 +2329,10 @@ MetricsApi.getPropertyIdsForMetric(id: string)
 ##### Method alias:
 ```typescript
 MetricsApi.getMetricRelationshipsMetricProperties(id: string)
+```
+##### Method alias:
+```typescript
+MetricsApi.getMetricRelationshipsProperties(id: string)
 ```
 _______________________________
 
@@ -2223,6 +2347,21 @@ MetricsApi.createMetricAggregate(metricAggregateQuery: MetricAggregateQuery)
 ```
 _______________________________
 ## ProfilesApi
+_______________________________
+
+[Bulk Import Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_import_profiles)
+
+```typescript
+ProfilesApi.bulkImportProfiles(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.spawnBulkProfileImportJob(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
+```
+##### Method alias:
+```typescript
+ProfilesApi.createProfileBulkImportJob(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
+```
 _______________________________
 
 [Bulk Subscribe Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_subscribe_profiles)
@@ -2395,6 +2534,10 @@ ProfilesApi.getBulkProfileImportJobImportErrors(id: string, options)
 ```
 ##### Method alias:
 ```typescript
+ProfilesApi.getImportErrorsForProfileBulkImportJob(id: string, options)
+```
+##### Method alias:
+```typescript
 ProfilesApi.getProfileBulkImportJobImportErrors(id: string, options)
 ```
 _______________________________
@@ -2410,6 +2553,10 @@ ProfilesApi.getBulkProfileImportJobLists(id: string, options)
 ```
 ##### Method alias:
 ```typescript
+ProfilesApi.getListsForProfileBulkImportJob(id: string, options)
+```
+##### Method alias:
+```typescript
 ProfilesApi.getProfileBulkImportJobLists(id: string, options)
 ```
 _______________________________
@@ -2422,6 +2569,10 @@ ProfilesApi.getListIdsForBulkImportProfilesJob(id: string)
 ##### Method alias:
 ```typescript
 ProfilesApi.getBulkProfileImportJobRelationshipsLists(id: string)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getListIdsForProfileBulkImportJob(id: string)
 ```
 ##### Method alias:
 ```typescript
@@ -2471,6 +2622,10 @@ ProfilesApi.getBulkProfileImportJobRelationshipsProfiles(id: string, options)
 ```typescript
 ProfilesApi.getProfileBulkImportJobRelationshipsProfiles(id: string, options)
 ```
+##### Method alias:
+```typescript
+ProfilesApi.getProfileIdsForProfileBulkImportJob(id: string, options)
+```
 _______________________________
 
 [Get Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profiles)
@@ -2492,6 +2647,10 @@ ProfilesApi.getBulkProfileImportJobProfiles(id: string, options)
 ##### Method alias:
 ```typescript
 ProfilesApi.getProfileBulkImportJobProfiles(id: string, options)
+```
+##### Method alias:
+```typescript
+ProfilesApi.getProfilesForProfileBulkImportJob(id: string, options)
 ```
 _______________________________
 
@@ -2528,21 +2687,6 @@ ProfilesApi.createProfileMerge(profileMergeQuery: ProfileMergeQuery)
 ```
 _______________________________
 
-[Spawn Bulk Profile Import Job](https://developers.klaviyo.com/en/v2024-10-15/reference/spawn_bulk_profile_import_job)
-
-```typescript
-ProfilesApi.spawnBulkProfileImportJob(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
-```
-##### Method alias:
-```typescript
-ProfilesApi.bulkImportProfiles(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
-```
-##### Method alias:
-```typescript
-ProfilesApi.createProfileBulkImportJob(profileImportJobCreateQuery: ProfileImportJobCreateQuery)
-```
-_______________________________
-
 [Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/update_profile)
 
 ```typescript
@@ -2561,6 +2705,10 @@ ReportingApi.queryCampaignValues(campaignValuesRequestDTO: CampaignValuesRequest
 ```typescript
 ReportingApi.createCampaignValueReport(campaignValuesRequestDTO: CampaignValuesRequestDTO, options)
 ```
+##### Method alias:
+```typescript
+ReportingApi.createCampaignValuesReport(campaignValuesRequestDTO: CampaignValuesRequestDTO, options)
+```
 _______________________________
 
 [Query Flow Series](https://developers.klaviyo.com/en/v2024-10-15/reference/query_flow_series)
@@ -2571,6 +2719,10 @@ ReportingApi.queryFlowSeries(flowSeriesRequestDTO: FlowSeriesRequestDTO, options
 ##### Method alias:
 ```typescript
 ReportingApi.createFlowSeryReport(flowSeriesRequestDTO: FlowSeriesRequestDTO, options)
+```
+##### Method alias:
+```typescript
+ReportingApi.createFlowSeriesReport(flowSeriesRequestDTO: FlowSeriesRequestDTO, options)
 ```
 _______________________________
 
@@ -2583,6 +2735,10 @@ ReportingApi.queryFlowValues(flowValuesRequestDTO: FlowValuesRequestDTO, options
 ```typescript
 ReportingApi.createFlowValueReport(flowValuesRequestDTO: FlowValuesRequestDTO, options)
 ```
+##### Method alias:
+```typescript
+ReportingApi.createFlowValuesReport(flowValuesRequestDTO: FlowValuesRequestDTO, options)
+```
 _______________________________
 
 [Query Form Series](https://developers.klaviyo.com/en/v2024-10-15/reference/query_form_series)
@@ -2593,6 +2749,10 @@ ReportingApi.queryFormSeries(formSeriesRequestDTO: FormSeriesRequestDTO)
 ##### Method alias:
 ```typescript
 ReportingApi.createFormSeryReport(formSeriesRequestDTO: FormSeriesRequestDTO)
+```
+##### Method alias:
+```typescript
+ReportingApi.createFormSeriesReport(formSeriesRequestDTO: FormSeriesRequestDTO)
 ```
 _______________________________
 
@@ -2605,6 +2765,10 @@ ReportingApi.queryFormValues(formValuesRequestDTO: FormValuesRequestDTO)
 ```typescript
 ReportingApi.createFormValueReport(formValuesRequestDTO: FormValuesRequestDTO)
 ```
+##### Method alias:
+```typescript
+ReportingApi.createFormValuesReport(formValuesRequestDTO: FormValuesRequestDTO)
+```
 _______________________________
 
 [Query Segment Series](https://developers.klaviyo.com/en/v2024-10-15/reference/query_segment_series)
@@ -2616,6 +2780,10 @@ ReportingApi.querySegmentSeries(segmentSeriesRequestDTO: SegmentSeriesRequestDTO
 ```typescript
 ReportingApi.createSegmentSeryReport(segmentSeriesRequestDTO: SegmentSeriesRequestDTO)
 ```
+##### Method alias:
+```typescript
+ReportingApi.createSegmentSeriesReport(segmentSeriesRequestDTO: SegmentSeriesRequestDTO)
+```
 _______________________________
 
 [Query Segment Values](https://developers.klaviyo.com/en/v2024-10-15/reference/query_segment_values)
@@ -2626,6 +2794,10 @@ ReportingApi.querySegmentValues(segmentValuesRequestDTO: SegmentValuesRequestDTO
 ##### Method alias:
 ```typescript
 ReportingApi.createSegmentValueReport(segmentValuesRequestDTO: SegmentValuesRequestDTO)
+```
+##### Method alias:
+```typescript
+ReportingApi.createSegmentValuesReport(segmentValuesRequestDTO: SegmentValuesRequestDTO)
 ```
 _______________________________
 ## ReviewsApi
@@ -2661,6 +2833,36 @@ SegmentsApi.deleteSegment(id: string)
 ```
 _______________________________
 
+[Get Flows Triggered by Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flows_triggered_by_segment)
+
+```typescript
+SegmentsApi.getFlowsTriggeredBySegment(id: string, options)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getFlowTriggersForSegment(id: string, options)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getSegmentFlowTriggers(id: string, options)
+```
+_______________________________
+
+[Get IDs for Flows Triggered by Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_ids_for_flows_triggered_by_segment)
+
+```typescript
+SegmentsApi.getIdsForFlowsTriggeredBySegment(id: string)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getFlowTriggerIdsForSegment(id: string)
+```
+##### Method alias:
+```typescript
+SegmentsApi.getSegmentRelationshipsFlowTriggers(id: string)
+```
+_______________________________
+
 [Get Profile IDs for Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_ids_for_segment)
 
 ```typescript
@@ -2687,20 +2889,6 @@ _______________________________
 
 ```typescript
 SegmentsApi.getSegment(id: string, options)
-```
-_______________________________
-
-[Get Segment Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_flow_triggers)
-
-```typescript
-SegmentsApi.getSegmentFlowTriggers(id: string, options)
-```
-_______________________________
-
-[Get Segment Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_relationships_flow_triggers)
-
-```typescript
-SegmentsApi.getSegmentRelationshipsFlowTriggers(id: string)
 ```
 _______________________________
 
@@ -2837,6 +3025,10 @@ TagsApi.getTagGroupForTag(id: string, options)
 ```typescript
 TagsApi.getTagTagGroup(id: string, options)
 ```
+##### Method alias:
+```typescript
+TagsApi.getGroupForTag(id: string, options)
+```
 _______________________________
 
 [Get Tag Group ID for Tag](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_group_id_for_tag)
@@ -2847,6 +3039,14 @@ TagsApi.getTagGroupIdForTag(id: string)
 ##### Method alias:
 ```typescript
 TagsApi.getTagRelationshipsTagGroup(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getGroupIdForTag(id: string)
+```
+##### Method alias:
+```typescript
+TagsApi.getTagRelationshipsGroup(id: string)
 ```
 _______________________________
 
@@ -2895,6 +3095,10 @@ TagsApi.removeTagFromCampaigns(id: string, tagCampaignOp: TagCampaignOp)
 ```typescript
 TagsApi.deleteTagRelationshipsCampaigns(id: string, tagCampaignOp: TagCampaignOp)
 ```
+##### Method alias:
+```typescript
+TagsApi.removeCampaignsFromTag(id: string, tagCampaignOp: TagCampaignOp)
+```
 _______________________________
 
 [Remove Tag from Flows](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_tag_from_flows)
@@ -2905,6 +3109,10 @@ TagsApi.removeTagFromFlows(id: string, tagFlowOp: TagFlowOp)
 ##### Method alias:
 ```typescript
 TagsApi.deleteTagRelationshipsFlows(id: string, tagFlowOp: TagFlowOp)
+```
+##### Method alias:
+```typescript
+TagsApi.removeFlowsFromTag(id: string, tagFlowOp: TagFlowOp)
 ```
 _______________________________
 
@@ -2917,6 +3125,10 @@ TagsApi.removeTagFromLists(id: string, tagListOp: TagListOp)
 ```typescript
 TagsApi.deleteTagRelationshipsLists(id: string, tagListOp: TagListOp)
 ```
+##### Method alias:
+```typescript
+TagsApi.removeListsFromTag(id: string, tagListOp: TagListOp)
+```
 _______________________________
 
 [Remove Tag from Segments](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_tag_from_segments)
@@ -2928,6 +3140,10 @@ TagsApi.removeTagFromSegments(id: string, tagSegmentOp: TagSegmentOp)
 ```typescript
 TagsApi.deleteTagRelationshipsSegments(id: string, tagSegmentOp: TagSegmentOp)
 ```
+##### Method alias:
+```typescript
+TagsApi.removeSegmentsFromTag(id: string, tagSegmentOp: TagSegmentOp)
+```
 _______________________________
 
 [Tag Campaigns](https://developers.klaviyo.com/en/v2024-10-15/reference/tag_campaigns)
@@ -2937,11 +3153,15 @@ TagsApi.tagCampaigns(id: string, tagCampaignOp: TagCampaignOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsCampaigns(id: string, tagCampaignOp: TagCampaignOp)
+TagsApi.createTagRelationshipsCampaign(id: string, tagCampaignOp: TagCampaignOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsCampaign(id: string, tagCampaignOp: TagCampaignOp)
+TagsApi.addCampaignsToTag(id: string, tagCampaignOp: TagCampaignOp)
+```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsCampaigns(id: string, tagCampaignOp: TagCampaignOp)
 ```
 _______________________________
 
@@ -2952,11 +3172,15 @@ TagsApi.tagFlows(id: string, tagFlowOp: TagFlowOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsFlows(id: string, tagFlowOp: TagFlowOp)
+TagsApi.createTagRelationshipsFlow(id: string, tagFlowOp: TagFlowOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsFlow(id: string, tagFlowOp: TagFlowOp)
+TagsApi.addFlowsToTag(id: string, tagFlowOp: TagFlowOp)
+```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsFlows(id: string, tagFlowOp: TagFlowOp)
 ```
 _______________________________
 
@@ -2967,11 +3191,15 @@ TagsApi.tagLists(id: string, tagListOp: TagListOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsLists(id: string, tagListOp: TagListOp)
+TagsApi.createTagRelationshipsList(id: string, tagListOp: TagListOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsList(id: string, tagListOp: TagListOp)
+TagsApi.addListsToTag(id: string, tagListOp: TagListOp)
+```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsLists(id: string, tagListOp: TagListOp)
 ```
 _______________________________
 
@@ -2982,11 +3210,15 @@ TagsApi.tagSegments(id: string, tagSegmentOp: TagSegmentOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsSegments(id: string, tagSegmentOp: TagSegmentOp)
+TagsApi.createTagRelationshipsSegment(id: string, tagSegmentOp: TagSegmentOp)
 ```
 ##### Method alias:
 ```typescript
-TagsApi.createTagRelationshipsSegment(id: string, tagSegmentOp: TagSegmentOp)
+TagsApi.addSegmentsToTag(id: string, tagSegmentOp: TagSegmentOp)
+```
+##### Method alias:
+```typescript
+TagsApi.createTagRelationshipsSegments(id: string, tagSegmentOp: TagSegmentOp)
 ```
 _______________________________
 

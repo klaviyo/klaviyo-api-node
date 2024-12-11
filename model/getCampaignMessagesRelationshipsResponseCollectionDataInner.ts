@@ -10,12 +10,9 @@
  */
 
 import { RequestFile } from './models';
-import { MetricEnum } from './metricEnum';
-export class GetMetricPropertyRelationshipMetricResponseData {
-    'type': MetricEnum | 'metric';
-    /**
-    * Related Metric ID
-    */
+import { CampaignMessageEnum } from './campaignMessageEnum';
+export class GetCampaignMessagesRelationshipsResponseCollectionDataInner {
+    'type': CampaignMessageEnum | 'campaign-message';
     'id': string;
 
 
@@ -23,7 +20,7 @@ export class GetMetricPropertyRelationshipMetricResponseData {
         {
             "name": "type",
             "baseName": "type",
-            "type": "MetricEnum"
+            "type": "CampaignMessageEnum"
         },
         {
             "name": "id",
@@ -32,9 +29,9 @@ export class GetMetricPropertyRelationshipMetricResponseData {
         }    ];
 
     static getAttributeTypeMap() {
-        return GetMetricPropertyRelationshipMetricResponseData.attributeTypeMap;
+        return GetCampaignMessagesRelationshipsResponseCollectionDataInner.attributeTypeMap;
     }
 }
 
-export namespace GetMetricPropertyRelationshipMetricResponseData {
+export namespace GetCampaignMessagesRelationshipsResponseCollectionDataInner {
 }

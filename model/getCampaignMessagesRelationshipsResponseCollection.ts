@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner } from './getFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner';
-export class GetFlowMessageFlowActionRelationshipResponse {
-    'data': GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner;
+import { GetCampaignMessagesRelationshipsResponseCollectionDataInner } from './getCampaignMessagesRelationshipsResponseCollectionDataInner';
+export class GetCampaignMessagesRelationshipsResponseCollection {
+    'data': Array<GetCampaignMessagesRelationshipsResponseCollectionDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetFlowResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowActionsDataInner"
+            "type": "Array<GetCampaignMessagesRelationshipsResponseCollectionDataInner>"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetFlowMessageFlowActionRelationshipResponse.attributeTypeMap;
+        return GetCampaignMessagesRelationshipsResponseCollection.attributeTypeMap;
     }
 }
 

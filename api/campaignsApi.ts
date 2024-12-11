@@ -28,7 +28,7 @@ import { GetCampaignMessageCampaignRelationshipResponse } from '../model/getCamp
 import { GetCampaignMessageResponseCollectionCompoundDocument } from '../model/getCampaignMessageResponseCollectionCompoundDocument';
 import { GetCampaignMessageResponseCompoundDocument } from '../model/getCampaignMessageResponseCompoundDocument';
 import { GetCampaignMessageTemplateRelationshipResponse } from '../model/getCampaignMessageTemplateRelationshipResponse';
-import { GetCampaignMessagesRelationshipListResponseCollection } from '../model/getCampaignMessagesRelationshipListResponseCollection';
+import { GetCampaignMessagesRelationshipsResponseCollection } from '../model/getCampaignMessagesRelationshipsResponseCollection';
 import { GetCampaignRecipientEstimationJobResponse } from '../model/getCampaignRecipientEstimationJobResponse';
 import { GetCampaignRecipientEstimationResponse } from '../model/getCampaignRecipientEstimationResponse';
 import { GetCampaignResponse } from '../model/getCampaignResponse';
@@ -917,7 +917,7 @@ export class CampaignsApi {
      * @param id 
      
      */
-    public async getMessageIdsForCampaign (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }> {
+    public async getMessageIdsForCampaign (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/campaigns/{id}/relationships/campaign-messages'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -947,11 +947,11 @@ export class CampaignsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipListResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessagesRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessagesRelationshipListResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessagesRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1474,6 +1474,16 @@ CampaignsApi.prototype.getCampaignMessageRelationshipsCampaign = CampaignsApi.pr
 
 export interface CampaignsApi {
     /**
+     * Alias of {@link CampaignsApi.getCampaignTags}
+     *
+     * @deprecated Use {@link CampaignsApi.getCampaignTags} instead
+     */
+    getTagsForCampaign: typeof CampaignsApi.prototype.getCampaignTags;
+}
+CampaignsApi.prototype.getTagsForCampaign = CampaignsApi.prototype.getCampaignTags
+
+export interface CampaignsApi {
+    /**
      * Alias of {@link CampaignsApi.getMessageIdsForCampaign}
      *
      * @deprecated Use {@link CampaignsApi.getMessageIdsForCampaign} instead
@@ -1484,6 +1494,16 @@ CampaignsApi.prototype.getCampaignRelationshipsCampaignMessages = CampaignsApi.p
 
 export interface CampaignsApi {
     /**
+     * Alias of {@link CampaignsApi.getMessageIdsForCampaign}
+     *
+     * @deprecated Use {@link CampaignsApi.getMessageIdsForCampaign} instead
+     */
+    getCampaignRelationshipsMessages: typeof CampaignsApi.prototype.getMessageIdsForCampaign;
+}
+CampaignsApi.prototype.getCampaignRelationshipsMessages = CampaignsApi.prototype.getMessageIdsForCampaign
+
+export interface CampaignsApi {
+    /**
      * Alias of {@link CampaignsApi.getMessagesForCampaign}
      *
      * @deprecated Use {@link CampaignsApi.getMessagesForCampaign} instead
@@ -1491,6 +1511,16 @@ export interface CampaignsApi {
     getCampaignCampaignMessages: typeof CampaignsApi.prototype.getMessagesForCampaign;
 }
 CampaignsApi.prototype.getCampaignCampaignMessages = CampaignsApi.prototype.getMessagesForCampaign
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getMessagesForCampaign}
+     *
+     * @deprecated Use {@link CampaignsApi.getMessagesForCampaign} instead
+     */
+    getCampaignMessages: typeof CampaignsApi.prototype.getMessagesForCampaign;
+}
+CampaignsApi.prototype.getCampaignMessages = CampaignsApi.prototype.getMessagesForCampaign
 
 export interface CampaignsApi {
     /**
