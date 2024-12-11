@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetMetricRelationshipMetricPropertyResponseCollectionDataInner } from './getMetricRelationshipMetricPropertyResponseCollectionDataInner';
-export class GetMetricRelationshipMetricPropertyResponseCollection {
-    'data': Array<GetMetricRelationshipMetricPropertyResponseCollectionDataInner>;
+import { GetMetricPropertiesRelationshipsResponseCollectionDataInner } from './getMetricPropertiesRelationshipsResponseCollectionDataInner';
+export class GetMetricPropertiesRelationshipsResponseCollection {
+    'data': Array<GetMetricPropertiesRelationshipsResponseCollectionDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetMetricRelationshipMetricPropertyResponseCollectionDataInner>"
+            "type": "Array<GetMetricPropertiesRelationshipsResponseCollectionDataInner>"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetMetricRelationshipMetricPropertyResponseCollection.attributeTypeMap;
+        return GetMetricPropertiesRelationshipsResponseCollection.attributeTypeMap;
     }
 }
 

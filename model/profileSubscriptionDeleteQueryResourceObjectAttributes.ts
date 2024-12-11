@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { UnsubscriptionChannels } from './unsubscriptionChannels';
 export class ProfileSubscriptionDeleteQueryResourceObjectAttributes {
     /**
     * The email address to unsubscribe.
@@ -19,6 +20,7 @@ export class ProfileSubscriptionDeleteQueryResourceObjectAttributes {
     * The phone number to unsubscribe. This must be in E.164 format.
     */
     'phoneNumber'?: string | null;
+    'subscriptions'?: UnsubscriptionChannels;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -31,6 +33,11 @@ export class ProfileSubscriptionDeleteQueryResourceObjectAttributes {
             "name": "phoneNumber",
             "baseName": "phone_number",
             "type": "string"
+        },
+        {
+            "name": "subscriptions",
+            "baseName": "subscriptions",
+            "type": "UnsubscriptionChannels"
         }    ];
 
     static getAttributeTypeMap() {

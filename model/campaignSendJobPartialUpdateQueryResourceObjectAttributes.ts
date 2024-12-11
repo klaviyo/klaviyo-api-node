@@ -14,14 +14,14 @@ export class CampaignSendJobPartialUpdateQueryResourceObjectAttributes {
     /**
     * The action you would like to take with this send job from among \'cancel\' and \'revert\'
     */
-    'action': string;
+    'action': CampaignSendJobPartialUpdateQueryResourceObjectAttributes.ActionEnum | 'cancel' | 'revert';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "action",
             "baseName": "action",
-            "type": "string"
+            "type": "CampaignSendJobPartialUpdateQueryResourceObjectAttributes.ActionEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29,3 +29,9 @@ export class CampaignSendJobPartialUpdateQueryResourceObjectAttributes {
     }
 }
 
+export namespace CampaignSendJobPartialUpdateQueryResourceObjectAttributes {
+    export enum ActionEnum {
+        Cancel = <any> 'cancel',
+        Revert = <any> 'revert'
+    }
+}

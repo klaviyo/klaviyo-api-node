@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner';
-export class GetProfileImportJobListRelationshipsResponseCollection {
-    'data': Array<GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner>;
+import { GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData } from './getTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData';
+export class GetTagGroupRelationshipResponse {
+    'data': GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner>"
+            "type": "GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetProfileImportJobListRelationshipsResponseCollection.attributeTypeMap;
+        return GetTagGroupRelationshipResponse.attributeTypeMap;
     }
 }
 

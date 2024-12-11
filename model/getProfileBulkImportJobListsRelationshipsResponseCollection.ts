@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetCampaignMessagesRelationshipListResponseCollectionDataInner } from './getCampaignMessagesRelationshipListResponseCollectionDataInner';
-export class GetCampaignMessagesRelationshipListResponseCollection {
-    'data': Array<GetCampaignMessagesRelationshipListResponseCollectionDataInner>;
+import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner';
+export class GetProfileBulkImportJobListsRelationshipsResponseCollection {
+    'data': Array<GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetCampaignMessagesRelationshipListResponseCollectionDataInner>"
+            "type": "Array<GetProfileResponseCompoundDocumentDataAllOfRelationshipsListsDataInner>"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCampaignMessagesRelationshipListResponseCollection.attributeTypeMap;
+        return GetProfileBulkImportJobListsRelationshipsResponseCollection.attributeTypeMap;
     }
 }
 

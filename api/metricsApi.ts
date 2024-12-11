@@ -18,10 +18,10 @@ import FormData from 'form-data'
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetFlowResponseCollection } from '../model/getFlowResponseCollection';
 import { GetMetricFlowTriggersRelationshipsResponseCollection } from '../model/getMetricFlowTriggersRelationshipsResponseCollection';
-import { GetMetricPropertyRelationshipMetricResponse } from '../model/getMetricPropertyRelationshipMetricResponse';
+import { GetMetricPropertiesRelationshipsResponseCollection } from '../model/getMetricPropertiesRelationshipsResponseCollection';
+import { GetMetricPropertyMetricRelationshipResponse } from '../model/getMetricPropertyMetricRelationshipResponse';
 import { GetMetricPropertyResponseCollection } from '../model/getMetricPropertyResponseCollection';
 import { GetMetricPropertyResponseCompoundDocument } from '../model/getMetricPropertyResponseCompoundDocument';
-import { GetMetricRelationshipMetricPropertyResponseCollection } from '../model/getMetricRelationshipMetricPropertyResponseCollection';
 import { GetMetricResponse } from '../model/getMetricResponse';
 import { GetMetricResponseCollectionCompoundDocument } from '../model/getMetricResponseCollectionCompoundDocument';
 import { GetMetricResponseCompoundDocument } from '../model/getMetricResponseCompoundDocument';
@@ -71,6 +71,116 @@ export class MetricsApi {
         return this._basePath;
     }
 
+    /**
+     * Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
+     * @summary Get Flows Triggered by Metric
+     * @param id 
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getFlowsTriggeredByMetric (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/metrics/{id}/flow-triggers'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getFlowsTriggeredByMetric.');
+        }
+
+        if (options.fieldsFlow !== undefined) {
+            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the IDs of all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
+     * @summary Get IDs for Flows Triggered by Metric
+     * @param id 
+     
+     */
+    public async getIdsForFlowsTriggeredByMetric (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/metrics/{id}/relationships/flow-triggers'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getIdsForFlowsTriggeredByMetric.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricFlowTriggersRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
     /**
      * Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
      * @summary Get Metric
@@ -124,63 +234,6 @@ export class MetricsApi {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponseCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return request(config)
-    }
-    /**
-     * Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
-     * @summary Get Metric Flow Triggers
-     * @param id 
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getMetricFlowTriggers (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/metrics/{id}/flow-triggers'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/vnd.api+json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getMetricFlowTriggers.');
-        }
-
-        if (options.fieldsFlow !== undefined) {
-            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> => {
-            try {
-                const axiosResponse = await this.session.requestWithRetry(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -256,7 +309,7 @@ export class MetricsApi {
      * @param id The ID of the metric property
      
      */
-    public async getMetricIdForMetricProperty (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricPropertyRelationshipMetricResponse;  }> {
+    public async getMetricIdForMetricProperty (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricPropertyMetricRelationshipResponse;  }> {
 
         const localVarPath = this.basePath + '/api/metric-properties/{id}/relationships/metric'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -286,11 +339,11 @@ export class MetricsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricPropertyRelationshipMetricResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricPropertyMetricRelationshipResponse;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricPropertyRelationshipMetricResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricPropertyMetricRelationshipResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -360,59 +413,6 @@ export class MetricsApi {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricPropertyResponseCompoundDocument");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return request(config)
-    }
-    /**
-     * Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
-     * @summary Get Metric Relationships Flow Triggers
-     * @param id 
-     
-     */
-    public async getMetricRelationshipsFlowTriggers (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipsResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/metrics/{id}/relationships/flow-triggers'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/vnd.api+json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getMetricRelationshipsFlowTriggers.');
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricFlowTriggersRelationshipsResponseCollection;  }> => {
-            try {
-                const axiosResponse = await this.session.requestWithRetry(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricFlowTriggersRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -559,7 +559,7 @@ export class MetricsApi {
      * @param id The ID of the metric
      
      */
-    public async getPropertyIdsForMetric (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricRelationshipMetricPropertyResponseCollection;  }> {
+    public async getPropertyIdsForMetric (id: string, ): Promise<{ response: AxiosResponse; body: GetMetricPropertiesRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/metrics/{id}/relationships/metric-properties'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -589,11 +589,11 @@ export class MetricsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricRelationshipMetricPropertyResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricPropertiesRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricRelationshipMetricPropertyResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricPropertiesRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -663,6 +663,46 @@ export class MetricsApi {
 
 export interface MetricsApi {
     /**
+     * Alias of {@link MetricsApi.getFlowsTriggeredByMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getFlowsTriggeredByMetric} instead
+     */
+    getFlowTriggersForMetric: typeof MetricsApi.prototype.getFlowsTriggeredByMetric;
+}
+MetricsApi.prototype.getFlowTriggersForMetric = MetricsApi.prototype.getFlowsTriggeredByMetric
+
+export interface MetricsApi {
+    /**
+     * Alias of {@link MetricsApi.getFlowsTriggeredByMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getFlowsTriggeredByMetric} instead
+     */
+    getMetricFlowTriggers: typeof MetricsApi.prototype.getFlowsTriggeredByMetric;
+}
+MetricsApi.prototype.getMetricFlowTriggers = MetricsApi.prototype.getFlowsTriggeredByMetric
+
+export interface MetricsApi {
+    /**
+     * Alias of {@link MetricsApi.getIdsForFlowsTriggeredByMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getIdsForFlowsTriggeredByMetric} instead
+     */
+    getFlowTriggerIdsForMetric: typeof MetricsApi.prototype.getIdsForFlowsTriggeredByMetric;
+}
+MetricsApi.prototype.getFlowTriggerIdsForMetric = MetricsApi.prototype.getIdsForFlowsTriggeredByMetric
+
+export interface MetricsApi {
+    /**
+     * Alias of {@link MetricsApi.getIdsForFlowsTriggeredByMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getIdsForFlowsTriggeredByMetric} instead
+     */
+    getMetricRelationshipsFlowTriggers: typeof MetricsApi.prototype.getIdsForFlowsTriggeredByMetric;
+}
+MetricsApi.prototype.getMetricRelationshipsFlowTriggers = MetricsApi.prototype.getIdsForFlowsTriggeredByMetric
+
+export interface MetricsApi {
+    /**
      * Alias of {@link MetricsApi.getMetricForMetricProperty}
      *
      * @deprecated Use {@link MetricsApi.getMetricForMetricProperty} instead
@@ -693,6 +733,16 @@ MetricsApi.prototype.getMetricMetricProperties = MetricsApi.prototype.getPropert
 
 export interface MetricsApi {
     /**
+     * Alias of {@link MetricsApi.getPropertiesForMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getPropertiesForMetric} instead
+     */
+    getMetricProperties: typeof MetricsApi.prototype.getPropertiesForMetric;
+}
+MetricsApi.prototype.getMetricProperties = MetricsApi.prototype.getPropertiesForMetric
+
+export interface MetricsApi {
+    /**
      * Alias of {@link MetricsApi.getPropertyIdsForMetric}
      *
      * @deprecated Use {@link MetricsApi.getPropertyIdsForMetric} instead
@@ -700,6 +750,16 @@ export interface MetricsApi {
     getMetricRelationshipsMetricProperties: typeof MetricsApi.prototype.getPropertyIdsForMetric;
 }
 MetricsApi.prototype.getMetricRelationshipsMetricProperties = MetricsApi.prototype.getPropertyIdsForMetric
+
+export interface MetricsApi {
+    /**
+     * Alias of {@link MetricsApi.getPropertyIdsForMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getPropertyIdsForMetric} instead
+     */
+    getMetricRelationshipsProperties: typeof MetricsApi.prototype.getPropertyIdsForMetric;
+}
+MetricsApi.prototype.getMetricRelationshipsProperties = MetricsApi.prototype.getPropertyIdsForMetric
 
 export interface MetricsApi {
     /**

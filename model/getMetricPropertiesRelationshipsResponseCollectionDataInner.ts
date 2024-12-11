@@ -10,12 +10,9 @@
  */
 
 import { RequestFile } from './models';
-import { CouponEnum } from './couponEnum';
-export class GetCouponCodeRelationshipCouponResponseData {
-    'type': CouponEnum | 'coupon';
-    /**
-    * The parent coupon ID for the given coupon code.
-    */
+import { MetricPropertyEnum } from './metricPropertyEnum';
+export class GetMetricPropertiesRelationshipsResponseCollectionDataInner {
+    'type': MetricPropertyEnum | 'metric-property';
     'id': string;
 
 
@@ -23,7 +20,7 @@ export class GetCouponCodeRelationshipCouponResponseData {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CouponEnum"
+            "type": "MetricPropertyEnum"
         },
         {
             "name": "id",
@@ -32,9 +29,9 @@ export class GetCouponCodeRelationshipCouponResponseData {
         }    ];
 
     static getAttributeTypeMap() {
-        return GetCouponCodeRelationshipCouponResponseData.attributeTypeMap;
+        return GetMetricPropertiesRelationshipsResponseCollectionDataInner.attributeTypeMap;
     }
 }
 
-export namespace GetCouponCodeRelationshipCouponResponseData {
+export namespace GetMetricPropertiesRelationshipsResponseCollectionDataInner {
 }

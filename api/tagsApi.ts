@@ -19,15 +19,15 @@ import { DeleteTagGroupResponse } from '../model/deleteTagGroupResponse';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetTagCampaignRelationshipsResponseCollection } from '../model/getTagCampaignRelationshipsResponseCollection';
 import { GetTagFlowRelationshipsResponseCollection } from '../model/getTagFlowRelationshipsResponseCollection';
+import { GetTagGroupRelationshipResponse } from '../model/getTagGroupRelationshipResponse';
 import { GetTagGroupResponse } from '../model/getTagGroupResponse';
 import { GetTagGroupResponseCollection } from '../model/getTagGroupResponseCollection';
-import { GetTagGroupTagRelationshipsResponseCollection } from '../model/getTagGroupTagRelationshipsResponseCollection';
+import { GetTagGroupTagsRelationshipsResponseCollection } from '../model/getTagGroupTagsRelationshipsResponseCollection';
 import { GetTagListRelationshipsResponseCollection } from '../model/getTagListRelationshipsResponseCollection';
 import { GetTagResponseCollection } from '../model/getTagResponseCollection';
 import { GetTagResponseCollectionCompoundDocument } from '../model/getTagResponseCollectionCompoundDocument';
 import { GetTagResponseCompoundDocument } from '../model/getTagResponseCompoundDocument';
 import { GetTagSegmentRelationshipsResponseCollection } from '../model/getTagSegmentRelationshipsResponseCollection';
-import { GetTagTagGroupRelationshipsResponse } from '../model/getTagTagGroupRelationshipsResponse';
 import { PatchTagGroupResponse } from '../model/patchTagGroupResponse';
 import { PostTagGroupResponse } from '../model/postTagGroupResponse';
 import { PostTagResponse } from '../model/postTagResponse';
@@ -691,7 +691,7 @@ export class TagsApi {
      * @param id The Tag ID
      
      */
-    public async getTagGroupIdForTag (id: string, ): Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }> {
+    public async getTagGroupIdForTag (id: string, ): Promise<{ response: AxiosResponse; body: GetTagGroupRelationshipResponse;  }> {
 
         const localVarPath = this.basePath + '/api/tags/{id}/relationships/tag-group'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -721,11 +721,11 @@ export class TagsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagTagGroupRelationshipsResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupRelationshipResponse;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagTagGroupRelationshipsResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupRelationshipResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -807,7 +807,7 @@ export class TagsApi {
      * @param id The Tag Group ID
      
      */
-    public async getTagIdsForTagGroup (id: string, ): Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }> {
+    public async getTagIdsForTagGroup (id: string, ): Promise<{ response: AxiosResponse; body: GetTagGroupTagsRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/tag-groups/{id}/relationships/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -837,11 +837,11 @@ export class TagsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupTagRelationshipsResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagGroupTagsRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupTagRelationshipsResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagGroupTagsRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1617,6 +1617,16 @@ TagsApi.prototype.getTagTagGroup = TagsApi.prototype.getTagGroupForTag
 
 export interface TagsApi {
     /**
+     * Alias of {@link TagsApi.getTagGroupForTag}
+     *
+     * @deprecated Use {@link TagsApi.getTagGroupForTag} instead
+     */
+    getGroupForTag: typeof TagsApi.prototype.getTagGroupForTag;
+}
+TagsApi.prototype.getGroupForTag = TagsApi.prototype.getTagGroupForTag
+
+export interface TagsApi {
+    /**
      * Alias of {@link TagsApi.getTagGroupIdForTag}
      *
      * @deprecated Use {@link TagsApi.getTagGroupIdForTag} instead
@@ -1624,6 +1634,26 @@ export interface TagsApi {
     getTagRelationshipsTagGroup: typeof TagsApi.prototype.getTagGroupIdForTag;
 }
 TagsApi.prototype.getTagRelationshipsTagGroup = TagsApi.prototype.getTagGroupIdForTag
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.getTagGroupIdForTag}
+     *
+     * @deprecated Use {@link TagsApi.getTagGroupIdForTag} instead
+     */
+    getGroupIdForTag: typeof TagsApi.prototype.getTagGroupIdForTag;
+}
+TagsApi.prototype.getGroupIdForTag = TagsApi.prototype.getTagGroupIdForTag
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.getTagGroupIdForTag}
+     *
+     * @deprecated Use {@link TagsApi.getTagGroupIdForTag} instead
+     */
+    getTagRelationshipsGroup: typeof TagsApi.prototype.getTagGroupIdForTag;
+}
+TagsApi.prototype.getTagRelationshipsGroup = TagsApi.prototype.getTagGroupIdForTag
 
 export interface TagsApi {
     /**
@@ -1657,6 +1687,16 @@ TagsApi.prototype.deleteTagRelationshipsCampaigns = TagsApi.prototype.removeTagF
 
 export interface TagsApi {
     /**
+     * Alias of {@link TagsApi.removeTagFromCampaigns}
+     *
+     * @deprecated Use {@link TagsApi.removeTagFromCampaigns} instead
+     */
+    removeCampaignsFromTag: typeof TagsApi.prototype.removeTagFromCampaigns;
+}
+TagsApi.prototype.removeCampaignsFromTag = TagsApi.prototype.removeTagFromCampaigns
+
+export interface TagsApi {
+    /**
      * Alias of {@link TagsApi.removeTagFromFlows}
      *
      * @deprecated Use {@link TagsApi.removeTagFromFlows} instead
@@ -1664,6 +1704,16 @@ export interface TagsApi {
     deleteTagRelationshipsFlows: typeof TagsApi.prototype.removeTagFromFlows;
 }
 TagsApi.prototype.deleteTagRelationshipsFlows = TagsApi.prototype.removeTagFromFlows
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.removeTagFromFlows}
+     *
+     * @deprecated Use {@link TagsApi.removeTagFromFlows} instead
+     */
+    removeFlowsFromTag: typeof TagsApi.prototype.removeTagFromFlows;
+}
+TagsApi.prototype.removeFlowsFromTag = TagsApi.prototype.removeTagFromFlows
 
 export interface TagsApi {
     /**
@@ -1677,6 +1727,16 @@ TagsApi.prototype.deleteTagRelationshipsLists = TagsApi.prototype.removeTagFromL
 
 export interface TagsApi {
     /**
+     * Alias of {@link TagsApi.removeTagFromLists}
+     *
+     * @deprecated Use {@link TagsApi.removeTagFromLists} instead
+     */
+    removeListsFromTag: typeof TagsApi.prototype.removeTagFromLists;
+}
+TagsApi.prototype.removeListsFromTag = TagsApi.prototype.removeTagFromLists
+
+export interface TagsApi {
+    /**
      * Alias of {@link TagsApi.removeTagFromSegments}
      *
      * @deprecated Use {@link TagsApi.removeTagFromSegments} instead
@@ -1687,13 +1747,13 @@ TagsApi.prototype.deleteTagRelationshipsSegments = TagsApi.prototype.removeTagFr
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.tagCampaigns}
+     * Alias of {@link TagsApi.removeTagFromSegments}
      *
-     * @deprecated Use {@link TagsApi.tagCampaigns} instead
+     * @deprecated Use {@link TagsApi.removeTagFromSegments} instead
      */
-    createTagRelationshipsCampaigns: typeof TagsApi.prototype.tagCampaigns;
+    removeSegmentsFromTag: typeof TagsApi.prototype.removeTagFromSegments;
 }
-TagsApi.prototype.createTagRelationshipsCampaigns = TagsApi.prototype.tagCampaigns
+TagsApi.prototype.removeSegmentsFromTag = TagsApi.prototype.removeTagFromSegments
 
 export interface TagsApi {
     /**
@@ -1707,13 +1767,23 @@ TagsApi.prototype.createTagRelationshipsCampaign = TagsApi.prototype.tagCampaign
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.tagFlows}
+     * Alias of {@link TagsApi.tagCampaigns}
      *
-     * @deprecated Use {@link TagsApi.tagFlows} instead
+     * @deprecated Use {@link TagsApi.tagCampaigns} instead
      */
-    createTagRelationshipsFlows: typeof TagsApi.prototype.tagFlows;
+    addCampaignsToTag: typeof TagsApi.prototype.tagCampaigns;
 }
-TagsApi.prototype.createTagRelationshipsFlows = TagsApi.prototype.tagFlows
+TagsApi.prototype.addCampaignsToTag = TagsApi.prototype.tagCampaigns
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagCampaigns}
+     *
+     * @deprecated Use {@link TagsApi.tagCampaigns} instead
+     */
+    createTagRelationshipsCampaigns: typeof TagsApi.prototype.tagCampaigns;
+}
+TagsApi.prototype.createTagRelationshipsCampaigns = TagsApi.prototype.tagCampaigns
 
 export interface TagsApi {
     /**
@@ -1727,13 +1797,23 @@ TagsApi.prototype.createTagRelationshipsFlow = TagsApi.prototype.tagFlows
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.tagLists}
+     * Alias of {@link TagsApi.tagFlows}
      *
-     * @deprecated Use {@link TagsApi.tagLists} instead
+     * @deprecated Use {@link TagsApi.tagFlows} instead
      */
-    createTagRelationshipsLists: typeof TagsApi.prototype.tagLists;
+    addFlowsToTag: typeof TagsApi.prototype.tagFlows;
 }
-TagsApi.prototype.createTagRelationshipsLists = TagsApi.prototype.tagLists
+TagsApi.prototype.addFlowsToTag = TagsApi.prototype.tagFlows
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagFlows}
+     *
+     * @deprecated Use {@link TagsApi.tagFlows} instead
+     */
+    createTagRelationshipsFlows: typeof TagsApi.prototype.tagFlows;
+}
+TagsApi.prototype.createTagRelationshipsFlows = TagsApi.prototype.tagFlows
 
 export interface TagsApi {
     /**
@@ -1747,13 +1827,23 @@ TagsApi.prototype.createTagRelationshipsList = TagsApi.prototype.tagLists
 
 export interface TagsApi {
     /**
-     * Alias of {@link TagsApi.tagSegments}
+     * Alias of {@link TagsApi.tagLists}
      *
-     * @deprecated Use {@link TagsApi.tagSegments} instead
+     * @deprecated Use {@link TagsApi.tagLists} instead
      */
-    createTagRelationshipsSegments: typeof TagsApi.prototype.tagSegments;
+    addListsToTag: typeof TagsApi.prototype.tagLists;
 }
-TagsApi.prototype.createTagRelationshipsSegments = TagsApi.prototype.tagSegments
+TagsApi.prototype.addListsToTag = TagsApi.prototype.tagLists
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagLists}
+     *
+     * @deprecated Use {@link TagsApi.tagLists} instead
+     */
+    createTagRelationshipsLists: typeof TagsApi.prototype.tagLists;
+}
+TagsApi.prototype.createTagRelationshipsLists = TagsApi.prototype.tagLists
 
 export interface TagsApi {
     /**
@@ -1764,3 +1854,23 @@ export interface TagsApi {
     createTagRelationshipsSegment: typeof TagsApi.prototype.tagSegments;
 }
 TagsApi.prototype.createTagRelationshipsSegment = TagsApi.prototype.tagSegments
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagSegments}
+     *
+     * @deprecated Use {@link TagsApi.tagSegments} instead
+     */
+    addSegmentsToTag: typeof TagsApi.prototype.tagSegments;
+}
+TagsApi.prototype.addSegmentsToTag = TagsApi.prototype.tagSegments
+
+export interface TagsApi {
+    /**
+     * Alias of {@link TagsApi.tagSegments}
+     *
+     * @deprecated Use {@link TagsApi.tagSegments} instead
+     */
+    createTagRelationshipsSegments: typeof TagsApi.prototype.tagSegments;
+}
+TagsApi.prototype.createTagRelationshipsSegments = TagsApi.prototype.tagSegments

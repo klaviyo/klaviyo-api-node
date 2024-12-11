@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagGroupTagRelationshipsResponseCollectionDataInner } from './getTagGroupTagRelationshipsResponseCollectionDataInner';
-export class GetTagGroupTagRelationshipsResponseCollection {
-    'data': Array<GetTagGroupTagRelationshipsResponseCollectionDataInner>;
+import { GetCouponCodeCouponRelationshipResponseData } from './getCouponCodeCouponRelationshipResponseData';
+export class GetCouponCodeCouponRelationshipResponse {
+    'data': GetCouponCodeCouponRelationshipResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetTagGroupTagRelationshipsResponseCollectionDataInner>"
+            "type": "GetCouponCodeCouponRelationshipResponseData"
         }    ];
 
     static getAttributeTypeMap() {
-        return GetTagGroupTagRelationshipsResponseCollection.attributeTypeMap;
+        return GetCouponCodeCouponRelationshipResponse.attributeTypeMap;
     }
 }
 
