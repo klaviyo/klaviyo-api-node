@@ -13,14 +13,14 @@ import { RequestFile } from './models';
 import { SubscriptionChannels } from './subscriptionChannels';
 export class ProfileSubscriptionCreateQueryResourceObjectAttributes {
     /**
-    * The email address to subscribe or to set on the profile if `channels` is specified and the email channel is omitted.
+    * The email address relating to the email subscription included in `subscriptions`. If the email channel is omitted from `subscriptions`, this will be set on the profile.
     */
     'email'?: string | null;
     /**
-    * The phone number to subscribe or to set on the profile if `channels` is specified and the SMS channel is omitted. This must be in E.164 format.
+    * The phone number relating to the SMS subscription included in `subscriptions`. If the SMS channel is omitted from `subscriptions`, this will be set on the profile. This must be in E.164 format.
     */
     'phoneNumber'?: string | null;
-    'subscriptions'?: SubscriptionChannels;
+    'subscriptions': SubscriptionChannels;
     /**
     * The profile\'s date of birth. This field is required to update SMS consent for accounts using age-gating: https://help.klaviyo.com/hc/en-us/articles/17252552814875
     */

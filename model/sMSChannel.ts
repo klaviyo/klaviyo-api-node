@@ -11,8 +11,10 @@
 
 import { RequestFile } from './models';
 import { SMSMarketing } from './sMSMarketing';
+import { SMSTransactional } from './sMSTransactional';
 export class SMSChannel {
     'marketing'?: SMSMarketing;
+    'transactional'?: SMSTransactional;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -20,6 +22,11 @@ export class SMSChannel {
             "name": "marketing",
             "baseName": "marketing",
             "type": "SMSMarketing"
+        },
+        {
+            "name": "transactional",
+            "baseName": "transactional",
+            "type": "SMSTransactional"
         }    ];
 
     static getAttributeTypeMap() {

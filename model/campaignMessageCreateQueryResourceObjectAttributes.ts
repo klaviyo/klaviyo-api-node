@@ -10,41 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { CampaignMessageCreateQueryResourceObjectAttributesContent } from './campaignMessageCreateQueryResourceObjectAttributesContent';
-import { RenderOptionsSubObject } from './renderOptionsSubObject';
+import { CampaignMessageCreateQueryResourceObjectAttributesDefinition } from './campaignMessageCreateQueryResourceObjectAttributesDefinition';
 export class CampaignMessageCreateQueryResourceObjectAttributes {
-    /**
-    * The channel the message is to be sent on (email or sms, for example)
-    */
-    'channel': string;
-    /**
-    * The label or name on the message
-    */
-    'label'?: string | null;
-    'content'?: CampaignMessageCreateQueryResourceObjectAttributesContent | null;
-    'renderOptions'?: RenderOptionsSubObject;
+    'definition': CampaignMessageCreateQueryResourceObjectAttributesDefinition;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "channel",
-            "baseName": "channel",
-            "type": "string"
-        },
-        {
-            "name": "label",
-            "baseName": "label",
-            "type": "string"
-        },
-        {
-            "name": "content",
-            "baseName": "content",
-            "type": "CampaignMessageCreateQueryResourceObjectAttributesContent"
-        },
-        {
-            "name": "renderOptions",
-            "baseName": "render_options",
-            "type": "RenderOptionsSubObject"
+            "name": "definition",
+            "baseName": "definition",
+            "type": "CampaignMessageCreateQueryResourceObjectAttributesDefinition"
         }    ];
 
     static getAttributeTypeMap() {

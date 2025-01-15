@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { EmailSendOptionsSubObject } from './emailSendOptionsSubObject';
-import { SMSSendOptionsSubObject } from './sMSSendOptionsSubObject';
-export type CampaignResponseObjectResourceAttributesSendOptions = EmailSendOptionsSubObject | SMSSendOptionsSubObject;
+import { EmailSendOptions } from './emailSendOptions';
+import { PushSendOptions } from './pushSendOptions';
+import { SMSSendOptions } from './sMSSendOptions';
+export type CampaignResponseObjectResourceAttributesSendOptions = EmailSendOptions | SMSSendOptions | PushSendOptions;

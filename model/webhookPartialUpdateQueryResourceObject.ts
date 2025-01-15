@@ -10,9 +10,9 @@
  */
 
 import { RequestFile } from './models';
-import { WebhookCreateQueryResourceObjectRelationships } from './webhookCreateQueryResourceObjectRelationships';
 import { WebhookEnum } from './webhookEnum';
 import { WebhookPartialUpdateQueryResourceObjectAttributes } from './webhookPartialUpdateQueryResourceObjectAttributes';
+import { WebhookPartialUpdateQueryResourceObjectRelationships } from './webhookPartialUpdateQueryResourceObjectRelationships';
 export class WebhookPartialUpdateQueryResourceObject {
     'type': WebhookEnum | 'webhook';
     /**
@@ -20,7 +20,7 @@ export class WebhookPartialUpdateQueryResourceObject {
     */
     'id': string;
     'attributes': WebhookPartialUpdateQueryResourceObjectAttributes;
-    'relationships'?: WebhookCreateQueryResourceObjectRelationships;
+    'relationships'?: WebhookPartialUpdateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -42,7 +42,7 @@ export class WebhookPartialUpdateQueryResourceObject {
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "WebhookCreateQueryResourceObjectRelationships"
+            "type": "WebhookPartialUpdateQueryResourceObjectRelationships"
         }    ];
 
     static getAttributeTypeMap() {

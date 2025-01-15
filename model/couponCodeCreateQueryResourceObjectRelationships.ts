@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { CouponCodeCreateQueryResourceObjectRelationshipsCoupon } from './couponCodeCreateQueryResourceObjectRelationshipsCoupon';
 export class CouponCodeCreateQueryResourceObjectRelationships {
-    'coupon'?: CouponCodeCreateQueryResourceObjectRelationshipsCoupon;
+    'coupon': CouponCodeCreateQueryResourceObjectRelationshipsCoupon;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

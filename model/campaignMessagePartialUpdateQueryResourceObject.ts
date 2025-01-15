@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { CampaignMessageCreateQueryResourceObjectRelationships } from './campaignMessageCreateQueryResourceObjectRelationships';
 import { CampaignMessageEnum } from './campaignMessageEnum';
 import { CampaignMessagePartialUpdateQueryResourceObjectAttributes } from './campaignMessagePartialUpdateQueryResourceObjectAttributes';
 export class CampaignMessagePartialUpdateQueryResourceObject {
@@ -19,6 +20,7 @@ export class CampaignMessagePartialUpdateQueryResourceObject {
     */
     'id': string;
     'attributes': CampaignMessagePartialUpdateQueryResourceObjectAttributes;
+    'relationships'?: CampaignMessageCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -36,6 +38,11 @@ export class CampaignMessagePartialUpdateQueryResourceObject {
             "name": "attributes",
             "baseName": "attributes",
             "type": "CampaignMessagePartialUpdateQueryResourceObjectAttributes"
+        },
+        {
+            "name": "relationships",
+            "baseName": "relationships",
+            "type": "CampaignMessageCreateQueryResourceObjectRelationships"
         }    ];
 
     static getAttributeTypeMap() {

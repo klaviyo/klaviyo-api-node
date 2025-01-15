@@ -18,7 +18,7 @@ export class CampaignMessageAssignTemplateQueryResourceObject {
     * The message ID to be assigned to
     */
     'id': string;
-    'relationships'?: CampaignMessageAssignTemplateQueryResourceObjectRelationships;
+    'relationships': CampaignMessageAssignTemplateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

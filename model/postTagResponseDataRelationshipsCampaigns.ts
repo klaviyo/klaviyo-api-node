@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { GetCampaignMessageCampaignRelationshipResponseData } from './getCampaignMessageCampaignRelationshipResponseData';
+import { PostTagResponseDataRelationshipsCampaignsDataInner } from './postTagResponseDataRelationshipsCampaignsDataInner';
 import { RelationshipLinks } from './relationshipLinks';
 export class PostTagResponseDataRelationshipsCampaigns {
-    'data'?: Array<GetCampaignMessageCampaignRelationshipResponseData>;
+    'data'?: Array<PostTagResponseDataRelationshipsCampaignsDataInner>;
     'links'?: RelationshipLinks;
 
 
@@ -21,7 +21,7 @@ export class PostTagResponseDataRelationshipsCampaigns {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetCampaignMessageCampaignRelationshipResponseData>"
+            "type": "Array<PostTagResponseDataRelationshipsCampaignsDataInner>"
         },
         {
             "name": "links",

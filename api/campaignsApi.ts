@@ -18,6 +18,7 @@ import FormData from 'form-data'
 import { CampaignCloneQuery } from '../model/campaignCloneQuery';
 import { CampaignCreateQuery } from '../model/campaignCreateQuery';
 import { CampaignMessageAssignTemplateQuery } from '../model/campaignMessageAssignTemplateQuery';
+import { CampaignMessageImageUpdateQuery } from '../model/campaignMessageImageUpdateQuery';
 import { CampaignMessagePartialUpdateQuery } from '../model/campaignMessagePartialUpdateQuery';
 import { CampaignPartialUpdateQuery } from '../model/campaignPartialUpdateQuery';
 import { CampaignRecipientEstimationJobCreateQuery } from '../model/campaignRecipientEstimationJobCreateQuery';
@@ -25,6 +26,7 @@ import { CampaignSendJobCreateQuery } from '../model/campaignSendJobCreateQuery'
 import { CampaignSendJobPartialUpdateQuery } from '../model/campaignSendJobPartialUpdateQuery';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetCampaignMessageCampaignRelationshipResponse } from '../model/getCampaignMessageCampaignRelationshipResponse';
+import { GetCampaignMessageImageRelationshipResponse } from '../model/getCampaignMessageImageRelationshipResponse';
 import { GetCampaignMessageResponseCollectionCompoundDocument } from '../model/getCampaignMessageResponseCollectionCompoundDocument';
 import { GetCampaignMessageResponseCompoundDocument } from '../model/getCampaignMessageResponseCompoundDocument';
 import { GetCampaignMessageTemplateRelationshipResponse } from '../model/getCampaignMessageTemplateRelationshipResponse';
@@ -35,7 +37,8 @@ import { GetCampaignResponse } from '../model/getCampaignResponse';
 import { GetCampaignResponseCollectionCompoundDocument } from '../model/getCampaignResponseCollectionCompoundDocument';
 import { GetCampaignResponseCompoundDocument } from '../model/getCampaignResponseCompoundDocument';
 import { GetCampaignSendJobResponse } from '../model/getCampaignSendJobResponse';
-import { GetCampaignTagRelationshipListResponseCollection } from '../model/getCampaignTagRelationshipListResponseCollection';
+import { GetCampaignTagsRelationshipsResponseCollection } from '../model/getCampaignTagsRelationshipsResponseCollection';
+import { GetImageResponse } from '../model/getImageResponse';
 import { GetTagResponseCollection } from '../model/getTagResponseCollection';
 import { GetTemplateResponse } from '../model/getTemplateResponse';
 import { PatchCampaignMessageResponse } from '../model/patchCampaignMessageResponse';
@@ -361,9 +364,9 @@ export class CampaignsApi {
      * Returns a specific campaign based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign
      * @param id The campaign ID to be retrieved
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
-    public async getCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }> {
+    public async getCampaign (id: string, options: { fieldsCampaignMessage?: Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/campaigns/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -383,11 +386,11 @@ export class CampaignsApi {
         }
 
         if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>");
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
         }
 
         if (options.fieldsTag !== undefined) {
@@ -430,9 +433,9 @@ export class CampaignsApi {
      * Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign for Campaign Message
      * @param id 
-     * @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
-    public async getCampaignForCampaignMessage (id: string, options: { fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponse;  }> {
+    public async getCampaignForCampaignMessage (id: string, options: { fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponse;  }> {
 
         const localVarPath = this.basePath + '/api/campaign-messages/{id}/campaign'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -452,7 +455,7 @@ export class CampaignsApi {
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -540,9 +543,9 @@ export class CampaignsApi {
      * Returns a specific message based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Message
      * @param id The message ID to be retrieved
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
-    public async getCampaignMessage (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }> {
+    public async getCampaignMessage (id: string, options: { fieldsCampaignMessage?: Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsImage?: Array<'name' | 'image_url' | 'format' | 'size' | 'hidden' | 'updated_at'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'image' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/campaign-messages/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -562,11 +565,15 @@ export class CampaignsApi {
         }
 
         if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>");
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+        }
+
+        if (options.fieldsImage !== undefined) {
+            localVarQueryParameters['fields[image]'] = ObjectSerializer.serialize(options.fieldsImage, "Array<'name' | 'image_url' | 'format' | 'size' | 'hidden' | 'updated_at'>");
         }
 
         if (options.fieldsTemplate !== undefined) {
@@ -574,7 +581,7 @@ export class CampaignsApi {
         }
 
         if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'template'>");
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'image' | 'template'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -609,7 +616,7 @@ export class CampaignsApi {
      * Get the estimated recipient count for a campaign with the provided campaign ID. You can refresh this count by using the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation
      * @param id The ID of the campaign for which to get the estimated number of recipients
-     * @param fieldsCampaignRecipientEstimation For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignRecipientEstimation For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimation (id: string, options: { fieldsCampaignRecipientEstimation?: Array<'estimated_recipient_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationResponse;  }> {
 
@@ -666,7 +673,7 @@ export class CampaignsApi {
      * Retrieve the status of a recipient estimation job triggered with the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Recipient Estimation Job
      * @param id The ID of the campaign to get recipient estimation status
-     * @param fieldsCampaignRecipientEstimationJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignRecipientEstimationJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignRecipientEstimationJob (id: string, options: { fieldsCampaignRecipientEstimationJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignRecipientEstimationJobResponse;  }> {
 
@@ -723,7 +730,7 @@ export class CampaignsApi {
      * Get a campaign send job<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaign Send Job
      * @param id The ID of the campaign to send
-     * @param fieldsCampaignSendJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCampaignSendJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getCampaignSendJob (id: string, options: { fieldsCampaignSendJob?: Array<'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignSendJobResponse;  }> {
 
@@ -777,69 +784,12 @@ export class CampaignsApi {
         return request(config)
     }
     /**
-     * Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
-     * @summary Get Campaign Tags
-     * @param id 
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-     */
-    public async getCampaignTags (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/campaigns/{id}/tags'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/vnd.api+json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getCampaignTags.');
-        }
-
-        if (options.fieldsTag !== undefined) {
-            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
-            try {
-                const axiosResponse = await this.session.requestWithRetry(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return request(config)
-    }
-    /**
-     * Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,\'email\')` to list email campaigns, or `?filter=equals(messages.channel,\'sms\')` to list SMS campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
+     * Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,\'email\')` to list email campaigns, or `?filter=equals(messages.channel,\'sms\')` to list SMS campaigns. `?filter=equals(messages.channel,\'mobile_push\')` to list mobile push campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Campaigns
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
-    public async getCampaigns (filter: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>, pageCursor?: string, sort?: 'created_at' | '-created_at' | 'id' | '-id' | 'name' | '-name' | 'scheduled_at' | '-scheduled_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }> {
+    public async getCampaigns (filter: string, options: { fieldsCampaignMessage?: Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTag?: Array<'name'>, include?: Array<'campaign-messages' | 'tags'>, pageCursor?: string, sort?: 'created_at' | '-created_at' | 'id' | '-id' | 'name' | '-name' | 'scheduled_at' | '-scheduled_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignResponseCollectionCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/campaigns';
         let localVarQueryParameters: any = {};
@@ -860,11 +810,11 @@ export class CampaignsApi {
         localVarQueryParameters['filter'] = ObjectSerializer.serialize(filter, "string");
 
         if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>");
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
         }
 
         if (options.fieldsTag !== undefined) {
@@ -899,6 +849,116 @@ export class CampaignsApi {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Return the related image for a given campaign message<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `images:read`
+     * @summary Get Image for Campaign Message
+     * @param id 
+     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getImageForCampaignMessage (id: string, options: { fieldsImage?: Array<'name' | 'image_url' | 'format' | 'size' | 'hidden' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetImageResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}/image'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getImageForCampaignMessage.');
+        }
+
+        if (options.fieldsImage !== undefined) {
+            localVarQueryParameters['fields[image]'] = ObjectSerializer.serialize(options.fieldsImage, "Array<'name' | 'image_url' | 'format' | 'size' | 'hidden' | 'updated_at'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetImageResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetImageResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Returns the ID of the related image<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `images:read`
+     * @summary Get Image ID for Campaign Message
+     * @param id 
+     
+     */
+    public async getImageIdForCampaignMessage (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignMessageImageRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}/relationships/image'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getImageIdForCampaignMessage.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignMessageImageRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignMessageImageRelationshipResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -968,9 +1028,9 @@ export class CampaignsApi {
      * Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
      * @summary Get Messages for Campaign
      * @param id 
-     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsCampaignMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCampaign For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
-    public async getMessagesForCampaign (id: string, options: { fieldsCampaignMessage?: Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> {
+    public async getMessagesForCampaign (id: string, options: { fieldsCampaignMessage?: Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>, fieldsCampaign?: Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>, fieldsImage?: Array<'name' | 'image_url' | 'format' | 'size' | 'hidden' | 'updated_at'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'campaign' | 'image' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCampaignMessageResponseCollectionCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/campaigns/{id}/campaign-messages'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -990,11 +1050,15 @@ export class CampaignsApi {
         }
 
         if (options.fieldsCampaignMessage !== undefined) {
-            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'label' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'send_times' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language' | 'created_at' | 'updated_at'>");
+            localVarQueryParameters['fields[campaign-message]'] = ObjectSerializer.serialize(options.fieldsCampaignMessage, "Array<'definition' | 'definition.channel' | 'definition.label' | 'definition.content' | 'definition.content.subject' | 'definition.content.preview_text' | 'definition.content.from_email' | 'definition.content.from_label' | 'definition.content.reply_to_email' | 'definition.content.cc_email' | 'definition.content.bcc_email' | 'definition.content.body' | 'definition.content.media_url' | 'definition.render_options' | 'definition.render_options.shorten_links' | 'definition.render_options.add_org_prefix' | 'definition.render_options.add_info_link' | 'definition.render_options.add_opt_out_language' | 'definition.notification_type' | 'definition.content.title' | 'definition.content.dynamic_image' | 'definition.options' | 'definition.options.on_open' | 'definition.options.on_open.type' | 'definition.options.on_open.ios_deep_link' | 'definition.options.on_open.android_deep_link' | 'definition.options.badge' | 'definition.options.badge.display' | 'definition.options.play_sound' | 'send_times' | 'created_at' | 'updated_at'>");
         }
 
         if (options.fieldsCampaign !== undefined) {
-            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_tracking_params' | 'tracking_options.custom_tracking_params' | 'tracking_options.is_tracking_clicks' | 'tracking_options.is_tracking_opens' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.options_static' | 'send_strategy.options_static.datetime' | 'send_strategy.options_static.is_local' | 'send_strategy.options_static.send_past_recipients_immediately' | 'send_strategy.options_throttled' | 'send_strategy.options_throttled.datetime' | 'send_strategy.options_throttled.throttle_percentage' | 'send_strategy.options_sto' | 'send_strategy.options_sto.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+            localVarQueryParameters['fields[campaign]'] = ObjectSerializer.serialize(options.fieldsCampaign, "Array<'name' | 'status' | 'archived' | 'audiences' | 'audiences.included' | 'audiences.excluded' | 'send_options' | 'send_options.use_smart_sending' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_strategy' | 'send_strategy.method' | 'send_strategy.datetime' | 'send_strategy.options' | 'send_strategy.options.is_local' | 'send_strategy.options.send_past_recipients_immediately' | 'send_strategy.throttle_percentage' | 'send_strategy.date' | 'created_at' | 'scheduled_at' | 'updated_at' | 'send_time'>");
+        }
+
+        if (options.fieldsImage !== undefined) {
+            localVarQueryParameters['fields[image]'] = ObjectSerializer.serialize(options.fieldsImage, "Array<'name' | 'image_url' | 'format' | 'size' | 'hidden' | 'updated_at'>");
         }
 
         if (options.fieldsTemplate !== undefined) {
@@ -1002,7 +1066,7 @@ export class CampaignsApi {
         }
 
         if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'template'>");
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'campaign' | 'image' | 'template'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -1039,7 +1103,7 @@ export class CampaignsApi {
      * @param id 
      
      */
-    public async getTagIdsForCampaign (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }> {
+    public async getTagIdsForCampaign (id: string, ): Promise<{ response: AxiosResponse; body: GetCampaignTagsRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/campaigns/{id}/relationships/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1069,11 +1133,68 @@ export class CampaignsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignTagRelationshipListResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCampaignTagsRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignTagRelationshipListResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCampaignTagsRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
+     * @summary Get Tags for Campaign
+     * @param id 
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getTagsForCampaign (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/campaigns/{id}/tags'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getTagsForCampaign.');
+        }
+
+        if (options.fieldsTag !== undefined) {
+            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetTagResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1090,7 +1211,7 @@ export class CampaignsApi {
      * Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`
      * @summary Get Template for Campaign Message
      * @param id 
-     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getTemplateForCampaignMessage (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
 
@@ -1420,6 +1541,64 @@ export class CampaignsApi {
 
         return request(config)
     }
+    /**
+     * Update a campaign message image<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write` `images:read`
+     * @summary Update Image for Campaign Message
+     * @param id * @param campaignMessageImageUpdateQuery 
+     
+     */
+    public async updateImageForCampaignMessage (id: string, campaignMessageImageUpdateQuery: CampaignMessageImageUpdateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/campaign-messages/{id}/relationships/image'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateImageForCampaignMessage.');
+        }
+
+        // verify required parameter 'campaignMessageImageUpdateQuery' is not null or undefined
+        if (campaignMessageImageUpdateQuery === null || campaignMessageImageUpdateQuery === undefined) {
+            throw new Error('Required parameter campaignMessageImageUpdateQuery was null or undefined when calling updateImageForCampaignMessage.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(campaignMessageImageUpdateQuery, "CampaignMessageImageUpdateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
 }
 
 export interface CampaignsApi {
@@ -1474,13 +1653,23 @@ CampaignsApi.prototype.getCampaignMessageRelationshipsCampaign = CampaignsApi.pr
 
 export interface CampaignsApi {
     /**
-     * Alias of {@link CampaignsApi.getCampaignTags}
+     * Alias of {@link CampaignsApi.getImageForCampaignMessage}
      *
-     * @deprecated Use {@link CampaignsApi.getCampaignTags} instead
+     * @deprecated Use {@link CampaignsApi.getImageForCampaignMessage} instead
      */
-    getTagsForCampaign: typeof CampaignsApi.prototype.getCampaignTags;
+    getCampaignMessageImage: typeof CampaignsApi.prototype.getImageForCampaignMessage;
 }
-CampaignsApi.prototype.getTagsForCampaign = CampaignsApi.prototype.getCampaignTags
+CampaignsApi.prototype.getCampaignMessageImage = CampaignsApi.prototype.getImageForCampaignMessage
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.getImageIdForCampaignMessage}
+     *
+     * @deprecated Use {@link CampaignsApi.getImageIdForCampaignMessage} instead
+     */
+    getCampaignMessageRelationshipsImage: typeof CampaignsApi.prototype.getImageIdForCampaignMessage;
+}
+CampaignsApi.prototype.getCampaignMessageRelationshipsImage = CampaignsApi.prototype.getImageIdForCampaignMessage
 
 export interface CampaignsApi {
     /**
@@ -1534,6 +1723,16 @@ CampaignsApi.prototype.getCampaignRelationshipsTags = CampaignsApi.prototype.get
 
 export interface CampaignsApi {
     /**
+     * Alias of {@link CampaignsApi.getTagsForCampaign}
+     *
+     * @deprecated Use {@link CampaignsApi.getTagsForCampaign} instead
+     */
+    getCampaignTags: typeof CampaignsApi.prototype.getTagsForCampaign;
+}
+CampaignsApi.prototype.getCampaignTags = CampaignsApi.prototype.getTagsForCampaign
+
+export interface CampaignsApi {
+    /**
      * Alias of {@link CampaignsApi.getTemplateForCampaignMessage}
      *
      * @deprecated Use {@link CampaignsApi.getTemplateForCampaignMessage} instead
@@ -1571,3 +1770,13 @@ export interface CampaignsApi {
     createCampaignSendJob: typeof CampaignsApi.prototype.sendCampaign;
 }
 CampaignsApi.prototype.createCampaignSendJob = CampaignsApi.prototype.sendCampaign
+
+export interface CampaignsApi {
+    /**
+     * Alias of {@link CampaignsApi.updateImageForCampaignMessage}
+     *
+     * @deprecated Use {@link CampaignsApi.updateImageForCampaignMessage} instead
+     */
+    updateCampaignMessageRelationshipsImage: typeof CampaignsApi.prototype.updateImageForCampaignMessage;
+}
+CampaignsApi.prototype.updateCampaignMessageRelationshipsImage = CampaignsApi.prototype.updateImageForCampaignMessage

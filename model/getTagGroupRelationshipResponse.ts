@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData } from './getTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData';
+import { GetTagGroupRelationshipResponseData } from './getTagGroupRelationshipResponseData';
 export class GetTagGroupRelationshipResponse {
-    'data': GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData;
+    'data': GetTagGroupRelationshipResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetTagResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsTagGroupData"
+            "type": "GetTagGroupRelationshipResponseData"
         }    ];
 
     static getAttributeTypeMap() {

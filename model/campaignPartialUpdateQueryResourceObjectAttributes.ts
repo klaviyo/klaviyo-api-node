@@ -10,19 +10,19 @@
  */
 
 import { RequestFile } from './models';
-import { AudiencesSubObject } from './audiencesSubObject';
+import { AudiencesUpdate } from './audiencesUpdate';
 import { CampaignCreateQueryResourceObjectAttributesSendOptions } from './campaignCreateQueryResourceObjectAttributesSendOptions';
-import { CampaignCreateQueryResourceObjectAttributesTrackingOptions } from './campaignCreateQueryResourceObjectAttributesTrackingOptions';
-import { SendStrategySubObject } from './sendStrategySubObject';
+import { CampaignPartialUpdateQueryResourceObjectAttributesSendStrategy } from './campaignPartialUpdateQueryResourceObjectAttributesSendStrategy';
+import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
 export class CampaignPartialUpdateQueryResourceObjectAttributes {
     /**
     * The campaign name
     */
     'name'?: string | null;
-    'audiences'?: AudiencesSubObject;
+    'audiences'?: AudiencesUpdate;
     'sendOptions'?: CampaignCreateQueryResourceObjectAttributesSendOptions | null;
-    'trackingOptions'?: CampaignCreateQueryResourceObjectAttributesTrackingOptions | null;
-    'sendStrategy'?: SendStrategySubObject;
+    'trackingOptions'?: CampaignResponseObjectResourceAttributesTrackingOptions | null;
+    'sendStrategy'?: CampaignPartialUpdateQueryResourceObjectAttributesSendStrategy | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,7 +34,7 @@ export class CampaignPartialUpdateQueryResourceObjectAttributes {
         {
             "name": "audiences",
             "baseName": "audiences",
-            "type": "AudiencesSubObject"
+            "type": "AudiencesUpdate"
         },
         {
             "name": "sendOptions",
@@ -44,12 +44,12 @@ export class CampaignPartialUpdateQueryResourceObjectAttributes {
         {
             "name": "trackingOptions",
             "baseName": "tracking_options",
-            "type": "CampaignCreateQueryResourceObjectAttributesTrackingOptions"
+            "type": "CampaignResponseObjectResourceAttributesTrackingOptions"
         },
         {
             "name": "sendStrategy",
             "baseName": "send_strategy",
-            "type": "SendStrategySubObject"
+            "type": "CampaignPartialUpdateQueryResourceObjectAttributesSendStrategy"
         }    ];
 
     static getAttributeTypeMap() {

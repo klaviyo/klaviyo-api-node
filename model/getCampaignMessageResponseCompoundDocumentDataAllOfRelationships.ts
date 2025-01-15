@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign';
+import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsImage } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsImage';
 import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate';
 export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships {
     'campaign'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsCampaign;
     'template'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate;
+    'image'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsImage;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships {
             "name": "template",
             "baseName": "template",
             "type": "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsTemplate"
+        },
+        {
+            "name": "image",
+            "baseName": "image",
+            "type": "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationshipsImage"
         }    ];
 
     static getAttributeTypeMap() {

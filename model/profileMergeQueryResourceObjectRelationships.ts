@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { ProfileMergeQueryResourceObjectRelationshipsProfiles } from './profileMergeQueryResourceObjectRelationshipsProfiles';
 export class ProfileMergeQueryResourceObjectRelationships {
-    'profiles'?: ProfileMergeQueryResourceObjectRelationshipsProfiles;
+    'profiles': ProfileMergeQueryResourceObjectRelationshipsProfiles;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
