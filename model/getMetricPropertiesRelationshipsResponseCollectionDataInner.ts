@@ -13,6 +13,9 @@ import { RequestFile } from './models';
 import { MetricPropertyEnum } from './metricPropertyEnum';
 export class GetMetricPropertiesRelationshipsResponseCollectionDataInner {
     'type': MetricPropertyEnum | 'metric-property';
+    /**
+    * The ID of the metric property
+    */
     'id': string;
 
 

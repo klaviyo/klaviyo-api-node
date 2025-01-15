@@ -10,24 +10,14 @@
  */
 
 import { RequestFile } from './models';
-import { CampaignMessageResponseObjectResourceAttributesContent } from './campaignMessageResponseObjectResourceAttributesContent';
-import { RenderOptionsSubObject } from './renderOptionsSubObject';
-import { SendTimeSubObject } from './sendTimeSubObject';
+import { CampaignMessageResponseObjectResourceAttributesDefinition } from './campaignMessageResponseObjectResourceAttributesDefinition';
+import { SendTime } from './sendTime';
 export class CampaignMessageResponseObjectResourceAttributes {
-    /**
-    * The label or name on the message
-    */
-    'label': string;
-    /**
-    * The channel the message is to be sent on
-    */
-    'channel': string;
-    'content': CampaignMessageResponseObjectResourceAttributesContent;
+    'definition'?: CampaignMessageResponseObjectResourceAttributesDefinition | null;
     /**
     * The list of appropriate Send Time Sub-objects associated with the message
     */
-    'sendTimes'?: Array<SendTimeSubObject> | null;
-    'renderOptions'?: RenderOptionsSubObject;
+    'sendTimes'?: Array<SendTime> | null;
     /**
     * The datetime when the message was created
     */
@@ -40,29 +30,14 @@ export class CampaignMessageResponseObjectResourceAttributes {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "label",
-            "baseName": "label",
-            "type": "string"
-        },
-        {
-            "name": "channel",
-            "baseName": "channel",
-            "type": "string"
-        },
-        {
-            "name": "content",
-            "baseName": "content",
-            "type": "CampaignMessageResponseObjectResourceAttributesContent"
+            "name": "definition",
+            "baseName": "definition",
+            "type": "CampaignMessageResponseObjectResourceAttributesDefinition"
         },
         {
             "name": "sendTimes",
             "baseName": "send_times",
-            "type": "Array<SendTimeSubObject>"
-        },
-        {
-            "name": "renderOptions",
-            "baseName": "render_options",
-            "type": "RenderOptionsSubObject"
+            "type": "Array<SendTime>"
         },
         {
             "name": "createdAt",

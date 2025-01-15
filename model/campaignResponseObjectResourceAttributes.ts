@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { AudiencesSubObject } from './audiencesSubObject';
+import { Audiences } from './audiences';
 import { CampaignResponseObjectResourceAttributesSendOptions } from './campaignResponseObjectResourceAttributesSendOptions';
+import { CampaignResponseObjectResourceAttributesSendStrategy } from './campaignResponseObjectResourceAttributesSendStrategy';
 import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
-import { SendStrategySubObject } from './sendStrategySubObject';
 export class CampaignResponseObjectResourceAttributes {
     /**
     * The campaign name
@@ -22,15 +22,15 @@ export class CampaignResponseObjectResourceAttributes {
     /**
     * The current status of the campaign
     */
-    'status': string;
+    'status': CampaignResponseObjectResourceAttributes.StatusEnum | 'Adding Recipients' | 'Cancelled' | 'Cancelled: Account Disabled' | 'Cancelled: Internal Error' | 'Cancelled: No Recipients' | 'Cancelled: Smart Sending' | 'Draft' | 'Preparing to schedule' | 'Preparing to send' | 'Queued without Recipients' | 'Scheduled' | 'Sending' | 'Sending Segments' | 'Sent' | 'Unknown' | 'Variations Sent';
     /**
     * Whether the campaign has been archived or not
     */
     'archived': boolean;
-    'audiences': AudiencesSubObject;
+    'audiences': Audiences;
     'sendOptions': CampaignResponseObjectResourceAttributesSendOptions;
-    'trackingOptions': CampaignResponseObjectResourceAttributesTrackingOptions;
-    'sendStrategy': SendStrategySubObject;
+    'trackingOptions'?: CampaignResponseObjectResourceAttributesTrackingOptions | null;
+    'sendStrategy': CampaignResponseObjectResourceAttributesSendStrategy;
     /**
     * The datetime when the campaign was created
     */
@@ -58,7 +58,7 @@ export class CampaignResponseObjectResourceAttributes {
         {
             "name": "status",
             "baseName": "status",
-            "type": "string"
+            "type": "CampaignResponseObjectResourceAttributes.StatusEnum"
         },
         {
             "name": "archived",
@@ -68,7 +68,7 @@ export class CampaignResponseObjectResourceAttributes {
         {
             "name": "audiences",
             "baseName": "audiences",
-            "type": "AudiencesSubObject"
+            "type": "Audiences"
         },
         {
             "name": "sendOptions",
@@ -83,7 +83,7 @@ export class CampaignResponseObjectResourceAttributes {
         {
             "name": "sendStrategy",
             "baseName": "send_strategy",
-            "type": "SendStrategySubObject"
+            "type": "CampaignResponseObjectResourceAttributesSendStrategy"
         },
         {
             "name": "createdAt",
@@ -111,3 +111,23 @@ export class CampaignResponseObjectResourceAttributes {
     }
 }
 
+export namespace CampaignResponseObjectResourceAttributes {
+    export enum StatusEnum {
+        AddingRecipients = <any> 'Adding Recipients',
+        Cancelled = <any> 'Cancelled',
+        CancelledAccountDisabled = <any> 'Cancelled: Account Disabled',
+        CancelledInternalError = <any> 'Cancelled: Internal Error',
+        CancelledNoRecipients = <any> 'Cancelled: No Recipients',
+        CancelledSmartSending = <any> 'Cancelled: Smart Sending',
+        Draft = <any> 'Draft',
+        PreparingToSchedule = <any> 'Preparing to schedule',
+        PreparingToSend = <any> 'Preparing to send',
+        QueuedWithoutRecipients = <any> 'Queued without Recipients',
+        Scheduled = <any> 'Scheduled',
+        Sending = <any> 'Sending',
+        SendingSegments = <any> 'Sending Segments',
+        Sent = <any> 'Sent',
+        Unknown = <any> 'Unknown',
+        VariationsSent = <any> 'Variations Sent'
+    }
+}

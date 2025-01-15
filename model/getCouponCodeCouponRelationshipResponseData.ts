@@ -13,6 +13,9 @@ import { RequestFile } from './models';
 import { CouponEnum } from './couponEnum';
 export class GetCouponCodeCouponRelationshipResponseData {
     'type': CouponEnum | 'coupon';
+    /**
+    * The internal id of a Coupon is equivalent to its external id stored within an integration.
+    */
     'id': string;
 
 

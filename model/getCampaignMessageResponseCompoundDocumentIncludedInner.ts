@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 import { CampaignResponseObjectResource } from './campaignResponseObjectResource';
+import { ImageResponseObjectResource } from './imageResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 import { TemplateEnum } from './templateEnum';
 import { TemplateResponseObjectResource } from './templateResponseObjectResource';
@@ -18,11 +19,12 @@ import { TemplateResponseObjectResourceAttributes } from './templateResponseObje
 
 
 
-    export type GetCampaignMessageResponseCompoundDocumentIncludedInner = CampaignResponseObjectResource | TemplateResponseObjectResource
+    export type GetCampaignMessageResponseCompoundDocumentIncludedInner = CampaignResponseObjectResource | ImageResponseObjectResource | TemplateResponseObjectResource
 
     export class GetCampaignMessageResponseCompoundDocumentIncludedInnerHelper {
         static mapping: {[index: string]: any} = {
             "campaign": "CampaignResponseObjectResource",
+            "image": "ImageResponseObjectResource",
             "template": "TemplateResponseObjectResource",
         }
         static discriminator: string | undefined = "type";

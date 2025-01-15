@@ -16,7 +16,7 @@ import { WebhookEnum } from './webhookEnum';
 export class WebhookCreateQueryResourceObject {
     'type': WebhookEnum | 'webhook';
     'attributes': WebhookCreateQueryResourceObjectAttributes;
-    'relationships'?: WebhookCreateQueryResourceObjectRelationships;
+    'relationships': WebhookCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

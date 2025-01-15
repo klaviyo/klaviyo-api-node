@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { CatalogVariantCreateQueryResourceObjectRelationshipsItem } from './catalogVariantCreateQueryResourceObjectRelationshipsItem';
 export class CatalogVariantCreateQueryResourceObjectRelationships {
-    'item'?: CatalogVariantCreateQueryResourceObjectRelationshipsItem;
+    'item': CatalogVariantCreateQueryResourceObjectRelationshipsItem;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

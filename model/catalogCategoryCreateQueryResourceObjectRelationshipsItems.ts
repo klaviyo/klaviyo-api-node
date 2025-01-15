@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { GetCatalogCategoryItemListResponseCollectionDataInner } from './getCatalogCategoryItemListResponseCollectionDataInner';
+import { CatalogCategoryItemOpDataInner } from './catalogCategoryItemOpDataInner';
 export class CatalogCategoryCreateQueryResourceObjectRelationshipsItems {
-    'data'?: Array<GetCatalogCategoryItemListResponseCollectionDataInner>;
+    'data'?: Array<CatalogCategoryItemOpDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetCatalogCategoryItemListResponseCollectionDataInner>"
+            "type": "Array<CatalogCategoryItemOpDataInner>"
         }    ];
 
     static getAttributeTypeMap() {

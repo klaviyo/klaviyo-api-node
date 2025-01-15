@@ -23,6 +23,10 @@ export class ReviewProductDTO {
     * The URL of the product image
     */
     'imageUrl'?: string | null;
+    /**
+    * The external ID of the product
+    */
+    'externalId'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -39,6 +43,11 @@ export class ReviewProductDTO {
         {
             "name": "imageUrl",
             "baseName": "image_url",
+            "type": "string"
+        },
+        {
+            "name": "externalId",
+            "baseName": "external_id",
             "type": "string"
         }    ];
 

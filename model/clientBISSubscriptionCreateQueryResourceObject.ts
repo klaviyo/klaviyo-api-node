@@ -16,7 +16,7 @@ import { ServerBISSubscriptionCreateQueryResourceObjectRelationships } from './s
 export class ClientBISSubscriptionCreateQueryResourceObject {
     'type': BackInStockSubscriptionEnum | 'back-in-stock-subscription';
     'attributes': ClientBISSubscriptionCreateQueryResourceObjectAttributes;
-    'relationships'?: ServerBISSubscriptionCreateQueryResourceObjectRelationships;
+    'relationships': ServerBISSubscriptionCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { PostCampaignMessageResponseData } from './postCampaignMessageResponseData';
+import { PatchCampaignMessageResponseData } from './patchCampaignMessageResponseData';
 export class PatchCampaignMessageResponse {
-    'data': PostCampaignMessageResponseData;
+    'data': PatchCampaignMessageResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "PostCampaignMessageResponseData"
+            "type": "PatchCampaignMessageResponseData"
         }    ];
 
     static getAttributeTypeMap() {

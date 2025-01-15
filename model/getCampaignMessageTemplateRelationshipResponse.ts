@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData } from './getFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData';
+import { GetFlowMessageTemplateRelationshipResponseData } from './getFlowMessageTemplateRelationshipResponseData';
 export class GetCampaignMessageTemplateRelationshipResponse {
-    'data': GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData;
+    'data': GetFlowMessageTemplateRelationshipResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "GetFlowMessageResponseCompoundDocumentDataAllOfRelationshipsTemplateData"
+            "type": "GetFlowMessageTemplateRelationshipResponseData"
         }    ];
 
     static getAttributeTypeMap() {

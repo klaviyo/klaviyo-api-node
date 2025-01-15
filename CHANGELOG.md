@@ -1,6 +1,60 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [16.0.0] - revision 2025-01-15
+### Added
+- Get and Update Reviews APIs
+  - Retrieve all reviews with `ReviewsApi.getReviews` or return a review with a specified ID using the `ReviewsApi.getReview` endpoint.
+  - Manage your reviews programmatically with the `ReviewsApi.updateReview` endpoint, which allows you to change the status of a review, such as to reject or approve it. This endpoint modifies the moderation status of a review based on the provided review ID and status.
+- Get and Create Flows APIs
+  - Return a flow with the given flow ID using the `FlowsApi.getFlow` endpoint.
+  - Create a new flow with the `FlowsApi.createFlow` endpoint.
+- Campaigns API
+  - Manage the images for your campaigns with a new set of endpoints for the `Campaigns` API, including: `getImageForCampaignMessage`, `getImageIdForCampaignMessage`, and `updateImageForCampaignMessage`.
+### Changed
+- **Breaking:** Subscription endpoints required field
+  - Calls to `ProfilesApi.bulkSubscribeProfiles` and `ProfilesApi.unsubscribeProfiles` now require the `subscriptions` field, which grants or revokes consent for the indicated message types on the specified channels, such as email or sms.
+- **Breaking:** Campaigns API push notification support
+  - The Campaigns API now supports the push notification channel.
+  - Support for push notifications includes **significant changes** to the following endpoints: `getCampaigns`, `getCampaign`, `createCampaign`, `updateCampaign`, `createCampaignClone`, `getMessagesForCampaign`, `getCampaignMessage`, `updateCampaignMessage`, `getCampaignForCampaignMessage`, `getCampaignIdForCampaignMessage`.
+  - We recommend that you review the [Campaigns API Overview](https://developers.klaviyo.com/en/reference/campaigns_api_overview) for more detailed information about changes to the structure and responses of these endpoints.
+- **Breaking:** Pagination updates
+  - The `FlowsApi.getMessagesForFlowAction` and `FlowsApi.getActionIdForFlowMessage` endpoints have been updated from offset pagination to cursor pagination.
+- Create Template API
+  - The `TemplatesApi.createTemplate` endpoint now supports the creation of hybrid templates when `editorType` is `USER_DRAGGABLE` and hybrid template HTML is included.
+- Profiles API
+  - The following server-side APIs have been updated to an enhanced identity resolution processor to better follow the Klaviyo identity resolution identifier priority order.
+    - `ProfilesApi.createProfile`
+    - `ProfilesApi.updateProfile`
+- **Breaking:** Renamed models
+  - `AudiencesSubObject` -> `Audiences`
+  - `GetCampaignTagRelationshipListResponseCollection` -> `GetCampaignTagsRelationshipsResponseCollection`
+  - `GetCatalogCategoryItemListResponseCollection` -> `GetCatalogCategoryItemsRelationshipsResponseCollection`
+  - `GetCatalogCategoryItemListResponseCollectionDataInner` -> `GetCatalogCategoryItemsRelationshipsResponseCollectionDataInner`
+  - `GetCatalogItemCategoryListResponseCollection` -> `GetCatalogItemCategoriesRelationshipsResponseCollection`
+  - `GetCatalogItemCategoryListResponseCollectionDataInner` -> `GetCatalogItemCategoriesRelationshipsResponseCollectionDataInner`
+  - `GetCouponRelationshipCouponCodesListResponseCollection` -> `GetCouponCodesRelationshipsResponseCollection`
+  - `GetCouponRelationshipCouponCodesListResponseCollectionDataInner` -> `GetCouponCodesRelationshipsResponseCollectionDataInner`
+  - `GetEventMetricRelationshipResponseData` -> `GetEventResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsMetricData`
+  - `GetFlowResponseCompoundDocument` -> `GetFlowResponseCompoundDocument`
+  - `GetFlowTagRelationshipListResponseCollection` -> `GetFlowTagsRelationshipsResponseCollection`
+  - `GetFormFormVersionRelationshipsResponseCollection` -> `GetFormVersionsRelationshipsResponseCollection`
+  - `GetListRelationshipsResponseCollection` -> `GetListProfilesRelationshipsResponseCollection`
+  - `GetListTagRelationshipListResponseCollection` -> `GetListTagsRelationshipsResponseCollection`
+  - `GetProfileImportJobProfileRelationshipsResponseCollection` -> `GetProfileBulkImportJobProfilesRelationshipsResponseCollection`
+  - `GetProfileListRelationshipsResponseCollection` -> `GetProfileListsRelationshipsResponseCollection`
+  - `GetProfileSegmentRelationshipsResponseCollection` -> `GetProfileSegmentsRelationshipsResponseCollection`
+  - `GetReviewResponseDTO20240715CollectionCompoundDocument` -> `GetReviewResponseDTOCollectionCompoundDocument`
+  - `GetReviewResponseDTO20240715CollectionCompoundDocumentDataInner` -> `GetReviewResponseDTOCollectionCompoundDocumentDataInner`
+  - `GetReviewResponseDTO20240715CollectionCompoundDocumentDataInnerAllOfRelationships` -> `GetReviewResponseDTOCollectionCompoundDocumentDataInnerAllOfRelationships`
+  - `GetReviewResponseDTO20240715CollectionCompoundDocumentDataInnerAllOfRelationshipsEvents` -> `GetReviewResponseDTOCollectionCompoundDocumentDataInnerAllOfRelationshipsEvents`
+  - `GetReviewResponseDTO20240715CollectionCompoundDocumentDataInnerAllOfRelationshipsEventsDataInner` -> `GetReviewResponseDTOCollectionCompoundDocumentDataInnerAllOfRelationshipsEventsDataInner`
+  - `GetReviewResponseDTO20240715CompoundDocument` -> `GetReviewResponseDTOCompoundDocument`
+  - `GetReviewResponseDTO20240715CompoundDocument` -> `GetReviewResponseDTOCompoundDocument`
+  - `GetSegmentTagRelationshipListResponseCollection` -> `GetSegmentTagsRelationshipsResponseCollection`
+  - `ReviewResponseDTO20240715ObjectResource` -> `ReviewResponseDTOObjectResource`
+  - `ReviewResponseDTO20240715ObjectResourceAttributes` -> `ReviewResponseDTOObjectResourceAttributes`
+
 ## [15.0.0] - revision 2024-10-15
 ### Added
 - Transactional SMS Content

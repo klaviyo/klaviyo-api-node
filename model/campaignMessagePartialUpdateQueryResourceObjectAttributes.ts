@@ -10,32 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { CampaignMessageCreateQueryResourceObjectAttributesContent } from './campaignMessageCreateQueryResourceObjectAttributesContent';
-import { RenderOptionsSubObject } from './renderOptionsSubObject';
+import { CampaignMessagePartialUpdateQueryResourceObjectAttributesDefinition } from './campaignMessagePartialUpdateQueryResourceObjectAttributesDefinition';
 export class CampaignMessagePartialUpdateQueryResourceObjectAttributes {
-    /**
-    * The label or name on the message
-    */
-    'label'?: string | null;
-    'content'?: CampaignMessageCreateQueryResourceObjectAttributesContent | null;
-    'renderOptions'?: RenderOptionsSubObject;
+    'definition'?: CampaignMessagePartialUpdateQueryResourceObjectAttributesDefinition | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "label",
-            "baseName": "label",
-            "type": "string"
-        },
-        {
-            "name": "content",
-            "baseName": "content",
-            "type": "CampaignMessageCreateQueryResourceObjectAttributesContent"
-        },
-        {
-            "name": "renderOptions",
-            "baseName": "render_options",
-            "type": "RenderOptionsSubObject"
+            "name": "definition",
+            "baseName": "definition",
+            "type": "CampaignMessagePartialUpdateQueryResourceObjectAttributesDefinition"
         }    ];
 
     static getAttributeTypeMap() {

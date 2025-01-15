@@ -16,7 +16,7 @@ import { CouponCodeEnum } from './couponCodeEnum';
 export class CouponCodeCreateQueryResourceObject {
     'type': CouponCodeEnum | 'coupon-code';
     'attributes': CouponCodeCreateQueryResourceObjectAttributes;
-    'relationships'?: CouponCodeCreateQueryResourceObjectRelationships;
+    'relationships': CouponCodeCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

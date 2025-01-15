@@ -27,7 +27,7 @@ import { GetCouponCodeCreateJobResponseCompoundDocument } from '../model/getCoup
 import { GetCouponCodeResponseCollection } from '../model/getCouponCodeResponseCollection';
 import { GetCouponCodeResponseCollectionCompoundDocument } from '../model/getCouponCodeResponseCollectionCompoundDocument';
 import { GetCouponCodeResponseCompoundDocument } from '../model/getCouponCodeResponseCompoundDocument';
-import { GetCouponRelationshipCouponCodesListResponseCollection } from '../model/getCouponRelationshipCouponCodesListResponseCollection';
+import { GetCouponCodesRelationshipsResponseCollection } from '../model/getCouponCodesRelationshipsResponseCollection';
 import { GetCouponResponse } from '../model/getCouponResponse';
 import { GetCouponResponseCollection } from '../model/getCouponResponseCollection';
 import { PatchCouponCodeResponse } from '../model/patchCouponCodeResponse';
@@ -346,7 +346,7 @@ export class CouponsApi {
      * Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Bulk Create Coupon Code Jobs
      
-     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
      */
     public async getBulkCreateCouponCodeJobs (options: { fieldsCouponCodeBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCollectionCompoundDocument;  }> {
 
@@ -405,7 +405,7 @@ export class CouponsApi {
      * Get a coupon code bulk create job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Bulk Create Coupon Codes Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsCouponCodeBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
     public async getBulkCreateCouponCodesJob (jobId: string, options: { fieldsCouponCodeBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'errors' | 'expires_at'>, fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, include?: Array<'coupon-codes'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeCreateJobResponseCompoundDocument;  }> {
 
@@ -470,7 +470,7 @@ export class CouponsApi {
      * Get a specific coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
      * @summary Get Coupon
      * @param id The internal id of a Coupon is equivalent to its external id stored within an integration.
-     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getCoupon (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
 
@@ -527,7 +527,7 @@ export class CouponsApi {
      * Returns a Coupon Code specified by the given identifier.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Code
      * @param id The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
-     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
     public async getCouponCode (id: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, include?: Array<'coupon'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCompoundDocument;  }> {
 
@@ -592,9 +592,9 @@ export class CouponsApi {
      * Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Code IDs for Coupon
      * @param id The ID of the coupon to look up the relationship of.
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
      */
-    public async getCouponCodeIdsForCoupon (id: string, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }> {
+    public async getCouponCodeIdsForCoupon (id: string, options: { filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodesRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/coupons/{id}/relationships/coupon-codes'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -613,6 +613,10 @@ export class CouponsApi {
             throw new Error('Required parameter id was null or undefined when calling getCouponCodeIdsForCoupon.');
         }
 
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
         if (options.pageCursor !== undefined) {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
         }
@@ -628,11 +632,11 @@ export class CouponsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponRelationshipCouponCodesListResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCouponCodesRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponRelationshipCouponCodesListResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCouponCodesRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -649,7 +653,7 @@ export class CouponsApi {
      * Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Codes
      
-     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
      */
     public async getCouponCodes (options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, filter?: string, include?: Array<'coupon'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }> {
 
@@ -715,8 +719,8 @@ export class CouponsApi {
     /**
      * Gets a list of coupon codes associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Codes for Coupon
-     * @param id 
-     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     * @param id The ID of the coupon to look up the relationship of.
+     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
      */
     public async getCouponCodesForCoupon (id: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollection;  }> {
 
@@ -781,7 +785,7 @@ export class CouponsApi {
      * Get the coupon associated with a given coupon code ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
      * @summary Get Coupon For Coupon Code
      * @param id The ID of the coupon to look up the relationship of.
-     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getCouponForCouponCode (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
 
@@ -891,7 +895,7 @@ export class CouponsApi {
      * Get all coupons in an account.  To learn more, see our [Coupons API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_coupons_api).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
      * @summary Get Coupons
      
-     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+     * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
      */
     public async getCoupons (options: { fieldsCoupon?: Array<'external_id' | 'description'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponseCollection;  }> {
 

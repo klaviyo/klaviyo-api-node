@@ -20,7 +20,7 @@ export class ProfileSubscriptionDeleteQueryResourceObjectAttributes {
     * The phone number to unsubscribe. This must be in E.164 format.
     */
     'phoneNumber'?: string | null;
-    'subscriptions'?: UnsubscriptionChannels;
+    'subscriptions': UnsubscriptionChannels;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

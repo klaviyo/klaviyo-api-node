@@ -23,14 +23,14 @@ import { GetBulkProfileSuppressionsRemoveJobResponseCollection } from '../model/
 import { GetImportErrorResponseCollection } from '../model/getImportErrorResponseCollection';
 import { GetListResponseCollection } from '../model/getListResponseCollection';
 import { GetProfileBulkImportJobListsRelationshipsResponseCollection } from '../model/getProfileBulkImportJobListsRelationshipsResponseCollection';
-import { GetProfileImportJobProfileRelationshipsResponseCollection } from '../model/getProfileImportJobProfileRelationshipsResponseCollection';
+import { GetProfileBulkImportJobProfilesRelationshipsResponseCollection } from '../model/getProfileBulkImportJobProfilesRelationshipsResponseCollection';
 import { GetProfileImportJobResponseCollectionCompoundDocument } from '../model/getProfileImportJobResponseCollectionCompoundDocument';
 import { GetProfileImportJobResponseCompoundDocument } from '../model/getProfileImportJobResponseCompoundDocument';
-import { GetProfileListRelationshipsResponseCollection } from '../model/getProfileListRelationshipsResponseCollection';
+import { GetProfileListsRelationshipsResponseCollection } from '../model/getProfileListsRelationshipsResponseCollection';
 import { GetProfileResponseCollection } from '../model/getProfileResponseCollection';
 import { GetProfileResponseCollectionCompoundDocument } from '../model/getProfileResponseCollectionCompoundDocument';
 import { GetProfileResponseCompoundDocument } from '../model/getProfileResponseCompoundDocument';
-import { GetProfileSegmentRelationshipsResponseCollection } from '../model/getProfileSegmentRelationshipsResponseCollection';
+import { GetProfileSegmentsRelationshipsResponseCollection } from '../model/getProfileSegmentsRelationshipsResponseCollection';
 import { GetSegmentResponseCollection } from '../model/getSegmentResponseCollection';
 import { PatchProfileResponse } from '../model/patchProfileResponse';
 import { PostBulkProfileSuppressionsCreateJobResponse } from '../model/postBulkProfileSuppressionsCreateJobResponse';
@@ -525,7 +525,7 @@ export class ProfilesApi {
      * Get a bulk profile import job with the given job ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
      * @summary Get Bulk Import Profiles Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
     public async getBulkImportProfilesJob (jobId: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, include?: Array<'lists'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCompoundDocument;  }> {
 
@@ -590,7 +590,7 @@ export class ProfilesApi {
      * Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
      * @summary Get Bulk Import Profiles Jobs
      
-     * @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param fieldsProfileBulkImportJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
     public async getBulkImportProfilesJobs (options: { fieldsProfileBulkImportJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'failed_count' | 'completed_at' | 'expires_at' | 'started_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobResponseCollectionCompoundDocument;  }> {
 
@@ -657,7 +657,7 @@ export class ProfilesApi {
      * Get the bulk suppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
      * @summary Get Bulk Suppress Profiles Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsProfileSuppressionBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsProfileSuppressionBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getBulkSuppressProfilesJob (jobId: string, options: { fieldsProfileSuppressionBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponse;  }> {
 
@@ -714,7 +714,7 @@ export class ProfilesApi {
      * Get the status of all bulk profile suppression jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
      * @summary Get Bulk Suppress Profiles Jobs
      
-     * @param fieldsProfileSuppressionBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param fieldsProfileSuppressionBulkCreateJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
     public async getBulkSuppressProfilesJobs (options: { fieldsProfileSuppressionBulkCreateJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsCreateJobResponseCollection;  }> {
 
@@ -777,7 +777,7 @@ export class ProfilesApi {
      * Get the bulk unsuppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
      * @summary Get Bulk Unsuppress Profiles Job
      * @param jobId ID of the job to retrieve.
-     * @param fieldsProfileSuppressionBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsProfileSuppressionBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getBulkUnsuppressProfilesJob (jobId: string, options: { fieldsProfileSuppressionBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>,  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponse;  }> {
 
@@ -834,7 +834,7 @@ export class ProfilesApi {
      * Get all bulk unsuppress profiles jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
      * @summary Get Bulk Unsuppress Profiles Jobs
      
-     * @param fieldsProfileSuppressionBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param fieldsProfileSuppressionBulkDeleteJob For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
     public async getBulkUnsuppressProfilesJobs (options: { fieldsProfileSuppressionBulkDeleteJob?: Array<'status' | 'created_at' | 'total_count' | 'completed_count' | 'completed_at' | 'skipped_count'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created',  } = {}): Promise<{ response: AxiosResponse; body: GetBulkProfileSuppressionsRemoveJobResponseCollection;  }> {
 
@@ -897,7 +897,7 @@ export class ProfilesApi {
      * Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
      * @summary Get Errors for Bulk Import Profiles Job
      * @param id 
-     * @param fieldsImportError For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param fieldsImportError For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getErrorsForBulkImportProfilesJob (id: string, options: { fieldsImportError?: Array<'code' | 'title' | 'detail' | 'source' | 'source.pointer' | 'original_payload'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetImportErrorResponseCollection;  }> {
 
@@ -962,7 +962,7 @@ export class ProfilesApi {
      * Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
      * @summary Get List for Bulk Import Profiles Job
      * @param id 
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getListForBulkImportProfilesJob (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
 
@@ -1074,7 +1074,7 @@ export class ProfilesApi {
      * @param id 
      
      */
-    public async getListIdsForProfile (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> {
+    public async getListIdsForProfile (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileListsRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/profiles/{id}/relationships/lists'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1104,11 +1104,11 @@ export class ProfilesApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileListRelationshipsResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileListsRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileListRelationshipsResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileListsRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1125,7 +1125,7 @@ export class ProfilesApi {
      * Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
      * @summary Get Lists for Profile
      * @param id 
-     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getListsForProfile (id: string, options: { fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>,  } = {}): Promise<{ response: AxiosResponse; body: GetListResponseCollection;  }> {
 
@@ -1179,10 +1179,10 @@ export class ProfilesApi {
         return request(config)
     }
     /**
-     * Get the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+     * Get the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2025-01-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
      * @summary Get Profile
      * @param id 
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsList For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
     public async getProfile (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsList?: Array<'name' | 'created' | 'updated' | 'opt_in_process'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>, include?: Array<'lists' | 'segments'>,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCompoundDocument;  }> {
 
@@ -1255,9 +1255,9 @@ export class ProfilesApi {
      * Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
      * @summary Get Profile IDs for Bulk Import Profiles Job
      * @param id 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
-    public async getProfileIdsForBulkImportProfilesJob (id: string, options: { pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> {
+    public async getProfileIdsForBulkImportProfilesJob (id: string, options: { pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileBulkImportJobProfilesRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/profile-bulk-import-jobs/{id}/relationships/profiles'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1295,11 +1295,11 @@ export class ProfilesApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileImportJobProfileRelationshipsResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileBulkImportJobProfilesRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileImportJobProfileRelationshipsResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileBulkImportJobProfilesRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1313,10 +1313,10 @@ export class ProfilesApi {
         return request(config)
     }
     /**
-     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+     * Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2025-01-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
      * @summary Get Profiles
      
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
     public async getProfiles (options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'email' | '-email' | 'id' | '-id' | 'subscriptions.email.marketing.list_suppressions.timestamp' | '-subscriptions.email.marketing.list_suppressions.timestamp' | 'subscriptions.email.marketing.suppression.timestamp' | '-subscriptions.email.marketing.suppression.timestamp' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollectionCompoundDocument;  }> {
 
@@ -1387,7 +1387,7 @@ export class ProfilesApi {
      * Get profiles for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
      * @summary Get Profiles for Bulk Import Profiles Job
      * @param id 
-     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param additionalFieldsProfile Request additional fields not included by default in the response. Supported values: \&#39;subscriptions\&#39;, \&#39;predictive_analytics\&#39;* @param fieldsProfile For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getProfilesForBulkImportProfilesJob (id: string, options: { additionalFieldsProfile?: Array<'subscriptions' | 'predictive_analytics'>, fieldsProfile?: Array<'email' | 'phone_number' | 'external_id' | 'first_name' | 'last_name' | 'organization' | 'locale' | 'title' | 'image' | 'created' | 'updated' | 'last_event_date' | 'location' | 'location.address1' | 'location.address2' | 'location.city' | 'location.country' | 'location.latitude' | 'location.longitude' | 'location.region' | 'location.zip' | 'location.timezone' | 'location.ip' | 'properties' | 'subscriptions' | 'subscriptions.email' | 'subscriptions.email.marketing' | 'subscriptions.email.marketing.can_receive_email_marketing' | 'subscriptions.email.marketing.consent' | 'subscriptions.email.marketing.consent_timestamp' | 'subscriptions.email.marketing.last_updated' | 'subscriptions.email.marketing.method' | 'subscriptions.email.marketing.method_detail' | 'subscriptions.email.marketing.custom_method_detail' | 'subscriptions.email.marketing.double_optin' | 'subscriptions.email.marketing.suppression' | 'subscriptions.email.marketing.list_suppressions' | 'subscriptions.sms' | 'subscriptions.sms.marketing' | 'subscriptions.sms.marketing.can_receive_sms_marketing' | 'subscriptions.sms.marketing.consent' | 'subscriptions.sms.marketing.consent_timestamp' | 'subscriptions.sms.marketing.method' | 'subscriptions.sms.marketing.method_detail' | 'subscriptions.sms.marketing.last_updated' | 'subscriptions.sms.transactional' | 'subscriptions.sms.transactional.can_receive_sms_transactional' | 'subscriptions.sms.transactional.consent' | 'subscriptions.sms.transactional.consent_timestamp' | 'subscriptions.sms.transactional.method' | 'subscriptions.sms.transactional.method_detail' | 'subscriptions.sms.transactional.last_updated' | 'subscriptions.mobile_push' | 'subscriptions.mobile_push.marketing' | 'subscriptions.mobile_push.marketing.can_receive_push_marketing' | 'subscriptions.mobile_push.marketing.consent' | 'subscriptions.mobile_push.marketing.consent_timestamp' | 'predictive_analytics' | 'predictive_analytics.historic_clv' | 'predictive_analytics.predicted_clv' | 'predictive_analytics.total_clv' | 'predictive_analytics.historic_number_of_orders' | 'predictive_analytics.predicted_number_of_orders' | 'predictive_analytics.average_days_between_orders' | 'predictive_analytics.average_order_value' | 'predictive_analytics.churn_probability' | 'predictive_analytics.expected_date_of_next_order'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetProfileResponseCollection;  }> {
 
@@ -1458,7 +1458,7 @@ export class ProfilesApi {
      * @param id 
      
      */
-    public async getSegmentIdsForProfile (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> {
+    public async getSegmentIdsForProfile (id: string, ): Promise<{ response: AxiosResponse; body: GetProfileSegmentsRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/profiles/{id}/relationships/segments'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1488,11 +1488,11 @@ export class ProfilesApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileSegmentRelationshipsResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetProfileSegmentsRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileSegmentRelationshipsResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetProfileSegmentsRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -1509,7 +1509,7 @@ export class ProfilesApi {
      * Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
      * @summary Get Segments for Profile
      * @param id 
-     * @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsSegment For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getSegmentsForProfile (id: string, options: { fieldsSegment?: Array<'name' | 'definition' | 'definition.condition_groups' | 'created' | 'updated' | 'is_active' | 'is_processing' | 'is_starred'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSegmentResponseCollection;  }> {
 

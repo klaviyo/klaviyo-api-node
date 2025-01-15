@@ -15,6 +15,7 @@ import {AxiosRequestConfig, AxiosResponse} from "axios";
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
+import { FlowCreateQuery } from '../model/flowCreateQuery';
 import { FlowUpdateQuery } from '../model/flowUpdateQuery';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetFlowActionFlowMessageRelationshipResponseCollection } from '../model/getFlowActionFlowMessageRelationshipResponseCollection';
@@ -29,11 +30,12 @@ import { GetFlowMessageResponseCompoundDocument } from '../model/getFlowMessageR
 import { GetFlowMessageTemplateRelationshipResponse } from '../model/getFlowMessageTemplateRelationshipResponse';
 import { GetFlowResponse } from '../model/getFlowResponse';
 import { GetFlowResponseCollectionCompoundDocument } from '../model/getFlowResponseCollectionCompoundDocument';
-import { GetFlowResponseCompoundDocument } from '../model/getFlowResponseCompoundDocument';
-import { GetFlowTagRelationshipListResponseCollection } from '../model/getFlowTagRelationshipListResponseCollection';
+import { GetFlowTagsRelationshipsResponseCollection } from '../model/getFlowTagsRelationshipsResponseCollection';
+import { GetFlowV2ResponseCompoundDocument } from '../model/getFlowV2ResponseCompoundDocument';
 import { GetTagResponseCollection } from '../model/getTagResponseCollection';
 import { GetTemplateResponse } from '../model/getTemplateResponse';
 import { PatchFlowResponse } from '../model/patchFlowResponse';
+import { PostFlowV2Response } from '../model/postFlowV2Response';
 
 import { ObjectSerializer } from '../model/models';
 
@@ -78,6 +80,63 @@ export class FlowsApi {
         return this._basePath;
     }
 
+    /**
+     * Create a new flow using an encoded flow definition.  New objects within the flow definition, such as actions, will need to use a `temporary_id` field for identification. These will be replaced with traditional `id` fields after successful creation.  A successful request will return the new definition to you.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `100/d`  **Scopes:** `flows:write`
+     * @summary Create Flow
+     * @param flowCreateQuery Creates a Flow from parameters
+     * @param additionalFieldsFlow Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;
+     */
+    public async createFlow (flowCreateQuery: FlowCreateQuery, options: { additionalFieldsFlow?: Array<'definition'>,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowV2Response;  }> {
+
+        const localVarPath = this.basePath + '/api/flows';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'flowCreateQuery' is not null or undefined
+        if (flowCreateQuery === null || flowCreateQuery === undefined) {
+            throw new Error('Required parameter flowCreateQuery was null or undefined when calling createFlow.');
+        }
+
+        if (options.additionalFieldsFlow !== undefined) {
+            localVarQueryParameters['additional-fields[flow]'] = ObjectSerializer.serialize(options.additionalFieldsFlow, "Array<'definition'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(flowCreateQuery, "FlowCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostFlowV2Response;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostFlowV2Response");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
     /**
      * Delete a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write`
      * @summary Delete Flow
@@ -134,7 +193,7 @@ export class FlowsApi {
      * Get the flow action for a flow message with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Action for Flow Message
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getActionForFlowMessage (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponse;  }> {
 
@@ -241,12 +300,12 @@ export class FlowsApi {
         return request(config)
     }
     /**
-     * Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Flow action relationships can be sorted by the following fields, in ascending and descending order: `id`,  `status`, `created`, `updated`  Use filters to narrow your results.  Returns a maximum of 50 flow action relationships per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Returns a maximum of 100 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Action IDs for Flow
-     * @param id ID of the Flow to update. Ex: XVTP5Q
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;action_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageSize Default: 50. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param id 
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
-    public async getActionIdsForFlow (id: string, options: { filter?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }> {
+    public async getActionIdsForFlow (id: string, options: { filter?: string, pageCursor?: string, pageSize?: number, sort?: 'action_type' | '-action_type' | 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowFlowActionRelationshipListResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/flows/{id}/relationships/flow-actions'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -269,12 +328,16 @@ export class FlowsApi {
             localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
         }
 
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
         if (options.pageSize !== undefined) {
             localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
         }
 
         if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated'");
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'action_type' | '-action_type' | 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated'");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -309,7 +372,7 @@ export class FlowsApi {
      * Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Actions for Flow
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
     public async getActionsForFlow (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'action_type' | '-action_type' | 'created' | '-created' | 'id' | '-id' | 'status' | '-status' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCollection;  }> {
 
@@ -382,9 +445,9 @@ export class FlowsApi {
      * Get a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Flow
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param additionalFieldsFlow Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;* @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
-    public async getFlow (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsTag?: Array<'name'>, include?: Array<'flow-actions' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }> {
+    public async getFlow (id: string, options: { additionalFieldsFlow?: Array<'definition'>, fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type' | 'definition' | 'definition.triggers' | 'definition.profile_filter' | 'definition.profile_filter.condition_groups' | 'definition.actions' | 'definition.entry_action_id'>, fieldsTag?: Array<'name'>, include?: Array<'flow-actions' | 'tags'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowV2ResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/flows/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -403,12 +466,16 @@ export class FlowsApi {
             throw new Error('Required parameter id was null or undefined when calling getFlow.');
         }
 
+        if (options.additionalFieldsFlow !== undefined) {
+            localVarQueryParameters['additional-fields[flow]'] = ObjectSerializer.serialize(options.additionalFieldsFlow, "Array<'definition'>");
+        }
+
         if (options.fieldsFlowAction !== undefined) {
             localVarQueryParameters['fields[flow-action]'] = ObjectSerializer.serialize(options.fieldsFlowAction, "Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>");
         }
 
         if (options.fieldsFlow !== undefined) {
-            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>");
+            localVarQueryParameters['fields[flow]'] = ObjectSerializer.serialize(options.fieldsFlow, "Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type' | 'definition' | 'definition.triggers' | 'definition.profile_filter' | 'definition.profile_filter.condition_groups' | 'definition.actions' | 'definition.entry_action_id'>");
         }
 
         if (options.fieldsTag !== undefined) {
@@ -430,11 +497,11 @@ export class FlowsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowResponseCompoundDocument;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowV2ResponseCompoundDocument;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowResponseCompoundDocument");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowV2ResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -451,7 +518,7 @@ export class FlowsApi {
      * Get a flow action from a flow with the given flow action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Flow Action
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
     public async getFlowAction (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, include?: Array<'flow' | 'flow-messages'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionResponseCompoundDocument;  }> {
 
@@ -517,10 +584,83 @@ export class FlowsApi {
         return request(config)
     }
     /**
+     * Get all flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+     * @summary Get Messages For Flow Action
+     * @param id 
+     * @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
+     */
+    public async getFlowActionMessages (id: string, options: { fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/flow-actions/{id}/flow-messages'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getFlowActionMessages.');
+        }
+
+        if (options.fieldsFlowMessage !== undefined) {
+            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        if (options.sort !== undefined) {
+            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated'");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
      * Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Flow for Flow Action
      * @param id 
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getFlowForFlowAction (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponse;  }> {
 
@@ -630,7 +770,7 @@ export class FlowsApi {
      * Get the flow message of a flow with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Flow Message
      * @param id 
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
     public async getFlowMessage (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'flow-action' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCompoundDocument;  }> {
 
@@ -699,7 +839,7 @@ export class FlowsApi {
      * Get all flows in an account.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Flows
      
-     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
     public async getFlows (options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'flow-actions' | 'tags'>, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'status' | '-status' | 'trigger_type' | '-trigger_type' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCollectionCompoundDocument;  }> {
 
@@ -778,7 +918,7 @@ export class FlowsApi {
      * Get all relationships for flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
      * @summary Get Message IDs for Flow Action
      * @param id 
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sorting
      */
     public async getMessageIdsForFlowAction (id: string, options: { filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowActionFlowMessageRelationshipResponseCollection;  }> {
 
@@ -844,81 +984,12 @@ export class FlowsApi {
         return request(config)
     }
     /**
-     * Get all flow messages associated with the given action ID.  Flow messages can be sorted by the following fields, in ascending and descending order:  ascending: `id`,  `name`, `created`, `updated` descending: `-id`,  `-name`, `-created`, `-updated`  Returns a maximum of 50 flows per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: `page[size]` and `page[number]`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-     * @summary Get Messages for Flow Action
-     * @param id 
-     * @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageSize Default: 50. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sorting
-     */
-    public async getMessagesForFlowAction (id: string, options: { fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, filter?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> {
-
-        const localVarPath = this.basePath + '/api/flow-actions/{id}/flow-messages'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/vnd.api+json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getMessagesForFlowAction.');
-        }
-
-        if (options.fieldsFlowMessage !== undefined) {
-            localVarQueryParameters['fields[flow-message]'] = ObjectSerializer.serialize(options.fieldsFlowMessage, "Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>");
-        }
-
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
-
-        if (options.pageSize !== undefined) {
-            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
-        }
-
-        if (options.sort !== undefined) {
-            localVarQueryParameters['sort'] = ObjectSerializer.serialize(options.sort, "'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated'");
-        }
-
-        queryParamPreProcessor(localVarQueryParameters)
-
-        let config: AxiosRequestConfig = {
-            method: 'GET',
-            url: localVarPath,
-            headers: localVarHeaderParams,
-            params: localVarQueryParameters,
-        }
-
-        await this.session.applyToRequest(config)
-
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCollection;  }> => {
-            try {
-                const axiosResponse = await this.session.requestWithRetry(config)
-                let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowMessageResponseCollection");
-                return ({response: axiosResponse, body: body});
-            } catch (error) {
-                if (await this.session.refreshAndRetry(error, retried)) {
-                    await this.session.applyToRequest(config)
-                    return request(config, true)
-                }
-                throw error
-            }
-        }
-
-        return request(config)
-    }
-    /**
      * Return the tag IDs of all tags associated with the given flow.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
      * @summary Get Tag IDs for Flow
      * @param id 
      
      */
-    public async getTagIdsForFlow (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }> {
+    public async getTagIdsForFlow (id: string, ): Promise<{ response: AxiosResponse; body: GetFlowTagsRelationshipsResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/flows/{id}/relationships/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -948,11 +1019,11 @@ export class FlowsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowTagRelationshipListResponseCollection;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFlowTagsRelationshipsResponseCollection;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowTagRelationshipListResponseCollection");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFlowTagsRelationshipsResponseCollection");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -969,7 +1040,7 @@ export class FlowsApi {
      * Return all tags associated with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
      * @summary Get Tags for Flow
      * @param id 
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getTagsForFlow (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
@@ -1026,7 +1097,7 @@ export class FlowsApi {
      * Return the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
      * @summary Get Template for Flow Message
      * @param id 
-     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getTemplateForFlowMessage (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
 
@@ -1255,6 +1326,16 @@ FlowsApi.prototype.getFlowActions = FlowsApi.prototype.getActionsForFlow
 
 export interface FlowsApi {
     /**
+     * Alias of {@link FlowsApi.getFlowActionMessages}
+     *
+     * @deprecated Use {@link FlowsApi.getFlowActionMessages} instead
+     */
+    getMessagesForFlowAction: typeof FlowsApi.prototype.getFlowActionMessages;
+}
+FlowsApi.prototype.getMessagesForFlowAction = FlowsApi.prototype.getFlowActionMessages
+
+export interface FlowsApi {
+    /**
      * Alias of {@link FlowsApi.getFlowForFlowAction}
      *
      * @deprecated Use {@link FlowsApi.getFlowForFlowAction} instead
@@ -1282,16 +1363,6 @@ export interface FlowsApi {
     getFlowActionRelationshipsMessages: typeof FlowsApi.prototype.getMessageIdsForFlowAction;
 }
 FlowsApi.prototype.getFlowActionRelationshipsMessages = FlowsApi.prototype.getMessageIdsForFlowAction
-
-export interface FlowsApi {
-    /**
-     * Alias of {@link FlowsApi.getMessagesForFlowAction}
-     *
-     * @deprecated Use {@link FlowsApi.getMessagesForFlowAction} instead
-     */
-    getFlowActionMessages: typeof FlowsApi.prototype.getMessagesForFlowAction;
-}
-FlowsApi.prototype.getFlowActionMessages = FlowsApi.prototype.getMessagesForFlowAction
 
 export interface FlowsApi {
     /**

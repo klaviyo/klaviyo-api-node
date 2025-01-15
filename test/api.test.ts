@@ -4,8 +4,8 @@ import {
   ApiKeySession,
   CampaignMessageCreateQueryResourceObjectAttributes,
   CampaignResponseObjectResourceAttributes,
-  EmailSendOptionsSubObject,
-  EmailTrackingOptionsSubObject,
+  EmailTrackingOptions,
+  EmailSendOptions,
   OAuthBasicSession,
   ObjectSerializer,
   RetryWithExponentialBackoff,
@@ -15,13 +15,13 @@ import axios, { AxiosError } from "axios";
 jest.mock("axios", () => jest.fn());
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 const mockIsAxiosError = (payload: any): payload is AxiosError => {
-    return jest.requireActual<typeof axios>('axios').isAxiosError(payload);
+  return jest.requireActual<typeof axios>("axios").isAxiosError(payload);
 };
 
-Object.defineProperty(axios, 'isAxiosError', {
-    value: mockIsAxiosError,
-    configurable: true,
-    writable: true,
+Object.defineProperty(axios, "isAxiosError", {
+  value: mockIsAxiosError,
+  configurable: true,
+  writable: true,
 });
 
 beforeEach(() => {
@@ -87,11 +87,14 @@ describe("retry", () => {
 describe("Serialize", () => {
   test("an oneOf item serializes correctly", async () => {
     let campaign: CampaignMessageCreateQueryResourceObjectAttributes = {
-      channel: "email",
-      content: {
-        subject: "Hello",
-        fromEmail: "foo.bar@example.com",
-        fromLabel: "Foo Bar",
+      definition: {
+        label: "labelxyz",
+        channel: "email",
+        content: {
+          subject: "Hello",
+          fromEmail: "foo.bar@example.com",
+          fromLabel: "Foo Bar",
+        },
       },
     };
     const serialized = ObjectSerializer.serialize(
@@ -99,11 +102,14 @@ describe("Serialize", () => {
       "CampaignMessageCreateQueryResourceObjectAttributes"
     );
     expect(serialized).toEqual({
-      channel: "email",
-      content: {
-        subject: "Hello",
-        from_email: "foo.bar@example.com",
-        from_label: "Foo Bar",
+      definition: {
+        label: "labelxyz",
+        channel: "email",
+        content: {
+          subject: "Hello",
+          from_email: "foo.bar@example.com",
+          from_label: "Foo Bar",
+        },
       },
     });
   });
@@ -126,18 +132,16 @@ describe("deserialize", () => {
       tracking_options: {
         is_tracking_clicks: true,
         is_tracking_opens: true,
-        add_tracking_params: true,
-        custom_tracking_params: [],
+        add_utm: true,
+        utm_params: [],
       },
       send_strategy: {
         method: "static",
-        options_static: {
-          datetime: "2024-05-22T19:14:32+00:00",
+        options: {
           is_local: false,
           send_past_recipients_immediately: null,
         },
-        options_throttled: null,
-        options_sto: null,
+        datetime: "2024-05-22T19:14:32+00:00",
       },
       created_at: "2024-05-22T19:14:32.047339+00:00",
       scheduled_at: null,
@@ -149,9 +153,7 @@ describe("deserialize", () => {
         serialized,
         "CampaignResponseObjectResourceAttributes"
       );
-    expect(deserialize.trackingOptions).toBeInstanceOf(
-      EmailTrackingOptionsSubObject
-    );
-    expect(deserialize.sendOptions).toBeInstanceOf(EmailSendOptionsSubObject);
+    expect(deserialize.trackingOptions).toBeInstanceOf(EmailTrackingOptions);
+    expect(deserialize.sendOptions).toBeInstanceOf(EmailSendOptions);
   });
 });

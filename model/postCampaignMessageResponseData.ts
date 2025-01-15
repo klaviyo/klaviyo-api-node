@@ -11,17 +11,17 @@
 
 import { RequestFile } from './models';
 import { CampaignMessageEnum } from './campaignMessageEnum';
-import { CampaignMessageResponseObjectResourceAttributes } from './campaignMessageResponseObjectResourceAttributes';
-import { GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships } from './getCampaignMessageResponseCompoundDocumentDataAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
+import { PostCampaignMessageResponseDataAttributes } from './postCampaignMessageResponseDataAttributes';
+import { PostCampaignMessageResponseDataRelationships } from './postCampaignMessageResponseDataRelationships';
 export class PostCampaignMessageResponseData {
     'type': CampaignMessageEnum | 'campaign-message';
     /**
     * The message ID
     */
     'id': string;
-    'attributes': CampaignMessageResponseObjectResourceAttributes;
-    'relationships'?: GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships;
+    'attributes': PostCampaignMessageResponseDataAttributes;
+    'relationships'?: PostCampaignMessageResponseDataRelationships;
     'links': ObjectLinks;
 
 
@@ -39,12 +39,12 @@ export class PostCampaignMessageResponseData {
         {
             "name": "attributes",
             "baseName": "attributes",
-            "type": "CampaignMessageResponseObjectResourceAttributes"
+            "type": "PostCampaignMessageResponseDataAttributes"
         },
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetCampaignMessageResponseCompoundDocumentDataAllOfRelationships"
+            "type": "PostCampaignMessageResponseDataRelationships"
         },
         {
             "name": "links",

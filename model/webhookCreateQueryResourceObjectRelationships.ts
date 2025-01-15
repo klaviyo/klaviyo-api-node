@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { WebhookCreateQueryResourceObjectRelationshipsWebhookTopics } from './webhookCreateQueryResourceObjectRelationshipsWebhookTopics';
 export class WebhookCreateQueryResourceObjectRelationships {
-    'webhookTopics'?: WebhookCreateQueryResourceObjectRelationshipsWebhookTopics;
+    'webhookTopics': WebhookCreateQueryResourceObjectRelationshipsWebhookTopics;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
