@@ -4,7 +4,7 @@ import {
   ApiKeySession,
   CampaignMessageCreateQueryResourceObjectAttributes,
   CampaignResponseObjectResourceAttributes,
-  EmailTrackingOptions,
+  CampaignsEmailTrackingOptions,
   EmailSendOptions,
   OAuthBasicSession,
   ObjectSerializer,
@@ -132,8 +132,8 @@ describe("deserialize", () => {
       tracking_options: {
         is_tracking_clicks: true,
         is_tracking_opens: true,
-        add_utm: true,
-        utm_params: [],
+        add_tracking_params: true,
+        custom_tracking_params: [],
       },
       send_strategy: {
         method: "static",
@@ -153,7 +153,9 @@ describe("deserialize", () => {
         serialized,
         "CampaignResponseObjectResourceAttributes"
       );
-    expect(deserialize.trackingOptions).toBeInstanceOf(EmailTrackingOptions);
+    expect(deserialize.trackingOptions).toBeInstanceOf(
+      CampaignsEmailTrackingOptions
+    );
     expect(deserialize.sendOptions).toBeInstanceOf(EmailSendOptions);
   });
 });

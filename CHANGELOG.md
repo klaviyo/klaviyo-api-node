@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [17.0.0] - revision 2025-01-15
+### Changed
+- ISO strings are now accepted for date fields
+- **Breaking:** Renamed classes
+  - `BaseEventCreateQueryResourceObject` -> `BaseEventCreateQueryBulkEntryResourceObject`
+  - `BaseEventCreateQueryResourceObjectAttributes` -> `BaseEventCreateQueryBulkEntryResourceObjectAttributes`
+  - `EmailTrackingOptions` -> `CampaignsEmailTrackingOptions` OR `FlowEmailTrackingOptions`
+  - `ProfileMetricCondition` -> `SegmentsProfileMetricCondition` OR `FlowsProfileMetricCondition`
+  - `SMSTrackingOptions` -> `FlowsSMSTrackingOptions` OR `CampaignsSMSTrackingOptions`
+- **Breaking:** Removed classes
+  - `UnionConditionGroup`
+  - `UnionConditionGroupConditionsInner`
+  - `UnionFilter`
+  - `UnionPositiveNumericFilter`
+  - `UnionPositiveNumericFilterOperator`
+  - `ProfileMetricConditionTimeframeFilter`
+
 ## [16.0.0] - revision 2025-01-15
 ### Added
 - Get and Update Reviews APIs

@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { AbTestActionData } from './abTestActionData';
 import { AbTestEnum } from './abTestEnum';
 import { Link } from './link';
 export class AbTestAction {
@@ -23,7 +24,7 @@ export class AbTestAction {
     'temporaryId'?: string | null;
     'type': AbTestEnum | 'ab-test';
     'links'?: Link;
-    'data'?: any | null;
+    'data': AbTestActionData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -50,7 +51,7 @@ export class AbTestAction {
         {
             "name": "data",
             "baseName": "data",
-            "type": "any"
+            "type": "AbTestActionData"
         }    ];
 
     static getAttributeTypeMap() {

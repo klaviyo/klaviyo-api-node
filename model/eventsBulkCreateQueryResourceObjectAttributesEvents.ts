@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { BaseEventCreateQueryResourceObject } from './baseEventCreateQueryResourceObject';
+import { BaseEventCreateQueryBulkEntryResourceObject } from './baseEventCreateQueryBulkEntryResourceObject';
 export class EventsBulkCreateQueryResourceObjectAttributesEvents {
-    'data': Array<BaseEventCreateQueryResourceObject>;
+    'data': Array<BaseEventCreateQueryBulkEntryResourceObject>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<BaseEventCreateQueryResourceObject>"
+            "type": "Array<BaseEventCreateQueryBulkEntryResourceObject>"
         }    ];
 
     static getAttributeTypeMap() {

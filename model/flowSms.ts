@@ -10,7 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { UnionFilter } from './unionFilter';
+import { FlowSmsAdditionalFilters } from './flowSmsAdditionalFilters';
 import { UtmParam } from './utmParam';
 export class FlowSms {
     'body': string;
@@ -32,7 +32,7 @@ export class FlowSms {
     'transactional'?: boolean = false;
     'addTrackingParams'?: boolean = false;
     'customTrackingParams'?: Array<UtmParam> | null;
-    'additionalFilters'?: UnionFilter;
+    'additionalFilters'?: FlowSmsAdditionalFilters | null;
     'name'?: string | null;
     'id'?: string | null;
 
@@ -106,7 +106,7 @@ export class FlowSms {
         {
             "name": "additionalFilters",
             "baseName": "additional_filters",
-            "type": "UnionFilter"
+            "type": "FlowSmsAdditionalFilters"
         },
         {
             "name": "name",

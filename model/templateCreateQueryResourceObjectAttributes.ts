@@ -27,6 +27,10 @@ export class TemplateCreateQueryResourceObjectAttributes {
     * The plaintext version of the template
     */
     'text'?: string | null;
+    /**
+    * The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
+    */
+    'amp'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -48,6 +52,11 @@ export class TemplateCreateQueryResourceObjectAttributes {
         {
             "name": "text",
             "baseName": "text",
+            "type": "string"
+        },
+        {
+            "name": "amp",
+            "baseName": "amp",
             "type": "string"
         }    ];
 
