@@ -1,6 +1,6 @@
 # Klaviyo Typescript SDK
 
-- SDK version: 16.0.0
+- SDK version: 17.0.0
 
 - Revision: 2025-01-15
 
@@ -52,7 +52,7 @@ This SDK is organized into the following resources:
 
 You can install this library using `npm`.
 
-`npm install klaviyo-api@16.0.0`
+`npm install klaviyo-api@17.0.0`
 
 
 ## source code
@@ -120,6 +120,10 @@ profilesApi.createProfile(profile).then(result => {
 });
 
 ```
+
+> [!IMPORTANT]
+> In this SDK, properties in request and response bodies use `camelCase`, rather than `snake_case`, which is used by the API.
+> For example, in the `createProfile` payload, you would supply `phoneNumber` instead of `phone_number`.
 
 ### Retry Options
 
@@ -1205,6 +1209,66 @@ CatalogsApi.getCatalogItemBulkCreateJobs(options)
 ```
 _______________________________
 
+[Get Bulk Create Categories Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_create_categories_job)
+
+```typescript
+CatalogsApi.getBulkCreateCategoriesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCreateCategoriesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkCreateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Create Categories Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_create_categories_jobs)
+
+```typescript
+CatalogsApi.getBulkCreateCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCreateCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkCreateJobs(options)
+```
+_______________________________
+
+[Get Bulk Create Variants Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_create_variants_job)
+
+```typescript
+CatalogsApi.getBulkCreateVariantsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCreateVariantsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkCreateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Create Variants Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_create_variants_jobs)
+
+```typescript
+CatalogsApi.getBulkCreateVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCreateVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkCreateJobs(options)
+```
+_______________________________
+
 [Get Bulk Delete Catalog Items Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_delete_catalog_items_job)
 
 ```typescript
@@ -1235,6 +1299,66 @@ CatalogsApi.getCatalogItemBulkDeleteJobs(options)
 ```
 _______________________________
 
+[Get Bulk Delete Categories Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_delete_categories_job)
+
+```typescript
+CatalogsApi.getBulkDeleteCategoriesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getDeleteCategoriesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkDeleteJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Delete Categories Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_delete_categories_jobs)
+
+```typescript
+CatalogsApi.getBulkDeleteCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getDeleteCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkDeleteJobs(options)
+```
+_______________________________
+
+[Get Bulk Delete Variants Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_delete_variants_job)
+
+```typescript
+CatalogsApi.getBulkDeleteVariantsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getDeleteVariantsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkDeleteJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Delete Variants Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_delete_variants_jobs)
+
+```typescript
+CatalogsApi.getBulkDeleteVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getDeleteVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkDeleteJobs(options)
+```
+_______________________________
+
 [Get Bulk Update Catalog Items Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_update_catalog_items_job)
 
 ```typescript
@@ -1262,6 +1386,66 @@ CatalogsApi.getUpdateItemsJobs(options)
 ##### Method alias:
 ```typescript
 CatalogsApi.getCatalogItemBulkUpdateJobs(options)
+```
+_______________________________
+
+[Get Bulk Update Categories Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_update_categories_job)
+
+```typescript
+CatalogsApi.getBulkUpdateCategoriesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getUpdateCategoriesJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkUpdateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Update Categories Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_update_categories_jobs)
+
+```typescript
+CatalogsApi.getBulkUpdateCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getUpdateCategoriesJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogCategoryBulkUpdateJobs(options)
+```
+_______________________________
+
+[Get Bulk Update Variants Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_update_variants_job)
+
+```typescript
+CatalogsApi.getBulkUpdateVariantsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getUpdateVariantsJob(jobId: string, options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkUpdateJob(jobId: string, options)
+```
+_______________________________
+
+[Get Bulk Update Variants Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_bulk_update_variants_jobs)
+
+```typescript
+CatalogsApi.getBulkUpdateVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getUpdateVariantsJobs(options)
+```
+##### Method alias:
+```typescript
+CatalogsApi.getCatalogVariantBulkUpdateJobs(options)
 ```
 _______________________________
 
@@ -1329,94 +1513,6 @@ CatalogsApi.getCatalogItemRelationshipsCategories(id: string, options)
 ```
 _______________________________
 
-[Get Create Categories Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_create_categories_job)
-
-```typescript
-CatalogsApi.getCreateCategoriesJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogCategoryBulkCreateJob(jobId: string, options)
-```
-_______________________________
-
-[Get Create Categories Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_create_categories_jobs)
-
-```typescript
-CatalogsApi.getCreateCategoriesJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogCategoryBulkCreateJobs(options)
-```
-_______________________________
-
-[Get Create Variants Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_create_variants_job)
-
-```typescript
-CatalogsApi.getCreateVariantsJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogVariantBulkCreateJob(jobId: string, options)
-```
-_______________________________
-
-[Get Create Variants Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_create_variants_jobs)
-
-```typescript
-CatalogsApi.getCreateVariantsJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogVariantBulkCreateJobs(options)
-```
-_______________________________
-
-[Get Delete Categories Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_delete_categories_job)
-
-```typescript
-CatalogsApi.getDeleteCategoriesJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogCategoryBulkDeleteJob(jobId: string, options)
-```
-_______________________________
-
-[Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_delete_categories_jobs)
-
-```typescript
-CatalogsApi.getDeleteCategoriesJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogCategoryBulkDeleteJobs(options)
-```
-_______________________________
-
-[Get Delete Variants Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_delete_variants_job)
-
-```typescript
-CatalogsApi.getDeleteVariantsJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogVariantBulkDeleteJob(jobId: string, options)
-```
-_______________________________
-
-[Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_delete_variants_jobs)
-
-```typescript
-CatalogsApi.getDeleteVariantsJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogVariantBulkDeleteJobs(options)
-```
-_______________________________
-
 [Get Item IDs for Catalog Category](https://developers.klaviyo.com/en/v2025-01-15/reference/get_item_ids_for_catalog_category)
 
 ```typescript
@@ -1436,50 +1532,6 @@ CatalogsApi.getItemsForCatalogCategory(id: string, options)
 ##### Method alias:
 ```typescript
 CatalogsApi.getCatalogCategoryItems(id: string, options)
-```
-_______________________________
-
-[Get Update Categories Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_update_categories_job)
-
-```typescript
-CatalogsApi.getUpdateCategoriesJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogCategoryBulkUpdateJob(jobId: string, options)
-```
-_______________________________
-
-[Get Update Categories Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_update_categories_jobs)
-
-```typescript
-CatalogsApi.getUpdateCategoriesJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogCategoryBulkUpdateJobs(options)
-```
-_______________________________
-
-[Get Update Variants Job](https://developers.klaviyo.com/en/v2025-01-15/reference/get_update_variants_job)
-
-```typescript
-CatalogsApi.getUpdateVariantsJob(jobId: string, options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogVariantBulkUpdateJob(jobId: string, options)
-```
-_______________________________
-
-[Get Update Variants Jobs](https://developers.klaviyo.com/en/v2025-01-15/reference/get_update_variants_jobs)
-
-```typescript
-CatalogsApi.getUpdateVariantsJobs(options)
-```
-##### Method alias:
-```typescript
-CatalogsApi.getCatalogVariantBulkUpdateJobs(options)
 ```
 _______________________________
 
@@ -1673,7 +1725,7 @@ _______________________________
 [Get Coupon Codes](https://developers.klaviyo.com/en/v2025-01-15/reference/get_coupon_codes)
 
 ```typescript
-CouponsApi.getCouponCodes(options)
+CouponsApi.getCouponCodes(filter: string, options)
 ```
 _______________________________
 

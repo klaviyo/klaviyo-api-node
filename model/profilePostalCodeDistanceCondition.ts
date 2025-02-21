@@ -10,8 +10,8 @@
  */
 
 import { RequestFile } from './models';
+import { ProfilePostalCodeDistanceConditionFilter } from './profilePostalCodeDistanceConditionFilter';
 import { ProfilePostalCodeDistanceEnum } from './profilePostalCodeDistanceEnum';
-import { UnionPositiveNumericFilter } from './unionPositiveNumericFilter';
 export class ProfilePostalCodeDistanceCondition {
     'type': ProfilePostalCodeDistanceEnum | 'profile-postal-code-distance';
     'countryCode': string;
@@ -20,7 +20,7 @@ export class ProfilePostalCodeDistanceCondition {
     * Units for profile postal code distance conditions.
     */
     'unit': ProfilePostalCodeDistanceCondition.UnitEnum | 'kilometers' | 'miles';
-    'filter': UnionPositiveNumericFilter;
+    'filter': ProfilePostalCodeDistanceConditionFilter;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -47,7 +47,7 @@ export class ProfilePostalCodeDistanceCondition {
         {
             "name": "filter",
             "baseName": "filter",
-            "type": "UnionPositiveNumericFilter"
+            "type": "ProfilePostalCodeDistanceConditionFilter"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,7 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { UnionFilter } from './unionFilter';
+import { FlowPushNotificationAdditionalFilters } from './flowPushNotificationAdditionalFilters';
 export class FlowPushNotification {
     'title'?: string | null;
     'body': string;
@@ -30,14 +30,9 @@ export class FlowPushNotification {
     'onOpen'?: FlowPushNotification.OnOpenEnum | 'home' | 'link' = FlowPushNotification.OnOpenEnum.Home;
     'iosLink'?: string | null;
     'androidLink'?: string | null;
-    /**
-    * The type of push notification to send.
-    */
-    'pushType'?: FlowPushNotification.PushTypeEnum | 'silent' | 'standard' | null;
-    'kvPairs'?: object | null;
     'conversionMetricId'?: string | null;
     'smartSendingEnabled'?: boolean = true;
-    'additionalFilters'?: UnionFilter;
+    'additionalFilters'?: FlowPushNotificationAdditionalFilters | null;
     'name'?: string | null;
     'id'?: string | null;
 
@@ -89,16 +84,6 @@ export class FlowPushNotification {
             "type": "string"
         },
         {
-            "name": "pushType",
-            "baseName": "push_type",
-            "type": "FlowPushNotification.PushTypeEnum"
-        },
-        {
-            "name": "kvPairs",
-            "baseName": "kv_pairs",
-            "type": "object"
-        },
-        {
             "name": "conversionMetricId",
             "baseName": "conversion_metric_id",
             "type": "string"
@@ -111,7 +96,7 @@ export class FlowPushNotification {
         {
             "name": "additionalFilters",
             "baseName": "additional_filters",
-            "type": "UnionFilter"
+            "type": "FlowPushNotificationAdditionalFilters"
         },
         {
             "name": "name",
@@ -133,9 +118,5 @@ export namespace FlowPushNotification {
     export enum OnOpenEnum {
         Home = <any> 'home',
         Link = <any> 'link'
-    }
-    export enum PushTypeEnum {
-        Silent = <any> 'silent',
-        Standard = <any> 'standard'
     }
 }

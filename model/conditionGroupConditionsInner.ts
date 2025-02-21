@@ -14,8 +14,6 @@ import { NumericOperatorFilter } from './numericOperatorFilter';
 import { ProfileHasGroupMembershipCondition } from './profileHasGroupMembershipCondition';
 import { ProfileMarketingConsentCondition } from './profileMarketingConsentCondition';
 import { ProfileMarketingConsentConditionConsent } from './profileMarketingConsentConditionConsent';
-import { ProfileMetricCondition } from './profileMetricCondition';
-import { ProfileMetricConditionTimeframeFilter } from './profileMetricConditionTimeframeFilter';
 import { ProfileMetricPropertyFilter } from './profileMetricPropertyFilter';
 import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCondition';
 import { ProfilePostalCodeDistanceCondition } from './profilePostalCodeDistanceCondition';
@@ -25,4 +23,6 @@ import { ProfilePredictiveAnalyticsStringCondition } from './profilePredictiveAn
 import { ProfilePredictiveAnalyticsStringFilter } from './profilePredictiveAnalyticsStringFilter';
 import { ProfilePropertyCondition } from './profilePropertyCondition';
 import { ProfileRegionCondition } from './profileRegionCondition';
-export type ConditionGroupConditionsInner = ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileMetricCondition | ProfileMarketingConsentCondition | ProfilePostalCodeDistanceCondition | ProfilePropertyCondition | ProfileRegionCondition | ProfilePredictiveAnalyticsNumericCondition | ProfilePredictiveAnalyticsStringCondition;
+import { SegmentsProfileMetricCondition } from './segmentsProfileMetricCondition';
+import { SegmentsProfileMetricConditionTimeframeFilter } from './segmentsProfileMetricConditionTimeframeFilter';
+export type ConditionGroupConditionsInner = ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | SegmentsProfileMetricCondition | ProfileMarketingConsentCondition | ProfilePostalCodeDistanceCondition | ProfilePropertyCondition | ProfileRegionCondition | ProfilePredictiveAnalyticsNumericCondition | ProfilePredictiveAnalyticsStringCondition;

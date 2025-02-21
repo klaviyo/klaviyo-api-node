@@ -16,7 +16,7 @@ export class UpdateProfileActionData {
     /**
     * Flow action status.
     */
-    'status'?: UpdateProfileActionData.StatusEnum | 'draft' | 'live' | 'manual' | null = UpdateProfileActionData.StatusEnum.Draft;
+    'status'?: UpdateProfileActionData.StatusEnum | 'draft' | 'live' | 'manual' = UpdateProfileActionData.StatusEnum.Draft;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

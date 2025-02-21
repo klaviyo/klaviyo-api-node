@@ -10,9 +10,9 @@
  */
 
 import { RequestFile } from './models';
-import { UnionFilter } from './unionFilter';
+import { TriggerBranchActionDataTriggerFilter } from './triggerBranchActionDataTriggerFilter';
 export class TriggerBranchActionData {
-    'triggerFilter': UnionFilter;
+    'triggerFilter': TriggerBranchActionDataTriggerFilter | null;
     'triggerId': string;
     /**
     * Trigger type.
@@ -21,14 +21,14 @@ export class TriggerBranchActionData {
     /**
     * Date trigger type.
     */
-    'triggerSubtype'?: TriggerBranchActionData.TriggerSubtypeEnum | 'custom-object' | 'profile-property' | null;
+    'triggerSubtype'?: TriggerBranchActionData.TriggerSubtypeEnum | 'custom-object' | 'profile-property' | 'profile-trait' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "triggerFilter",
             "baseName": "trigger_filter",
-            "type": "UnionFilter"
+            "type": "TriggerBranchActionDataTriggerFilter"
         },
         {
             "name": "triggerId",
@@ -63,6 +63,7 @@ export namespace TriggerBranchActionData {
     }
     export enum TriggerSubtypeEnum {
         CustomObject = <any> 'custom-object',
-        ProfileProperty = <any> 'profile-property'
+        ProfileProperty = <any> 'profile-property',
+        ProfileTrait = <any> 'profile-trait'
     }
 }

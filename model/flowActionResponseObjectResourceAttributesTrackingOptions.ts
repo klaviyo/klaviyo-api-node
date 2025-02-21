@@ -10,7 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { EmailTrackingOptions } from './emailTrackingOptions';
-import { SMSTrackingOptions } from './sMSTrackingOptions';
+import { FlowEmailTrackingOptions } from './flowEmailTrackingOptions';
+import { FlowsSMSTrackingOptions } from './flowsSMSTrackingOptions';
 import { UtmParamInfo } from './utmParamInfo';
-export type FlowActionResponseObjectResourceAttributesTrackingOptions = EmailTrackingOptions | SMSTrackingOptions;
+export type FlowActionResponseObjectResourceAttributesTrackingOptions = FlowEmailTrackingOptions | FlowsSMSTrackingOptions;

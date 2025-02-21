@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { UnionFilter } from './unionFilter';
+import { ConditionalBranchActionDataProfileFilter } from './conditionalBranchActionDataProfileFilter';
 export class ConditionalBranchActionData {
-    'profileFilter': UnionFilter;
+    'profileFilter': ConditionalBranchActionDataProfileFilter | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "profileFilter",
             "baseName": "profile_filter",
-            "type": "UnionFilter"
+            "type": "ConditionalBranchActionDataProfileFilter"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,7 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { UnionFilter } from './unionFilter';
+import { FlowEmailAdditionalFilters } from './flowEmailAdditionalFilters';
 import { UtmParam } from './utmParam';
 export class FlowEmail {
     'fromEmail': string | null;
@@ -25,7 +25,7 @@ export class FlowEmail {
     'transactional'?: boolean = false;
     'addTrackingParams'?: boolean = false;
     'customTrackingParams'?: Array<UtmParam> | null;
-    'additionalFilters'?: UnionFilter;
+    'additionalFilters'?: FlowEmailAdditionalFilters | null;
     'name'?: string | null;
     'id'?: string | null;
 
@@ -94,7 +94,7 @@ export class FlowEmail {
         {
             "name": "additionalFilters",
             "baseName": "additional_filters",
-            "type": "UnionFilter"
+            "type": "FlowEmailAdditionalFilters"
         },
         {
             "name": "name",

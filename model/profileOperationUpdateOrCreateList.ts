@@ -20,7 +20,7 @@ export class ProfileOperationUpdateOrCreateList {
     /**
     * The type of operation to perform on a list property.
     */
-    'propertyOperation': ProfileOperationUpdateOrCreateList.PropertyOperationEnum | 'add' | 'remove';
+    'propertyOperation'?: ProfileOperationUpdateOrCreateList.PropertyOperationEnum | 'add' | 'remove' | null;
     'propertyKey': string;
     'propertyValue': string;
 

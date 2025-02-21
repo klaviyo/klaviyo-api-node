@@ -11,14 +11,14 @@
 
 import { RequestFile } from './models';
 import { FlowDefinitionActionsInner } from './flowDefinitionActionsInner';
+import { FlowDefinitionProfileFilter } from './flowDefinitionProfileFilter';
 import { FlowDefinitionTriggersInner } from './flowDefinitionTriggersInner';
-import { UnionFilter } from './unionFilter';
 export class FlowDefinition {
     /**
     * Corresponds to the object which triggers the flow. Only one trigger is supported.
     */
     'triggers': Array<FlowDefinitionTriggersInner>;
-    'profileFilter': UnionFilter;
+    'profileFilter'?: FlowDefinitionProfileFilter | null;
     /**
     * A list of actions that make up the flow. Actions are linked to each other by their ids.
     */
@@ -38,7 +38,7 @@ export class FlowDefinition {
         {
             "name": "profileFilter",
             "baseName": "profile_filter",
-            "type": "UnionFilter"
+            "type": "FlowDefinitionProfileFilter"
         },
         {
             "name": "actions",

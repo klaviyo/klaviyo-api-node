@@ -28,6 +28,10 @@ export class TemplateResponseObjectResourceAttributes {
     */
     'text'?: string | null;
     /**
+    * The AMP version of the template. Requires AMP Email to be enabled to access in-app. Refer to the AMP Email setup guide at https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo
+    */
+    'amp'?: string | null;
+    /**
     * The date the template was created in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
     'created'?: Date | null;
@@ -56,6 +60,11 @@ export class TemplateResponseObjectResourceAttributes {
         {
             "name": "text",
             "baseName": "text",
+            "type": "string"
+        },
+        {
+            "name": "amp",
+            "baseName": "amp",
             "type": "string"
         },
         {

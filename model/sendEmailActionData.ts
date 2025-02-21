@@ -16,7 +16,7 @@ export class SendEmailActionData {
     /**
     * Flow action status.
     */
-    'status'?: SendEmailActionData.StatusEnum | 'draft' | 'live' | 'manual' | null = SendEmailActionData.StatusEnum.Draft;
+    'status'?: SendEmailActionData.StatusEnum | 'draft' | 'live' | 'manual' = SendEmailActionData.StatusEnum.Draft;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

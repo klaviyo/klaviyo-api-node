@@ -16,7 +16,7 @@ export class SendPushNotificationActionData {
     /**
     * Flow action status.
     */
-    'status'?: SendPushNotificationActionData.StatusEnum | 'draft' | 'live' | 'manual' | null = SendPushNotificationActionData.StatusEnum.Draft;
+    'status'?: SendPushNotificationActionData.StatusEnum | 'draft' | 'live' | 'manual' = SendPushNotificationActionData.StatusEnum.Draft;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

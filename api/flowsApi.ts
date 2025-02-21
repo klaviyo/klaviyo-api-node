@@ -772,7 +772,7 @@ export class FlowsApi {
      * @param id 
      * @param fieldsFlowAction For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsFlowMessage For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships
      */
-    public async getFlowMessage (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>, include?: Array<'flow-action' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCompoundDocument;  }> {
+    public async getFlowMessage (id: string, options: { fieldsFlowAction?: Array<'action_type' | 'status' | 'created' | 'updated' | 'settings' | 'tracking_options' | 'tracking_options.add_utm' | 'tracking_options.utm_params' | 'tracking_options.is_tracking_opens' | 'tracking_options.is_tracking_clicks' | 'send_options' | 'send_options.use_smart_sending' | 'send_options.is_transactional' | 'render_options' | 'render_options.shorten_links' | 'render_options.add_org_prefix' | 'render_options.add_info_link' | 'render_options.add_opt_out_language'>, fieldsFlowMessage?: Array<'name' | 'channel' | 'content' | 'content.subject' | 'content.preview_text' | 'content.from_email' | 'content.from_label' | 'content.reply_to_email' | 'content.cc_email' | 'content.bcc_email' | 'content.body' | 'content.media_url' | 'content.title' | 'content.sound' | 'content.badge' | 'content.dynamic_image' | 'content.ios_link' | 'content.android_link' | 'content.on_open' | 'created' | 'updated'>, fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'amp' | 'created' | 'updated'>, include?: Array<'flow-action' | 'template'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowMessageResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/flow-messages/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -800,7 +800,7 @@ export class FlowsApi {
         }
 
         if (options.fieldsTemplate !== undefined) {
-            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'amp' | 'created' | 'updated'>");
         }
 
         if (options.include !== undefined) {
@@ -1099,7 +1099,7 @@ export class FlowsApi {
      * @param id 
      * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets
      */
-    public async getTemplateForFlowMessage (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
+    public async getTemplateForFlowMessage (id: string, options: { fieldsTemplate?: Array<'name' | 'editor_type' | 'html' | 'text' | 'amp' | 'created' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateResponse;  }> {
 
         const localVarPath = this.basePath + '/api/flow-messages/{id}/template'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1119,7 +1119,7 @@ export class FlowsApi {
         }
 
         if (options.fieldsTemplate !== undefined) {
-            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'created' | 'updated'>");
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'name' | 'editor_type' | 'html' | 'text' | 'amp' | 'created' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)

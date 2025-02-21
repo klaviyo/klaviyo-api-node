@@ -652,10 +652,10 @@ export class CouponsApi {
     /**
      * Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
      * @summary Get Coupon Codes
-     
-     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+     * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
      */
-    public async getCouponCodes (options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, filter?: string, include?: Array<'coupon'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }> {
+    public async getCouponCodes (filter: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, include?: Array<'coupon'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/coupon-codes';
         let localVarQueryParameters: any = {};
@@ -668,6 +668,11 @@ export class CouponsApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
 
+        // verify required parameter 'filter' is not null or undefined
+        if (filter === null || filter === undefined) {
+            throw new Error('Required parameter filter was null or undefined when calling getCouponCodes.');
+        }
+
         if (options.fieldsCouponCode !== undefined) {
             localVarQueryParameters['fields[coupon-code]'] = ObjectSerializer.serialize(options.fieldsCouponCode, "Array<'unique_code' | 'expires_at' | 'status'>");
         }
@@ -676,9 +681,7 @@ export class CouponsApi {
             localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description'>");
         }
 
-        if (options.filter !== undefined) {
-            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
-        }
+        localVarQueryParameters['filter'] = ObjectSerializer.serialize(filter, "string");
 
         if (options.include !== undefined) {
             localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'coupon'>");
