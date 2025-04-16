@@ -16,7 +16,7 @@ export class AbTestActionData {
     /**
     * Flow action status.
     */
-    'status'?: AbTestActionData.StatusEnum | 'draft' | 'live' | 'manual' = AbTestActionData.StatusEnum.Draft;
+    'status'?: AbTestActionData.StatusEnum | 'disabled' | 'draft' | 'live' | 'manual' = AbTestActionData.StatusEnum.Draft;
     /**
     * The status of the A/B test action experiment.
     */
@@ -54,6 +54,7 @@ export class AbTestActionData {
 
 export namespace AbTestActionData {
     export enum StatusEnum {
+        Disabled = <any> 'disabled',
         Draft = <any> 'draft',
         Live = <any> 'live',
         Manual = <any> 'manual'

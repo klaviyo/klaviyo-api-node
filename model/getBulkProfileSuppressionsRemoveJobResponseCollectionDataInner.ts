@@ -12,18 +12,18 @@
 import { RequestFile } from './models';
 import { BulkProfileSuppressionsCreateJobResponseObjectResourceAttributes } from './bulkProfileSuppressionsCreateJobResponseObjectResourceAttributes';
 import { BulkProfileSuppressionsRemoveJobResponseObjectResource } from './bulkProfileSuppressionsRemoveJobResponseObjectResource';
-import { GetProfileResponseDataAllOfRelationships } from './getProfileResponseDataAllOfRelationships';
+import { GetBulkProfileSuppressionsCreateJobResponseCollectionDataInnerAllOfRelationships } from './getBulkProfileSuppressionsCreateJobResponseCollectionDataInnerAllOfRelationships';
 import { ObjectLinks } from './objectLinks';
 import { ProfileSuppressionBulkDeleteJobEnum } from './profileSuppressionBulkDeleteJobEnum';
 export class GetBulkProfileSuppressionsRemoveJobResponseCollectionDataInner extends BulkProfileSuppressionsRemoveJobResponseObjectResource {
-    'relationships'?: GetProfileResponseDataAllOfRelationships;
+    'relationships'?: GetBulkProfileSuppressionsCreateJobResponseCollectionDataInnerAllOfRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "relationships",
             "baseName": "relationships",
-            "type": "GetProfileResponseDataAllOfRelationships"
+            "type": "GetBulkProfileSuppressionsCreateJobResponseCollectionDataInnerAllOfRelationships"
         }    ];
 
     static getAttributeTypeMap() {

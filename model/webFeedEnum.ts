@@ -10,6 +10,6 @@
  */
 
 import { RequestFile } from './models';
-export enum ScheduledEnum {
-    Scheduled = <any> 'scheduled'
+export enum WebFeedEnum {
+    WebFeed = <any> 'web-feed'
 }

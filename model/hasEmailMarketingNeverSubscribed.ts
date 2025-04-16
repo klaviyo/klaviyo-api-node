@@ -13,6 +13,7 @@ import { RequestFile } from './models';
 import { NeverSubscribedEnum } from './neverSubscribedEnum';
 export class HasEmailMarketingNeverSubscribed {
     'subscription': NeverSubscribedEnum | 'never_subscribed';
+    'filters'?: any | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -20,6 +21,11 @@ export class HasEmailMarketingNeverSubscribed {
             "name": "subscription",
             "baseName": "subscription",
             "type": "NeverSubscribedEnum"
+        },
+        {
+            "name": "filters",
+            "baseName": "filters",
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

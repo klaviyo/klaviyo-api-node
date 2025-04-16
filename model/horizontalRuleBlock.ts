@@ -15,7 +15,7 @@ import { HorizontalRuleEnum } from './horizontalRuleEnum';
 export class HorizontalRuleBlock {
     'contentType': BlockEnum | 'block';
     'type': HorizontalRuleEnum | 'horizontal_rule';
-    'data': string | null;
+    'data': any | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -32,7 +32,7 @@ export class HorizontalRuleBlock {
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

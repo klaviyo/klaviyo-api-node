@@ -10,6 +10,6 @@
  */
 
 import { RequestFile } from './models';
-export enum ProfileTraitEnum {
-    ProfileTrait = <any> 'profile-trait'
+export enum CustomMetricEnum {
+    CustomMetric = <any> 'custom-metric'
 }

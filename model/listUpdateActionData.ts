@@ -17,6 +17,10 @@ export class ListUpdateActionData {
     */
     'onExecution': boolean | null;
     'listId': string | null;
+    /**
+    * Flow action status.
+    */
+    'status'?: ListUpdateActionData.StatusEnum | 'disabled' | 'draft' | 'live' | 'manual' = ListUpdateActionData.StatusEnum.Draft;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +38,11 @@ export class ListUpdateActionData {
             "name": "listId",
             "baseName": "list_id",
             "type": "string"
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "ListUpdateActionData.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -41,3 +50,11 @@ export class ListUpdateActionData {
     }
 }
 
+export namespace ListUpdateActionData {
+    export enum StatusEnum {
+        Disabled = <any> 'disabled',
+        Draft = <any> 'draft',
+        Live = <any> 'live',
+        Manual = <any> 'manual'
+    }
+}

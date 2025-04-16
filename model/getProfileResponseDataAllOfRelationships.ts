@@ -14,6 +14,7 @@ import { GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationsh
 export class GetProfileResponseDataAllOfRelationships {
     'lists'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
     'segments'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
+    'pushTokens'?: GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -25,6 +26,11 @@ export class GetProfileResponseDataAllOfRelationships {
         {
             "name": "segments",
             "baseName": "segments",
+            "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
+        },
+        {
+            "name": "pushTokens",
+            "baseName": "push-tokens",
             "type": "GetCouponCodeResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsProfile"
         }    ];
 

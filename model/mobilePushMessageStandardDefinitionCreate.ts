@@ -16,9 +16,13 @@ import { MobilePushOptions } from './mobilePushOptions';
 import { StandardEnum } from './standardEnum';
 export class MobilePushMessageStandardDefinitionCreate {
     'channel': MobilePushEnum | 'mobile_push';
-    'notificationType': StandardEnum | 'standard';
     'content': MobilePushContentCreate;
+    /**
+    * The key-value pairs to be sent with the push notification
+    */
+    'kvPairs'?: object | null;
     'options'?: MobilePushOptions;
+    'notificationType'?: StandardEnum | 'standard';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -28,19 +32,24 @@ export class MobilePushMessageStandardDefinitionCreate {
             "type": "MobilePushEnum"
         },
         {
-            "name": "notificationType",
-            "baseName": "notification_type",
-            "type": "StandardEnum"
-        },
-        {
             "name": "content",
             "baseName": "content",
             "type": "MobilePushContentCreate"
         },
         {
+            "name": "kvPairs",
+            "baseName": "kv_pairs",
+            "type": "object"
+        },
+        {
             "name": "options",
             "baseName": "options",
             "type": "MobilePushOptions"
+        },
+        {
+            "name": "notificationType",
+            "baseName": "notification_type",
+            "type": "StandardEnum"
         }    ];
 
     static getAttributeTypeMap() {

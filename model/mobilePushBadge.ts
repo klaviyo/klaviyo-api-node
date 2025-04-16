@@ -10,11 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { MobilePushBadgeBadgeOptions } from './mobilePushBadgeBadgeOptions';
 export class MobilePushBadge {
     /**
     * Whether to display a badge on the app icon
     */
     'display': MobilePushBadge.DisplayEnum | true;
+    'badgeOptions'?: MobilePushBadgeBadgeOptions | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -22,6 +24,11 @@ export class MobilePushBadge {
             "name": "display",
             "baseName": "display",
             "type": "MobilePushBadge.DisplayEnum"
+        },
+        {
+            "name": "badgeOptions",
+            "baseName": "badge_options",
+            "type": "MobilePushBadgeBadgeOptions"
         }    ];
 
     static getAttributeTypeMap() {

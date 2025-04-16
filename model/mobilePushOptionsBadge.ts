@@ -11,5 +11,6 @@
 
 import { RequestFile } from './models';
 import { MobilePushBadge } from './mobilePushBadge';
+import { MobilePushBadgeBadgeOptions } from './mobilePushBadgeBadgeOptions';
 import { MobilePushNoBadge } from './mobilePushNoBadge';
 export type MobilePushOptionsBadge = MobilePushBadge | MobilePushNoBadge;

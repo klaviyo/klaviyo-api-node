@@ -17,7 +17,7 @@ export class ReviewResponseDTOObjectResourceAttributes {
     /**
     * The email of the author of this review
     */
-    'email': string;
+    'email'?: string | null;
     'status'?: ReviewResponseDTOObjectResourceAttributesStatus | null;
     /**
     * The verification status of this review (aka whether or not we have confirmation that the customer bought the product)

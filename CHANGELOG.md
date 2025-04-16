@@ -1,6 +1,43 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [18.0.0] - revision 2025-04-15
+### Added
+#### Web Feeds API
+
+- Create, retrieve, update, and/or delete web feeds via the [Web Feeds API](https://developers.klaviyo.com/en/reference/web_feeds_api_overview).
+- Create universal content blocks referencing these web feeds with our [Universal Content API](https://developers.klaviyo.com/en/reference/universal_content_api_overview).
+
+#### Custom Metrics API
+
+- Create, retrieve, update, and/or delete custom metrics via the [Custom Metrics API](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview).
+- Report on custom metric conversions in our Campaign and Flow [Reporting APIs](https://developers.klaviyo.com/en/reference/reporting_api_overview) (set the custom metric ID as the `conversion_metric_id`).
+
+> 🚧
+>
+> Standard accounts can only have 1 custom metric. Upgrade to Klaviyo's [Advanced KDP](https://www.klaviyo.com/products/advanced-cdp) or [Marketing Analytics](https://www.klaviyo.com/solutions/analytics) plan to create up to 50 custom metrics. To learn more about these plans, visit our [billing guide](https://help.klaviyo.com/hc/en-us/articles/115000976672).
+
+#### Get and Delete Push Token APIs
+
+- Retrieve and/or delete a given push token via [Get Push Token](https://developers.klaviyo.com/en/reference/get_push_token) and [Delete Push Token APIs](https://developers.klaviyo.com/en/reference/delete_push_token).
+- [Include](https://developers.klaviyo.com/en/docs/relationships_#the-include-query-parameter) push tokens on `GET /api/profiles`.
+- We've added relationship endpoints for both profiles and push tokens:
+  - Retrieve push tokens associated with a profile (`GET /api/profiles/{ID}/push-tokens`).
+  - Get IDs for push tokens associated with a profile (`GET /api/profiles/{ID}/relationships/push-tokens`).
+  - Retrieve the profile associated with a push token (`GET /api/push-tokens/{ID}/profile`).
+  - Get ID for the profile associated with a push token (`GET /api/push-tokens/{ID}/relationships/profile`).
+
+### Changed
+#### Campaigns API endpoints updated to support options for push notification badges
+
+- Badge count settings are supported on the "campaign-message" resource for push messages.
+  - The following options for incrementing badge count have been added to the Campaigns API: `increment_one` (increment by 1), `set_count` (increment by a given value), and `set_property` (increment by profile property).
+
+#### Optional AMP MIME-type field for Templates API
+
+- We've added support for creating and updating AMP versions of an email template through an optional `amp` field (under `attributes`) in our Create and Update Template APIs.
+- This field requires AMP Email to be enabled. Refer to our [AMP Email setup guide](https://developers.klaviyo.com/en/docs/send_amp_emails_in_klaviyo) for more information.
+
 ## [17.0.0] - revision 2025-01-15
 ### Changed
 - ISO strings are now accepted for date fields

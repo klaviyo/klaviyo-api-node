@@ -15,7 +15,7 @@ import { SpacerEnum } from './spacerEnum';
 export class SpacerBlock {
     'contentType': BlockEnum | 'block';
     'type': SpacerEnum | 'spacer';
-    'data': string | null;
+    'data': any | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -32,7 +32,7 @@ export class SpacerBlock {
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

@@ -16,7 +16,7 @@ export class UpdateProfileActionData {
     /**
     * Flow action status.
     */
-    'status'?: UpdateProfileActionData.StatusEnum | 'draft' | 'live' | 'manual' = UpdateProfileActionData.StatusEnum.Draft;
+    'status'?: UpdateProfileActionData.StatusEnum | 'disabled' | 'draft' | 'live' | 'manual' = UpdateProfileActionData.StatusEnum.Draft;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -38,6 +38,7 @@ export class UpdateProfileActionData {
 
 export namespace UpdateProfileActionData {
     export enum StatusEnum {
+        Disabled = <any> 'disabled',
         Draft = <any> 'draft',
         Live = <any> 'live',
         Manual = <any> 'manual'

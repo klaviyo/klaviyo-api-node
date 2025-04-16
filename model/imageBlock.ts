@@ -15,7 +15,7 @@ import { ImageEnum } from './imageEnum';
 export class ImageBlock {
     'contentType': BlockEnum | 'block';
     'type': ImageEnum | 'image';
-    'data': string | null;
+    'data': any | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -32,7 +32,7 @@ export class ImageBlock {
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

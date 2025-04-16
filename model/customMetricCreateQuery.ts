@@ -10,22 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { ScheduledEnum } from './scheduledEnum';
-export class ScheduledTrigger {
-    'type': ScheduledEnum | 'scheduled';
+import { CustomMetricCreateQueryResourceObject } from './customMetricCreateQueryResourceObject';
+export class CustomMetricCreateQuery {
+    'data': CustomMetricCreateQueryResourceObject;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "ScheduledEnum"
+            "name": "data",
+            "baseName": "data",
+            "type": "CustomMetricCreateQueryResourceObject"
         }    ];
 
     static getAttributeTypeMap() {
-        return ScheduledTrigger.attributeTypeMap;
+        return CustomMetricCreateQuery.attributeTypeMap;
     }
 }
 
-export namespace ScheduledTrigger {
-}

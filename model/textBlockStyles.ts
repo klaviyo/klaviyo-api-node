@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 export class TextBlockStyles {
+    'backgroundColor'?: string | null;
     'blockBackgroundColor'?: string | null;
     'blockBorderColor'?: string | null;
     /**
@@ -35,10 +36,9 @@ export class TextBlockStyles {
     'innerPaddingLeft'?: number | null;
     'innerPaddingRight'?: number | null;
     'innerPaddingTop'?: number | null;
-    'mobileStretchContent'?: boolean | null;
-    'backgroundColor'?: string | null;
     'letterSpacing'?: number | null;
     'lineHeight'?: number | null;
+    'mobileStretchContent'?: boolean | null;
     /**
     * Text Alignment.
     */
@@ -51,6 +51,11 @@ export class TextBlockStyles {
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "backgroundColor",
+            "baseName": "background_color",
+            "type": "string"
+        },
         {
             "name": "blockBackgroundColor",
             "baseName": "block_background_color",
@@ -142,16 +147,6 @@ export class TextBlockStyles {
             "type": "number"
         },
         {
-            "name": "mobileStretchContent",
-            "baseName": "mobile_stretch_content",
-            "type": "boolean"
-        },
-        {
-            "name": "backgroundColor",
-            "baseName": "background_color",
-            "type": "string"
-        },
-        {
             "name": "letterSpacing",
             "baseName": "letter_spacing",
             "type": "number"
@@ -160,6 +155,11 @@ export class TextBlockStyles {
             "name": "lineHeight",
             "baseName": "line_height",
             "type": "number"
+        },
+        {
+            "name": "mobileStretchContent",
+            "baseName": "mobile_stretch_content",
+            "type": "boolean"
         },
         {
             "name": "textAlign",
