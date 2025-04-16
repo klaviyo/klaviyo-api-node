@@ -10,11 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsPushTokens } from './getProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsPushTokens';
 import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsLists } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsLists';
 import { GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments } from './getProfileResponseCompoundDocumentDataAllOfRelationshipsSegments';
 export class GetProfileResponseCompoundDocumentDataAllOfRelationships {
     'lists'?: GetProfileResponseCompoundDocumentDataAllOfRelationshipsLists;
     'segments'?: GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments;
+    'pushTokens'?: GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsPushTokens;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetProfileResponseCompoundDocumentDataAllOfRelationships {
             "name": "segments",
             "baseName": "segments",
             "type": "GetProfileResponseCompoundDocumentDataAllOfRelationshipsSegments"
+        },
+        {
+            "name": "pushTokens",
+            "baseName": "push-tokens",
+            "type": "GetProfileResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsPushTokens"
         }    ];
 
     static getAttributeTypeMap() {

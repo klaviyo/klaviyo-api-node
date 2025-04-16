@@ -15,7 +15,7 @@ import { ButtonEnum } from './buttonEnum';
 export class ButtonBlock {
     'contentType': BlockEnum | 'block';
     'type': ButtonEnum | 'button';
-    'data': string | null;
+    'data': any | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -32,7 +32,7 @@ export class ButtonBlock {
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

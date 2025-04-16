@@ -11,9 +11,9 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
-import { GetProfileResponseData } from './getProfileResponseData';
+import { GetProfileResponseCollectionCompoundDocumentDataInner } from './getProfileResponseCollectionCompoundDocumentDataInner';
 export class GetProfileResponseCollectionCompoundDocument {
-    'data': Array<GetProfileResponseData>;
+    'data': Array<GetProfileResponseCollectionCompoundDocumentDataInner>;
     'links'?: CollectionLinks;
 
 
@@ -21,7 +21,7 @@ export class GetProfileResponseCollectionCompoundDocument {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetProfileResponseData>"
+            "type": "Array<GetProfileResponseCollectionCompoundDocumentDataInner>"
         },
         {
             "name": "links",

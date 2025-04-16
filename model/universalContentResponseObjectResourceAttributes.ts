@@ -16,7 +16,7 @@ export class UniversalContentResponseObjectResourceAttributes {
     * The name for this universal content
     */
     'name': string;
-    'definition': UniversalContentResponseObjectResourceAttributesDefinition;
+    'definition'?: UniversalContentResponseObjectResourceAttributesDefinition | null;
     /**
     * The datetime when this universal content was created
     */
@@ -28,7 +28,7 @@ export class UniversalContentResponseObjectResourceAttributes {
     /**
     * The status of a universal content screenshot.
     */
-    'screenshotStatus': UniversalContentResponseObjectResourceAttributes.ScreenshotStatusEnum | 'completed' | 'failed' | 'generating' | 'never_generated' | 'not_renderable';
+    'screenshotStatus': UniversalContentResponseObjectResourceAttributes.ScreenshotStatusEnum | 'completed' | 'failed' | 'generating' | 'never_generated' | 'not_renderable' | 'stale';
     'screenshotUrl': string;
 
 
@@ -75,6 +75,7 @@ export namespace UniversalContentResponseObjectResourceAttributes {
         Failed = <any> 'failed',
         Generating = <any> 'generating',
         NeverGenerated = <any> 'never_generated',
-        NotRenderable = <any> 'not_renderable'
+        NotRenderable = <any> 'not_renderable',
+        Stale = <any> 'stale'
     }
 }

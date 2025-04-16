@@ -34,6 +34,8 @@ export * from './templatesApi';
 import { TemplatesApi } from './templatesApi';
 export * from './trackingSettingsApi';
 import { TrackingSettingsApi } from './trackingSettingsApi';
+export * from './webFeedsApi';
+import { WebFeedsApi } from './webFeedsApi';
 export * from './webhooksApi';
 import { WebhooksApi } from './webhooksApi';
 
@@ -42,8 +44,8 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, AxiosError, isAxiosErro
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2025-01-15";
-const userAgent = "klaviyo-api-node/17.0.0";
+const revision =  "2025-04-15";
+const userAgent = "klaviyo-api-node/18.0.0";
 
 export class RetryWithExponentialBackoff {
 
@@ -558,6 +560,8 @@ export namespace Pkce {
 
     export const TrackingSettings = new TrackingSettingsApi(new GlobalApiKeySession())
 
+    export const WebFeeds = new WebFeedsApi(new GlobalApiKeySession())
+
     export const Webhooks = new WebhooksApi(new GlobalApiKeySession())
 
 
@@ -572,4 +576,4 @@ export const Auth = {
     Pkce,
 }
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebhooksApi, Webhooks };
+export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebFeedsApi, WebFeeds, WebhooksApi, Webhooks };

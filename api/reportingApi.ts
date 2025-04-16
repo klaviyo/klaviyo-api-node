@@ -78,7 +78,7 @@ export class ReportingApi {
      * Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `campaigns:read`
      * @summary Query Campaign Values
      * @param campaignValuesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#pagination
      */
     public async queryCampaignValues (campaignValuesRequestDTO: CampaignValuesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostCampaignValuesResponseDTO;  }> {
 
@@ -135,7 +135,7 @@ export class ReportingApi {
      * Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
      * @summary Query Flow Series
      * @param flowSeriesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#pagination
      */
     public async queryFlowSeries (flowSeriesRequestDTO: FlowSeriesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowSeriesResponseDTO;  }> {
 
@@ -192,7 +192,7 @@ export class ReportingApi {
      * Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
      * @summary Query Flow Values
      * @param flowValuesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-01-15/reference/api-overview#pagination
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#pagination
      */
     public async queryFlowValues (flowValuesRequestDTO: FlowValuesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowValuesResponseDTO;  }> {
 

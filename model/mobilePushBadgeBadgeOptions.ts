@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
-export enum CustomObjectEnum {
-    CustomObject = <any> 'custom-object'
-}
+import { Increment } from './increment';
+import { Property } from './property';
+import { StaticCount } from './staticCount';
+export type MobilePushBadgeBadgeOptions = Increment | StaticCount | Property;

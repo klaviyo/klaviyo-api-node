@@ -10,6 +10,6 @@
  */
 
 import { RequestFile } from './models';
-export enum SendWhatsappEnum {
-    SendWhatsapp = <any> 'send-whatsapp'
+export enum SilentEnum {
+    Silent = <any> 'silent'
 }

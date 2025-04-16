@@ -16,7 +16,7 @@ export class SendInternalAlertActionData {
     /**
     * Flow action status.
     */
-    'status'?: SendInternalAlertActionData.StatusEnum | 'draft' | 'live' | 'manual' = SendInternalAlertActionData.StatusEnum.Draft;
+    'status'?: SendInternalAlertActionData.StatusEnum | 'disabled' | 'draft' | 'live' | 'manual' = SendInternalAlertActionData.StatusEnum.Draft;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -38,6 +38,7 @@ export class SendInternalAlertActionData {
 
 export namespace SendInternalAlertActionData {
     export enum StatusEnum {
+        Disabled = <any> 'disabled',
         Draft = <any> 'draft',
         Live = <any> 'live',
         Manual = <any> 'manual'

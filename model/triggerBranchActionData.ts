@@ -21,7 +21,7 @@ export class TriggerBranchActionData {
     /**
     * Date trigger type.
     */
-    'triggerSubtype'?: TriggerBranchActionData.TriggerSubtypeEnum | 'custom-object' | 'profile-property' | 'profile-trait' | null;
+    'triggerSubtype'?: TriggerBranchActionData.TriggerSubtypeEnum | 'custom-object' | 'legacy-custom-object' | 'profile-property' | 'profile-trait' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -63,6 +63,7 @@ export namespace TriggerBranchActionData {
     }
     export enum TriggerSubtypeEnum {
         CustomObject = <any> 'custom-object',
+        LegacyCustomObject = <any> 'legacy-custom-object',
         ProfileProperty = <any> 'profile-property',
         ProfileTrait = <any> 'profile-trait'
     }

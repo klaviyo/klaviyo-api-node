@@ -12,17 +12,19 @@
 import { RequestFile } from './models';
 import { ListResponseObjectResource } from './listResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
+import { PushTokenResponseObjectResource } from './pushTokenResponseObjectResource';
 import { SegmentEnum } from './segmentEnum';
 import { SegmentListResponseObjectResourceAttributes } from './segmentListResponseObjectResourceAttributes';
 import { SegmentResponseObjectResource } from './segmentResponseObjectResource';
 
 
 
-    export type GetProfileResponseCompoundDocumentIncludedInner = ListResponseObjectResource | SegmentResponseObjectResource
+    export type GetProfileResponseCompoundDocumentIncludedInner = ListResponseObjectResource | PushTokenResponseObjectResource | SegmentResponseObjectResource
 
     export class GetProfileResponseCompoundDocumentIncludedInnerHelper {
         static mapping: {[index: string]: any} = {
             "list": "ListResponseObjectResource",
+            "push-token": "PushTokenResponseObjectResource",
             "segment": "SegmentResponseObjectResource",
         }
         static discriminator: string | undefined = "type";

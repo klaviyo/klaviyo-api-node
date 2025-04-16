@@ -15,7 +15,7 @@ import { DropShadowEnum } from './dropShadowEnum';
 export class DropShadowBlock {
     'contentType': BlockEnum | 'block';
     'type': DropShadowEnum | 'drop_shadow';
-    'data': string | null;
+    'data': any | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -32,7 +32,7 @@ export class DropShadowBlock {
         {
             "name": "data",
             "baseName": "data",
-            "type": "string"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

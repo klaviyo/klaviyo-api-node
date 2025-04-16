@@ -16,7 +16,7 @@ export class SendWebhookActionData {
     /**
     * Flow action status.
     */
-    'status'?: SendWebhookActionData.StatusEnum | 'draft' | 'live' | 'manual' = SendWebhookActionData.StatusEnum.Draft;
+    'status'?: SendWebhookActionData.StatusEnum | 'disabled' | 'draft' | 'live' | 'manual' = SendWebhookActionData.StatusEnum.Draft;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -38,6 +38,7 @@ export class SendWebhookActionData {
 
 export namespace SendWebhookActionData {
     export enum StatusEnum {
+        Disabled = <any> 'disabled',
         Draft = <any> 'draft',
         Live = <any> 'live',
         Manual = <any> 'manual'

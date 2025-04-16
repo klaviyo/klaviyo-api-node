@@ -18,6 +18,10 @@ export class MobilePushMessageStandardDefinition {
     'channel': MobilePushEnum | 'mobile_push';
     'notificationType': StandardEnum | 'standard';
     'content': MobilePushContent;
+    /**
+    * The key-value pairs to be sent with the push notification
+    */
+    'kvPairs'?: object | null;
     'options'?: MobilePushOptions;
 
 
@@ -36,6 +40,11 @@ export class MobilePushMessageStandardDefinition {
             "name": "content",
             "baseName": "content",
             "type": "MobilePushContent"
+        },
+        {
+            "name": "kvPairs",
+            "baseName": "kv_pairs",
+            "type": "object"
         },
         {
             "name": "options",
