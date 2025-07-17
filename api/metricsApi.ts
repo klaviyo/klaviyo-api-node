@@ -19,9 +19,14 @@ import { CustomMetricCreateQuery } from '../model/customMetricCreateQuery';
 import { CustomMetricPartialUpdateQuery } from '../model/customMetricPartialUpdateQuery';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetCustomMetricMetricsRelationshipsResponseCollection } from '../model/getCustomMetricMetricsRelationshipsResponseCollection';
+import { GetCustomMetricResponse } from '../model/getCustomMetricResponse';
 import { GetCustomMetricResponseCollectionCompoundDocument } from '../model/getCustomMetricResponseCollectionCompoundDocument';
 import { GetCustomMetricResponseCompoundDocument } from '../model/getCustomMetricResponseCompoundDocument';
 import { GetFlowResponseCollection } from '../model/getFlowResponseCollection';
+import { GetMappedMetricCustomMetricRelationshipResponse } from '../model/getMappedMetricCustomMetricRelationshipResponse';
+import { GetMappedMetricMetricRelationshipResponse } from '../model/getMappedMetricMetricRelationshipResponse';
+import { GetMappedMetricResponseCollectionCompoundDocument } from '../model/getMappedMetricResponseCollectionCompoundDocument';
+import { GetMappedMetricResponseCompoundDocument } from '../model/getMappedMetricResponseCompoundDocument';
 import { GetMetricFlowTriggersRelationshipsResponseCollection } from '../model/getMetricFlowTriggersRelationshipsResponseCollection';
 import { GetMetricPropertiesRelationshipsResponseCollection } from '../model/getMetricPropertiesRelationshipsResponseCollection';
 import { GetMetricPropertyMetricRelationshipResponse } from '../model/getMetricPropertyMetricRelationshipResponse';
@@ -31,8 +36,10 @@ import { GetMetricResponse } from '../model/getMetricResponse';
 import { GetMetricResponseCollection } from '../model/getMetricResponseCollection';
 import { GetMetricResponseCollectionCompoundDocument } from '../model/getMetricResponseCollectionCompoundDocument';
 import { GetMetricResponseCompoundDocument } from '../model/getMetricResponseCompoundDocument';
+import { MappedMetricPartialUpdateQuery } from '../model/mappedMetricPartialUpdateQuery';
 import { MetricAggregateQuery } from '../model/metricAggregateQuery';
 import { PatchCustomMetricResponse } from '../model/patchCustomMetricResponse';
+import { PatchMappedMetricResponse } from '../model/patchMappedMetricResponse';
 import { PostCustomMetricResponse } from '../model/postCustomMetricResponse';
 import { PostMetricAggregateResponse } from '../model/postMetricAggregateResponse';
 
@@ -188,7 +195,7 @@ export class MetricsApi {
      * Get a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Custom Metric
      * @param id The ID of the custom metric
-     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#relationships
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
      */
     public async getCustomMetric (id: string, options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'metrics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCustomMetricResponseCompoundDocument;  }> {
 
@@ -250,10 +257,120 @@ export class MetricsApi {
         return request(config)
     }
     /**
+     * Get the custom metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+     * @summary Get Custom Metric for Mapped Metric
+     * @param id The type of mapping.
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getCustomMetricForMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCustomMetricResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/mapped-metrics/{id}/custom-metric'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCustomMetricForMappedMetric.');
+        }
+
+        if (options.fieldsCustomMetric !== undefined) {
+            localVarQueryParameters['fields[custom-metric]'] = ObjectSerializer.serialize(options.fieldsCustomMetric, "Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetCustomMetricResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetCustomMetricResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the ID of the custom metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+     * @summary Get Custom Metric ID for Mapped Metric
+     * @param id The type of mapping.
+     
+     */
+    public async getCustomMetricIdForMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', ): Promise<{ response: AxiosResponse; body: GetMappedMetricCustomMetricRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/mapped-metrics/{id}/relationships/custom-metric'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCustomMetricIdForMappedMetric.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMappedMetricCustomMetricRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMappedMetricCustomMetricRelationshipResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
      * Get all custom metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Custom Metrics
      
-     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#relationships
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
      */
     public async getCustomMetrics (options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'metrics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCustomMetricResponseCollectionCompoundDocument;  }> {
 
@@ -312,7 +429,7 @@ export class MetricsApi {
      * Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
      * @summary Get Flows Triggered by Metric
      * @param id 
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getFlowsTriggeredByMetric (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> {
 
@@ -419,10 +536,142 @@ export class MetricsApi {
         return request(config)
     }
     /**
+     * Get the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+     * @summary Get Mapped Metric
+     * @param id The type of mapping.
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMappedMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     */
+    public async getMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMappedMetric?: Array<'updated'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'custom-metric' | 'metric'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMappedMetricResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/mapped-metrics/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getMappedMetric.');
+        }
+
+        if (options.fieldsCustomMetric !== undefined) {
+            localVarQueryParameters['fields[custom-metric]'] = ObjectSerializer.serialize(options.fieldsCustomMetric, "Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>");
+        }
+
+        if (options.fieldsMappedMetric !== undefined) {
+            localVarQueryParameters['fields[mapped-metric]'] = ObjectSerializer.serialize(options.fieldsMappedMetric, "Array<'updated'>");
+        }
+
+        if (options.fieldsMetric !== undefined) {
+            localVarQueryParameters['fields[metric]'] = ObjectSerializer.serialize(options.fieldsMetric, "Array<'name' | 'created' | 'updated' | 'integration'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'custom-metric' | 'metric'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMappedMetricResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMappedMetricResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get all mapped metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+     * @summary Get Mapped Metrics
+     
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMappedMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     */
+    public async getMappedMetrics (options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMappedMetric?: Array<'updated'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'custom-metric' | 'metric'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMappedMetricResponseCollectionCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/mapped-metrics';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsCustomMetric !== undefined) {
+            localVarQueryParameters['fields[custom-metric]'] = ObjectSerializer.serialize(options.fieldsCustomMetric, "Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>");
+        }
+
+        if (options.fieldsMappedMetric !== undefined) {
+            localVarQueryParameters['fields[mapped-metric]'] = ObjectSerializer.serialize(options.fieldsMappedMetric, "Array<'updated'>");
+        }
+
+        if (options.fieldsMetric !== undefined) {
+            localVarQueryParameters['fields[metric]'] = ObjectSerializer.serialize(options.fieldsMetric, "Array<'name' | 'created' | 'updated' | 'integration'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'custom-metric' | 'metric'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMappedMetricResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMappedMetricResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
      * Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
      * @summary Get Metric
      * @param id Metric ID
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#relationships
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
      */
     public async getMetric (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'flow-triggers'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCompoundDocument;  }> {
 
@@ -484,10 +733,67 @@ export class MetricsApi {
         return request(config)
     }
     /**
+     * Get the metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+     * @summary Get Metric for Mapped Metric
+     * @param id The type of mapping.
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getMetricForMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/mapped-metrics/{id}/metric'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getMetricForMappedMetric.');
+        }
+
+        if (options.fieldsMetric !== undefined) {
+            localVarQueryParameters['fields[metric]'] = ObjectSerializer.serialize(options.fieldsMetric, "Array<'name' | 'created' | 'updated' | 'integration'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
      * Get the metric for the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
      * @summary Get Metric for Metric Property
      * @param id The ID of the metric property
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getMetricForMetricProperty (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> {
 
@@ -528,6 +834,59 @@ export class MetricsApi {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
                 body = ObjectSerializer.deserialize(axiosResponse.data, "GetMetricResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the ID of the metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+     * @summary Get Metric ID for Mapped Metric
+     * @param id The type of mapping.
+     
+     */
+    public async getMetricIdForMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', ): Promise<{ response: AxiosResponse; body: GetMappedMetricMetricRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/mapped-metrics/{id}/relationships/metric'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getMetricIdForMappedMetric.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetMappedMetricMetricRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetMappedMetricMetricRelationshipResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -650,7 +1009,7 @@ export class MetricsApi {
      * Get a metric property with the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
      * @summary Get Metric Property
      * @param id The ID of the metric property
-     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#relationships
+     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
      */
     public async getMetricProperty (id: string, options: { additionalFieldsMetricProperty?: Array<'sample_values'>, fieldsMetricProperty?: Array<'label' | 'property' | 'inferred_type' | 'sample_values'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'metric'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricPropertyResponseCompoundDocument;  }> {
 
@@ -719,7 +1078,7 @@ export class MetricsApi {
      * Get all metrics in an account.  Requests can be filtered by the following fields: integration `name`, integration `category`  Returns a maximum of 200 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
      * @summary Get Metrics
      
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#pagination
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
      */
     public async getMetrics (options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, filter?: string, include?: Array<'flow-triggers'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCollectionCompoundDocument;  }> {
 
@@ -786,7 +1145,7 @@ export class MetricsApi {
      * Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Metrics for Custom Metric
      * @param id The ID of the custom metric
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getMetricsForCustomMetric (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCollection;  }> {
 
@@ -843,7 +1202,7 @@ export class MetricsApi {
      * Get the metric properties for the given metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
      * @summary Get Properties for Metric
      * @param id The ID of the metric
-     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-04-15/reference/api-overview#sparse-fieldsets
+     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
      */
     public async getPropertiesForMetric (id: string, options: { additionalFieldsMetricProperty?: Array<'sample_values'>, fieldsMetricProperty?: Array<'label' | 'property' | 'inferred_type' | 'sample_values'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricPropertyResponseCollection;  }> {
 
@@ -1065,7 +1424,86 @@ export class MetricsApi {
 
         return request(config)
     }
+    /**
+     * Update the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `30/d`  **Scopes:** `metrics:write`
+     * @summary Update Mapped Metric
+     * @param id The type of mapping.* @param mappedMetricPartialUpdateQuery Update a mapped metric by ID
+     
+     */
+    public async updateMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', mappedMetricPartialUpdateQuery: MappedMetricPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchMappedMetricResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/mapped-metrics/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateMappedMetric.');
+        }
+
+        // verify required parameter 'mappedMetricPartialUpdateQuery' is not null or undefined
+        if (mappedMetricPartialUpdateQuery === null || mappedMetricPartialUpdateQuery === undefined) {
+            throw new Error('Required parameter mappedMetricPartialUpdateQuery was null or undefined when calling updateMappedMetric.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(mappedMetricPartialUpdateQuery, "MappedMetricPartialUpdateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchMappedMetricResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchMappedMetricResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
 }
+
+export interface MetricsApi {
+    /**
+     * Alias of {@link MetricsApi.getCustomMetricForMappedMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getCustomMetricForMappedMetric} instead
+     */
+    getMappedMetricCustomMetric: typeof MetricsApi.prototype.getCustomMetricForMappedMetric;
+}
+MetricsApi.prototype.getMappedMetricCustomMetric = MetricsApi.prototype.getCustomMetricForMappedMetric
+
+export interface MetricsApi {
+    /**
+     * Alias of {@link MetricsApi.getCustomMetricIdForMappedMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getCustomMetricIdForMappedMetric} instead
+     */
+    getMappedMetricRelationshipsCustomMetric: typeof MetricsApi.prototype.getCustomMetricIdForMappedMetric;
+}
+MetricsApi.prototype.getMappedMetricRelationshipsCustomMetric = MetricsApi.prototype.getCustomMetricIdForMappedMetric
 
 export interface MetricsApi {
     /**
@@ -1109,6 +1547,16 @@ MetricsApi.prototype.getMetricRelationshipsFlowTriggers = MetricsApi.prototype.g
 
 export interface MetricsApi {
     /**
+     * Alias of {@link MetricsApi.getMetricForMappedMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getMetricForMappedMetric} instead
+     */
+    getMappedMetricMetric: typeof MetricsApi.prototype.getMetricForMappedMetric;
+}
+MetricsApi.prototype.getMappedMetricMetric = MetricsApi.prototype.getMetricForMappedMetric
+
+export interface MetricsApi {
+    /**
      * Alias of {@link MetricsApi.getMetricForMetricProperty}
      *
      * @deprecated Use {@link MetricsApi.getMetricForMetricProperty} instead
@@ -1116,6 +1564,16 @@ export interface MetricsApi {
     getMetricPropertyMetric: typeof MetricsApi.prototype.getMetricForMetricProperty;
 }
 MetricsApi.prototype.getMetricPropertyMetric = MetricsApi.prototype.getMetricForMetricProperty
+
+export interface MetricsApi {
+    /**
+     * Alias of {@link MetricsApi.getMetricIdForMappedMetric}
+     *
+     * @deprecated Use {@link MetricsApi.getMetricIdForMappedMetric} instead
+     */
+    getMappedMetricRelationshipsMetric: typeof MetricsApi.prototype.getMetricIdForMappedMetric;
+}
+MetricsApi.prototype.getMappedMetricRelationshipsMetric = MetricsApi.prototype.getMetricIdForMappedMetric
 
 export interface MetricsApi {
     /**

@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { FlowActionResponseObjectResourceAttributesBadgeOptions } from './flowActionResponseObjectResourceAttributesBadgeOptions';
 import { FlowActionResponseObjectResourceAttributesTrackingOptions } from './flowActionResponseObjectResourceAttributesTrackingOptions';
 import { SMSRenderOptions } from './sMSRenderOptions';
 import { SendOptions } from './sendOptions';
@@ -21,6 +22,7 @@ export class FlowActionResponseObjectResourceAttributes {
     'settings'?: object | null;
     'trackingOptions'?: FlowActionResponseObjectResourceAttributesTrackingOptions | null;
     'sendOptions'?: SendOptions;
+    'badgeOptions'?: FlowActionResponseObjectResourceAttributesBadgeOptions | null;
     'renderOptions'?: SMSRenderOptions;
 
 
@@ -59,6 +61,11 @@ export class FlowActionResponseObjectResourceAttributes {
             "name": "sendOptions",
             "baseName": "send_options",
             "type": "SendOptions"
+        },
+        {
+            "name": "badgeOptions",
+            "baseName": "badge_options",
+            "type": "FlowActionResponseObjectResourceAttributesBadgeOptions"
         },
         {
             "name": "renderOptions",

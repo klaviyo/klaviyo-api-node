@@ -11,8 +11,13 @@
 
 import { RequestFile } from './models';
 import { BlockEnum } from './blockEnum';
+import { ButtonBlock } from './buttonBlock';
+import { DropShadowBlock } from './dropShadowBlock';
 import { HTMLBlock } from './hTMLBlock';
+import { HorizontalRuleBlock } from './horizontalRuleBlock';
+import { ImageBlock } from './imageBlock';
+import { SpacerBlock } from './spacerBlock';
 import { TextBlock } from './textBlock';
 import { TextBlockData } from './textBlockData';
 import { TextEnum } from './textEnum';
-export type UniversalContentPartialUpdateQueryResourceObjectAttributesDefinition = HTMLBlock | TextBlock;
+export type UniversalContentPartialUpdateQueryResourceObjectAttributesDefinition = ButtonBlock | DropShadowBlock | HorizontalRuleBlock | HTMLBlock | ImageBlock | SpacerBlock | TextBlock;

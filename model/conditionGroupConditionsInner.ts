@@ -17,12 +17,16 @@ import { ProfileMarketingConsentConditionConsent } from './profileMarketingConse
 import { ProfileMetricPropertyFilter } from './profileMetricPropertyFilter';
 import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCondition';
 import { ProfilePostalCodeDistanceCondition } from './profilePostalCodeDistanceCondition';
+import { ProfilePredictiveAnalyticsChannelAffinityPriorityCondition } from './profilePredictiveAnalyticsChannelAffinityPriorityCondition';
+import { ProfilePredictiveAnalyticsChannelAffinityRankCondition } from './profilePredictiveAnalyticsChannelAffinityRankCondition';
+import { ProfilePredictiveAnalyticsChannelAffinityRankFilter } from './profilePredictiveAnalyticsChannelAffinityRankFilter';
+import { ProfilePredictiveAnalyticsDateCondition } from './profilePredictiveAnalyticsDateCondition';
 import { ProfilePredictiveAnalyticsEnum } from './profilePredictiveAnalyticsEnum';
 import { ProfilePredictiveAnalyticsNumericCondition } from './profilePredictiveAnalyticsNumericCondition';
 import { ProfilePredictiveAnalyticsStringCondition } from './profilePredictiveAnalyticsStringCondition';
-import { ProfilePredictiveAnalyticsStringFilter } from './profilePredictiveAnalyticsStringFilter';
 import { ProfilePropertyCondition } from './profilePropertyCondition';
 import { ProfileRegionCondition } from './profileRegionCondition';
+import { RankEnum } from './rankEnum';
 import { SegmentsProfileMetricCondition } from './segmentsProfileMetricCondition';
 import { SegmentsProfileMetricConditionTimeframeFilter } from './segmentsProfileMetricConditionTimeframeFilter';
-export type ConditionGroupConditionsInner = ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | SegmentsProfileMetricCondition | ProfileMarketingConsentCondition | ProfilePostalCodeDistanceCondition | ProfilePropertyCondition | ProfileRegionCondition | ProfilePredictiveAnalyticsNumericCondition | ProfilePredictiveAnalyticsStringCondition;
+export type ConditionGroupConditionsInner = ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | SegmentsProfileMetricCondition | ProfileMarketingConsentCondition | ProfilePostalCodeDistanceCondition | ProfilePropertyCondition | ProfileRegionCondition | ProfilePredictiveAnalyticsDateCondition | ProfilePredictiveAnalyticsNumericCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsChannelAffinityPriorityCondition | ProfilePredictiveAnalyticsChannelAffinityRankCondition;
