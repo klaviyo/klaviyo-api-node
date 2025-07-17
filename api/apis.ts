@@ -6,6 +6,8 @@ export * from './catalogsApi';
 import { CatalogsApi } from './catalogsApi';
 export * from './couponsApi';
 import { CouponsApi } from './couponsApi';
+export * from './customObjectsApi';
+import { CustomObjectsApi } from './customObjectsApi';
 export * from './dataPrivacyApi';
 import { DataPrivacyApi } from './dataPrivacyApi';
 export * from './eventsApi';
@@ -44,8 +46,8 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, AxiosError, isAxiosErro
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2025-04-15";
-const userAgent = "klaviyo-api-node/18.0.0";
+const revision =  "2025-07-15";
+const userAgent = "klaviyo-api-node/19.0.0";
 
 export class RetryWithExponentialBackoff {
 
@@ -532,6 +534,8 @@ export namespace Pkce {
 
     export const Coupons = new CouponsApi(new GlobalApiKeySession())
 
+    export const CustomObjects = new CustomObjectsApi(new GlobalApiKeySession())
+
     export const DataPrivacy = new DataPrivacyApi(new GlobalApiKeySession())
 
     export const Events = new EventsApi(new GlobalApiKeySession())
@@ -576,4 +580,4 @@ export const Auth = {
     Pkce,
 }
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebFeedsApi, WebFeeds, WebhooksApi, Webhooks };
+export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, CouponsApi, Coupons, CustomObjectsApi, CustomObjects, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebFeedsApi, WebFeeds, WebhooksApi, Webhooks };

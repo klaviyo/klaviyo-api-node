@@ -11,11 +11,13 @@
 
 import { RequestFile } from './models';
 import { FlowPushNotificationAdditionalFilters } from './flowPushNotificationAdditionalFilters';
+import { FlowPushNotificationBadgeOptions } from './flowPushNotificationBadgeOptions';
 export class FlowPushNotification {
     'title'?: string | null;
     'body': string;
     'sound'?: boolean = false;
     'badge'?: boolean = false;
+    'badgeOptions'?: FlowPushNotificationBadgeOptions;
     /**
     * The id of an ImageAsset. If provided, this will take precedence over a dynamic_image.
     */
@@ -57,6 +59,11 @@ export class FlowPushNotification {
             "name": "badge",
             "baseName": "badge",
             "type": "boolean"
+        },
+        {
+            "name": "badgeOptions",
+            "baseName": "badge_options",
+            "type": "FlowPushNotificationBadgeOptions"
         },
         {
             "name": "imageId",

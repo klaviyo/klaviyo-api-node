@@ -10,7 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { Increment } from './increment';
-import { Property } from './property';
-import { StaticCount } from './staticCount';
-export type MobilePushBadgeBadgeOptions = Increment | StaticCount | Property;
+import { CampaignMessageIncrement } from './campaignMessageIncrement';
+import { CampaignMessageProperty } from './campaignMessageProperty';
+import { CampaignMessageStaticCount } from './campaignMessageStaticCount';
+export type MobilePushBadgeBadgeOptions = CampaignMessageIncrement | CampaignMessageStaticCount | CampaignMessageProperty;

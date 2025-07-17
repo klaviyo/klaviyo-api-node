@@ -10,8 +10,9 @@
  */
 
 import { RequestFile } from './models';
+import { SetPropertyEnum } from './setPropertyEnum';
 export class Property {
-    'badgeConfig': Property.BadgeConfigEnum | 'set_property';
+    'badgeConfig': SetPropertyEnum | 'set_property';
     'setFromProperty': string;
 
 
@@ -19,7 +20,7 @@ export class Property {
         {
             "name": "badgeConfig",
             "baseName": "badge_config",
-            "type": "Property.BadgeConfigEnum"
+            "type": "SetPropertyEnum"
         },
         {
             "name": "setFromProperty",
@@ -33,7 +34,4 @@ export class Property {
 }
 
 export namespace Property {
-    export enum BadgeConfigEnum {
-        SetProperty = <any> 'set_property'
-    }
 }

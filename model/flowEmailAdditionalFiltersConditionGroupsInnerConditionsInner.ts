@@ -21,9 +21,10 @@ import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCon
 import { ProfileNotInFlowConditionTimeframeFilter } from './profileNotInFlowConditionTimeframeFilter';
 import { ProfileNotSentEmailEnum } from './profileNotSentEmailEnum';
 import { ProfilePostalCodeDistanceCondition } from './profilePostalCodeDistanceCondition';
+import { ProfilePredictiveAnalyticsDateCondition } from './profilePredictiveAnalyticsDateCondition';
 import { ProfilePredictiveAnalyticsNumericCondition } from './profilePredictiveAnalyticsNumericCondition';
 import { ProfilePredictiveAnalyticsStringCondition } from './profilePredictiveAnalyticsStringCondition';
 import { ProfilePropertyCondition } from './profilePropertyCondition';
 import { ProfileRandomSampleCondition } from './profileRandomSampleCondition';
 import { ProfileRegionCondition } from './profileRegionCondition';
-export type FlowEmailAdditionalFiltersConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition | ProfileHasNotReceivedEmailMessageCondition;
+export type FlowEmailAdditionalFiltersConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsDateCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition | ProfileHasNotReceivedEmailMessageCondition;

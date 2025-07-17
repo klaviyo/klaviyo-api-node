@@ -10,6 +10,6 @@
  */
 
 import { RequestFile } from './models';
-export enum CustomObjectPropertyEnum {
-    CustomObjectProperty = <any> 'custom-object-property'
+export enum RankEnum {
+    Rank = <any> 'rank'
 }

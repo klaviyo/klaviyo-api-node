@@ -19,10 +19,11 @@ import { ProfileMarketingConsentConditionConsent } from './profileMarketingConse
 import { ProfileMetricPropertyFilter } from './profileMetricPropertyFilter';
 import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCondition';
 import { ProfilePostalCodeDistanceCondition } from './profilePostalCodeDistanceCondition';
+import { ProfilePredictiveAnalyticsDateCondition } from './profilePredictiveAnalyticsDateCondition';
 import { ProfilePredictiveAnalyticsNumericCondition } from './profilePredictiveAnalyticsNumericCondition';
 import { ProfilePredictiveAnalyticsStringCondition } from './profilePredictiveAnalyticsStringCondition';
 import { ProfilePropertyCondition } from './profilePropertyCondition';
 import { ProfileRandomSampleCondition } from './profileRandomSampleCondition';
 import { ProfileRegionCondition } from './profileRegionCondition';
 import { ProfileSampleEnum } from './profileSampleEnum';
-export type ConditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition;
+export type ConditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsDateCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition;

@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { TriggerBranchActionDataTriggerFilterConditionGroupsInner } from './triggerBranchActionDataTriggerFilterConditionGroupsInner';
-export class TriggerBranchActionDataTriggerFilter {
-    'conditionGroups': Array<TriggerBranchActionDataTriggerFilterConditionGroupsInner>;
+import { PatchMappedMetricResponseData } from './patchMappedMetricResponseData';
+export class PatchMappedMetricResponse {
+    'data': PatchMappedMetricResponseData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "conditionGroups",
-            "baseName": "condition_groups",
-            "type": "Array<TriggerBranchActionDataTriggerFilterConditionGroupsInner>"
+            "name": "data",
+            "baseName": "data",
+            "type": "PatchMappedMetricResponseData"
         }    ];
 
     static getAttributeTypeMap() {
-        return TriggerBranchActionDataTriggerFilter.attributeTypeMap;
+        return PatchMappedMetricResponse.attributeTypeMap;
     }
 }
 
