@@ -854,6 +854,7 @@ export * from './internalServiceEnum';
 export * from './invalidEmailDateEnum';
 export * from './invalidEmailDateFilter';
 export * from './isDoubleOptInEnum';
+export * from './isRcsCapableEnum';
 export * from './isSetEnum';
 export * from './isSetExistenceFilter';
 export * from './lessThanEnum';
@@ -1416,6 +1417,7 @@ export * from './stringInArrayFilter';
 export * from './stringOperatorFilter';
 export * from './stringPhoneOperatorArrayFilter';
 export * from './subscribedEnum';
+export * from './subscribedSMSIsRcsCapableFilter';
 export * from './subscriptionChannels';
 export * from './subscriptionCreateJobCreateQuery';
 export * from './subscriptionCreateJobCreateQueryResourceObject';
@@ -2430,6 +2432,7 @@ import { InternalServiceEnum } from './internalServiceEnum';
 import { InvalidEmailDateEnum } from './invalidEmailDateEnum';
 import { InvalidEmailDateFilter } from './invalidEmailDateFilter';
 import { IsDoubleOptInEnum } from './isDoubleOptInEnum';
+import { IsRcsCapableEnum } from './isRcsCapableEnum';
 import { IsSetEnum } from './isSetEnum';
 import { IsSetExistenceFilter } from './isSetExistenceFilter';
 import { LessThanEnum } from './lessThanEnum';
@@ -2992,6 +2995,7 @@ import { StringInArrayFilter } from './stringInArrayFilter';
 import { StringOperatorFilter } from './stringOperatorFilter';
 import { StringPhoneOperatorArrayFilter } from './stringPhoneOperatorArrayFilter';
 import { SubscribedEnum } from './subscribedEnum';
+import { SubscribedSMSIsRcsCapableFilter } from './subscribedSMSIsRcsCapableFilter';
 import { SubscriptionChannels } from './subscriptionChannels';
 import { SubscriptionCreateJobCreateQuery } from './subscriptionCreateJobCreateQuery';
 import { SubscriptionCreateJobCreateQueryResourceObject } from './subscriptionCreateJobCreateQueryResourceObject';
@@ -4002,6 +4006,7 @@ import {  } from './internalServiceEnum';
 import {  } from './invalidEmailDateEnum';
 import {  } from './invalidEmailDateFilter';
 import {  } from './isDoubleOptInEnum';
+import {  } from './isRcsCapableEnum';
 import {  } from './isSetEnum';
 import {  } from './isSetExistenceFilter';
 import {  } from './lessThanEnum';
@@ -4564,6 +4569,7 @@ import {  } from './stringInArrayFilter';
 import {  } from './stringOperatorFilter';
 import {  } from './stringPhoneOperatorArrayFilter';
 import {  } from './subscribedEnum';
+import {  } from './subscribedSMSIsRcsCapableFilter';
 import {  } from './subscriptionChannels';
 import {  } from './subscriptionCreateJobCreateQuery';
 import {  } from './subscriptionCreateJobCreateQueryResourceObject';
@@ -4880,6 +4886,7 @@ let enumsMap: {[index: string]: any} = {
         "InternalServiceEnum": InternalServiceEnum,
         "InvalidEmailDateEnum": InvalidEmailDateEnum,
         "IsDoubleOptInEnum": IsDoubleOptInEnum,
+        "IsRcsCapableEnum": IsRcsCapableEnum,
         "IsSetEnum": IsSetEnum,
         "LessThanEnum": LessThanEnum,
         "ListContainsOperatorFilter.OperatorEnum": ListContainsOperatorFilter.OperatorEnum,
@@ -6277,6 +6284,7 @@ let typeMap: {[index: string]: any} = {
     "StringInArrayFilter": StringInArrayFilter,
     "StringOperatorFilter": StringOperatorFilter,
     "StringPhoneOperatorArrayFilter": StringPhoneOperatorArrayFilter,
+    "SubscribedSMSIsRcsCapableFilter": SubscribedSMSIsRcsCapableFilter,
     "SubscriptionChannels": SubscriptionChannels,
     "SubscriptionCreateJobCreateQuery": SubscriptionCreateJobCreateQuery,
     "SubscriptionCreateJobCreateQueryResourceObject": SubscriptionCreateJobCreateQueryResourceObject,
@@ -6675,6 +6683,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "SftpMethodFilter",
             "ShopifyIntegrationMethodFilter",
             "StatusDateFilter",
+            "SubscribedSMSIsRcsCapableFilter",
     ],
     "MetricPropertyConditionFilter": [
             "AnniversaryDateFilter",
@@ -6927,13 +6936,20 @@ export class ObjectSerializer {
                 // the type does not have a discriminator.
               if (oneOfMapNoDiscriminator[expectedType]) {
                 for (const index in oneOfMapNoDiscriminator[expectedType]) {
+                  const potentialType = oneOfMapNoDiscriminator[expectedType][index];
+                  if (
+                    enumsMap[potentialType] &&
+                    Object.values(enumsMap[potentialType]).includes(data)
+                  ) {
+                    return potentialType;
+                  }
                   if (serializer) {
-                    if (ObjectSerializer.serializerValidateType(data, typeMap[oneOfMapNoDiscriminator[expectedType][index]])) {
-                      return oneOfMapNoDiscriminator[expectedType][index];
+                    if (ObjectSerializer.serializerValidateType(data, typeMap[potentialType])) {
+                      return potentialType;
                     }
                   } else {
-                    if (ObjectSerializer.deserializerValidateType(data, typeMap[oneOfMapNoDiscriminator[expectedType][index]])) {
-                      return oneOfMapNoDiscriminator[expectedType][index];
+                    if (ObjectSerializer.deserializerValidateType(data, typeMap[potentialType])) {
+                      return potentialType;
                     }
                   }
 
@@ -7019,6 +7035,11 @@ export class ObjectSerializer {
 
             // Get the actual type of this object
             type = this.findCorrectType(data, type, true);
+
+            if (!typeMap[type]) {
+                // it is an enum, return data
+                return data;
+            }
 
             // get the map for the correct type.
             let attributeTypes = typeMap[type].getAttributeTypeMap();
