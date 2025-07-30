@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [19.0.1] - revision 2025-07-15
+### Fixed
+- Fixed issue with segments deserialization
+
 ## [19.0.0] - revision 2025-07-15
 ### Added
 #### Mapped Metrics API

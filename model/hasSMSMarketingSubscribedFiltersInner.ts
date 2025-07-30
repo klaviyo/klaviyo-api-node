@@ -10,16 +10,17 @@
  */
 
 import { RequestFile } from './models';
+import { BooleanFilter } from './booleanFilter';
 import { CheckoutMethodFilter } from './checkoutMethodFilter';
 import { FormMethodFilter } from './formMethodFilter';
 import { InboundMessageMethodFilter } from './inboundMessageMethodFilter';
 import { IntegrationEnum } from './integrationEnum';
+import { IsRcsCapableEnum } from './isRcsCapableEnum';
 import { ManualAddMethodFilter } from './manualAddMethodFilter';
 import { ManualImportMethodFilter } from './manualImportMethodFilter';
-import { MethodEnum } from './methodEnum';
 import { PreferencePageMethodFilter } from './preferencePageMethodFilter';
 import { SftpMethodFilter } from './sftpMethodFilter';
-import { ShopifyIntegrationFilter } from './shopifyIntegrationFilter';
 import { ShopifyIntegrationMethodFilter } from './shopifyIntegrationMethodFilter';
 import { StatusDateFilter } from './statusDateFilter';
-export type HasSMSMarketingSubscribedFiltersInner = StatusDateFilter | FormMethodFilter | ManualImportMethodFilter | ManualAddMethodFilter | CheckoutMethodFilter | InboundMessageMethodFilter | PreferencePageMethodFilter | SftpMethodFilter | ShopifyIntegrationMethodFilter;
+import { SubscribedSMSIsRcsCapableFilter } from './subscribedSMSIsRcsCapableFilter';
+export type HasSMSMarketingSubscribedFiltersInner = StatusDateFilter | FormMethodFilter | ManualImportMethodFilter | ManualAddMethodFilter | CheckoutMethodFilter | InboundMessageMethodFilter | PreferencePageMethodFilter | SftpMethodFilter | ShopifyIntegrationMethodFilter | SubscribedSMSIsRcsCapableFilter;
