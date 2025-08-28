@@ -16,13 +16,13 @@ export class AbTestActionDataCurrentExperiment {
     'id'?: string | null;
     'name'?: string | null;
     'variations': Array<AbTestActionDataMainAction>;
-    'allocations': object;
+    'allocations'?: object | null;
     'started'?: Date | null;
     /**
     * The metric to use to determine the winner of the A/B test action.  Note that this is different from the metrics used as a flow trigger.
     */
-    'winnerMetric': AbTestActionDataCurrentExperiment.WinnerMetricEnum | 'submission' | 'unique-clicks' | 'unique-opens' | 'unique-placed-orders';
-    'automaticWinnerSelectionSettings': AutomaticWinnerSelectionSettings;
+    'winnerMetric'?: AbTestActionDataCurrentExperiment.WinnerMetricEnum | 'submission' | 'unique-clicks' | 'unique-opens' | 'unique-placed-orders' | null;
+    'automaticWinnerSelectionSettings'?: AutomaticWinnerSelectionSettings;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

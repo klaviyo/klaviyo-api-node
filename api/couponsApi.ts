@@ -472,7 +472,7 @@ export class CouponsApi {
      * @param id The internal id of a Coupon is equivalent to its external id stored within an integration.
      * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getCoupon (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
+    public async getCoupon (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description' | 'monitor_configuration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
 
         const localVarPath = this.basePath + '/api/coupons/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -492,7 +492,7 @@ export class CouponsApi {
         }
 
         if (options.fieldsCoupon !== undefined) {
-            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description'>");
+            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description' | 'monitor_configuration'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -529,7 +529,7 @@ export class CouponsApi {
      * @param id The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
      * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
      */
-    public async getCouponCode (id: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, include?: Array<'coupon'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCompoundDocument;  }> {
+    public async getCouponCode (id: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description' | 'monitor_configuration'>, include?: Array<'coupon'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/coupon-codes/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -553,7 +553,7 @@ export class CouponsApi {
         }
 
         if (options.fieldsCoupon !== undefined) {
-            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description'>");
+            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description' | 'monitor_configuration'>");
         }
 
         if (options.include !== undefined) {
@@ -655,7 +655,7 @@ export class CouponsApi {
      * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
      * @param fieldsCouponCode For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
      */
-    public async getCouponCodes (filter: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description'>, include?: Array<'coupon'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }> {
+    public async getCouponCodes (filter: string, options: { fieldsCouponCode?: Array<'unique_code' | 'expires_at' | 'status'>, fieldsCoupon?: Array<'external_id' | 'description' | 'monitor_configuration'>, include?: Array<'coupon'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponCodeResponseCollectionCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/coupon-codes';
         let localVarQueryParameters: any = {};
@@ -678,7 +678,7 @@ export class CouponsApi {
         }
 
         if (options.fieldsCoupon !== undefined) {
-            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description'>");
+            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description' | 'monitor_configuration'>");
         }
 
         localVarQueryParameters['filter'] = ObjectSerializer.serialize(filter, "string");
@@ -790,7 +790,7 @@ export class CouponsApi {
      * @param id The ID of the coupon to look up the relationship of.
      * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getCouponForCouponCode (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
+    public async getCouponForCouponCode (id: string, options: { fieldsCoupon?: Array<'external_id' | 'description' | 'monitor_configuration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponse;  }> {
 
         const localVarPath = this.basePath + '/api/coupon-codes/{id}/coupon'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -810,7 +810,7 @@ export class CouponsApi {
         }
 
         if (options.fieldsCoupon !== undefined) {
-            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description'>");
+            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description' | 'monitor_configuration'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -900,7 +900,7 @@ export class CouponsApi {
      
      * @param fieldsCoupon For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
      */
-    public async getCoupons (options: { fieldsCoupon?: Array<'external_id' | 'description'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponseCollection;  }> {
+    public async getCoupons (options: { fieldsCoupon?: Array<'external_id' | 'description' | 'monitor_configuration'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetCouponResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/coupons';
         let localVarQueryParameters: any = {};
@@ -914,7 +914,7 @@ export class CouponsApi {
         }
 
         if (options.fieldsCoupon !== undefined) {
-            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description'>");
+            localVarQueryParameters['fields[coupon]'] = ObjectSerializer.serialize(options.fieldsCoupon, "Array<'external_id' | 'description' | 'monitor_configuration'>");
         }
 
         if (options.pageCursor !== undefined) {

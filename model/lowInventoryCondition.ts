@@ -10,13 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { LowInventoryConditionFilter2 } from './lowInventoryConditionFilter2';
 import { LowInventoryPropertyEnum } from './lowInventoryPropertyEnum';
-import { MetricPropertyConditionFilter } from './metricPropertyConditionFilter';
 export class LowInventoryCondition {
     'type': LowInventoryPropertyEnum | 'low-inventory-property';
     'metricId': string | null;
     'field': string;
-    'filter': MetricPropertyConditionFilter;
+    'filter': LowInventoryConditionFilter2;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -38,7 +38,7 @@ export class LowInventoryCondition {
         {
             "name": "filter",
             "baseName": "filter",
-            "type": "MetricPropertyConditionFilter"
+            "type": "LowInventoryConditionFilter2"
         }    ];
 
     static getAttributeTypeMap() {

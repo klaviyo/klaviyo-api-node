@@ -889,6 +889,7 @@ export * from './listUpdateEnum';
 export * from './localStaticSend';
 export * from './lowInventoryCondition';
 export * from './lowInventoryConditionFilter';
+export * from './lowInventoryConditionFilter2';
 export * from './lowInventoryConditionGroup';
 export * from './lowInventoryEnum';
 export * from './lowInventoryPropertyEnum';
@@ -926,6 +927,7 @@ export * from './metricCreateQueryResourceObjectAttributes';
 export * from './metricEnum';
 export * from './metricPropertyCondition';
 export * from './metricPropertyConditionFilter';
+export * from './metricPropertyConditionFilter2';
 export * from './metricPropertyConditionGroup';
 export * from './metricPropertyEnum';
 export * from './metricPropertyResponseObjectResourceAttributes';
@@ -1153,6 +1155,7 @@ export * from './preferencePageFilter';
 export * from './preferencePageMethodFilter';
 export * from './priceDropCondition';
 export * from './priceDropConditionFilter';
+export * from './priceDropConditionFilter2';
 export * from './priceDropConditionGroup';
 export * from './priceDropEnum';
 export * from './priceDropPropertyEnum';
@@ -2467,6 +2470,7 @@ import { ListUpdateEnum } from './listUpdateEnum';
 import { LocalStaticSend } from './localStaticSend';
 import { LowInventoryCondition } from './lowInventoryCondition';
 import { LowInventoryConditionFilter } from './lowInventoryConditionFilter';
+import { LowInventoryConditionFilter2 } from './lowInventoryConditionFilter2';
 import { LowInventoryConditionGroup } from './lowInventoryConditionGroup';
 import { LowInventoryEnum } from './lowInventoryEnum';
 import { LowInventoryPropertyEnum } from './lowInventoryPropertyEnum';
@@ -2504,6 +2508,7 @@ import { MetricCreateQueryResourceObjectAttributes } from './metricCreateQueryRe
 import { MetricEnum } from './metricEnum';
 import { MetricPropertyCondition } from './metricPropertyCondition';
 import { MetricPropertyConditionFilter } from './metricPropertyConditionFilter';
+import { MetricPropertyConditionFilter2 } from './metricPropertyConditionFilter2';
 import { MetricPropertyConditionGroup } from './metricPropertyConditionGroup';
 import { MetricPropertyEnum } from './metricPropertyEnum';
 import { MetricPropertyResponseObjectResourceAttributes } from './metricPropertyResponseObjectResourceAttributes';
@@ -2731,6 +2736,7 @@ import { PreferencePageFilter } from './preferencePageFilter';
 import { PreferencePageMethodFilter } from './preferencePageMethodFilter';
 import { PriceDropCondition } from './priceDropCondition';
 import { PriceDropConditionFilter } from './priceDropConditionFilter';
+import { PriceDropConditionFilter2 } from './priceDropConditionFilter2';
 import { PriceDropConditionGroup } from './priceDropConditionGroup';
 import { PriceDropEnum } from './priceDropEnum';
 import { PriceDropPropertyEnum } from './priceDropPropertyEnum';
@@ -4041,6 +4047,7 @@ import {  } from './listUpdateEnum';
 import {  } from './localStaticSend';
 import {  } from './lowInventoryCondition';
 import {  } from './lowInventoryConditionFilter';
+import {  } from './lowInventoryConditionFilter2';
 import {  } from './lowInventoryConditionGroup';
 import {  } from './lowInventoryEnum';
 import {  } from './lowInventoryPropertyEnum';
@@ -4078,6 +4085,7 @@ import {  } from './metricCreateQueryResourceObjectAttributes';
 import {  } from './metricEnum';
 import {  } from './metricPropertyCondition';
 import {  } from './metricPropertyConditionFilter';
+import {  } from './metricPropertyConditionFilter2';
 import {  } from './metricPropertyConditionGroup';
 import {  } from './metricPropertyEnum';
 import {  } from './metricPropertyResponseObjectResourceAttributes';
@@ -4305,6 +4313,7 @@ import {  } from './preferencePageFilter';
 import {  } from './preferencePageMethodFilter';
 import {  } from './priceDropCondition';
 import {  } from './priceDropConditionFilter';
+import {  } from './priceDropConditionFilter2';
 import {  } from './priceDropConditionGroup';
 import {  } from './priceDropEnum';
 import {  } from './priceDropPropertyEnum';
@@ -4938,6 +4947,7 @@ let enumsMap: {[index: string]: any} = {
         "PatchMappedMetricResponseData.IdEnum": PatchMappedMetricResponseData.IdEnum,
         "PendingEnum": PendingEnum,
         "PostFlowV2ResponseDataAttributes.TriggerTypeEnum": PostFlowV2ResponseDataAttributes.TriggerTypeEnum,
+        "PredictiveAnalytics.RankedChannelAffinityEnum": PredictiveAnalytics.RankedChannelAffinityEnum,
         "PreferencePageEnum": PreferencePageEnum,
         "PriceDropEnum": PriceDropEnum,
         "PriceDropPropertyEnum": PriceDropPropertyEnum,
@@ -5883,6 +5893,7 @@ let typeMap: {[index: string]: any} = {
     "MetricCreateQueryResourceObject": MetricCreateQueryResourceObject,
     "MetricCreateQueryResourceObjectAttributes": MetricCreateQueryResourceObjectAttributes,
     "MetricPropertyCondition": MetricPropertyCondition,
+    "MetricPropertyConditionFilter": MetricPropertyConditionFilter,
     "MetricPropertyConditionGroup": MetricPropertyConditionGroup,
     "MetricPropertyResponseObjectResourceAttributes": MetricPropertyResponseObjectResourceAttributes,
     "MetricPropertyResponseObjectResourceExtended": MetricPropertyResponseObjectResourceExtended,
@@ -6685,7 +6696,24 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "StatusDateFilter",
             "SubscribedSMSIsRcsCapableFilter",
     ],
-    "MetricPropertyConditionFilter": [
+    "LowInventoryConditionFilter2": [
+            "AnniversaryDateFilter",
+            "BooleanFilter",
+            "CalendarDateFilter",
+            "ExistenceOperatorFilter",
+            "ListContainsOperatorFilter",
+            "ListLengthFilter",
+            "NumericOperatorFilter",
+            "NumericRangeFilter",
+            "RelativeAnniversaryDateFilter",
+            "RelativeDateOperatorBaseFilter",
+            "RelativeDateRangeFilter",
+            "StaticDateFilter",
+            "StaticDateRangeFilter",
+            "StringArrayOperatorFilter",
+            "StringOperatorFilter",
+    ],
+    "MetricPropertyConditionFilter2": [
             "AnniversaryDateFilter",
             "BooleanFilter",
             "CalendarDateFilter",
@@ -6762,6 +6790,23 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "PostCampaignMessageResponseDataAttributesContent": [
             "EmailContentSubObject",
             "SMSContentSubObject",
+    ],
+    "PriceDropConditionFilter2": [
+            "AnniversaryDateFilter",
+            "BooleanFilter",
+            "CalendarDateFilter",
+            "ExistenceOperatorFilter",
+            "ListContainsOperatorFilter",
+            "ListLengthFilter",
+            "NumericOperatorFilter",
+            "NumericRangeFilter",
+            "RelativeAnniversaryDateFilter",
+            "RelativeDateOperatorBaseFilter",
+            "RelativeDateRangeFilter",
+            "StaticDateFilter",
+            "StaticDateRangeFilter",
+            "StringArrayOperatorFilter",
+            "StringOperatorFilter",
     ],
     "ProfileHasGroupMembershipConditionTimeframeFilter": [
             "RelativeDateOperatorBaseFilter",
