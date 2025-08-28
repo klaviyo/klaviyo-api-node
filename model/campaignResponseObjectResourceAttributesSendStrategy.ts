@@ -18,4 +18,4 @@ import { StaticSendStrategyOptions } from './staticSendStrategyOptions';
 import { ThrottledSendStrategy } from './throttledSendStrategy';
 import { UnsupportedEnum } from './unsupportedEnum';
 import { UnsupportedSendStrategy } from './unsupportedSendStrategy';
-export type CampaignResponseObjectResourceAttributesSendStrategy = StaticSendStrategy | ThrottledSendStrategy | ImmediateSendStrategy | SmartSendTimeStrategy | ABTestSendStrategy | UnsupportedSendStrategy;
+export type CampaignResponseObjectResourceAttributesSendStrategy = StaticSendStrategy | SmartSendTimeStrategy | ThrottledSendStrategy | ImmediateSendStrategy | ABTestSendStrategy | UnsupportedSendStrategy;

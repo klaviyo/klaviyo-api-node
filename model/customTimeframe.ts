@@ -11,7 +11,13 @@
 
 import { RequestFile } from './models';
 export class CustomTimeframe {
+    /**
+    * A datetime that represents the start of a custom time frame. Offset is ignored and the company timezone is used.
+    */
     'start': Date;
+    /**
+    * A datetime that represents the end of a custom time frame. Offset is ignored and the company timezone is used.
+    */
     'end': Date;
 
 

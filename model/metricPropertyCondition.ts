@@ -10,13 +10,13 @@
  */
 
 import { RequestFile } from './models';
-import { MetricPropertyConditionFilter } from './metricPropertyConditionFilter';
+import { MetricPropertyConditionFilter2 } from './metricPropertyConditionFilter2';
 import { MetricPropertyEnum } from './metricPropertyEnum';
 export class MetricPropertyCondition {
     'type': MetricPropertyEnum | 'metric-property';
     'metricId': string;
     'field': string;
-    'filter': MetricPropertyConditionFilter;
+    'filter': MetricPropertyConditionFilter2;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -38,7 +38,7 @@ export class MetricPropertyCondition {
         {
             "name": "filter",
             "baseName": "filter",
-            "type": "MetricPropertyConditionFilter"
+            "type": "MetricPropertyConditionFilter2"
         }    ];
 
     static getAttributeTypeMap() {

@@ -30,11 +30,11 @@ export class WebhookResponseObjectResourceAttributes {
     /**
     * Date and time when the webhook was created, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'createdAt': Date;
+    'createdAt'?: Date | null;
     /**
     * Date and time when the webhook was last updated, in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
-    'updatedAt': Date;
+    'updatedAt'?: Date | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

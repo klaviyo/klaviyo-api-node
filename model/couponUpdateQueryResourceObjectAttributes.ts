@@ -15,6 +15,10 @@ export class CouponUpdateQueryResourceObjectAttributes {
     * A description of the coupon.
     */
     'description'?: string | null;
+    /**
+    * The monitor configuration for the coupon.
+    */
+    'monitorConfiguration'?: object | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -22,6 +26,11 @@ export class CouponUpdateQueryResourceObjectAttributes {
             "name": "description",
             "baseName": "description",
             "type": "string"
+        },
+        {
+            "name": "monitorConfiguration",
+            "baseName": "monitor_configuration",
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {

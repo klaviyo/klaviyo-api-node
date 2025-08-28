@@ -10,20 +10,20 @@
  */
 
 import { RequestFile } from './models';
-import { AnniversaryDateFilter } from './anniversaryDateFilter';
-import { BooleanFilter } from './booleanFilter';
-import { CalendarDateFilter } from './calendarDateFilter';
-import { ExistenceEnum } from './existenceEnum';
-import { ExistenceOperatorFilter } from './existenceOperatorFilter';
-import { ListContainsOperatorFilter } from './listContainsOperatorFilter';
-import { ListLengthFilter } from './listLengthFilter';
-import { NumericOperatorFilter } from './numericOperatorFilter';
-import { NumericRangeFilter } from './numericRangeFilter';
-import { RelativeAnniversaryDateFilter } from './relativeAnniversaryDateFilter';
-import { RelativeDateOperatorBaseFilter } from './relativeDateOperatorBaseFilter';
-import { RelativeDateRangeFilter } from './relativeDateRangeFilter';
-import { StaticDateFilter } from './staticDateFilter';
-import { StaticDateRangeFilter } from './staticDateRangeFilter';
-import { StringArrayOperatorFilter } from './stringArrayOperatorFilter';
-import { StringOperatorFilter } from './stringOperatorFilter';
-export type MetricPropertyConditionFilter = StringOperatorFilter | StringArrayOperatorFilter | NumericOperatorFilter | NumericRangeFilter | BooleanFilter | StaticDateFilter | StaticDateRangeFilter | RelativeDateOperatorBaseFilter | RelativeAnniversaryDateFilter | RelativeDateRangeFilter | CalendarDateFilter | AnniversaryDateFilter | ListContainsOperatorFilter | ListLengthFilter | ExistenceOperatorFilter;
+import { MetricPropertyConditionGroup } from './metricPropertyConditionGroup';
+export class MetricPropertyConditionFilter {
+    'conditionGroups': Array<MetricPropertyConditionGroup>;
+
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "conditionGroups",
+            "baseName": "condition_groups",
+            "type": "Array<MetricPropertyConditionGroup>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return MetricPropertyConditionFilter.attributeTypeMap;
+    }
+}
+
