@@ -34,7 +34,7 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Optional attribute(s) used for partitioning by the aggregation function
     */
-    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum> | Array<'$attributed_channel' | '$attributed_flow' | '$attributed_message' | '$attributed_variation' | '$campaign_channel' | '$flow' | '$flow_channel' | '$message' | '$message_send_cohort' | '$value_currency' | '$variation' | '$variation_send_cohort' | 'Bot Click' | 'Bounce Type' | 'Campaign Name' | 'Client Canonical' | 'Client Name' | 'Client Type' | 'Email Domain' | 'Failure Source' | 'Failure Type' | 'From Number' | 'From Phone Region' | 'Inbox Provider' | 'List' | 'Message Name' | 'Message Type' | 'Method' | 'Subject' | 'To Number' | 'To Phone Region' | 'URL' | 'form_id'> | null;
+    'by'?: Array<MetricAggregateQueryResourceObjectAttributes.ByEnum> | Array<'$attributed_channel' | '$attributed_flow' | '$attributed_message' | '$attributed_variation' | '$campaign_channel' | '$flow' | '$flow_channel' | '$message' | '$message_send_cohort' | '$usage_amount' | '$value_currency' | '$variation' | '$variation_send_cohort' | 'Bot Click' | 'Bounce Type' | 'Campaign Name' | 'Client Canonical' | 'Client Name' | 'Client Type' | 'Email Domain' | 'Failure Source' | 'Failure Type' | 'From Number' | 'From Phone Region' | 'Inbox Provider' | 'List' | 'Message Name' | 'Message Type' | 'Method' | 'Segment Count' | 'Subject' | 'To Number' | 'To Phone Region' | 'URL' | 'form_id'> | null;
     /**
     * Provide fields to limit the returned data
     */
@@ -50,7 +50,7 @@ export class MetricAggregateQueryResourceObjectAttributes {
     /**
     * Provide a sort key (e.g. -$message)
     */
-    'sort'?: MetricAggregateQueryResourceObjectAttributes.SortEnum | '$attributed_channel' | '-$attributed_channel' | '$attributed_flow' | '-$attributed_flow' | '$attributed_message' | '-$attributed_message' | '$attributed_variation' | '-$attributed_variation' | '$campaign_channel' | '-$campaign_channel' | '$flow' | '-$flow' | '$flow_channel' | '-$flow_channel' | '$message' | '-$message' | '$message_send_cohort' | '-$message_send_cohort' | '$value_currency' | '-$value_currency' | '$variation' | '-$variation' | '$variation_send_cohort' | '-$variation_send_cohort' | 'Bot Click' | '-Bot Click' | 'Bounce Type' | '-Bounce Type' | 'Campaign Name' | '-Campaign Name' | 'Client Canonical' | '-Client Canonical' | 'Client Name' | '-Client Name' | 'Client Type' | '-Client Type' | 'Email Domain' | '-Email Domain' | 'Failure Source' | '-Failure Source' | 'Failure Type' | '-Failure Type' | 'From Number' | '-From Number' | 'From Phone Region' | '-From Phone Region' | 'Inbox Provider' | '-Inbox Provider' | 'List' | '-List' | 'Message Name' | '-Message Name' | 'Message Type' | '-Message Type' | 'Method' | '-Method' | 'Subject' | '-Subject' | 'To Number' | '-To Number' | 'To Phone Region' | '-To Phone Region' | 'URL' | '-URL' | 'count' | '-count' | 'form_id' | '-form_id' | 'sum_value' | '-sum_value' | 'unique' | '-unique';
+    'sort'?: MetricAggregateQueryResourceObjectAttributes.SortEnum | '$attributed_channel' | '-$attributed_channel' | '$attributed_flow' | '-$attributed_flow' | '$attributed_message' | '-$attributed_message' | '$attributed_variation' | '-$attributed_variation' | '$campaign_channel' | '-$campaign_channel' | '$flow' | '-$flow' | '$flow_channel' | '-$flow_channel' | '$message' | '-$message' | '$message_send_cohort' | '-$message_send_cohort' | '$usage_amount' | '-$usage_amount' | '$value_currency' | '-$value_currency' | '$variation' | '-$variation' | '$variation_send_cohort' | '-$variation_send_cohort' | 'Bot Click' | '-Bot Click' | 'Bounce Type' | '-Bounce Type' | 'Campaign Name' | '-Campaign Name' | 'Client Canonical' | '-Client Canonical' | 'Client Name' | '-Client Name' | 'Client Type' | '-Client Type' | 'Email Domain' | '-Email Domain' | 'Failure Source' | '-Failure Source' | 'Failure Type' | '-Failure Type' | 'From Number' | '-From Number' | 'From Phone Region' | '-From Phone Region' | 'Inbox Provider' | '-Inbox Provider' | 'List' | '-List' | 'Message Name' | '-Message Name' | 'Message Type' | '-Message Type' | 'Method' | '-Method' | 'Segment Count' | '-Segment Count' | 'Subject' | '-Subject' | 'To Number' | '-To Number' | 'To Phone Region' | '-To Phone Region' | 'URL' | '-URL' | 'count' | '-count' | 'form_id' | '-form_id' | 'sum_value' | '-sum_value' | 'unique' | '-unique';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -132,6 +132,7 @@ export namespace MetricAggregateQueryResourceObjectAttributes {
         FlowChannel = <any> '$flow_channel',
         Message = <any> '$message',
         MessageSendCohort = <any> '$message_send_cohort',
+        UsageAmount = <any> '$usage_amount',
         ValueCurrency = <any> '$value_currency',
         Variation = <any> '$variation',
         VariationSendCohort = <any> '$variation_send_cohort',
@@ -151,6 +152,7 @@ export namespace MetricAggregateQueryResourceObjectAttributes {
         MessageName = <any> 'Message Name',
         MessageType = <any> 'Message Type',
         Method = <any> 'Method',
+        SegmentCount = <any> 'Segment Count',
         Subject = <any> 'Subject',
         ToNumber = <any> 'To Number',
         ToPhoneRegion = <any> 'To Phone Region',
@@ -176,6 +178,8 @@ export namespace MetricAggregateQueryResourceObjectAttributes {
         MessageDesc = <any> '-$message',
         MessageSendCohort = <any> '$message_send_cohort',
         MessageSendCohortDesc = <any> '-$message_send_cohort',
+        UsageAmount = <any> '$usage_amount',
+        UsageAmountDesc = <any> '-$usage_amount',
         ValueCurrency = <any> '$value_currency',
         ValueCurrencyDesc = <any> '-$value_currency',
         Variation = <any> '$variation',
@@ -214,6 +218,8 @@ export namespace MetricAggregateQueryResourceObjectAttributes {
         MessageTypeDesc = <any> '-Message Type',
         Method = <any> 'Method',
         MethodDesc = <any> '-Method',
+        SegmentCount = <any> 'Segment Count',
+        SegmentCountDesc = <any> '-Segment Count',
         Subject = <any> 'Subject',
         SubjectDesc = <any> '-Subject',
         ToNumber = <any> 'To Number',

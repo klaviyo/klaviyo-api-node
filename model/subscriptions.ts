@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { EmailChannel } from './emailChannel';
 import { PushChannel } from './pushChannel';
 import { SMSChannel } from './sMSChannel';
+import { WhatsappChannel } from './whatsappChannel';
 export class Subscriptions {
     'email'?: EmailChannel;
     'sms'?: SMSChannel;
     'mobilePush'?: PushChannel;
+    'whatsapp'?: WhatsappChannel;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class Subscriptions {
             "name": "mobilePush",
             "baseName": "mobile_push",
             "type": "PushChannel"
+        },
+        {
+            "name": "whatsapp",
+            "baseName": "whatsapp",
+            "type": "WhatsappChannel"
         }    ];
 
     static getAttributeTypeMap() {

@@ -15,14 +15,16 @@ import {AxiosRequestConfig, AxiosResponse} from "axios";
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
+import { FormCreateQuery } from '../model/formCreateQuery';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
+import { GetEncodedFormResponseCompoundDocument } from '../model/getEncodedFormResponseCompoundDocument';
 import { GetFormResponse } from '../model/getFormResponse';
 import { GetFormResponseCollectionCompoundDocument } from '../model/getFormResponseCollectionCompoundDocument';
-import { GetFormResponseCompoundDocument } from '../model/getFormResponseCompoundDocument';
 import { GetFormVersionFormRelationshipResponse } from '../model/getFormVersionFormRelationshipResponse';
 import { GetFormVersionResponse } from '../model/getFormVersionResponse';
 import { GetFormVersionResponseCollection } from '../model/getFormVersionResponseCollection';
 import { GetFormVersionsRelationshipsResponseCollection } from '../model/getFormVersionsRelationshipsResponseCollection';
+import { PostEncodedFormResponse } from '../model/postEncodedFormResponse';
 
 import { ObjectSerializer } from '../model/models';
 
@@ -67,6 +69,59 @@ export class FormsApi {
         return this._basePath;
     }
 
+    /**
+     * Create a new form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`
+     * @summary Create Form
+     * @param formCreateQuery Creates a Form from parameters
+     
+     */
+    public async createForm (formCreateQuery: FormCreateQuery, ): Promise<{ response: AxiosResponse; body: PostEncodedFormResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/forms';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'formCreateQuery' is not null or undefined
+        if (formCreateQuery === null || formCreateQuery === undefined) {
+            throw new Error('Required parameter formCreateQuery was null or undefined when calling createForm.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(formCreateQuery, "FormCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostEncodedFormResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostEncodedFormResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
     /**
      * Delete a given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`
      * @summary Delete Form
@@ -123,9 +178,9 @@ export class FormsApi {
      * Get the form with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
      * @summary Get Form
      * @param id The ID of the form
-     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
-    public async getForm (id: string, options: { fieldsFormVersion?: Array<'form_type' | 'ab_test' | 'ab_test.variation_name' | 'status' | 'created_at' | 'updated_at'>, fieldsForm?: Array<'name' | 'status' | 'ab_test' | 'created_at' | 'updated_at'>, include?: Array<'form-versions'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFormResponseCompoundDocument;  }> {
+    public async getForm (id: string, options: { fieldsForm?: Array<'status' | 'ab_test' | 'name' | 'definition' | 'definition.versions' | 'created_at' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetEncodedFormResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/forms/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -144,16 +199,8 @@ export class FormsApi {
             throw new Error('Required parameter id was null or undefined when calling getForm.');
         }
 
-        if (options.fieldsFormVersion !== undefined) {
-            localVarQueryParameters['fields[form-version]'] = ObjectSerializer.serialize(options.fieldsFormVersion, "Array<'form_type' | 'ab_test' | 'ab_test.variation_name' | 'status' | 'created_at' | 'updated_at'>");
-        }
-
         if (options.fieldsForm !== undefined) {
-            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'name' | 'status' | 'ab_test' | 'created_at' | 'updated_at'>");
-        }
-
-        if (options.include !== undefined) {
-            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'form-versions'>");
+            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'status' | 'ab_test' | 'name' | 'definition' | 'definition.versions' | 'created_at' | 'updated_at'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -167,11 +214,11 @@ export class FormsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFormResponseCompoundDocument;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetEncodedFormResponseCompoundDocument;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFormResponseCompoundDocument");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetEncodedFormResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -188,7 +235,7 @@ export class FormsApi {
      * Get the form associated with the given form version.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
      * @summary Get Form for Form Version
      * @param id The ID of the form version
-     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getFormForFormVersion (id: string, options: { fieldsForm?: Array<'name' | 'status' | 'ab_test' | 'created_at' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFormResponse;  }> {
 
@@ -298,7 +345,7 @@ export class FormsApi {
      * Get the form version with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
      * @summary Get Form Version
      * @param id The ID of the form version
-     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getFormVersion (id: string, options: { fieldsFormVersion?: Array<'form_type' | 'ab_test' | 'ab_test.variation_name' | 'status' | 'created_at' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionResponse;  }> {
 
@@ -355,7 +402,7 @@ export class FormsApi {
      * Get all forms in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
      * @summary Get Forms
      
-     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
      */
     public async getForms (options: { fieldsForm?: Array<'name' | 'status' | 'ab_test' | 'created_at' | 'updated_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormResponseCollectionCompoundDocument;  }> {
 
@@ -422,7 +469,7 @@ export class FormsApi {
      * Get the IDs of the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
      * @summary Get Version IDs for Form
      * @param id The ID of the form
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
      */
     public async getVersionIdsForForm (id: string, options: { filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionsRelationshipsResponseCollection;  }> {
 
@@ -491,7 +538,7 @@ export class FormsApi {
      * Get the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
      * @summary Get Versions for Form
      * @param id The ID of the form
-     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
      */
     public async getVersionsForForm (id: string, options: { fieldsFormVersion?: Array<'form_type' | 'ab_test' | 'ab_test.variation_name' | 'status' | 'created_at' | 'updated_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionResponseCollection;  }> {
 

@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner } from './getFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner';
+import { GetFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner } from './getFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner';
 export class GetFlowActionFlowMessageRelationshipResponseCollection {
-    'data': Array<GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner>;
+    'data': Array<GetFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner>"
+            "type": "Array<GetFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessagesDataInner>"
         }    ];
 
     static getAttributeTypeMap() {

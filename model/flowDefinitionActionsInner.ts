@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { AbTestAction } from './abTestAction';
+import { ActionOutputSplitAction } from './actionOutputSplitAction';
 import { BackInStockDelayAction } from './backInStockDelayAction';
 import { BranchAction } from './branchAction';
 import { CodeAction } from './codeAction';
 import { ConditionalBranchAction } from './conditionalBranchAction';
+import { ContentExperimentAction } from './contentExperimentAction';
 import { CountdownDelayAction } from './countdownDelayAction';
 import { InternalServiceAction } from './internalServiceAction';
 import { Link } from './link';
@@ -26,9 +28,10 @@ import { SendInternalAlertAction } from './sendInternalAlertAction';
 import { SendPushNotificationAction } from './sendPushNotificationAction';
 import { SendSmsAction } from './sendSmsAction';
 import { SendWebhookAction } from './sendWebhookAction';
+import { SendWhatsAppAction } from './sendWhatsAppAction';
 import { SplitAction } from './splitAction';
 import { TargetDateAction } from './targetDateAction';
 import { TimeDelayAction } from './timeDelayAction';
 import { TriggerBranchAction } from './triggerBranchAction';
 import { UpdateProfileAction } from './updateProfileAction';
-export type FlowDefinitionActionsInner = BackInStockDelayAction | ConditionalBranchAction | SendEmailAction | SendPushNotificationAction | SendSmsAction | SendWebhookAction | SendInternalAlertAction | TimeDelayAction | TriggerBranchAction | UpdateProfileAction | TargetDateAction | CountdownDelayAction | AbTestAction | InternalServiceAction | CodeAction | SplitAction | BranchAction | ListUpdateAction;
+export type FlowDefinitionActionsInner = ActionOutputSplitAction | BackInStockDelayAction | ConditionalBranchAction | ContentExperimentAction | SendEmailAction | SendPushNotificationAction | SendSmsAction | SendWebhookAction | SendInternalAlertAction | SendWhatsAppAction | TimeDelayAction | TriggerBranchAction | UpdateProfileAction | TargetDateAction | CountdownDelayAction | AbTestAction | InternalServiceAction | CodeAction | SplitAction | BranchAction | ListUpdateAction;

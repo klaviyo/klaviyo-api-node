@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [20.0.0] - revision 2025-10-15
+### Added
+#### Flow Actions API
+- Get flow actions, flow messages, flow action IDs, and more with the [Flow Actions API](https://developers.klaviyo.com/en/reference/get_flow_action).
+- Update flow actions within a flow, including associated message content, with the [Update Flow Action](https://developers.klaviyo.com/en/reference/update_flow_action) endpoint.
+
+### Updated
+#### Forms API
+- Retrieve a form and its definition with the [Forms API](https://developers.klaviyo.com/en/reference/forms_api_overview).
+- Use the [Create Form](https://developers.klaviyo.com/en/reference/create_form) endpoint to generate a new form by providing the status, A/B test preference, and name of the form.
+
 ## [19.0.2] - revision 2025-07-15
 ### Fixed
 - Fixed types used in flow creation

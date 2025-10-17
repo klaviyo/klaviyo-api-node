@@ -226,7 +226,7 @@ export class CustomObjectsApi {
      * Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
      * @summary Get Data Source
      * @param id The ID of the data source
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getDataSource (id: string, options: { fieldsDataSource?: Array<'title' | 'visibility' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponse;  }> {
 
@@ -283,7 +283,7 @@ export class CustomObjectsApi {
      * Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
      * @summary Get Data Sources
      
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getDataSources (options: { fieldsDataSource?: Array<'title' | 'visibility' | 'description'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponseCollection;  }> {
 

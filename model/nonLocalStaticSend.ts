@@ -14,14 +14,14 @@ export class NonLocalStaticSend {
     /**
     * Whether the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
     */
-    'isLocal': NonLocalStaticSend.IsLocalEnum | false;
+    'isLocal': boolean;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "isLocal",
             "baseName": "is_local",
-            "type": "NonLocalStaticSend.IsLocalEnum"
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29,8 +29,3 @@ export class NonLocalStaticSend {
     }
 }
 
-export namespace NonLocalStaticSend {
-    export enum IsLocalEnum {
-        False = <any> false
-    }
-}

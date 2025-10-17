@@ -10,7 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { FlowActionResponseObjectResource } from './flowActionResponseObjectResource';
+import { FlowActionEncodedResponseObjectResource } from './flowActionEncodedResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 import { TagEnum } from './tagEnum';
 import { TagResponseObjectResource } from './tagResponseObjectResource';
@@ -18,11 +18,11 @@ import { TagResponseObjectResourceAttributes } from './tagResponseObjectResource
 
 
 
-    export type GetFlowResponseCollectionCompoundDocumentIncludedInner = FlowActionResponseObjectResource | TagResponseObjectResource
+    export type GetFlowResponseCollectionCompoundDocumentIncludedInner = FlowActionEncodedResponseObjectResource | TagResponseObjectResource
 
     export class GetFlowResponseCollectionCompoundDocumentIncludedInnerHelper {
         static mapping: {[index: string]: any} = {
-            "flow-action": "FlowActionResponseObjectResource",
+            "flow-action": "FlowActionEncodedResponseObjectResource",
             "tag": "TagResponseObjectResource",
         }
         static discriminator: string | undefined = "type";

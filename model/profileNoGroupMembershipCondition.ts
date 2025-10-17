@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { ProfileGroupMembershipEnum } from './profileGroupMembershipEnum';
 export class ProfileNoGroupMembershipCondition {
     'type': ProfileGroupMembershipEnum | 'profile-group-membership';
-    'isMember': ProfileNoGroupMembershipCondition.IsMemberEnum | false;
+    'isMember': boolean;
     'groupIds': Array<string>;
 
 
@@ -26,7 +26,7 @@ export class ProfileNoGroupMembershipCondition {
         {
             "name": "isMember",
             "baseName": "is_member",
-            "type": "ProfileNoGroupMembershipCondition.IsMemberEnum"
+            "type": "boolean"
         },
         {
             "name": "groupIds",
@@ -40,7 +40,4 @@ export class ProfileNoGroupMembershipCondition {
 }
 
 export namespace ProfileNoGroupMembershipCondition {
-    export enum IsMemberEnum {
-        False = <any> false
-    }
 }

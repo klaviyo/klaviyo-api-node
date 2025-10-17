@@ -14,7 +14,7 @@ export class LocalStaticSend {
     /**
     * Whether the campaign should be sent with local recipient timezone send (requires UTC time) or statically sent at the given time.
     */
-    'isLocal': LocalStaticSend.IsLocalEnum | true;
+    'isLocal': boolean;
     /**
     * Determines if we should send to local recipient timezone if the given time has passed. Only applicable to local sends.
     */
@@ -25,7 +25,7 @@ export class LocalStaticSend {
         {
             "name": "isLocal",
             "baseName": "is_local",
-            "type": "LocalStaticSend.IsLocalEnum"
+            "type": "boolean"
         },
         {
             "name": "sendPastRecipientsImmediately",
@@ -38,8 +38,3 @@ export class LocalStaticSend {
     }
 }
 
-export namespace LocalStaticSend {
-    export enum IsLocalEnum {
-        True = <any> true
-    }
-}
