@@ -10,11 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages } from './getFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages';
+import { GetFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessages } from './getFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessages';
 import { GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers } from './getMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers';
 export class PostFlowValuesResponseDTODataRelationships {
     'flows'?: GetMetricResponseCollectionCompoundDocumentDataInnerAllOfRelationshipsFlowTriggers;
-    'flowMessages'?: GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages;
+    'flowMessages'?: GetFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessages;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -26,7 +26,7 @@ export class PostFlowValuesResponseDTODataRelationships {
         {
             "name": "flowMessages",
             "baseName": "flow-messages",
-            "type": "GetFlowActionResponseCompoundDocumentDataAllOfRelationshipsFlowMessages"
+            "type": "GetFlowActionEncodedResponseCompoundDocumentDataAllOfRelationshipsFlowMessages"
         }    ];
 
     static getAttributeTypeMap() {

@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { FlowPushNotification } from './flowPushNotification';
 export class SendPushNotificationActionData {
-    'message': FlowPushNotification;
+    'message'?: FlowPushNotification;
     /**
     * Flow action status.
     */

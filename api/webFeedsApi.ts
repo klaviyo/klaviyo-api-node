@@ -175,7 +175,7 @@ export class WebFeedsApi {
      * Get the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`
      * @summary Get Web Feed
      * @param id The ID of the web feed
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getWebFeed (id: string, options: { fieldsWebFeed?: Array<'name' | 'url' | 'request_method' | 'content_type' | 'created' | 'updated' | 'status'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponse;  }> {
 
@@ -232,7 +232,7 @@ export class WebFeedsApi {
      * Get all web feeds for an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`
      * @summary Get Web Feeds
      
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination* @param pageSize Default: 5. Min: 1. Max: 20.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination* @param pageSize Default: 5. Min: 1. Max: 20.* @param sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
      */
     public async getWebFeeds (options: { fieldsWebFeed?: Array<'name' | 'url' | 'request_method' | 'content_type' | 'created' | 'updated' | 'status'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponseCollection;  }> {
 

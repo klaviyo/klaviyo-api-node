@@ -14,14 +14,14 @@ export class MobilePushNoBadge {
     /**
     * Whether to display a badge on the app icon
     */
-    'display': MobilePushNoBadge.DisplayEnum | false;
+    'display': boolean;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "display",
             "baseName": "display",
-            "type": "MobilePushNoBadge.DisplayEnum"
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29,8 +29,3 @@ export class MobilePushNoBadge {
     }
 }
 
-export namespace MobilePushNoBadge {
-    export enum DisplayEnum {
-        False = <any> false
-    }
-}

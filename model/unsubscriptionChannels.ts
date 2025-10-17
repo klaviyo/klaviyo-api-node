@@ -12,9 +12,11 @@
 import { RequestFile } from './models';
 import { EmailUnsubscriptionParameters } from './emailUnsubscriptionParameters';
 import { SMSUnsubscriptionParameters } from './sMSUnsubscriptionParameters';
+import { WhatsAppUnsubscriptionParameters } from './whatsAppUnsubscriptionParameters';
 export class UnsubscriptionChannels {
     'email'?: EmailUnsubscriptionParameters;
     'sms'?: SMSUnsubscriptionParameters;
+    'whatsapp'?: WhatsAppUnsubscriptionParameters;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class UnsubscriptionChannels {
             "name": "sms",
             "baseName": "sms",
             "type": "SMSUnsubscriptionParameters"
+        },
+        {
+            "name": "whatsapp",
+            "baseName": "whatsapp",
+            "type": "WhatsAppUnsubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {

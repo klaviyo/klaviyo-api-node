@@ -15,7 +15,7 @@ export class MobilePushBadge {
     /**
     * Whether to display a badge on the app icon
     */
-    'display': MobilePushBadge.DisplayEnum | true;
+    'display': boolean;
     'badgeOptions'?: MobilePushBadgeBadgeOptions | null;
 
 
@@ -23,7 +23,7 @@ export class MobilePushBadge {
         {
             "name": "display",
             "baseName": "display",
-            "type": "MobilePushBadge.DisplayEnum"
+            "type": "boolean"
         },
         {
             "name": "badgeOptions",
@@ -36,8 +36,3 @@ export class MobilePushBadge {
     }
 }
 
-export namespace MobilePushBadge {
-    export enum DisplayEnum {
-        True = <any> true
-    }
-}

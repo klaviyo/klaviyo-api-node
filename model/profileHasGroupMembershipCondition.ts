@@ -14,7 +14,7 @@ import { ProfileGroupMembershipEnum } from './profileGroupMembershipEnum';
 import { ProfileHasGroupMembershipConditionTimeframeFilter } from './profileHasGroupMembershipConditionTimeframeFilter';
 export class ProfileHasGroupMembershipCondition {
     'type': ProfileGroupMembershipEnum | 'profile-group-membership';
-    'isMember': ProfileHasGroupMembershipCondition.IsMemberEnum | true;
+    'isMember': boolean;
     'groupIds': Array<string>;
     'timeframeFilter'?: ProfileHasGroupMembershipConditionTimeframeFilter | null;
 
@@ -28,7 +28,7 @@ export class ProfileHasGroupMembershipCondition {
         {
             "name": "isMember",
             "baseName": "is_member",
-            "type": "ProfileHasGroupMembershipCondition.IsMemberEnum"
+            "type": "boolean"
         },
         {
             "name": "groupIds",
@@ -47,7 +47,4 @@ export class ProfileHasGroupMembershipCondition {
 }
 
 export namespace ProfileHasGroupMembershipCondition {
-    export enum IsMemberEnum {
-        True = <any> true
-    }
 }

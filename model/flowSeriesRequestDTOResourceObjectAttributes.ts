@@ -15,7 +15,7 @@ export class FlowSeriesRequestDTOResourceObjectAttributes {
     /**
     * List of statistics to query for. All rate statistics will be returned in fractional form [0.0, 1.0]
     */
-    'statistics': Array<FlowSeriesRequestDTOResourceObjectAttributes.StatisticsEnum> | Array<'average_order_value' | 'bounce_rate' | 'bounced' | 'bounced_or_failed' | 'bounced_or_failed_rate' | 'click_rate' | 'click_to_open_rate' | 'clicks' | 'clicks_unique' | 'conversion_rate' | 'conversion_uniques' | 'conversion_value' | 'conversions' | 'delivered' | 'delivery_rate' | 'failed' | 'failed_rate' | 'open_rate' | 'opens' | 'opens_unique' | 'recipients' | 'revenue_per_recipient' | 'spam_complaint_rate' | 'spam_complaints' | 'unsubscribe_rate' | 'unsubscribe_uniques' | 'unsubscribes'>;
+    'statistics': Array<FlowSeriesRequestDTOResourceObjectAttributes.StatisticsEnum> | Array<'average_order_value' | 'bounce_rate' | 'bounced' | 'bounced_or_failed' | 'bounced_or_failed_rate' | 'click_rate' | 'click_to_open_rate' | 'clicks' | 'clicks_unique' | 'conversion_rate' | 'conversion_uniques' | 'conversion_value' | 'conversions' | 'delivered' | 'delivery_rate' | 'failed' | 'failed_rate' | 'message_segment_count_sum' | 'open_rate' | 'opens' | 'opens_unique' | 'recipients' | 'revenue_per_recipient' | 'spam_complaint_rate' | 'spam_complaints' | 'text_message_credit_usage_amount' | 'text_message_roi' | 'text_message_spend' | 'unsubscribe_rate' | 'unsubscribe_uniques' | 'unsubscribes'>;
     'timeframe': CampaignValuesRequestDTOResourceObjectAttributesTimeframe;
     /**
     * The interval used to aggregate data within the series request. If hourly is used, the timeframe cannot be longer than 7 days. If daily is used, the timeframe cannot be longer than 60 days. If monthly is used, the timeframe cannot be longer than 52 weeks.
@@ -82,6 +82,7 @@ export namespace FlowSeriesRequestDTOResourceObjectAttributes {
         DeliveryRate = <any> 'delivery_rate',
         Failed = <any> 'failed',
         FailedRate = <any> 'failed_rate',
+        MessageSegmentCountSum = <any> 'message_segment_count_sum',
         OpenRate = <any> 'open_rate',
         Opens = <any> 'opens',
         OpensUnique = <any> 'opens_unique',
@@ -89,6 +90,9 @@ export namespace FlowSeriesRequestDTOResourceObjectAttributes {
         RevenuePerRecipient = <any> 'revenue_per_recipient',
         SpamComplaintRate = <any> 'spam_complaint_rate',
         SpamComplaints = <any> 'spam_complaints',
+        TextMessageCreditUsageAmount = <any> 'text_message_credit_usage_amount',
+        TextMessageRoi = <any> 'text_message_roi',
+        TextMessageSpend = <any> 'text_message_spend',
         UnsubscribeRate = <any> 'unsubscribe_rate',
         UnsubscribeUniques = <any> 'unsubscribe_uniques',
         Unsubscribes = <any> 'unsubscribes'

@@ -195,7 +195,7 @@ export class MetricsApi {
      * Get a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Custom Metric
      * @param id The ID of the custom metric
-     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
      */
     public async getCustomMetric (id: string, options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'metrics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCustomMetricResponseCompoundDocument;  }> {
 
@@ -260,7 +260,7 @@ export class MetricsApi {
      * Get the custom metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Custom Metric for Mapped Metric
      * @param id The type of mapping.
-     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCustomMetricForMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCustomMetricResponse;  }> {
 
@@ -370,7 +370,7 @@ export class MetricsApi {
      * Get all custom metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Custom Metrics
      
-     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
      */
     public async getCustomMetrics (options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'metrics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetCustomMetricResponseCollectionCompoundDocument;  }> {
 
@@ -429,7 +429,7 @@ export class MetricsApi {
      * Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
      * @summary Get Flows Triggered by Metric
      * @param id 
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getFlowsTriggeredByMetric (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFlowResponseCollection;  }> {
 
@@ -539,7 +539,7 @@ export class MetricsApi {
      * Get the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Mapped Metric
      * @param id The type of mapping.
-     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMappedMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMappedMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
      */
     public async getMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMappedMetric?: Array<'updated'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'custom-metric' | 'metric'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMappedMetricResponseCompoundDocument;  }> {
 
@@ -608,7 +608,7 @@ export class MetricsApi {
      * Get all mapped metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Mapped Metrics
      
-     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMappedMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     * @param fieldsCustomMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMappedMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
      */
     public async getMappedMetrics (options: { fieldsCustomMetric?: Array<'name' | 'created' | 'updated' | 'definition' | 'definition.aggregation_method' | 'definition.metric_groups'>, fieldsMappedMetric?: Array<'updated'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'custom-metric' | 'metric'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMappedMetricResponseCollectionCompoundDocument;  }> {
 
@@ -671,7 +671,7 @@ export class MetricsApi {
      * Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
      * @summary Get Metric
      * @param id Metric ID
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
      */
     public async getMetric (id: string, options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'flow-triggers'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCompoundDocument;  }> {
 
@@ -736,7 +736,7 @@ export class MetricsApi {
      * Get the metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Metric for Mapped Metric
      * @param id The type of mapping.
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getMetricForMappedMetric (id: 'added_to_cart' | 'cancelled_sales' | 'ordered_product' | 'refunded_sales' | 'revenue' | 'started_checkout' | 'viewed_product', options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> {
 
@@ -793,7 +793,7 @@ export class MetricsApi {
      * Get the metric for the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
      * @summary Get Metric for Metric Property
      * @param id The ID of the metric property
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getMetricForMetricProperty (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponse;  }> {
 
@@ -1009,7 +1009,7 @@ export class MetricsApi {
      * Get a metric property with the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
      * @summary Get Metric Property
      * @param id The ID of the metric property
-     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
      */
     public async getMetricProperty (id: string, options: { additionalFieldsMetricProperty?: Array<'sample_values'>, fieldsMetricProperty?: Array<'label' | 'property' | 'inferred_type' | 'sample_values'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, include?: Array<'metric'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricPropertyResponseCompoundDocument;  }> {
 
@@ -1078,7 +1078,7 @@ export class MetricsApi {
      * Get all metrics in an account.  Requests can be filtered by the following fields: integration `name`, integration `category`  Returns a maximum of 200 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
      * @summary Get Metrics
      
-     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+     * @param fieldsFlow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
      */
     public async getMetrics (options: { fieldsFlow?: Array<'name' | 'status' | 'archived' | 'created' | 'updated' | 'trigger_type'>, fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>, filter?: string, include?: Array<'flow-triggers'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCollectionCompoundDocument;  }> {
 
@@ -1145,7 +1145,7 @@ export class MetricsApi {
      * Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
      * @summary Get Metrics for Custom Metric
      * @param id The ID of the custom metric
-     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsMetric For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getMetricsForCustomMetric (id: string, options: { fieldsMetric?: Array<'name' | 'created' | 'updated' | 'integration'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricResponseCollection;  }> {
 
@@ -1202,7 +1202,7 @@ export class MetricsApi {
      * Get the metric properties for the given metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
      * @summary Get Properties for Metric
      * @param id The ID of the metric
-     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+     * @param additionalFieldsMetricProperty Request additional fields not included by default in the response. Supported values: \&#39;sample_values\&#39;* @param fieldsMetricProperty For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getPropertiesForMetric (id: string, options: { additionalFieldsMetricProperty?: Array<'sample_values'>, fieldsMetricProperty?: Array<'label' | 'property' | 'inferred_type' | 'sample_values'>,  } = {}): Promise<{ response: AxiosResponse; body: GetMetricPropertyResponseCollection;  }> {
 

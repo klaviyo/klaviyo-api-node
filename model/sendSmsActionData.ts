@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { FlowSms } from './flowSms';
 export class SendSmsActionData {
-    'message': FlowSms;
+    'message'?: FlowSms;
     /**
     * Flow action status.
     */
