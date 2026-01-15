@@ -22,7 +22,11 @@ export class CampaignValuesRequestDTOResourceObjectAttributes {
     */
     'conversionMetricId': string;
     /**
-    * API filter string used to filter the query. Allowed filters are send_channel, campaign_id, campaign_message_id. Allowed operators are equals, contains-any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter. When filtering on send_channel, allowed values are email, sms, push-notification.
+    * List of attributes to group the data by. Allowed group-bys are campaign_id, campaign_message_id, send_channel. If not passed in, the data will be grouped by campaign_id, campaign_message_id, send_channel. The following group by attributes are required: campaign_id, campaign_message_id
+    */
+    'groupBy'?: Array<CampaignValuesRequestDTOResourceObjectAttributes.GroupByEnum> | Array<'campaign_id' | 'campaign_message_id' | 'send_channel'> | null;
+    /**
+    * API filter string used to filter the query. Allowed filters are send_channel, campaign_id, campaign_message_id. Allowed operators are equals, contains-any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter. When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.
     */
     'filter'?: string | null;
 
@@ -42,6 +46,11 @@ export class CampaignValuesRequestDTOResourceObjectAttributes {
             "name": "conversionMetricId",
             "baseName": "conversion_metric_id",
             "type": "string"
+        },
+        {
+            "name": "groupBy",
+            "baseName": "group_by",
+            "type": "Array<CampaignValuesRequestDTOResourceObjectAttributes.GroupByEnum>"
         },
         {
             "name": "filter",
@@ -87,5 +96,10 @@ export namespace CampaignValuesRequestDTOResourceObjectAttributes {
         UnsubscribeRate = <any> 'unsubscribe_rate',
         UnsubscribeUniques = <any> 'unsubscribe_uniques',
         Unsubscribes = <any> 'unsubscribes'
+    }
+    export enum GroupByEnum {
+        CampaignId = <any> 'campaign_id',
+        CampaignMessageId = <any> 'campaign_message_id',
+        SendChannel = <any> 'send_channel'
     }
 }

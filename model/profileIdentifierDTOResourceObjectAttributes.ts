@@ -23,7 +23,6 @@ export class ProfileIdentifierDTOResourceObjectAttributes {
     * A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
     */
     'externalId'?: string | null;
-    'anonymousId'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -40,11 +39,6 @@ export class ProfileIdentifierDTOResourceObjectAttributes {
         {
             "name": "externalId",
             "baseName": "external_id",
-            "type": "string"
-        },
-        {
-            "name": "anonymousId",
-            "baseName": "anonymous_id",
             "type": "string"
         }    ];
 

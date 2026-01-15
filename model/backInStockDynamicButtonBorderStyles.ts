@@ -16,7 +16,7 @@ export class BackInStockDynamicButtonBorderStyles {
     /**
     * Border pattern enumeration.
     */
-    'style'?: BackInStockDynamicButtonBorderStyles.StyleEnum | 'dashed' | 'dotted' | 'solid' = BackInStockDynamicButtonBorderStyles.StyleEnum.Solid;
+    'style'?: BackInStockDynamicButtonBorderStyles.StyleEnum | 'dashed' | 'dotted' | 'solid' | null = BackInStockDynamicButtonBorderStyles.StyleEnum.Solid;
     'width'?: number = 1;
 
 

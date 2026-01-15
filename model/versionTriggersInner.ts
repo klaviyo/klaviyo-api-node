@@ -11,6 +11,9 @@
 
 import { RequestFile } from './models';
 import { AfterCloseTimeout } from './afterCloseTimeout';
+import { BackInStock } from './backInStock';
+import { BackInStockEnum } from './backInStockEnum';
+import { BackInStockProperties } from './backInStockProperties';
 import { CartItemCount } from './cartItemCount';
 import { CartProduct } from './cartProduct';
 import { CartValue } from './cartValue';
@@ -27,7 +30,5 @@ import { PreviouslySubmitted } from './previouslySubmitted';
 import { ProfileEventTracked } from './profileEventTracked';
 import { Scroll } from './scroll';
 import { URLPatterns } from './uRLPatterns';
-import { URLPatternsProperties } from './uRLPatternsProperties';
 import { UnidentifiedProfiles } from './unidentifiedProfiles';
-import { UrlPatternsEnum } from './urlPatternsEnum';
-export type VersionTriggersInner = AfterCloseTimeout | CartItemCount | CartProduct | CartValue | Channel | CustomJavascript | Delay | Device | ExitIntent | IdentifiedProfiles | ListsAndSegments | Location | PageVisits | PreviouslySubmitted | ProfileEventTracked | Scroll | UnidentifiedProfiles | URLPatterns;
+export type VersionTriggersInner = AfterCloseTimeout | CartItemCount | CartProduct | CartValue | Channel | CustomJavascript | Delay | Device | ExitIntent | IdentifiedProfiles | ListsAndSegments | Location | PageVisits | PreviouslySubmitted | ProfileEventTracked | Scroll | UnidentifiedProfiles | URLPatterns | BackInStock;

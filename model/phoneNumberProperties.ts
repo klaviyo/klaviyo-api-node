@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { ChannelSettings } from './channelSettings';
 import { ErrorMessages } from './errorMessages';
 export class PhoneNumberProperties {
     'displayDevice'?: Array<PhoneNumberProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
@@ -19,7 +20,8 @@ export class PhoneNumberProperties {
     'required'?: boolean | null = false;
     'errorMessages'?: ErrorMessages;
     'propertyName'?: string = '$phone_number';
-    'smsConsentType'?: Array<PhoneNumberProperties.SmsConsentTypeEnum> | Array<'phone_number_only' | 'promotional' | 'transactional'>;
+    'smsConsentType'?: Array<PhoneNumberProperties.SmsConsentTypeEnum> | Array<'phone_number_only' | 'promotional' | 'transactional'> | null;
+    'channelSettings'?: ChannelSettings;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -62,6 +64,11 @@ export class PhoneNumberProperties {
             "name": "smsConsentType",
             "baseName": "sms_consent_type",
             "type": "Array<PhoneNumberProperties.SmsConsentTypeEnum>"
+        },
+        {
+            "name": "channelSettings",
+            "baseName": "channel_settings",
+            "type": "ChannelSettings"
         }    ];
 
     static getAttributeTypeMap() {

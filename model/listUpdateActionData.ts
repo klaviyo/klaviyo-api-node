@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 export class ListUpdateActionData {
     'name': string;
     /**
-    * The enum for whether the action will add/remove from the list in the List Update Action.
+    * The enum for whether the action will add/remove from the list in the     List Update Action.
     */
     'onExecution': boolean | null;
     'listId': string | null;

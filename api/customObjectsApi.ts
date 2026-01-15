@@ -17,6 +17,7 @@ import FormData from 'form-data'
 /* tslint:disable:no-unused-locals */
 import { DataSourceCreateQuery } from '../model/dataSourceCreateQuery';
 import { DataSourceRecordBulkCreateJobCreateQuery } from '../model/dataSourceRecordBulkCreateJobCreateQuery';
+import { DataSourceRecordCreateJobCreateQuery } from '../model/dataSourceRecordCreateJobCreateQuery';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetDataSourceResponse } from '../model/getDataSourceResponse';
 import { GetDataSourceResponseCollection } from '../model/getDataSourceResponseCollection';
@@ -66,7 +67,7 @@ export class CustomObjectsApi {
     }
 
     /**
-     * Create a data source record job.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:write`
+     * Create a bulk data source record import job to create a batch of records.  Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:write`
      * @summary Bulk Create Data Source Records
      * @param dataSourceRecordBulkCreateJobCreateQuery Create a data source record job
      
@@ -171,6 +172,58 @@ export class CustomObjectsApi {
         return request(config)
     }
     /**
+     * Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `custom-objects:write`
+     * @summary Create Data Source Record
+     * @param dataSourceRecordCreateJobCreateQuery Create a data source record job
+     
+     */
+    public async createDataSourceRecord (dataSourceRecordCreateJobCreateQuery: DataSourceRecordCreateJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/data-source-record-create-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'dataSourceRecordCreateJobCreateQuery' is not null or undefined
+        if (dataSourceRecordCreateJobCreateQuery === null || dataSourceRecordCreateJobCreateQuery === undefined) {
+            throw new Error('Required parameter dataSourceRecordCreateJobCreateQuery was null or undefined when calling createDataSourceRecord.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(dataSourceRecordCreateJobCreateQuery, "DataSourceRecordCreateJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
      * Delete a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`
      * @summary Delete Data Source
      * @param id The ID of the data source to delete
@@ -226,7 +279,7 @@ export class CustomObjectsApi {
      * Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
      * @summary Get Data Source
      * @param id The ID of the data source
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
      */
     public async getDataSource (id: string, options: { fieldsDataSource?: Array<'title' | 'visibility' | 'description'>,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponse;  }> {
 
@@ -283,7 +336,7 @@ export class CustomObjectsApi {
      * Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
      * @summary Get Data Sources
      
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getDataSources (options: { fieldsDataSource?: Array<'title' | 'visibility' | 'description'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponseCollection;  }> {
 
@@ -349,3 +402,13 @@ export interface CustomObjectsApi {
     createDataSourceRecordBulkCreateJob: typeof CustomObjectsApi.prototype.bulkCreateDataSourceRecords;
 }
 CustomObjectsApi.prototype.createDataSourceRecordBulkCreateJob = CustomObjectsApi.prototype.bulkCreateDataSourceRecords
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.createDataSourceRecord}
+     *
+     * @deprecated Use {@link CustomObjectsApi.createDataSourceRecord} instead
+     */
+    createDataSourceRecordCreateJob: typeof CustomObjectsApi.prototype.createDataSourceRecord;
+}
+CustomObjectsApi.prototype.createDataSourceRecordCreateJob = CustomObjectsApi.prototype.createDataSourceRecord

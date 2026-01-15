@@ -22,4 +22,5 @@ import { SubmitBackInStockEnum } from './submitBackInStockEnum';
 import { SubmitBackInStockProperties } from './submitBackInStockProperties';
 import { SubmitOptInCode } from './submitOptInCode';
 import { SubscribeViaSMS } from './subscribeViaSMS';
-export type ButtonAction = Close | NextStep | OpenForm | PromotionalSMSSubscription | Redirect | ResendOptInCode | SubmitOptInCode | SubscribeViaSMS | GoToInbox | SubmitBackInStock;
+import { SubscribeViaWhatsApp } from './subscribeViaWhatsApp';
+export type ButtonAction = Close | NextStep | OpenForm | PromotionalSMSSubscription | Redirect | ResendOptInCode | SubmitOptInCode | SubscribeViaSMS | SubscribeViaWhatsApp | GoToInbox | SubmitBackInStock;

@@ -16,7 +16,7 @@ export class StringOperatorFilter {
     /**
     * Operators for string filters.
     */
-    'operator': StringOperatorFilter.OperatorEnum | 'contains' | 'ends-with' | 'equals' | 'not-contains' | 'not-ends-with' | 'not-equals' | 'not-starts-with' | 'starts-with';
+    'operator': StringOperatorFilter.OperatorEnum | 'contains' | 'ends-with' | 'equals' | 'not-contains' | 'not-ends-with' | 'not-equals' | 'not-starts-with' | 'nregex' | 'regex' | 'starts-with';
     'value': string | null;
 
 
@@ -51,6 +51,8 @@ export namespace StringOperatorFilter {
         NotEndsWith = <any> 'not-ends-with',
         NotEquals = <any> 'not-equals',
         NotStartsWith = <any> 'not-starts-with',
+        Nregex = <any> 'nregex',
+        Regex = <any> 'regex',
         StartsWith = <any> 'starts-with'
     }
 }

@@ -14,7 +14,7 @@ import { StringEnum } from './stringEnum';
 export class StringPhoneOperatorArrayFilter {
     'type': StringEnum | 'string';
     /**
-    * Operators for phone string array filters.  Example condition using this filter:     {
+    * Operators for phone string array filters.  Example condition using this filter:         {
     */
     'operator': StringPhoneOperatorArrayFilter.OperatorEnum | 'phone-country-code-in' | 'phone-country-code-not-in';
     'value': Array<string>;

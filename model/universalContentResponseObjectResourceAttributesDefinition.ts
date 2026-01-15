@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 import { ButtonBlock } from './buttonBlock';
+import { CouponBlock } from './couponBlock';
 import { DropShadowBlock } from './dropShadowBlock';
 import { HTMLBlock } from './hTMLBlock';
 import { HeaderBlock } from './headerBlock';
@@ -27,4 +28,4 @@ import { TableBlock } from './tableBlock';
 import { TextBlock } from './textBlock';
 import { UnsupportedBlock } from './unsupportedBlock';
 import { VideoBlock } from './videoBlock';
-export type UniversalContentResponseObjectResourceAttributesDefinition = ButtonBlock | DropShadowBlock | HeaderBlock | HorizontalRuleBlock | HTMLBlock | ImageBlock | ProductBlock | ReviewBlock | SocialBlock | SpacerBlock | SplitBlock | TableBlock | TextBlock | UnsupportedBlock | VideoBlock | Section;
+export type UniversalContentResponseObjectResourceAttributesDefinition = ButtonBlock | CouponBlock | DropShadowBlock | HeaderBlock | HorizontalRuleBlock | HTMLBlock | ImageBlock | ProductBlock | ReviewBlock | SocialBlock | SpacerBlock | SplitBlock | TableBlock | TextBlock | UnsupportedBlock | VideoBlock | Section;

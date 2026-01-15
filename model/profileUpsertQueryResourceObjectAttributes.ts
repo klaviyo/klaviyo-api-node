@@ -25,10 +25,6 @@ export class ProfileUpsertQueryResourceObjectAttributes {
     */
     'externalId'?: string | null;
     /**
-    * Id that can be used to identify a profile when other identifiers are not available
-    */
-    'anonymousId'?: string | null;
-    /**
     * Also known as the `exchange_id`, this is an encrypted identifier used for identifying a profile by Klaviyo\'s web tracking.  You can use this field as a filter when retrieving profiles via the Get Profiles endpoint.
     */
     'kx'?: string | null;
@@ -77,11 +73,6 @@ export class ProfileUpsertQueryResourceObjectAttributes {
         {
             "name": "externalId",
             "baseName": "external_id",
-            "type": "string"
-        },
-        {
-            "name": "anonymousId",
-            "baseName": "anonymous_id",
             "type": "string"
         },
         {

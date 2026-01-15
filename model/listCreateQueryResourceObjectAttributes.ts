@@ -15,6 +15,10 @@ export class ListCreateQueryResourceObjectAttributes {
     * A helpful name to label the list
     */
     'name': string;
+    /**
+    * The opt-in process for this list. Valid values: \'double_opt_in\', \'single_opt_in\'. If not provided, uses account default.
+    */
+    'optInProcess'?: ListCreateQueryResourceObjectAttributes.OptInProcessEnum | 'double_opt_in' | 'single_opt_in' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -22,6 +26,11 @@ export class ListCreateQueryResourceObjectAttributes {
             "name": "name",
             "baseName": "name",
             "type": "string"
+        },
+        {
+            "name": "optInProcess",
+            "baseName": "opt_in_process",
+            "type": "ListCreateQueryResourceObjectAttributes.OptInProcessEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -29,3 +38,9 @@ export class ListCreateQueryResourceObjectAttributes {
     }
 }
 
+export namespace ListCreateQueryResourceObjectAttributes {
+    export enum OptInProcessEnum {
+        DoubleOptIn = <any> 'double_opt_in',
+        SingleOptIn = <any> 'single_opt_in'
+    }
+}

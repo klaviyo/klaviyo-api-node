@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [21.0.0] - revision 2026-01-15
+### Added
+- Added a new [single data source record create endpoint](https://github.com/klaviyo/klaviyo-api-node?tab=readme-ov-file#customobjectsapi) for one-at-a-time ingestion workloads
+### Changed
+- **Breaking:** removed `anonymousId` from profile payloads
+
 ## [20.0.0] - revision 2025-10-15
 ### Added
 #### Flow Actions API

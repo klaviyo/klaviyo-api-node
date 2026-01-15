@@ -22,9 +22,9 @@ export class ListUpdateAction {
     * A temporary ID to use only during a create operation. Existing actions should use the id field.
     */
     'temporaryId'?: string | null;
+    'data': ListUpdateActionData;
     'type': ListUpdateEnum | 'list-update';
     'links'?: Link;
-    'data': ListUpdateActionData;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -39,6 +39,11 @@ export class ListUpdateAction {
             "type": "string"
         },
         {
+            "name": "data",
+            "baseName": "data",
+            "type": "ListUpdateActionData"
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "ListUpdateEnum"
@@ -47,11 +52,6 @@ export class ListUpdateAction {
             "name": "links",
             "baseName": "links",
             "type": "Link"
-        },
-        {
-            "name": "data",
-            "baseName": "data",
-            "type": "ListUpdateActionData"
         }    ];
 
     static getAttributeTypeMap() {

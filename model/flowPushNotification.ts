@@ -27,7 +27,7 @@ export class FlowPushNotification {
     */
     'dynamicImage'?: string | null;
     /**
-    * See PushLinkAction in app.  This is not a flow action, but the literal action that should be taken when the push notification is tapped.
+    * See PushLinkAction in app.  This is not a flow action, but the literal action that should be     taken when the push notification is tapped.
     */
     'onOpen'?: FlowPushNotification.OnOpenEnum | 'home' | 'link' = FlowPushNotification.OnOpenEnum.Home;
     'iosLink'?: string | null;

@@ -17,9 +17,9 @@ export class UniqueCouponConfig {
     'code'?: string | null;
     'fallbackCouponCode'?: string | null;
     /**
-    * Timeframes for the signup counter lookback.
+    * Coupon integration types for unique coupon blocks.
     */
-    'integration'?: UniqueCouponConfig.IntegrationEnum | 'shopify' | 'uploaded' = UniqueCouponConfig.IntegrationEnum.Shopify;
+    'integration'?: UniqueCouponConfig.IntegrationEnum | 'api' | 'magento_two' | 'prestashop' | 'shopify' | 'uploaded' | 'woocommerce' = UniqueCouponConfig.IntegrationEnum.Shopify;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -56,7 +56,11 @@ export class UniqueCouponConfig {
 
 export namespace UniqueCouponConfig {
     export enum IntegrationEnum {
+        Api = <any> 'api',
+        MagentoTwo = <any> 'magento_two',
+        Prestashop = <any> 'prestashop',
         Shopify = <any> 'shopify',
-        Uploaded = <any> 'uploaded'
+        Uploaded = <any> 'uploaded',
+        Woocommerce = <any> 'woocommerce'
     }
 }

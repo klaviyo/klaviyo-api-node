@@ -21,6 +21,7 @@ export class SMSConsentCheckboxProperties {
     'propertyName'?: OptInPromotionalSmsEnum | 'opt_in_promotional_sms';
     'checkboxText': string;
     'placeholder'?: SMSConsentCheckboxProperties.PlaceholderEnum | 'null';
+    'channels'?: Array<SMSConsentCheckboxProperties.ChannelsEnum> | Array<'sms' | 'whatsapp'>;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -63,6 +64,11 @@ export class SMSConsentCheckboxProperties {
             "name": "placeholder",
             "baseName": "placeholder",
             "type": "SMSConsentCheckboxProperties.PlaceholderEnum"
+        },
+        {
+            "name": "channels",
+            "baseName": "channels",
+            "type": "Array<SMSConsentCheckboxProperties.ChannelsEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -78,5 +84,9 @@ export namespace SMSConsentCheckboxProperties {
     }
     export enum PlaceholderEnum {
         Null = <any> 'null'
+    }
+    export enum ChannelsEnum {
+        Sms = <any> 'sms',
+        Whatsapp = <any> 'whatsapp'
     }
 }

@@ -24,7 +24,7 @@ export class ListListResponseObjectResourceAttributes {
     */
     'updated'?: Date | null;
     /**
-    * The opt-in process for this list.  Could be either \'single_opt_in\' or \'double_opt_in\'.
+    * The opt-in process for this list. Valid values: \'double_opt_in\', \'single_opt_in\'.
     */
     'optInProcess'?: ListListResponseObjectResourceAttributes.OptInProcessEnum | 'double_opt_in' | 'single_opt_in' | null;
 

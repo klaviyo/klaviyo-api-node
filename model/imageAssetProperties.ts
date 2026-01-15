@@ -11,19 +11,14 @@
 
 import { RequestFile } from './models';
 export class ImageAssetProperties {
-    'id': number;
-    'src'?: string;
+    'src'?: string | null;
     'altText'?: string | null;
     'originalImageUrl'?: string | null;
+    'id'?: number | null;
     'assetId'?: number | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "number"
-        },
         {
             "name": "src",
             "baseName": "src",
@@ -38,6 +33,11 @@ export class ImageAssetProperties {
             "name": "originalImageUrl",
             "baseName": "original_image_url",
             "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
         },
         {
             "name": "assetId",

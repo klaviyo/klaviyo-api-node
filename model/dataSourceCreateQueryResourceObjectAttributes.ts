@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 export class DataSourceCreateQueryResourceObjectAttributes {
     'title': string;
     /**
-    * Visibility of data source. Currently only PRIVATE is supported.
+    * Visibility of data source.
     */
     'visibility': DataSourceCreateQueryResourceObjectAttributes.VisibilityEnum | 'private' | 'shared';
     'description'?: string | null = '';

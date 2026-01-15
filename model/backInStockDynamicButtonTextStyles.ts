@@ -19,7 +19,7 @@ export class BackInStockDynamicButtonTextStyles {
     /**
     * Font weight enumeration.
     */
-    'fontWeight'?: BackInStockDynamicButtonTextStyles.FontWeightEnum | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 = BackInStockDynamicButtonTextStyles.FontWeightEnum.NUMBER_400;
+    'fontWeight'?: BackInStockDynamicButtonTextStyles.FontWeightEnum | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | null = BackInStockDynamicButtonTextStyles.FontWeightEnum.NUMBER_400;
     'fontColor'?: string = '#FFFFFF';
     'fontStyle'?: string | null;
     'textDecoration'?: string | null;
