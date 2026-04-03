@@ -107,9 +107,9 @@ const profilesApi = new ProfilesApi(session)
 
 let profile: ProfileCreateQuery = {
   data: {
-  type: ProfileEnum.Profile,
-  attributes: {
-    email: "typescript_test_1@klaviyo-demo.com"
+    type: ProfileEnum.Profile,
+    attributes: {
+      email: "typescript_test_1@klaviyo-demo.com",
     }
   }
 }
@@ -148,7 +148,7 @@ There is also an optional `Klaviyo` import that has all the Apis and Auth, if yo
 import { Klaviyo } from 'klaviyo-api'
 
 const profilesApi = new Klaviyo.ProfilesApi(new Klaviyo.Auth.ApiKeySession("< YOUR API KEY HERE >", retry))
-````
+```
 
 ### Inspecting Errors
 
@@ -171,11 +171,11 @@ profilesApi.createProfile(profile).then(result => {
 
 ### Uploading an image by file
 
-The `ImageApi` exposes `uploadImageFromFile()`
+The `ImagesApi` exposes `uploadImageFromFile()`
 
 ```Typescript
 import fs from 'fs'
-import {ApiKeySession, ImageApi } from 'klaviyo-api'
+import {ApiKeySession, ImagesApi } from 'klaviyo-api'
 
 const session = new ApiKeySession("< YOUR API KEY HERE >")
 const imageApi = new ImagesApi(session)
@@ -183,7 +183,7 @@ imageApi.uploadImageFromFile(fs.createReadStream("./test_image.jpeg")).then(resu
     console.log(result.body)
 }).catch(error => {
   console.log(error)
-}
+});
 ```
 
 ### Global Api Key
