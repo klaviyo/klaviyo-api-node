@@ -3,17 +3,26 @@ All notable changes to this project will be documented in this file.
 
 ## [23.0.0] - revision 2026-07-15
 ### Added
-- Custom Objects API
-  - Full CRUD support for multiple groups of APIs: Object Types, Object Schemas, Source Mappings, and Object Records.
-- Conversations API
-  - Added support for Creating Conversation Messages.
+  - Custom Objects API
+    - Full CRUD support across four groups of endpoints:
+      - Object Types: `createObjectType`, `getObjectType`, `getObjectTypes`, `deleteObjectType`.
+      - Object Schemas: `createObjectSchema`, `getObjectSchema`, `updateObjectSchema`, plus schema versions via `getCurrentSchemaForObjectType`, `getDraftSchemaForObjectType`, and `getSchemaVersionsForObjectType`.
+      - Source Mappings: `getSourceMapping`, `updateSourceMapping`, `getSourceMappingForObjectSchema`, and `getSourceMappingIdForObjectSchema`.
+      - Object Records: `getObjectRecord`, `getRecordsForObjectType`, `getRecordIdsForObjectType`, and `bulkDeleteObjectRecords`.
+  - Conversations API
+    - Added support for creating conversation messages with `createConversationMessage`.
+  - Client API
+    - Added `getClientIpAllowlist` to retrieve your account's client-side IP allowlist.
+  - Flows API
+    - Added `deleteFlowAction` to remove an action from a flow.
 ### Changed
-- **Breaking:** Conversations API
-  - Conversation endpoints are now plural, e.g. `GET /profiles/{id}/conversation/` is now `GET /profiles/{id}/conversations, as well as relevant parameters.
-  - Response shapes are now lists, instead of single objects.
-- Events API
-  - Added new `backfill` flag on `createEvent` & `bulkCreateEvents`, which records historical events without triggering flows.
-  - `getEvents` now returns events with unresolvable metrics by default, matching `getEvent`. Use the new `has(metric)` filter to exclude them.
+  - **Breaking:** Conversations API
+    - Conversation endpoints are now plural — e.g. `getConversationForProfile` is now `getConversationsForProfile` (and `getConversationIdForProfile` is now `getConversationIdsForProfile`), as well as the relevant relationship methods and
+  parameters.
+    - Response shapes are now lists, instead of single objects.
+  - Events API
+    - Added a new `backfill` flag on `createEvent` & `bulkCreateEvents`, which records historical events without triggering flows.
+    - `getEvents` now returns events with unresolvable metrics by default, matching `getEvent`. Use the new `has(metric)` filter to exclude them.
 
 ## [22.0.1] - revision 2026-04-15
 ###  Fixed
