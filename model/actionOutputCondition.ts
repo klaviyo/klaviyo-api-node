@@ -10,12 +10,12 @@
  */
 
 import { RequestFile } from './models';
-import { ActionOutputConditionFilter2 } from './actionOutputConditionFilter2';
+import { ActionOutputConditionFilter } from './actionOutputConditionFilter';
 export class ActionOutputCondition {
     'type': ActionOutputCondition.TypeEnum | 'action-output';
     'outputConfigId': number;
     'field': string;
-    'filter': ActionOutputConditionFilter2;
+    'filter': ActionOutputConditionFilter;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -37,7 +37,7 @@ export class ActionOutputCondition {
         {
             "name": "filter",
             "baseName": "filter",
-            "type": "ActionOutputConditionFilter2"
+            "type": "ActionOutputConditionFilter"
         }    ];
 
     static getAttributeTypeMap() {

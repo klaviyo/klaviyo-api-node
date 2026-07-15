@@ -10,20 +10,19 @@
  */
 
 import { RequestFile } from './models';
-import { MetricPropertyConditionConditionGroup } from './metricPropertyConditionConditionGroup';
-export class MetricPropertyConditionFilter {
-    'conditionGroups': Array<MetricPropertyConditionConditionGroup>;
-
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "conditionGroups",
-            "baseName": "condition_groups",
-            "type": "Array<MetricPropertyConditionConditionGroup>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return MetricPropertyConditionFilter.attributeTypeMap;
-    }
-}
-
+import { AnniversaryDateFilter } from './anniversaryDateFilter';
+import { BooleanFilter } from './booleanFilter';
+import { CalendarDateFilter } from './calendarDateFilter';
+import { ExistenceOperatorExistenceFilter } from './existenceOperatorExistenceFilter';
+import { ListContainsOperatorListContainsFilter } from './listContainsOperatorListContainsFilter';
+import { ListLengthFilter } from './listLengthFilter';
+import { NumericOperatorNumericFilter } from './numericOperatorNumericFilter';
+import { NumericRangeFilter } from './numericRangeFilter';
+import { RelativeAnniversaryDateFilter } from './relativeAnniversaryDateFilter';
+import { RelativeDateOperatorBaseRelativeDateFilter } from './relativeDateOperatorBaseRelativeDateFilter';
+import { RelativeDateRangeFilter } from './relativeDateRangeFilter';
+import { StaticDateFilter } from './staticDateFilter';
+import { StaticDateRangeFilter } from './staticDateRangeFilter';
+import { StringArrayOperatorStringArrayFilter } from './stringArrayOperatorStringArrayFilter';
+import { StringOperatorStringFilter } from './stringOperatorStringFilter';
+export type MetricPropertyConditionFilter = StringOperatorStringFilter | StringArrayOperatorStringArrayFilter | NumericOperatorNumericFilter | NumericRangeFilter | BooleanFilter | StaticDateFilter | StaticDateRangeFilter | RelativeDateOperatorBaseRelativeDateFilter | RelativeAnniversaryDateFilter | RelativeDateRangeFilter | CalendarDateFilter | AnniversaryDateFilter | ListContainsOperatorListContainsFilter | ListLengthFilter | ExistenceOperatorExistenceFilter;

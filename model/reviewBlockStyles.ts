@@ -74,10 +74,7 @@ export class ReviewBlockStyles {
     */
     'quoteStyle'?: ReviewBlockStyles.QuoteStyleEnum | 'line' | 'square' | 'standard' | null;
     'quoteTextDecoration'?: string | null;
-    /**
-    * Shadow color.
-    */
-    'shadowColor'?: ReviewBlockStyles.ShadowColorEnum | 'dark' | 'light' | 'medium' | null;
+    'shadowColor'?: string | null;
     'starColor'?: string | null;
     /**
     * Review block star size.
@@ -104,7 +101,10 @@ export class ReviewBlockStyles {
     'verifiedFontWeight'?: string | null;
     'verifiedLetterSpacing'?: number | null;
     'verifiedTextDecoration'?: string | null;
-    'verifiedBadgeColor'?: string | null;
+    /**
+    * Review block verified badge color.
+    */
+    'verifiedBadgeColor'?: ReviewBlockStyles.VerifiedBadgeColorEnum | 'dark' | 'default' | 'light' | null;
     'verifiedBadgeSize'?: number | null;
     /**
     * Review block verified badge style.
@@ -296,7 +296,7 @@ export class ReviewBlockStyles {
         {
             "name": "shadowColor",
             "baseName": "shadow_color",
-            "type": "ReviewBlockStyles.ShadowColorEnum"
+            "type": "string"
         },
         {
             "name": "starColor",
@@ -371,7 +371,7 @@ export class ReviewBlockStyles {
         {
             "name": "verifiedBadgeColor",
             "baseName": "verified_badge_color",
-            "type": "string"
+            "type": "ReviewBlockStyles.VerifiedBadgeColorEnum"
         },
         {
             "name": "verifiedBadgeSize",
@@ -446,11 +446,6 @@ export namespace ReviewBlockStyles {
         Square = <any> 'square',
         Standard = <any> 'standard'
     }
-    export enum ShadowColorEnum {
-        Dark = <any> 'dark',
-        Light = <any> 'light',
-        Medium = <any> 'medium'
-    }
     export enum StarSizeEnum {
         Large = <any> 'large',
         Medium = <any> 'medium',
@@ -469,6 +464,11 @@ export namespace ReviewBlockStyles {
     export enum VerifiedFontStyleEnum {
         Italic = <any> 'italic',
         Normal = <any> 'normal'
+    }
+    export enum VerifiedBadgeColorEnum {
+        Dark = <any> 'dark',
+        Default = <any> 'default',
+        Light = <any> 'light'
     }
     export enum VerifiedBadgeStyleEnum {
         BadgeAndText = <any> 'badge-and-text',

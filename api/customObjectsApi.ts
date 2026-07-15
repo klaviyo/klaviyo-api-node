@@ -21,7 +21,41 @@ import { DataSourceRecordCreateJobCreateQuery } from '../model/dataSourceRecordC
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetDataSourceResponse } from '../model/getDataSourceResponse';
 import { GetDataSourceResponseCollection } from '../model/getDataSourceResponseCollection';
+import { GetIngestionLogResponseCollectionCompoundDocument } from '../model/getIngestionLogResponseCollectionCompoundDocument';
+import { GetObjectRecordResponse } from '../model/getObjectRecordResponse';
+import { GetObjectRecordResponseCollection } from '../model/getObjectRecordResponseCollection';
+import { GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollection } from '../model/getObjectSchemaProfileObjectSchemasRelationshipsResponseCollection';
+import { GetObjectSchemaResponse } from '../model/getObjectSchemaResponse';
+import { GetObjectSchemaResponseCollection } from '../model/getObjectSchemaResponseCollection';
+import { GetObjectSchemaResponseCompoundDocument } from '../model/getObjectSchemaResponseCompoundDocument';
+import { GetObjectSchemaSchemasRelationshipsResponseCollection } from '../model/getObjectSchemaSchemasRelationshipsResponseCollection';
+import { GetObjectSchemaSourceMappingRelationshipResponse } from '../model/getObjectSchemaSourceMappingRelationshipResponse';
+import { GetObjectTypeCurrentSchemaRelationshipResponse } from '../model/getObjectTypeCurrentSchemaRelationshipResponse';
+import { GetObjectTypeDraftSchemaRelationshipResponse } from '../model/getObjectTypeDraftSchemaRelationshipResponse';
+import { GetObjectTypeIngestionLogsRelationshipsResponseCollection } from '../model/getObjectTypeIngestionLogsRelationshipsResponseCollection';
+import { GetObjectTypeProfileObjectTypesRelationshipsResponseCollection } from '../model/getObjectTypeProfileObjectTypesRelationshipsResponseCollection';
+import { GetObjectTypeRecordsRelationshipsResponseCollection } from '../model/getObjectTypeRecordsRelationshipsResponseCollection';
+import { GetObjectTypeResponseCollectionCompoundDocument } from '../model/getObjectTypeResponseCollectionCompoundDocument';
+import { GetObjectTypeResponseCompoundDocument } from '../model/getObjectTypeResponseCompoundDocument';
+import { GetObjectTypeSchemaVersionsRelationshipsResponseCollection } from '../model/getObjectTypeSchemaVersionsRelationshipsResponseCollection';
+import { GetObjectTypeTypesRelationshipsResponseCollection } from '../model/getObjectTypeTypesRelationshipsResponseCollection';
+import { GetSourceMappingResponse } from '../model/getSourceMappingResponse';
+import { ObjectRecordDeleteJobCreateQuery } from '../model/objectRecordDeleteJobCreateQuery';
+import { ObjectSchemaCreateQuery } from '../model/objectSchemaCreateQuery';
+import { ObjectSchemaPartialUpdateQuery } from '../model/objectSchemaPartialUpdateQuery';
+import { ObjectSchemaRelationshipCreateQuery } from '../model/objectSchemaRelationshipCreateQuery';
+import { ObjectSchemaRelationshipDeleteQuery } from '../model/objectSchemaRelationshipDeleteQuery';
+import { ObjectSchemaRelationshipPartialUpdateQuery } from '../model/objectSchemaRelationshipPartialUpdateQuery';
+import { ObjectTypeCreateQuery } from '../model/objectTypeCreateQuery';
+import { PatchObjectSchemaResponse } from '../model/patchObjectSchemaResponse';
+import { PatchSourceMappingResponse } from '../model/patchSourceMappingResponse';
 import { PostDataSourceResponse } from '../model/postDataSourceResponse';
+import { PostObjectSchemaResponse } from '../model/postObjectSchemaResponse';
+import { PostObjectTypeResponse } from '../model/postObjectTypeResponse';
+import { ProfileObjectSchemaRelationshipCreateQuery } from '../model/profileObjectSchemaRelationshipCreateQuery';
+import { ProfileObjectSchemaRelationshipDeleteQuery } from '../model/profileObjectSchemaRelationshipDeleteQuery';
+import { ProfileObjectSchemaRelationshipPartialUpdateQuery } from '../model/profileObjectSchemaRelationshipPartialUpdateQuery';
+import { SourceMappingPartialUpdateQuery } from '../model/sourceMappingPartialUpdateQuery';
 
 import { ObjectSerializer } from '../model/models';
 
@@ -67,7 +101,7 @@ export class CustomObjectsApi {
     }
 
     /**
-     * Create a bulk data source record import job to create a batch of records.  Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:write`
+     * Create a bulk data source record import job to create a batch of records.  Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_data_source_records.json)
      * @summary Bulk Create Data Source Records
      * @param dataSourceRecordBulkCreateJobCreateQuery Create a data source record job
      
@@ -119,12 +153,64 @@ export class CustomObjectsApi {
         return request(config)
     }
     /**
-     * Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`
-     * @summary Create Data Source
-     * @param dataSourceCreateQuery Create data source
+     * Delete a batch of object records.  Accepts up to 500 object record IDs per request. The maximum allowed payload size is 5MB.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_object_records.json)
+     * @summary Bulk Delete Object Records
+     * @param objectRecordDeleteJobCreateQuery 
      
      */
-    public async createDataSource (dataSourceCreateQuery: DataSourceCreateQuery, ): Promise<{ response: AxiosResponse; body: PostDataSourceResponse;  }> {
+    public async bulkDeleteObjectRecords (objectRecordDeleteJobCreateQuery: ObjectRecordDeleteJobCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-record-bulk-delete-jobs';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'objectRecordDeleteJobCreateQuery' is not null or undefined
+        if (objectRecordDeleteJobCreateQuery === null || objectRecordDeleteJobCreateQuery === undefined) {
+            throw new Error('Required parameter objectRecordDeleteJobCreateQuery was null or undefined when calling bulkDeleteObjectRecords.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(objectRecordDeleteJobCreateQuery, "ObjectRecordDeleteJobCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source.json)
+     * @summary Create Data Source
+     * @param dataSourceCreateQuery Create data source
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async createDataSource (dataSourceCreateQuery: DataSourceCreateQuery, options: { fieldsDataSource?: Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: PostDataSourceResponse;  }> {
 
         const localVarPath = this.basePath + '/api/data-sources';
         let localVarQueryParameters: any = {};
@@ -140,6 +226,10 @@ export class CustomObjectsApi {
         // verify required parameter 'dataSourceCreateQuery' is not null or undefined
         if (dataSourceCreateQuery === null || dataSourceCreateQuery === undefined) {
             throw new Error('Required parameter dataSourceCreateQuery was null or undefined when calling createDataSource.');
+        }
+
+        if (options.fieldsDataSource !== undefined) {
+            localVarQueryParameters['fields[data-source]'] = ObjectSerializer.serialize(options.fieldsDataSource, "Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -172,7 +262,7 @@ export class CustomObjectsApi {
         return request(config)
     }
     /**
-     * Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `custom-objects:write`
+     * Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source_record.json)
      * @summary Create Data Source Record
      * @param dataSourceRecordCreateJobCreateQuery Create a data source record job
      
@@ -224,7 +314,237 @@ export class CustomObjectsApi {
         return request(config)
     }
     /**
-     * Delete a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`
+     * Create an object schema.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema.json)
+     * @summary Create Object Schema
+     * @param objectSchemaCreateQuery Create an object schema
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async createObjectSchema (objectSchemaCreateQuery: ObjectSchemaCreateQuery, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: PostObjectSchemaResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'objectSchemaCreateQuery' is not null or undefined
+        if (objectSchemaCreateQuery === null || objectSchemaCreateQuery === undefined) {
+            throw new Error('Required parameter objectSchemaCreateQuery was null or undefined when calling createObjectSchema.');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(objectSchemaCreateQuery, "ObjectSchemaCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostObjectSchemaResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostObjectSchemaResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Create a relationship between object schemas.  Note that flow filtering and segmentation are currently not supported for object-to-object relationships.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema_relationship.json)
+     * @summary Create Object Schema Relationship
+     * @param id The ULID ID of the object schema.* @param objectSchemaRelationshipCreateQuery Create a relationship between object schemas
+     
+     */
+    public async createObjectSchemaRelationship (id: string, objectSchemaRelationshipCreateQuery: ObjectSchemaRelationshipCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling createObjectSchemaRelationship.');
+        }
+
+        // verify required parameter 'objectSchemaRelationshipCreateQuery' is not null or undefined
+        if (objectSchemaRelationshipCreateQuery === null || objectSchemaRelationshipCreateQuery === undefined) {
+            throw new Error('Required parameter objectSchemaRelationshipCreateQuery was null or undefined when calling createObjectSchemaRelationship.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(objectSchemaRelationshipCreateQuery, "ObjectSchemaRelationshipCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Create an object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_type.json)
+     * @summary Create Object Type
+     * @param objectTypeCreateQuery Create an object type
+     * @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async createObjectType (objectTypeCreateQuery: ObjectTypeCreateQuery, options: { fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PostObjectTypeResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'objectTypeCreateQuery' is not null or undefined
+        if (objectTypeCreateQuery === null || objectTypeCreateQuery === undefined) {
+            throw new Error('Required parameter objectTypeCreateQuery was null or undefined when calling createObjectType.');
+        }
+
+        if (options.fieldsObjectType !== undefined) {
+            localVarQueryParameters['fields[object-type]'] = ObjectSerializer.serialize(options.fieldsObjectType, "Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(objectTypeCreateQuery, "ObjectTypeCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PostObjectTypeResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PostObjectTypeResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Create a relationship between an object schema and a profile<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_profile_schema_relationship.json)
+     * @summary Create Profile Schema Relationship
+     * @param id The ULID ID of the object schema.* @param profileObjectSchemaRelationshipCreateQuery Create a relationship between an object schema and a profile.
+     
+     */
+    public async createProfileSchemaRelationship (id: string, profileObjectSchemaRelationshipCreateQuery: ProfileObjectSchemaRelationshipCreateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/profile-object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling createProfileSchemaRelationship.');
+        }
+
+        // verify required parameter 'profileObjectSchemaRelationshipCreateQuery' is not null or undefined
+        if (profileObjectSchemaRelationshipCreateQuery === null || profileObjectSchemaRelationshipCreateQuery === undefined) {
+            throw new Error('Required parameter profileObjectSchemaRelationshipCreateQuery was null or undefined when calling createProfileSchemaRelationship.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'POST',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(profileObjectSchemaRelationshipCreateQuery, "ProfileObjectSchemaRelationshipCreateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Delete a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_data_source.json)
      * @summary Delete Data Source
      * @param id The ID of the data source to delete
      
@@ -276,12 +596,290 @@ export class CustomObjectsApi {
         return request(config)
     }
     /**
-     * Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
+     * Delete a relationship between object schemas<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_object_schema_relationship.json)
+     * @summary Delete Object Schema Relationship
+     * @param id The ULID ID of the object schema.* @param objectSchemaRelationshipDeleteQuery Delete a relationship between object schemas
+     
+     */
+    public async deleteObjectSchemaRelationship (id: string, objectSchemaRelationshipDeleteQuery: ObjectSchemaRelationshipDeleteQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteObjectSchemaRelationship.');
+        }
+
+        // verify required parameter 'objectSchemaRelationshipDeleteQuery' is not null or undefined
+        if (objectSchemaRelationshipDeleteQuery === null || objectSchemaRelationshipDeleteQuery === undefined) {
+            throw new Error('Required parameter objectSchemaRelationshipDeleteQuery was null or undefined when calling deleteObjectSchemaRelationship.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(objectSchemaRelationshipDeleteQuery, "ObjectSchemaRelationshipDeleteQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Delete the object type with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_object_type.json)
+     * @summary Delete Object Type
+     * @param id The ULID ID of the object type.
+     
+     */
+    public async deleteObjectType (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteObjectType.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Delete a relationship between an object schema and a profile<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_profile_schema_relationship.json)
+     * @summary Delete Profile Schema Relationship
+     * @param id The ULID ID of the object schema.* @param profileObjectSchemaRelationshipDeleteQuery Delete a relationship between an object schema and a profile
+     
+     */
+    public async deleteProfileSchemaRelationship (id: string, profileObjectSchemaRelationshipDeleteQuery: ProfileObjectSchemaRelationshipDeleteQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/profile-object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteProfileSchemaRelationship.');
+        }
+
+        // verify required parameter 'profileObjectSchemaRelationshipDeleteQuery' is not null or undefined
+        if (profileObjectSchemaRelationshipDeleteQuery === null || profileObjectSchemaRelationshipDeleteQuery === undefined) {
+            throw new Error('Required parameter profileObjectSchemaRelationshipDeleteQuery was null or undefined when calling deleteProfileSchemaRelationship.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(profileObjectSchemaRelationshipDeleteQuery, "ProfileObjectSchemaRelationshipDeleteQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get current schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_for_object_type.json)
+     * @summary Get Current Schema for Object Type
+     * @param id The ULID ID of the object type.
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getCurrentSchemaForObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/current-schema'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCurrentSchemaForObjectType.');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectSchemaResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get current schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_id_for_object_type.json)
+     * @summary Get Current Schema ID for Object Type
+     * @param id The ULID ID of the object type.
+     
+     */
+    public async getCurrentSchemaIdForObjectType (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectTypeCurrentSchemaRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/relationships/current-schema'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getCurrentSchemaIdForObjectType.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeCurrentSchemaRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeCurrentSchemaRelationshipResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_source.json)
      * @summary Get Data Source
      * @param id The ID of the data source
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getDataSource (id: string, options: { fieldsDataSource?: Array<'description' | 'namespace' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponse;  }> {
+    public async getDataSource (id: string, options: { fieldsDataSource?: Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponse;  }> {
 
         const localVarPath = this.basePath + '/api/data-sources/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -301,7 +899,7 @@ export class CustomObjectsApi {
         }
 
         if (options.fieldsDataSource !== undefined) {
-            localVarQueryParameters['fields[data-source]'] = ObjectSerializer.serialize(options.fieldsDataSource, "Array<'description' | 'namespace' | 'title' | 'visibility'>");
+            localVarQueryParameters['fields[data-source]'] = ObjectSerializer.serialize(options.fieldsDataSource, "Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -333,12 +931,12 @@ export class CustomObjectsApi {
         return request(config)
     }
     /**
-     * Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
+     * Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_sources.json)
      * @summary Get Data Sources
      
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
-    public async getDataSources (options: { fieldsDataSource?: Array<'description' | 'namespace' | 'title' | 'visibility'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponseCollection;  }> {
+    public async getDataSources (options: { fieldsDataSource?: Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/data-sources';
         let localVarQueryParameters: any = {};
@@ -352,7 +950,7 @@ export class CustomObjectsApi {
         }
 
         if (options.fieldsDataSource !== undefined) {
-            localVarQueryParameters['fields[data-source]'] = ObjectSerializer.serialize(options.fieldsDataSource, "Array<'description' | 'namespace' | 'title' | 'visibility'>");
+            localVarQueryParameters['fields[data-source]'] = ObjectSerializer.serialize(options.fieldsDataSource, "Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>");
         }
 
         if (options.pageCursor !== undefined) {
@@ -391,6 +989,1369 @@ export class CustomObjectsApi {
 
         return request(config)
     }
+    /**
+     * Get draft schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_for_object_type.json)
+     * @summary Get Draft Schema for Object Type
+     * @param id The ULID ID of the object type.
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getDraftSchemaForObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/draft-schema'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getDraftSchemaForObjectType.');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectSchemaResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get draft schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_id_for_object_type.json)
+     * @summary Get Draft Schema ID for Object Type
+     * @param id The ULID ID of the object type.
+     
+     */
+    public async getDraftSchemaIdForObjectType (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectTypeDraftSchemaRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/relationships/draft-schema'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getDraftSchemaIdForObjectType.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeDraftSchemaRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeDraftSchemaRelationshipResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_log_ids_for_object_type.json)
+     * @summary Get Ingestion Log IDs for Object Type
+     * @param id The ULID ID of the object type.
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+     */
+    public async getIngestionLogIdsForObjectType (id: string, options: { filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeIngestionLogsRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/relationships/object-ingestion-logs'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getIngestionLogIdsForObjectType.');
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeIngestionLogsRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeIngestionLogsRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_logs_for_object_type.json)
+     * @summary Get Ingestion Logs for Object Type
+     * @param id The ULID ID of the object type.
+     * @param fieldsObjectIngestionLog For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+     */
+    public async getIngestionLogsForObjectType (id: string, options: { fieldsObjectIngestionLog?: Array<'errors' | 'event_type' | 'id' | 'status' | 'summary' | 'timestamp'>, fieldsObjectRecord?: Array<'id' | 'record_properties'>, fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>, filter?: string, include?: Array<'object-record' | 'object-type'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetIngestionLogResponseCollectionCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/object-ingestion-logs'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getIngestionLogsForObjectType.');
+        }
+
+        if (options.fieldsObjectIngestionLog !== undefined) {
+            localVarQueryParameters['fields[object-ingestion-log]'] = ObjectSerializer.serialize(options.fieldsObjectIngestionLog, "Array<'errors' | 'event_type' | 'id' | 'status' | 'summary' | 'timestamp'>");
+        }
+
+        if (options.fieldsObjectRecord !== undefined) {
+            localVarQueryParameters['fields[object-record]'] = ObjectSerializer.serialize(options.fieldsObjectRecord, "Array<'id' | 'record_properties'>");
+        }
+
+        if (options.fieldsObjectType !== undefined) {
+            localVarQueryParameters['fields[object-type]'] = ObjectSerializer.serialize(options.fieldsObjectType, "Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'object-record' | 'object-type'>");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetIngestionLogResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetIngestionLogResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the object record with the given compound ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_record.json)
+     * @summary Get Object Record
+     * @param id The compound ID of the object record, formatted as object_type_id:::object_record_id
+     * @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getObjectRecord (id: string, options: { fieldsObjectRecord?: Array<'id' | 'record_properties'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectRecordResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-records/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getObjectRecord.');
+        }
+
+        if (options.fieldsObjectRecord !== undefined) {
+            localVarQueryParameters['fields[object-record]'] = ObjectSerializer.serialize(options.fieldsObjectRecord, "Array<'id' | 'record_properties'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectRecordResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectRecordResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the object schema with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema.json)
+     * @summary Get Object Schema
+     * @param id The ULID ID of the object schema.
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     */
+    public async getObjectSchema (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsProfileObjectSchema?: Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>, fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>, include?: Array<'object-schemas' | 'profile-object-schemas' | 'source-mapping'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getObjectSchema.');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        if (options.fieldsProfileObjectSchema !== undefined) {
+            localVarQueryParameters['fields[profile-object-schema]'] = ObjectSerializer.serialize(options.fieldsProfileObjectSchema, "Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>");
+        }
+
+        if (options.fieldsSourceMapping !== undefined) {
+            localVarQueryParameters['fields[source-mapping]'] = ObjectSerializer.serialize(options.fieldsSourceMapping, "Array<'id' | 'property_mappings' | 'relationship_mappings'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'object-schemas' | 'profile-object-schemas' | 'source-mapping'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectSchemaResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get related object schemas for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema_relationships.json)
+     * @summary Get Object Schema Relationships
+     * @param id The ULID ID of the object schema.
+     
+     */
+    public async getObjectSchemaRelationships (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectSchemaSchemasRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getObjectSchemaRelationships.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectSchemaSchemasRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectSchemaSchemasRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the object type with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type.json)
+     * @summary Get Object Type
+     * @param id The ULID ID of the object type.
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     */
+    public async getObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'namespace' | 'status' | 'title' | 'updated_at'>, fieldsProfileObjectType?: Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>, include?: Array<'current-schema' | 'draft-schema' | 'object-types' | 'profile-object-types' | 'schema-versions'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeResponseCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getObjectType.');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        if (options.fieldsObjectType !== undefined) {
+            localVarQueryParameters['fields[object-type]'] = ObjectSerializer.serialize(options.fieldsObjectType, "Array<'created_at' | 'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'namespace' | 'status' | 'title' | 'updated_at'>");
+        }
+
+        if (options.fieldsProfileObjectType !== undefined) {
+            localVarQueryParameters['fields[profile-object-type]'] = ObjectSerializer.serialize(options.fieldsProfileObjectType, "Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'current-schema' | 'draft-schema' | 'object-types' | 'profile-object-types' | 'schema-versions'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeResponseCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeResponseCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get related object types for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type_relationships.json)
+     * @summary Get Object Type Relationships
+     * @param id The ULID ID of the object type.
+     
+     */
+    public async getObjectTypeRelationships (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectTypeTypesRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/relationships/object-types'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getObjectTypeRelationships.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeTypesRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeTypesRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get all object types in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_types.json)
+     * @summary Get Object Types
+     
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     */
+    public async getObjectTypes (options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>, filter?: string, include?: Array<'current-schema' | 'draft-schema'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeResponseCollectionCompoundDocument;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        if (options.fieldsObjectType !== undefined) {
+            localVarQueryParameters['fields[object-type]'] = ObjectSerializer.serialize(options.fieldsObjectType, "Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'current-schema' | 'draft-schema'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeResponseCollectionCompoundDocument;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeResponseCollectionCompoundDocument");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get related profile object schemas for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_schema_relationships.json)
+     * @summary Get Profile Schema Relationships
+     * @param id The ULID ID of the object schema.
+     
+     */
+    public async getProfileSchemaRelationships (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/profile-object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getProfileSchemaRelationships.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get related profile object types for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_type_relationships.json)
+     * @summary Get Profile Type Relationships
+     * @param id The ULID ID of the object type.
+     
+     */
+    public async getProfileTypeRelationships (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectTypeProfileObjectTypesRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/relationships/profile-object-types'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getProfileTypeRelationships.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeProfileObjectTypesRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeProfileObjectTypesRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_record_ids_for_object_type.json)
+     * @summary Get Record IDs for Object Type
+     * @param id The ULID ID of the object type.
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     */
+    public async getRecordIdsForObjectType (id: string, options: { pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeRecordsRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/relationships/object-records'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getRecordIdsForObjectType.');
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeRecordsRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeRecordsRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_records_for_object_type.json)
+     * @summary Get Records for Object Type
+     * @param id The ULID ID of the object type.
+     * @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     */
+    public async getRecordsForObjectType (id: string, options: { fieldsObjectRecord?: Array<'id' | 'record_properties'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectRecordResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/object-records'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getRecordsForObjectType.');
+        }
+
+        if (options.fieldsObjectRecord !== undefined) {
+            localVarQueryParameters['fields[object-record]'] = ObjectSerializer.serialize(options.fieldsObjectRecord, "Array<'id' | 'record_properties'>");
+        }
+
+        if (options.pageCursor !== undefined) {
+            localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectRecordResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectRecordResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get all schema versions for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_version_ids_for_object_type.json)
+     * @summary Get Schema Version IDs for Object Type
+     * @param id The ULID ID of the object type.
+     
+     */
+    public async getSchemaVersionIdsForObjectType (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectTypeSchemaVersionsRelationshipsResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/relationships/schema-versions'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSchemaVersionIdsForObjectType.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectTypeSchemaVersionsRelationshipsResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectTypeSchemaVersionsRelationshipsResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get all schema versions for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_versions_for_object_type.json)
+     * @summary Get Schema Versions for Object Type
+     * @param id The ULID ID of the object type.
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getSchemaVersionsForObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponseCollection;  }> {
+
+        const localVarPath = this.basePath + '/api/object-types/{id}/schema-versions'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSchemaVersionsForObjectType.');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponseCollection;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectSchemaResponseCollection");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get the source mapping with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping.json)
+     * @summary Get Source Mapping
+     * @param id The ID of the source mapping
+     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getSourceMapping (id: string, options: { fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSourceMappingResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/source-mappings/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSourceMapping.');
+        }
+
+        if (options.fieldsSourceMapping !== undefined) {
+            localVarQueryParameters['fields[source-mapping]'] = ObjectSerializer.serialize(options.fieldsSourceMapping, "Array<'id' | 'property_mappings' | 'relationship_mappings'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSourceMappingResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetSourceMappingResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get source mapping for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_for_object_schema.json)
+     * @summary Get Source Mapping for Object Schema
+     * @param id The ULID ID of the object schema.
+     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async getSourceMappingForObjectSchema (id: string, options: { fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSourceMappingResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/source-mapping'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSourceMappingForObjectSchema.');
+        }
+
+        if (options.fieldsSourceMapping !== undefined) {
+            localVarQueryParameters['fields[source-mapping]'] = ObjectSerializer.serialize(options.fieldsSourceMapping, "Array<'id' | 'property_mappings' | 'relationship_mappings'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetSourceMappingResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetSourceMappingResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Get source mapping for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_id_for_object_schema.json)
+     * @summary Get Source Mapping ID for Object Schema
+     * @param id The ULID ID of the object schema.
+     
+     */
+    public async getSourceMappingIdForObjectSchema (id: string, ): Promise<{ response: AxiosResponse; body: GetObjectSchemaSourceMappingRelationshipResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/source-mapping'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSourceMappingIdForObjectSchema.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'GET',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetObjectSchemaSourceMappingRelationshipResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetObjectSchemaSourceMappingRelationshipResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Update the object schema with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_object_schema.json)
+     * @summary Update Object Schema
+     * @param id The ULID ID of the object schema.* @param objectSchemaPartialUpdateQuery Update a object schema by ID
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async updateObjectSchema (id: string, objectSchemaPartialUpdateQuery: ObjectSchemaPartialUpdateQuery, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchObjectSchemaResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateObjectSchema.');
+        }
+
+        // verify required parameter 'objectSchemaPartialUpdateQuery' is not null or undefined
+        if (objectSchemaPartialUpdateQuery === null || objectSchemaPartialUpdateQuery === undefined) {
+            throw new Error('Required parameter objectSchemaPartialUpdateQuery was null or undefined when calling updateObjectSchema.');
+        }
+
+        if (options.fieldsObjectSchema !== undefined) {
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(objectSchemaPartialUpdateQuery, "ObjectSchemaPartialUpdateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchObjectSchemaResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchObjectSchemaResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Update a relationship between object schemas<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_object_schema_relationship.json)
+     * @summary Update Object Schema Relationship
+     * @param id The ULID ID of the object schema.* @param objectSchemaRelationshipPartialUpdateQuery Update a relationship between object schemas
+     
+     */
+    public async updateObjectSchemaRelationship (id: string, objectSchemaRelationshipPartialUpdateQuery: ObjectSchemaRelationshipPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateObjectSchemaRelationship.');
+        }
+
+        // verify required parameter 'objectSchemaRelationshipPartialUpdateQuery' is not null or undefined
+        if (objectSchemaRelationshipPartialUpdateQuery === null || objectSchemaRelationshipPartialUpdateQuery === undefined) {
+            throw new Error('Required parameter objectSchemaRelationshipPartialUpdateQuery was null or undefined when calling updateObjectSchemaRelationship.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(objectSchemaRelationshipPartialUpdateQuery, "ObjectSchemaRelationshipPartialUpdateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Update a relationship between an object schema and a profile<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_profile_schema_relationship.json)
+     * @summary Update Profile Schema Relationship
+     * @param id The ULID ID of the object schema.* @param profileObjectSchemaRelationshipPartialUpdateQuery Update a relationship between an object schema and a profile
+     
+     */
+    public async updateProfileSchemaRelationship (id: string, profileObjectSchemaRelationshipPartialUpdateQuery: ProfileObjectSchemaRelationshipPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
+
+        const localVarPath = this.basePath + '/api/object-schemas/{id}/relationships/profile-object-schemas'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateProfileSchemaRelationship.');
+        }
+
+        // verify required parameter 'profileObjectSchemaRelationshipPartialUpdateQuery' is not null or undefined
+        if (profileObjectSchemaRelationshipPartialUpdateQuery === null || profileObjectSchemaRelationshipPartialUpdateQuery === undefined) {
+            throw new Error('Required parameter profileObjectSchemaRelationshipPartialUpdateQuery was null or undefined when calling updateProfileSchemaRelationship.');
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(profileObjectSchemaRelationshipPartialUpdateQuery, "ProfileObjectSchemaRelationshipPartialUpdateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
+    /**
+     * Update the source mapping with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_source_mapping.json)
+     * @summary Update Source Mapping
+     * @param id The ULID ID of the source mapping* @param sourceMappingPartialUpdateQuery Update a source mapping by ID
+     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     */
+    public async updateSourceMapping (id: string, sourceMappingPartialUpdateQuery: SourceMappingPartialUpdateQuery, options: { fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchSourceMappingResponse;  }> {
+
+        const localVarPath = this.basePath + '/api/source-mappings/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/vnd.api+json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateSourceMapping.');
+        }
+
+        // verify required parameter 'sourceMappingPartialUpdateQuery' is not null or undefined
+        if (sourceMappingPartialUpdateQuery === null || sourceMappingPartialUpdateQuery === undefined) {
+            throw new Error('Required parameter sourceMappingPartialUpdateQuery was null or undefined when calling updateSourceMapping.');
+        }
+
+        if (options.fieldsSourceMapping !== undefined) {
+            localVarQueryParameters['fields[source-mapping]'] = ObjectSerializer.serialize(options.fieldsSourceMapping, "Array<'id' | 'property_mappings' | 'relationship_mappings'>");
+        }
+
+        queryParamPreProcessor(localVarQueryParameters)
+
+        let config: AxiosRequestConfig = {
+            method: 'PATCH',
+            url: localVarPath,
+            headers: localVarHeaderParams,
+            params: localVarQueryParameters,
+            data: ObjectSerializer.serialize(sourceMappingPartialUpdateQuery, "SourceMappingPartialUpdateQuery")
+        }
+
+        await this.session.applyToRequest(config)
+
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchSourceMappingResponse;  }> => {
+            try {
+                const axiosResponse = await this.session.requestWithRetry(config)
+                let body;
+                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchSourceMappingResponse");
+                return ({response: axiosResponse, body: body});
+            } catch (error) {
+                if (await this.session.refreshAndRetry(error, retried)) {
+                    await this.session.applyToRequest(config)
+                    return request(config, true)
+                }
+                throw error
+            }
+        }
+
+        return request(config)
+    }
 }
 
 export interface CustomObjectsApi {
@@ -405,6 +2366,16 @@ CustomObjectsApi.prototype.createDataSourceRecordBulkCreateJob = CustomObjectsAp
 
 export interface CustomObjectsApi {
     /**
+     * Alias of {@link CustomObjectsApi.bulkDeleteObjectRecords}
+     *
+     * @deprecated Use {@link CustomObjectsApi.bulkDeleteObjectRecords} instead
+     */
+    createObjectRecordBulkDeleteJob: typeof CustomObjectsApi.prototype.bulkDeleteObjectRecords;
+}
+CustomObjectsApi.prototype.createObjectRecordBulkDeleteJob = CustomObjectsApi.prototype.bulkDeleteObjectRecords
+
+export interface CustomObjectsApi {
+    /**
      * Alias of {@link CustomObjectsApi.createDataSourceRecord}
      *
      * @deprecated Use {@link CustomObjectsApi.createDataSourceRecord} instead
@@ -412,3 +2383,323 @@ export interface CustomObjectsApi {
     createDataSourceRecordCreateJob: typeof CustomObjectsApi.prototype.createDataSourceRecord;
 }
 CustomObjectsApi.prototype.createDataSourceRecordCreateJob = CustomObjectsApi.prototype.createDataSourceRecord
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.createObjectSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.createObjectSchemaRelationship} instead
+     */
+    addSchemasToObjectSchema: typeof CustomObjectsApi.prototype.createObjectSchemaRelationship;
+}
+CustomObjectsApi.prototype.addSchemasToObjectSchema = CustomObjectsApi.prototype.createObjectSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.createObjectSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.createObjectSchemaRelationship} instead
+     */
+    createObjectSchemaRelationshipsSchemas: typeof CustomObjectsApi.prototype.createObjectSchemaRelationship;
+}
+CustomObjectsApi.prototype.createObjectSchemaRelationshipsSchemas = CustomObjectsApi.prototype.createObjectSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.createProfileSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.createProfileSchemaRelationship} instead
+     */
+    addProfileObjectSchemasToObjectSchema: typeof CustomObjectsApi.prototype.createProfileSchemaRelationship;
+}
+CustomObjectsApi.prototype.addProfileObjectSchemasToObjectSchema = CustomObjectsApi.prototype.createProfileSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.createProfileSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.createProfileSchemaRelationship} instead
+     */
+    createObjectSchemaRelationshipsProfileObjectSchemas: typeof CustomObjectsApi.prototype.createProfileSchemaRelationship;
+}
+CustomObjectsApi.prototype.createObjectSchemaRelationshipsProfileObjectSchemas = CustomObjectsApi.prototype.createProfileSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.deleteObjectSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.deleteObjectSchemaRelationship} instead
+     */
+    deleteObjectSchemaRelationshipsSchemas: typeof CustomObjectsApi.prototype.deleteObjectSchemaRelationship;
+}
+CustomObjectsApi.prototype.deleteObjectSchemaRelationshipsSchemas = CustomObjectsApi.prototype.deleteObjectSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.deleteObjectSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.deleteObjectSchemaRelationship} instead
+     */
+    removeSchemasFromObjectSchema: typeof CustomObjectsApi.prototype.deleteObjectSchemaRelationship;
+}
+CustomObjectsApi.prototype.removeSchemasFromObjectSchema = CustomObjectsApi.prototype.deleteObjectSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.deleteProfileSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.deleteProfileSchemaRelationship} instead
+     */
+    deleteObjectSchemaRelationshipsProfileObjectSchemas: typeof CustomObjectsApi.prototype.deleteProfileSchemaRelationship;
+}
+CustomObjectsApi.prototype.deleteObjectSchemaRelationshipsProfileObjectSchemas = CustomObjectsApi.prototype.deleteProfileSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.deleteProfileSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.deleteProfileSchemaRelationship} instead
+     */
+    removeProfileObjectSchemasFromObjectSchema: typeof CustomObjectsApi.prototype.deleteProfileSchemaRelationship;
+}
+CustomObjectsApi.prototype.removeProfileObjectSchemasFromObjectSchema = CustomObjectsApi.prototype.deleteProfileSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getCurrentSchemaForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getCurrentSchemaForObjectType} instead
+     */
+    getObjectTypeCurrentSchema: typeof CustomObjectsApi.prototype.getCurrentSchemaForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeCurrentSchema = CustomObjectsApi.prototype.getCurrentSchemaForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getCurrentSchemaIdForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getCurrentSchemaIdForObjectType} instead
+     */
+    getObjectTypeRelationshipsCurrentSchema: typeof CustomObjectsApi.prototype.getCurrentSchemaIdForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeRelationshipsCurrentSchema = CustomObjectsApi.prototype.getCurrentSchemaIdForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getDraftSchemaForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getDraftSchemaForObjectType} instead
+     */
+    getObjectTypeDraftSchema: typeof CustomObjectsApi.prototype.getDraftSchemaForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeDraftSchema = CustomObjectsApi.prototype.getDraftSchemaForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getDraftSchemaIdForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getDraftSchemaIdForObjectType} instead
+     */
+    getObjectTypeRelationshipsDraftSchema: typeof CustomObjectsApi.prototype.getDraftSchemaIdForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeRelationshipsDraftSchema = CustomObjectsApi.prototype.getDraftSchemaIdForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getIngestionLogIdsForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getIngestionLogIdsForObjectType} instead
+     */
+    getObjectTypeRelationshipsIngestionLogs: typeof CustomObjectsApi.prototype.getIngestionLogIdsForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeRelationshipsIngestionLogs = CustomObjectsApi.prototype.getIngestionLogIdsForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getIngestionLogsForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getIngestionLogsForObjectType} instead
+     */
+    getObjectTypeIngestionLogs: typeof CustomObjectsApi.prototype.getIngestionLogsForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeIngestionLogs = CustomObjectsApi.prototype.getIngestionLogsForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getObjectSchemaRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getObjectSchemaRelationships} instead
+     */
+    getObjectSchemaRelationshipsSchemas: typeof CustomObjectsApi.prototype.getObjectSchemaRelationships;
+}
+CustomObjectsApi.prototype.getObjectSchemaRelationshipsSchemas = CustomObjectsApi.prototype.getObjectSchemaRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getObjectSchemaRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getObjectSchemaRelationships} instead
+     */
+    getSchemaIdsForObjectSchema: typeof CustomObjectsApi.prototype.getObjectSchemaRelationships;
+}
+CustomObjectsApi.prototype.getSchemaIdsForObjectSchema = CustomObjectsApi.prototype.getObjectSchemaRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getObjectTypeRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getObjectTypeRelationships} instead
+     */
+    getObjectTypeRelationshipsTypes: typeof CustomObjectsApi.prototype.getObjectTypeRelationships;
+}
+CustomObjectsApi.prototype.getObjectTypeRelationshipsTypes = CustomObjectsApi.prototype.getObjectTypeRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getObjectTypeRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getObjectTypeRelationships} instead
+     */
+    getTypeIdsForObjectType: typeof CustomObjectsApi.prototype.getObjectTypeRelationships;
+}
+CustomObjectsApi.prototype.getTypeIdsForObjectType = CustomObjectsApi.prototype.getObjectTypeRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getProfileSchemaRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getProfileSchemaRelationships} instead
+     */
+    getObjectSchemaRelationshipsProfileObjectSchemas: typeof CustomObjectsApi.prototype.getProfileSchemaRelationships;
+}
+CustomObjectsApi.prototype.getObjectSchemaRelationshipsProfileObjectSchemas = CustomObjectsApi.prototype.getProfileSchemaRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getProfileSchemaRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getProfileSchemaRelationships} instead
+     */
+    getProfileObjectSchemaIdsForObjectSchema: typeof CustomObjectsApi.prototype.getProfileSchemaRelationships;
+}
+CustomObjectsApi.prototype.getProfileObjectSchemaIdsForObjectSchema = CustomObjectsApi.prototype.getProfileSchemaRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getProfileTypeRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getProfileTypeRelationships} instead
+     */
+    getObjectTypeRelationshipsProfileObjectTypes: typeof CustomObjectsApi.prototype.getProfileTypeRelationships;
+}
+CustomObjectsApi.prototype.getObjectTypeRelationshipsProfileObjectTypes = CustomObjectsApi.prototype.getProfileTypeRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getProfileTypeRelationships}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getProfileTypeRelationships} instead
+     */
+    getProfileObjectTypeIdsForObjectType: typeof CustomObjectsApi.prototype.getProfileTypeRelationships;
+}
+CustomObjectsApi.prototype.getProfileObjectTypeIdsForObjectType = CustomObjectsApi.prototype.getProfileTypeRelationships
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getRecordIdsForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getRecordIdsForObjectType} instead
+     */
+    getObjectTypeRelationshipsRecords: typeof CustomObjectsApi.prototype.getRecordIdsForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeRelationshipsRecords = CustomObjectsApi.prototype.getRecordIdsForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getRecordsForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getRecordsForObjectType} instead
+     */
+    getObjectTypeRecords: typeof CustomObjectsApi.prototype.getRecordsForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeRecords = CustomObjectsApi.prototype.getRecordsForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getSchemaVersionIdsForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getSchemaVersionIdsForObjectType} instead
+     */
+    getObjectTypeRelationshipsSchemaVersions: typeof CustomObjectsApi.prototype.getSchemaVersionIdsForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeRelationshipsSchemaVersions = CustomObjectsApi.prototype.getSchemaVersionIdsForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getSchemaVersionsForObjectType}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getSchemaVersionsForObjectType} instead
+     */
+    getObjectTypeSchemaVersions: typeof CustomObjectsApi.prototype.getSchemaVersionsForObjectType;
+}
+CustomObjectsApi.prototype.getObjectTypeSchemaVersions = CustomObjectsApi.prototype.getSchemaVersionsForObjectType
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getSourceMappingForObjectSchema}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getSourceMappingForObjectSchema} instead
+     */
+    getObjectSchemaSourceMapping: typeof CustomObjectsApi.prototype.getSourceMappingForObjectSchema;
+}
+CustomObjectsApi.prototype.getObjectSchemaSourceMapping = CustomObjectsApi.prototype.getSourceMappingForObjectSchema
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.getSourceMappingIdForObjectSchema}
+     *
+     * @deprecated Use {@link CustomObjectsApi.getSourceMappingIdForObjectSchema} instead
+     */
+    getObjectSchemaRelationshipsSourceMapping: typeof CustomObjectsApi.prototype.getSourceMappingIdForObjectSchema;
+}
+CustomObjectsApi.prototype.getObjectSchemaRelationshipsSourceMapping = CustomObjectsApi.prototype.getSourceMappingIdForObjectSchema
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.updateObjectSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.updateObjectSchemaRelationship} instead
+     */
+    updateObjectSchemaRelationshipsSchemas: typeof CustomObjectsApi.prototype.updateObjectSchemaRelationship;
+}
+CustomObjectsApi.prototype.updateObjectSchemaRelationshipsSchemas = CustomObjectsApi.prototype.updateObjectSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.updateObjectSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.updateObjectSchemaRelationship} instead
+     */
+    updateSchemasForObjectSchema: typeof CustomObjectsApi.prototype.updateObjectSchemaRelationship;
+}
+CustomObjectsApi.prototype.updateSchemasForObjectSchema = CustomObjectsApi.prototype.updateObjectSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.updateProfileSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.updateProfileSchemaRelationship} instead
+     */
+    updateObjectSchemaRelationshipsProfileObjectSchemas: typeof CustomObjectsApi.prototype.updateProfileSchemaRelationship;
+}
+CustomObjectsApi.prototype.updateObjectSchemaRelationshipsProfileObjectSchemas = CustomObjectsApi.prototype.updateProfileSchemaRelationship
+
+export interface CustomObjectsApi {
+    /**
+     * Alias of {@link CustomObjectsApi.updateProfileSchemaRelationship}
+     *
+     * @deprecated Use {@link CustomObjectsApi.updateProfileSchemaRelationship} instead
+     */
+    updateProfileObjectSchemasForObjectSchema: typeof CustomObjectsApi.prototype.updateProfileSchemaRelationship;
+}
+CustomObjectsApi.prototype.updateProfileObjectSchemasForObjectSchema = CustomObjectsApi.prototype.updateProfileSchemaRelationship

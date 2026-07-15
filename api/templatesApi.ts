@@ -76,12 +76,12 @@ export class TemplatesApi {
     }
 
     /**
-     * Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+     * Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_template.json)
      * @summary Clone Template
      * @param templateCloneQuery 
-     
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async cloneTemplate (templateCloneQuery: TemplateCloneQuery, ): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> {
+    public async cloneTemplate (templateCloneQuery: TemplateCloneQuery, options: { fieldsTemplate?: Array<'amp' | 'created' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> {
 
         const localVarPath = this.basePath + '/api/template-clone';
         let localVarQueryParameters: any = {};
@@ -97,6 +97,10 @@ export class TemplatesApi {
         // verify required parameter 'templateCloneQuery' is not null or undefined
         if (templateCloneQuery === null || templateCloneQuery === undefined) {
             throw new Error('Required parameter templateCloneQuery was null or undefined when calling cloneTemplate.');
+        }
+
+        if (options.fieldsTemplate !== undefined) {
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -129,12 +133,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Create a new HTML or drag-and-drop template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+     * Create a new HTML or drag-and-drop template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_template.json)
      * @summary Create Template
      * @param templateCreateHtmlOrDndQuery 
-     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;
+     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async createTemplate (templateCreateHtmlOrDndQuery: TemplateCreateHtmlOrDndQuery, options: { additionalFieldsTemplate?: Array<'definition'>,  } = {}): Promise<{ response: AxiosResponse; body: PostTemplateDndResponse;  }> {
+    public async createTemplate (templateCreateHtmlOrDndQuery: TemplateCreateHtmlOrDndQuery, options: { additionalFieldsTemplate?: Array<'definition'>, fieldsTemplate?: Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: PostTemplateDndResponse;  }> {
 
         const localVarPath = this.basePath + '/api/templates';
         let localVarQueryParameters: any = {};
@@ -154,6 +158,10 @@ export class TemplatesApi {
 
         if (options.additionalFieldsTemplate !== undefined) {
             localVarQueryParameters['additional-fields[template]'] = ObjectSerializer.serialize(options.additionalFieldsTemplate, "Array<'definition'>");
+        }
+
+        if (options.fieldsTemplate !== undefined) {
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -186,12 +194,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Create universal content. Currently supported block types are: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+     * Create universal content. Currently supported block types are: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_universal_content.json)
      * @summary Create Universal Content
      * @param universalContentCreateQuery Create a template universal content
-     
+     * @param fieldsTemplateUniversalContent For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async createUniversalContent (universalContentCreateQuery: UniversalContentCreateQuery, ): Promise<{ response: AxiosResponse; body: PostUniversalContentResponse;  }> {
+    public async createUniversalContent (universalContentCreateQuery: UniversalContentCreateQuery, options: { fieldsTemplateUniversalContent?: Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: PostUniversalContentResponse;  }> {
 
         const localVarPath = this.basePath + '/api/template-universal-content';
         let localVarQueryParameters: any = {};
@@ -207,6 +215,10 @@ export class TemplatesApi {
         // verify required parameter 'universalContentCreateQuery' is not null or undefined
         if (universalContentCreateQuery === null || universalContentCreateQuery === undefined) {
             throw new Error('Required parameter universalContentCreateQuery was null or undefined when calling createUniversalContent.');
+        }
+
+        if (options.fieldsTemplateUniversalContent !== undefined) {
+            localVarQueryParameters['fields[template-universal-content]'] = ObjectSerializer.serialize(options.fieldsTemplateUniversalContent, "Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -239,7 +251,7 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Delete a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+     * Delete a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_template.json)
      * @summary Delete Template
      * @param id The ID of template
      
@@ -291,7 +303,7 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Delete the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+     * Delete the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_universal_content.json)
      * @summary Delete Universal Content
      * @param id The ID of the template universal content
      
@@ -343,12 +355,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Get all universal content in an account.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+     * Get all universal content in an account.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_all_universal_content.json)
      * @summary Get All Universal Content
      
-     * @param fieldsTemplateUniversalContent For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;definition.content_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;definition.type&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param fieldsTemplateUniversalContent For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;definition.content_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;definition.type&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
-    public async getAllUniversalContent (options: { fieldsTemplateUniversalContent?: Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetUniversalContentResponseCollection;  }> {
+    public async getAllUniversalContent (options: { fieldsTemplateUniversalContent?: Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetUniversalContentResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/template-universal-content';
         let localVarQueryParameters: any = {};
@@ -362,7 +374,7 @@ export class TemplatesApi {
         }
 
         if (options.fieldsTemplateUniversalContent !== undefined) {
-            localVarQueryParameters['fields[template-universal-content]'] = ObjectSerializer.serialize(options.fieldsTemplateUniversalContent, "Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>");
+            localVarQueryParameters['fields[template-universal-content]'] = ObjectSerializer.serialize(options.fieldsTemplateUniversalContent, "Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>");
         }
 
         if (options.filter !== undefined) {
@@ -410,12 +422,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+     * Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_template.json)
      * @summary Get Template
      * @param id The ID of template
-     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getTemplate (id: string, options: { additionalFieldsTemplate?: Array<'definition'>, fieldsTemplate?: Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'name' | 'text' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateDndResponse;  }> {
+    public async getTemplate (id: string, options: { additionalFieldsTemplate?: Array<'definition'>, fieldsTemplate?: Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateDndResponse;  }> {
 
         const localVarPath = this.basePath + '/api/templates/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -439,7 +451,7 @@ export class TemplatesApi {
         }
 
         if (options.fieldsTemplate !== undefined) {
-            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'name' | 'text' | 'updated'>");
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -471,12 +483,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Get all templates in an account.  Use `additional-fields[template]=definition` to include the full template definition for SYSTEM_DRAGGABLE templates.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+     * Get all templates in an account.  Use `additional-fields[template]=definition` to include the full template definition for SYSTEM_DRAGGABLE templates.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_templates.json)
      * @summary Get Templates
      
-     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 10. Min: 1. Max: 10.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
-    public async getTemplates (options: { additionalFieldsTemplate?: Array<'definition'>, fieldsTemplate?: Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'name' | 'text' | 'updated'>, filter?: string, pageCursor?: string, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateDndResponseCollection;  }> {
+    public async getTemplates (options: { additionalFieldsTemplate?: Array<'definition'>, fieldsTemplate?: Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'id' | '-id' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetTemplateDndResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/templates';
         let localVarQueryParameters: any = {};
@@ -494,7 +506,7 @@ export class TemplatesApi {
         }
 
         if (options.fieldsTemplate !== undefined) {
-            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'name' | 'text' | 'updated'>");
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>");
         }
 
         if (options.filter !== undefined) {
@@ -503,6 +515,10 @@ export class TemplatesApi {
 
         if (options.pageCursor !== undefined) {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
         }
 
         if (options.sort !== undefined) {
@@ -538,12 +554,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Get the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+     * Get the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_universal_content.json)
      * @summary Get Universal Content
      * @param id The ID of the universal content
-     * @param fieldsTemplateUniversalContent For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTemplateUniversalContent For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getUniversalContent (id: string, options: { fieldsTemplateUniversalContent?: Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetUniversalContentResponse;  }> {
+    public async getUniversalContent (id: string, options: { fieldsTemplateUniversalContent?: Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: GetUniversalContentResponse;  }> {
 
         const localVarPath = this.basePath + '/api/template-universal-content/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -563,7 +579,7 @@ export class TemplatesApi {
         }
 
         if (options.fieldsTemplateUniversalContent !== undefined) {
-            localVarQueryParameters['fields[template-universal-content]'] = ObjectSerializer.serialize(options.fieldsTemplateUniversalContent, "Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>");
+            localVarQueryParameters['fields[template-universal-content]'] = ObjectSerializer.serialize(options.fieldsTemplateUniversalContent, "Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -595,12 +611,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Render a template with the given template ID and context attribute. Returns the AMP, HTML, and plain text versions of the email template.  **Request body parameters** (nested under `attributes`):  * `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding `context` values are treated as `FALSE` and output nothing.  Ex. `{ \"name\" : \"George Washington\", \"state\" : \"VA\" }`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
+     * Render a template with the given template ID and context attribute. Returns the AMP, HTML, and plain text versions of the email template.  **Request body parameters** (nested under `attributes`):  * `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding `context` values are treated as `FALSE` and output nothing.  Ex. `{ \"name\" : \"George Washington\", \"state\" : \"VA\" }`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/render_template.json)
      * @summary Render Template
      * @param templateRenderQuery 
-     
+     * @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async renderTemplate (templateRenderQuery: TemplateRenderQuery, ): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> {
+    public async renderTemplate (templateRenderQuery: TemplateRenderQuery, options: { fieldsTemplate?: Array<'amp' | 'created' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: PostTemplateResponse;  }> {
 
         const localVarPath = this.basePath + '/api/template-render';
         let localVarQueryParameters: any = {};
@@ -616,6 +632,10 @@ export class TemplatesApi {
         // verify required parameter 'templateRenderQuery' is not null or undefined
         if (templateRenderQuery === null || templateRenderQuery === undefined) {
             throw new Error('Required parameter templateRenderQuery was null or undefined when calling renderTemplate.');
+        }
+
+        if (options.fieldsTemplate !== undefined) {
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -648,12 +668,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Update a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+     * Update a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_template.json)
      * @summary Update Template
      * @param id The ID of template* @param templateUpdateHtmlOrDndQuery 
-     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;
+     * @param additionalFieldsTemplate Request additional fields not included by default in the response. Supported values: \&#39;definition\&#39;* @param fieldsTemplate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async updateTemplate (id: string, templateUpdateHtmlOrDndQuery: TemplateUpdateHtmlOrDndQuery, options: { additionalFieldsTemplate?: Array<'definition'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchTemplateDndResponse;  }> {
+    public async updateTemplate (id: string, templateUpdateHtmlOrDndQuery: TemplateUpdateHtmlOrDndQuery, options: { additionalFieldsTemplate?: Array<'definition'>, fieldsTemplate?: Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchTemplateDndResponse;  }> {
 
         const localVarPath = this.basePath + '/api/templates/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -679,6 +699,10 @@ export class TemplatesApi {
 
         if (options.additionalFieldsTemplate !== undefined) {
             localVarQueryParameters['additional-fields[template]'] = ObjectSerializer.serialize(options.additionalFieldsTemplate, "Array<'definition'>");
+        }
+
+        if (options.fieldsTemplate !== undefined) {
+            localVarQueryParameters['fields[template]'] = ObjectSerializer.serialize(options.fieldsTemplate, "Array<'amp' | 'created' | 'definition' | 'definition.body' | 'definition.body.id' | 'definition.body.properties' | 'definition.body.properties.css_class' | 'definition.body.properties.id' | 'definition.body.sections' | 'definition.body.styles' | 'definition.body.styles.background_color' | 'definition.body.styles.width' | 'definition.id' | 'definition.styles' | 'definition.template_id' | 'editor_type' | 'html' | 'id' | 'name' | 'text' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -711,12 +735,12 @@ export class TemplatesApi {
         return request(config)
     }
     /**
-     * Update universal content. The `definition` field can only be updated on the following block types at this time: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+     * Update universal content. The `definition` field can only be updated on the following block types at this time: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_universal_content.json)
      * @summary Update Universal Content
      * @param id The ID of the template universal content* @param universalContentPartialUpdateQuery Update a universal content by ID
-     
+     * @param fieldsTemplateUniversalContent For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async updateUniversalContent (id: string, universalContentPartialUpdateQuery: UniversalContentPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchUniversalContentResponse;  }> {
+    public async updateUniversalContent (id: string, universalContentPartialUpdateQuery: UniversalContentPartialUpdateQuery, options: { fieldsTemplateUniversalContent?: Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchUniversalContentResponse;  }> {
 
         const localVarPath = this.basePath + '/api/template-universal-content/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -738,6 +762,10 @@ export class TemplatesApi {
         // verify required parameter 'universalContentPartialUpdateQuery' is not null or undefined
         if (universalContentPartialUpdateQuery === null || universalContentPartialUpdateQuery === undefined) {
             throw new Error('Required parameter universalContentPartialUpdateQuery was null or undefined when calling updateUniversalContent.');
+        }
+
+        if (options.fieldsTemplateUniversalContent !== undefined) {
+            localVarQueryParameters['fields[template-universal-content]'] = ObjectSerializer.serialize(options.fieldsTemplateUniversalContent, "Array<'created' | 'definition' | 'definition.content_type' | 'definition.data' | 'definition.data.content' | 'definition.data.display_options' | 'definition.data.display_options.content_repeat' | 'definition.data.display_options.content_repeat.item_alias' | 'definition.data.display_options.content_repeat.repeat_for' | 'definition.data.display_options.show_on' | 'definition.data.display_options.visible_check' | 'definition.data.styles' | 'definition.data.styles.background_color' | 'definition.data.styles.block_background_color' | 'definition.data.styles.block_border_color' | 'definition.data.styles.block_border_style' | 'definition.data.styles.block_border_width' | 'definition.data.styles.block_padding_bottom' | 'definition.data.styles.block_padding_left' | 'definition.data.styles.block_padding_right' | 'definition.data.styles.block_padding_top' | 'definition.data.styles.color' | 'definition.data.styles.extra_css_class' | 'definition.data.styles.font_family' | 'definition.data.styles.font_size' | 'definition.data.styles.font_style' | 'definition.data.styles.font_weight' | 'definition.data.styles.inner_padding_bottom' | 'definition.data.styles.inner_padding_left' | 'definition.data.styles.inner_padding_right' | 'definition.data.styles.inner_padding_top' | 'definition.data.styles.letter_spacing' | 'definition.data.styles.line_height' | 'definition.data.styles.mobile_stretch_content' | 'definition.data.styles.text_align' | 'definition.data.styles.text_decoration' | 'definition.data.styles.text_table_layout' | 'definition.type' | 'id' | 'name' | 'screenshot_status' | 'screenshot_url' | 'updated'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)

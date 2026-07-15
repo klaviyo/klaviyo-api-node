@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetFlowMessageTemplateRelationshipResponseData } from './getFlowMessageTemplateRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetCampaignMessageTemplateRelationshipResponse {
-    'data': GetFlowMessageTemplateRelationshipResponseData;
+    'data': GetFlowMessageTemplateRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

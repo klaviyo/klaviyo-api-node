@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetEventProfileRelationshipResponseData } from './getEventProfileRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetPushTokenProfileRelationshipResponse {
-    'data': GetEventProfileRelationshipResponseData;
+    'data': GetEventProfileRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

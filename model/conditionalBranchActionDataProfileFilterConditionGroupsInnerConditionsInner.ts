@@ -11,12 +11,15 @@
 
 import { RequestFile } from './models';
 import { FlowsProfileMetricCondition } from './flowsProfileMetricCondition';
-import { FlowsProfileMetricConditionTimeframeFilter } from './flowsProfileMetricConditionTimeframeFilter';
 import { IntegerFilter } from './integerFilter';
 import { NumericOperatorNumericFilter } from './numericOperatorNumericFilter';
 import { ProfileHasCustomObjectCondition } from './profileHasCustomObjectCondition';
 import { ProfileHasCustomObjectFilter } from './profileHasCustomObjectFilter';
 import { ProfileHasGroupMembershipCondition } from './profileHasGroupMembershipCondition';
+import { ProfileHasNotReceivedEmailMessageCondition } from './profileHasNotReceivedEmailMessageCondition';
+import { ProfileHasNotReceivedEmailMessageConditionTimeframeFilter } from './profileHasNotReceivedEmailMessageConditionTimeframeFilter';
+import { ProfileHasNotReceivedPushMessageCondition } from './profileHasNotReceivedPushMessageCondition';
+import { ProfileHasNotReceivedSmsMessageCondition } from './profileHasNotReceivedSmsMessageCondition';
 import { ProfileMarketingConsentCondition } from './profileMarketingConsentCondition';
 import { ProfileMarketingConsentConditionConsent } from './profileMarketingConsentConditionConsent';
 import { ProfileMetricPropertyFilter } from './profileMetricPropertyFilter';
@@ -24,10 +27,12 @@ import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCon
 import { ProfilePermissionsCondition } from './profilePermissionsCondition';
 import { ProfilePermissionsConditionPermission } from './profilePermissionsConditionPermission';
 import { ProfilePostalCodeDistanceCondition } from './profilePostalCodeDistanceCondition';
+import { ProfilePredictiveAnalyticsChannelAffinityPriorityCondition } from './profilePredictiveAnalyticsChannelAffinityPriorityCondition';
+import { ProfilePredictiveAnalyticsChannelAffinityRankCondition } from './profilePredictiveAnalyticsChannelAffinityRankCondition';
 import { ProfilePredictiveAnalyticsDateCondition } from './profilePredictiveAnalyticsDateCondition';
 import { ProfilePredictiveAnalyticsNumericCondition } from './profilePredictiveAnalyticsNumericCondition';
 import { ProfilePredictiveAnalyticsStringCondition } from './profilePredictiveAnalyticsStringCondition';
 import { ProfilePropertyCondition } from './profilePropertyCondition';
 import { ProfileRandomSampleCondition } from './profileRandomSampleCondition';
 import { ProfileRegionCondition } from './profileRegionCondition';
-export type ConditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsDateCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition | ProfileHasCustomObjectCondition | ProfilePermissionsCondition;
+export type ConditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsDateCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfilePredictiveAnalyticsChannelAffinityPriorityCondition | ProfilePredictiveAnalyticsChannelAffinityRankCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition | ProfileHasCustomObjectCondition | ProfilePermissionsCondition | ProfileHasNotReceivedEmailMessageCondition | ProfileHasNotReceivedSmsMessageCondition | ProfileHasNotReceivedPushMessageCondition;

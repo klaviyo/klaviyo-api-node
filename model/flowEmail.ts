@@ -10,22 +10,22 @@
  */
 
 import { RequestFile } from './models';
-import { FlowEmailAdditionalFilters } from './flowEmailAdditionalFilters';
+import { ConditionalBranchActionDataProfileFilter } from './conditionalBranchActionDataProfileFilter';
 import { UtmParam } from './utmParam';
 export class FlowEmail {
-    'fromEmail': string | null;
-    'fromLabel': string | null;
-    'replyToEmail': string | null;
-    'ccEmail': string | null;
-    'bccEmail': string | null;
-    'subjectLine': string | null;
-    'previewText': string | null;
+    'fromEmail'?: string | null;
+    'fromLabel'?: string | null;
+    'replyToEmail'?: string | null;
+    'ccEmail'?: string | null;
+    'bccEmail'?: string | null;
+    'subjectLine'?: string | null;
+    'previewText'?: string | null;
     'templateId'?: string | null;
     'smartSendingEnabled'?: boolean = true;
     'transactional'?: boolean = false;
     'addTrackingParams'?: boolean = false;
     'customTrackingParams'?: Array<UtmParam> | null;
-    'additionalFilters'?: FlowEmailAdditionalFilters | null;
+    'additionalFilters'?: ConditionalBranchActionDataProfileFilter | null;
     'name'?: string | null;
     /**
     * Not allowed on create.
@@ -97,7 +97,7 @@ export class FlowEmail {
         {
             "name": "additionalFilters",
             "baseName": "additional_filters",
-            "type": "FlowEmailAdditionalFilters"
+            "type": "ConditionalBranchActionDataProfileFilter"
         },
         {
             "name": "name",

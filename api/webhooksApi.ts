@@ -69,12 +69,12 @@ export class WebhooksApi {
     }
 
     /**
-     * Create a new Webhook<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
+     * Create a new Webhook<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_webhook.json)
      * @summary Create Webhook
      * @param webhookCreateQuery 
-     
+     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async createWebhook (webhookCreateQuery: WebhookCreateQuery, ): Promise<{ response: AxiosResponse; body: PostWebhookResponse;  }> {
+    public async createWebhook (webhookCreateQuery: WebhookCreateQuery, options: { fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PostWebhookResponse;  }> {
 
         const localVarPath = this.basePath + '/api/webhooks';
         let localVarQueryParameters: any = {};
@@ -90,6 +90,10 @@ export class WebhooksApi {
         // verify required parameter 'webhookCreateQuery' is not null or undefined
         if (webhookCreateQuery === null || webhookCreateQuery === undefined) {
             throw new Error('Required parameter webhookCreateQuery was null or undefined when calling createWebhook.');
+        }
+
+        if (options.fieldsWebhook !== undefined) {
+            localVarQueryParameters['fields[webhook]'] = ObjectSerializer.serialize(options.fieldsWebhook, "Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -122,7 +126,7 @@ export class WebhooksApi {
         return request(config)
     }
     /**
-     * Delete a webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
+     * Delete a webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_webhook.json)
      * @summary Delete Webhook
      * @param id The ID of the webhook.
      
@@ -174,12 +178,12 @@ export class WebhooksApi {
         return request(config)
     }
     /**
-     * Get the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+     * Get the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook.json)
      * @summary Get Webhook
      * @param id The ID of the webhook.
-     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
      */
-    public async getWebhook (id: string, options: { fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'name' | 'updated_at'>, include?: Array<'webhook-topics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookResponseCompoundDocument;  }> {
+    public async getWebhook (id: string, options: { fieldsWebhookTopic?: Array<'id'>, fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>, include?: Array<'webhook-topics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/webhooks/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -198,8 +202,12 @@ export class WebhooksApi {
             throw new Error('Required parameter id was null or undefined when calling getWebhook.');
         }
 
+        if (options.fieldsWebhookTopic !== undefined) {
+            localVarQueryParameters['fields[webhook-topic]'] = ObjectSerializer.serialize(options.fieldsWebhookTopic, "Array<'id'>");
+        }
+
         if (options.fieldsWebhook !== undefined) {
-            localVarQueryParameters['fields[webhook]'] = ObjectSerializer.serialize(options.fieldsWebhook, "Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'name' | 'updated_at'>");
+            localVarQueryParameters['fields[webhook]'] = ObjectSerializer.serialize(options.fieldsWebhook, "Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>");
         }
 
         if (options.include !== undefined) {
@@ -235,12 +243,12 @@ export class WebhooksApi {
         return request(config)
     }
     /**
-     * Get the webhook topic with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+     * Get the webhook topic with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topic.json)
      * @summary Get Webhook Topic
      * @param id The ID of the webhook topic.
-     
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getWebhookTopic (id: string, ): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponse;  }> {
+    public async getWebhookTopic (id: string, options: { fieldsWebhookTopic?: Array<'id'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponse;  }> {
 
         const localVarPath = this.basePath + '/api/webhook-topics/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -257,6 +265,10 @@ export class WebhooksApi {
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getWebhookTopic.');
+        }
+
+        if (options.fieldsWebhookTopic !== undefined) {
+            localVarQueryParameters['fields[webhook-topic]'] = ObjectSerializer.serialize(options.fieldsWebhookTopic, "Array<'id'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -288,12 +300,12 @@ export class WebhooksApi {
         return request(config)
     }
     /**
-     * Get all webhook topics in a Klaviyo account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+     * Get all webhook topics in a Klaviyo account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topics.json)
      * @summary Get Webhook Topics
      
-     
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getWebhookTopics (): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponseCollection;  }> {
+    public async getWebhookTopics (options: { fieldsWebhookTopic?: Array<'id'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/webhook-topics';
         let localVarQueryParameters: any = {};
@@ -304,6 +316,10 @@ export class WebhooksApi {
             localVarHeaderParams.Accept = 'application/json';
         } else {
             localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        if (options.fieldsWebhookTopic !== undefined) {
+            localVarQueryParameters['fields[webhook-topic]'] = ObjectSerializer.serialize(options.fieldsWebhookTopic, "Array<'id'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -335,12 +351,12 @@ export class WebhooksApi {
         return request(config)
     }
     /**
-     * Get all webhooks in an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+     * Get all webhooks in an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhooks.json)
      * @summary Get Webhooks
      
-     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
      */
-    public async getWebhooks (options: { fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'name' | 'updated_at'>, include?: Array<'webhook-topics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookResponseCollectionCompoundDocument;  }> {
+    public async getWebhooks (options: { fieldsWebhookTopic?: Array<'id'>, fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>, include?: Array<'webhook-topics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookResponseCollectionCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/webhooks';
         let localVarQueryParameters: any = {};
@@ -353,8 +369,12 @@ export class WebhooksApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
 
+        if (options.fieldsWebhookTopic !== undefined) {
+            localVarQueryParameters['fields[webhook-topic]'] = ObjectSerializer.serialize(options.fieldsWebhookTopic, "Array<'id'>");
+        }
+
         if (options.fieldsWebhook !== undefined) {
-            localVarQueryParameters['fields[webhook]'] = ObjectSerializer.serialize(options.fieldsWebhook, "Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'name' | 'updated_at'>");
+            localVarQueryParameters['fields[webhook]'] = ObjectSerializer.serialize(options.fieldsWebhook, "Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>");
         }
 
         if (options.include !== undefined) {
@@ -390,12 +410,12 @@ export class WebhooksApi {
         return request(config)
     }
     /**
-     * Update the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
+     * Update the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_webhook.json)
      * @summary Update Webhook
      * @param id The ID of the webhook.* @param webhookPartialUpdateQuery 
-     
+     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async updateWebhook (id: string, webhookPartialUpdateQuery: WebhookPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchWebhookResponse;  }> {
+    public async updateWebhook (id: string, webhookPartialUpdateQuery: WebhookPartialUpdateQuery, options: { fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchWebhookResponse;  }> {
 
         const localVarPath = this.basePath + '/api/webhooks/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -417,6 +437,10 @@ export class WebhooksApi {
         // verify required parameter 'webhookPartialUpdateQuery' is not null or undefined
         if (webhookPartialUpdateQuery === null || webhookPartialUpdateQuery === undefined) {
             throw new Error('Required parameter webhookPartialUpdateQuery was null or undefined when calling updateWebhook.');
+        }
+
+        if (options.fieldsWebhook !== undefined) {
+            localVarQueryParameters['fields[webhook]'] = ObjectSerializer.serialize(options.fieldsWebhook, "Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)

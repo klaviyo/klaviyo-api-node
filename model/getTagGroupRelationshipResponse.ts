@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetTagGroupRelationshipResponseData } from './getTagGroupRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetTagGroupRelationshipResponse {
-    'data': GetTagGroupRelationshipResponseData;
+    'data': GetTagGroupRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { MetricResponseObjectResourceRelationshipsFlowTriggersDataInner } from './metricResponseObjectResourceRelationshipsFlowTriggersDataInner';
+import { GetFlowActionFlowRelationshipResponseData } from './getFlowActionFlowRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetFlowActionFlowRelationshipResponse {
-    'data': MetricResponseObjectResourceRelationshipsFlowTriggersDataInner;
+    'data': GetFlowActionFlowRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 
@@ -21,7 +21,7 @@ export class GetFlowActionFlowRelationshipResponse {
         {
             "name": "data",
             "baseName": "data",
-            "type": "MetricResponseObjectResourceRelationshipsFlowTriggersDataInner"
+            "type": "GetFlowActionFlowRelationshipResponseData"
         },
         {
             "name": "links",

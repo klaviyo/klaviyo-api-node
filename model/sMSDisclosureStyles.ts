@@ -11,11 +11,12 @@
 
 import { RequestFile } from './models';
 import { Padding } from './padding';
+import { SMSDisclosureLinkTextStyle } from './sMSDisclosureLinkTextStyle';
 import { SMSDisclosureTextStyle } from './sMSDisclosureTextStyle';
 export class SMSDisclosureStyles {
     'padding'?: Padding;
     'backgroundColor'?: string | null;
-    'linkStyles'?: SMSDisclosureTextStyle;
+    'linkStyles'?: SMSDisclosureLinkTextStyle;
     'textStyles'?: SMSDisclosureTextStyle;
 
 
@@ -33,7 +34,7 @@ export class SMSDisclosureStyles {
         {
             "name": "linkStyles",
             "baseName": "link_styles",
-            "type": "SMSDisclosureTextStyle"
+            "type": "SMSDisclosureLinkTextStyle"
         },
         {
             "name": "textStyles",

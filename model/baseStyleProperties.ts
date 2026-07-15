@@ -16,6 +16,7 @@ export class BaseStyleProperties {
     'disableWebsafeFonts'?: boolean | null;
     'isUserDraggable'?: boolean | null;
     'mobileOptimizations'?: boolean | null;
+    'tipTapEnabled'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -42,6 +43,11 @@ export class BaseStyleProperties {
         {
             "name": "mobileOptimizations",
             "baseName": "mobile_optimizations",
+            "type": "boolean"
+        },
+        {
+            "name": "tipTapEnabled",
+            "baseName": "tip_tap_enabled",
             "type": "boolean"
         }    ];
 

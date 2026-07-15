@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { FlowResponseObjectResource } from './flowResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 export class GetFlowResponse {
-    'data': FlowResponseObjectResource;
+    'data': FlowResponseObjectResource | null;
     'links'?: ObjectLinks;
 
 

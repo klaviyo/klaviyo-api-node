@@ -11,9 +11,9 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
-import { GetEventProfileRelationshipResponseData } from './getEventProfileRelationshipResponseData';
+import { GetListProfilesRelationshipsResponseCollectionDataInner } from './getListProfilesRelationshipsResponseCollectionDataInner';
 export class GetSegmentProfilesRelationshipsResponseCollection {
-    'data': Array<GetEventProfileRelationshipResponseData>;
+    'data': Array<GetListProfilesRelationshipsResponseCollectionDataInner>;
     'links'?: CollectionLinks;
 
 
@@ -21,7 +21,7 @@ export class GetSegmentProfilesRelationshipsResponseCollection {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<GetEventProfileRelationshipResponseData>"
+            "type": "Array<GetListProfilesRelationshipsResponseCollectionDataInner>"
         },
         {
             "name": "links",

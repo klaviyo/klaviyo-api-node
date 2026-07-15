@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetFormVersionFormRelationshipResponseData } from './getFormVersionFormRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetFormVersionFormRelationshipResponse {
-    'data': GetFormVersionFormRelationshipResponseData;
+    'data': GetFormVersionFormRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

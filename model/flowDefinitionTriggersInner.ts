@@ -10,12 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { CustomObjectDateTrigger } from './customObjectDateTrigger';
 import { ListTrigger } from './listTrigger';
-import { LowInventoryConditionFilter } from './lowInventoryConditionFilter';
 import { LowInventoryTrigger } from './lowInventoryTrigger';
+import { LowInventoryTriggerTriggerFilter } from './lowInventoryTriggerTriggerFilter';
 import { MetricTrigger } from './metricTrigger';
 import { NumericOperatorNumericFilterValue } from './numericOperatorNumericFilterValue';
 import { PriceDropTrigger } from './priceDropTrigger';
 import { ProfilePropertyDateTrigger } from './profilePropertyDateTrigger';
 import { SegmentTrigger } from './segmentTrigger';
-export type FlowDefinitionTriggersInner = ListTrigger | SegmentTrigger | MetricTrigger | ProfilePropertyDateTrigger | PriceDropTrigger | LowInventoryTrigger;
+export type FlowDefinitionTriggersInner = ListTrigger | SegmentTrigger | MetricTrigger | ProfilePropertyDateTrigger | CustomObjectDateTrigger | PriceDropTrigger | LowInventoryTrigger;

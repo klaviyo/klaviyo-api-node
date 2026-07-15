@@ -11,8 +11,10 @@
 
 import { RequestFile } from './models';
 import { EmailMarketing } from './emailMarketing';
+import { OpenTrackingConsent } from './openTrackingConsent';
 export class EmailChannel {
     'marketing'?: EmailMarketing;
+    'openTracking'?: OpenTrackingConsent;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -20,6 +22,11 @@ export class EmailChannel {
             "name": "marketing",
             "baseName": "marketing",
             "type": "EmailMarketing"
+        },
+        {
+            "name": "openTracking",
+            "baseName": "open_tracking",
+            "type": "OpenTrackingConsent"
         }    ];
 
     static getAttributeTypeMap() {

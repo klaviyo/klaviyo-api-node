@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { FlowResponseObjectResourceRelationshipsFlowActionsDataInner } from './flowResponseObjectResourceRelationshipsFlowActionsDataInner';
+import { GetFlowMessageActionRelationshipResponseData } from './getFlowMessageActionRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetFlowMessageActionRelationshipResponse {
-    'data': FlowResponseObjectResourceRelationshipsFlowActionsDataInner;
+    'data': GetFlowMessageActionRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 
@@ -21,7 +21,7 @@ export class GetFlowMessageActionRelationshipResponse {
         {
             "name": "data",
             "baseName": "data",
-            "type": "FlowResponseObjectResourceRelationshipsFlowActionsDataInner"
+            "type": "GetFlowMessageActionRelationshipResponseData"
         },
         {
             "name": "links",

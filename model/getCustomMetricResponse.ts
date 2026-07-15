@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { CustomMetricResponseObjectResource } from './customMetricResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 export class GetCustomMetricResponse {
-    'data': CustomMetricResponseObjectResource;
+    'data': CustomMetricResponseObjectResource | null;
     'links'?: ObjectLinks;
 
 

@@ -75,12 +75,12 @@ export class ReportingApi {
     }
 
     /**
-     * Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `campaigns:read`
+     * Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_campaign_values.json)
      * @summary Query Campaign Values
      * @param campaignValuesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+     * @param fieldsCampaignValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
      */
-    public async queryCampaignValues (campaignValuesRequestDTO: CampaignValuesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostCampaignValuesResponseDTO;  }> {
+    public async queryCampaignValues (campaignValuesRequestDTO: CampaignValuesRequestDTO, options: { fieldsCampaignValuesReport?: Array<'id' | 'results'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostCampaignValuesResponseDTO;  }> {
 
         const localVarPath = this.basePath + '/api/campaign-values-reports';
         let localVarQueryParameters: any = {};
@@ -96,6 +96,10 @@ export class ReportingApi {
         // verify required parameter 'campaignValuesRequestDTO' is not null or undefined
         if (campaignValuesRequestDTO === null || campaignValuesRequestDTO === undefined) {
             throw new Error('Required parameter campaignValuesRequestDTO was null or undefined when calling queryCampaignValues.');
+        }
+
+        if (options.fieldsCampaignValuesReport !== undefined) {
+            localVarQueryParameters['fields[campaign-values-report]'] = ObjectSerializer.serialize(options.fieldsCampaignValuesReport, "Array<'id' | 'results'>");
         }
 
         if (options.pageCursor !== undefined) {
@@ -132,12 +136,12 @@ export class ReportingApi {
         return request(config)
     }
     /**
-     * Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
+     * Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_flow_series.json)
      * @summary Query Flow Series
      * @param flowSeriesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+     * @param fieldsFlowSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
      */
-    public async queryFlowSeries (flowSeriesRequestDTO: FlowSeriesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowSeriesResponseDTO;  }> {
+    public async queryFlowSeries (flowSeriesRequestDTO: FlowSeriesRequestDTO, options: { fieldsFlowSeriesReport?: Array<'date_times' | 'id' | 'results'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowSeriesResponseDTO;  }> {
 
         const localVarPath = this.basePath + '/api/flow-series-reports';
         let localVarQueryParameters: any = {};
@@ -153,6 +157,10 @@ export class ReportingApi {
         // verify required parameter 'flowSeriesRequestDTO' is not null or undefined
         if (flowSeriesRequestDTO === null || flowSeriesRequestDTO === undefined) {
             throw new Error('Required parameter flowSeriesRequestDTO was null or undefined when calling queryFlowSeries.');
+        }
+
+        if (options.fieldsFlowSeriesReport !== undefined) {
+            localVarQueryParameters['fields[flow-series-report]'] = ObjectSerializer.serialize(options.fieldsFlowSeriesReport, "Array<'date_times' | 'id' | 'results'>");
         }
 
         if (options.pageCursor !== undefined) {
@@ -189,12 +197,12 @@ export class ReportingApi {
         return request(config)
     }
     /**
-     * Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
+     * Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_flow_values.json)
      * @summary Query Flow Values
      * @param flowValuesRequestDTO 
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+     * @param fieldsFlowValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
      */
-    public async queryFlowValues (flowValuesRequestDTO: FlowValuesRequestDTO, options: { pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowValuesResponseDTO;  }> {
+    public async queryFlowValues (flowValuesRequestDTO: FlowValuesRequestDTO, options: { fieldsFlowValuesReport?: Array<'id' | 'results'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowValuesResponseDTO;  }> {
 
         const localVarPath = this.basePath + '/api/flow-values-reports';
         let localVarQueryParameters: any = {};
@@ -210,6 +218,10 @@ export class ReportingApi {
         // verify required parameter 'flowValuesRequestDTO' is not null or undefined
         if (flowValuesRequestDTO === null || flowValuesRequestDTO === undefined) {
             throw new Error('Required parameter flowValuesRequestDTO was null or undefined when calling queryFlowValues.');
+        }
+
+        if (options.fieldsFlowValuesReport !== undefined) {
+            localVarQueryParameters['fields[flow-values-report]'] = ObjectSerializer.serialize(options.fieldsFlowValuesReport, "Array<'id' | 'results'>");
         }
 
         if (options.pageCursor !== undefined) {
@@ -246,12 +258,12 @@ export class ReportingApi {
         return request(config)
     }
     /**
-     * Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
+     * Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_form_series.json)
      * @summary Query Form Series
      * @param formSeriesRequestDTO 
-     
+     * @param fieldsFormSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async queryFormSeries (formSeriesRequestDTO: FormSeriesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }> {
+    public async queryFormSeries (formSeriesRequestDTO: FormSeriesRequestDTO, options: { fieldsFormSeriesReport?: Array<'date_times' | 'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }> {
 
         const localVarPath = this.basePath + '/api/form-series-reports';
         let localVarQueryParameters: any = {};
@@ -267,6 +279,10 @@ export class ReportingApi {
         // verify required parameter 'formSeriesRequestDTO' is not null or undefined
         if (formSeriesRequestDTO === null || formSeriesRequestDTO === undefined) {
             throw new Error('Required parameter formSeriesRequestDTO was null or undefined when calling queryFormSeries.');
+        }
+
+        if (options.fieldsFormSeriesReport !== undefined) {
+            localVarQueryParameters['fields[form-series-report]'] = ObjectSerializer.serialize(options.fieldsFormSeriesReport, "Array<'date_times' | 'id' | 'results'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -299,12 +315,12 @@ export class ReportingApi {
         return request(config)
     }
     /**
-     * Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
+     * Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_form_values.json)
      * @summary Query Form Values
      * @param formValuesRequestDTO 
-     
+     * @param fieldsFormValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async queryFormValues (formValuesRequestDTO: FormValuesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }> {
+    public async queryFormValues (formValuesRequestDTO: FormValuesRequestDTO, options: { fieldsFormValuesReport?: Array<'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }> {
 
         const localVarPath = this.basePath + '/api/form-values-reports';
         let localVarQueryParameters: any = {};
@@ -320,6 +336,10 @@ export class ReportingApi {
         // verify required parameter 'formValuesRequestDTO' is not null or undefined
         if (formValuesRequestDTO === null || formValuesRequestDTO === undefined) {
             throw new Error('Required parameter formValuesRequestDTO was null or undefined when calling queryFormValues.');
+        }
+
+        if (options.fieldsFormValuesReport !== undefined) {
+            localVarQueryParameters['fields[form-values-report]'] = ObjectSerializer.serialize(options.fieldsFormValuesReport, "Array<'id' | 'results'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -352,12 +372,12 @@ export class ReportingApi {
         return request(config)
     }
     /**
-     * Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
+     * Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_segment_series.json)
      * @summary Query Segment Series
      * @param segmentSeriesRequestDTO 
-     
+     * @param fieldsSegmentSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async querySegmentSeries (segmentSeriesRequestDTO: SegmentSeriesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }> {
+    public async querySegmentSeries (segmentSeriesRequestDTO: SegmentSeriesRequestDTO, options: { fieldsSegmentSeriesReport?: Array<'date_times' | 'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }> {
 
         const localVarPath = this.basePath + '/api/segment-series-reports';
         let localVarQueryParameters: any = {};
@@ -373,6 +393,10 @@ export class ReportingApi {
         // verify required parameter 'segmentSeriesRequestDTO' is not null or undefined
         if (segmentSeriesRequestDTO === null || segmentSeriesRequestDTO === undefined) {
             throw new Error('Required parameter segmentSeriesRequestDTO was null or undefined when calling querySegmentSeries.');
+        }
+
+        if (options.fieldsSegmentSeriesReport !== undefined) {
+            localVarQueryParameters['fields[segment-series-report]'] = ObjectSerializer.serialize(options.fieldsSegmentSeriesReport, "Array<'date_times' | 'id' | 'results'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -405,12 +429,12 @@ export class ReportingApi {
         return request(config)
     }
     /**
-     * Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
+     * Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_segment_values.json)
      * @summary Query Segment Values
      * @param segmentValuesRequestDTO 
-     
+     * @param fieldsSegmentValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async querySegmentValues (segmentValuesRequestDTO: SegmentValuesRequestDTO, ): Promise<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }> {
+    public async querySegmentValues (segmentValuesRequestDTO: SegmentValuesRequestDTO, options: { fieldsSegmentValuesReport?: Array<'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }> {
 
         const localVarPath = this.basePath + '/api/segment-values-reports';
         let localVarQueryParameters: any = {};
@@ -426,6 +450,10 @@ export class ReportingApi {
         // verify required parameter 'segmentValuesRequestDTO' is not null or undefined
         if (segmentValuesRequestDTO === null || segmentValuesRequestDTO === undefined) {
             throw new Error('Required parameter segmentValuesRequestDTO was null or undefined when calling querySegmentValues.');
+        }
+
+        if (options.fieldsSegmentValuesReport !== undefined) {
+            localVarQueryParameters['fields[segment-values-report]'] = ObjectSerializer.serialize(options.fieldsSegmentValuesReport, "Array<'id' | 'results'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)

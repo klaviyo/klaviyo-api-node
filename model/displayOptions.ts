@@ -19,6 +19,8 @@ export class DisplayOptions {
     'showOn'?: DisplayOptions.ShowOnEnum | 'all' | 'desktop' | 'mobile' | null;
     'contentRepeat'?: ContentRepeatV1;
     'visibility'?: Visibility;
+    'layoutType'?: string | null;
+    'layoutConfig'?: object | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -36,6 +38,16 @@ export class DisplayOptions {
             "name": "visibility",
             "baseName": "visibility",
             "type": "Visibility"
+        },
+        {
+            "name": "layoutType",
+            "baseName": "layout_type",
+            "type": "string"
+        },
+        {
+            "name": "layoutConfig",
+            "baseName": "layout_config",
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {

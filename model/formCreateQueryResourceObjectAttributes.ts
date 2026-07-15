@@ -16,7 +16,7 @@ export class FormCreateQueryResourceObjectAttributes {
     /**
     * The status of the form.
     */
-    'status': FormCreateQueryResourceObjectAttributes.StatusEnum | 'draft' | 'live';
+    'status': FormCreateQueryResourceObjectAttributes.StatusEnum | 'draft';
     /**
     * Whether the form has an A/B test configured.
     */
@@ -56,7 +56,6 @@ export class FormCreateQueryResourceObjectAttributes {
 
 export namespace FormCreateQueryResourceObjectAttributes {
     export enum StatusEnum {
-        Draft = <any> 'draft',
-        Live = <any> 'live'
+        Draft = <any> 'draft'
     }
 }

@@ -31,7 +31,7 @@ export class VersionStyles {
     /**
     * Version width enumeration.
     */
-    'width'?: VersionStyles.WidthEnum | 'custom' | 'large' | 'medium' | 'small' = VersionStyles.WidthEnum.Medium;
+    'width'?: VersionStyles.WidthEnum | 'custom' | 'full' | 'large' | 'medium' | 'small' = VersionStyles.WidthEnum.Medium;
     'customWidth'?: number | null;
     'backgroundImage'?: BackgroundImage;
     'backgroundColor'?: string | null = '#FFFFFF';
@@ -139,6 +139,7 @@ export class VersionStyles {
 export namespace VersionStyles {
     export enum WidthEnum {
         Custom = <any> 'custom',
+        Full = <any> 'full',
         Large = <any> 'large',
         Medium = <any> 'medium',
         Small = <any> 'small'

@@ -21,8 +21,8 @@ import { GetEncodedFormResponse } from '../model/getEncodedFormResponse';
 import { GetFormResponse } from '../model/getFormResponse';
 import { GetFormResponseCollection } from '../model/getFormResponseCollection';
 import { GetFormVersionFormRelationshipResponse } from '../model/getFormVersionFormRelationshipResponse';
-import { GetFormVersionResponse } from '../model/getFormVersionResponse';
 import { GetFormVersionResponseCollection } from '../model/getFormVersionResponseCollection';
+import { GetFormVersionResponseCompoundDocument } from '../model/getFormVersionResponseCompoundDocument';
 import { GetFormVersionsRelationshipsResponseCollection } from '../model/getFormVersionsRelationshipsResponseCollection';
 import { PostEncodedFormResponse } from '../model/postEncodedFormResponse';
 
@@ -70,12 +70,12 @@ export class FormsApi {
     }
 
     /**
-     * Create a new form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`
+     * Create a new form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_form.json)
      * @summary Create Form
      * @param formCreateQuery Creates a Form from parameters
-     
+     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async createForm (formCreateQuery: FormCreateQuery, ): Promise<{ response: AxiosResponse; body: PostEncodedFormResponse;  }> {
+    public async createForm (formCreateQuery: FormCreateQuery, options: { fieldsForm?: Array<'ab_test' | 'created_at' | 'definition' | 'definition.versions' | 'id' | 'name' | 'status' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PostEncodedFormResponse;  }> {
 
         const localVarPath = this.basePath + '/api/forms';
         let localVarQueryParameters: any = {};
@@ -91,6 +91,10 @@ export class FormsApi {
         // verify required parameter 'formCreateQuery' is not null or undefined
         if (formCreateQuery === null || formCreateQuery === undefined) {
             throw new Error('Required parameter formCreateQuery was null or undefined when calling createForm.');
+        }
+
+        if (options.fieldsForm !== undefined) {
+            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'definition' | 'definition.versions' | 'id' | 'name' | 'status' | 'updated_at'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -123,7 +127,7 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Delete a given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`
+     * Delete a given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_form.json)
      * @summary Delete Form
      * @param id The ID of the form
      
@@ -175,12 +179,12 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Get the form with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
+     * Get the form with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form.json)
      * @summary Get Form
      * @param id The ID of the form
-     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getForm (id: string, options: { fieldsForm?: Array<'ab_test' | 'created_at' | 'definition' | 'definition.versions' | 'name' | 'status' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetEncodedFormResponse;  }> {
+    public async getForm (id: string, options: { fieldsForm?: Array<'ab_test' | 'created_at' | 'definition' | 'definition.versions' | 'id' | 'name' | 'status' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetEncodedFormResponse;  }> {
 
         const localVarPath = this.basePath + '/api/forms/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -200,7 +204,7 @@ export class FormsApi {
         }
 
         if (options.fieldsForm !== undefined) {
-            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'definition' | 'definition.versions' | 'name' | 'status' | 'updated_at'>");
+            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'definition' | 'definition.versions' | 'id' | 'name' | 'status' | 'updated_at'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -232,12 +236,12 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Get the form associated with the given form version.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
+     * Get the form associated with the given form version.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form_for_form_version.json)
      * @summary Get Form for Form Version
      * @param id The ID of the form version
-     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getFormForFormVersion (id: string, options: { fieldsForm?: Array<'ab_test' | 'created_at' | 'name' | 'status' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFormResponse;  }> {
+    public async getFormForFormVersion (id: string, options: { fieldsForm?: Array<'ab_test' | 'created_at' | 'id' | 'name' | 'status' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFormResponse;  }> {
 
         const localVarPath = this.basePath + '/api/form-versions/{id}/form'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -257,7 +261,7 @@ export class FormsApi {
         }
 
         if (options.fieldsForm !== undefined) {
-            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'name' | 'status' | 'updated_at'>");
+            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'id' | 'name' | 'status' | 'updated_at'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -289,7 +293,7 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Get the ID of the form associated with the given form version.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
+     * Get the ID of the form associated with the given form version.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form_id_for_form_version.json)
      * @summary Get Form ID for Form Version
      * @param id The ID of the form version
      
@@ -342,12 +346,12 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Get the form version with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
+     * Get the form version with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form_version.json)
      * @summary Get Form Version
      * @param id The ID of the form version
-     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
      */
-    public async getFormVersion (id: string, options: { fieldsFormVersion?: Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'status' | 'updated_at' | 'variation_name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionResponse;  }> {
+    public async getFormVersion (id: string, options: { fieldsFormVersion?: Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'id' | 'status' | 'updated_at' | 'variation_name'>, fieldsForm?: Array<'ab_test' | 'created_at' | 'id' | 'name' | 'status' | 'updated_at'>, include?: Array<'form'>,  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/form-versions/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -367,7 +371,15 @@ export class FormsApi {
         }
 
         if (options.fieldsFormVersion !== undefined) {
-            localVarQueryParameters['fields[form-version]'] = ObjectSerializer.serialize(options.fieldsFormVersion, "Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'status' | 'updated_at' | 'variation_name'>");
+            localVarQueryParameters['fields[form-version]'] = ObjectSerializer.serialize(options.fieldsFormVersion, "Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'id' | 'status' | 'updated_at' | 'variation_name'>");
+        }
+
+        if (options.fieldsForm !== undefined) {
+            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'id' | 'name' | 'status' | 'updated_at'>");
+        }
+
+        if (options.include !== undefined) {
+            localVarQueryParameters['include'] = ObjectSerializer.serialize(options.include, "Array<'form'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -381,11 +393,11 @@ export class FormsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFormVersionResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: GetFormVersionResponseCompoundDocument;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFormVersionResponse");
+                body = ObjectSerializer.deserialize(axiosResponse.data, "GetFormVersionResponseCompoundDocument");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -399,12 +411,12 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Get all forms in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
+     * Get all forms in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_forms.json)
      * @summary Get Forms
      
-     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param fieldsForm For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
-    public async getForms (options: { fieldsForm?: Array<'ab_test' | 'created_at' | 'name' | 'status' | 'updated_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormResponseCollection;  }> {
+    public async getForms (options: { fieldsForm?: Array<'ab_test' | 'created_at' | 'id' | 'name' | 'status' | 'updated_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/forms';
         let localVarQueryParameters: any = {};
@@ -418,7 +430,7 @@ export class FormsApi {
         }
 
         if (options.fieldsForm !== undefined) {
-            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'name' | 'status' | 'updated_at'>");
+            localVarQueryParameters['fields[form]'] = ObjectSerializer.serialize(options.fieldsForm, "Array<'ab_test' | 'created_at' | 'id' | 'name' | 'status' | 'updated_at'>");
         }
 
         if (options.filter !== undefined) {
@@ -466,10 +478,10 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Get the IDs of the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
+     * Get the IDs of the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_version_ids_for_form.json)
      * @summary Get Version IDs for Form
      * @param id The ID of the form
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
     public async getVersionIdsForForm (id: string, options: { filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionsRelationshipsResponseCollection;  }> {
 
@@ -535,12 +547,12 @@ export class FormsApi {
         return request(config)
     }
     /**
-     * Get the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
+     * Get the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_versions_for_form.json)
      * @summary Get Versions for Form
      * @param id The ID of the form
-     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param fieldsFormVersion For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
-    public async getVersionsForForm (id: string, options: { fieldsFormVersion?: Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'status' | 'updated_at' | 'variation_name'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionResponseCollection;  }> {
+    public async getVersionsForForm (id: string, options: { fieldsFormVersion?: Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'id' | 'status' | 'updated_at' | 'variation_name'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created_at' | '-created_at' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetFormVersionResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/forms/{id}/form-versions'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -560,7 +572,7 @@ export class FormsApi {
         }
 
         if (options.fieldsFormVersion !== undefined) {
-            localVarQueryParameters['fields[form-version]'] = ObjectSerializer.serialize(options.fieldsFormVersion, "Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'status' | 'updated_at' | 'variation_name'>");
+            localVarQueryParameters['fields[form-version]'] = ObjectSerializer.serialize(options.fieldsFormVersion, "Array<'ab_test' | 'ab_test.variation_name' | 'created_at' | 'form_type' | 'id' | 'status' | 'updated_at' | 'variation_name'>");
         }
 
         if (options.filter !== undefined) {

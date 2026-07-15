@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { TemplateResponseObjectResource } from './templateResponseObjectResource';
 export class GetTemplateResponse {
-    'data': TemplateResponseObjectResource;
+    'data': TemplateResponseObjectResource | null;
     'links'?: ObjectLinks;
 
 

@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [23.0.0] - revision 2026-07-15
+### Added
+- Custom Objects API
+  - Full CRUD support for multiple groups of APIs: Object Types, Object Schemas, Source Mappings, and Object Records.
+- Conversations API
+  - Added support for Creating Conversation Messages.
+### Changed
+- **Breaking:** Conversations API
+  - Conversation endpoints are now plural, e.g. `GET /profiles/{id}/conversation/` is now `GET /profiles/{id}/conversations, as well as relevant parameters.
+  - Response shapes are now lists, instead of single objects.
+- Events API
+  - Added new `backfill` flag on `createEvent` & `bulkCreateEvents`, which records historical events without triggering flows.
+  - `getEvents` now returns events with unresolvable metrics by default, matching `getEvent`. Use the new `has(metric)` filter to exclude them.
+
 ## [22.0.1] - revision 2026-04-15
 ###  Fixed
 - Fixed several issues with the automatic retry behavior

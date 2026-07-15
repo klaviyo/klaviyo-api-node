@@ -10,12 +10,12 @@
  */
 
 import { RequestFile } from './models';
-import { CustomObjectPropertyConditionFilter } from './customObjectPropertyConditionFilter';
+import { MetricPropertyConditionFilter } from './metricPropertyConditionFilter';
 export class CustomObjectPropertyCondition {
     'type': CustomObjectPropertyCondition.TypeEnum | 'custom-object-property';
     'customObjectLabel': string;
     'field': string;
-    'filter': CustomObjectPropertyConditionFilter;
+    'filter': MetricPropertyConditionFilter;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -37,7 +37,7 @@ export class CustomObjectPropertyCondition {
         {
             "name": "filter",
             "baseName": "filter",
-            "type": "CustomObjectPropertyConditionFilter"
+            "type": "MetricPropertyConditionFilter"
         }    ];
 
     static getAttributeTypeMap() {

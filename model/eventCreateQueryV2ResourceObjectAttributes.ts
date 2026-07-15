@@ -18,7 +18,7 @@ export class EventCreateQueryV2ResourceObjectAttributes {
     */
     'properties': object;
     /**
-    * When this event occurred. By default, the time the request was received will be used. The time is truncated to the second. The time must be after the year 2000 and can only be up to 1 year in the future.
+    * When this event occurred. By default, the time the request was received will be used. The time is truncated to the second. The time must be after the year 1990 and can only be up to 1 year in the future.
     */
     'time'?: Date | null;
     /**
@@ -33,6 +33,10 @@ export class EventCreateQueryV2ResourceObjectAttributes {
     * A unique identifier for an event. If the unique_id is repeated for the same profile and metric, only the first processed event will be recorded. If this is not present, this will use the time to the second. Using the default, this limits only one event per profile per second.
     */
     'uniqueId'?: string | null;
+    /**
+    * When true, the event is recorded but does NOT trigger flows. Use this when backfilling historical events so existing flow definitions do not re-fire on events that already fired in the past.
+    */
+    'backfill'?: boolean | null = false;
     'metric': EventCreateQueryV2ResourceObjectAttributesMetric;
     'profile': EventCreateQueryV2ResourceObjectAttributesProfile;
 
@@ -62,6 +66,11 @@ export class EventCreateQueryV2ResourceObjectAttributes {
             "name": "uniqueId",
             "baseName": "unique_id",
             "type": "string"
+        },
+        {
+            "name": "backfill",
+            "baseName": "backfill",
+            "type": "boolean"
         },
         {
             "name": "metric",

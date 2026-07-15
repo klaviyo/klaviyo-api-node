@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { FormResponseObjectResource } from './formResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 export class GetFormResponse {
-    'data': FormResponseObjectResource;
+    'data': FormResponseObjectResource | null;
     'links'?: ObjectLinks;
 
 

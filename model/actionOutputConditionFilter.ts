@@ -10,20 +10,11 @@
  */
 
 import { RequestFile } from './models';
-import { ActionOutputConditionConditionGroup } from './actionOutputConditionConditionGroup';
-export class ActionOutputConditionFilter {
-    'conditionGroups': Array<ActionOutputConditionConditionGroup>;
-
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "conditionGroups",
-            "baseName": "condition_groups",
-            "type": "Array<ActionOutputConditionConditionGroup>"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return ActionOutputConditionFilter.attributeTypeMap;
-    }
-}
-
+import { BooleanFilter } from './booleanFilter';
+import { ExistenceOperatorExistenceFilter } from './existenceOperatorExistenceFilter';
+import { NumericOperatorNumericFilter } from './numericOperatorNumericFilter';
+import { NumericOperatorNumericFilterValue } from './numericOperatorNumericFilterValue';
+import { NumericRangeFilter } from './numericRangeFilter';
+import { StringArrayOperatorStringArrayFilter } from './stringArrayOperatorStringArrayFilter';
+import { StringOperatorStringFilter } from './stringOperatorStringFilter';
+export type ActionOutputConditionFilter = StringOperatorStringFilter | StringArrayOperatorStringArrayFilter | NumericOperatorNumericFilter | NumericRangeFilter | BooleanFilter | ExistenceOperatorExistenceFilter;

@@ -10,12 +10,12 @@
  */
 
 import { RequestFile } from './models';
-import { PriceDropConditionFilter2 } from './priceDropConditionFilter2';
+import { MetricPropertyConditionFilter } from './metricPropertyConditionFilter';
 export class PriceDropCondition {
     'type': PriceDropCondition.TypeEnum | 'price-drop-property';
     'metricId': string | null;
     'field': string;
-    'filter': PriceDropConditionFilter2;
+    'filter': MetricPropertyConditionFilter;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -37,7 +37,7 @@ export class PriceDropCondition {
         {
             "name": "filter",
             "baseName": "filter",
-            "type": "PriceDropConditionFilter2"
+            "type": "MetricPropertyConditionFilter"
         }    ];
 
     static getAttributeTypeMap() {

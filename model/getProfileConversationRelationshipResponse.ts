@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetProfileConversationRelationshipResponseData } from './getProfileConversationRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetProfileConversationRelationshipResponse {
-    'data': GetProfileConversationRelationshipResponseData;
+    'data': GetProfileConversationRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

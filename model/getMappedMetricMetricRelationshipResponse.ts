@@ -10,10 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { EventResponseObjectResourceRelationshipsMetricData } from './eventResponseObjectResourceRelationshipsMetricData';
+import { GetEventMetricRelationshipResponseData } from './getEventMetricRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetMappedMetricMetricRelationshipResponse {
-    'data': EventResponseObjectResourceRelationshipsMetricData;
+    'data': GetEventMetricRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 
@@ -21,7 +21,7 @@ export class GetMappedMetricMetricRelationshipResponse {
         {
             "name": "data",
             "baseName": "data",
-            "type": "EventResponseObjectResourceRelationshipsMetricData"
+            "type": "GetEventMetricRelationshipResponseData"
         },
         {
             "name": "links",

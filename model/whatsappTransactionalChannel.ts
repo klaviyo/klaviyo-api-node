@@ -42,7 +42,7 @@ export class WhatsappTransactionalChannel {
     /**
     * Phone number to which the consent was granted for.
     */
-    'phoneNumber': string;
+    'phoneNumber'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

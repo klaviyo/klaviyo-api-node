@@ -42,6 +42,11 @@ export class Version {
     'status'?: Version.StatusEnum | 'draft' | 'live' = Version.StatusEnum.Draft;
     'abTest'?: boolean = false;
     'specialties'?: Array<Version.SpecialtiesEnum> | Array<'BACK_IN_STOCK'>;
+    /**
+    * Form channel type enumeration.
+    */
+    'channel'?: Version.ChannelEnum | 'IN_APP' | 'WEB' = Version.ChannelEnum.Web;
+    'messagePriority'?: number = 50;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -109,6 +114,16 @@ export class Version {
             "name": "specialties",
             "baseName": "specialties",
             "type": "Array<Version.SpecialtiesEnum>"
+        },
+        {
+            "name": "channel",
+            "baseName": "channel",
+            "type": "Version.ChannelEnum"
+        },
+        {
+            "name": "messagePriority",
+            "baseName": "message_priority",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -140,5 +155,9 @@ export namespace Version {
     }
     export enum SpecialtiesEnum {
         BackInStock = <any> 'BACK_IN_STOCK'
+    }
+    export enum ChannelEnum {
+        InApp = <any> 'IN_APP',
+        Web = <any> 'WEB'
     }
 }
