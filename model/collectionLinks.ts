@@ -12,8 +12,6 @@
 import { RequestFile } from './models';
 export class CollectionLinks {
     'self': string;
-    'first'?: string;
-    'last'?: string;
     'prev'?: string;
     'next'?: string;
 
@@ -22,16 +20,6 @@ export class CollectionLinks {
         {
             "name": "self",
             "baseName": "self",
-            "type": "string"
-        },
-        {
-            "name": "first",
-            "baseName": "first",
-            "type": "string"
-        },
-        {
-            "name": "last",
-            "baseName": "last",
             "type": "string"
         },
         {

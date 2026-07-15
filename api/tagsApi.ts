@@ -15,7 +15,6 @@ import {AxiosRequestConfig, AxiosResponse} from "axios";
 import FormData from 'form-data'
 
 /* tslint:disable:no-unused-locals */
-import { DeleteTagGroupResponse } from '../model/deleteTagGroupResponse';
 import { GetAccounts4XXResponse } from '../model/getAccounts4XXResponse';
 import { GetTagCampaignRelationshipsResponseCollection } from '../model/getTagCampaignRelationshipsResponseCollection';
 import { GetTagFlowRelationshipsResponseCollection } from '../model/getTagFlowRelationshipsResponseCollection';
@@ -28,7 +27,6 @@ import { GetTagResponseCollection } from '../model/getTagResponseCollection';
 import { GetTagResponseCollectionCompoundDocument } from '../model/getTagResponseCollectionCompoundDocument';
 import { GetTagResponseCompoundDocument } from '../model/getTagResponseCompoundDocument';
 import { GetTagSegmentRelationshipsResponseCollection } from '../model/getTagSegmentRelationshipsResponseCollection';
-import { PatchTagGroupResponse } from '../model/patchTagGroupResponse';
 import { PostTagGroupResponse } from '../model/postTagGroupResponse';
 import { PostTagResponse } from '../model/postTagResponse';
 import { TagCampaignOp } from '../model/tagCampaignOp';
@@ -84,12 +82,12 @@ export class TagsApi {
     }
 
     /**
-     * Create a tag. An account cannot have more than **500** unique tags.  A tag belongs to a single tag group. If `relationships.tag-group.data.id` is not specified, the tag is added to the account\'s default tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+     * Create a tag. An account cannot have more than **500** unique tags.  A tag belongs to a single tag group. If `relationships.tag-group.data.id` is not specified, the tag is added to the account\'s default tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_tag.json)
      * @summary Create Tag
      * @param tagCreateQuery 
-     
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async createTag (tagCreateQuery: TagCreateQuery, ): Promise<{ response: AxiosResponse; body: PostTagResponse;  }> {
+    public async createTag (tagCreateQuery: TagCreateQuery, options: { fieldsTag?: Array<'id' | 'name'>,  } = {}): Promise<{ response: AxiosResponse; body: PostTagResponse;  }> {
 
         const localVarPath = this.basePath + '/api/tags';
         let localVarQueryParameters: any = {};
@@ -105,6 +103,10 @@ export class TagsApi {
         // verify required parameter 'tagCreateQuery' is not null or undefined
         if (tagCreateQuery === null || tagCreateQuery === undefined) {
             throw new Error('Required parameter tagCreateQuery was null or undefined when calling createTag.');
+        }
+
+        if (options.fieldsTag !== undefined) {
+            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'id' | 'name'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -137,12 +139,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Create a tag group. An account cannot have more than **50** unique tag groups.  If `exclusive` is not specified `true` or `false`, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+     * Create a tag group. An account cannot have more than **50** unique tag groups.  If `exclusive` is not specified `true` or `false`, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_tag_group.json)
      * @summary Create Tag Group
      * @param tagGroupCreateQuery 
-     
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async createTagGroup (tagGroupCreateQuery: TagGroupCreateQuery, ): Promise<{ response: AxiosResponse; body: PostTagGroupResponse;  }> {
+    public async createTagGroup (tagGroupCreateQuery: TagGroupCreateQuery, options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'id' | 'name'>,  } = {}): Promise<{ response: AxiosResponse; body: PostTagGroupResponse;  }> {
 
         const localVarPath = this.basePath + '/api/tag-groups';
         let localVarQueryParameters: any = {};
@@ -158,6 +160,10 @@ export class TagsApi {
         // verify required parameter 'tagGroupCreateQuery' is not null or undefined
         if (tagGroupCreateQuery === null || tagGroupCreateQuery === undefined) {
             throw new Error('Required parameter tagGroupCreateQuery was null or undefined when calling createTagGroup.');
+        }
+
+        if (options.fieldsTagGroup !== undefined) {
+            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'id' | 'name'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -190,7 +196,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+     * Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_tag.json)
      * @summary Delete Tag
      * @param id The Tag ID
      
@@ -242,12 +248,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+     * Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_tag_group.json)
      * @summary Delete Tag Group
      * @param id The Tag Group ID
      
      */
-    public async deleteTagGroup (id: string, ): Promise<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }> {
+    public async deleteTagGroup (id: string, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
         const localVarPath = this.basePath + '/api/tag-groups/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -277,11 +283,10 @@ export class TagsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: DeleteTagGroupResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "DeleteTagGroupResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {
@@ -295,7 +300,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
+     * Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_ids_for_tag.json)
      * @summary Get Campaign IDs for Tag
      * @param id The Tag ID
      
@@ -348,7 +353,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
+     * Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_flow_ids_for_tag.json)
      * @summary Get Flow IDs for Tag
      * @param id The Tag ID
      
@@ -401,7 +406,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
+     * Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_list_ids_for_tag.json)
      * @summary Get List IDs for Tag
      * @param id The Tag ID
      
@@ -454,7 +459,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
+     * Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_segment_ids_for_tag.json)
      * @summary Get Segment IDs for Tag
      * @param id The Tag ID
      
@@ -507,12 +512,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag.json)
      * @summary Get Tag
      * @param id The Tag ID
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
      */
-    public async getTag (id: string, options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'name'>, fieldsTag?: Array<'name'>, include?: Array<'tag-group'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }> {
+    public async getTag (id: string, options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'id' | 'name'>, fieldsTag?: Array<'id' | 'name'>, include?: Array<'tag-group'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/tags/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -532,11 +537,11 @@ export class TagsApi {
         }
 
         if (options.fieldsTagGroup !== undefined) {
-            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'name'>");
+            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'id' | 'name'>");
         }
 
         if (options.fieldsTag !== undefined) {
-            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
+            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'id' | 'name'>");
         }
 
         if (options.include !== undefined) {
@@ -572,12 +577,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group.json)
      * @summary Get Tag Group
      * @param id The Tag Group ID
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getTagGroup (id: string, options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
+    public async getTagGroup (id: string, options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'id' | 'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
         const localVarPath = this.basePath + '/api/tag-groups/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -597,7 +602,7 @@ export class TagsApi {
         }
 
         if (options.fieldsTagGroup !== undefined) {
-            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'name'>");
+            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'id' | 'name'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -629,12 +634,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group_for_tag.json)
      * @summary Get Tag Group for Tag
      * @param id The Tag ID
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getTagGroupForTag (id: string, options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
+    public async getTagGroupForTag (id: string, options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'id' | 'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponse;  }> {
 
         const localVarPath = this.basePath + '/api/tags/{id}/tag-group'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -654,7 +659,7 @@ export class TagsApi {
         }
 
         if (options.fieldsTagGroup !== undefined) {
-            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'name'>");
+            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'id' | 'name'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -686,7 +691,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group_id_for_tag.json)
      * @summary Get Tag Group ID for Tag
      * @param id The Tag ID
      
@@ -739,12 +744,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_groups.json)
      * @summary Get Tag Groups
      
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 25. Min: 1. Max: 25.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
-    public async getTagGroups (options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'name'>, filter?: string, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }> {
+    public async getTagGroups (options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'id' | 'name'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagGroupResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/tag-groups';
         let localVarQueryParameters: any = {};
@@ -758,7 +763,7 @@ export class TagsApi {
         }
 
         if (options.fieldsTagGroup !== undefined) {
-            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'name'>");
+            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'id' | 'name'>");
         }
 
         if (options.filter !== undefined) {
@@ -767,6 +772,10 @@ export class TagsApi {
 
         if (options.pageCursor !== undefined) {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
         }
 
         if (options.sort !== undefined) {
@@ -802,7 +811,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_ids_for_tag_group.json)
      * @summary Get Tag IDs for Tag Group
      * @param id The Tag Group ID
      
@@ -855,12 +864,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags.json)
      * @summary Get Tags
      
-     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param fieldsTagGroup For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 50. Min: 1. Max: 50.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
-    public async getTags (options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'name'>, fieldsTag?: Array<'name'>, filter?: string, include?: Array<'tag-group'>, pageCursor?: string, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }> {
+    public async getTags (options: { fieldsTagGroup?: Array<'default' | 'exclusive' | 'id' | 'name'>, fieldsTag?: Array<'id' | 'name'>, filter?: string, include?: Array<'tag-group'>, pageCursor?: string, pageSize?: number, sort?: 'id' | '-id' | 'name' | '-name',  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollectionCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/tags';
         let localVarQueryParameters: any = {};
@@ -874,11 +883,11 @@ export class TagsApi {
         }
 
         if (options.fieldsTagGroup !== undefined) {
-            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'name'>");
+            localVarQueryParameters['fields[tag-group]'] = ObjectSerializer.serialize(options.fieldsTagGroup, "Array<'default' | 'exclusive' | 'id' | 'name'>");
         }
 
         if (options.fieldsTag !== undefined) {
-            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
+            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'id' | 'name'>");
         }
 
         if (options.filter !== undefined) {
@@ -891,6 +900,10 @@ export class TagsApi {
 
         if (options.pageCursor !== undefined) {
             localVarQueryParameters['page[cursor]'] = ObjectSerializer.serialize(options.pageCursor, "string");
+        }
+
+        if (options.pageSize !== undefined) {
+            localVarQueryParameters['page[size]'] = ObjectSerializer.serialize(options.pageSize, "number");
         }
 
         if (options.sort !== undefined) {
@@ -926,12 +939,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+     * Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags_for_tag_group.json)
      * @summary Get Tags for Tag Group
      * @param id The Tag Group ID
-     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsTag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getTagsForTagGroup (id: string, options: { fieldsTag?: Array<'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
+    public async getTagsForTagGroup (id: string, options: { fieldsTag?: Array<'id' | 'name'>,  } = {}): Promise<{ response: AxiosResponse; body: GetTagResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/tag-groups/{id}/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -951,7 +964,7 @@ export class TagsApi {
         }
 
         if (options.fieldsTag !== undefined) {
-            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'name'>");
+            localVarQueryParameters['fields[tag]'] = ObjectSerializer.serialize(options.fieldsTag, "Array<'id' | 'name'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -983,7 +996,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Remove a tag\'s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
+     * Remove a tag\'s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_campaigns.json)
      * @summary Remove Tag from Campaigns
      * @param id The Tag ID* @param tagCampaignOp 
      
@@ -1041,7 +1054,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Remove a tag\'s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
+     * Remove a tag\'s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_flows.json)
      * @summary Remove Tag from Flows
      * @param id The Tag ID* @param tagFlowOp 
      
@@ -1099,7 +1112,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
+     * Remove a tag\'s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_lists.json)
      * @summary Remove Tag from Lists
      * @param id The Tag ID* @param tagListOp 
      
@@ -1157,7 +1170,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Remove a tag\'s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
+     * Remove a tag\'s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_segments.json)
      * @summary Remove Tag from Segments
      * @param id The Tag ID* @param tagSegmentOp 
      
@@ -1215,7 +1228,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
+     * Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_campaigns.json)
      * @summary Tag Campaigns
      * @param id The Tag ID* @param tagCampaignOp 
      
@@ -1273,7 +1286,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
+     * Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_flows.json)
      * @summary Tag Flows
      * @param id The Tag ID* @param tagFlowOp 
      
@@ -1331,7 +1344,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
+     * Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_lists.json)
      * @summary Tag Lists
      * @param id The Tag ID* @param tagListOp 
      
@@ -1389,7 +1402,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
+     * Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_segments.json)
      * @summary Tag Segments
      * @param id The Tag ID* @param tagSegmentOp 
      
@@ -1447,7 +1460,7 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Update the tag with the given tag ID.  Only a tag\'s `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+     * Update the tag with the given tag ID.  Only a tag\'s `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tag.json)
      * @summary Update Tag
      * @param id The Tag ID* @param tagUpdateQuery 
      
@@ -1505,12 +1518,12 @@ export class TagsApi {
         return request(config)
     }
     /**
-     * Update the tag group with the given tag group ID.  Only a tag group\'s `name` can be changed. A tag group\'s `exclusive` or `default` value cannot be changed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+     * Update the tag group with the given tag group ID.  Only a tag group\'s `name` can be changed. A tag group\'s `exclusive` or `default` value cannot be changed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tag_group.json)
      * @summary Update Tag Group
      * @param id The Tag Group ID* @param tagGroupUpdateQuery 
      
      */
-    public async updateTagGroup (id: string, tagGroupUpdateQuery: TagGroupUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchTagGroupResponse;  }> {
+    public async updateTagGroup (id: string, tagGroupUpdateQuery: TagGroupUpdateQuery, ): Promise<{ response: AxiosResponse; body?: any;  }> {
 
         const localVarPath = this.basePath + '/api/tag-groups/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1546,11 +1559,10 @@ export class TagsApi {
 
         await this.session.applyToRequest(config)
 
-        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body: PatchTagGroupResponse;  }> => {
+        const request = async (config: AxiosRequestConfig, retried = false): Promise<{ response: AxiosResponse; body?: any;  }> => {
             try {
                 const axiosResponse = await this.session.requestWithRetry(config)
                 let body;
-                body = ObjectSerializer.deserialize(axiosResponse.data, "PatchTagGroupResponse");
                 return ({response: axiosResponse, body: body});
             } catch (error) {
                 if (await this.session.refreshAndRetry(error, retried)) {

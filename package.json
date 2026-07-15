@@ -1,6 +1,6 @@
 {
     "name": "klaviyo-api",
-    "version": "22.0.1",
+    "version": "23.0.0",
     "description": "A typescript client for the Klaviyo API",
     "repository": {
         "type": "git",

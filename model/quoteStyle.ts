@@ -16,6 +16,8 @@ export class QuoteStyle {
     'textColor'?: string = '#000000';
     'characterSpacing'?: number = 0;
     'fontWeight'?: number = 400;
+    'fontStyle'?: string | null;
+    'textDecoration'?: string | null;
     /**
     * Horizontal alignment enumeration.
     */
@@ -48,6 +50,16 @@ export class QuoteStyle {
             "name": "fontWeight",
             "baseName": "font_weight",
             "type": "number"
+        },
+        {
+            "name": "fontStyle",
+            "baseName": "font_style",
+            "type": "string"
+        },
+        {
+            "name": "textDecoration",
+            "baseName": "text_decoration",
+            "type": "string"
         },
         {
             "name": "alignment",

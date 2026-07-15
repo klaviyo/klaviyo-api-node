@@ -11,11 +11,13 @@
 
 import { RequestFile } from './models';
 import { ConversationEnum } from './conversationEnum';
+import { ConversationResponseObjectResourceAttributes } from './conversationResponseObjectResourceAttributes';
 import { ConversationResponseObjectResourceRelationships } from './conversationResponseObjectResourceRelationships';
 import { ObjectLinks } from './objectLinks';
 export class ConversationResponseObjectResource {
     'type': ConversationEnum | 'conversation';
     'id': string;
+    'attributes': ConversationResponseObjectResourceAttributes;
     'relationships'?: ConversationResponseObjectResourceRelationships;
     'links': ObjectLinks;
 
@@ -30,6 +32,11 @@ export class ConversationResponseObjectResource {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "attributes",
+            "baseName": "attributes",
+            "type": "ConversationResponseObjectResourceAttributes"
         },
         {
             "name": "relationships",

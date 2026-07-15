@@ -17,7 +17,7 @@ export class BaseEventCreateQueryBulkEntryResourceObjectAttributes {
     */
     'properties': object;
     /**
-    * When this event occurred. By default, the time the request was received will be used. The time is truncated to the second. The time must be after the year 2000 and can only be up to 1 year in the future.
+    * When this event occurred. By default, the time the request was received will be used. The time is truncated to the second. The time must be after the year 1990 and can only be up to 1 year in the future.
     */
     'time'?: Date | null;
     /**
@@ -28,6 +28,10 @@ export class BaseEventCreateQueryBulkEntryResourceObjectAttributes {
     * The ISO 4217 currency code of the value associated with the event.
     */
     'valueCurrency'?: string | null;
+    /**
+    * When true, the event is recorded but does NOT trigger flows. Use this when backfilling historical events so existing flow definitions do not re-fire on events that already fired in the past.
+    */
+    'backfill'?: boolean | null = false;
     'metric': EventCreateQueryV2ResourceObjectAttributesMetric;
     /**
     * A unique identifier for an event. If a unique_id is repeated for the same profile and metric, the request will fail and no events will be processed. If this field is not present, this field will use the time to the second. Using the default, this limits only one event per profile per second.
@@ -55,6 +59,11 @@ export class BaseEventCreateQueryBulkEntryResourceObjectAttributes {
             "name": "valueCurrency",
             "baseName": "value_currency",
             "type": "string"
+        },
+        {
+            "name": "backfill",
+            "baseName": "backfill",
+            "type": "boolean"
         },
         {
             "name": "metric",

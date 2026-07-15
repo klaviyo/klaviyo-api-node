@@ -11,10 +11,10 @@
 
 import { RequestFile } from './models';
 import { NumericOperatorNumericFilterValue } from './numericOperatorNumericFilterValue';
-import { PriceDropConditionFilter } from './priceDropConditionFilter';
+import { PriceDropTriggerTriggerFilter } from './priceDropTriggerTriggerFilter';
 export class PriceDropTrigger {
     'type': PriceDropTrigger.TypeEnum | 'price-drop';
-    'triggerFilter': PriceDropConditionFilter;
+    'triggerFilter': PriceDropTriggerTriggerFilter | null;
     'priceDropAmountValue': NumericOperatorNumericFilterValue;
     /**
     * Price Drop amount type.
@@ -37,7 +37,7 @@ export class PriceDropTrigger {
         {
             "name": "triggerFilter",
             "baseName": "trigger_filter",
-            "type": "PriceDropConditionFilter"
+            "type": "PriceDropTriggerTriggerFilter"
         },
         {
             "name": "priceDropAmountValue",

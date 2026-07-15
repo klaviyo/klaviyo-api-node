@@ -12,4 +12,5 @@
 import { RequestFile } from './models';
 import { PushOnOpenApp } from './pushOnOpenApp';
 import { PushOnOpenDeepLink } from './pushOnOpenDeepLink';
-export type MobilePushOptionsOnOpen = PushOnOpenApp | PushOnOpenDeepLink;
+import { PushOnOpenWebUrl } from './pushOnOpenWebUrl';
+export type MobilePushOptionsOnOpen = PushOnOpenApp | PushOnOpenDeepLink | PushOnOpenWebUrl;

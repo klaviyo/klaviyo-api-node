@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { MetricResponseObjectResource } from './metricResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 export class GetMetricResponse {
-    'data': MetricResponseObjectResource;
+    'data': MetricResponseObjectResource | null;
     'links'?: ObjectLinks;
 
 

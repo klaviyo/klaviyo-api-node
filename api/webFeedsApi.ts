@@ -67,12 +67,12 @@ export class WebFeedsApi {
     }
 
     /**
-     * Create a web feed.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`
+     * Create a web feed.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_web_feed.json)
      * @summary Create Web Feed
      * @param webFeedCreateQuery Create a web feed
-     
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async createWebFeed (webFeedCreateQuery: WebFeedCreateQuery, ): Promise<{ response: AxiosResponse; body: PostWebFeedResponse;  }> {
+    public async createWebFeed (webFeedCreateQuery: WebFeedCreateQuery, options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>,  } = {}): Promise<{ response: AxiosResponse; body: PostWebFeedResponse;  }> {
 
         const localVarPath = this.basePath + '/api/web-feeds';
         let localVarQueryParameters: any = {};
@@ -88,6 +88,10 @@ export class WebFeedsApi {
         // verify required parameter 'webFeedCreateQuery' is not null or undefined
         if (webFeedCreateQuery === null || webFeedCreateQuery === undefined) {
             throw new Error('Required parameter webFeedCreateQuery was null or undefined when calling createWebFeed.');
+        }
+
+        if (options.fieldsWebFeed !== undefined) {
+            localVarQueryParameters['fields[web-feed]'] = ObjectSerializer.serialize(options.fieldsWebFeed, "Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -120,7 +124,7 @@ export class WebFeedsApi {
         return request(config)
     }
     /**
-     * Delete the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`
+     * Delete the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_web_feed.json)
      * @summary Delete Web Feed
      * @param id The ID of the web feed
      
@@ -172,12 +176,12 @@ export class WebFeedsApi {
         return request(config)
     }
     /**
-     * Get the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`
+     * Get the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feed.json)
      * @summary Get Web Feed
      * @param id The ID of the web feed
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getWebFeed (id: string, options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponse;  }> {
+    public async getWebFeed (id: string, options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponse;  }> {
 
         const localVarPath = this.basePath + '/api/web-feeds/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -197,7 +201,7 @@ export class WebFeedsApi {
         }
 
         if (options.fieldsWebFeed !== undefined) {
-            localVarQueryParameters['fields[web-feed]'] = ObjectSerializer.serialize(options.fieldsWebFeed, "Array<'content_type' | 'created' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>");
+            localVarQueryParameters['fields[web-feed]'] = ObjectSerializer.serialize(options.fieldsWebFeed, "Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -229,12 +233,12 @@ export class WebFeedsApi {
         return request(config)
     }
     /**
-     * Get all web feeds for an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`
+     * Get all web feeds for an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feeds.json)
      * @summary Get Web Feeds
      
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination* @param pageSize Default: 5. Min: 1. Max: 20.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 5. Min: 1. Max: 20.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
      */
-    public async getWebFeeds (options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponseCollection;  }> {
+    public async getWebFeeds (options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/web-feeds';
         let localVarQueryParameters: any = {};
@@ -248,7 +252,7 @@ export class WebFeedsApi {
         }
 
         if (options.fieldsWebFeed !== undefined) {
-            localVarQueryParameters['fields[web-feed]'] = ObjectSerializer.serialize(options.fieldsWebFeed, "Array<'content_type' | 'created' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>");
+            localVarQueryParameters['fields[web-feed]'] = ObjectSerializer.serialize(options.fieldsWebFeed, "Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>");
         }
 
         if (options.filter !== undefined) {
@@ -296,12 +300,12 @@ export class WebFeedsApi {
         return request(config)
     }
     /**
-     * Update the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`
+     * Update the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_web_feed.json)
      * @summary Update Web Feed
      * @param id The ID of the web feed* @param webFeedPartialUpdateQuery Update a web feed by ID
-     
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async updateWebFeed (id: string, webFeedPartialUpdateQuery: WebFeedPartialUpdateQuery, ): Promise<{ response: AxiosResponse; body: PatchWebFeedResponse;  }> {
+    public async updateWebFeed (id: string, webFeedPartialUpdateQuery: WebFeedPartialUpdateQuery, options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchWebFeedResponse;  }> {
 
         const localVarPath = this.basePath + '/api/web-feeds/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -323,6 +327,10 @@ export class WebFeedsApi {
         // verify required parameter 'webFeedPartialUpdateQuery' is not null or undefined
         if (webFeedPartialUpdateQuery === null || webFeedPartialUpdateQuery === undefined) {
             throw new Error('Required parameter webFeedPartialUpdateQuery was null or undefined when calling updateWebFeed.');
+        }
+
+        if (options.fieldsWebFeed !== undefined) {
+            localVarQueryParameters['fields[web-feed]'] = ObjectSerializer.serialize(options.fieldsWebFeed, "Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)

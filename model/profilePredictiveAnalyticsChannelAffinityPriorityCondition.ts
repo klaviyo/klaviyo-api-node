@@ -21,7 +21,7 @@ export class ProfilePredictiveAnalyticsChannelAffinityPriorityCondition {
     /**
     * Possible channels in a channel affinity definition.
     */
-    'predictedChannel': ProfilePredictiveAnalyticsChannelAffinityPriorityCondition.PredictedChannelEnum | 'email' | 'push' | 'sms';
+    'predictedChannel': ProfilePredictiveAnalyticsChannelAffinityPriorityCondition.PredictedChannelEnum | 'email' | 'push' | 'sms' | 'whatsapp';
     'filter': ProfilePredictiveAnalyticsChannelAffinityPriorityFilter;
 
 
@@ -70,6 +70,7 @@ export namespace ProfilePredictiveAnalyticsChannelAffinityPriorityCondition {
     export enum PredictedChannelEnum {
         Email = <any> 'email',
         Push = <any> 'push',
-        Sms = <any> 'sms'
+        Sms = <any> 'sms',
+        Whatsapp = <any> 'whatsapp'
     }
 }

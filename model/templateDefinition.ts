@@ -16,6 +16,9 @@ export class TemplateDefinition {
     'id'?: string | null;
     'templateId'?: string | null;
     'body': Body;
+    /**
+    * When present, must contain exactly one of each style type.
+    */
     'styles': Array<TemplateDefinitionStylesInner>;
 
 

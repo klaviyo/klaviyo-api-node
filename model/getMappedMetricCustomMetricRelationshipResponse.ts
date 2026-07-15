@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetMappedMetricCustomMetricRelationshipResponseData } from './getMappedMetricCustomMetricRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetMappedMetricCustomMetricRelationshipResponse {
-    'data': GetMappedMetricCustomMetricRelationshipResponseData;
+    'data': GetMappedMetricCustomMetricRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

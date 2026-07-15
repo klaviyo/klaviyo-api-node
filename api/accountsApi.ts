@@ -63,12 +63,12 @@ export class AccountsApi {
     }
 
     /**
-     * Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
+     * Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_account.json)
      * @summary Get Account
      * @param id The ID of the account
-     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getAccount (id: string, options: { fieldsAccount?: Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponse;  }> {
+    public async getAccount (id: string, options: { fieldsAccount?: Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'id' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponse;  }> {
 
         const localVarPath = this.basePath + '/api/accounts/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -88,7 +88,7 @@ export class AccountsApi {
         }
 
         if (options.fieldsAccount !== undefined) {
-            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>");
+            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'id' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)
@@ -120,12 +120,12 @@ export class AccountsApi {
         return request(config)
     }
     /**
-     * Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
+     * Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_accounts.json)
      * @summary Get Accounts
      
-     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsAccount For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
      */
-    public async getAccounts (options: { fieldsAccount?: Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }> {
+    public async getAccounts (options: { fieldsAccount?: Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'id' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>,  } = {}): Promise<{ response: AxiosResponse; body: GetAccountResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/accounts';
         let localVarQueryParameters: any = {};
@@ -139,7 +139,7 @@ export class AccountsApi {
         }
 
         if (options.fieldsAccount !== undefined) {
-            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>");
+            localVarQueryParameters['fields[account]'] = ObjectSerializer.serialize(options.fieldsAccount, "Array<'contact_information' | 'contact_information.default_sender_email' | 'contact_information.default_sender_name' | 'contact_information.organization_name' | 'contact_information.street_address' | 'contact_information.street_address.address1' | 'contact_information.street_address.address2' | 'contact_information.street_address.city' | 'contact_information.street_address.country' | 'contact_information.street_address.region' | 'contact_information.street_address.zip' | 'contact_information.website_url' | 'id' | 'industry' | 'locale' | 'preferred_currency' | 'public_api_key' | 'test_account' | 'timezone'>");
         }
 
         queryParamPreProcessor(localVarQueryParameters)

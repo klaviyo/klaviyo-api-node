@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { PushActionButtonDefinition } from './pushActionButtonDefinition';
 export class MobilePushContentCreate {
     /**
     * The title of the message
@@ -23,6 +24,10 @@ export class MobilePushContentCreate {
     * The dynamic image to be used in the push notification
     */
     'dynamicImage'?: string | null;
+    /**
+    * Action buttons for the push notification (max 3, positions 0-indexed with no gaps)
+    */
+    'actionButtons'?: Array<PushActionButtonDefinition> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -40,6 +45,11 @@ export class MobilePushContentCreate {
             "name": "dynamicImage",
             "baseName": "dynamic_image",
             "type": "string"
+        },
+        {
+            "name": "actionButtons",
+            "baseName": "action_buttons",
+            "type": "Array<PushActionButtonDefinition>"
         }    ];
 
     static getAttributeTypeMap() {

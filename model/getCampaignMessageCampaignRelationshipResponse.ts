@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetCampaignMessageCampaignRelationshipResponseData } from './getCampaignMessageCampaignRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetCampaignMessageCampaignRelationshipResponse {
-    'data': GetCampaignMessageCampaignRelationshipResponseData;
+    'data': GetCampaignMessageCampaignRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

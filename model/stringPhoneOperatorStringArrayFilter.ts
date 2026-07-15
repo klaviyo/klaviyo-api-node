@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 export class StringPhoneOperatorStringArrayFilter {
     'type': StringPhoneOperatorStringArrayFilter.TypeEnum | 'string';
     /**
-    * Operators for phone string array filters.  Example condition using this filter:         {
+    * Operators for phone string array filters.  Example condition using this filter:         {             \"type\": \"profile-property\",             \"field\": \"phone\",             \"filter\": {                 \"type\": \"string\",                 \"operator\": \"phone-country-code-in\",                 \"value\": [\"US\", \"GB\"]             }         }
     */
     'operator': StringPhoneOperatorStringArrayFilter.OperatorEnum | 'phone-country-code-in' | 'phone-country-code-not-in';
     'value': Array<string>;

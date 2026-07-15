@@ -12,7 +12,6 @@
 import { RequestFile } from './models';
 import { ButtonBlockV0 } from './buttonBlockV0';
 import { CouponBlockV0 } from './couponBlockV0';
-import { CouponBlockV0Data } from './couponBlockV0Data';
 import { DropShadowBlockV0 } from './dropShadowBlockV0';
 import { HTMLBlockV0 } from './hTMLBlockV0';
 import { HeaderBlockV0 } from './headerBlockV0';

@@ -4,6 +4,8 @@ export * from './campaignsApi';
 import { CampaignsApi } from './campaignsApi';
 export * from './catalogsApi';
 import { CatalogsApi } from './catalogsApi';
+export * from './clientApi';
+import { ClientApi } from './clientApi';
 export * from './conversationsApi';
 import { ConversationsApi } from './conversationsApi';
 export * from './couponsApi';
@@ -48,8 +50,8 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, AxiosError, isAxiosErro
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2026-04-15";
-const userAgent = "klaviyo-api-node/22.0.1";
+const revision =  "2026-07-15";
+const userAgent = "klaviyo-api-node/23.0.0";
 
 export class RetryWithExponentialBackoff {
 
@@ -534,6 +536,8 @@ export namespace Pkce {
 
     export const Catalogs = new CatalogsApi(new GlobalApiKeySession())
 
+    export const Client = new ClientApi(new GlobalApiKeySession())
+
     export const Conversations = new ConversationsApi(new GlobalApiKeySession())
 
     export const Coupons = new CouponsApi(new GlobalApiKeySession())
@@ -584,4 +588,4 @@ export const Auth = {
     Pkce,
 }
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, ConversationsApi, Conversations, CouponsApi, Coupons, CustomObjectsApi, CustomObjects, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebFeedsApi, WebFeeds, WebhooksApi, Webhooks };
+export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, ClientApi, Client, ConversationsApi, Conversations, CouponsApi, Coupons, CustomObjectsApi, CustomObjects, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebFeedsApi, WebFeeds, WebhooksApi, Webhooks };

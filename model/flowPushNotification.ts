@@ -10,7 +10,7 @@
  */
 
 import { RequestFile } from './models';
-import { FlowPushNotificationAdditionalFilters } from './flowPushNotificationAdditionalFilters';
+import { ConditionalBranchActionDataProfileFilter } from './conditionalBranchActionDataProfileFilter';
 import { FlowPushNotificationBadgeOptions } from './flowPushNotificationBadgeOptions';
 import { PushActionButton } from './pushActionButton';
 export class FlowPushNotification {
@@ -34,9 +34,10 @@ export class FlowPushNotification {
     /**
     * See PushLinkAction in app.  This is not a flow action, but the literal action that should be     taken when the push notification is tapped.
     */
-    'onOpen'?: FlowPushNotification.OnOpenEnum | 'home' | 'link' = FlowPushNotification.OnOpenEnum.Home;
+    'onOpen'?: FlowPushNotification.OnOpenEnum | 'home' | 'link' | 'open_url' = FlowPushNotification.OnOpenEnum.Home;
     'iosLink'?: string | null;
     'androidLink'?: string | null;
+    'webUrl'?: string | null;
     /**
     * The type of push notification to send.
     */
@@ -44,7 +45,7 @@ export class FlowPushNotification {
     'kvPairs'?: object | null;
     'conversionMetricId'?: string | null;
     'smartSendingEnabled'?: boolean = true;
-    'additionalFilters'?: FlowPushNotificationAdditionalFilters | null;
+    'additionalFilters'?: ConditionalBranchActionDataProfileFilter | null;
     'actionButtons'?: Array<PushActionButton> | null;
     'name'?: string | null;
     /**
@@ -110,6 +111,11 @@ export class FlowPushNotification {
             "type": "string"
         },
         {
+            "name": "webUrl",
+            "baseName": "web_url",
+            "type": "string"
+        },
+        {
             "name": "pushType",
             "baseName": "push_type",
             "type": "FlowPushNotification.PushTypeEnum"
@@ -132,7 +138,7 @@ export class FlowPushNotification {
         {
             "name": "additionalFilters",
             "baseName": "additional_filters",
-            "type": "FlowPushNotificationAdditionalFilters"
+            "type": "ConditionalBranchActionDataProfileFilter"
         },
         {
             "name": "actionButtons",
@@ -158,7 +164,8 @@ export class FlowPushNotification {
 export namespace FlowPushNotification {
     export enum OnOpenEnum {
         Home = <any> 'home',
-        Link = <any> 'link'
+        Link = <any> 'link',
+        OpenUrl = <any> 'open_url'
     }
     export enum PushTypeEnum {
         Silent = <any> 'silent',

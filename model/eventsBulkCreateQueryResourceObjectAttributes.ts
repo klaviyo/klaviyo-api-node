@@ -13,11 +13,20 @@ import { RequestFile } from './models';
 import { EventsBulkCreateQueryResourceObjectAttributesEvents } from './eventsBulkCreateQueryResourceObjectAttributesEvents';
 import { EventsBulkCreateQueryResourceObjectAttributesProfile } from './eventsBulkCreateQueryResourceObjectAttributesProfile';
 export class EventsBulkCreateQueryResourceObjectAttributes {
+    /**
+    * When true, the event is recorded but does NOT trigger flows. Use this when backfilling historical events so existing flow definitions do not re-fire on events that already fired in the past.
+    */
+    'backfill'?: boolean | null = false;
     'profile': EventsBulkCreateQueryResourceObjectAttributesProfile;
     'events': EventsBulkCreateQueryResourceObjectAttributesEvents;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "backfill",
+            "baseName": "backfill",
+            "type": "boolean"
+        },
         {
             "name": "profile",
             "baseName": "profile",

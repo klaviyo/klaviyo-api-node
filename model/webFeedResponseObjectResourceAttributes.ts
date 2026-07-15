@@ -38,7 +38,7 @@ export class WebFeedResponseObjectResourceAttributes {
     /**
     * The cache status of this web feed if it exists
     */
-    'status'?: WebFeedResponseObjectResourceAttributes.StatusEnum | 'critical_nightly_refresh_timeout' | 'disabled' | 'ok' | 'warning_nightly_refresh_timeout' | 'warning_periodic_refresh_timeout' | null;
+    'status'?: WebFeedResponseObjectResourceAttributes.StatusEnum | 'critical_nightly_refresh_timeout' | 'disabled' | 'ok' | 'refreshing' | 'warning_nightly_refresh_timeout' | 'warning_periodic_refresh_timeout' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -96,6 +96,7 @@ export namespace WebFeedResponseObjectResourceAttributes {
         CriticalNightlyRefreshTimeout = <any> 'critical_nightly_refresh_timeout',
         Disabled = <any> 'disabled',
         Ok = <any> 'ok',
+        Refreshing = <any> 'refreshing',
         WarningNightlyRefreshTimeout = <any> 'warning_nightly_refresh_timeout',
         WarningPeriodicRefreshTimeout = <any> 'warning_periodic_refresh_timeout'
     }

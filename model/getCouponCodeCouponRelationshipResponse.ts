@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { GetCouponCodeCouponRelationshipResponseData } from './getCouponCodeCouponRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
 export class GetCouponCodeCouponRelationshipResponse {
-    'data': GetCouponCodeCouponRelationshipResponseData;
+    'data': GetCouponCodeCouponRelationshipResponseData | null;
     'links'?: ObjectLinks;
 
 

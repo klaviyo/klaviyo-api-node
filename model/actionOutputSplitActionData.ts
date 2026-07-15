@@ -10,16 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { ActionOutputConditionFilter } from './actionOutputConditionFilter';
+import { ActionOutputSplitActionDataActionOutputFilter } from './actionOutputSplitActionDataActionOutputFilter';
 export class ActionOutputSplitActionData {
-    'actionOutputFilter': ActionOutputConditionFilter;
+    'actionOutputFilter': ActionOutputSplitActionDataActionOutputFilter | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "actionOutputFilter",
             "baseName": "action_output_filter",
-            "type": "ActionOutputConditionFilter"
+            "type": "ActionOutputSplitActionDataActionOutputFilter"
         }    ];
 
     static getAttributeTypeMap() {

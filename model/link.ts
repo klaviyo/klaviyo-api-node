@@ -11,7 +11,7 @@
 
 import { RequestFile } from './models';
 export class Link {
-    'next': string | null;
+    'next'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

@@ -10,14 +10,14 @@
  */
 
 import { RequestFile } from './models';
-import { LowInventoryConditionFilter } from './lowInventoryConditionFilter';
+import { LowInventoryTriggerTriggerFilter } from './lowInventoryTriggerTriggerFilter';
 export class LowInventoryTrigger {
     'type': LowInventoryTrigger.TypeEnum | 'low-inventory';
     /**
     * Low inventory product level.
     */
     'productLevel': LowInventoryTrigger.ProductLevelEnum | 'product' | 'variant';
-    'triggerFilter': LowInventoryConditionFilter;
+    'triggerFilter': LowInventoryTriggerTriggerFilter | null;
     'inventoryCount': number;
     'audience': Array<LowInventoryTrigger.AudienceEnum> | Array<'added-to-cart' | 'checkout-started' | 'viewed'>;
     'timeframeDays'?: number = 30;
@@ -37,7 +37,7 @@ export class LowInventoryTrigger {
         {
             "name": "triggerFilter",
             "baseName": "trigger_filter",
-            "type": "LowInventoryConditionFilter"
+            "type": "LowInventoryTriggerTriggerFilter"
         },
         {
             "name": "inventoryCount",

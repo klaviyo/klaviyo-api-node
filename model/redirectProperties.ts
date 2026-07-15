@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 export class RedirectProperties {
     'listId'?: string | null;
-    'url': string;
+    'url'?: string = '';
     'newWindow'?: boolean = false;
 
 

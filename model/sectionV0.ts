@@ -10,11 +10,10 @@
  */
 
 import { RequestFile } from './models';
-import { CouponBlockV0Data } from './couponBlockV0Data';
 export class SectionV0 {
     'contentType': SectionV0.ContentTypeEnum | 'section';
     'type': SectionV0.TypeEnum | 'section';
-    'data': CouponBlockV0Data | null;
+    'data'?: any | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -31,7 +30,7 @@ export class SectionV0 {
         {
             "name": "data",
             "baseName": "data",
-            "type": "CouponBlockV0Data"
+            "type": "any"
         }    ];
 
     static getAttributeTypeMap() {

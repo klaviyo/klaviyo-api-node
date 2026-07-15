@@ -10,9 +10,11 @@
  */
 
 import { RequestFile } from './models';
+import { OpenTrackingSubscriptionParameters } from './openTrackingSubscriptionParameters';
 import { SubscriptionParameters } from './subscriptionParameters';
 export class EmailSubscriptionParameters {
-    'marketing': SubscriptionParameters;
+    'marketing'?: SubscriptionParameters;
+    'openTracking'?: OpenTrackingSubscriptionParameters;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -20,6 +22,11 @@ export class EmailSubscriptionParameters {
             "name": "marketing",
             "baseName": "marketing",
             "type": "SubscriptionParameters"
+        },
+        {
+            "name": "openTracking",
+            "baseName": "open_tracking",
+            "type": "OpenTrackingSubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,8 +10,10 @@
  */
 
 import { RequestFile } from './models';
+import { PropertyFilter } from './propertyFilter';
 export class ProfileEventTrackedProperties {
-    'metric': string;
+    'metric'?: string | null = '';
+    'propertyFilters'?: Array<PropertyFilter> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -19,6 +21,11 @@ export class ProfileEventTrackedProperties {
             "name": "metric",
             "baseName": "metric",
             "type": "string"
+        },
+        {
+            "name": "propertyFilters",
+            "baseName": "property_filters",
+            "type": "Array<PropertyFilter>"
         }    ];
 
     static getAttributeTypeMap() {

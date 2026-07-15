@@ -20,6 +20,7 @@ export class VersionProperties {
     'ruleBasedTriggerEvaluation'?: VersionProperties.RuleBasedTriggerEvaluationEnum | 'all' | 'any' | null = VersionProperties.RuleBasedTriggerEvaluationEnum.Any;
     'recordUtmParamsOnSubmit'?: boolean = false;
     'showCloseButton'?: boolean = true;
+    'accessibleName'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -47,6 +48,11 @@ export class VersionProperties {
             "name": "showCloseButton",
             "baseName": "show_close_button",
             "type": "boolean"
+        },
+        {
+            "name": "accessibleName",
+            "baseName": "accessible_name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

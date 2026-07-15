@@ -12,6 +12,8 @@
 import { RequestFile } from './models';
 import { Close } from './close';
 import { GoToInbox } from './goToInbox';
+import { IafDeeplinkToScreen } from './iafDeeplinkToScreen';
+import { IafDeeplinkToScreenProperties } from './iafDeeplinkToScreenProperties';
 import { NextStep } from './nextStep';
 import { OpenForm } from './openForm';
 import { PromotionalSMSSubscription } from './promotionalSMSSubscription';
@@ -22,4 +24,4 @@ import { SubmitBackInStock } from './submitBackInStock';
 import { SubmitOptInCode } from './submitOptInCode';
 import { SubscribeViaSMS } from './subscribeViaSMS';
 import { SubscribeViaWhatsApp } from './subscribeViaWhatsApp';
-export type ButtonAction = Close | NextStep | OpenForm | PromotionalSMSSubscription | Redirect | ResendOptInCode | SubmitOptInCode | SubscribeViaSMS | SubscribeViaWhatsApp | GoToInbox | SubmitBackInStock | SkipToSuccess;
+export type ButtonAction = Close | NextStep | OpenForm | PromotionalSMSSubscription | Redirect | ResendOptInCode | SubmitOptInCode | SubscribeViaSMS | SubscribeViaWhatsApp | GoToInbox | SubmitBackInStock | SkipToSuccess | IafDeeplinkToScreen;

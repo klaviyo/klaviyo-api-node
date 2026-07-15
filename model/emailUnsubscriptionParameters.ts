@@ -10,9 +10,11 @@
  */
 
 import { RequestFile } from './models';
+import { OpenTrackingUnsubscriptionParameters } from './openTrackingUnsubscriptionParameters';
 import { UnsubscriptionParameters } from './unsubscriptionParameters';
 export class EmailUnsubscriptionParameters {
-    'marketing': UnsubscriptionParameters;
+    'marketing'?: UnsubscriptionParameters;
+    'openTracking'?: OpenTrackingUnsubscriptionParameters;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -20,6 +22,11 @@ export class EmailUnsubscriptionParameters {
             "name": "marketing",
             "baseName": "marketing",
             "type": "UnsubscriptionParameters"
+        },
+        {
+            "name": "openTracking",
+            "baseName": "open_tracking",
+            "type": "OpenTrackingUnsubscriptionParameters"
         }    ];
 
     static getAttributeTypeMap() {

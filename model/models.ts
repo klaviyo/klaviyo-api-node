@@ -4,6 +4,7 @@ import {ReadStream} from "fs";
 export * from './aBTestSendStrategy';
 export * from './aPIJobErrorPayload';
 export * from './aPIMethodFilter';
+export * from './aPISchemaProperty';
 export * from './abTestAction';
 export * from './abTestActionData';
 export * from './abTestActionDataCurrentExperiment';
@@ -12,11 +13,11 @@ export * from './accountEnum';
 export * from './accountResponseObjectResource';
 export * from './accountResponseObjectResourceAttributes';
 export * from './actionOutputCondition';
-export * from './actionOutputConditionConditionGroup';
 export * from './actionOutputConditionFilter';
-export * from './actionOutputConditionFilter2';
 export * from './actionOutputSplitAction';
 export * from './actionOutputSplitActionData';
+export * from './actionOutputSplitActionDataActionOutputFilter';
+export * from './actionOutputSplitActionDataActionOutputFilterConditionGroupsInner';
 export * from './additionalField';
 export * from './afterCloseTimeout';
 export * from './afterCloseTimeoutProperties';
@@ -176,6 +177,8 @@ export * from './campaignsEmailTrackingOptions';
 export * from './campaignsEmailTrackingOptionsCustomTrackingParamsInner';
 export * from './campaignsSMSTrackingOptions';
 export * from './carrierDeactivationMethodFilter';
+export * from './cartContent';
+export * from './cartContentProperties';
 export * from './cartItemCount';
 export * from './cartItemCountProperties';
 export * from './cartProduct';
@@ -337,8 +340,13 @@ export * from './conditionalBranchActionDataProfileFilterConditionGroupsInner';
 export * from './conditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner';
 export * from './constantContactIntegrationFilter';
 export * from './constantContactIntegrationMethodFilter';
+export * from './constantPropertyMapping';
+export * from './constantPropertyMappingValue';
 export * from './contactInformation';
 export * from './contentExperimentAction';
+export * from './contentExperimentActionData';
+export * from './contentExperimentActionDataCurrentExperiment';
+export * from './contentExperimentActionDataMainAction';
 export * from './contentRepeatV0';
 export * from './contentRepeatV1';
 export * from './conversationEnum';
@@ -350,6 +358,7 @@ export * from './conversationMessageCreateQueryResourceObjectRelationshipsConver
 export * from './conversationMessageCreateQueryResourceObjectRelationshipsConversationData';
 export * from './conversationMessageEnum';
 export * from './conversationResponseObjectResource';
+export * from './conversationResponseObjectResourceAttributes';
 export * from './conversationResponseObjectResourceRelationships';
 export * from './conversationResponseObjectResourceRelationshipsProfile';
 export * from './countdownDelayAction';
@@ -403,6 +412,8 @@ export * from './couponUpdateQuery';
 export * from './couponUpdateQueryResourceObject';
 export * from './couponUpdateQueryResourceObjectAttributes';
 export * from './customCss';
+export * from './customHTML';
+export * from './customHTMLProperties';
 export * from './customJavascript';
 export * from './customMetricCondition';
 export * from './customMetricConditionFilter';
@@ -420,8 +431,9 @@ export * from './customMetricResponseObjectResourceAttributes';
 export * from './customMetricResponseObjectResourceRelationships';
 export * from './customMetricResponseObjectResourceRelationshipsMetrics';
 export * from './customMetricResponseObjectResourceRelationshipsMetricsDataInner';
+export * from './customObjectDateTrigger';
 export * from './customObjectPropertyCondition';
-export * from './customObjectPropertyConditionFilter';
+export * from './customObjectRelationshipSource';
 export * from './customObjectTriggerCondition';
 export * from './customObjectTriggerConditionFilter';
 export * from './customSourceFilter';
@@ -461,7 +473,6 @@ export * from './dateProperties';
 export * from './dateStyles';
 export * from './delay';
 export * from './delayProperties';
-export * from './deleteTagGroupResponse';
 export * from './device';
 export * from './deviceMetadata';
 export * from './deviceProperties';
@@ -495,6 +506,9 @@ export * from './emailSendOptions';
 export * from './emailStyles';
 export * from './emailSubscriptionParameters';
 export * from './emailUnsubscriptionParameters';
+export * from './embeddedObjectSchemaResourceObject';
+export * from './embeddedObjectSchemaResourceObjectAttributes';
+export * from './embeddedObjectSchemaResourceObjectAttributesSourceMapping';
 export * from './encodedFormResponseObjectResource';
 export * from './encodedFormResponseObjectResourceAttributes';
 export * from './equalsStringFilter';
@@ -556,9 +570,6 @@ export * from './flowDefinitionProfileFilterConditionGroupsInner';
 export * from './flowDefinitionProfileFilterConditionGroupsInnerConditionsInner';
 export * from './flowDefinitionTriggersInner';
 export * from './flowEmail';
-export * from './flowEmailAdditionalFilters';
-export * from './flowEmailAdditionalFiltersConditionGroupsInner';
-export * from './flowEmailAdditionalFiltersConditionGroupsInnerConditionsInner';
 export * from './flowEnum';
 export * from './flowInternalAlert';
 export * from './flowMessageEncodedResponseObjectResource';
@@ -570,9 +581,6 @@ export * from './flowMessageEncodedResponseObjectResourceRelationshipsTemplate';
 export * from './flowMessageEncodedResponseObjectResourceRelationshipsTemplateData';
 export * from './flowMessageEnum';
 export * from './flowPushNotification';
-export * from './flowPushNotificationAdditionalFilters';
-export * from './flowPushNotificationAdditionalFiltersConditionGroupsInner';
-export * from './flowPushNotificationAdditionalFiltersConditionGroupsInnerConditionsInner';
 export * from './flowPushNotificationBadgeOptions';
 export * from './flowResponseObjectResource';
 export * from './flowResponseObjectResourceAttributes';
@@ -586,9 +594,6 @@ export * from './flowSeriesRequestDTO';
 export * from './flowSeriesRequestDTOResourceObject';
 export * from './flowSeriesRequestDTOResourceObjectAttributes';
 export * from './flowSms';
-export * from './flowSmsAdditionalFilters';
-export * from './flowSmsAdditionalFiltersConditionGroupsInner';
-export * from './flowSmsAdditionalFiltersConditionGroupsInnerConditionsInner';
 export * from './flowTrackingSettingDynamicParam';
 export * from './flowTrackingSettingStaticParam';
 export * from './flowUpdateQuery';
@@ -629,6 +634,9 @@ export * from './formVersionABTest';
 export * from './formVersionEnum';
 export * from './formVersionResponseObjectResource';
 export * from './formVersionResponseObjectResourceAttributes';
+export * from './formVersionResponseObjectResourceRelationships';
+export * from './formVersionResponseObjectResourceRelationshipsForm';
+export * from './formVersionResponseObjectResourceRelationshipsFormData';
 export * from './getAccountResponse';
 export * from './getAccountResponseCollection';
 export * from './getAccounts4XXResponse';
@@ -687,6 +695,7 @@ export * from './getCatalogVariantResponseCollection';
 export * from './getCatalogVariantUpdateJobResponseCollectionCompoundDocument';
 export * from './getCatalogVariantUpdateJobResponseCompoundDocument';
 export * from './getConversationResponse';
+export * from './getConversationResponseCollection';
 export * from './getCouponCodeCouponRelationshipResponse';
 export * from './getCouponCodeCouponRelationshipResponseData';
 export * from './getCouponCodeCreateJobResponseCollectionCompoundDocument';
@@ -706,6 +715,7 @@ export * from './getDataSourceResponse';
 export * from './getDataSourceResponseCollection';
 export * from './getEncodedFormResponse';
 export * from './getEventMetricRelationshipResponse';
+export * from './getEventMetricRelationshipResponseData';
 export * from './getEventProfileRelationshipResponse';
 export * from './getEventProfileRelationshipResponseData';
 export * from './getEventResponseCollectionCompoundDocument';
@@ -717,8 +727,10 @@ export * from './getFlowActionEncodedResponseCompoundDocument';
 export * from './getFlowActionEncodedResponseCompoundDocumentIncludedInner';
 export * from './getFlowActionFlowMessageRelationshipResponseCollection';
 export * from './getFlowActionFlowRelationshipResponse';
+export * from './getFlowActionFlowRelationshipResponseData';
 export * from './getFlowFlowActionRelationshipListResponseCollection';
 export * from './getFlowMessageActionRelationshipResponse';
+export * from './getFlowMessageActionRelationshipResponseData';
 export * from './getFlowMessageEncodedResponseCollection';
 export * from './getFlowMessageEncodedResponseCompoundDocument';
 export * from './getFlowMessageEncodedResponseCompoundDocumentIncludedInner';
@@ -734,18 +746,21 @@ export * from './getFormResponse';
 export * from './getFormResponseCollection';
 export * from './getFormVersionFormRelationshipResponse';
 export * from './getFormVersionFormRelationshipResponseData';
-export * from './getFormVersionResponse';
 export * from './getFormVersionResponseCollection';
+export * from './getFormVersionResponseCompoundDocument';
 export * from './getFormVersionsRelationshipsResponseCollection';
 export * from './getFormVersionsRelationshipsResponseCollectionDataInner';
 export * from './getImageResponse';
 export * from './getImageResponseCollection';
 export * from './getImportErrorResponseCollection';
+export * from './getIngestionLogResponseCollectionCompoundDocument';
+export * from './getIngestionLogResponseCollectionCompoundDocumentIncludedInner';
 export * from './getListFlowTriggersRelationshipsResponseCollection';
 export * from './getListListResponseCollectionCompoundDocument';
 export * from './getListListResponseCollectionCompoundDocumentIncludedInner';
 export * from './getListMemberResponseCollection';
 export * from './getListProfilesRelationshipsResponseCollection';
+export * from './getListProfilesRelationshipsResponseCollectionDataInner';
 export * from './getListResponseCollection';
 export * from './getListRetrieveResponseCompoundDocument';
 export * from './getListTagsRelationshipsResponseCollection';
@@ -766,10 +781,40 @@ export * from './getMetricResponse';
 export * from './getMetricResponseCollection';
 export * from './getMetricResponseCollectionCompoundDocument';
 export * from './getMetricResponseCompoundDocument';
+export * from './getObjectRecordResponse';
+export * from './getObjectRecordResponseCollection';
+export * from './getObjectSchemaProfileObjectSchemasRelationshipsResponseCollection';
+export * from './getObjectSchemaProfileObjectSchemasRelationshipsResponseCollectionDataInner';
+export * from './getObjectSchemaResponse';
+export * from './getObjectSchemaResponseCollection';
+export * from './getObjectSchemaResponseCompoundDocument';
+export * from './getObjectSchemaResponseCompoundDocumentIncludedInner';
+export * from './getObjectSchemaSchemasRelationshipsResponseCollection';
+export * from './getObjectSchemaSchemasRelationshipsResponseCollectionDataInner';
+export * from './getObjectSchemaSourceMappingRelationshipResponse';
+export * from './getObjectSchemaSourceMappingRelationshipResponseData';
+export * from './getObjectTypeCurrentSchemaRelationshipResponse';
+export * from './getObjectTypeCurrentSchemaRelationshipResponseData';
+export * from './getObjectTypeDraftSchemaRelationshipResponse';
+export * from './getObjectTypeIngestionLogsRelationshipsResponseCollection';
+export * from './getObjectTypeIngestionLogsRelationshipsResponseCollectionDataInner';
+export * from './getObjectTypeProfileObjectTypesRelationshipsResponseCollection';
+export * from './getObjectTypeProfileObjectTypesRelationshipsResponseCollectionDataInner';
+export * from './getObjectTypeRecordsRelationshipsResponseCollection';
+export * from './getObjectTypeRecordsRelationshipsResponseCollectionDataInner';
+export * from './getObjectTypeResponseCollectionCompoundDocument';
+export * from './getObjectTypeResponseCompoundDocument';
+export * from './getObjectTypeResponseCompoundDocumentIncludedInner';
+export * from './getObjectTypeSchemaVersionsRelationshipsResponseCollection';
+export * from './getObjectTypeSchemaVersionsRelationshipsResponseCollectionDataInner';
+export * from './getObjectTypeTypesRelationshipsResponseCollection';
+export * from './getObjectTypeTypesRelationshipsResponseCollectionDataInner';
 export * from './getProfileBulkImportJobListsRelationshipsResponseCollection';
 export * from './getProfileBulkImportJobProfilesRelationshipsResponseCollection';
 export * from './getProfileConversationRelationshipResponse';
 export * from './getProfileConversationRelationshipResponseData';
+export * from './getProfileConversationsRelationshipsResponseCollection';
+export * from './getProfileConversationsRelationshipsResponseCollectionDataInner';
 export * from './getProfileImportJobResponseCollectionCompoundDocument';
 export * from './getProfileImportJobResponseCompoundDocument';
 export * from './getProfileListsRelationshipsResponseCollection';
@@ -778,10 +823,10 @@ export * from './getProfilePushTokensRelationshipsResponseCollection';
 export * from './getProfilePushTokensRelationshipsResponseCollectionDataInner';
 export * from './getProfileResponse';
 export * from './getProfileResponseCollection';
-export * from './getProfileResponseCollectionCompoundDocument';
-export * from './getProfileResponseCollectionCompoundDocumentIncludedInner';
-export * from './getProfileResponseCompoundDocument';
-export * from './getProfileResponseCompoundDocumentIncludedInner';
+export * from './getProfileResponsePluralConversationsCollectionCompoundDocument';
+export * from './getProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInner';
+export * from './getProfileResponsePluralConversationsCompoundDocument';
+export * from './getProfileResponsePluralConversationsCompoundDocumentIncludedInner';
 export * from './getProfileSegmentsRelationshipsResponseCollection';
 export * from './getPushTokenProfileRelationshipResponse';
 export * from './getPushTokenResponseCollection';
@@ -796,6 +841,7 @@ export * from './getSegmentProfilesRelationshipsResponseCollection';
 export * from './getSegmentResponseCollection';
 export * from './getSegmentRetrieveResponseCompoundDocument';
 export * from './getSegmentTagsRelationshipsResponseCollection';
+export * from './getSourceMappingResponse';
 export * from './getTagCampaignRelationshipsResponseCollection';
 export * from './getTagCampaignRelationshipsResponseCollectionDataInner';
 export * from './getTagFlowRelationshipsResponseCollection';
@@ -862,6 +908,8 @@ export * from './horizontalRuleBlockData';
 export * from './horizontalRuleBlockStyles';
 export * from './horizontalRuleBlockV0';
 export * from './horizontalRuleBlockV1';
+export * from './iafDeeplinkToScreen';
+export * from './iafDeeplinkToScreenProperties';
 export * from './identifiedProfiles';
 export * from './image';
 export * from './imageAction';
@@ -896,6 +944,14 @@ export * from './inStringArrayFilter';
 export * from './inTheLastBaseRelativeDateFilter';
 export * from './inboundMessageMethodFilter';
 export * from './increment';
+export * from './ingestionLogErrorDetail';
+export * from './ingestionLogResponseObjectResource';
+export * from './ingestionLogResponseObjectResourceAttributes';
+export * from './ingestionLogResponseObjectResourceRelationships';
+export * from './ingestionLogResponseObjectResourceRelationshipsObjectRecord';
+export * from './ingestionLogResponseObjectResourceRelationshipsObjectRecordData';
+export * from './ingestionLogResponseObjectResourceRelationshipsObjectType';
+export * from './ingestionLogResponseObjectResourceRelationshipsObjectTypeData';
 export * from './inputStyles';
 export * from './integerFilter';
 export * from './internalScheduledReportBuilderReportData';
@@ -906,6 +962,10 @@ export * from './internalServiceActionDataServiceConfiguration';
 export * from './internalTrackEventData';
 export * from './internalUnknownServiceData';
 export * from './invalidEmailDateFilter';
+export * from './ipAllowlistResourceName';
+export * from './ipAllowlistResponse';
+export * from './ipAllowlistResponseData';
+export * from './ipAllowlistResponseDataWrapper';
 export * from './isSetExistenceFilter';
 export * from './lessThanPositiveNumericFilter';
 export * from './link';
@@ -949,10 +1009,9 @@ export * from './location';
 export * from './locationProperties';
 export * from './locationPropertiesAllowListInner';
 export * from './lowInventoryCondition';
-export * from './lowInventoryConditionConditionGroup';
-export * from './lowInventoryConditionFilter';
-export * from './lowInventoryConditionFilter2';
 export * from './lowInventoryTrigger';
+export * from './lowInventoryTriggerTriggerFilter';
+export * from './lowInventoryTriggerTriggerFilterConditionGroupsInner';
 export * from './mailboxProviderMethodFilter';
 export * from './manualAddManualMethodFilter';
 export * from './manualImportManualMethodFilter';
@@ -986,9 +1045,7 @@ export * from './metricCreateQueryResourceObject';
 export * from './metricCreateQueryResourceObjectAttributes';
 export * from './metricEnum';
 export * from './metricPropertyCondition';
-export * from './metricPropertyConditionConditionGroup';
 export * from './metricPropertyConditionFilter';
-export * from './metricPropertyConditionFilter2';
 export * from './metricPropertyEnum';
 export * from './metricPropertyResponseObjectResourceAttributes';
 export * from './metricPropertyResponseObjectResourceExtended';
@@ -1003,6 +1060,8 @@ export * from './metricResponseObjectResourceRelationships';
 export * from './metricResponseObjectResourceRelationshipsFlowTriggers';
 export * from './metricResponseObjectResourceRelationshipsFlowTriggersDataInner';
 export * from './metricTrigger';
+export * from './metricTriggerTriggerFilter';
+export * from './metricTriggerTriggerFilterConditionGroupsInner';
 export * from './mobileOverlay';
 export * from './mobilePushBadge';
 export * from './mobilePushBadgeBadgeOptions';
@@ -1052,7 +1111,69 @@ export * from './nonLocalStaticSend';
 export * from './numericOperatorNumericFilter';
 export * from './numericOperatorNumericFilterValue';
 export * from './numericRangeFilter';
+export * from './objectIngestionLogEnum';
 export * from './objectLinks';
+export * from './objectRecordBulkDeleteJobEnum';
+export * from './objectRecordDeleteJobCreateQuery';
+export * from './objectRecordDeleteJobCreateQueryResourceObject';
+export * from './objectRecordDeleteJobCreateQueryResourceObjectRelationships';
+export * from './objectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecords';
+export * from './objectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecordsDataInner';
+export * from './objectRecordEnum';
+export * from './objectRecordResponseObjectResource';
+export * from './objectRecordResponseObjectResourceAttributes';
+export * from './objectSchemaCreateQuery';
+export * from './objectSchemaCreateQueryResourceObject';
+export * from './objectSchemaCreateQueryResourceObjectAttributes';
+export * from './objectSchemaCreateQueryResourceObjectRelationships';
+export * from './objectSchemaCreateQueryResourceObjectRelationshipsObjectType';
+export * from './objectSchemaCreateQueryResourceObjectRelationshipsObjectTypeData';
+export * from './objectSchemaEnum';
+export * from './objectSchemaPartialUpdateQuery';
+export * from './objectSchemaPartialUpdateQueryResourceObject';
+export * from './objectSchemaPartialUpdateQueryResourceObjectAttributes';
+export * from './objectSchemaRelationshipCreateMeta';
+export * from './objectSchemaRelationshipCreateQuery';
+export * from './objectSchemaRelationshipCreateQueryDataInner';
+export * from './objectSchemaRelationshipDeleteMeta';
+export * from './objectSchemaRelationshipDeleteQuery';
+export * from './objectSchemaRelationshipDeleteQueryDataInner';
+export * from './objectSchemaRelationshipMeta';
+export * from './objectSchemaRelationshipPartialUpdateQuery';
+export * from './objectSchemaRelationshipPartialUpdateQueryData';
+export * from './objectSchemaRelationshipResponseObjectResource';
+export * from './objectSchemaRelationshipResponseObjectResourceAttributes';
+export * from './objectSchemaRelationshipUpdateMeta';
+export * from './objectSchemaResponseObjectResource';
+export * from './objectSchemaResponseObjectResourceAttributes';
+export * from './objectSchemaResponseObjectResourceRelationships';
+export * from './objectSchemaResponseObjectResourceRelationshipsObjectSchemas';
+export * from './objectSchemaResponseObjectResourceRelationshipsObjectSchemasDataInner';
+export * from './objectSchemaResponseObjectResourceRelationshipsProfileObjectSchemas';
+export * from './objectSchemaResponseObjectResourceRelationshipsProfileObjectSchemasDataInner';
+export * from './objectSchemaResponseObjectResourceRelationshipsSourceMapping';
+export * from './objectSchemaResponseObjectResourceRelationshipsSourceMappingData';
+export * from './objectTypeCreateQuery';
+export * from './objectTypeCreateQueryResourceObject';
+export * from './objectTypeCreateQueryResourceObjectAttributes';
+export * from './objectTypeCreateQueryResourceObjectAttributesObjectSchema';
+export * from './objectTypeEnum';
+export * from './objectTypeRelationshipMeta';
+export * from './objectTypeRelationshipResponseObjectResource';
+export * from './objectTypeRelationshipResponseObjectResourceAttributes';
+export * from './objectTypeResponseObjectResource';
+export * from './objectTypeResponseObjectResourceAttributes';
+export * from './objectTypeResponseObjectResourceRelationships';
+export * from './objectTypeResponseObjectResourceRelationshipsCurrentSchema';
+export * from './objectTypeResponseObjectResourceRelationshipsCurrentSchemaData';
+export * from './objectTypeResponseObjectResourceRelationshipsDraftSchema';
+export * from './objectTypeResponseObjectResourceRelationshipsDraftSchemaData';
+export * from './objectTypeResponseObjectResourceRelationshipsObjectTypes';
+export * from './objectTypeResponseObjectResourceRelationshipsObjectTypesDataInner';
+export * from './objectTypeResponseObjectResourceRelationshipsProfileObjectTypes';
+export * from './objectTypeResponseObjectResourceRelationshipsProfileObjectTypesDataInner';
+export * from './objectTypeResponseObjectResourceRelationshipsSchemaVersions';
+export * from './objectTypeResponseObjectResourceRelationshipsSchemaVersionsDataInner';
 export * from './oneClickUnsubscribeMethodFilter';
 export * from './onlyRelatedLinks';
 export * from './onsiteProfileCreateQueryResourceObject';
@@ -1060,6 +1181,9 @@ export * from './onsiteProfileCreateQueryResourceObjectAttributes';
 export * from './onsiteProfileMeta';
 export * from './openForm';
 export * from './openFormProperties';
+export * from './openTrackingConsent';
+export * from './openTrackingSubscriptionParameters';
+export * from './openTrackingUnsubscriptionParameters';
 export * from './optInCode';
 export * from './optInCodeProperties';
 export * from './optInCodeStyles';
@@ -1084,11 +1208,13 @@ export * from './patchImageResponse';
 export * from './patchListPartialUpdateResponse';
 export * from './patchMappedMetricResponse';
 export * from './patchMappedMetricResponseData';
+export * from './patchObjectSchemaResponse';
 export * from './patchProfileResponse';
 export * from './patchReviewResponseDTO';
 export * from './patchReviewResponseDTOData';
 export * from './patchSegmentPartialUpdateResponse';
-export * from './patchTagGroupResponse';
+export * from './patchSourceMappingResponse';
+export * from './patchSourceMappingResponseData';
 export * from './patchTemplateDndResponse';
 export * from './patchTrackingSettingResponse';
 export * from './patchTrackingSettingResponseData';
@@ -1177,6 +1303,10 @@ export * from './postListCreateResponseData';
 export * from './postMetricAggregateResponse';
 export * from './postMetricAggregateResponseData';
 export * from './postMetricAggregateResponseDataAttributes';
+export * from './postObjectSchemaResponse';
+export * from './postObjectSchemaResponseData';
+export * from './postObjectTypeResponse';
+export * from './postObjectTypeResponseData';
 export * from './postProfileImportJobResponse';
 export * from './postProfileImportJobResponseData';
 export * from './postProfileMergeResponse';
@@ -1212,10 +1342,9 @@ export * from './preferencePageFilter';
 export * from './preferencePageMethodFilter';
 export * from './previouslySubmitted';
 export * from './priceDropCondition';
-export * from './priceDropConditionConditionGroup';
-export * from './priceDropConditionFilter';
-export * from './priceDropConditionFilter2';
 export * from './priceDropTrigger';
+export * from './priceDropTriggerTriggerFilter';
+export * from './priceDropTriggerTriggerFilterConditionGroupsInner';
 export * from './productBlockData';
 export * from './productBlockDataProperties';
 export * from './productBlockStyles';
@@ -1235,8 +1364,8 @@ export * from './profileHasCustomObjectFilterFilter';
 export * from './profileHasGroupMembershipCondition';
 export * from './profileHasGroupMembershipConditionTimeframeFilter';
 export * from './profileHasNotReceivedEmailMessageCondition';
+export * from './profileHasNotReceivedEmailMessageConditionTimeframeFilter';
 export * from './profileHasNotReceivedPushMessageCondition';
-export * from './profileHasNotReceivedPushMessageConditionTimeframeFilter';
 export * from './profileHasNotReceivedSmsMessageCondition';
 export * from './profileIdentifierDTOResourceObject';
 export * from './profileIdentifierDTOResourceObjectAttributes';
@@ -1276,6 +1405,15 @@ export * from './profileMetricPropertyFilterFilter';
 export * from './profileModificationMethodFilter';
 export * from './profileNoGroupMembershipCondition';
 export * from './profileNotInFlowCondition';
+export * from './profileObjectSchemaEnum';
+export * from './profileObjectSchemaRelationshipCreateQuery';
+export * from './profileObjectSchemaRelationshipCreateQueryDataInner';
+export * from './profileObjectSchemaRelationshipDeleteQuery';
+export * from './profileObjectSchemaRelationshipDeleteQueryDataInner';
+export * from './profileObjectSchemaRelationshipPartialUpdateQuery';
+export * from './profileObjectSchemaRelationshipPartialUpdateQueryData';
+export * from './profileObjectSchemaRelationshipResponseObjectResource';
+export * from './profileObjectTypeEnum';
 export * from './profileOperationDelete';
 export * from './profileOperationUpdateOrCreateBoolean';
 export * from './profileOperationUpdateOrCreateDate';
@@ -1303,6 +1441,7 @@ export * from './profilePropertyConditionFilter';
 export * from './profilePropertyDateTrigger';
 export * from './profileRandomSampleCondition';
 export * from './profileRegionCondition';
+export * from './profileRelationshipSource';
 export * from './profileResponseObjectResource';
 export * from './profileResponseObjectResourceAttributes';
 export * from './profileResponseObjectResourceExtended';
@@ -1314,6 +1453,11 @@ export * from './profileResponseObjectResourceRelationshipsPushTokens';
 export * from './profileResponseObjectResourceRelationshipsPushTokensDataInner';
 export * from './profileResponseObjectResourceRelationshipsSegments';
 export * from './profileResponseObjectResourceRelationshipsSegmentsDataInner';
+export * from './profileResponsePluralConversationsObjectResourceAttributes';
+export * from './profileResponsePluralConversationsObjectResourceExtended';
+export * from './profileResponsePluralConversationsObjectResourceExtendedAttributes';
+export * from './profileResponsePluralConversationsObjectResourceExtendedRelationships';
+export * from './profileResponsePluralConversationsObjectResourceExtendedRelationshipsConversations';
 export * from './profileSubscriptionBulkCreateJobEnum';
 export * from './profileSubscriptionBulkDeleteJobEnum';
 export * from './profileSubscriptionCreateQueryResourceObject';
@@ -1326,19 +1470,24 @@ export * from './profileSuppressionCreateQueryResourceObject';
 export * from './profileSuppressionCreateQueryResourceObjectAttributes';
 export * from './profileSuppressionDeleteQueryResourceObject';
 export * from './profileSuppressionDeleteQueryResourceObjectAttributes';
+export * from './profileTypeRelationshipResponseObjectResource';
 export * from './profileUpsertQuery';
 export * from './profileUpsertQueryResourceObject';
 export * from './profileUpsertQueryResourceObjectAttributes';
 export * from './promotionalSMSSubscription';
 export * from './property';
+export * from './propertyFilter';
 export * from './propertyOption';
+export * from './propertySource';
 export * from './providedLandlineMethodFilter';
 export * from './providedNoAgeMethodFilter';
 export * from './pushActionButton';
+export * from './pushActionButtonDefinition';
 export * from './pushChannel';
 export * from './pushMarketing';
 export * from './pushOnOpenApp';
 export * from './pushOnOpenDeepLink';
+export * from './pushOnOpenWebUrl';
 export * from './pushProfileUpsertQueryResourceObject';
 export * from './pushProfileUpsertQueryResourceObjectAttributes';
 export * from './pushSendOptions';
@@ -1372,6 +1521,7 @@ export * from './rejectReasonOther';
 export * from './rejectReasonPrivateInformation';
 export * from './rejectReasonProfanity';
 export * from './rejectReasonUnrelated';
+export * from './relatedIdPath';
 export * from './relationshipLinks';
 export * from './relativeAnniversaryDateFilter';
 export * from './relativeDateOperatorBaseRelativeDateFilter';
@@ -1427,6 +1577,7 @@ export * from './sMSContentSubObject';
 export * from './sMSDisclosure';
 export * from './sMSDisclosureAccountDefault';
 export * from './sMSDisclosureCustom';
+export * from './sMSDisclosureLinkTextStyle';
 export * from './sMSDisclosureProperties';
 export * from './sMSDisclosurePropertiesContent';
 export * from './sMSDisclosureStyles';
@@ -1481,8 +1632,6 @@ export * from './sendEmailActionData';
 export * from './sendInternalAlertAction';
 export * from './sendInternalAlertActionData';
 export * from './sendPushNotificationAction';
-export * from './sendPushNotificationActionContentExperimentActionData';
-export * from './sendPushNotificationActionCurrentExperiment';
 export * from './sendPushNotificationActionData';
 export * from './sendSmsAction';
 export * from './sendSmsActionData';
@@ -1507,6 +1656,9 @@ export * from './sideImageSettings';
 export * from './signupCounter';
 export * from './signupCounterProperties';
 export * from './signupCounterStyles';
+export * from './simplePropertyMapping';
+export * from './simpleRelationshipMapping';
+export * from './simpleRelationshipMappingSource';
 export * from './sinceFlowStartDateFilter';
 export * from './skipToSuccess';
 export * from './smartSendTimeStrategy';
@@ -1518,6 +1670,14 @@ export * from './socialBlockV1';
 export * from './socialBlockV1SubblocksInner';
 export * from './socialIconSubBlock';
 export * from './socialSpacerSubBlock';
+export * from './sourceMappingCreateQueryResourceObject';
+export * from './sourceMappingCreateQueryResourceObjectAttributes';
+export * from './sourceMappingEnum';
+export * from './sourceMappingPartialUpdateQuery';
+export * from './sourceMappingPartialUpdateQueryResourceObject';
+export * from './sourceMappingResponseObjectResource';
+export * from './sourceMappingResponseObjectResourceAttributes';
+export * from './sourceMappingResponseObjectResourceAttributesPropertyMappingsInner';
 export * from './spacerBlockData';
 export * from './spacerBlockStyles';
 export * from './spacerBlockV0';
@@ -1772,6 +1932,7 @@ export type RequestFile = ReadStream;
 import { ABTestSendStrategy } from './aBTestSendStrategy';
 import { APIJobErrorPayload } from './aPIJobErrorPayload';
 import { APIMethodFilter } from './aPIMethodFilter';
+import { APISchemaProperty } from './aPISchemaProperty';
 import { AbTestAction } from './abTestAction';
 import { AbTestActionData } from './abTestActionData';
 import { AbTestActionDataCurrentExperiment } from './abTestActionDataCurrentExperiment';
@@ -1780,11 +1941,11 @@ import { AccountEnum } from './accountEnum';
 import { AccountResponseObjectResource } from './accountResponseObjectResource';
 import { AccountResponseObjectResourceAttributes } from './accountResponseObjectResourceAttributes';
 import { ActionOutputCondition } from './actionOutputCondition';
-import { ActionOutputConditionConditionGroup } from './actionOutputConditionConditionGroup';
 import { ActionOutputConditionFilter } from './actionOutputConditionFilter';
-import { ActionOutputConditionFilter2 } from './actionOutputConditionFilter2';
 import { ActionOutputSplitAction } from './actionOutputSplitAction';
 import { ActionOutputSplitActionData } from './actionOutputSplitActionData';
+import { ActionOutputSplitActionDataActionOutputFilter } from './actionOutputSplitActionDataActionOutputFilter';
+import { ActionOutputSplitActionDataActionOutputFilterConditionGroupsInner } from './actionOutputSplitActionDataActionOutputFilterConditionGroupsInner';
 import { AdditionalField } from './additionalField';
 import { AfterCloseTimeout } from './afterCloseTimeout';
 import { AfterCloseTimeoutProperties } from './afterCloseTimeoutProperties';
@@ -1944,6 +2105,8 @@ import { CampaignsEmailTrackingOptions } from './campaignsEmailTrackingOptions';
 import { CampaignsEmailTrackingOptionsCustomTrackingParamsInner } from './campaignsEmailTrackingOptionsCustomTrackingParamsInner';
 import { CampaignsSMSTrackingOptions } from './campaignsSMSTrackingOptions';
 import { CarrierDeactivationMethodFilter } from './carrierDeactivationMethodFilter';
+import { CartContent } from './cartContent';
+import { CartContentProperties } from './cartContentProperties';
 import { CartItemCount } from './cartItemCount';
 import { CartItemCountProperties } from './cartItemCountProperties';
 import { CartProduct } from './cartProduct';
@@ -2105,8 +2268,13 @@ import { ConditionalBranchActionDataProfileFilterConditionGroupsInner } from './
 import { ConditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner } from './conditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner';
 import { ConstantContactIntegrationFilter } from './constantContactIntegrationFilter';
 import { ConstantContactIntegrationMethodFilter } from './constantContactIntegrationMethodFilter';
+import { ConstantPropertyMapping } from './constantPropertyMapping';
+import { ConstantPropertyMappingValue } from './constantPropertyMappingValue';
 import { ContactInformation } from './contactInformation';
 import { ContentExperimentAction } from './contentExperimentAction';
+import { ContentExperimentActionData } from './contentExperimentActionData';
+import { ContentExperimentActionDataCurrentExperiment } from './contentExperimentActionDataCurrentExperiment';
+import { ContentExperimentActionDataMainAction } from './contentExperimentActionDataMainAction';
 import { ContentRepeatV0 } from './contentRepeatV0';
 import { ContentRepeatV1 } from './contentRepeatV1';
 import { ConversationEnum } from './conversationEnum';
@@ -2118,6 +2286,7 @@ import { ConversationMessageCreateQueryResourceObjectRelationshipsConversation }
 import { ConversationMessageCreateQueryResourceObjectRelationshipsConversationData } from './conversationMessageCreateQueryResourceObjectRelationshipsConversationData';
 import { ConversationMessageEnum } from './conversationMessageEnum';
 import { ConversationResponseObjectResource } from './conversationResponseObjectResource';
+import { ConversationResponseObjectResourceAttributes } from './conversationResponseObjectResourceAttributes';
 import { ConversationResponseObjectResourceRelationships } from './conversationResponseObjectResourceRelationships';
 import { ConversationResponseObjectResourceRelationshipsProfile } from './conversationResponseObjectResourceRelationshipsProfile';
 import { CountdownDelayAction } from './countdownDelayAction';
@@ -2171,6 +2340,8 @@ import { CouponUpdateQuery } from './couponUpdateQuery';
 import { CouponUpdateQueryResourceObject } from './couponUpdateQueryResourceObject';
 import { CouponUpdateQueryResourceObjectAttributes } from './couponUpdateQueryResourceObjectAttributes';
 import { CustomCss } from './customCss';
+import { CustomHTML } from './customHTML';
+import { CustomHTMLProperties } from './customHTMLProperties';
 import { CustomJavascript } from './customJavascript';
 import { CustomMetricCondition } from './customMetricCondition';
 import { CustomMetricConditionFilter } from './customMetricConditionFilter';
@@ -2188,8 +2359,9 @@ import { CustomMetricResponseObjectResourceAttributes } from './customMetricResp
 import { CustomMetricResponseObjectResourceRelationships } from './customMetricResponseObjectResourceRelationships';
 import { CustomMetricResponseObjectResourceRelationshipsMetrics } from './customMetricResponseObjectResourceRelationshipsMetrics';
 import { CustomMetricResponseObjectResourceRelationshipsMetricsDataInner } from './customMetricResponseObjectResourceRelationshipsMetricsDataInner';
+import { CustomObjectDateTrigger } from './customObjectDateTrigger';
 import { CustomObjectPropertyCondition } from './customObjectPropertyCondition';
-import { CustomObjectPropertyConditionFilter } from './customObjectPropertyConditionFilter';
+import { CustomObjectRelationshipSource } from './customObjectRelationshipSource';
 import { CustomObjectTriggerCondition } from './customObjectTriggerCondition';
 import { CustomObjectTriggerConditionFilter } from './customObjectTriggerConditionFilter';
 import { CustomSourceFilter } from './customSourceFilter';
@@ -2229,7 +2401,6 @@ import { DateProperties } from './dateProperties';
 import { DateStyles } from './dateStyles';
 import { Delay } from './delay';
 import { DelayProperties } from './delayProperties';
-import { DeleteTagGroupResponse } from './deleteTagGroupResponse';
 import { Device } from './device';
 import { DeviceMetadata } from './deviceMetadata';
 import { DeviceProperties } from './deviceProperties';
@@ -2263,6 +2434,9 @@ import { EmailSendOptions } from './emailSendOptions';
 import { EmailStyles } from './emailStyles';
 import { EmailSubscriptionParameters } from './emailSubscriptionParameters';
 import { EmailUnsubscriptionParameters } from './emailUnsubscriptionParameters';
+import { EmbeddedObjectSchemaResourceObject } from './embeddedObjectSchemaResourceObject';
+import { EmbeddedObjectSchemaResourceObjectAttributes } from './embeddedObjectSchemaResourceObjectAttributes';
+import { EmbeddedObjectSchemaResourceObjectAttributesSourceMapping } from './embeddedObjectSchemaResourceObjectAttributesSourceMapping';
 import { EncodedFormResponseObjectResource } from './encodedFormResponseObjectResource';
 import { EncodedFormResponseObjectResourceAttributes } from './encodedFormResponseObjectResourceAttributes';
 import { EqualsStringFilter } from './equalsStringFilter';
@@ -2324,9 +2498,6 @@ import { FlowDefinitionProfileFilterConditionGroupsInner } from './flowDefinitio
 import { FlowDefinitionProfileFilterConditionGroupsInnerConditionsInner } from './flowDefinitionProfileFilterConditionGroupsInnerConditionsInner';
 import { FlowDefinitionTriggersInner } from './flowDefinitionTriggersInner';
 import { FlowEmail } from './flowEmail';
-import { FlowEmailAdditionalFilters } from './flowEmailAdditionalFilters';
-import { FlowEmailAdditionalFiltersConditionGroupsInner } from './flowEmailAdditionalFiltersConditionGroupsInner';
-import { FlowEmailAdditionalFiltersConditionGroupsInnerConditionsInner } from './flowEmailAdditionalFiltersConditionGroupsInnerConditionsInner';
 import { FlowEnum } from './flowEnum';
 import { FlowInternalAlert } from './flowInternalAlert';
 import { FlowMessageEncodedResponseObjectResource } from './flowMessageEncodedResponseObjectResource';
@@ -2338,9 +2509,6 @@ import { FlowMessageEncodedResponseObjectResourceRelationshipsTemplate } from '.
 import { FlowMessageEncodedResponseObjectResourceRelationshipsTemplateData } from './flowMessageEncodedResponseObjectResourceRelationshipsTemplateData';
 import { FlowMessageEnum } from './flowMessageEnum';
 import { FlowPushNotification } from './flowPushNotification';
-import { FlowPushNotificationAdditionalFilters } from './flowPushNotificationAdditionalFilters';
-import { FlowPushNotificationAdditionalFiltersConditionGroupsInner } from './flowPushNotificationAdditionalFiltersConditionGroupsInner';
-import { FlowPushNotificationAdditionalFiltersConditionGroupsInnerConditionsInner } from './flowPushNotificationAdditionalFiltersConditionGroupsInnerConditionsInner';
 import { FlowPushNotificationBadgeOptions } from './flowPushNotificationBadgeOptions';
 import { FlowResponseObjectResource } from './flowResponseObjectResource';
 import { FlowResponseObjectResourceAttributes } from './flowResponseObjectResourceAttributes';
@@ -2354,9 +2522,6 @@ import { FlowSeriesRequestDTO } from './flowSeriesRequestDTO';
 import { FlowSeriesRequestDTOResourceObject } from './flowSeriesRequestDTOResourceObject';
 import { FlowSeriesRequestDTOResourceObjectAttributes } from './flowSeriesRequestDTOResourceObjectAttributes';
 import { FlowSms } from './flowSms';
-import { FlowSmsAdditionalFilters } from './flowSmsAdditionalFilters';
-import { FlowSmsAdditionalFiltersConditionGroupsInner } from './flowSmsAdditionalFiltersConditionGroupsInner';
-import { FlowSmsAdditionalFiltersConditionGroupsInnerConditionsInner } from './flowSmsAdditionalFiltersConditionGroupsInnerConditionsInner';
 import { FlowTrackingSettingDynamicParam } from './flowTrackingSettingDynamicParam';
 import { FlowTrackingSettingStaticParam } from './flowTrackingSettingStaticParam';
 import { FlowUpdateQuery } from './flowUpdateQuery';
@@ -2397,6 +2562,9 @@ import { FormVersionABTest } from './formVersionABTest';
 import { FormVersionEnum } from './formVersionEnum';
 import { FormVersionResponseObjectResource } from './formVersionResponseObjectResource';
 import { FormVersionResponseObjectResourceAttributes } from './formVersionResponseObjectResourceAttributes';
+import { FormVersionResponseObjectResourceRelationships } from './formVersionResponseObjectResourceRelationships';
+import { FormVersionResponseObjectResourceRelationshipsForm } from './formVersionResponseObjectResourceRelationshipsForm';
+import { FormVersionResponseObjectResourceRelationshipsFormData } from './formVersionResponseObjectResourceRelationshipsFormData';
 import { GetAccountResponse } from './getAccountResponse';
 import { GetAccountResponseCollection } from './getAccountResponseCollection';
 import { GetAccounts4XXResponse } from './getAccounts4XXResponse';
@@ -2455,6 +2623,7 @@ import { GetCatalogVariantResponseCollection } from './getCatalogVariantResponse
 import { GetCatalogVariantUpdateJobResponseCollectionCompoundDocument } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocument';
 import { GetCatalogVariantUpdateJobResponseCompoundDocument } from './getCatalogVariantUpdateJobResponseCompoundDocument';
 import { GetConversationResponse } from './getConversationResponse';
+import { GetConversationResponseCollection } from './getConversationResponseCollection';
 import { GetCouponCodeCouponRelationshipResponse } from './getCouponCodeCouponRelationshipResponse';
 import { GetCouponCodeCouponRelationshipResponseData } from './getCouponCodeCouponRelationshipResponseData';
 import { GetCouponCodeCreateJobResponseCollectionCompoundDocument } from './getCouponCodeCreateJobResponseCollectionCompoundDocument';
@@ -2474,6 +2643,7 @@ import { GetDataSourceResponse } from './getDataSourceResponse';
 import { GetDataSourceResponseCollection } from './getDataSourceResponseCollection';
 import { GetEncodedFormResponse } from './getEncodedFormResponse';
 import { GetEventMetricRelationshipResponse } from './getEventMetricRelationshipResponse';
+import { GetEventMetricRelationshipResponseData } from './getEventMetricRelationshipResponseData';
 import { GetEventProfileRelationshipResponse } from './getEventProfileRelationshipResponse';
 import { GetEventProfileRelationshipResponseData } from './getEventProfileRelationshipResponseData';
 import { GetEventResponseCollectionCompoundDocument } from './getEventResponseCollectionCompoundDocument';
@@ -2485,8 +2655,10 @@ import { GetFlowActionEncodedResponseCompoundDocument } from './getFlowActionEnc
 import {  } from './getFlowActionEncodedResponseCompoundDocumentIncludedInner';
 import { GetFlowActionFlowMessageRelationshipResponseCollection } from './getFlowActionFlowMessageRelationshipResponseCollection';
 import { GetFlowActionFlowRelationshipResponse } from './getFlowActionFlowRelationshipResponse';
+import { GetFlowActionFlowRelationshipResponseData } from './getFlowActionFlowRelationshipResponseData';
 import { GetFlowFlowActionRelationshipListResponseCollection } from './getFlowFlowActionRelationshipListResponseCollection';
 import { GetFlowMessageActionRelationshipResponse } from './getFlowMessageActionRelationshipResponse';
+import { GetFlowMessageActionRelationshipResponseData } from './getFlowMessageActionRelationshipResponseData';
 import { GetFlowMessageEncodedResponseCollection } from './getFlowMessageEncodedResponseCollection';
 import { GetFlowMessageEncodedResponseCompoundDocument } from './getFlowMessageEncodedResponseCompoundDocument';
 import {  } from './getFlowMessageEncodedResponseCompoundDocumentIncludedInner';
@@ -2502,18 +2674,21 @@ import { GetFormResponse } from './getFormResponse';
 import { GetFormResponseCollection } from './getFormResponseCollection';
 import { GetFormVersionFormRelationshipResponse } from './getFormVersionFormRelationshipResponse';
 import { GetFormVersionFormRelationshipResponseData } from './getFormVersionFormRelationshipResponseData';
-import { GetFormVersionResponse } from './getFormVersionResponse';
 import { GetFormVersionResponseCollection } from './getFormVersionResponseCollection';
+import { GetFormVersionResponseCompoundDocument } from './getFormVersionResponseCompoundDocument';
 import { GetFormVersionsRelationshipsResponseCollection } from './getFormVersionsRelationshipsResponseCollection';
 import { GetFormVersionsRelationshipsResponseCollectionDataInner } from './getFormVersionsRelationshipsResponseCollectionDataInner';
 import { GetImageResponse } from './getImageResponse';
 import { GetImageResponseCollection } from './getImageResponseCollection';
 import { GetImportErrorResponseCollection } from './getImportErrorResponseCollection';
+import { GetIngestionLogResponseCollectionCompoundDocument } from './getIngestionLogResponseCollectionCompoundDocument';
+import {  } from './getIngestionLogResponseCollectionCompoundDocumentIncludedInner';
 import { GetListFlowTriggersRelationshipsResponseCollection } from './getListFlowTriggersRelationshipsResponseCollection';
 import { GetListListResponseCollectionCompoundDocument } from './getListListResponseCollectionCompoundDocument';
 import {  } from './getListListResponseCollectionCompoundDocumentIncludedInner';
 import { GetListMemberResponseCollection } from './getListMemberResponseCollection';
 import { GetListProfilesRelationshipsResponseCollection } from './getListProfilesRelationshipsResponseCollection';
+import { GetListProfilesRelationshipsResponseCollectionDataInner } from './getListProfilesRelationshipsResponseCollectionDataInner';
 import { GetListResponseCollection } from './getListResponseCollection';
 import { GetListRetrieveResponseCompoundDocument } from './getListRetrieveResponseCompoundDocument';
 import { GetListTagsRelationshipsResponseCollection } from './getListTagsRelationshipsResponseCollection';
@@ -2534,10 +2709,40 @@ import { GetMetricResponse } from './getMetricResponse';
 import { GetMetricResponseCollection } from './getMetricResponseCollection';
 import { GetMetricResponseCollectionCompoundDocument } from './getMetricResponseCollectionCompoundDocument';
 import { GetMetricResponseCompoundDocument } from './getMetricResponseCompoundDocument';
+import { GetObjectRecordResponse } from './getObjectRecordResponse';
+import { GetObjectRecordResponseCollection } from './getObjectRecordResponseCollection';
+import { GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollection } from './getObjectSchemaProfileObjectSchemasRelationshipsResponseCollection';
+import { GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollectionDataInner } from './getObjectSchemaProfileObjectSchemasRelationshipsResponseCollectionDataInner';
+import { GetObjectSchemaResponse } from './getObjectSchemaResponse';
+import { GetObjectSchemaResponseCollection } from './getObjectSchemaResponseCollection';
+import { GetObjectSchemaResponseCompoundDocument } from './getObjectSchemaResponseCompoundDocument';
+import {  } from './getObjectSchemaResponseCompoundDocumentIncludedInner';
+import { GetObjectSchemaSchemasRelationshipsResponseCollection } from './getObjectSchemaSchemasRelationshipsResponseCollection';
+import { GetObjectSchemaSchemasRelationshipsResponseCollectionDataInner } from './getObjectSchemaSchemasRelationshipsResponseCollectionDataInner';
+import { GetObjectSchemaSourceMappingRelationshipResponse } from './getObjectSchemaSourceMappingRelationshipResponse';
+import { GetObjectSchemaSourceMappingRelationshipResponseData } from './getObjectSchemaSourceMappingRelationshipResponseData';
+import { GetObjectTypeCurrentSchemaRelationshipResponse } from './getObjectTypeCurrentSchemaRelationshipResponse';
+import { GetObjectTypeCurrentSchemaRelationshipResponseData } from './getObjectTypeCurrentSchemaRelationshipResponseData';
+import { GetObjectTypeDraftSchemaRelationshipResponse } from './getObjectTypeDraftSchemaRelationshipResponse';
+import { GetObjectTypeIngestionLogsRelationshipsResponseCollection } from './getObjectTypeIngestionLogsRelationshipsResponseCollection';
+import { GetObjectTypeIngestionLogsRelationshipsResponseCollectionDataInner } from './getObjectTypeIngestionLogsRelationshipsResponseCollectionDataInner';
+import { GetObjectTypeProfileObjectTypesRelationshipsResponseCollection } from './getObjectTypeProfileObjectTypesRelationshipsResponseCollection';
+import { GetObjectTypeProfileObjectTypesRelationshipsResponseCollectionDataInner } from './getObjectTypeProfileObjectTypesRelationshipsResponseCollectionDataInner';
+import { GetObjectTypeRecordsRelationshipsResponseCollection } from './getObjectTypeRecordsRelationshipsResponseCollection';
+import { GetObjectTypeRecordsRelationshipsResponseCollectionDataInner } from './getObjectTypeRecordsRelationshipsResponseCollectionDataInner';
+import { GetObjectTypeResponseCollectionCompoundDocument } from './getObjectTypeResponseCollectionCompoundDocument';
+import { GetObjectTypeResponseCompoundDocument } from './getObjectTypeResponseCompoundDocument';
+import {  } from './getObjectTypeResponseCompoundDocumentIncludedInner';
+import { GetObjectTypeSchemaVersionsRelationshipsResponseCollection } from './getObjectTypeSchemaVersionsRelationshipsResponseCollection';
+import { GetObjectTypeSchemaVersionsRelationshipsResponseCollectionDataInner } from './getObjectTypeSchemaVersionsRelationshipsResponseCollectionDataInner';
+import { GetObjectTypeTypesRelationshipsResponseCollection } from './getObjectTypeTypesRelationshipsResponseCollection';
+import { GetObjectTypeTypesRelationshipsResponseCollectionDataInner } from './getObjectTypeTypesRelationshipsResponseCollectionDataInner';
 import { GetProfileBulkImportJobListsRelationshipsResponseCollection } from './getProfileBulkImportJobListsRelationshipsResponseCollection';
 import { GetProfileBulkImportJobProfilesRelationshipsResponseCollection } from './getProfileBulkImportJobProfilesRelationshipsResponseCollection';
 import { GetProfileConversationRelationshipResponse } from './getProfileConversationRelationshipResponse';
 import { GetProfileConversationRelationshipResponseData } from './getProfileConversationRelationshipResponseData';
+import { GetProfileConversationsRelationshipsResponseCollection } from './getProfileConversationsRelationshipsResponseCollection';
+import { GetProfileConversationsRelationshipsResponseCollectionDataInner } from './getProfileConversationsRelationshipsResponseCollectionDataInner';
 import { GetProfileImportJobResponseCollectionCompoundDocument } from './getProfileImportJobResponseCollectionCompoundDocument';
 import { GetProfileImportJobResponseCompoundDocument } from './getProfileImportJobResponseCompoundDocument';
 import { GetProfileListsRelationshipsResponseCollection } from './getProfileListsRelationshipsResponseCollection';
@@ -2546,10 +2751,10 @@ import { GetProfilePushTokensRelationshipsResponseCollection } from './getProfil
 import { GetProfilePushTokensRelationshipsResponseCollectionDataInner } from './getProfilePushTokensRelationshipsResponseCollectionDataInner';
 import { GetProfileResponse } from './getProfileResponse';
 import { GetProfileResponseCollection } from './getProfileResponseCollection';
-import { GetProfileResponseCollectionCompoundDocument } from './getProfileResponseCollectionCompoundDocument';
-import {  } from './getProfileResponseCollectionCompoundDocumentIncludedInner';
-import { GetProfileResponseCompoundDocument } from './getProfileResponseCompoundDocument';
-import {  } from './getProfileResponseCompoundDocumentIncludedInner';
+import { GetProfileResponsePluralConversationsCollectionCompoundDocument } from './getProfileResponsePluralConversationsCollectionCompoundDocument';
+import {  } from './getProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInner';
+import { GetProfileResponsePluralConversationsCompoundDocument } from './getProfileResponsePluralConversationsCompoundDocument';
+import {  } from './getProfileResponsePluralConversationsCompoundDocumentIncludedInner';
 import { GetProfileSegmentsRelationshipsResponseCollection } from './getProfileSegmentsRelationshipsResponseCollection';
 import { GetPushTokenProfileRelationshipResponse } from './getPushTokenProfileRelationshipResponse';
 import { GetPushTokenResponseCollection } from './getPushTokenResponseCollection';
@@ -2564,6 +2769,7 @@ import { GetSegmentProfilesRelationshipsResponseCollection } from './getSegmentP
 import { GetSegmentResponseCollection } from './getSegmentResponseCollection';
 import { GetSegmentRetrieveResponseCompoundDocument } from './getSegmentRetrieveResponseCompoundDocument';
 import { GetSegmentTagsRelationshipsResponseCollection } from './getSegmentTagsRelationshipsResponseCollection';
+import { GetSourceMappingResponse } from './getSourceMappingResponse';
 import { GetTagCampaignRelationshipsResponseCollection } from './getTagCampaignRelationshipsResponseCollection';
 import { GetTagCampaignRelationshipsResponseCollectionDataInner } from './getTagCampaignRelationshipsResponseCollectionDataInner';
 import { GetTagFlowRelationshipsResponseCollection } from './getTagFlowRelationshipsResponseCollection';
@@ -2630,6 +2836,8 @@ import { HorizontalRuleBlockData } from './horizontalRuleBlockData';
 import { HorizontalRuleBlockStyles } from './horizontalRuleBlockStyles';
 import { HorizontalRuleBlockV0 } from './horizontalRuleBlockV0';
 import { HorizontalRuleBlockV1 } from './horizontalRuleBlockV1';
+import { IafDeeplinkToScreen } from './iafDeeplinkToScreen';
+import { IafDeeplinkToScreenProperties } from './iafDeeplinkToScreenProperties';
 import { IdentifiedProfiles } from './identifiedProfiles';
 import { Image } from './image';
 import { ImageAction } from './imageAction';
@@ -2664,6 +2872,14 @@ import { InStringArrayFilter } from './inStringArrayFilter';
 import { InTheLastBaseRelativeDateFilter } from './inTheLastBaseRelativeDateFilter';
 import { InboundMessageMethodFilter } from './inboundMessageMethodFilter';
 import { Increment } from './increment';
+import { IngestionLogErrorDetail } from './ingestionLogErrorDetail';
+import { IngestionLogResponseObjectResource } from './ingestionLogResponseObjectResource';
+import { IngestionLogResponseObjectResourceAttributes } from './ingestionLogResponseObjectResourceAttributes';
+import { IngestionLogResponseObjectResourceRelationships } from './ingestionLogResponseObjectResourceRelationships';
+import { IngestionLogResponseObjectResourceRelationshipsObjectRecord } from './ingestionLogResponseObjectResourceRelationshipsObjectRecord';
+import { IngestionLogResponseObjectResourceRelationshipsObjectRecordData } from './ingestionLogResponseObjectResourceRelationshipsObjectRecordData';
+import { IngestionLogResponseObjectResourceRelationshipsObjectType } from './ingestionLogResponseObjectResourceRelationshipsObjectType';
+import { IngestionLogResponseObjectResourceRelationshipsObjectTypeData } from './ingestionLogResponseObjectResourceRelationshipsObjectTypeData';
 import { InputStyles } from './inputStyles';
 import { IntegerFilter } from './integerFilter';
 import { InternalScheduledReportBuilderReportData } from './internalScheduledReportBuilderReportData';
@@ -2674,6 +2890,10 @@ import { InternalServiceActionDataServiceConfiguration } from './internalService
 import { InternalTrackEventData } from './internalTrackEventData';
 import { InternalUnknownServiceData } from './internalUnknownServiceData';
 import { InvalidEmailDateFilter } from './invalidEmailDateFilter';
+import { IpAllowlistResourceName } from './ipAllowlistResourceName';
+import { IpAllowlistResponse } from './ipAllowlistResponse';
+import { IpAllowlistResponseData } from './ipAllowlistResponseData';
+import { IpAllowlistResponseDataWrapper } from './ipAllowlistResponseDataWrapper';
 import { IsSetExistenceFilter } from './isSetExistenceFilter';
 import { LessThanPositiveNumericFilter } from './lessThanPositiveNumericFilter';
 import { Link } from './link';
@@ -2717,10 +2937,9 @@ import { Location } from './location';
 import { LocationProperties } from './locationProperties';
 import { LocationPropertiesAllowListInner } from './locationPropertiesAllowListInner';
 import { LowInventoryCondition } from './lowInventoryCondition';
-import { LowInventoryConditionConditionGroup } from './lowInventoryConditionConditionGroup';
-import { LowInventoryConditionFilter } from './lowInventoryConditionFilter';
-import { LowInventoryConditionFilter2 } from './lowInventoryConditionFilter2';
 import { LowInventoryTrigger } from './lowInventoryTrigger';
+import { LowInventoryTriggerTriggerFilter } from './lowInventoryTriggerTriggerFilter';
+import { LowInventoryTriggerTriggerFilterConditionGroupsInner } from './lowInventoryTriggerTriggerFilterConditionGroupsInner';
 import { MailboxProviderMethodFilter } from './mailboxProviderMethodFilter';
 import { ManualAddManualMethodFilter } from './manualAddManualMethodFilter';
 import { ManualImportManualMethodFilter } from './manualImportManualMethodFilter';
@@ -2754,9 +2973,7 @@ import { MetricCreateQueryResourceObject } from './metricCreateQueryResourceObje
 import { MetricCreateQueryResourceObjectAttributes } from './metricCreateQueryResourceObjectAttributes';
 import { MetricEnum } from './metricEnum';
 import { MetricPropertyCondition } from './metricPropertyCondition';
-import { MetricPropertyConditionConditionGroup } from './metricPropertyConditionConditionGroup';
 import { MetricPropertyConditionFilter } from './metricPropertyConditionFilter';
-import { MetricPropertyConditionFilter2 } from './metricPropertyConditionFilter2';
 import { MetricPropertyEnum } from './metricPropertyEnum';
 import { MetricPropertyResponseObjectResourceAttributes } from './metricPropertyResponseObjectResourceAttributes';
 import { MetricPropertyResponseObjectResourceExtended } from './metricPropertyResponseObjectResourceExtended';
@@ -2771,6 +2988,8 @@ import { MetricResponseObjectResourceRelationships } from './metricResponseObjec
 import { MetricResponseObjectResourceRelationshipsFlowTriggers } from './metricResponseObjectResourceRelationshipsFlowTriggers';
 import { MetricResponseObjectResourceRelationshipsFlowTriggersDataInner } from './metricResponseObjectResourceRelationshipsFlowTriggersDataInner';
 import { MetricTrigger } from './metricTrigger';
+import { MetricTriggerTriggerFilter } from './metricTriggerTriggerFilter';
+import { MetricTriggerTriggerFilterConditionGroupsInner } from './metricTriggerTriggerFilterConditionGroupsInner';
 import { MobileOverlay } from './mobileOverlay';
 import { MobilePushBadge } from './mobilePushBadge';
 import { MobilePushBadgeBadgeOptions } from './mobilePushBadgeBadgeOptions';
@@ -2820,7 +3039,69 @@ import { NonLocalStaticSend } from './nonLocalStaticSend';
 import { NumericOperatorNumericFilter } from './numericOperatorNumericFilter';
 import { NumericOperatorNumericFilterValue } from './numericOperatorNumericFilterValue';
 import { NumericRangeFilter } from './numericRangeFilter';
+import { ObjectIngestionLogEnum } from './objectIngestionLogEnum';
 import { ObjectLinks } from './objectLinks';
+import { ObjectRecordBulkDeleteJobEnum } from './objectRecordBulkDeleteJobEnum';
+import { ObjectRecordDeleteJobCreateQuery } from './objectRecordDeleteJobCreateQuery';
+import { ObjectRecordDeleteJobCreateQueryResourceObject } from './objectRecordDeleteJobCreateQueryResourceObject';
+import { ObjectRecordDeleteJobCreateQueryResourceObjectRelationships } from './objectRecordDeleteJobCreateQueryResourceObjectRelationships';
+import { ObjectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecords } from './objectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecords';
+import { ObjectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecordsDataInner } from './objectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecordsDataInner';
+import { ObjectRecordEnum } from './objectRecordEnum';
+import { ObjectRecordResponseObjectResource } from './objectRecordResponseObjectResource';
+import { ObjectRecordResponseObjectResourceAttributes } from './objectRecordResponseObjectResourceAttributes';
+import { ObjectSchemaCreateQuery } from './objectSchemaCreateQuery';
+import { ObjectSchemaCreateQueryResourceObject } from './objectSchemaCreateQueryResourceObject';
+import { ObjectSchemaCreateQueryResourceObjectAttributes } from './objectSchemaCreateQueryResourceObjectAttributes';
+import { ObjectSchemaCreateQueryResourceObjectRelationships } from './objectSchemaCreateQueryResourceObjectRelationships';
+import { ObjectSchemaCreateQueryResourceObjectRelationshipsObjectType } from './objectSchemaCreateQueryResourceObjectRelationshipsObjectType';
+import { ObjectSchemaCreateQueryResourceObjectRelationshipsObjectTypeData } from './objectSchemaCreateQueryResourceObjectRelationshipsObjectTypeData';
+import { ObjectSchemaEnum } from './objectSchemaEnum';
+import { ObjectSchemaPartialUpdateQuery } from './objectSchemaPartialUpdateQuery';
+import { ObjectSchemaPartialUpdateQueryResourceObject } from './objectSchemaPartialUpdateQueryResourceObject';
+import { ObjectSchemaPartialUpdateQueryResourceObjectAttributes } from './objectSchemaPartialUpdateQueryResourceObjectAttributes';
+import { ObjectSchemaRelationshipCreateMeta } from './objectSchemaRelationshipCreateMeta';
+import { ObjectSchemaRelationshipCreateQuery } from './objectSchemaRelationshipCreateQuery';
+import { ObjectSchemaRelationshipCreateQueryDataInner } from './objectSchemaRelationshipCreateQueryDataInner';
+import { ObjectSchemaRelationshipDeleteMeta } from './objectSchemaRelationshipDeleteMeta';
+import { ObjectSchemaRelationshipDeleteQuery } from './objectSchemaRelationshipDeleteQuery';
+import { ObjectSchemaRelationshipDeleteQueryDataInner } from './objectSchemaRelationshipDeleteQueryDataInner';
+import { ObjectSchemaRelationshipMeta } from './objectSchemaRelationshipMeta';
+import { ObjectSchemaRelationshipPartialUpdateQuery } from './objectSchemaRelationshipPartialUpdateQuery';
+import { ObjectSchemaRelationshipPartialUpdateQueryData } from './objectSchemaRelationshipPartialUpdateQueryData';
+import { ObjectSchemaRelationshipResponseObjectResource } from './objectSchemaRelationshipResponseObjectResource';
+import { ObjectSchemaRelationshipResponseObjectResourceAttributes } from './objectSchemaRelationshipResponseObjectResourceAttributes';
+import { ObjectSchemaRelationshipUpdateMeta } from './objectSchemaRelationshipUpdateMeta';
+import { ObjectSchemaResponseObjectResource } from './objectSchemaResponseObjectResource';
+import { ObjectSchemaResponseObjectResourceAttributes } from './objectSchemaResponseObjectResourceAttributes';
+import { ObjectSchemaResponseObjectResourceRelationships } from './objectSchemaResponseObjectResourceRelationships';
+import { ObjectSchemaResponseObjectResourceRelationshipsObjectSchemas } from './objectSchemaResponseObjectResourceRelationshipsObjectSchemas';
+import { ObjectSchemaResponseObjectResourceRelationshipsObjectSchemasDataInner } from './objectSchemaResponseObjectResourceRelationshipsObjectSchemasDataInner';
+import { ObjectSchemaResponseObjectResourceRelationshipsProfileObjectSchemas } from './objectSchemaResponseObjectResourceRelationshipsProfileObjectSchemas';
+import { ObjectSchemaResponseObjectResourceRelationshipsProfileObjectSchemasDataInner } from './objectSchemaResponseObjectResourceRelationshipsProfileObjectSchemasDataInner';
+import { ObjectSchemaResponseObjectResourceRelationshipsSourceMapping } from './objectSchemaResponseObjectResourceRelationshipsSourceMapping';
+import { ObjectSchemaResponseObjectResourceRelationshipsSourceMappingData } from './objectSchemaResponseObjectResourceRelationshipsSourceMappingData';
+import { ObjectTypeCreateQuery } from './objectTypeCreateQuery';
+import { ObjectTypeCreateQueryResourceObject } from './objectTypeCreateQueryResourceObject';
+import { ObjectTypeCreateQueryResourceObjectAttributes } from './objectTypeCreateQueryResourceObjectAttributes';
+import { ObjectTypeCreateQueryResourceObjectAttributesObjectSchema } from './objectTypeCreateQueryResourceObjectAttributesObjectSchema';
+import { ObjectTypeEnum } from './objectTypeEnum';
+import { ObjectTypeRelationshipMeta } from './objectTypeRelationshipMeta';
+import { ObjectTypeRelationshipResponseObjectResource } from './objectTypeRelationshipResponseObjectResource';
+import { ObjectTypeRelationshipResponseObjectResourceAttributes } from './objectTypeRelationshipResponseObjectResourceAttributes';
+import { ObjectTypeResponseObjectResource } from './objectTypeResponseObjectResource';
+import { ObjectTypeResponseObjectResourceAttributes } from './objectTypeResponseObjectResourceAttributes';
+import { ObjectTypeResponseObjectResourceRelationships } from './objectTypeResponseObjectResourceRelationships';
+import { ObjectTypeResponseObjectResourceRelationshipsCurrentSchema } from './objectTypeResponseObjectResourceRelationshipsCurrentSchema';
+import { ObjectTypeResponseObjectResourceRelationshipsCurrentSchemaData } from './objectTypeResponseObjectResourceRelationshipsCurrentSchemaData';
+import { ObjectTypeResponseObjectResourceRelationshipsDraftSchema } from './objectTypeResponseObjectResourceRelationshipsDraftSchema';
+import { ObjectTypeResponseObjectResourceRelationshipsDraftSchemaData } from './objectTypeResponseObjectResourceRelationshipsDraftSchemaData';
+import { ObjectTypeResponseObjectResourceRelationshipsObjectTypes } from './objectTypeResponseObjectResourceRelationshipsObjectTypes';
+import { ObjectTypeResponseObjectResourceRelationshipsObjectTypesDataInner } from './objectTypeResponseObjectResourceRelationshipsObjectTypesDataInner';
+import { ObjectTypeResponseObjectResourceRelationshipsProfileObjectTypes } from './objectTypeResponseObjectResourceRelationshipsProfileObjectTypes';
+import { ObjectTypeResponseObjectResourceRelationshipsProfileObjectTypesDataInner } from './objectTypeResponseObjectResourceRelationshipsProfileObjectTypesDataInner';
+import { ObjectTypeResponseObjectResourceRelationshipsSchemaVersions } from './objectTypeResponseObjectResourceRelationshipsSchemaVersions';
+import { ObjectTypeResponseObjectResourceRelationshipsSchemaVersionsDataInner } from './objectTypeResponseObjectResourceRelationshipsSchemaVersionsDataInner';
 import { OneClickUnsubscribeMethodFilter } from './oneClickUnsubscribeMethodFilter';
 import { OnlyRelatedLinks } from './onlyRelatedLinks';
 import { OnsiteProfileCreateQueryResourceObject } from './onsiteProfileCreateQueryResourceObject';
@@ -2828,6 +3109,9 @@ import { OnsiteProfileCreateQueryResourceObjectAttributes } from './onsiteProfil
 import { OnsiteProfileMeta } from './onsiteProfileMeta';
 import { OpenForm } from './openForm';
 import { OpenFormProperties } from './openFormProperties';
+import { OpenTrackingConsent } from './openTrackingConsent';
+import { OpenTrackingSubscriptionParameters } from './openTrackingSubscriptionParameters';
+import { OpenTrackingUnsubscriptionParameters } from './openTrackingUnsubscriptionParameters';
 import { OptInCode } from './optInCode';
 import { OptInCodeProperties } from './optInCodeProperties';
 import { OptInCodeStyles } from './optInCodeStyles';
@@ -2852,11 +3136,13 @@ import { PatchImageResponse } from './patchImageResponse';
 import { PatchListPartialUpdateResponse } from './patchListPartialUpdateResponse';
 import { PatchMappedMetricResponse } from './patchMappedMetricResponse';
 import { PatchMappedMetricResponseData } from './patchMappedMetricResponseData';
+import { PatchObjectSchemaResponse } from './patchObjectSchemaResponse';
 import { PatchProfileResponse } from './patchProfileResponse';
 import { PatchReviewResponseDTO } from './patchReviewResponseDTO';
 import { PatchReviewResponseDTOData } from './patchReviewResponseDTOData';
 import { PatchSegmentPartialUpdateResponse } from './patchSegmentPartialUpdateResponse';
-import { PatchTagGroupResponse } from './patchTagGroupResponse';
+import { PatchSourceMappingResponse } from './patchSourceMappingResponse';
+import { PatchSourceMappingResponseData } from './patchSourceMappingResponseData';
 import { PatchTemplateDndResponse } from './patchTemplateDndResponse';
 import { PatchTrackingSettingResponse } from './patchTrackingSettingResponse';
 import { PatchTrackingSettingResponseData } from './patchTrackingSettingResponseData';
@@ -2945,6 +3231,10 @@ import { PostListCreateResponseData } from './postListCreateResponseData';
 import { PostMetricAggregateResponse } from './postMetricAggregateResponse';
 import { PostMetricAggregateResponseData } from './postMetricAggregateResponseData';
 import { PostMetricAggregateResponseDataAttributes } from './postMetricAggregateResponseDataAttributes';
+import { PostObjectSchemaResponse } from './postObjectSchemaResponse';
+import { PostObjectSchemaResponseData } from './postObjectSchemaResponseData';
+import { PostObjectTypeResponse } from './postObjectTypeResponse';
+import { PostObjectTypeResponseData } from './postObjectTypeResponseData';
 import { PostProfileImportJobResponse } from './postProfileImportJobResponse';
 import { PostProfileImportJobResponseData } from './postProfileImportJobResponseData';
 import { PostProfileMergeResponse } from './postProfileMergeResponse';
@@ -2980,10 +3270,9 @@ import { PreferencePageFilter } from './preferencePageFilter';
 import { PreferencePageMethodFilter } from './preferencePageMethodFilter';
 import { PreviouslySubmitted } from './previouslySubmitted';
 import { PriceDropCondition } from './priceDropCondition';
-import { PriceDropConditionConditionGroup } from './priceDropConditionConditionGroup';
-import { PriceDropConditionFilter } from './priceDropConditionFilter';
-import { PriceDropConditionFilter2 } from './priceDropConditionFilter2';
 import { PriceDropTrigger } from './priceDropTrigger';
+import { PriceDropTriggerTriggerFilter } from './priceDropTriggerTriggerFilter';
+import { PriceDropTriggerTriggerFilterConditionGroupsInner } from './priceDropTriggerTriggerFilterConditionGroupsInner';
 import { ProductBlockData } from './productBlockData';
 import { ProductBlockDataProperties } from './productBlockDataProperties';
 import { ProductBlockStyles } from './productBlockStyles';
@@ -3003,8 +3292,8 @@ import { ProfileHasCustomObjectFilterFilter } from './profileHasCustomObjectFilt
 import { ProfileHasGroupMembershipCondition } from './profileHasGroupMembershipCondition';
 import { ProfileHasGroupMembershipConditionTimeframeFilter } from './profileHasGroupMembershipConditionTimeframeFilter';
 import { ProfileHasNotReceivedEmailMessageCondition } from './profileHasNotReceivedEmailMessageCondition';
+import { ProfileHasNotReceivedEmailMessageConditionTimeframeFilter } from './profileHasNotReceivedEmailMessageConditionTimeframeFilter';
 import { ProfileHasNotReceivedPushMessageCondition } from './profileHasNotReceivedPushMessageCondition';
-import { ProfileHasNotReceivedPushMessageConditionTimeframeFilter } from './profileHasNotReceivedPushMessageConditionTimeframeFilter';
 import { ProfileHasNotReceivedSmsMessageCondition } from './profileHasNotReceivedSmsMessageCondition';
 import { ProfileIdentifierDTOResourceObject } from './profileIdentifierDTOResourceObject';
 import { ProfileIdentifierDTOResourceObjectAttributes } from './profileIdentifierDTOResourceObjectAttributes';
@@ -3044,6 +3333,15 @@ import { ProfileMetricPropertyFilterFilter } from './profileMetricPropertyFilter
 import { ProfileModificationMethodFilter } from './profileModificationMethodFilter';
 import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCondition';
 import { ProfileNotInFlowCondition } from './profileNotInFlowCondition';
+import { ProfileObjectSchemaEnum } from './profileObjectSchemaEnum';
+import { ProfileObjectSchemaRelationshipCreateQuery } from './profileObjectSchemaRelationshipCreateQuery';
+import { ProfileObjectSchemaRelationshipCreateQueryDataInner } from './profileObjectSchemaRelationshipCreateQueryDataInner';
+import { ProfileObjectSchemaRelationshipDeleteQuery } from './profileObjectSchemaRelationshipDeleteQuery';
+import { ProfileObjectSchemaRelationshipDeleteQueryDataInner } from './profileObjectSchemaRelationshipDeleteQueryDataInner';
+import { ProfileObjectSchemaRelationshipPartialUpdateQuery } from './profileObjectSchemaRelationshipPartialUpdateQuery';
+import { ProfileObjectSchemaRelationshipPartialUpdateQueryData } from './profileObjectSchemaRelationshipPartialUpdateQueryData';
+import { ProfileObjectSchemaRelationshipResponseObjectResource } from './profileObjectSchemaRelationshipResponseObjectResource';
+import { ProfileObjectTypeEnum } from './profileObjectTypeEnum';
 import { ProfileOperationDelete } from './profileOperationDelete';
 import { ProfileOperationUpdateOrCreateBoolean } from './profileOperationUpdateOrCreateBoolean';
 import { ProfileOperationUpdateOrCreateDate } from './profileOperationUpdateOrCreateDate';
@@ -3071,6 +3369,7 @@ import { ProfilePropertyConditionFilter } from './profilePropertyConditionFilter
 import { ProfilePropertyDateTrigger } from './profilePropertyDateTrigger';
 import { ProfileRandomSampleCondition } from './profileRandomSampleCondition';
 import { ProfileRegionCondition } from './profileRegionCondition';
+import { ProfileRelationshipSource } from './profileRelationshipSource';
 import { ProfileResponseObjectResource } from './profileResponseObjectResource';
 import { ProfileResponseObjectResourceAttributes } from './profileResponseObjectResourceAttributes';
 import { ProfileResponseObjectResourceExtended } from './profileResponseObjectResourceExtended';
@@ -3082,6 +3381,11 @@ import { ProfileResponseObjectResourceRelationshipsPushTokens } from './profileR
 import { ProfileResponseObjectResourceRelationshipsPushTokensDataInner } from './profileResponseObjectResourceRelationshipsPushTokensDataInner';
 import { ProfileResponseObjectResourceRelationshipsSegments } from './profileResponseObjectResourceRelationshipsSegments';
 import { ProfileResponseObjectResourceRelationshipsSegmentsDataInner } from './profileResponseObjectResourceRelationshipsSegmentsDataInner';
+import { ProfileResponsePluralConversationsObjectResourceAttributes } from './profileResponsePluralConversationsObjectResourceAttributes';
+import { ProfileResponsePluralConversationsObjectResourceExtended } from './profileResponsePluralConversationsObjectResourceExtended';
+import { ProfileResponsePluralConversationsObjectResourceExtendedAttributes } from './profileResponsePluralConversationsObjectResourceExtendedAttributes';
+import { ProfileResponsePluralConversationsObjectResourceExtendedRelationships } from './profileResponsePluralConversationsObjectResourceExtendedRelationships';
+import { ProfileResponsePluralConversationsObjectResourceExtendedRelationshipsConversations } from './profileResponsePluralConversationsObjectResourceExtendedRelationshipsConversations';
 import { ProfileSubscriptionBulkCreateJobEnum } from './profileSubscriptionBulkCreateJobEnum';
 import { ProfileSubscriptionBulkDeleteJobEnum } from './profileSubscriptionBulkDeleteJobEnum';
 import { ProfileSubscriptionCreateQueryResourceObject } from './profileSubscriptionCreateQueryResourceObject';
@@ -3094,19 +3398,24 @@ import { ProfileSuppressionCreateQueryResourceObject } from './profileSuppressio
 import { ProfileSuppressionCreateQueryResourceObjectAttributes } from './profileSuppressionCreateQueryResourceObjectAttributes';
 import { ProfileSuppressionDeleteQueryResourceObject } from './profileSuppressionDeleteQueryResourceObject';
 import { ProfileSuppressionDeleteQueryResourceObjectAttributes } from './profileSuppressionDeleteQueryResourceObjectAttributes';
+import { ProfileTypeRelationshipResponseObjectResource } from './profileTypeRelationshipResponseObjectResource';
 import { ProfileUpsertQuery } from './profileUpsertQuery';
 import { ProfileUpsertQueryResourceObject } from './profileUpsertQueryResourceObject';
 import { ProfileUpsertQueryResourceObjectAttributes } from './profileUpsertQueryResourceObjectAttributes';
 import { PromotionalSMSSubscription } from './promotionalSMSSubscription';
 import { Property } from './property';
+import { PropertyFilter } from './propertyFilter';
 import { PropertyOption } from './propertyOption';
+import { PropertySource } from './propertySource';
 import { ProvidedLandlineMethodFilter } from './providedLandlineMethodFilter';
 import { ProvidedNoAgeMethodFilter } from './providedNoAgeMethodFilter';
 import { PushActionButton } from './pushActionButton';
+import { PushActionButtonDefinition } from './pushActionButtonDefinition';
 import { PushChannel } from './pushChannel';
 import { PushMarketing } from './pushMarketing';
 import { PushOnOpenApp } from './pushOnOpenApp';
 import { PushOnOpenDeepLink } from './pushOnOpenDeepLink';
+import { PushOnOpenWebUrl } from './pushOnOpenWebUrl';
 import { PushProfileUpsertQueryResourceObject } from './pushProfileUpsertQueryResourceObject';
 import { PushProfileUpsertQueryResourceObjectAttributes } from './pushProfileUpsertQueryResourceObjectAttributes';
 import { PushSendOptions } from './pushSendOptions';
@@ -3140,6 +3449,7 @@ import { RejectReasonOther } from './rejectReasonOther';
 import { RejectReasonPrivateInformation } from './rejectReasonPrivateInformation';
 import { RejectReasonProfanity } from './rejectReasonProfanity';
 import { RejectReasonUnrelated } from './rejectReasonUnrelated';
+import { RelatedIdPath } from './relatedIdPath';
 import { RelationshipLinks } from './relationshipLinks';
 import { RelativeAnniversaryDateFilter } from './relativeAnniversaryDateFilter';
 import { RelativeDateOperatorBaseRelativeDateFilter } from './relativeDateOperatorBaseRelativeDateFilter';
@@ -3195,6 +3505,7 @@ import { SMSContentSubObject } from './sMSContentSubObject';
 import { SMSDisclosure } from './sMSDisclosure';
 import { SMSDisclosureAccountDefault } from './sMSDisclosureAccountDefault';
 import { SMSDisclosureCustom } from './sMSDisclosureCustom';
+import { SMSDisclosureLinkTextStyle } from './sMSDisclosureLinkTextStyle';
 import { SMSDisclosureProperties } from './sMSDisclosureProperties';
 import { SMSDisclosurePropertiesContent } from './sMSDisclosurePropertiesContent';
 import { SMSDisclosureStyles } from './sMSDisclosureStyles';
@@ -3249,8 +3560,6 @@ import { SendEmailActionData } from './sendEmailActionData';
 import { SendInternalAlertAction } from './sendInternalAlertAction';
 import { SendInternalAlertActionData } from './sendInternalAlertActionData';
 import { SendPushNotificationAction } from './sendPushNotificationAction';
-import { SendPushNotificationActionContentExperimentActionData } from './sendPushNotificationActionContentExperimentActionData';
-import { SendPushNotificationActionCurrentExperiment } from './sendPushNotificationActionCurrentExperiment';
 import { SendPushNotificationActionData } from './sendPushNotificationActionData';
 import { SendSmsAction } from './sendSmsAction';
 import { SendSmsActionData } from './sendSmsActionData';
@@ -3275,6 +3584,9 @@ import { SideImageSettings } from './sideImageSettings';
 import { SignupCounter } from './signupCounter';
 import { SignupCounterProperties } from './signupCounterProperties';
 import { SignupCounterStyles } from './signupCounterStyles';
+import { SimplePropertyMapping } from './simplePropertyMapping';
+import { SimpleRelationshipMapping } from './simpleRelationshipMapping';
+import { SimpleRelationshipMappingSource } from './simpleRelationshipMappingSource';
 import { SinceFlowStartDateFilter } from './sinceFlowStartDateFilter';
 import { SkipToSuccess } from './skipToSuccess';
 import { SmartSendTimeStrategy } from './smartSendTimeStrategy';
@@ -3286,6 +3598,14 @@ import { SocialBlockV1 } from './socialBlockV1';
 import { SocialBlockV1SubblocksInner } from './socialBlockV1SubblocksInner';
 import { SocialIconSubBlock } from './socialIconSubBlock';
 import { SocialSpacerSubBlock } from './socialSpacerSubBlock';
+import { SourceMappingCreateQueryResourceObject } from './sourceMappingCreateQueryResourceObject';
+import { SourceMappingCreateQueryResourceObjectAttributes } from './sourceMappingCreateQueryResourceObjectAttributes';
+import { SourceMappingEnum } from './sourceMappingEnum';
+import { SourceMappingPartialUpdateQuery } from './sourceMappingPartialUpdateQuery';
+import { SourceMappingPartialUpdateQueryResourceObject } from './sourceMappingPartialUpdateQueryResourceObject';
+import { SourceMappingResponseObjectResource } from './sourceMappingResponseObjectResource';
+import { SourceMappingResponseObjectResourceAttributes } from './sourceMappingResponseObjectResourceAttributes';
+import { SourceMappingResponseObjectResourceAttributesPropertyMappingsInner } from './sourceMappingResponseObjectResourceAttributesPropertyMappingsInner';
 import { SpacerBlockData } from './spacerBlockData';
 import { SpacerBlockStyles } from './spacerBlockStyles';
 import { SpacerBlockV0 } from './spacerBlockV0';
@@ -3536,6 +3856,7 @@ import { WhatsappTransactionalChannel } from './whatsappTransactionalChannel';
 import {  } from './aBTestSendStrategy';
 import {  } from './aPIJobErrorPayload';
 import {  } from './aPIMethodFilter';
+import {  } from './aPISchemaProperty';
 import {  } from './abTestAction';
 import {  } from './abTestActionData';
 import {  } from './abTestActionDataCurrentExperiment';
@@ -3544,11 +3865,11 @@ import {  } from './accountEnum';
 import {  } from './accountResponseObjectResource';
 import {  } from './accountResponseObjectResourceAttributes';
 import {  } from './actionOutputCondition';
-import {  } from './actionOutputConditionConditionGroup';
 import {  } from './actionOutputConditionFilter';
-import {  } from './actionOutputConditionFilter2';
 import {  } from './actionOutputSplitAction';
 import {  } from './actionOutputSplitActionData';
+import {  } from './actionOutputSplitActionDataActionOutputFilter';
+import {  } from './actionOutputSplitActionDataActionOutputFilterConditionGroupsInner';
 import {  } from './additionalField';
 import {  } from './afterCloseTimeout';
 import {  } from './afterCloseTimeoutProperties';
@@ -3708,6 +4029,8 @@ import {  } from './campaignsEmailTrackingOptions';
 import {  } from './campaignsEmailTrackingOptionsCustomTrackingParamsInner';
 import {  } from './campaignsSMSTrackingOptions';
 import {  } from './carrierDeactivationMethodFilter';
+import {  } from './cartContent';
+import {  } from './cartContentProperties';
 import {  } from './cartItemCount';
 import {  } from './cartItemCountProperties';
 import {  } from './cartProduct';
@@ -3869,8 +4192,13 @@ import {  } from './conditionalBranchActionDataProfileFilterConditionGroupsInner
 import {  } from './conditionalBranchActionDataProfileFilterConditionGroupsInnerConditionsInner';
 import {  } from './constantContactIntegrationFilter';
 import {  } from './constantContactIntegrationMethodFilter';
+import {  } from './constantPropertyMapping';
+import {  } from './constantPropertyMappingValue';
 import {  } from './contactInformation';
 import {  } from './contentExperimentAction';
+import {  } from './contentExperimentActionData';
+import {  } from './contentExperimentActionDataCurrentExperiment';
+import {  } from './contentExperimentActionDataMainAction';
 import {  } from './contentRepeatV0';
 import {  } from './contentRepeatV1';
 import {  } from './conversationEnum';
@@ -3882,6 +4210,7 @@ import {  } from './conversationMessageCreateQueryResourceObjectRelationshipsCon
 import {  } from './conversationMessageCreateQueryResourceObjectRelationshipsConversationData';
 import {  } from './conversationMessageEnum';
 import {  } from './conversationResponseObjectResource';
+import {  } from './conversationResponseObjectResourceAttributes';
 import {  } from './conversationResponseObjectResourceRelationships';
 import {  } from './conversationResponseObjectResourceRelationshipsProfile';
 import {  } from './countdownDelayAction';
@@ -3935,6 +4264,8 @@ import {  } from './couponUpdateQuery';
 import {  } from './couponUpdateQueryResourceObject';
 import {  } from './couponUpdateQueryResourceObjectAttributes';
 import {  } from './customCss';
+import {  } from './customHTML';
+import {  } from './customHTMLProperties';
 import {  } from './customJavascript';
 import {  } from './customMetricCondition';
 import {  } from './customMetricConditionFilter';
@@ -3952,8 +4283,9 @@ import {  } from './customMetricResponseObjectResourceAttributes';
 import {  } from './customMetricResponseObjectResourceRelationships';
 import {  } from './customMetricResponseObjectResourceRelationshipsMetrics';
 import {  } from './customMetricResponseObjectResourceRelationshipsMetricsDataInner';
+import {  } from './customObjectDateTrigger';
 import {  } from './customObjectPropertyCondition';
-import {  } from './customObjectPropertyConditionFilter';
+import {  } from './customObjectRelationshipSource';
 import {  } from './customObjectTriggerCondition';
 import {  } from './customObjectTriggerConditionFilter';
 import {  } from './customSourceFilter';
@@ -3993,7 +4325,6 @@ import {  } from './dateProperties';
 import {  } from './dateStyles';
 import {  } from './delay';
 import {  } from './delayProperties';
-import {  } from './deleteTagGroupResponse';
 import {  } from './device';
 import {  } from './deviceMetadata';
 import {  } from './deviceProperties';
@@ -4027,6 +4358,9 @@ import {  } from './emailSendOptions';
 import {  } from './emailStyles';
 import {  } from './emailSubscriptionParameters';
 import {  } from './emailUnsubscriptionParameters';
+import {  } from './embeddedObjectSchemaResourceObject';
+import {  } from './embeddedObjectSchemaResourceObjectAttributes';
+import {  } from './embeddedObjectSchemaResourceObjectAttributesSourceMapping';
 import {  } from './encodedFormResponseObjectResource';
 import {  } from './encodedFormResponseObjectResourceAttributes';
 import {  } from './equalsStringFilter';
@@ -4088,9 +4422,6 @@ import {  } from './flowDefinitionProfileFilterConditionGroupsInner';
 import {  } from './flowDefinitionProfileFilterConditionGroupsInnerConditionsInner';
 import {  } from './flowDefinitionTriggersInner';
 import {  } from './flowEmail';
-import {  } from './flowEmailAdditionalFilters';
-import {  } from './flowEmailAdditionalFiltersConditionGroupsInner';
-import {  } from './flowEmailAdditionalFiltersConditionGroupsInnerConditionsInner';
 import {  } from './flowEnum';
 import {  } from './flowInternalAlert';
 import {  } from './flowMessageEncodedResponseObjectResource';
@@ -4102,9 +4433,6 @@ import {  } from './flowMessageEncodedResponseObjectResourceRelationshipsTemplat
 import {  } from './flowMessageEncodedResponseObjectResourceRelationshipsTemplateData';
 import {  } from './flowMessageEnum';
 import {  } from './flowPushNotification';
-import {  } from './flowPushNotificationAdditionalFilters';
-import {  } from './flowPushNotificationAdditionalFiltersConditionGroupsInner';
-import {  } from './flowPushNotificationAdditionalFiltersConditionGroupsInnerConditionsInner';
 import {  } from './flowPushNotificationBadgeOptions';
 import {  } from './flowResponseObjectResource';
 import {  } from './flowResponseObjectResourceAttributes';
@@ -4118,9 +4446,6 @@ import {  } from './flowSeriesRequestDTO';
 import {  } from './flowSeriesRequestDTOResourceObject';
 import {  } from './flowSeriesRequestDTOResourceObjectAttributes';
 import {  } from './flowSms';
-import {  } from './flowSmsAdditionalFilters';
-import {  } from './flowSmsAdditionalFiltersConditionGroupsInner';
-import {  } from './flowSmsAdditionalFiltersConditionGroupsInnerConditionsInner';
 import {  } from './flowTrackingSettingDynamicParam';
 import {  } from './flowTrackingSettingStaticParam';
 import {  } from './flowUpdateQuery';
@@ -4161,6 +4486,9 @@ import {  } from './formVersionABTest';
 import {  } from './formVersionEnum';
 import {  } from './formVersionResponseObjectResource';
 import {  } from './formVersionResponseObjectResourceAttributes';
+import {  } from './formVersionResponseObjectResourceRelationships';
+import {  } from './formVersionResponseObjectResourceRelationshipsForm';
+import {  } from './formVersionResponseObjectResourceRelationshipsFormData';
 import {  } from './getAccountResponse';
 import {  } from './getAccountResponseCollection';
 import {  } from './getAccounts4XXResponse';
@@ -4219,6 +4547,7 @@ import {  } from './getCatalogVariantResponseCollection';
 import {  } from './getCatalogVariantUpdateJobResponseCollectionCompoundDocument';
 import {  } from './getCatalogVariantUpdateJobResponseCompoundDocument';
 import {  } from './getConversationResponse';
+import {  } from './getConversationResponseCollection';
 import {  } from './getCouponCodeCouponRelationshipResponse';
 import {  } from './getCouponCodeCouponRelationshipResponseData';
 import {  } from './getCouponCodeCreateJobResponseCollectionCompoundDocument';
@@ -4238,6 +4567,7 @@ import {  } from './getDataSourceResponse';
 import {  } from './getDataSourceResponseCollection';
 import {  } from './getEncodedFormResponse';
 import {  } from './getEventMetricRelationshipResponse';
+import {  } from './getEventMetricRelationshipResponseData';
 import {  } from './getEventProfileRelationshipResponse';
 import {  } from './getEventProfileRelationshipResponseData';
 import {  } from './getEventResponseCollectionCompoundDocument';
@@ -4249,8 +4579,10 @@ import {  } from './getFlowActionEncodedResponseCompoundDocument';
 import { GetFlowActionEncodedResponseCompoundDocumentIncludedInnerHelper } from './getFlowActionEncodedResponseCompoundDocumentIncludedInner';
 import {  } from './getFlowActionFlowMessageRelationshipResponseCollection';
 import {  } from './getFlowActionFlowRelationshipResponse';
+import {  } from './getFlowActionFlowRelationshipResponseData';
 import {  } from './getFlowFlowActionRelationshipListResponseCollection';
 import {  } from './getFlowMessageActionRelationshipResponse';
+import {  } from './getFlowMessageActionRelationshipResponseData';
 import {  } from './getFlowMessageEncodedResponseCollection';
 import {  } from './getFlowMessageEncodedResponseCompoundDocument';
 import { GetFlowMessageEncodedResponseCompoundDocumentIncludedInnerHelper } from './getFlowMessageEncodedResponseCompoundDocumentIncludedInner';
@@ -4266,18 +4598,21 @@ import {  } from './getFormResponse';
 import {  } from './getFormResponseCollection';
 import {  } from './getFormVersionFormRelationshipResponse';
 import {  } from './getFormVersionFormRelationshipResponseData';
-import {  } from './getFormVersionResponse';
 import {  } from './getFormVersionResponseCollection';
+import {  } from './getFormVersionResponseCompoundDocument';
 import {  } from './getFormVersionsRelationshipsResponseCollection';
 import {  } from './getFormVersionsRelationshipsResponseCollectionDataInner';
 import {  } from './getImageResponse';
 import {  } from './getImageResponseCollection';
 import {  } from './getImportErrorResponseCollection';
+import {  } from './getIngestionLogResponseCollectionCompoundDocument';
+import { GetIngestionLogResponseCollectionCompoundDocumentIncludedInnerHelper } from './getIngestionLogResponseCollectionCompoundDocumentIncludedInner';
 import {  } from './getListFlowTriggersRelationshipsResponseCollection';
 import {  } from './getListListResponseCollectionCompoundDocument';
 import { GetListListResponseCollectionCompoundDocumentIncludedInnerHelper } from './getListListResponseCollectionCompoundDocumentIncludedInner';
 import {  } from './getListMemberResponseCollection';
 import {  } from './getListProfilesRelationshipsResponseCollection';
+import {  } from './getListProfilesRelationshipsResponseCollectionDataInner';
 import {  } from './getListResponseCollection';
 import {  } from './getListRetrieveResponseCompoundDocument';
 import {  } from './getListTagsRelationshipsResponseCollection';
@@ -4298,10 +4633,40 @@ import {  } from './getMetricResponse';
 import {  } from './getMetricResponseCollection';
 import {  } from './getMetricResponseCollectionCompoundDocument';
 import {  } from './getMetricResponseCompoundDocument';
+import {  } from './getObjectRecordResponse';
+import {  } from './getObjectRecordResponseCollection';
+import {  } from './getObjectSchemaProfileObjectSchemasRelationshipsResponseCollection';
+import {  } from './getObjectSchemaProfileObjectSchemasRelationshipsResponseCollectionDataInner';
+import {  } from './getObjectSchemaResponse';
+import {  } from './getObjectSchemaResponseCollection';
+import {  } from './getObjectSchemaResponseCompoundDocument';
+import { GetObjectSchemaResponseCompoundDocumentIncludedInnerHelper } from './getObjectSchemaResponseCompoundDocumentIncludedInner';
+import {  } from './getObjectSchemaSchemasRelationshipsResponseCollection';
+import {  } from './getObjectSchemaSchemasRelationshipsResponseCollectionDataInner';
+import {  } from './getObjectSchemaSourceMappingRelationshipResponse';
+import {  } from './getObjectSchemaSourceMappingRelationshipResponseData';
+import {  } from './getObjectTypeCurrentSchemaRelationshipResponse';
+import {  } from './getObjectTypeCurrentSchemaRelationshipResponseData';
+import {  } from './getObjectTypeDraftSchemaRelationshipResponse';
+import {  } from './getObjectTypeIngestionLogsRelationshipsResponseCollection';
+import {  } from './getObjectTypeIngestionLogsRelationshipsResponseCollectionDataInner';
+import {  } from './getObjectTypeProfileObjectTypesRelationshipsResponseCollection';
+import {  } from './getObjectTypeProfileObjectTypesRelationshipsResponseCollectionDataInner';
+import {  } from './getObjectTypeRecordsRelationshipsResponseCollection';
+import {  } from './getObjectTypeRecordsRelationshipsResponseCollectionDataInner';
+import {  } from './getObjectTypeResponseCollectionCompoundDocument';
+import {  } from './getObjectTypeResponseCompoundDocument';
+import { GetObjectTypeResponseCompoundDocumentIncludedInnerHelper } from './getObjectTypeResponseCompoundDocumentIncludedInner';
+import {  } from './getObjectTypeSchemaVersionsRelationshipsResponseCollection';
+import {  } from './getObjectTypeSchemaVersionsRelationshipsResponseCollectionDataInner';
+import {  } from './getObjectTypeTypesRelationshipsResponseCollection';
+import {  } from './getObjectTypeTypesRelationshipsResponseCollectionDataInner';
 import {  } from './getProfileBulkImportJobListsRelationshipsResponseCollection';
 import {  } from './getProfileBulkImportJobProfilesRelationshipsResponseCollection';
 import {  } from './getProfileConversationRelationshipResponse';
 import {  } from './getProfileConversationRelationshipResponseData';
+import {  } from './getProfileConversationsRelationshipsResponseCollection';
+import {  } from './getProfileConversationsRelationshipsResponseCollectionDataInner';
 import {  } from './getProfileImportJobResponseCollectionCompoundDocument';
 import {  } from './getProfileImportJobResponseCompoundDocument';
 import {  } from './getProfileListsRelationshipsResponseCollection';
@@ -4310,10 +4675,10 @@ import {  } from './getProfilePushTokensRelationshipsResponseCollection';
 import {  } from './getProfilePushTokensRelationshipsResponseCollectionDataInner';
 import {  } from './getProfileResponse';
 import {  } from './getProfileResponseCollection';
-import {  } from './getProfileResponseCollectionCompoundDocument';
-import { GetProfileResponseCollectionCompoundDocumentIncludedInnerHelper } from './getProfileResponseCollectionCompoundDocumentIncludedInner';
-import {  } from './getProfileResponseCompoundDocument';
-import { GetProfileResponseCompoundDocumentIncludedInnerHelper } from './getProfileResponseCompoundDocumentIncludedInner';
+import {  } from './getProfileResponsePluralConversationsCollectionCompoundDocument';
+import { GetProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInnerHelper } from './getProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInner';
+import {  } from './getProfileResponsePluralConversationsCompoundDocument';
+import { GetProfileResponsePluralConversationsCompoundDocumentIncludedInnerHelper } from './getProfileResponsePluralConversationsCompoundDocumentIncludedInner';
 import {  } from './getProfileSegmentsRelationshipsResponseCollection';
 import {  } from './getPushTokenProfileRelationshipResponse';
 import {  } from './getPushTokenResponseCollection';
@@ -4328,6 +4693,7 @@ import {  } from './getSegmentProfilesRelationshipsResponseCollection';
 import {  } from './getSegmentResponseCollection';
 import {  } from './getSegmentRetrieveResponseCompoundDocument';
 import {  } from './getSegmentTagsRelationshipsResponseCollection';
+import {  } from './getSourceMappingResponse';
 import {  } from './getTagCampaignRelationshipsResponseCollection';
 import {  } from './getTagCampaignRelationshipsResponseCollectionDataInner';
 import {  } from './getTagFlowRelationshipsResponseCollection';
@@ -4394,6 +4760,8 @@ import {  } from './horizontalRuleBlockData';
 import {  } from './horizontalRuleBlockStyles';
 import {  } from './horizontalRuleBlockV0';
 import {  } from './horizontalRuleBlockV1';
+import {  } from './iafDeeplinkToScreen';
+import {  } from './iafDeeplinkToScreenProperties';
 import {  } from './identifiedProfiles';
 import {  } from './image';
 import {  } from './imageAction';
@@ -4428,6 +4796,14 @@ import {  } from './inStringArrayFilter';
 import {  } from './inTheLastBaseRelativeDateFilter';
 import {  } from './inboundMessageMethodFilter';
 import {  } from './increment';
+import {  } from './ingestionLogErrorDetail';
+import {  } from './ingestionLogResponseObjectResource';
+import {  } from './ingestionLogResponseObjectResourceAttributes';
+import {  } from './ingestionLogResponseObjectResourceRelationships';
+import {  } from './ingestionLogResponseObjectResourceRelationshipsObjectRecord';
+import {  } from './ingestionLogResponseObjectResourceRelationshipsObjectRecordData';
+import {  } from './ingestionLogResponseObjectResourceRelationshipsObjectType';
+import {  } from './ingestionLogResponseObjectResourceRelationshipsObjectTypeData';
 import {  } from './inputStyles';
 import {  } from './integerFilter';
 import {  } from './internalScheduledReportBuilderReportData';
@@ -4438,6 +4814,10 @@ import {  } from './internalServiceActionDataServiceConfiguration';
 import {  } from './internalTrackEventData';
 import {  } from './internalUnknownServiceData';
 import {  } from './invalidEmailDateFilter';
+import {  } from './ipAllowlistResourceName';
+import {  } from './ipAllowlistResponse';
+import {  } from './ipAllowlistResponseData';
+import {  } from './ipAllowlistResponseDataWrapper';
 import {  } from './isSetExistenceFilter';
 import {  } from './lessThanPositiveNumericFilter';
 import {  } from './link';
@@ -4481,10 +4861,9 @@ import {  } from './location';
 import {  } from './locationProperties';
 import {  } from './locationPropertiesAllowListInner';
 import {  } from './lowInventoryCondition';
-import {  } from './lowInventoryConditionConditionGroup';
-import {  } from './lowInventoryConditionFilter';
-import {  } from './lowInventoryConditionFilter2';
 import {  } from './lowInventoryTrigger';
+import {  } from './lowInventoryTriggerTriggerFilter';
+import {  } from './lowInventoryTriggerTriggerFilterConditionGroupsInner';
 import {  } from './mailboxProviderMethodFilter';
 import {  } from './manualAddManualMethodFilter';
 import {  } from './manualImportManualMethodFilter';
@@ -4518,9 +4897,7 @@ import {  } from './metricCreateQueryResourceObject';
 import {  } from './metricCreateQueryResourceObjectAttributes';
 import {  } from './metricEnum';
 import {  } from './metricPropertyCondition';
-import {  } from './metricPropertyConditionConditionGroup';
 import {  } from './metricPropertyConditionFilter';
-import {  } from './metricPropertyConditionFilter2';
 import {  } from './metricPropertyEnum';
 import {  } from './metricPropertyResponseObjectResourceAttributes';
 import {  } from './metricPropertyResponseObjectResourceExtended';
@@ -4535,6 +4912,8 @@ import {  } from './metricResponseObjectResourceRelationships';
 import {  } from './metricResponseObjectResourceRelationshipsFlowTriggers';
 import {  } from './metricResponseObjectResourceRelationshipsFlowTriggersDataInner';
 import {  } from './metricTrigger';
+import {  } from './metricTriggerTriggerFilter';
+import {  } from './metricTriggerTriggerFilterConditionGroupsInner';
 import {  } from './mobileOverlay';
 import {  } from './mobilePushBadge';
 import {  } from './mobilePushBadgeBadgeOptions';
@@ -4584,7 +4963,69 @@ import {  } from './nonLocalStaticSend';
 import {  } from './numericOperatorNumericFilter';
 import {  } from './numericOperatorNumericFilterValue';
 import {  } from './numericRangeFilter';
+import {  } from './objectIngestionLogEnum';
 import {  } from './objectLinks';
+import {  } from './objectRecordBulkDeleteJobEnum';
+import {  } from './objectRecordDeleteJobCreateQuery';
+import {  } from './objectRecordDeleteJobCreateQueryResourceObject';
+import {  } from './objectRecordDeleteJobCreateQueryResourceObjectRelationships';
+import {  } from './objectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecords';
+import {  } from './objectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecordsDataInner';
+import {  } from './objectRecordEnum';
+import {  } from './objectRecordResponseObjectResource';
+import {  } from './objectRecordResponseObjectResourceAttributes';
+import {  } from './objectSchemaCreateQuery';
+import {  } from './objectSchemaCreateQueryResourceObject';
+import {  } from './objectSchemaCreateQueryResourceObjectAttributes';
+import {  } from './objectSchemaCreateQueryResourceObjectRelationships';
+import {  } from './objectSchemaCreateQueryResourceObjectRelationshipsObjectType';
+import {  } from './objectSchemaCreateQueryResourceObjectRelationshipsObjectTypeData';
+import {  } from './objectSchemaEnum';
+import {  } from './objectSchemaPartialUpdateQuery';
+import {  } from './objectSchemaPartialUpdateQueryResourceObject';
+import {  } from './objectSchemaPartialUpdateQueryResourceObjectAttributes';
+import {  } from './objectSchemaRelationshipCreateMeta';
+import {  } from './objectSchemaRelationshipCreateQuery';
+import {  } from './objectSchemaRelationshipCreateQueryDataInner';
+import {  } from './objectSchemaRelationshipDeleteMeta';
+import {  } from './objectSchemaRelationshipDeleteQuery';
+import {  } from './objectSchemaRelationshipDeleteQueryDataInner';
+import {  } from './objectSchemaRelationshipMeta';
+import {  } from './objectSchemaRelationshipPartialUpdateQuery';
+import {  } from './objectSchemaRelationshipPartialUpdateQueryData';
+import {  } from './objectSchemaRelationshipResponseObjectResource';
+import {  } from './objectSchemaRelationshipResponseObjectResourceAttributes';
+import {  } from './objectSchemaRelationshipUpdateMeta';
+import {  } from './objectSchemaResponseObjectResource';
+import {  } from './objectSchemaResponseObjectResourceAttributes';
+import {  } from './objectSchemaResponseObjectResourceRelationships';
+import {  } from './objectSchemaResponseObjectResourceRelationshipsObjectSchemas';
+import {  } from './objectSchemaResponseObjectResourceRelationshipsObjectSchemasDataInner';
+import {  } from './objectSchemaResponseObjectResourceRelationshipsProfileObjectSchemas';
+import {  } from './objectSchemaResponseObjectResourceRelationshipsProfileObjectSchemasDataInner';
+import {  } from './objectSchemaResponseObjectResourceRelationshipsSourceMapping';
+import {  } from './objectSchemaResponseObjectResourceRelationshipsSourceMappingData';
+import {  } from './objectTypeCreateQuery';
+import {  } from './objectTypeCreateQueryResourceObject';
+import {  } from './objectTypeCreateQueryResourceObjectAttributes';
+import {  } from './objectTypeCreateQueryResourceObjectAttributesObjectSchema';
+import {  } from './objectTypeEnum';
+import {  } from './objectTypeRelationshipMeta';
+import {  } from './objectTypeRelationshipResponseObjectResource';
+import {  } from './objectTypeRelationshipResponseObjectResourceAttributes';
+import {  } from './objectTypeResponseObjectResource';
+import {  } from './objectTypeResponseObjectResourceAttributes';
+import {  } from './objectTypeResponseObjectResourceRelationships';
+import {  } from './objectTypeResponseObjectResourceRelationshipsCurrentSchema';
+import {  } from './objectTypeResponseObjectResourceRelationshipsCurrentSchemaData';
+import {  } from './objectTypeResponseObjectResourceRelationshipsDraftSchema';
+import {  } from './objectTypeResponseObjectResourceRelationshipsDraftSchemaData';
+import {  } from './objectTypeResponseObjectResourceRelationshipsObjectTypes';
+import {  } from './objectTypeResponseObjectResourceRelationshipsObjectTypesDataInner';
+import {  } from './objectTypeResponseObjectResourceRelationshipsProfileObjectTypes';
+import {  } from './objectTypeResponseObjectResourceRelationshipsProfileObjectTypesDataInner';
+import {  } from './objectTypeResponseObjectResourceRelationshipsSchemaVersions';
+import {  } from './objectTypeResponseObjectResourceRelationshipsSchemaVersionsDataInner';
 import {  } from './oneClickUnsubscribeMethodFilter';
 import {  } from './onlyRelatedLinks';
 import {  } from './onsiteProfileCreateQueryResourceObject';
@@ -4592,6 +5033,9 @@ import {  } from './onsiteProfileCreateQueryResourceObjectAttributes';
 import {  } from './onsiteProfileMeta';
 import {  } from './openForm';
 import {  } from './openFormProperties';
+import {  } from './openTrackingConsent';
+import {  } from './openTrackingSubscriptionParameters';
+import {  } from './openTrackingUnsubscriptionParameters';
 import {  } from './optInCode';
 import {  } from './optInCodeProperties';
 import {  } from './optInCodeStyles';
@@ -4616,11 +5060,13 @@ import {  } from './patchImageResponse';
 import {  } from './patchListPartialUpdateResponse';
 import {  } from './patchMappedMetricResponse';
 import {  } from './patchMappedMetricResponseData';
+import {  } from './patchObjectSchemaResponse';
 import {  } from './patchProfileResponse';
 import {  } from './patchReviewResponseDTO';
 import {  } from './patchReviewResponseDTOData';
 import {  } from './patchSegmentPartialUpdateResponse';
-import {  } from './patchTagGroupResponse';
+import {  } from './patchSourceMappingResponse';
+import {  } from './patchSourceMappingResponseData';
 import {  } from './patchTemplateDndResponse';
 import {  } from './patchTrackingSettingResponse';
 import {  } from './patchTrackingSettingResponseData';
@@ -4709,6 +5155,10 @@ import {  } from './postListCreateResponseData';
 import {  } from './postMetricAggregateResponse';
 import {  } from './postMetricAggregateResponseData';
 import {  } from './postMetricAggregateResponseDataAttributes';
+import {  } from './postObjectSchemaResponse';
+import {  } from './postObjectSchemaResponseData';
+import {  } from './postObjectTypeResponse';
+import {  } from './postObjectTypeResponseData';
 import {  } from './postProfileImportJobResponse';
 import {  } from './postProfileImportJobResponseData';
 import {  } from './postProfileMergeResponse';
@@ -4744,10 +5194,9 @@ import {  } from './preferencePageFilter';
 import {  } from './preferencePageMethodFilter';
 import {  } from './previouslySubmitted';
 import {  } from './priceDropCondition';
-import {  } from './priceDropConditionConditionGroup';
-import {  } from './priceDropConditionFilter';
-import {  } from './priceDropConditionFilter2';
 import {  } from './priceDropTrigger';
+import {  } from './priceDropTriggerTriggerFilter';
+import {  } from './priceDropTriggerTriggerFilterConditionGroupsInner';
 import {  } from './productBlockData';
 import {  } from './productBlockDataProperties';
 import {  } from './productBlockStyles';
@@ -4767,8 +5216,8 @@ import {  } from './profileHasCustomObjectFilterFilter';
 import {  } from './profileHasGroupMembershipCondition';
 import {  } from './profileHasGroupMembershipConditionTimeframeFilter';
 import {  } from './profileHasNotReceivedEmailMessageCondition';
+import {  } from './profileHasNotReceivedEmailMessageConditionTimeframeFilter';
 import {  } from './profileHasNotReceivedPushMessageCondition';
-import {  } from './profileHasNotReceivedPushMessageConditionTimeframeFilter';
 import {  } from './profileHasNotReceivedSmsMessageCondition';
 import {  } from './profileIdentifierDTOResourceObject';
 import {  } from './profileIdentifierDTOResourceObjectAttributes';
@@ -4808,6 +5257,15 @@ import {  } from './profileMetricPropertyFilterFilter';
 import {  } from './profileModificationMethodFilter';
 import {  } from './profileNoGroupMembershipCondition';
 import {  } from './profileNotInFlowCondition';
+import {  } from './profileObjectSchemaEnum';
+import {  } from './profileObjectSchemaRelationshipCreateQuery';
+import {  } from './profileObjectSchemaRelationshipCreateQueryDataInner';
+import {  } from './profileObjectSchemaRelationshipDeleteQuery';
+import {  } from './profileObjectSchemaRelationshipDeleteQueryDataInner';
+import {  } from './profileObjectSchemaRelationshipPartialUpdateQuery';
+import {  } from './profileObjectSchemaRelationshipPartialUpdateQueryData';
+import {  } from './profileObjectSchemaRelationshipResponseObjectResource';
+import {  } from './profileObjectTypeEnum';
 import {  } from './profileOperationDelete';
 import {  } from './profileOperationUpdateOrCreateBoolean';
 import {  } from './profileOperationUpdateOrCreateDate';
@@ -4835,6 +5293,7 @@ import {  } from './profilePropertyConditionFilter';
 import {  } from './profilePropertyDateTrigger';
 import {  } from './profileRandomSampleCondition';
 import {  } from './profileRegionCondition';
+import {  } from './profileRelationshipSource';
 import {  } from './profileResponseObjectResource';
 import {  } from './profileResponseObjectResourceAttributes';
 import {  } from './profileResponseObjectResourceExtended';
@@ -4846,6 +5305,11 @@ import {  } from './profileResponseObjectResourceRelationshipsPushTokens';
 import {  } from './profileResponseObjectResourceRelationshipsPushTokensDataInner';
 import {  } from './profileResponseObjectResourceRelationshipsSegments';
 import {  } from './profileResponseObjectResourceRelationshipsSegmentsDataInner';
+import {  } from './profileResponsePluralConversationsObjectResourceAttributes';
+import {  } from './profileResponsePluralConversationsObjectResourceExtended';
+import {  } from './profileResponsePluralConversationsObjectResourceExtendedAttributes';
+import {  } from './profileResponsePluralConversationsObjectResourceExtendedRelationships';
+import {  } from './profileResponsePluralConversationsObjectResourceExtendedRelationshipsConversations';
 import {  } from './profileSubscriptionBulkCreateJobEnum';
 import {  } from './profileSubscriptionBulkDeleteJobEnum';
 import {  } from './profileSubscriptionCreateQueryResourceObject';
@@ -4858,19 +5322,24 @@ import {  } from './profileSuppressionCreateQueryResourceObject';
 import {  } from './profileSuppressionCreateQueryResourceObjectAttributes';
 import {  } from './profileSuppressionDeleteQueryResourceObject';
 import {  } from './profileSuppressionDeleteQueryResourceObjectAttributes';
+import {  } from './profileTypeRelationshipResponseObjectResource';
 import {  } from './profileUpsertQuery';
 import {  } from './profileUpsertQueryResourceObject';
 import {  } from './profileUpsertQueryResourceObjectAttributes';
 import {  } from './promotionalSMSSubscription';
 import {  } from './property';
+import {  } from './propertyFilter';
 import {  } from './propertyOption';
+import {  } from './propertySource';
 import {  } from './providedLandlineMethodFilter';
 import {  } from './providedNoAgeMethodFilter';
 import {  } from './pushActionButton';
+import {  } from './pushActionButtonDefinition';
 import {  } from './pushChannel';
 import {  } from './pushMarketing';
 import {  } from './pushOnOpenApp';
 import {  } from './pushOnOpenDeepLink';
+import {  } from './pushOnOpenWebUrl';
 import {  } from './pushProfileUpsertQueryResourceObject';
 import {  } from './pushProfileUpsertQueryResourceObjectAttributes';
 import {  } from './pushSendOptions';
@@ -4904,6 +5373,7 @@ import {  } from './rejectReasonOther';
 import {  } from './rejectReasonPrivateInformation';
 import {  } from './rejectReasonProfanity';
 import {  } from './rejectReasonUnrelated';
+import {  } from './relatedIdPath';
 import {  } from './relationshipLinks';
 import {  } from './relativeAnniversaryDateFilter';
 import {  } from './relativeDateOperatorBaseRelativeDateFilter';
@@ -4959,6 +5429,7 @@ import {  } from './sMSContentSubObject';
 import {  } from './sMSDisclosure';
 import {  } from './sMSDisclosureAccountDefault';
 import {  } from './sMSDisclosureCustom';
+import {  } from './sMSDisclosureLinkTextStyle';
 import {  } from './sMSDisclosureProperties';
 import {  } from './sMSDisclosurePropertiesContent';
 import {  } from './sMSDisclosureStyles';
@@ -5013,8 +5484,6 @@ import {  } from './sendEmailActionData';
 import {  } from './sendInternalAlertAction';
 import {  } from './sendInternalAlertActionData';
 import {  } from './sendPushNotificationAction';
-import {  } from './sendPushNotificationActionContentExperimentActionData';
-import {  } from './sendPushNotificationActionCurrentExperiment';
 import {  } from './sendPushNotificationActionData';
 import {  } from './sendSmsAction';
 import {  } from './sendSmsActionData';
@@ -5039,6 +5508,9 @@ import {  } from './sideImageSettings';
 import {  } from './signupCounter';
 import {  } from './signupCounterProperties';
 import {  } from './signupCounterStyles';
+import {  } from './simplePropertyMapping';
+import {  } from './simpleRelationshipMapping';
+import {  } from './simpleRelationshipMappingSource';
 import {  } from './sinceFlowStartDateFilter';
 import {  } from './skipToSuccess';
 import {  } from './smartSendTimeStrategy';
@@ -5050,6 +5522,14 @@ import {  } from './socialBlockV1';
 import {  } from './socialBlockV1SubblocksInner';
 import {  } from './socialIconSubBlock';
 import {  } from './socialSpacerSubBlock';
+import {  } from './sourceMappingCreateQueryResourceObject';
+import {  } from './sourceMappingCreateQueryResourceObjectAttributes';
+import {  } from './sourceMappingEnum';
+import {  } from './sourceMappingPartialUpdateQuery';
+import {  } from './sourceMappingPartialUpdateQueryResourceObject';
+import {  } from './sourceMappingResponseObjectResource';
+import {  } from './sourceMappingResponseObjectResourceAttributes';
+import {  } from './sourceMappingResponseObjectResourceAttributesPropertyMappingsInner';
 import {  } from './spacerBlockData';
 import {  } from './spacerBlockStyles';
 import {  } from './spacerBlockV0';
@@ -5324,6 +5804,7 @@ let enumsMap: {[index: string]: any} = {
         "ABTestSendStrategy.MethodEnum": ABTestSendStrategy.MethodEnum,
         "APIMethodFilter.FieldEnum": APIMethodFilter.FieldEnum,
         "APIMethodFilter.MethodEnum": APIMethodFilter.MethodEnum,
+        "APISchemaProperty.TypeEnum": APISchemaProperty.TypeEnum,
         "AbTestAction.TypeEnum": AbTestAction.TypeEnum,
         "AbTestActionData.StatusEnum": AbTestActionData.StatusEnum,
         "AbTestActionData.ExperimentStatusEnum": AbTestActionData.ExperimentStatusEnum,
@@ -5407,6 +5888,7 @@ let enumsMap: {[index: string]: any} = {
         "CampaignValuesRequestDTOResourceObjectAttributes.GroupByEnum": CampaignValuesRequestDTOResourceObjectAttributes.GroupByEnum,
         "CarrierDeactivationMethodFilter.FieldEnum": CarrierDeactivationMethodFilter.FieldEnum,
         "CarrierDeactivationMethodFilter.MethodEnum": CarrierDeactivationMethodFilter.MethodEnum,
+        "CartContent.TypeEnum": CartContent.TypeEnum,
         "CartItemCount.TypeEnum": CartItemCount.TypeEnum,
         "CartItemCountProperties.ComparisonEnum": CartItemCountProperties.ComparisonEnum,
         "CartProduct.TypeEnum": CartProduct.TypeEnum,
@@ -5447,9 +5929,14 @@ let enumsMap: {[index: string]: any} = {
         "ConstantContactIntegrationFilter.ValueEnum": ConstantContactIntegrationFilter.ValueEnum,
         "ConstantContactIntegrationMethodFilter.FieldEnum": ConstantContactIntegrationMethodFilter.FieldEnum,
         "ConstantContactIntegrationMethodFilter.MethodEnum": ConstantContactIntegrationMethodFilter.MethodEnum,
+        "ConstantPropertyMapping.TypeEnum": ConstantPropertyMapping.TypeEnum,
         "ContentExperimentAction.TypeEnum": ContentExperimentAction.TypeEnum,
+        "ContentExperimentActionData.StatusEnum": ContentExperimentActionData.StatusEnum,
+        "ContentExperimentActionData.ExperimentStatusEnum": ContentExperimentActionData.ExperimentStatusEnum,
+        "ContentExperimentActionDataCurrentExperiment.WinnerMetricEnum": ContentExperimentActionDataCurrentExperiment.WinnerMetricEnum,
         "ConversationEnum": ConversationEnum,
         "ConversationMessageEnum": ConversationMessageEnum,
+        "ConversationResponseObjectResourceAttributes.ChannelEnum": ConversationResponseObjectResourceAttributes.ChannelEnum,
         "CountdownDelayAction.TypeEnum": CountdownDelayAction.TypeEnum,
         "CountdownDelayActionData.UnitEnum": CountdownDelayActionData.UnitEnum,
         "CountdownDelayActionData.TimezoneEnum": CountdownDelayActionData.TimezoneEnum,
@@ -5474,10 +5961,20 @@ let enumsMap: {[index: string]: any} = {
         "CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum": CouponCodeUpdateQueryResourceObjectAttributes.StatusEnum,
         "CouponEnum": CouponEnum,
         "CouponProperties.DisplayDeviceEnum": CouponProperties.DisplayDeviceEnum,
+        "CustomHTML.TypeEnum": CustomHTML.TypeEnum,
+        "CustomHTMLProperties.DisplayDeviceEnum": CustomHTMLProperties.DisplayDeviceEnum,
         "CustomJavascript.TypeEnum": CustomJavascript.TypeEnum,
         "CustomMetricDefinition.AggregationMethodEnum": CustomMetricDefinition.AggregationMethodEnum,
         "CustomMetricEnum": CustomMetricEnum,
+        "CustomObjectDateTrigger.TypeEnum": CustomObjectDateTrigger.TypeEnum,
+        "CustomObjectDateTrigger.DateFieldTypeEnum": CustomObjectDateTrigger.DateFieldTypeEnum,
+        "CustomObjectDateTrigger.TimedeltaUnitBeforeDateEnum": CustomObjectDateTrigger.TimedeltaUnitBeforeDateEnum,
+        "CustomObjectDateTrigger.RecurrenceFrequencyEnum": CustomObjectDateTrigger.RecurrenceFrequencyEnum,
+        "CustomObjectDateTrigger.TimezoneEnum": CustomObjectDateTrigger.TimezoneEnum,
+        "CustomObjectDateTrigger.TriggerDaysEnum": CustomObjectDateTrigger.TriggerDaysEnum,
         "CustomObjectPropertyCondition.TypeEnum": CustomObjectPropertyCondition.TypeEnum,
+        "CustomObjectRelationshipSource.TypeEnum": CustomObjectRelationshipSource.TypeEnum,
+        "CustomObjectRelationshipSource.UpdateStrategyEnum": CustomObjectRelationshipSource.UpdateStrategyEnum,
         "CustomObjectTriggerCondition.TypeEnum": CustomObjectTriggerCondition.TypeEnum,
         "CustomSourceFilter.FieldEnum": CustomSourceFilter.FieldEnum,
         "DataPrivacyDeletionJobEnum": DataPrivacyDeletionJobEnum,
@@ -5518,6 +6015,7 @@ let enumsMap: {[index: string]: any} = {
         "EmailMessageDefinition.ChannelEnum": EmailMessageDefinition.ChannelEnum,
         "EmailProperties.DisplayDeviceEnum": EmailProperties.DisplayDeviceEnum,
         "EmailProperties.PropertyNameEnum": EmailProperties.PropertyNameEnum,
+        "EmbeddedObjectSchemaResourceObjectAttributes.StatusEnum": EmbeddedObjectSchemaResourceObjectAttributes.StatusEnum,
         "EncodedFormResponseObjectResourceAttributes.StatusEnum": EncodedFormResponseObjectResourceAttributes.StatusEnum,
         "EqualsStringFilter.TypeEnum": EqualsStringFilter.TypeEnum,
         "EqualsStringFilter.OperatorEnum": EqualsStringFilter.OperatorEnum,
@@ -5616,6 +6114,7 @@ let enumsMap: {[index: string]: any} = {
         "HorizontalRuleBlockV0.TypeEnum": HorizontalRuleBlockV0.TypeEnum,
         "HorizontalRuleBlockV1.ContentTypeEnum": HorizontalRuleBlockV1.ContentTypeEnum,
         "HorizontalRuleBlockV1.TypeEnum": HorizontalRuleBlockV1.TypeEnum,
+        "IafDeeplinkToScreen.TypeEnum": IafDeeplinkToScreen.TypeEnum,
         "IdentifiedProfiles.TypeEnum": IdentifiedProfiles.TypeEnum,
         "Image.TypeEnum": Image.TypeEnum,
         "ImageBlockStyles.AlignEnum": ImageBlockStyles.AlignEnum,
@@ -5641,6 +6140,8 @@ let enumsMap: {[index: string]: any} = {
         "InboundMessageMethodFilter.FieldEnum": InboundMessageMethodFilter.FieldEnum,
         "InboundMessageMethodFilter.MethodEnum": InboundMessageMethodFilter.MethodEnum,
         "Increment.BadgeConfigEnum": Increment.BadgeConfigEnum,
+        "IngestionLogResponseObjectResourceAttributes.StatusEnum": IngestionLogResponseObjectResourceAttributes.StatusEnum,
+        "IngestionLogResponseObjectResourceAttributes.EventTypeEnum": IngestionLogResponseObjectResourceAttributes.EventTypeEnum,
         "IntegerFilter.TypeEnum": IntegerFilter.TypeEnum,
         "IntegerFilter.OperatorEnum": IntegerFilter.OperatorEnum,
         "InternalScheduledReportBuilderReportData.ServiceMethodTypeEnum": InternalScheduledReportBuilderReportData.ServiceMethodTypeEnum,
@@ -5650,6 +6151,7 @@ let enumsMap: {[index: string]: any} = {
         "InternalTrackEventData.ServiceMethodTypeEnum": InternalTrackEventData.ServiceMethodTypeEnum,
         "InternalUnknownServiceData.ServiceMethodTypeEnum": InternalUnknownServiceData.ServiceMethodTypeEnum,
         "InvalidEmailDateFilter.FieldEnum": InvalidEmailDateFilter.FieldEnum,
+        "IpAllowlistResourceName": IpAllowlistResourceName,
         "IsSetExistenceFilter.TypeEnum": IsSetExistenceFilter.TypeEnum,
         "IsSetExistenceFilter.OperatorEnum": IsSetExistenceFilter.OperatorEnum,
         "LessThanPositiveNumericFilter.TypeEnum": LessThanPositiveNumericFilter.TypeEnum,
@@ -5739,9 +6241,22 @@ let enumsMap: {[index: string]: any} = {
         "NumericOperatorNumericFilter.OperatorEnum": NumericOperatorNumericFilter.OperatorEnum,
         "NumericRangeFilter.TypeEnum": NumericRangeFilter.TypeEnum,
         "NumericRangeFilter.OperatorEnum": NumericRangeFilter.OperatorEnum,
+        "ObjectIngestionLogEnum": ObjectIngestionLogEnum,
+        "ObjectRecordBulkDeleteJobEnum": ObjectRecordBulkDeleteJobEnum,
+        "ObjectRecordEnum": ObjectRecordEnum,
+        "ObjectSchemaCreateQueryResourceObjectAttributes.StatusEnum": ObjectSchemaCreateQueryResourceObjectAttributes.StatusEnum,
+        "ObjectSchemaEnum": ObjectSchemaEnum,
+        "ObjectSchemaPartialUpdateQueryResourceObjectAttributes.StatusEnum": ObjectSchemaPartialUpdateQueryResourceObjectAttributes.StatusEnum,
+        "ObjectSchemaResponseObjectResourceAttributes.StatusEnum": ObjectSchemaResponseObjectResourceAttributes.StatusEnum,
+        "ObjectSchemaResponseObjectResourceAttributes.VisibilityEnum": ObjectSchemaResponseObjectResourceAttributes.VisibilityEnum,
+        "ObjectTypeCreateQueryResourceObjectAttributes.VisibilityEnum": ObjectTypeCreateQueryResourceObjectAttributes.VisibilityEnum,
+        "ObjectTypeEnum": ObjectTypeEnum,
+        "ObjectTypeResponseObjectResourceAttributes.StatusEnum": ObjectTypeResponseObjectResourceAttributes.StatusEnum,
         "OneClickUnsubscribeMethodFilter.FieldEnum": OneClickUnsubscribeMethodFilter.FieldEnum,
         "OneClickUnsubscribeMethodFilter.MethodEnum": OneClickUnsubscribeMethodFilter.MethodEnum,
         "OpenForm.TypeEnum": OpenForm.TypeEnum,
+        "OpenTrackingSubscriptionParameters.ConsentEnum": OpenTrackingSubscriptionParameters.ConsentEnum,
+        "OpenTrackingUnsubscriptionParameters.ConsentEnum": OpenTrackingUnsubscriptionParameters.ConsentEnum,
         "OptInCode.TypeEnum": OptInCode.TypeEnum,
         "OptInCodeProperties.PropertyNameEnum": OptInCodeProperties.PropertyNameEnum,
         "OptInCodeProperties.DisplayDeviceEnum": OptInCodeProperties.DisplayDeviceEnum,
@@ -5794,6 +6309,8 @@ let enumsMap: {[index: string]: any} = {
         "ProfileModificationMethodFilter.MethodEnum": ProfileModificationMethodFilter.MethodEnum,
         "ProfileNoGroupMembershipCondition.TypeEnum": ProfileNoGroupMembershipCondition.TypeEnum,
         "ProfileNotInFlowCondition.TypeEnum": ProfileNotInFlowCondition.TypeEnum,
+        "ProfileObjectSchemaEnum": ProfileObjectSchemaEnum,
+        "ProfileObjectTypeEnum": ProfileObjectTypeEnum,
         "ProfileOperationDelete.OperatorEnum": ProfileOperationDelete.OperatorEnum,
         "ProfileOperationUpdateOrCreateBoolean.OperatorEnum": ProfileOperationUpdateOrCreateBoolean.OperatorEnum,
         "ProfileOperationUpdateOrCreateBoolean.PropertyTypeEnum": ProfileOperationUpdateOrCreateBoolean.PropertyTypeEnum,
@@ -5840,6 +6357,8 @@ let enumsMap: {[index: string]: any} = {
         "ProfileRandomSampleCondition.TypeEnum": ProfileRandomSampleCondition.TypeEnum,
         "ProfileRegionCondition.TypeEnum": ProfileRegionCondition.TypeEnum,
         "ProfileRegionCondition.RegionEnum": ProfileRegionCondition.RegionEnum,
+        "ProfileRelationshipSource.TypeEnum": ProfileRelationshipSource.TypeEnum,
+        "ProfileRelationshipSource.UpdateStrategyEnum": ProfileRelationshipSource.UpdateStrategyEnum,
         "ProfileSubscriptionBulkCreateJobEnum": ProfileSubscriptionBulkCreateJobEnum,
         "ProfileSubscriptionBulkDeleteJobEnum": ProfileSubscriptionBulkDeleteJobEnum,
         "ProfileSuppressionBulkCreateJobEnum": ProfileSuppressionBulkCreateJobEnum,
@@ -5854,6 +6373,7 @@ let enumsMap: {[index: string]: any} = {
         "PushActionButton.ActionTypeEnum": PushActionButton.ActionTypeEnum,
         "PushOnOpenApp.TypeEnum": PushOnOpenApp.TypeEnum,
         "PushOnOpenDeepLink.TypeEnum": PushOnOpenDeepLink.TypeEnum,
+        "PushOnOpenWebUrl.TypeEnum": PushOnOpenWebUrl.TypeEnum,
         "PushTokenCreateQueryResourceObjectAttributes.PlatformEnum": PushTokenCreateQueryResourceObjectAttributes.PlatformEnum,
         "PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum": PushTokenCreateQueryResourceObjectAttributes.EnablementStatusEnum,
         "PushTokenCreateQueryResourceObjectAttributes.VendorEnum": PushTokenCreateQueryResourceObjectAttributes.VendorEnum,
@@ -5883,6 +6403,7 @@ let enumsMap: {[index: string]: any} = {
         "RejectReasonPrivateInformation.ReasonEnum": RejectReasonPrivateInformation.ReasonEnum,
         "RejectReasonProfanity.ReasonEnum": RejectReasonProfanity.ReasonEnum,
         "RejectReasonUnrelated.ReasonEnum": RejectReasonUnrelated.ReasonEnum,
+        "RelatedIdPath.IdentifierTypeEnum": RelatedIdPath.IdentifierTypeEnum,
         "RelativeAnniversaryDateFilter.TypeEnum": RelativeAnniversaryDateFilter.TypeEnum,
         "RelativeAnniversaryDateFilter.OperatorEnum": RelativeAnniversaryDateFilter.OperatorEnum,
         "RelativeAnniversaryDateFilter.UnitEnum": RelativeAnniversaryDateFilter.UnitEnum,
@@ -5904,11 +6425,11 @@ let enumsMap: {[index: string]: any} = {
         "ReviewBlockStyles.QuoteAlignEnum": ReviewBlockStyles.QuoteAlignEnum,
         "ReviewBlockStyles.QuoteFontStyleEnum": ReviewBlockStyles.QuoteFontStyleEnum,
         "ReviewBlockStyles.QuoteStyleEnum": ReviewBlockStyles.QuoteStyleEnum,
-        "ReviewBlockStyles.ShadowColorEnum": ReviewBlockStyles.ShadowColorEnum,
         "ReviewBlockStyles.StarSizeEnum": ReviewBlockStyles.StarSizeEnum,
         "ReviewBlockStyles.StarRatingShapeEnum": ReviewBlockStyles.StarRatingShapeEnum,
         "ReviewBlockStyles.StarAlignmentEnum": ReviewBlockStyles.StarAlignmentEnum,
         "ReviewBlockStyles.VerifiedFontStyleEnum": ReviewBlockStyles.VerifiedFontStyleEnum,
+        "ReviewBlockStyles.VerifiedBadgeColorEnum": ReviewBlockStyles.VerifiedBadgeColorEnum,
         "ReviewBlockStyles.VerifiedBadgeStyleEnum": ReviewBlockStyles.VerifiedBadgeStyleEnum,
         "ReviewBlockV0.ContentTypeEnum": ReviewBlockV0.ContentTypeEnum,
         "ReviewBlockV0.TypeEnum": ReviewBlockV0.TypeEnum,
@@ -5939,6 +6460,7 @@ let enumsMap: {[index: string]: any} = {
         "SMSDisclosure.TypeEnum": SMSDisclosure.TypeEnum,
         "SMSDisclosureAccountDefault.TypeEnum": SMSDisclosureAccountDefault.TypeEnum,
         "SMSDisclosureCustom.TypeEnum": SMSDisclosureCustom.TypeEnum,
+        "SMSDisclosureLinkTextStyle.FontWeightEnum": SMSDisclosureLinkTextStyle.FontWeightEnum,
         "SMSDisclosureProperties.DisplayDeviceEnum": SMSDisclosureProperties.DisplayDeviceEnum,
         "SMSDisclosureTextStyle.FontWeightEnum": SMSDisclosureTextStyle.FontWeightEnum,
         "SMSMessageDefinition.ChannelEnum": SMSMessageDefinition.ChannelEnum,
@@ -5970,9 +6492,6 @@ let enumsMap: {[index: string]: any} = {
         "SendInternalAlertAction.TypeEnum": SendInternalAlertAction.TypeEnum,
         "SendInternalAlertActionData.StatusEnum": SendInternalAlertActionData.StatusEnum,
         "SendPushNotificationAction.TypeEnum": SendPushNotificationAction.TypeEnum,
-        "SendPushNotificationActionContentExperimentActionData.StatusEnum": SendPushNotificationActionContentExperimentActionData.StatusEnum,
-        "SendPushNotificationActionContentExperimentActionData.ExperimentStatusEnum": SendPushNotificationActionContentExperimentActionData.ExperimentStatusEnum,
-        "SendPushNotificationActionCurrentExperiment.WinnerMetricEnum": SendPushNotificationActionCurrentExperiment.WinnerMetricEnum,
         "SendPushNotificationActionData.StatusEnum": SendPushNotificationActionData.StatusEnum,
         "SendSmsAction.TypeEnum": SendSmsAction.TypeEnum,
         "SendSmsActionData.StatusEnum": SendSmsActionData.StatusEnum,
@@ -5994,6 +6513,8 @@ let enumsMap: {[index: string]: any} = {
         "SignupCounter.TypeEnum": SignupCounter.TypeEnum,
         "SignupCounterProperties.DisplayDeviceEnum": SignupCounterProperties.DisplayDeviceEnum,
         "SignupCounterProperties.TimeframeEnum": SignupCounterProperties.TimeframeEnum,
+        "SimplePropertyMapping.TypeEnum": SimplePropertyMapping.TypeEnum,
+        "SimpleRelationshipMapping.TypeEnum": SimpleRelationshipMapping.TypeEnum,
         "SinceFlowStartDateFilter.TypeEnum": SinceFlowStartDateFilter.TypeEnum,
         "SinceFlowStartDateFilter.OperatorEnum": SinceFlowStartDateFilter.OperatorEnum,
         "SkipToSuccess.TypeEnum": SkipToSuccess.TypeEnum,
@@ -6009,6 +6530,7 @@ let enumsMap: {[index: string]: any} = {
         "SocialIconSubBlock.TypeEnum": SocialIconSubBlock.TypeEnum,
         "SocialIconSubBlock.LinkTypeEnum": SocialIconSubBlock.LinkTypeEnum,
         "SocialSpacerSubBlock.TypeEnum": SocialSpacerSubBlock.TypeEnum,
+        "SourceMappingEnum": SourceMappingEnum,
         "SpacerBlockV0.ContentTypeEnum": SpacerBlockV0.ContentTypeEnum,
         "SpacerBlockV0.TypeEnum": SpacerBlockV0.TypeEnum,
         "SpacerBlockV1.ContentTypeEnum": SpacerBlockV1.ContentTypeEnum,
@@ -6138,6 +6660,7 @@ let enumsMap: {[index: string]: any} = {
         "Version.LocationEnum": Version.LocationEnum,
         "Version.StatusEnum": Version.StatusEnum,
         "Version.SpecialtiesEnum": Version.SpecialtiesEnum,
+        "Version.ChannelEnum": Version.ChannelEnum,
         "VersionProperties.ClickOutsideToCloseEnum": VersionProperties.ClickOutsideToCloseEnum,
         "VersionProperties.RuleBasedTriggerEvaluationEnum": VersionProperties.RuleBasedTriggerEvaluationEnum,
         "VersionStyles.WidthEnum": VersionStyles.WidthEnum,
@@ -6163,16 +6686,17 @@ let typeMap: {[index: string]: any} = {
     "ABTestSendStrategy": ABTestSendStrategy,
     "APIJobErrorPayload": APIJobErrorPayload,
     "APIMethodFilter": APIMethodFilter,
+    "APISchemaProperty": APISchemaProperty,
     "AbTestAction": AbTestAction,
     "AbTestActionData": AbTestActionData,
     "AbTestActionDataCurrentExperiment": AbTestActionDataCurrentExperiment,
     "AccountResponseObjectResource": AccountResponseObjectResource,
     "AccountResponseObjectResourceAttributes": AccountResponseObjectResourceAttributes,
     "ActionOutputCondition": ActionOutputCondition,
-    "ActionOutputConditionConditionGroup": ActionOutputConditionConditionGroup,
-    "ActionOutputConditionFilter": ActionOutputConditionFilter,
     "ActionOutputSplitAction": ActionOutputSplitAction,
     "ActionOutputSplitActionData": ActionOutputSplitActionData,
+    "ActionOutputSplitActionDataActionOutputFilter": ActionOutputSplitActionDataActionOutputFilter,
+    "ActionOutputSplitActionDataActionOutputFilterConditionGroupsInner": ActionOutputSplitActionDataActionOutputFilterConditionGroupsInner,
     "AdditionalField": AdditionalField,
     "AfterCloseTimeout": AfterCloseTimeout,
     "AfterCloseTimeoutProperties": AfterCloseTimeoutProperties,
@@ -6310,6 +6834,8 @@ let typeMap: {[index: string]: any} = {
     "CampaignsEmailTrackingOptions": CampaignsEmailTrackingOptions,
     "CampaignsSMSTrackingOptions": CampaignsSMSTrackingOptions,
     "CarrierDeactivationMethodFilter": CarrierDeactivationMethodFilter,
+    "CartContent": CartContent,
+    "CartContentProperties": CartContentProperties,
     "CartItemCount": CartItemCount,
     "CartItemCountProperties": CartItemCountProperties,
     "CartProduct": CartProduct,
@@ -6456,8 +6982,11 @@ let typeMap: {[index: string]: any} = {
     "ConditionalBranchActionDataProfileFilterConditionGroupsInner": ConditionalBranchActionDataProfileFilterConditionGroupsInner,
     "ConstantContactIntegrationFilter": ConstantContactIntegrationFilter,
     "ConstantContactIntegrationMethodFilter": ConstantContactIntegrationMethodFilter,
+    "ConstantPropertyMapping": ConstantPropertyMapping,
     "ContactInformation": ContactInformation,
     "ContentExperimentAction": ContentExperimentAction,
+    "ContentExperimentActionData": ContentExperimentActionData,
+    "ContentExperimentActionDataCurrentExperiment": ContentExperimentActionDataCurrentExperiment,
     "ContentRepeatV0": ContentRepeatV0,
     "ContentRepeatV1": ContentRepeatV1,
     "ConversationMessageCreateQuery": ConversationMessageCreateQuery,
@@ -6467,6 +6996,7 @@ let typeMap: {[index: string]: any} = {
     "ConversationMessageCreateQueryResourceObjectRelationshipsConversation": ConversationMessageCreateQueryResourceObjectRelationshipsConversation,
     "ConversationMessageCreateQueryResourceObjectRelationshipsConversationData": ConversationMessageCreateQueryResourceObjectRelationshipsConversationData,
     "ConversationResponseObjectResource": ConversationResponseObjectResource,
+    "ConversationResponseObjectResourceAttributes": ConversationResponseObjectResourceAttributes,
     "ConversationResponseObjectResourceRelationships": ConversationResponseObjectResourceRelationships,
     "ConversationResponseObjectResourceRelationshipsProfile": ConversationResponseObjectResourceRelationshipsProfile,
     "CountdownDelayAction": CountdownDelayAction,
@@ -6514,6 +7044,8 @@ let typeMap: {[index: string]: any} = {
     "CouponUpdateQueryResourceObject": CouponUpdateQueryResourceObject,
     "CouponUpdateQueryResourceObjectAttributes": CouponUpdateQueryResourceObjectAttributes,
     "CustomCss": CustomCss,
+    "CustomHTML": CustomHTML,
+    "CustomHTMLProperties": CustomHTMLProperties,
     "CustomJavascript": CustomJavascript,
     "CustomMetricCondition": CustomMetricCondition,
     "CustomMetricCreateQuery": CustomMetricCreateQuery,
@@ -6529,7 +7061,9 @@ let typeMap: {[index: string]: any} = {
     "CustomMetricResponseObjectResourceRelationships": CustomMetricResponseObjectResourceRelationships,
     "CustomMetricResponseObjectResourceRelationshipsMetrics": CustomMetricResponseObjectResourceRelationshipsMetrics,
     "CustomMetricResponseObjectResourceRelationshipsMetricsDataInner": CustomMetricResponseObjectResourceRelationshipsMetricsDataInner,
+    "CustomObjectDateTrigger": CustomObjectDateTrigger,
     "CustomObjectPropertyCondition": CustomObjectPropertyCondition,
+    "CustomObjectRelationshipSource": CustomObjectRelationshipSource,
     "CustomObjectTriggerCondition": CustomObjectTriggerCondition,
     "CustomSourceFilter": CustomSourceFilter,
     "CustomTimeframe": CustomTimeframe,
@@ -6563,7 +7097,6 @@ let typeMap: {[index: string]: any} = {
     "DateStyles": DateStyles,
     "Delay": Delay,
     "DelayProperties": DelayProperties,
-    "DeleteTagGroupResponse": DeleteTagGroupResponse,
     "Device": Device,
     "DeviceMetadata": DeviceMetadata,
     "DeviceProperties": DeviceProperties,
@@ -6597,6 +7130,9 @@ let typeMap: {[index: string]: any} = {
     "EmailStyles": EmailStyles,
     "EmailSubscriptionParameters": EmailSubscriptionParameters,
     "EmailUnsubscriptionParameters": EmailUnsubscriptionParameters,
+    "EmbeddedObjectSchemaResourceObject": EmbeddedObjectSchemaResourceObject,
+    "EmbeddedObjectSchemaResourceObjectAttributes": EmbeddedObjectSchemaResourceObjectAttributes,
+    "EmbeddedObjectSchemaResourceObjectAttributesSourceMapping": EmbeddedObjectSchemaResourceObjectAttributesSourceMapping,
     "EncodedFormResponseObjectResource": EncodedFormResponseObjectResource,
     "EncodedFormResponseObjectResourceAttributes": EncodedFormResponseObjectResourceAttributes,
     "EqualsStringFilter": EqualsStringFilter,
@@ -6648,8 +7184,6 @@ let typeMap: {[index: string]: any} = {
     "FlowDefinitionProfileFilter": FlowDefinitionProfileFilter,
     "FlowDefinitionProfileFilterConditionGroupsInner": FlowDefinitionProfileFilterConditionGroupsInner,
     "FlowEmail": FlowEmail,
-    "FlowEmailAdditionalFilters": FlowEmailAdditionalFilters,
-    "FlowEmailAdditionalFiltersConditionGroupsInner": FlowEmailAdditionalFiltersConditionGroupsInner,
     "FlowInternalAlert": FlowInternalAlert,
     "FlowMessageEncodedResponseObjectResource": FlowMessageEncodedResponseObjectResource,
     "FlowMessageEncodedResponseObjectResourceAttributes": FlowMessageEncodedResponseObjectResourceAttributes,
@@ -6658,8 +7192,6 @@ let typeMap: {[index: string]: any} = {
     "FlowMessageEncodedResponseObjectResourceRelationshipsTemplate": FlowMessageEncodedResponseObjectResourceRelationshipsTemplate,
     "FlowMessageEncodedResponseObjectResourceRelationshipsTemplateData": FlowMessageEncodedResponseObjectResourceRelationshipsTemplateData,
     "FlowPushNotification": FlowPushNotification,
-    "FlowPushNotificationAdditionalFilters": FlowPushNotificationAdditionalFilters,
-    "FlowPushNotificationAdditionalFiltersConditionGroupsInner": FlowPushNotificationAdditionalFiltersConditionGroupsInner,
     "FlowResponseObjectResource": FlowResponseObjectResource,
     "FlowResponseObjectResourceAttributes": FlowResponseObjectResourceAttributes,
     "FlowResponseObjectResourceRelationships": FlowResponseObjectResourceRelationships,
@@ -6671,8 +7203,6 @@ let typeMap: {[index: string]: any} = {
     "FlowSeriesRequestDTOResourceObject": FlowSeriesRequestDTOResourceObject,
     "FlowSeriesRequestDTOResourceObjectAttributes": FlowSeriesRequestDTOResourceObjectAttributes,
     "FlowSms": FlowSms,
-    "FlowSmsAdditionalFilters": FlowSmsAdditionalFilters,
-    "FlowSmsAdditionalFiltersConditionGroupsInner": FlowSmsAdditionalFiltersConditionGroupsInner,
     "FlowTrackingSettingDynamicParam": FlowTrackingSettingDynamicParam,
     "FlowTrackingSettingStaticParam": FlowTrackingSettingStaticParam,
     "FlowUpdateQuery": FlowUpdateQuery,
@@ -6707,6 +7237,9 @@ let typeMap: {[index: string]: any} = {
     "FormVersionABTest": FormVersionABTest,
     "FormVersionResponseObjectResource": FormVersionResponseObjectResource,
     "FormVersionResponseObjectResourceAttributes": FormVersionResponseObjectResourceAttributes,
+    "FormVersionResponseObjectResourceRelationships": FormVersionResponseObjectResourceRelationships,
+    "FormVersionResponseObjectResourceRelationshipsForm": FormVersionResponseObjectResourceRelationshipsForm,
+    "FormVersionResponseObjectResourceRelationshipsFormData": FormVersionResponseObjectResourceRelationshipsFormData,
     "GetAccountResponse": GetAccountResponse,
     "GetAccountResponseCollection": GetAccountResponseCollection,
     "GetAccounts4XXResponse": GetAccounts4XXResponse,
@@ -6763,6 +7296,7 @@ let typeMap: {[index: string]: any} = {
     "GetCatalogVariantUpdateJobResponseCollectionCompoundDocument": GetCatalogVariantUpdateJobResponseCollectionCompoundDocument,
     "GetCatalogVariantUpdateJobResponseCompoundDocument": GetCatalogVariantUpdateJobResponseCompoundDocument,
     "GetConversationResponse": GetConversationResponse,
+    "GetConversationResponseCollection": GetConversationResponseCollection,
     "GetCouponCodeCouponRelationshipResponse": GetCouponCodeCouponRelationshipResponse,
     "GetCouponCodeCouponRelationshipResponseData": GetCouponCodeCouponRelationshipResponseData,
     "GetCouponCodeCreateJobResponseCollectionCompoundDocument": GetCouponCodeCreateJobResponseCollectionCompoundDocument,
@@ -6782,6 +7316,7 @@ let typeMap: {[index: string]: any} = {
     "GetDataSourceResponseCollection": GetDataSourceResponseCollection,
     "GetEncodedFormResponse": GetEncodedFormResponse,
     "GetEventMetricRelationshipResponse": GetEventMetricRelationshipResponse,
+    "GetEventMetricRelationshipResponseData": GetEventMetricRelationshipResponseData,
     "GetEventProfileRelationshipResponse": GetEventProfileRelationshipResponse,
     "GetEventProfileRelationshipResponseData": GetEventProfileRelationshipResponseData,
     "GetEventResponseCollectionCompoundDocument": GetEventResponseCollectionCompoundDocument,
@@ -6791,8 +7326,10 @@ let typeMap: {[index: string]: any} = {
     "GetFlowActionEncodedResponseCompoundDocument": GetFlowActionEncodedResponseCompoundDocument,
     "GetFlowActionFlowMessageRelationshipResponseCollection": GetFlowActionFlowMessageRelationshipResponseCollection,
     "GetFlowActionFlowRelationshipResponse": GetFlowActionFlowRelationshipResponse,
+    "GetFlowActionFlowRelationshipResponseData": GetFlowActionFlowRelationshipResponseData,
     "GetFlowFlowActionRelationshipListResponseCollection": GetFlowFlowActionRelationshipListResponseCollection,
     "GetFlowMessageActionRelationshipResponse": GetFlowMessageActionRelationshipResponse,
+    "GetFlowMessageActionRelationshipResponseData": GetFlowMessageActionRelationshipResponseData,
     "GetFlowMessageEncodedResponseCollection": GetFlowMessageEncodedResponseCollection,
     "GetFlowMessageEncodedResponseCompoundDocument": GetFlowMessageEncodedResponseCompoundDocument,
     "GetFlowMessageTemplateRelationshipResponse": GetFlowMessageTemplateRelationshipResponse,
@@ -6806,17 +7343,19 @@ let typeMap: {[index: string]: any} = {
     "GetFormResponseCollection": GetFormResponseCollection,
     "GetFormVersionFormRelationshipResponse": GetFormVersionFormRelationshipResponse,
     "GetFormVersionFormRelationshipResponseData": GetFormVersionFormRelationshipResponseData,
-    "GetFormVersionResponse": GetFormVersionResponse,
     "GetFormVersionResponseCollection": GetFormVersionResponseCollection,
+    "GetFormVersionResponseCompoundDocument": GetFormVersionResponseCompoundDocument,
     "GetFormVersionsRelationshipsResponseCollection": GetFormVersionsRelationshipsResponseCollection,
     "GetFormVersionsRelationshipsResponseCollectionDataInner": GetFormVersionsRelationshipsResponseCollectionDataInner,
     "GetImageResponse": GetImageResponse,
     "GetImageResponseCollection": GetImageResponseCollection,
     "GetImportErrorResponseCollection": GetImportErrorResponseCollection,
+    "GetIngestionLogResponseCollectionCompoundDocument": GetIngestionLogResponseCollectionCompoundDocument,
     "GetListFlowTriggersRelationshipsResponseCollection": GetListFlowTriggersRelationshipsResponseCollection,
     "GetListListResponseCollectionCompoundDocument": GetListListResponseCollectionCompoundDocument,
     "GetListMemberResponseCollection": GetListMemberResponseCollection,
     "GetListProfilesRelationshipsResponseCollection": GetListProfilesRelationshipsResponseCollection,
+    "GetListProfilesRelationshipsResponseCollectionDataInner": GetListProfilesRelationshipsResponseCollectionDataInner,
     "GetListResponseCollection": GetListResponseCollection,
     "GetListRetrieveResponseCompoundDocument": GetListRetrieveResponseCompoundDocument,
     "GetListTagsRelationshipsResponseCollection": GetListTagsRelationshipsResponseCollection,
@@ -6836,10 +7375,38 @@ let typeMap: {[index: string]: any} = {
     "GetMetricResponseCollection": GetMetricResponseCollection,
     "GetMetricResponseCollectionCompoundDocument": GetMetricResponseCollectionCompoundDocument,
     "GetMetricResponseCompoundDocument": GetMetricResponseCompoundDocument,
+    "GetObjectRecordResponse": GetObjectRecordResponse,
+    "GetObjectRecordResponseCollection": GetObjectRecordResponseCollection,
+    "GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollection": GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollection,
+    "GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollectionDataInner": GetObjectSchemaProfileObjectSchemasRelationshipsResponseCollectionDataInner,
+    "GetObjectSchemaResponse": GetObjectSchemaResponse,
+    "GetObjectSchemaResponseCollection": GetObjectSchemaResponseCollection,
+    "GetObjectSchemaResponseCompoundDocument": GetObjectSchemaResponseCompoundDocument,
+    "GetObjectSchemaSchemasRelationshipsResponseCollection": GetObjectSchemaSchemasRelationshipsResponseCollection,
+    "GetObjectSchemaSchemasRelationshipsResponseCollectionDataInner": GetObjectSchemaSchemasRelationshipsResponseCollectionDataInner,
+    "GetObjectSchemaSourceMappingRelationshipResponse": GetObjectSchemaSourceMappingRelationshipResponse,
+    "GetObjectSchemaSourceMappingRelationshipResponseData": GetObjectSchemaSourceMappingRelationshipResponseData,
+    "GetObjectTypeCurrentSchemaRelationshipResponse": GetObjectTypeCurrentSchemaRelationshipResponse,
+    "GetObjectTypeCurrentSchemaRelationshipResponseData": GetObjectTypeCurrentSchemaRelationshipResponseData,
+    "GetObjectTypeDraftSchemaRelationshipResponse": GetObjectTypeDraftSchemaRelationshipResponse,
+    "GetObjectTypeIngestionLogsRelationshipsResponseCollection": GetObjectTypeIngestionLogsRelationshipsResponseCollection,
+    "GetObjectTypeIngestionLogsRelationshipsResponseCollectionDataInner": GetObjectTypeIngestionLogsRelationshipsResponseCollectionDataInner,
+    "GetObjectTypeProfileObjectTypesRelationshipsResponseCollection": GetObjectTypeProfileObjectTypesRelationshipsResponseCollection,
+    "GetObjectTypeProfileObjectTypesRelationshipsResponseCollectionDataInner": GetObjectTypeProfileObjectTypesRelationshipsResponseCollectionDataInner,
+    "GetObjectTypeRecordsRelationshipsResponseCollection": GetObjectTypeRecordsRelationshipsResponseCollection,
+    "GetObjectTypeRecordsRelationshipsResponseCollectionDataInner": GetObjectTypeRecordsRelationshipsResponseCollectionDataInner,
+    "GetObjectTypeResponseCollectionCompoundDocument": GetObjectTypeResponseCollectionCompoundDocument,
+    "GetObjectTypeResponseCompoundDocument": GetObjectTypeResponseCompoundDocument,
+    "GetObjectTypeSchemaVersionsRelationshipsResponseCollection": GetObjectTypeSchemaVersionsRelationshipsResponseCollection,
+    "GetObjectTypeSchemaVersionsRelationshipsResponseCollectionDataInner": GetObjectTypeSchemaVersionsRelationshipsResponseCollectionDataInner,
+    "GetObjectTypeTypesRelationshipsResponseCollection": GetObjectTypeTypesRelationshipsResponseCollection,
+    "GetObjectTypeTypesRelationshipsResponseCollectionDataInner": GetObjectTypeTypesRelationshipsResponseCollectionDataInner,
     "GetProfileBulkImportJobListsRelationshipsResponseCollection": GetProfileBulkImportJobListsRelationshipsResponseCollection,
     "GetProfileBulkImportJobProfilesRelationshipsResponseCollection": GetProfileBulkImportJobProfilesRelationshipsResponseCollection,
     "GetProfileConversationRelationshipResponse": GetProfileConversationRelationshipResponse,
     "GetProfileConversationRelationshipResponseData": GetProfileConversationRelationshipResponseData,
+    "GetProfileConversationsRelationshipsResponseCollection": GetProfileConversationsRelationshipsResponseCollection,
+    "GetProfileConversationsRelationshipsResponseCollectionDataInner": GetProfileConversationsRelationshipsResponseCollectionDataInner,
     "GetProfileImportJobResponseCollectionCompoundDocument": GetProfileImportJobResponseCollectionCompoundDocument,
     "GetProfileImportJobResponseCompoundDocument": GetProfileImportJobResponseCompoundDocument,
     "GetProfileListsRelationshipsResponseCollection": GetProfileListsRelationshipsResponseCollection,
@@ -6848,8 +7415,8 @@ let typeMap: {[index: string]: any} = {
     "GetProfilePushTokensRelationshipsResponseCollectionDataInner": GetProfilePushTokensRelationshipsResponseCollectionDataInner,
     "GetProfileResponse": GetProfileResponse,
     "GetProfileResponseCollection": GetProfileResponseCollection,
-    "GetProfileResponseCollectionCompoundDocument": GetProfileResponseCollectionCompoundDocument,
-    "GetProfileResponseCompoundDocument": GetProfileResponseCompoundDocument,
+    "GetProfileResponsePluralConversationsCollectionCompoundDocument": GetProfileResponsePluralConversationsCollectionCompoundDocument,
+    "GetProfileResponsePluralConversationsCompoundDocument": GetProfileResponsePluralConversationsCompoundDocument,
     "GetProfileSegmentsRelationshipsResponseCollection": GetProfileSegmentsRelationshipsResponseCollection,
     "GetPushTokenProfileRelationshipResponse": GetPushTokenProfileRelationshipResponse,
     "GetPushTokenResponseCollection": GetPushTokenResponseCollection,
@@ -6864,6 +7431,7 @@ let typeMap: {[index: string]: any} = {
     "GetSegmentResponseCollection": GetSegmentResponseCollection,
     "GetSegmentRetrieveResponseCompoundDocument": GetSegmentRetrieveResponseCompoundDocument,
     "GetSegmentTagsRelationshipsResponseCollection": GetSegmentTagsRelationshipsResponseCollection,
+    "GetSourceMappingResponse": GetSourceMappingResponse,
     "GetTagCampaignRelationshipsResponseCollection": GetTagCampaignRelationshipsResponseCollection,
     "GetTagCampaignRelationshipsResponseCollectionDataInner": GetTagCampaignRelationshipsResponseCollectionDataInner,
     "GetTagFlowRelationshipsResponseCollection": GetTagFlowRelationshipsResponseCollection,
@@ -6926,6 +7494,8 @@ let typeMap: {[index: string]: any} = {
     "HorizontalRuleBlockStyles": HorizontalRuleBlockStyles,
     "HorizontalRuleBlockV0": HorizontalRuleBlockV0,
     "HorizontalRuleBlockV1": HorizontalRuleBlockV1,
+    "IafDeeplinkToScreen": IafDeeplinkToScreen,
+    "IafDeeplinkToScreenProperties": IafDeeplinkToScreenProperties,
     "IdentifiedProfiles": IdentifiedProfiles,
     "Image": Image,
     "ImageAssetProperties": ImageAssetProperties,
@@ -6956,6 +7526,14 @@ let typeMap: {[index: string]: any} = {
     "InTheLastBaseRelativeDateFilter": InTheLastBaseRelativeDateFilter,
     "InboundMessageMethodFilter": InboundMessageMethodFilter,
     "Increment": Increment,
+    "IngestionLogErrorDetail": IngestionLogErrorDetail,
+    "IngestionLogResponseObjectResource": IngestionLogResponseObjectResource,
+    "IngestionLogResponseObjectResourceAttributes": IngestionLogResponseObjectResourceAttributes,
+    "IngestionLogResponseObjectResourceRelationships": IngestionLogResponseObjectResourceRelationships,
+    "IngestionLogResponseObjectResourceRelationshipsObjectRecord": IngestionLogResponseObjectResourceRelationshipsObjectRecord,
+    "IngestionLogResponseObjectResourceRelationshipsObjectRecordData": IngestionLogResponseObjectResourceRelationshipsObjectRecordData,
+    "IngestionLogResponseObjectResourceRelationshipsObjectType": IngestionLogResponseObjectResourceRelationshipsObjectType,
+    "IngestionLogResponseObjectResourceRelationshipsObjectTypeData": IngestionLogResponseObjectResourceRelationshipsObjectTypeData,
     "InputStyles": InputStyles,
     "IntegerFilter": IntegerFilter,
     "InternalScheduledReportBuilderReportData": InternalScheduledReportBuilderReportData,
@@ -6965,6 +7543,9 @@ let typeMap: {[index: string]: any} = {
     "InternalTrackEventData": InternalTrackEventData,
     "InternalUnknownServiceData": InternalUnknownServiceData,
     "InvalidEmailDateFilter": InvalidEmailDateFilter,
+    "IpAllowlistResponse": IpAllowlistResponse,
+    "IpAllowlistResponseData": IpAllowlistResponseData,
+    "IpAllowlistResponseDataWrapper": IpAllowlistResponseDataWrapper,
     "IsSetExistenceFilter": IsSetExistenceFilter,
     "LessThanPositiveNumericFilter": LessThanPositiveNumericFilter,
     "Link": Link,
@@ -7005,9 +7586,9 @@ let typeMap: {[index: string]: any} = {
     "Location": Location,
     "LocationProperties": LocationProperties,
     "LowInventoryCondition": LowInventoryCondition,
-    "LowInventoryConditionConditionGroup": LowInventoryConditionConditionGroup,
-    "LowInventoryConditionFilter": LowInventoryConditionFilter,
     "LowInventoryTrigger": LowInventoryTrigger,
+    "LowInventoryTriggerTriggerFilter": LowInventoryTriggerTriggerFilter,
+    "LowInventoryTriggerTriggerFilterConditionGroupsInner": LowInventoryTriggerTriggerFilterConditionGroupsInner,
     "MailboxProviderMethodFilter": MailboxProviderMethodFilter,
     "ManualAddManualMethodFilter": ManualAddManualMethodFilter,
     "ManualImportManualMethodFilter": ManualImportManualMethodFilter,
@@ -7038,8 +7619,6 @@ let typeMap: {[index: string]: any} = {
     "MetricCreateQueryResourceObject": MetricCreateQueryResourceObject,
     "MetricCreateQueryResourceObjectAttributes": MetricCreateQueryResourceObjectAttributes,
     "MetricPropertyCondition": MetricPropertyCondition,
-    "MetricPropertyConditionConditionGroup": MetricPropertyConditionConditionGroup,
-    "MetricPropertyConditionFilter": MetricPropertyConditionFilter,
     "MetricPropertyResponseObjectResourceAttributes": MetricPropertyResponseObjectResourceAttributes,
     "MetricPropertyResponseObjectResourceExtended": MetricPropertyResponseObjectResourceExtended,
     "MetricPropertyResponseObjectResourceExtendedAttributes": MetricPropertyResponseObjectResourceExtendedAttributes,
@@ -7052,6 +7631,8 @@ let typeMap: {[index: string]: any} = {
     "MetricResponseObjectResourceRelationshipsFlowTriggers": MetricResponseObjectResourceRelationshipsFlowTriggers,
     "MetricResponseObjectResourceRelationshipsFlowTriggersDataInner": MetricResponseObjectResourceRelationshipsFlowTriggersDataInner,
     "MetricTrigger": MetricTrigger,
+    "MetricTriggerTriggerFilter": MetricTriggerTriggerFilter,
+    "MetricTriggerTriggerFilterConditionGroupsInner": MetricTriggerTriggerFilterConditionGroupsInner,
     "MobileOverlay": MobileOverlay,
     "MobilePushBadge": MobilePushBadge,
     "MobilePushContent": MobilePushContent,
@@ -7091,6 +7672,63 @@ let typeMap: {[index: string]: any} = {
     "NumericOperatorNumericFilter": NumericOperatorNumericFilter,
     "NumericRangeFilter": NumericRangeFilter,
     "ObjectLinks": ObjectLinks,
+    "ObjectRecordDeleteJobCreateQuery": ObjectRecordDeleteJobCreateQuery,
+    "ObjectRecordDeleteJobCreateQueryResourceObject": ObjectRecordDeleteJobCreateQueryResourceObject,
+    "ObjectRecordDeleteJobCreateQueryResourceObjectRelationships": ObjectRecordDeleteJobCreateQueryResourceObjectRelationships,
+    "ObjectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecords": ObjectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecords,
+    "ObjectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecordsDataInner": ObjectRecordDeleteJobCreateQueryResourceObjectRelationshipsObjectRecordsDataInner,
+    "ObjectRecordResponseObjectResource": ObjectRecordResponseObjectResource,
+    "ObjectRecordResponseObjectResourceAttributes": ObjectRecordResponseObjectResourceAttributes,
+    "ObjectSchemaCreateQuery": ObjectSchemaCreateQuery,
+    "ObjectSchemaCreateQueryResourceObject": ObjectSchemaCreateQueryResourceObject,
+    "ObjectSchemaCreateQueryResourceObjectAttributes": ObjectSchemaCreateQueryResourceObjectAttributes,
+    "ObjectSchemaCreateQueryResourceObjectRelationships": ObjectSchemaCreateQueryResourceObjectRelationships,
+    "ObjectSchemaCreateQueryResourceObjectRelationshipsObjectType": ObjectSchemaCreateQueryResourceObjectRelationshipsObjectType,
+    "ObjectSchemaCreateQueryResourceObjectRelationshipsObjectTypeData": ObjectSchemaCreateQueryResourceObjectRelationshipsObjectTypeData,
+    "ObjectSchemaPartialUpdateQuery": ObjectSchemaPartialUpdateQuery,
+    "ObjectSchemaPartialUpdateQueryResourceObject": ObjectSchemaPartialUpdateQueryResourceObject,
+    "ObjectSchemaPartialUpdateQueryResourceObjectAttributes": ObjectSchemaPartialUpdateQueryResourceObjectAttributes,
+    "ObjectSchemaRelationshipCreateMeta": ObjectSchemaRelationshipCreateMeta,
+    "ObjectSchemaRelationshipCreateQuery": ObjectSchemaRelationshipCreateQuery,
+    "ObjectSchemaRelationshipCreateQueryDataInner": ObjectSchemaRelationshipCreateQueryDataInner,
+    "ObjectSchemaRelationshipDeleteMeta": ObjectSchemaRelationshipDeleteMeta,
+    "ObjectSchemaRelationshipDeleteQuery": ObjectSchemaRelationshipDeleteQuery,
+    "ObjectSchemaRelationshipDeleteQueryDataInner": ObjectSchemaRelationshipDeleteQueryDataInner,
+    "ObjectSchemaRelationshipMeta": ObjectSchemaRelationshipMeta,
+    "ObjectSchemaRelationshipPartialUpdateQuery": ObjectSchemaRelationshipPartialUpdateQuery,
+    "ObjectSchemaRelationshipPartialUpdateQueryData": ObjectSchemaRelationshipPartialUpdateQueryData,
+    "ObjectSchemaRelationshipResponseObjectResource": ObjectSchemaRelationshipResponseObjectResource,
+    "ObjectSchemaRelationshipResponseObjectResourceAttributes": ObjectSchemaRelationshipResponseObjectResourceAttributes,
+    "ObjectSchemaRelationshipUpdateMeta": ObjectSchemaRelationshipUpdateMeta,
+    "ObjectSchemaResponseObjectResource": ObjectSchemaResponseObjectResource,
+    "ObjectSchemaResponseObjectResourceAttributes": ObjectSchemaResponseObjectResourceAttributes,
+    "ObjectSchemaResponseObjectResourceRelationships": ObjectSchemaResponseObjectResourceRelationships,
+    "ObjectSchemaResponseObjectResourceRelationshipsObjectSchemas": ObjectSchemaResponseObjectResourceRelationshipsObjectSchemas,
+    "ObjectSchemaResponseObjectResourceRelationshipsObjectSchemasDataInner": ObjectSchemaResponseObjectResourceRelationshipsObjectSchemasDataInner,
+    "ObjectSchemaResponseObjectResourceRelationshipsProfileObjectSchemas": ObjectSchemaResponseObjectResourceRelationshipsProfileObjectSchemas,
+    "ObjectSchemaResponseObjectResourceRelationshipsProfileObjectSchemasDataInner": ObjectSchemaResponseObjectResourceRelationshipsProfileObjectSchemasDataInner,
+    "ObjectSchemaResponseObjectResourceRelationshipsSourceMapping": ObjectSchemaResponseObjectResourceRelationshipsSourceMapping,
+    "ObjectSchemaResponseObjectResourceRelationshipsSourceMappingData": ObjectSchemaResponseObjectResourceRelationshipsSourceMappingData,
+    "ObjectTypeCreateQuery": ObjectTypeCreateQuery,
+    "ObjectTypeCreateQueryResourceObject": ObjectTypeCreateQueryResourceObject,
+    "ObjectTypeCreateQueryResourceObjectAttributes": ObjectTypeCreateQueryResourceObjectAttributes,
+    "ObjectTypeCreateQueryResourceObjectAttributesObjectSchema": ObjectTypeCreateQueryResourceObjectAttributesObjectSchema,
+    "ObjectTypeRelationshipMeta": ObjectTypeRelationshipMeta,
+    "ObjectTypeRelationshipResponseObjectResource": ObjectTypeRelationshipResponseObjectResource,
+    "ObjectTypeRelationshipResponseObjectResourceAttributes": ObjectTypeRelationshipResponseObjectResourceAttributes,
+    "ObjectTypeResponseObjectResource": ObjectTypeResponseObjectResource,
+    "ObjectTypeResponseObjectResourceAttributes": ObjectTypeResponseObjectResourceAttributes,
+    "ObjectTypeResponseObjectResourceRelationships": ObjectTypeResponseObjectResourceRelationships,
+    "ObjectTypeResponseObjectResourceRelationshipsCurrentSchema": ObjectTypeResponseObjectResourceRelationshipsCurrentSchema,
+    "ObjectTypeResponseObjectResourceRelationshipsCurrentSchemaData": ObjectTypeResponseObjectResourceRelationshipsCurrentSchemaData,
+    "ObjectTypeResponseObjectResourceRelationshipsDraftSchema": ObjectTypeResponseObjectResourceRelationshipsDraftSchema,
+    "ObjectTypeResponseObjectResourceRelationshipsDraftSchemaData": ObjectTypeResponseObjectResourceRelationshipsDraftSchemaData,
+    "ObjectTypeResponseObjectResourceRelationshipsObjectTypes": ObjectTypeResponseObjectResourceRelationshipsObjectTypes,
+    "ObjectTypeResponseObjectResourceRelationshipsObjectTypesDataInner": ObjectTypeResponseObjectResourceRelationshipsObjectTypesDataInner,
+    "ObjectTypeResponseObjectResourceRelationshipsProfileObjectTypes": ObjectTypeResponseObjectResourceRelationshipsProfileObjectTypes,
+    "ObjectTypeResponseObjectResourceRelationshipsProfileObjectTypesDataInner": ObjectTypeResponseObjectResourceRelationshipsProfileObjectTypesDataInner,
+    "ObjectTypeResponseObjectResourceRelationshipsSchemaVersions": ObjectTypeResponseObjectResourceRelationshipsSchemaVersions,
+    "ObjectTypeResponseObjectResourceRelationshipsSchemaVersionsDataInner": ObjectTypeResponseObjectResourceRelationshipsSchemaVersionsDataInner,
     "OneClickUnsubscribeMethodFilter": OneClickUnsubscribeMethodFilter,
     "OnlyRelatedLinks": OnlyRelatedLinks,
     "OnsiteProfileCreateQueryResourceObject": OnsiteProfileCreateQueryResourceObject,
@@ -7098,6 +7736,9 @@ let typeMap: {[index: string]: any} = {
     "OnsiteProfileMeta": OnsiteProfileMeta,
     "OpenForm": OpenForm,
     "OpenFormProperties": OpenFormProperties,
+    "OpenTrackingConsent": OpenTrackingConsent,
+    "OpenTrackingSubscriptionParameters": OpenTrackingSubscriptionParameters,
+    "OpenTrackingUnsubscriptionParameters": OpenTrackingUnsubscriptionParameters,
     "OptInCode": OptInCode,
     "OptInCodeProperties": OptInCodeProperties,
     "OptInCodeStyles": OptInCodeStyles,
@@ -7122,11 +7763,13 @@ let typeMap: {[index: string]: any} = {
     "PatchListPartialUpdateResponse": PatchListPartialUpdateResponse,
     "PatchMappedMetricResponse": PatchMappedMetricResponse,
     "PatchMappedMetricResponseData": PatchMappedMetricResponseData,
+    "PatchObjectSchemaResponse": PatchObjectSchemaResponse,
     "PatchProfileResponse": PatchProfileResponse,
     "PatchReviewResponseDTO": PatchReviewResponseDTO,
     "PatchReviewResponseDTOData": PatchReviewResponseDTOData,
     "PatchSegmentPartialUpdateResponse": PatchSegmentPartialUpdateResponse,
-    "PatchTagGroupResponse": PatchTagGroupResponse,
+    "PatchSourceMappingResponse": PatchSourceMappingResponse,
+    "PatchSourceMappingResponseData": PatchSourceMappingResponseData,
     "PatchTemplateDndResponse": PatchTemplateDndResponse,
     "PatchTrackingSettingResponse": PatchTrackingSettingResponse,
     "PatchTrackingSettingResponseData": PatchTrackingSettingResponseData,
@@ -7214,6 +7857,10 @@ let typeMap: {[index: string]: any} = {
     "PostMetricAggregateResponse": PostMetricAggregateResponse,
     "PostMetricAggregateResponseData": PostMetricAggregateResponseData,
     "PostMetricAggregateResponseDataAttributes": PostMetricAggregateResponseDataAttributes,
+    "PostObjectSchemaResponse": PostObjectSchemaResponse,
+    "PostObjectSchemaResponseData": PostObjectSchemaResponseData,
+    "PostObjectTypeResponse": PostObjectTypeResponse,
+    "PostObjectTypeResponseData": PostObjectTypeResponseData,
     "PostProfileImportJobResponse": PostProfileImportJobResponse,
     "PostProfileImportJobResponseData": PostProfileImportJobResponseData,
     "PostProfileMergeResponse": PostProfileMergeResponse,
@@ -7249,9 +7896,9 @@ let typeMap: {[index: string]: any} = {
     "PreferencePageMethodFilter": PreferencePageMethodFilter,
     "PreviouslySubmitted": PreviouslySubmitted,
     "PriceDropCondition": PriceDropCondition,
-    "PriceDropConditionConditionGroup": PriceDropConditionConditionGroup,
-    "PriceDropConditionFilter": PriceDropConditionFilter,
     "PriceDropTrigger": PriceDropTrigger,
+    "PriceDropTriggerTriggerFilter": PriceDropTriggerTriggerFilter,
+    "PriceDropTriggerTriggerFilterConditionGroupsInner": PriceDropTriggerTriggerFilterConditionGroupsInner,
     "ProductBlockData": ProductBlockData,
     "ProductBlockStyles": ProductBlockStyles,
     "ProductBlockV0": ProductBlockV0,
@@ -7300,6 +7947,13 @@ let typeMap: {[index: string]: any} = {
     "ProfileModificationMethodFilter": ProfileModificationMethodFilter,
     "ProfileNoGroupMembershipCondition": ProfileNoGroupMembershipCondition,
     "ProfileNotInFlowCondition": ProfileNotInFlowCondition,
+    "ProfileObjectSchemaRelationshipCreateQuery": ProfileObjectSchemaRelationshipCreateQuery,
+    "ProfileObjectSchemaRelationshipCreateQueryDataInner": ProfileObjectSchemaRelationshipCreateQueryDataInner,
+    "ProfileObjectSchemaRelationshipDeleteQuery": ProfileObjectSchemaRelationshipDeleteQuery,
+    "ProfileObjectSchemaRelationshipDeleteQueryDataInner": ProfileObjectSchemaRelationshipDeleteQueryDataInner,
+    "ProfileObjectSchemaRelationshipPartialUpdateQuery": ProfileObjectSchemaRelationshipPartialUpdateQuery,
+    "ProfileObjectSchemaRelationshipPartialUpdateQueryData": ProfileObjectSchemaRelationshipPartialUpdateQueryData,
+    "ProfileObjectSchemaRelationshipResponseObjectResource": ProfileObjectSchemaRelationshipResponseObjectResource,
     "ProfileOperationDelete": ProfileOperationDelete,
     "ProfileOperationUpdateOrCreateBoolean": ProfileOperationUpdateOrCreateBoolean,
     "ProfileOperationUpdateOrCreateDate": ProfileOperationUpdateOrCreateDate,
@@ -7322,6 +7976,7 @@ let typeMap: {[index: string]: any} = {
     "ProfilePropertyDateTrigger": ProfilePropertyDateTrigger,
     "ProfileRandomSampleCondition": ProfileRandomSampleCondition,
     "ProfileRegionCondition": ProfileRegionCondition,
+    "ProfileRelationshipSource": ProfileRelationshipSource,
     "ProfileResponseObjectResource": ProfileResponseObjectResource,
     "ProfileResponseObjectResourceAttributes": ProfileResponseObjectResourceAttributes,
     "ProfileResponseObjectResourceExtended": ProfileResponseObjectResourceExtended,
@@ -7333,6 +7988,11 @@ let typeMap: {[index: string]: any} = {
     "ProfileResponseObjectResourceRelationshipsPushTokensDataInner": ProfileResponseObjectResourceRelationshipsPushTokensDataInner,
     "ProfileResponseObjectResourceRelationshipsSegments": ProfileResponseObjectResourceRelationshipsSegments,
     "ProfileResponseObjectResourceRelationshipsSegmentsDataInner": ProfileResponseObjectResourceRelationshipsSegmentsDataInner,
+    "ProfileResponsePluralConversationsObjectResourceAttributes": ProfileResponsePluralConversationsObjectResourceAttributes,
+    "ProfileResponsePluralConversationsObjectResourceExtended": ProfileResponsePluralConversationsObjectResourceExtended,
+    "ProfileResponsePluralConversationsObjectResourceExtendedAttributes": ProfileResponsePluralConversationsObjectResourceExtendedAttributes,
+    "ProfileResponsePluralConversationsObjectResourceExtendedRelationships": ProfileResponsePluralConversationsObjectResourceExtendedRelationships,
+    "ProfileResponsePluralConversationsObjectResourceExtendedRelationshipsConversations": ProfileResponsePluralConversationsObjectResourceExtendedRelationshipsConversations,
     "ProfileSubscriptionCreateQueryResourceObject": ProfileSubscriptionCreateQueryResourceObject,
     "ProfileSubscriptionCreateQueryResourceObjectAttributes": ProfileSubscriptionCreateQueryResourceObjectAttributes,
     "ProfileSubscriptionDeleteQueryResourceObject": ProfileSubscriptionDeleteQueryResourceObject,
@@ -7341,19 +8001,24 @@ let typeMap: {[index: string]: any} = {
     "ProfileSuppressionCreateQueryResourceObjectAttributes": ProfileSuppressionCreateQueryResourceObjectAttributes,
     "ProfileSuppressionDeleteQueryResourceObject": ProfileSuppressionDeleteQueryResourceObject,
     "ProfileSuppressionDeleteQueryResourceObjectAttributes": ProfileSuppressionDeleteQueryResourceObjectAttributes,
+    "ProfileTypeRelationshipResponseObjectResource": ProfileTypeRelationshipResponseObjectResource,
     "ProfileUpsertQuery": ProfileUpsertQuery,
     "ProfileUpsertQueryResourceObject": ProfileUpsertQueryResourceObject,
     "ProfileUpsertQueryResourceObjectAttributes": ProfileUpsertQueryResourceObjectAttributes,
     "PromotionalSMSSubscription": PromotionalSMSSubscription,
     "Property": Property,
+    "PropertyFilter": PropertyFilter,
     "PropertyOption": PropertyOption,
+    "PropertySource": PropertySource,
     "ProvidedLandlineMethodFilter": ProvidedLandlineMethodFilter,
     "ProvidedNoAgeMethodFilter": ProvidedNoAgeMethodFilter,
     "PushActionButton": PushActionButton,
+    "PushActionButtonDefinition": PushActionButtonDefinition,
     "PushChannel": PushChannel,
     "PushMarketing": PushMarketing,
     "PushOnOpenApp": PushOnOpenApp,
     "PushOnOpenDeepLink": PushOnOpenDeepLink,
+    "PushOnOpenWebUrl": PushOnOpenWebUrl,
     "PushProfileUpsertQueryResourceObject": PushProfileUpsertQueryResourceObject,
     "PushProfileUpsertQueryResourceObjectAttributes": PushProfileUpsertQueryResourceObjectAttributes,
     "PushSendOptions": PushSendOptions,
@@ -7385,6 +8050,7 @@ let typeMap: {[index: string]: any} = {
     "RejectReasonPrivateInformation": RejectReasonPrivateInformation,
     "RejectReasonProfanity": RejectReasonProfanity,
     "RejectReasonUnrelated": RejectReasonUnrelated,
+    "RelatedIdPath": RelatedIdPath,
     "RelationshipLinks": RelationshipLinks,
     "RelativeAnniversaryDateFilter": RelativeAnniversaryDateFilter,
     "RelativeDateOperatorBaseRelativeDateFilter": RelativeDateOperatorBaseRelativeDateFilter,
@@ -7434,6 +8100,7 @@ let typeMap: {[index: string]: any} = {
     "SMSDisclosure": SMSDisclosure,
     "SMSDisclosureAccountDefault": SMSDisclosureAccountDefault,
     "SMSDisclosureCustom": SMSDisclosureCustom,
+    "SMSDisclosureLinkTextStyle": SMSDisclosureLinkTextStyle,
     "SMSDisclosureProperties": SMSDisclosureProperties,
     "SMSDisclosureStyles": SMSDisclosureStyles,
     "SMSDisclosureTextStyle": SMSDisclosureTextStyle,
@@ -7481,8 +8148,6 @@ let typeMap: {[index: string]: any} = {
     "SendInternalAlertAction": SendInternalAlertAction,
     "SendInternalAlertActionData": SendInternalAlertActionData,
     "SendPushNotificationAction": SendPushNotificationAction,
-    "SendPushNotificationActionContentExperimentActionData": SendPushNotificationActionContentExperimentActionData,
-    "SendPushNotificationActionCurrentExperiment": SendPushNotificationActionCurrentExperiment,
     "SendPushNotificationActionData": SendPushNotificationActionData,
     "SendSmsAction": SendSmsAction,
     "SendSmsActionData": SendSmsActionData,
@@ -7507,6 +8172,8 @@ let typeMap: {[index: string]: any} = {
     "SignupCounter": SignupCounter,
     "SignupCounterProperties": SignupCounterProperties,
     "SignupCounterStyles": SignupCounterStyles,
+    "SimplePropertyMapping": SimplePropertyMapping,
+    "SimpleRelationshipMapping": SimpleRelationshipMapping,
     "SinceFlowStartDateFilter": SinceFlowStartDateFilter,
     "SkipToSuccess": SkipToSuccess,
     "SmartSendTimeStrategy": SmartSendTimeStrategy,
@@ -7517,6 +8184,12 @@ let typeMap: {[index: string]: any} = {
     "SocialBlockV1": SocialBlockV1,
     "SocialIconSubBlock": SocialIconSubBlock,
     "SocialSpacerSubBlock": SocialSpacerSubBlock,
+    "SourceMappingCreateQueryResourceObject": SourceMappingCreateQueryResourceObject,
+    "SourceMappingCreateQueryResourceObjectAttributes": SourceMappingCreateQueryResourceObjectAttributes,
+    "SourceMappingPartialUpdateQuery": SourceMappingPartialUpdateQuery,
+    "SourceMappingPartialUpdateQueryResourceObject": SourceMappingPartialUpdateQueryResourceObject,
+    "SourceMappingResponseObjectResource": SourceMappingResponseObjectResource,
+    "SourceMappingResponseObjectResourceAttributes": SourceMappingResponseObjectResourceAttributes,
     "SpacerBlockData": SpacerBlockData,
     "SpacerBlockStyles": SpacerBlockStyles,
     "SpacerBlockV0": SpacerBlockV0,
@@ -7750,10 +8423,13 @@ const oneOfMap: {[index: string]: any} = {
     "GetFlowActionEncodedResponseCompoundDocumentIncludedInner": GetFlowActionEncodedResponseCompoundDocumentIncludedInnerHelper,
     "GetFlowMessageEncodedResponseCompoundDocumentIncludedInner": GetFlowMessageEncodedResponseCompoundDocumentIncludedInnerHelper,
     "GetFlowResponseCollectionCompoundDocumentIncludedInner": GetFlowResponseCollectionCompoundDocumentIncludedInnerHelper,
+    "GetIngestionLogResponseCollectionCompoundDocumentIncludedInner": GetIngestionLogResponseCollectionCompoundDocumentIncludedInnerHelper,
     "GetListListResponseCollectionCompoundDocumentIncludedInner": GetListListResponseCollectionCompoundDocumentIncludedInnerHelper,
     "GetMappedMetricResponseCollectionCompoundDocumentIncludedInner": GetMappedMetricResponseCollectionCompoundDocumentIncludedInnerHelper,
-    "GetProfileResponseCollectionCompoundDocumentIncludedInner": GetProfileResponseCollectionCompoundDocumentIncludedInnerHelper,
-    "GetProfileResponseCompoundDocumentIncludedInner": GetProfileResponseCompoundDocumentIncludedInnerHelper,
+    "GetObjectSchemaResponseCompoundDocumentIncludedInner": GetObjectSchemaResponseCompoundDocumentIncludedInnerHelper,
+    "GetObjectTypeResponseCompoundDocumentIncludedInner": GetObjectTypeResponseCompoundDocumentIncludedInnerHelper,
+    "GetProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInner": GetProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInnerHelper,
+    "GetProfileResponsePluralConversationsCompoundDocumentIncludedInner": GetProfileResponsePluralConversationsCompoundDocumentIncludedInnerHelper,
 }
 
 const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
@@ -7761,7 +8437,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "SendEmailAction",
             "SendSmsAction",
     ],
-    "ActionOutputConditionFilter2": [
+    "ActionOutputConditionFilter": [
             "BooleanFilter",
             "ExistenceOperatorExistenceFilter",
             "NumericOperatorNumericFilter",
@@ -7782,6 +8458,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "ButtonAction": [
             "Close",
             "GoToInbox",
+            "IafDeeplinkToScreen",
             "NextStep",
             "OpenForm",
             "PromotionalSMSSubscription",
@@ -7895,16 +8572,30 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "FlowsProfileMetricCondition",
             "ProfileHasCustomObjectCondition",
             "ProfileHasGroupMembershipCondition",
+            "ProfileHasNotReceivedEmailMessageCondition",
+            "ProfileHasNotReceivedPushMessageCondition",
+            "ProfileHasNotReceivedSmsMessageCondition",
             "ProfileMarketingConsentCondition",
             "ProfileNoGroupMembershipCondition",
             "ProfilePermissionsCondition",
             "ProfilePostalCodeDistanceCondition",
+            "ProfilePredictiveAnalyticsChannelAffinityPriorityCondition",
+            "ProfilePredictiveAnalyticsChannelAffinityRankCondition",
             "ProfilePredictiveAnalyticsDateCondition",
             "ProfilePredictiveAnalyticsNumericCondition",
             "ProfilePredictiveAnalyticsStringCondition",
             "ProfilePropertyCondition",
             "ProfileRandomSampleCondition",
             "ProfileRegionCondition",
+    ],
+    "ConstantPropertyMappingValue": [
+            "boolean",
+            "number",
+            "string",
+    ],
+    "ContentExperimentActionDataMainAction": [
+            "SendPushNotificationAction",
+            "SendWhatsAppAction",
     ],
     "CountdownTimerPropertiesConfiguration": [
             "FixedTimerConfiguration",
@@ -7927,23 +8618,6 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "ListSubstringFilter",
             "NumericOperatorNumericFilter",
             "StringInArrayFilter",
-            "StringOperatorStringFilter",
-    ],
-    "CustomObjectPropertyConditionFilter": [
-            "AnniversaryDateFilter",
-            "BooleanFilter",
-            "CalendarDateFilter",
-            "ExistenceOperatorExistenceFilter",
-            "ListContainsOperatorListContainsFilter",
-            "ListLengthFilter",
-            "NumericOperatorNumericFilter",
-            "NumericRangeFilter",
-            "RelativeAnniversaryDateFilter",
-            "RelativeDateOperatorBaseRelativeDateFilter",
-            "RelativeDateRangeFilter",
-            "StaticDateFilter",
-            "StaticDateRangeFilter",
-            "StringArrayOperatorStringArrayFilter",
             "StringOperatorStringFilter",
     ],
     "CustomObjectTriggerConditionFilter": [
@@ -8035,11 +8709,16 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "FlowsProfileMetricCondition",
             "ProfileHasCustomObjectCondition",
             "ProfileHasGroupMembershipCondition",
+            "ProfileHasNotReceivedEmailMessageCondition",
+            "ProfileHasNotReceivedPushMessageCondition",
+            "ProfileHasNotReceivedSmsMessageCondition",
             "ProfileMarketingConsentCondition",
             "ProfileNoGroupMembershipCondition",
             "ProfileNotInFlowCondition",
             "ProfilePermissionsCondition",
             "ProfilePostalCodeDistanceCondition",
+            "ProfilePredictiveAnalyticsChannelAffinityPriorityCondition",
+            "ProfilePredictiveAnalyticsChannelAffinityRankCondition",
             "ProfilePredictiveAnalyticsDateCondition",
             "ProfilePredictiveAnalyticsNumericCondition",
             "ProfilePredictiveAnalyticsStringCondition",
@@ -8048,28 +8727,13 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "ProfileRegionCondition",
     ],
     "FlowDefinitionTriggersInner": [
+            "CustomObjectDateTrigger",
             "ListTrigger",
             "LowInventoryTrigger",
             "MetricTrigger",
             "PriceDropTrigger",
             "ProfilePropertyDateTrigger",
             "SegmentTrigger",
-    ],
-    "FlowEmailAdditionalFiltersConditionGroupsInnerConditionsInner": [
-            "FlowsProfileMetricCondition",
-            "ProfileHasCustomObjectCondition",
-            "ProfileHasGroupMembershipCondition",
-            "ProfileHasNotReceivedEmailMessageCondition",
-            "ProfileMarketingConsentCondition",
-            "ProfileNoGroupMembershipCondition",
-            "ProfilePermissionsCondition",
-            "ProfilePostalCodeDistanceCondition",
-            "ProfilePredictiveAnalyticsDateCondition",
-            "ProfilePredictiveAnalyticsNumericCondition",
-            "ProfilePredictiveAnalyticsStringCondition",
-            "ProfilePropertyCondition",
-            "ProfileRandomSampleCondition",
-            "ProfileRegionCondition",
     ],
     "FlowMessageEncodedResponseObjectResourceAttributesDefinition": [
             "FlowEmail",
@@ -8079,42 +8743,10 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "FlowWebhook",
             "FlowWhatsApp",
     ],
-    "FlowPushNotificationAdditionalFiltersConditionGroupsInnerConditionsInner": [
-            "FlowsProfileMetricCondition",
-            "ProfileHasCustomObjectCondition",
-            "ProfileHasGroupMembershipCondition",
-            "ProfileHasNotReceivedPushMessageCondition",
-            "ProfileMarketingConsentCondition",
-            "ProfileNoGroupMembershipCondition",
-            "ProfilePermissionsCondition",
-            "ProfilePostalCodeDistanceCondition",
-            "ProfilePredictiveAnalyticsDateCondition",
-            "ProfilePredictiveAnalyticsNumericCondition",
-            "ProfilePredictiveAnalyticsStringCondition",
-            "ProfilePropertyCondition",
-            "ProfileRandomSampleCondition",
-            "ProfileRegionCondition",
-    ],
     "FlowPushNotificationBadgeOptions": [
             "Increment",
             "Property",
             "StaticCount",
-    ],
-    "FlowSmsAdditionalFiltersConditionGroupsInnerConditionsInner": [
-            "FlowsProfileMetricCondition",
-            "ProfileHasCustomObjectCondition",
-            "ProfileHasGroupMembershipCondition",
-            "ProfileHasNotReceivedSmsMessageCondition",
-            "ProfileMarketingConsentCondition",
-            "ProfileNoGroupMembershipCondition",
-            "ProfilePermissionsCondition",
-            "ProfilePostalCodeDistanceCondition",
-            "ProfilePredictiveAnalyticsDateCondition",
-            "ProfilePredictiveAnalyticsNumericCondition",
-            "ProfilePredictiveAnalyticsStringCondition",
-            "ProfilePropertyCondition",
-            "ProfileRandomSampleCondition",
-            "ProfileRegionCondition",
     ],
     "FlowsProfileMetricConditionTimeframeFilter": [
             "AlltimeDateFilter",
@@ -8164,6 +8796,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "ImageAction": [
             "Close",
             "GoToInbox",
+            "IafDeeplinkToScreen",
             "NextStep",
             "OpenForm",
             "PromotionalSMSSubscription",
@@ -8192,24 +8825,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "LocationPropertiesAllowListInner": [
             "string",
     ],
-    "LowInventoryConditionFilter2": [
-            "AnniversaryDateFilter",
-            "BooleanFilter",
-            "CalendarDateFilter",
-            "ExistenceOperatorExistenceFilter",
-            "ListContainsOperatorListContainsFilter",
-            "ListLengthFilter",
-            "NumericOperatorNumericFilter",
-            "NumericRangeFilter",
-            "RelativeAnniversaryDateFilter",
-            "RelativeDateOperatorBaseRelativeDateFilter",
-            "RelativeDateRangeFilter",
-            "StaticDateFilter",
-            "StaticDateRangeFilter",
-            "StringArrayOperatorStringArrayFilter",
-            "StringOperatorStringFilter",
-    ],
-    "MetricPropertyConditionFilter2": [
+    "MetricPropertyConditionFilter": [
             "AnniversaryDateFilter",
             "BooleanFilter",
             "CalendarDateFilter",
@@ -8243,6 +8859,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "MobilePushOptionsOnOpen": [
             "PushOnOpenApp",
             "PushOnOpenDeepLink",
+            "PushOnOpenWebUrl",
     ],
     "MultiBranchSplitBranchBranchFilterConditionGroupsInnerConditionsInner": [
             "CustomObjectTriggerCondition",
@@ -8250,10 +8867,15 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "MetricPropertyCondition",
             "ProfileHasCustomObjectCondition",
             "ProfileHasGroupMembershipCondition",
+            "ProfileHasNotReceivedEmailMessageCondition",
+            "ProfileHasNotReceivedPushMessageCondition",
+            "ProfileHasNotReceivedSmsMessageCondition",
             "ProfileMarketingConsentCondition",
             "ProfileNoGroupMembershipCondition",
             "ProfilePermissionsCondition",
             "ProfilePostalCodeDistanceCondition",
+            "ProfilePredictiveAnalyticsChannelAffinityPriorityCondition",
+            "ProfilePredictiveAnalyticsChannelAffinityRankCondition",
             "ProfilePredictiveAnalyticsDateCondition",
             "ProfilePredictiveAnalyticsNumericCondition",
             "ProfilePredictiveAnalyticsStringCondition",
@@ -8321,23 +8943,6 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "EmailContentSubObject",
             "SMSContentSubObject",
     ],
-    "PriceDropConditionFilter2": [
-            "AnniversaryDateFilter",
-            "BooleanFilter",
-            "CalendarDateFilter",
-            "ExistenceOperatorExistenceFilter",
-            "ListContainsOperatorListContainsFilter",
-            "ListLengthFilter",
-            "NumericOperatorNumericFilter",
-            "NumericRangeFilter",
-            "RelativeAnniversaryDateFilter",
-            "RelativeDateOperatorBaseRelativeDateFilter",
-            "RelativeDateRangeFilter",
-            "StaticDateFilter",
-            "StaticDateRangeFilter",
-            "StringArrayOperatorStringArrayFilter",
-            "StringOperatorStringFilter",
-    ],
     "ProductBlockDataProperties": [
             "DynamicProductBlockProperties",
             "StaticProductBlockProperties",
@@ -8361,7 +8966,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "StaticDateFilter",
             "StaticDateRangeFilter",
     ],
-    "ProfileHasNotReceivedPushMessageConditionTimeframeFilter": [
+    "ProfileHasNotReceivedEmailMessageConditionTimeframeFilter": [
             "AlltimeDateFilter",
             "InTheLastBaseRelativeDateFilter",
     ],
@@ -8466,6 +9071,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "Checkboxes",
             "CountdownTimer",
             "Coupon",
+            "CustomHTML",
             "Dropdown",
             "Email",
             "HTMLText",
@@ -8502,9 +9108,17 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
             "RelativeDateRangeFilter",
             "StaticDateRangeFilter",
     ],
+    "SimpleRelationshipMappingSource": [
+            "CustomObjectRelationshipSource",
+            "ProfileRelationshipSource",
+    ],
     "SocialBlockV1SubblocksInner": [
             "SocialIconSubBlock",
             "SocialSpacerSubBlock",
+    ],
+    "SourceMappingResponseObjectResourceAttributesPropertyMappingsInner": [
+            "ConstantPropertyMapping",
+            "SimplePropertyMapping",
     ],
     "SplitBlockV1SubblocksInner": [
             "TableHtmlSubBlock",
@@ -8613,6 +9227,7 @@ const oneOfMapNoDiscriminator: {[index: string]: Array<any>} = {
     "VersionTriggersInner": [
             "AfterCloseTimeout",
             "BackInStock",
+            "CartContent",
             "CartItemCount",
             "CartProduct",
             "CartValue",
