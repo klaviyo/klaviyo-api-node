@@ -12,9 +12,11 @@
 import { RequestFile } from './models';
 import { GetObjectTypeCurrentSchemaRelationshipResponseData } from './getObjectTypeCurrentSchemaRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetObjectTypeCurrentSchemaRelationshipResponse {
     'data': GetObjectTypeCurrentSchemaRelationshipResponseData | null;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetObjectTypeCurrentSchemaRelationshipResponse {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

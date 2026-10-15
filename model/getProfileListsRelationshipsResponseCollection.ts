@@ -12,9 +12,11 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetProfileListsRelationshipsResponseCollectionDataInner } from './getProfileListsRelationshipsResponseCollectionDataInner';
+import { ResponseMeta } from './responseMeta';
 export class GetProfileListsRelationshipsResponseCollection {
     'data': Array<GetProfileListsRelationshipsResponseCollectionDataInner>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetProfileListsRelationshipsResponseCollection {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

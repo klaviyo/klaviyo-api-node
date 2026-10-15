@@ -12,9 +12,11 @@
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { PostListCreateResponseData } from './postListCreateResponseData';
+import { ResponseMeta } from './responseMeta';
 export class PatchListPartialUpdateResponse {
     'data': PostListCreateResponseData;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class PatchListPartialUpdateResponse {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -12,9 +12,11 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { ListResponseObjectResource } from './listResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetListResponseCollection {
     'data': Array<ListResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetListResponseCollection {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -18,7 +18,7 @@ export class CampaignTrackingSettingDynamicParam {
     /**
     * The value of the tracking parameter
     */
-    'value': CampaignTrackingSettingDynamicParam.ValueEnum | 'campaign_id' | 'campaign_name' | 'campaign_name_id' | 'campaign_name_send_day' | 'email_subject' | 'group_id' | 'group_name' | 'group_name_id' | 'link_alt_text' | 'message_type' | 'profile_external_id' | 'profile_id';
+    'value': CampaignTrackingSettingDynamicParam.ValueEnum | 'campaign_id' | 'campaign_name' | 'campaign_name_id' | 'campaign_name_send_day' | 'email_subject' | 'group_id' | 'group_name' | 'group_name_id' | 'link_alt_text' | 'message_type' | 'profile_external_id' | 'profile_id' | 'variation_name';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -54,6 +54,7 @@ export namespace CampaignTrackingSettingDynamicParam {
         LinkAltText = <any> 'link_alt_text',
         MessageType = <any> 'message_type',
         ProfileExternalId = <any> 'profile_external_id',
-        ProfileId = <any> 'profile_id'
+        ProfileId = <any> 'profile_id',
+        VariationName = <any> 'variation_name'
     }
 }

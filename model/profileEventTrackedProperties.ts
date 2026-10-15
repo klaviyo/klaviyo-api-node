@@ -14,6 +14,7 @@ import { PropertyFilter } from './propertyFilter';
 export class ProfileEventTrackedProperties {
     'metric'?: string | null = '';
     'propertyFilters'?: Array<PropertyFilter> | null;
+    'delaySeconds'?: number | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -26,6 +27,11 @@ export class ProfileEventTrackedProperties {
             "name": "propertyFilters",
             "baseName": "property_filters",
             "type": "Array<PropertyFilter>"
+        },
+        {
+            "name": "delaySeconds",
+            "baseName": "delay_seconds",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {

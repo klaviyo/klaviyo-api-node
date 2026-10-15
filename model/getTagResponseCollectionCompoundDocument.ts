@@ -11,11 +11,13 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
+import { ResponseMeta } from './responseMeta';
 import { TagGroupResponseObjectResource } from './tagGroupResponseObjectResource';
 import { TagResponseObjectResource } from './tagResponseObjectResource';
 export class GetTagResponseCollectionCompoundDocument {
     'data': Array<TagResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<TagGroupResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetTagResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

@@ -10,11 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { ErrorMessages } from './errorMessages';
 import { PropertyOption } from './propertyOption';
 export class CheckboxesProperties {
     'displayDevice'?: Array<CheckboxesProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'propertyName': string;
     'label'?: string | null;
     'showLabel'?: boolean = false;
@@ -34,6 +36,11 @@ export class CheckboxesProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "propertyName",

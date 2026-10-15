@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { ConditionalBranchActionDataProfileFilter } from './conditionalBranchActionDataProfileFilter';
 import { FlowPushNotificationBadgeOptions } from './flowPushNotificationBadgeOptions';
-import { PushActionButton } from './pushActionButton';
+import { PushActionButtonV2 } from './pushActionButtonV2';
 export class FlowPushNotification {
     'title'?: string | null;
     'body': string;
@@ -46,7 +46,7 @@ export class FlowPushNotification {
     'conversionMetricId'?: string | null;
     'smartSendingEnabled'?: boolean = true;
     'additionalFilters'?: ConditionalBranchActionDataProfileFilter | null;
-    'actionButtons'?: Array<PushActionButton> | null;
+    'actionButtons'?: Array<PushActionButtonV2> | null;
     'name'?: string | null;
     /**
     * Not allowed on create.
@@ -143,7 +143,7 @@ export class FlowPushNotification {
         {
             "name": "actionButtons",
             "baseName": "action_buttons",
-            "type": "Array<PushActionButton>"
+            "type": "Array<PushActionButtonV2>"
         },
         {
             "name": "name",

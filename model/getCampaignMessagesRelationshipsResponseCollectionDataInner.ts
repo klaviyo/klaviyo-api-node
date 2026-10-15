@@ -14,7 +14,7 @@ import { CampaignMessageEnum } from './campaignMessageEnum';
 export class GetCampaignMessagesRelationshipsResponseCollectionDataInner {
     'type': CampaignMessageEnum | 'campaign-message';
     /**
-    * The message ID
+    * The ID of the message
     */
     'id': string;
 

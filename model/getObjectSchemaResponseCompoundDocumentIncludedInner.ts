@@ -11,11 +11,12 @@
 
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
+import { ObjectSchemaRelationshipMeta } from './objectSchemaRelationshipMeta';
 import { ObjectSchemaRelationshipResponseObjectResource } from './objectSchemaRelationshipResponseObjectResource';
-import { ObjectSchemaRelationshipResponseObjectResourceAttributes } from './objectSchemaRelationshipResponseObjectResourceAttributes';
 import { ProfileObjectSchemaEnum } from './profileObjectSchemaEnum';
 import { ProfileObjectSchemaRelationshipResponseObjectResource } from './profileObjectSchemaRelationshipResponseObjectResource';
 import { SourceMappingResponseObjectResource } from './sourceMappingResponseObjectResource';
+import { SourceMappingResponseObjectResourceAttributes } from './sourceMappingResponseObjectResourceAttributes';
 
 
 

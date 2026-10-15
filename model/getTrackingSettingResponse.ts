@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 import { TrackingSettingResponseObjectResource } from './trackingSettingResponseObjectResource';
 export class GetTrackingSettingResponse {
     'data': TrackingSettingResponseObjectResource;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetTrackingSettingResponse {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -22,7 +22,7 @@ export class APISchemaProperty {
     /**
     * The type of the schema property
     */
-    'type': APISchemaProperty.TypeEnum | 'boolean' | 'float' | 'int' | 'string' | 'timestamp';
+    'type': APISchemaProperty.TypeEnum | 'boolean' | 'float' | 'int' | 'list_str' | 'string' | 'timestamp';
     /**
     * The description of the schema property
     */
@@ -61,6 +61,7 @@ export namespace APISchemaProperty {
         Boolean = <any> 'boolean',
         Float = <any> 'float',
         Int = <any> 'int',
+        ListStr = <any> 'list_str',
         String = <any> 'string',
         Timestamp = <any> 'timestamp'
     }

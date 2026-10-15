@@ -12,9 +12,11 @@
 import { RequestFile } from './models';
 import { CatalogCategoryDeleteJobResponseObjectResource } from './catalogCategoryDeleteJobResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetCatalogCategoryDeleteJobResponse {
     'data': CatalogCategoryDeleteJobResponseObjectResource;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetCatalogCategoryDeleteJobResponse {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

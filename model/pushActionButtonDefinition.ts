@@ -24,9 +24,17 @@ export class PushActionButtonDefinition {
     */
     'position'?: number | null;
     /**
-    * URL for deep_link or open_url action types (max 2048 characters)
+    * URL for deep_link or open_url action types (max 2048 characters). Used as a fallback on platforms without a more specific ios_deep_link or android_deep_link.
     */
     'url'?: string | null;
+    /**
+    * iOS-specific URL for deep_link or open_url action types (max 2048 characters). Overrides url on iOS.
+    */
+    'iosDeepLink'?: string | null;
+    /**
+    * Android-specific URL for deep_link or open_url action types (max 2048 characters). Overrides url on Android.
+    */
+    'androidDeepLink'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -48,6 +56,16 @@ export class PushActionButtonDefinition {
         {
             "name": "url",
             "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "iosDeepLink",
+            "baseName": "ios_deep_link",
+            "type": "string"
+        },
+        {
+            "name": "androidDeepLink",
+            "baseName": "android_deep_link",
             "type": "string"
         }    ];
 

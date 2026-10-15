@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { InputStyleOverrides } from './inputStyleOverrides';
 import { Padding } from './padding';
 export class AgeGateStyles {
     'padding'?: Padding;
     'backgroundColor'?: string | null;
+    'inputStyles'?: InputStyleOverrides;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -26,6 +28,11 @@ export class AgeGateStyles {
             "name": "backgroundColor",
             "baseName": "background_color",
             "type": "string"
+        },
+        {
+            "name": "inputStyles",
+            "baseName": "input_styles",
+            "type": "InputStyleOverrides"
         }    ];
 
     static getAttributeTypeMap() {

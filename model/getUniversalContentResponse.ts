@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 import { UniversalContentResponseObjectResource } from './universalContentResponseObjectResource';
 export class GetUniversalContentResponse {
-    'data': UniversalContentResponseObjectResource;
+    'data': UniversalContentResponseObjectResource | null;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetUniversalContentResponse {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

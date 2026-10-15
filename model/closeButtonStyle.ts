@@ -18,6 +18,10 @@ export class CloseButtonStyle {
     'stroke'?: number = 2;
     'size'?: number = 20;
     'margin'?: Margin;
+    /**
+    * Horizontal position of the close button.
+    */
+    'position'?: CloseButtonStyle.PositionEnum | 'left' | 'right' | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -50,6 +54,11 @@ export class CloseButtonStyle {
             "name": "margin",
             "baseName": "margin",
             "type": "Margin"
+        },
+        {
+            "name": "position",
+            "baseName": "position",
+            "type": "CloseButtonStyle.PositionEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -57,3 +66,9 @@ export class CloseButtonStyle {
     }
 }
 
+export namespace CloseButtonStyle {
+    export enum PositionEnum {
+        Left = <any> 'left',
+        Right = <any> 'right'
+    }
+}

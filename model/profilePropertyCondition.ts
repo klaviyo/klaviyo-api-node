@@ -13,6 +13,9 @@ import { RequestFile } from './models';
 import { ProfilePropertyConditionFilter } from './profilePropertyConditionFilter';
 export class ProfilePropertyCondition {
     'type': ProfilePropertyCondition.TypeEnum | 'profile-property';
+    /**
+    * The profile property to check. Use one of the well-known property names (e.g. `email`, `first_name`) or, for custom profile properties, the form `properties[\'property name\']`.
+    */
     'property': string;
     'filter': ProfilePropertyConditionFilter;
 

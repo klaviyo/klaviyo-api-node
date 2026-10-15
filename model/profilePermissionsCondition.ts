@@ -17,7 +17,7 @@ export class ProfilePermissionsCondition {
     /**
     * Possible channels for profile permissions criterion.
     */
-    'channel': ProfilePermissionsCondition.ChannelEnum | 'whatsapp_marketing' | 'whatsapp_transactional';
+    'channel': ProfilePermissionsCondition.ChannelEnum | 'email_click_tracking' | 'email_open_tracking' | 'whatsapp_marketing' | 'whatsapp_transactional';
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -47,7 +47,9 @@ export namespace ProfilePermissionsCondition {
         ProfilePermissions = <any> 'profile-permissions'
     }
     export enum ChannelEnum {
-        Marketing = <any> 'whatsapp_marketing',
-        Transactional = <any> 'whatsapp_transactional'
+        EmailClickTracking = <any> 'email_click_tracking',
+        EmailOpenTracking = <any> 'email_open_tracking',
+        WhatsappMarketing = <any> 'whatsapp_marketing',
+        WhatsappTransactional = <any> 'whatsapp_transactional'
     }
 }

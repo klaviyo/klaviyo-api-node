@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { CouponCodeResponseObjectResource } from './couponCodeResponseObjectResource';
 import { CouponResponseObjectResource } from './couponResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetCouponCodeResponseCollectionCompoundDocument {
     'data': Array<CouponCodeResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<CouponResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetCouponCodeResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

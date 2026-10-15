@@ -72,7 +72,7 @@ export class WebhooksApi {
      * Create a new Webhook<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_webhook.json)
      * @summary Create Webhook
      * @param webhookCreateQuery 
-     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async createWebhook (webhookCreateQuery: WebhookCreateQuery, options: { fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PostWebhookResponse;  }> {
 
@@ -181,7 +181,7 @@ export class WebhooksApi {
      * Get the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook.json)
      * @summary Get Webhook
      * @param id The ID of the webhook.
-     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
      */
     public async getWebhook (id: string, options: { fieldsWebhookTopic?: Array<'id'>, fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>, include?: Array<'webhook-topics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookResponseCompoundDocument;  }> {
 
@@ -246,7 +246,7 @@ export class WebhooksApi {
      * Get the webhook topic with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topic.json)
      * @summary Get Webhook Topic
      * @param id The ID of the webhook topic.
-     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getWebhookTopic (id: string, options: { fieldsWebhookTopic?: Array<'id'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponse;  }> {
 
@@ -303,7 +303,7 @@ export class WebhooksApi {
      * Get all webhook topics in a Klaviyo account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topics.json)
      * @summary Get Webhook Topics
      
-     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getWebhookTopics (options: { fieldsWebhookTopic?: Array<'id'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookTopicResponseCollection;  }> {
 
@@ -354,7 +354,7 @@ export class WebhooksApi {
      * Get all webhooks in an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhooks.json)
      * @summary Get Webhooks
      
-     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     * @param fieldsWebhookTopic For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
      */
     public async getWebhooks (options: { fieldsWebhookTopic?: Array<'id'>, fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>, include?: Array<'webhook-topics'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebhookResponseCollectionCompoundDocument;  }> {
 
@@ -413,7 +413,7 @@ export class WebhooksApi {
      * Update the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_webhook.json)
      * @summary Update Webhook
      * @param id The ID of the webhook.* @param webhookPartialUpdateQuery 
-     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebhook For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async updateWebhook (id: string, webhookPartialUpdateQuery: WebhookPartialUpdateQuery, options: { fieldsWebhook?: Array<'created_at' | 'description' | 'enabled' | 'endpoint_url' | 'id' | 'name' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchWebhookResponse;  }> {
 

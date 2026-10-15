@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 import { ConditionalBranchActionDataProfileFilter } from './conditionalBranchActionDataProfileFilter';
+import { FlowSmsMessageHierarchyInner } from './flowSmsMessageHierarchyInner';
 import { UtmParam } from './utmParam';
 export class FlowSms {
     'body': string;
@@ -23,9 +24,9 @@ export class FlowSms {
     */
     'dynamicImage'?: string | null;
     /**
-    * The RCS/SMS message hierarchy (fallback chain). Each item contains a message_format (\'RCS\' or \'SMS\'), message body, and optional rich content.
+    * The message hierarchy (fallback chain): exactly one RCS entry followed by one SMS entry, in priority order. Rendering selects the first entry whose format the recipient supports.
     */
-    'messageHierarchy'?: Array<object> | null;
+    'messageHierarchy'?: Array<FlowSmsMessageHierarchyInner> | null;
     'shortenLinks'?: boolean = true;
     'includeContactCard'?: boolean = false;
     'addOrgPrefix'?: boolean = true;
@@ -64,7 +65,7 @@ export class FlowSms {
         {
             "name": "messageHierarchy",
             "baseName": "message_hierarchy",
-            "type": "Array<object>"
+            "type": "Array<FlowSmsMessageHierarchyInner>"
         },
         {
             "name": "shortenLinks",

@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { SMSDisclosurePropertiesContent } from './sMSDisclosurePropertiesContent';
 export class SMSDisclosureProperties {
     'displayDevice'?: Array<SMSDisclosureProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'content'?: SMSDisclosurePropertiesContent;
 
 
@@ -27,6 +29,11 @@ export class SMSDisclosureProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "content",

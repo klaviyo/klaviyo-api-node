@@ -11,8 +11,8 @@
 
 import { RequestFile } from './models';
 export class BooleanBranchLinks {
-    'nextIfTrue': string | null;
-    'nextIfFalse': string | null;
+    'nextIfTrue'?: string | null;
+    'nextIfFalse'?: string | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

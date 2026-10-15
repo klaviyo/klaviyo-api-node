@@ -22,6 +22,8 @@ export class FlowWhatsApp {
     'transactional'?: boolean = false;
     'addTrackingParams'?: boolean = false;
     'additionalFilters'?: ConditionalBranchActionDataProfileFilter | null;
+    'automationId'?: string | null;
+    'expiryHours'?: number | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -59,6 +61,16 @@ export class FlowWhatsApp {
             "name": "additionalFilters",
             "baseName": "additional_filters",
             "type": "ConditionalBranchActionDataProfileFilter"
+        },
+        {
+            "name": "automationId",
+            "baseName": "automation_id",
+            "type": "string"
+        },
+        {
+            "name": "expiryHours",
+            "baseName": "expiry_hours",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {

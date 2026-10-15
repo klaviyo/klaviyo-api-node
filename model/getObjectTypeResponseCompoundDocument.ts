@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { GetObjectTypeResponseCompoundDocumentIncludedInner } from './getObjectTypeResponseCompoundDocumentIncludedInner';
 import { ObjectLinks } from './objectLinks';
 import { ObjectTypeResponseObjectResource } from './objectTypeResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetObjectTypeResponseCompoundDocument {
     'data': ObjectTypeResponseObjectResource;
     'included'?: Array<GetObjectTypeResponseCompoundDocumentIncludedInner>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetObjectTypeResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

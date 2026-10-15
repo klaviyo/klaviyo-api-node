@@ -12,15 +12,15 @@
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { ObjectSchemaEnum } from './objectSchemaEnum';
-import { ObjectSchemaRelationshipResponseObjectResourceAttributes } from './objectSchemaRelationshipResponseObjectResourceAttributes';
+import { ObjectSchemaRelationshipMeta } from './objectSchemaRelationshipMeta';
 export class ObjectSchemaRelationshipResponseObjectResource {
     'type': ObjectSchemaEnum | 'object-schema';
     /**
     * A compound ID uniquely identifying this relationship, in the format \'{related_schema_id}:::{relationship_name}\'.
     */
     'id': string;
-    'attributes': ObjectSchemaRelationshipResponseObjectResourceAttributes;
     'links': ObjectLinks;
+    'meta'?: ObjectSchemaRelationshipMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -35,14 +35,14 @@ export class ObjectSchemaRelationshipResponseObjectResource {
             "type": "string"
         },
         {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "ObjectSchemaRelationshipResponseObjectResourceAttributes"
-        },
-        {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ObjectSchemaRelationshipMeta"
         }    ];
 
     static getAttributeTypeMap() {

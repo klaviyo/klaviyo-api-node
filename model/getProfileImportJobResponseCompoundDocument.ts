@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { ListResponseObjectResource } from './listResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
 import { ProfileImportJobResponseObjectResource } from './profileImportJobResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetProfileImportJobResponseCompoundDocument {
     'data': ProfileImportJobResponseObjectResource;
     'included'?: Array<ListResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetProfileImportJobResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

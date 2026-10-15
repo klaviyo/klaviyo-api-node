@@ -10,46 +10,16 @@
  */
 
 import { RequestFile } from './models';
-import { AudiencesUpdate } from './audiencesUpdate';
-import { CampaignCreateQueryResourceObjectAttributesSendOptions } from './campaignCreateQueryResourceObjectAttributesSendOptions';
-import { CampaignPartialUpdateQueryResourceObjectAttributesSendStrategy } from './campaignPartialUpdateQueryResourceObjectAttributesSendStrategy';
-import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
+import { CampaignDefinition } from './campaignDefinition';
 export class CampaignPartialUpdateQueryResourceObjectAttributes {
-    /**
-    * The campaign name
-    */
-    'name'?: string | null;
-    'audiences'?: AudiencesUpdate;
-    'sendOptions'?: CampaignCreateQueryResourceObjectAttributesSendOptions | null;
-    'trackingOptions'?: CampaignResponseObjectResourceAttributesTrackingOptions | null;
-    'sendStrategy'?: CampaignPartialUpdateQueryResourceObjectAttributesSendStrategy | null;
+    'definition': CampaignDefinition;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
-        },
-        {
-            "name": "audiences",
-            "baseName": "audiences",
-            "type": "AudiencesUpdate"
-        },
-        {
-            "name": "sendOptions",
-            "baseName": "send_options",
-            "type": "CampaignCreateQueryResourceObjectAttributesSendOptions"
-        },
-        {
-            "name": "trackingOptions",
-            "baseName": "tracking_options",
-            "type": "CampaignResponseObjectResourceAttributesTrackingOptions"
-        },
-        {
-            "name": "sendStrategy",
-            "baseName": "send_strategy",
-            "type": "CampaignPartialUpdateQueryResourceObjectAttributesSendStrategy"
+            "name": "definition",
+            "baseName": "definition",
+            "type": "CampaignDefinition"
         }    ];
 
     static getAttributeTypeMap() {

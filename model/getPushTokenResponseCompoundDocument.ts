@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { ProfileResponseObjectResource } from './profileResponseObjectResource';
 import { PushTokenResponseObjectResource } from './pushTokenResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetPushTokenResponseCompoundDocument {
     'data': PushTokenResponseObjectResource;
     'included'?: Array<ProfileResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetPushTokenResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { CampaignCreateQueryResourceObjectAttributes } from './campaignCreateQueryResourceObjectAttributes';
+import { CampaignCreateQueryResourceObjectRelationships } from './campaignCreateQueryResourceObjectRelationships';
 import { CampaignEnum } from './campaignEnum';
 export class CampaignCreateQueryResourceObject {
     'type': CampaignEnum | 'campaign';
     'attributes': CampaignCreateQueryResourceObjectAttributes;
+    'relationships'?: CampaignCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class CampaignCreateQueryResourceObject {
             "name": "attributes",
             "baseName": "attributes",
             "type": "CampaignCreateQueryResourceObjectAttributes"
+        },
+        {
+            "name": "relationships",
+            "baseName": "relationships",
+            "type": "CampaignCreateQueryResourceObjectRelationships"
         }    ];
 
     static getAttributeTypeMap() {

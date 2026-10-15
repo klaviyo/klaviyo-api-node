@@ -11,11 +11,13 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
+import { ResponseMeta } from './responseMeta';
 import { WebhookResponseObjectResource } from './webhookResponseObjectResource';
 import { WebhookTopicResponseObjectResource } from './webhookTopicResponseObjectResource';
 export class GetWebhookResponseCollectionCompoundDocument {
     'data': Array<WebhookResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<WebhookTopicResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetWebhookResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

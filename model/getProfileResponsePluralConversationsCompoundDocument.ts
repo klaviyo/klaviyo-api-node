@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { GetProfileResponsePluralConversationsCompoundDocumentIncludedInner } from './getProfileResponsePluralConversationsCompoundDocumentIncludedInner';
 import { ObjectLinks } from './objectLinks';
 import { ProfileResponsePluralConversationsObjectResourceExtended } from './profileResponsePluralConversationsObjectResourceExtended';
+import { ResponseMeta } from './responseMeta';
 export class GetProfileResponsePluralConversationsCompoundDocument {
     'data': ProfileResponsePluralConversationsObjectResourceExtended;
     'included'?: Array<GetProfileResponsePluralConversationsCompoundDocumentIncludedInner>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetProfileResponsePluralConversationsCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { CustomMetricResponseObjectResource } from './customMetricResponseObjectResource';
 import { MetricResponseObjectResource } from './metricResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetCustomMetricResponseCompoundDocument {
     'data': CustomMetricResponseObjectResource;
     'included'?: Array<MetricResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetCustomMetricResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,23 +10,23 @@
  */
 
 import { RequestFile } from './models';
-import { CampaignMessageResponseObjectResourceRelationshipsCampaign } from './campaignMessageResponseObjectResourceRelationshipsCampaign';
-import { CampaignMessageResponseObjectResourceRelationshipsTemplate } from './campaignMessageResponseObjectResourceRelationshipsTemplate';
+import { PostCampaignMessageResponseDataRelationshipsCampaign } from './postCampaignMessageResponseDataRelationshipsCampaign';
+import { PostCampaignMessageResponseDataRelationshipsTemplate } from './postCampaignMessageResponseDataRelationshipsTemplate';
 export class PostCampaignMessageResponseDataRelationships {
-    'campaign'?: CampaignMessageResponseObjectResourceRelationshipsCampaign;
-    'template'?: CampaignMessageResponseObjectResourceRelationshipsTemplate;
+    'campaign'?: PostCampaignMessageResponseDataRelationshipsCampaign;
+    'template'?: PostCampaignMessageResponseDataRelationshipsTemplate;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "campaign",
             "baseName": "campaign",
-            "type": "CampaignMessageResponseObjectResourceRelationshipsCampaign"
+            "type": "PostCampaignMessageResponseDataRelationshipsCampaign"
         },
         {
             "name": "template",
             "baseName": "template",
-            "type": "CampaignMessageResponseObjectResourceRelationshipsTemplate"
+            "type": "PostCampaignMessageResponseDataRelationshipsTemplate"
         }    ];
 
     static getAttributeTypeMap() {

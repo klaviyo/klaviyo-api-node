@@ -70,7 +70,7 @@ export class WebFeedsApi {
      * Create a web feed.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_web_feed.json)
      * @summary Create Web Feed
      * @param webFeedCreateQuery Create a web feed
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async createWebFeed (webFeedCreateQuery: WebFeedCreateQuery, options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>,  } = {}): Promise<{ response: AxiosResponse; body: PostWebFeedResponse;  }> {
 
@@ -179,7 +179,7 @@ export class WebFeedsApi {
      * Get the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feed.json)
      * @summary Get Web Feed
      * @param id The ID of the web feed
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getWebFeed (id: string, options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>,  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponse;  }> {
 
@@ -236,7 +236,7 @@ export class WebFeedsApi {
      * Get all web feeds for an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feeds.json)
      * @summary Get Web Feeds
      
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 5. Min: 1. Max: 20.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination* @param pageSize Default: 5. Min: 1. Max: 20.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
      */
     public async getWebFeeds (options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'created' | '-created' | 'name' | '-name' | 'updated' | '-updated',  } = {}): Promise<{ response: AxiosResponse; body: GetWebFeedResponseCollection;  }> {
 
@@ -303,7 +303,7 @@ export class WebFeedsApi {
      * Update the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_web_feed.json)
      * @summary Update Web Feed
      * @param id The ID of the web feed* @param webFeedPartialUpdateQuery Update a web feed by ID
-     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsWebFeed For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async updateWebFeed (id: string, webFeedPartialUpdateQuery: WebFeedPartialUpdateQuery, options: { fieldsWebFeed?: Array<'content_type' | 'created' | 'id' | 'name' | 'request_method' | 'status' | 'updated' | 'url'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchWebFeedResponse;  }> {
 

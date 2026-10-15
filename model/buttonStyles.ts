@@ -22,6 +22,7 @@ export class ButtonStyles {
     * Valid button block widths.
     */
     'width'?: ButtonStyles.WidthEnum | 'fill' | 'fit' = ButtonStyles.WidthEnum.Fill;
+    'innerPadding'?: Padding;
     'height'?: ButtonStylesHeight;
     /**
     * Horizontal alignment enumeration.
@@ -50,6 +51,11 @@ export class ButtonStyles {
             "name": "width",
             "baseName": "width",
             "type": "ButtonStyles.WidthEnum"
+        },
+        {
+            "name": "innerPadding",
+            "baseName": "inner_padding",
+            "type": "Padding"
         },
         {
             "name": "height",

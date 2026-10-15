@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { GetMappedMetricResponseCollectionCompoundDocumentIncludedInner } from './getMappedMetricResponseCollectionCompoundDocumentIncludedInner';
 import { MappedMetricResponseObjectResource } from './mappedMetricResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetMappedMetricResponseCompoundDocument {
     'data': MappedMetricResponseObjectResource;
     'included'?: Array<GetMappedMetricResponseCollectionCompoundDocumentIncludedInner>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetMappedMetricResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

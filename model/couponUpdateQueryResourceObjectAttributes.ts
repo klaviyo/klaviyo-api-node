@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { CouponAssignerConfiguration } from './couponAssignerConfiguration';
 export class CouponUpdateQueryResourceObjectAttributes {
     /**
     * A description of the coupon.
@@ -19,6 +20,7 @@ export class CouponUpdateQueryResourceObjectAttributes {
     * The monitor configuration for the coupon.
     */
     'monitorConfiguration'?: object | null;
+    'assignerConfiguration'?: CouponAssignerConfiguration;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -31,6 +33,11 @@ export class CouponUpdateQueryResourceObjectAttributes {
             "name": "monitorConfiguration",
             "baseName": "monitor_configuration",
             "type": "object"
+        },
+        {
+            "name": "assignerConfiguration",
+            "baseName": "assigner_configuration",
+            "type": "CouponAssignerConfiguration"
         }    ];
 
     static getAttributeTypeMap() {

@@ -78,7 +78,7 @@ export class ReportingApi {
      * Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_campaign_values.json)
      * @summary Query Campaign Values
      * @param campaignValuesRequestDTO 
-     * @param fieldsCampaignValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+     * @param fieldsCampaignValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
      */
     public async queryCampaignValues (campaignValuesRequestDTO: CampaignValuesRequestDTO, options: { fieldsCampaignValuesReport?: Array<'id' | 'results'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostCampaignValuesResponseDTO;  }> {
 
@@ -139,7 +139,7 @@ export class ReportingApi {
      * Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_flow_series.json)
      * @summary Query Flow Series
      * @param flowSeriesRequestDTO 
-     * @param fieldsFlowSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+     * @param fieldsFlowSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
      */
     public async queryFlowSeries (flowSeriesRequestDTO: FlowSeriesRequestDTO, options: { fieldsFlowSeriesReport?: Array<'date_times' | 'id' | 'results'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowSeriesResponseDTO;  }> {
 
@@ -200,7 +200,7 @@ export class ReportingApi {
      * Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_flow_values.json)
      * @summary Query Flow Values
      * @param flowValuesRequestDTO 
-     * @param fieldsFlowValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+     * @param fieldsFlowValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
      */
     public async queryFlowValues (flowValuesRequestDTO: FlowValuesRequestDTO, options: { fieldsFlowValuesReport?: Array<'id' | 'results'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: PostFlowValuesResponseDTO;  }> {
 
@@ -261,7 +261,7 @@ export class ReportingApi {
      * Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_form_series.json)
      * @summary Query Form Series
      * @param formSeriesRequestDTO 
-     * @param fieldsFormSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFormSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async queryFormSeries (formSeriesRequestDTO: FormSeriesRequestDTO, options: { fieldsFormSeriesReport?: Array<'date_times' | 'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostFormSeriesResponseDTO;  }> {
 
@@ -318,7 +318,7 @@ export class ReportingApi {
      * Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_form_values.json)
      * @summary Query Form Values
      * @param formValuesRequestDTO 
-     * @param fieldsFormValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsFormValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async queryFormValues (formValuesRequestDTO: FormValuesRequestDTO, options: { fieldsFormValuesReport?: Array<'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostFormValuesResponseDTO;  }> {
 
@@ -375,7 +375,7 @@ export class ReportingApi {
      * Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_segment_series.json)
      * @summary Query Segment Series
      * @param segmentSeriesRequestDTO 
-     * @param fieldsSegmentSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsSegmentSeriesReport For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async querySegmentSeries (segmentSeriesRequestDTO: SegmentSeriesRequestDTO, options: { fieldsSegmentSeriesReport?: Array<'date_times' | 'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostSegmentSeriesResponseDTO;  }> {
 
@@ -432,7 +432,7 @@ export class ReportingApi {
      * Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_segment_values.json)
      * @summary Query Segment Values
      * @param segmentValuesRequestDTO 
-     * @param fieldsSegmentValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsSegmentValuesReport For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async querySegmentValues (segmentValuesRequestDTO: SegmentValuesRequestDTO, options: { fieldsSegmentValuesReport?: Array<'id' | 'results'>,  } = {}): Promise<{ response: AxiosResponse; body: PostSegmentValuesResponseDTO;  }> {
 

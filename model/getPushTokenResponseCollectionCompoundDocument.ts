@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { ProfileResponseObjectResource } from './profileResponseObjectResource';
 import { PushTokenResponseObjectResource } from './pushTokenResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetPushTokenResponseCollectionCompoundDocument {
     'data': Array<PushTokenResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<ProfileResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetPushTokenResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetMappedMetricResponseCollectionCompoundDocumentIncludedInner } from './getMappedMetricResponseCollectionCompoundDocumentIncludedInner';
 import { MappedMetricResponseObjectResource } from './mappedMetricResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetMappedMetricResponseCollectionCompoundDocument {
     'data': Array<MappedMetricResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<GetMappedMetricResponseCollectionCompoundDocumentIncludedInner>;
 
 
@@ -29,6 +31,11 @@ export class GetMappedMetricResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

@@ -11,7 +11,6 @@
 
 import { RequestFile } from './models';
 import { ProfileLocation } from './profileLocation';
-import { ProfileMeta } from './profileMeta';
 export class PushProfileUpsertQueryResourceObjectAttributes {
     /**
     * Individual\'s phone number in E.164 format
@@ -54,7 +53,6 @@ export class PushProfileUpsertQueryResourceObjectAttributes {
     * An object containing key/value pairs for any custom properties assigned to this profile
     */
     'properties'?: object | null;
-    'meta'?: ProfileMeta;
     /**
     * Individual\'s email address
     */
@@ -116,11 +114,6 @@ export class PushProfileUpsertQueryResourceObjectAttributes {
             "name": "properties",
             "baseName": "properties",
             "type": "object"
-        },
-        {
-            "name": "meta",
-            "baseName": "meta",
-            "type": "ProfileMeta"
         },
         {
             "name": "email",

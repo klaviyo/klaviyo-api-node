@@ -64,10 +64,10 @@ export class ClientApi {
     /**
      * Return the current integration-egress IP allow list.  This is a singleton resource addressed at the fixed id ``integration-egress``: call ``GET /client/ip-allowlists/integration-egress`` (not ``GET /client/ip-allowlists``). Any other id returns 404.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_client_ip_allowlist.json)
      * @summary Get Client IP Allowlist
-     * @param id * @param companyId Your Public API Key / Site ID. See [this article](https://help.klaviyo.com/hc/en-us/articles/115005062267) for more details.
-     * @param fieldsIpAllowlist For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param id 
+     * @param companyId Your Public API Key / Site ID. See [this article](https://help.klaviyo.com/hc/en-us/articles/115005062267) for more details.* @param fieldsIpAllowlist For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
-    public async getClientIpAllowlist (id: string, companyId: string, options: { fieldsIpAllowlist?: Array<'created' | 'id' | 'prefixes' | 'sync_token'>,  } = {}): Promise<{ response: AxiosResponse; body: IpAllowlistResponseDataWrapper;  }> {
+    public async getClientIpAllowlist (id: string, options: { companyId?: string, fieldsIpAllowlist?: Array<'created' | 'id' | 'prefixes' | 'sync_token'>,  } = {}): Promise<{ response: AxiosResponse; body: IpAllowlistResponseDataWrapper;  }> {
 
         const localVarPath = this.basePath + '/client/ip-allowlists/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -86,12 +86,9 @@ export class ClientApi {
             throw new Error('Required parameter id was null or undefined when calling getClientIpAllowlist.');
         }
 
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling getClientIpAllowlist.');
+        if (options.companyId !== undefined) {
+            localVarQueryParameters['company_id'] = ObjectSerializer.serialize(options.companyId, "string");
         }
-
-        localVarQueryParameters['company_id'] = ObjectSerializer.serialize(companyId, "string");
 
         if (options.fieldsIpAllowlist !== undefined) {
             localVarQueryParameters['fields[ip-allowlist]'] = ObjectSerializer.serialize(options.fieldsIpAllowlist, "Array<'created' | 'id' | 'prefixes' | 'sync_token'>");

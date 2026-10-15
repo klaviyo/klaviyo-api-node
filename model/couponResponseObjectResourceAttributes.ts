@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { CouponAssignerConfiguration } from './couponAssignerConfiguration';
 export class CouponResponseObjectResourceAttributes {
     /**
     * This is the id that is stored in an integration such as Shopify or Magento.
@@ -23,6 +24,7 @@ export class CouponResponseObjectResourceAttributes {
     * The monitor configuration for the coupon.
     */
     'monitorConfiguration'?: object | null;
+    'assignerConfiguration'?: CouponAssignerConfiguration;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -40,6 +42,11 @@ export class CouponResponseObjectResourceAttributes {
             "name": "monitorConfiguration",
             "baseName": "monitor_configuration",
             "type": "object"
+        },
+        {
+            "name": "assignerConfiguration",
+            "baseName": "assigner_configuration",
+            "type": "CouponAssignerConfiguration"
         }    ];
 
     static getAttributeTypeMap() {

@@ -11,12 +11,14 @@
 
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 import { TagGroupResponseObjectResource } from './tagGroupResponseObjectResource';
 import { TagResponseObjectResource } from './tagResponseObjectResource';
 export class GetTagResponseCompoundDocument {
     'data': TagResponseObjectResource;
     'included'?: Array<TagGroupResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetTagResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { ObjectSchemaResponseObjectResource } from './objectSchemaResponseObjectResource';
 import { ObjectTypeResponseObjectResource } from './objectTypeResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetObjectTypeResponseCollectionCompoundDocument {
     'data': Array<ObjectTypeResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<ObjectSchemaResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetObjectTypeResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

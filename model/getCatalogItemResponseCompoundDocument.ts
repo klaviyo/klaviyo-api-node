@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { CatalogItemResponseObjectResource } from './catalogItemResponseObjectResource';
 import { CatalogVariantResponseObjectResource } from './catalogVariantResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetCatalogItemResponseCompoundDocument {
     'data': CatalogItemResponseObjectResource;
     'included'?: Array<CatalogVariantResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetCatalogItemResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

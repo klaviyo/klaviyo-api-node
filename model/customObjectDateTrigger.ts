@@ -10,6 +10,7 @@
  */
 
 import { RequestFile } from './models';
+import { CustomObjectDateTriggerTriggerFilter } from './customObjectDateTriggerTriggerFilter';
 export class CustomObjectDateTrigger {
     'type': CustomObjectDateTrigger.TypeEnum | 'date';
     'dateFieldType': CustomObjectDateTrigger.DateFieldTypeEnum | 'custom-object';
@@ -17,6 +18,7 @@ export class CustomObjectDateTrigger {
     'customObjectPropertyId': number;
     'objectTypeId': string;
     'objectTypeRelationshipId': string;
+    'triggerFilter'?: CustomObjectDateTriggerTriggerFilter | null;
     /**
     * See FlowDateTrigger.UNIT_CHOICES in app and CountdownUnit in fender.
     */
@@ -61,6 +63,11 @@ export class CustomObjectDateTrigger {
             "name": "objectTypeRelationshipId",
             "baseName": "object_type_relationship_id",
             "type": "string"
+        },
+        {
+            "name": "triggerFilter",
+            "baseName": "trigger_filter",
+            "type": "CustomObjectDateTriggerTriggerFilter"
         },
         {
             "name": "timedeltaUnitBeforeDate",

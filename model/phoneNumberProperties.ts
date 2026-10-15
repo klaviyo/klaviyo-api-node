@@ -10,11 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { ChannelSettings } from './channelSettings';
 import { ErrorMessages } from './errorMessages';
 export class PhoneNumberProperties {
     'displayDevice'?: Array<PhoneNumberProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'label'?: string | null;
     'showLabel'?: boolean = false;
     'placeholder'?: string | null;
@@ -35,6 +37,11 @@ export class PhoneNumberProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "label",

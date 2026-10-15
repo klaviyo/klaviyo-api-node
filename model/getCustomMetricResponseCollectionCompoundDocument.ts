@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { CustomMetricResponseObjectResource } from './customMetricResponseObjectResource';
 import { MetricResponseObjectResource } from './metricResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetCustomMetricResponseCollectionCompoundDocument {
     'data': Array<CustomMetricResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<MetricResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetCustomMetricResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

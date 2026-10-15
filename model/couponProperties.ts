@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { CouponPropertiesCoupon } from './couponPropertiesCoupon';
 export class CouponProperties {
     'displayDevice'?: Array<CouponProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'coupon': CouponPropertiesCoupon;
     'successMessage'?: string | null;
 
@@ -28,6 +30,11 @@ export class CouponProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "coupon",

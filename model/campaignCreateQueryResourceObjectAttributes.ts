@@ -10,53 +10,36 @@
  */
 
 import { RequestFile } from './models';
-import { Audiences } from './audiences';
-import { CampaignCreateQueryResourceObjectAttributesCampaignMessages } from './campaignCreateQueryResourceObjectAttributesCampaignMessages';
-import { CampaignCreateQueryResourceObjectAttributesSendOptions } from './campaignCreateQueryResourceObjectAttributesSendOptions';
-import { CampaignCreateQueryResourceObjectAttributesSendStrategy } from './campaignCreateQueryResourceObjectAttributesSendStrategy';
-import { CampaignResponseObjectResourceAttributesTrackingOptions } from './campaignResponseObjectResourceAttributesTrackingOptions';
+import { AudienceInlineCreate } from './audienceInlineCreate';
+import { CampaignDefinition } from './campaignDefinition';
+import { MessageInlineCreate } from './messageInlineCreate';
 export class CampaignCreateQueryResourceObjectAttributes {
+    'definition': CampaignDefinition;
     /**
-    * The campaign name
+    * Messages to create on this campaign. Each references an audience via audience_temporary_id.
     */
-    'name': string;
-    'audiences': Audiences;
-    'sendStrategy'?: CampaignCreateQueryResourceObjectAttributesSendStrategy | null;
-    'sendOptions'?: CampaignCreateQueryResourceObjectAttributesSendOptions | null;
-    'trackingOptions'?: CampaignResponseObjectResourceAttributesTrackingOptions | null;
-    'campaignMessages': CampaignCreateQueryResourceObjectAttributesCampaignMessages;
+    'messages'?: Array<MessageInlineCreate> | null;
+    /**
+    * Audiences to create on this campaign. Each references a message via audience_temporary_id.
+    */
+    'audiences'?: Array<AudienceInlineCreate> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
+            "name": "definition",
+            "baseName": "definition",
+            "type": "CampaignDefinition"
+        },
+        {
+            "name": "messages",
+            "baseName": "messages",
+            "type": "Array<MessageInlineCreate>"
         },
         {
             "name": "audiences",
             "baseName": "audiences",
-            "type": "Audiences"
-        },
-        {
-            "name": "sendStrategy",
-            "baseName": "send_strategy",
-            "type": "CampaignCreateQueryResourceObjectAttributesSendStrategy"
-        },
-        {
-            "name": "sendOptions",
-            "baseName": "send_options",
-            "type": "CampaignCreateQueryResourceObjectAttributesSendOptions"
-        },
-        {
-            "name": "trackingOptions",
-            "baseName": "tracking_options",
-            "type": "CampaignResponseObjectResourceAttributesTrackingOptions"
-        },
-        {
-            "name": "campaignMessages",
-            "baseName": "campaign-messages",
-            "type": "CampaignCreateQueryResourceObjectAttributesCampaignMessages"
+            "type": "Array<AudienceInlineCreate>"
         }    ];
 
     static getAttributeTypeMap() {

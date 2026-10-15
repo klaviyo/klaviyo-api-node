@@ -10,9 +10,11 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 export class HTMLTextProperties {
     'displayDevice'?: Array<HTMLTextProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'content'?: string = '';
 
 
@@ -26,6 +28,11 @@ export class HTMLTextProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "content",

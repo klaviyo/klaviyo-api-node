@@ -14,7 +14,7 @@ import { CouponBlockProperties } from './couponBlockProperties';
 import { CouponBlockStyles } from './couponBlockStyles';
 import { DisplayOptions } from './displayOptions';
 export class CouponBlockData {
-    'content': string;
+    'content': string | null;
     'properties': CouponBlockProperties;
     'displayOptions': DisplayOptions;
     'styles': CouponBlockStyles;

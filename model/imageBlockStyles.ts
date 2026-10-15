@@ -27,6 +27,7 @@ export class ImageBlockStyles {
     'blockPaddingLeft'?: number | null;
     'blockPaddingRight'?: number | null;
     'blockPaddingTop'?: number | null;
+    'borderRadius'?: number | null;
     'fullWidthMobile'?: boolean | null;
     'height'?: number | null;
     'innerPaddingBottom'?: number | null;
@@ -87,6 +88,11 @@ export class ImageBlockStyles {
         {
             "name": "blockPaddingTop",
             "baseName": "block_padding_top",
+            "type": "number"
+        },
+        {
+            "name": "borderRadius",
+            "baseName": "border_radius",
             "type": "number"
         },
         {
