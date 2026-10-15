@@ -10,8 +10,13 @@
  */
 
 import { RequestFile } from './models';
+import { FlowSmsMessageHierarchyInner } from './flowSmsMessageHierarchyInner';
 export class ConversationMessageCreateQueryResourceObjectAttributes {
     'body': string;
+    /**
+    * An ordered RCS and SMS pair to send instead of a plain SMS: the RCS content first, then the SMS fallback delivered when RCS cannot be sent.
+    */
+    'messageHierarchy'?: Array<FlowSmsMessageHierarchyInner> | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -19,6 +24,11 @@ export class ConversationMessageCreateQueryResourceObjectAttributes {
             "name": "body",
             "baseName": "body",
             "type": "string"
+        },
+        {
+            "name": "messageHierarchy",
+            "baseName": "message_hierarchy",
+            "type": "Array<FlowSmsMessageHierarchyInner>"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,9 +10,11 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 export class SignupCounterProperties {
     'displayDevice'?: Array<SignupCounterProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     /**
     * Timeframes for the signup counter lookback.
     */
@@ -31,6 +33,11 @@ export class SignupCounterProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "timeframe",

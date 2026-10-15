@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { ErrorMessages } from './errorMessages';
 export class BackInStockEmailConsentCheckboxProperties {
     'displayDevice'?: Array<BackInStockEmailConsentCheckboxProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'label'?: string | null;
     'showLabel'?: boolean = false;
     'errorMessages'?: ErrorMessages;
@@ -33,6 +35,11 @@ export class BackInStockEmailConsentCheckboxProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "label",

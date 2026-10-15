@@ -12,9 +12,11 @@
 import { RequestFile } from './models';
 import { GetEventProfileRelationshipResponseData } from './getEventProfileRelationshipResponseData';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetEventProfileRelationshipResponse {
     'data': GetEventProfileRelationshipResponseData | null;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetEventProfileRelationshipResponse {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

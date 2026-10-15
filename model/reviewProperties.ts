@@ -10,9 +10,11 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 export class ReviewProperties {
     'displayDevice'?: Array<ReviewProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'author'?: string | null;
     'content'?: string | null;
     'rating'?: number = 5;
@@ -33,6 +35,11 @@ export class ReviewProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "author",

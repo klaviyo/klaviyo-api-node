@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { GetObjectSchemaResponseCompoundDocumentIncludedInner } from './getObjectSchemaResponseCompoundDocumentIncludedInner';
 import { ObjectLinks } from './objectLinks';
 import { ObjectSchemaResponseObjectResource } from './objectSchemaResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetObjectSchemaResponseCompoundDocument {
     'data': ObjectSchemaResponseObjectResource;
     'included'?: Array<GetObjectSchemaResponseCompoundDocumentIncludedInner>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetObjectSchemaResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

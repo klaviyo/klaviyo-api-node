@@ -70,7 +70,7 @@ export class ImagesApi {
      * Get the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image.json)
      * @summary Get Image
      * @param id The ID of the image
-     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getImage (id: string, options: { fieldsImage?: Array<'format' | 'hidden' | 'id' | 'image_url' | 'name' | 'size' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: GetImageResponse;  }> {
 
@@ -127,7 +127,7 @@ export class ImagesApi {
      * Get all images in an account.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_images.json)
      * @summary Get Images
      
-     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;format&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;size&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;hidden&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;format&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60; (string)&lt;br&gt;&#x60;size&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (integer)&lt;br&gt;&#x60;hidden&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (boolean)* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.* @param sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
      */
     public async getImages (options: { fieldsImage?: Array<'format' | 'hidden' | 'id' | 'image_url' | 'name' | 'size' | 'updated_at'>, filter?: string, pageCursor?: string, pageSize?: number, sort?: 'format' | '-format' | 'id' | '-id' | 'name' | '-name' | 'size' | '-size' | 'updated_at' | '-updated_at',  } = {}): Promise<{ response: AxiosResponse; body: GetImageResponseCollection;  }> {
 
@@ -194,7 +194,7 @@ export class ImagesApi {
      * Update the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_image.json)
      * @summary Update Image
      * @param id The ID of the image* @param imagePartialUpdateQuery 
-     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async updateImage (id: string, imagePartialUpdateQuery: ImagePartialUpdateQuery, options: { fieldsImage?: Array<'format' | 'hidden' | 'id' | 'image_url' | 'name' | 'size' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchImageResponse;  }> {
 
@@ -254,10 +254,10 @@ export class ImagesApi {
         return request(config)
     }
     /**
-     * Upload an image from a file.  If you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`  **Scopes:** `images:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/upload_image_from_url.json)
+     * Upload an image from a file.  If you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `500/d`  **Scopes:** `images:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/upload_image_from_file.json)
      * @summary Upload Image From File
      * @param file The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.
-     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param name A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.* @param hidden If true, this image is not shown in the asset library.
+     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param name A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.* @param hidden If true, this image is not shown in the asset library.
      */
     public async uploadImageFromFile (file: RequestFile, name?: string, hidden?: boolean, options: { fieldsImage?: Array<'format' | 'hidden' | 'id' | 'image_url' | 'name' | 'size' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PostImageResponse;  }> {
 
@@ -324,7 +324,7 @@ export class ImagesApi {
      * Import an image from a url or data uri.  If you want to upload an image from a file, use the Upload Image From File endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`  **Scopes:** `images:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/upload_image_from_url.json)
      * @summary Upload Image From URL
      * @param imageCreateQuery 
-     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsImage For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async uploadImageFromUrl (imageCreateQuery: ImageCreateQuery, options: { fieldsImage?: Array<'format' | 'hidden' | 'id' | 'image_url' | 'name' | 'size' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PostImageResponse;  }> {
 

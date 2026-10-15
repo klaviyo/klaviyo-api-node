@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { AdditionalField } from './additionalField';
+import { Animation } from './animation';
 import { ImageAssetProperties } from './imageAssetProperties';
 export class ImageProperties {
     'displayDevice'?: Array<ImageProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'image': ImageAssetProperties;
     'additionalFields'?: Array<AdditionalField> | null;
 
@@ -29,6 +31,11 @@ export class ImageProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "image",

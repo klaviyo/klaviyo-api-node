@@ -12,10 +12,12 @@
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { EventResponseObjectResource } from './eventResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 import { ReviewResponseDTOObjectResource } from './reviewResponseDTOObjectResource';
 export class GetReviewResponseDTOCollectionCompoundDocument {
     'data': Array<ReviewResponseDTOObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<EventResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetReviewResponseDTOCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { FlowActionEncodedResponseObjectResource } from './flowActionEncodedResponseObjectResource';
 import { GetFlowActionEncodedResponseCompoundDocumentIncludedInner } from './getFlowActionEncodedResponseCompoundDocumentIncludedInner';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetFlowActionEncodedResponseCompoundDocument {
     'data': FlowActionEncodedResponseObjectResource;
     'included'?: Array<GetFlowActionEncodedResponseCompoundDocumentIncludedInner>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetFlowActionEncodedResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

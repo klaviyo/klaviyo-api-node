@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetIngestionLogResponseCollectionCompoundDocumentIncludedInner } from './getIngestionLogResponseCollectionCompoundDocumentIncludedInner';
 import { IngestionLogResponseObjectResource } from './ingestionLogResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetIngestionLogResponseCollectionCompoundDocument {
     'data': Array<IngestionLogResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<GetIngestionLogResponseCollectionCompoundDocumentIncludedInner>;
 
 
@@ -29,6 +31,11 @@ export class GetIngestionLogResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

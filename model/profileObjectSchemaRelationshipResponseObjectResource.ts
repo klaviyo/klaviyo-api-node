@@ -11,7 +11,7 @@
 
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
-import { ObjectSchemaRelationshipResponseObjectResourceAttributes } from './objectSchemaRelationshipResponseObjectResourceAttributes';
+import { ObjectSchemaRelationshipMeta } from './objectSchemaRelationshipMeta';
 import { ProfileObjectSchemaEnum } from './profileObjectSchemaEnum';
 export class ProfileObjectSchemaRelationshipResponseObjectResource {
     'type': ProfileObjectSchemaEnum | 'profile-object-schema';
@@ -19,8 +19,8 @@ export class ProfileObjectSchemaRelationshipResponseObjectResource {
     * The ID of the related profile schema.
     */
     'id': string;
-    'attributes': ObjectSchemaRelationshipResponseObjectResourceAttributes;
     'links': ObjectLinks;
+    'meta'?: ObjectSchemaRelationshipMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -35,14 +35,14 @@ export class ProfileObjectSchemaRelationshipResponseObjectResource {
             "type": "string"
         },
         {
-            "name": "attributes",
-            "baseName": "attributes",
-            "type": "ObjectSchemaRelationshipResponseObjectResourceAttributes"
-        },
-        {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ObjectSchemaRelationshipMeta"
         }    ];
 
     static getAttributeTypeMap() {

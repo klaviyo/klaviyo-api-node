@@ -10,9 +10,11 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { ErrorMessages } from './errorMessages';
 export class OptInCodeProperties {
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'label'?: string | null;
     'showLabel'?: boolean = false;
     'placeholder'?: string | null;
@@ -27,6 +29,11 @@ export class OptInCodeProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "label",

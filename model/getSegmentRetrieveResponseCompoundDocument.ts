@@ -12,11 +12,13 @@
 import { RequestFile } from './models';
 import { GetListListResponseCollectionCompoundDocumentIncludedInner } from './getListListResponseCollectionCompoundDocumentIncludedInner';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 import { SegmentRetrieveResponseObjectResourceExtended } from './segmentRetrieveResponseObjectResourceExtended';
 export class GetSegmentRetrieveResponseCompoundDocument {
     'data': SegmentRetrieveResponseObjectResourceExtended;
     'included'?: Array<GetListListResponseCollectionCompoundDocumentIncludedInner>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetSegmentRetrieveResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

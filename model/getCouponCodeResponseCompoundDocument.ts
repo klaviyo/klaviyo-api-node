@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { CouponCodeResponseObjectResource } from './couponCodeResponseObjectResource';
 import { CouponResponseObjectResource } from './couponResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetCouponCodeResponseCompoundDocument {
     'data': CouponCodeResponseObjectResource;
     'included'?: Array<CouponResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetCouponCodeResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

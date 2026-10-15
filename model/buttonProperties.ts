@@ -11,9 +11,11 @@
 
 import { RequestFile } from './models';
 import { AdditionalField } from './additionalField';
+import { Animation } from './animation';
 export class ButtonProperties {
     'displayDevice'?: Array<ButtonProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'label': string;
     'additionalFields'?: Array<AdditionalField> | null;
 
@@ -28,6 +30,11 @@ export class ButtonProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "label",

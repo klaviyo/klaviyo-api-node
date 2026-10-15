@@ -14,12 +14,14 @@ import { Padding } from './padding';
 import { QuoteStyle } from './quoteStyle';
 import { RatingStyle } from './ratingStyle';
 import { ReviewerNameStyle } from './reviewerNameStyle';
+import { VerifiedBadgeStyle } from './verifiedBadgeStyle';
 export class ReviewStyles {
     'padding'?: Padding;
     'backgroundColor'?: string | null;
     'ratingStyle'?: RatingStyle;
     'quoteStyle'?: QuoteStyle;
     'reviewerNameStyle'?: ReviewerNameStyle;
+    'verifiedBadgeStyle'?: VerifiedBadgeStyle;
     'blockBackgroundColor'?: string = 'rgba(255, 255, 255, 0)';
 
 
@@ -48,6 +50,11 @@ export class ReviewStyles {
             "name": "reviewerNameStyle",
             "baseName": "reviewer_name_style",
             "type": "ReviewerNameStyle"
+        },
+        {
+            "name": "verifiedBadgeStyle",
+            "baseName": "verified_badge_style",
+            "type": "VerifiedBadgeStyle"
         },
         {
             "name": "blockBackgroundColor",

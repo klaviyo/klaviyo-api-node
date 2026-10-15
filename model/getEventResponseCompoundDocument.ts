@@ -13,10 +13,12 @@ import { RequestFile } from './models';
 import { EventResponseObjectResource } from './eventResponseObjectResource';
 import { GetEventResponseCollectionCompoundDocumentIncludedInner } from './getEventResponseCollectionCompoundDocumentIncludedInner';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetEventResponseCompoundDocument {
     'data': EventResponseObjectResource;
     'included'?: Array<GetEventResponseCollectionCompoundDocumentIncludedInner>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetEventResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

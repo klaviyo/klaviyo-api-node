@@ -1,5 +1,9 @@
 export * from './accountsApi';
 import { AccountsApi } from './accountsApi';
+export * from './billingApi';
+import { BillingApi } from './billingApi';
+export * from './brandsApi';
+import { BrandsApi } from './brandsApi';
 export * from './campaignsApi';
 import { CampaignsApi } from './campaignsApi';
 export * from './catalogsApi';
@@ -38,8 +42,12 @@ export * from './tagsApi';
 import { TagsApi } from './tagsApi';
 export * from './templatesApi';
 import { TemplatesApi } from './templatesApi';
+export * from './textMessagingApi';
+import { TextMessagingApi } from './textMessagingApi';
 export * from './trackingSettingsApi';
 import { TrackingSettingsApi } from './trackingSettingsApi';
+export * from './translationsApi';
+import { TranslationsApi } from './translationsApi';
 export * from './webFeedsApi';
 import { WebFeedsApi } from './webFeedsApi';
 export * from './webhooksApi';
@@ -50,8 +58,8 @@ import {AxiosRequestConfig, AxiosResponse, AxiosHeaders, AxiosError, isAxiosErro
 
 export { RequestFile } from '../model/models';
 
-const revision =  "2026-07-15";
-const userAgent = "klaviyo-api-node/23.0.0";
+const revision =  "2026-10-15";
+const userAgent = "klaviyo-api-node/24.0.0";
 
 export class RetryWithExponentialBackoff {
 
@@ -532,6 +540,10 @@ export namespace Pkce {
 
     export const Accounts = new AccountsApi(new GlobalApiKeySession())
 
+    export const Billing = new BillingApi(new GlobalApiKeySession())
+
+    export const Brands = new BrandsApi(new GlobalApiKeySession())
+
     export const Campaigns = new CampaignsApi(new GlobalApiKeySession())
 
     export const Catalogs = new CatalogsApi(new GlobalApiKeySession())
@@ -570,7 +582,11 @@ export namespace Pkce {
 
     export const Templates = new TemplatesApi(new GlobalApiKeySession())
 
+    export const TextMessaging = new TextMessagingApi(new GlobalApiKeySession())
+
     export const TrackingSettings = new TrackingSettingsApi(new GlobalApiKeySession())
+
+    export const Translations = new TranslationsApi(new GlobalApiKeySession())
 
     export const WebFeeds = new WebFeedsApi(new GlobalApiKeySession())
 
@@ -588,4 +604,4 @@ export const Auth = {
     Pkce,
 }
 
-export const Klaviyo = { Auth, AccountsApi, Accounts, CampaignsApi, Campaigns, CatalogsApi, Catalogs, ClientApi, Client, ConversationsApi, Conversations, CouponsApi, Coupons, CustomObjectsApi, CustomObjects, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TrackingSettingsApi, TrackingSettings, WebFeedsApi, WebFeeds, WebhooksApi, Webhooks };
+export const Klaviyo = { Auth, AccountsApi, Accounts, BillingApi, Billing, BrandsApi, Brands, CampaignsApi, Campaigns, CatalogsApi, Catalogs, ClientApi, Client, ConversationsApi, Conversations, CouponsApi, Coupons, CustomObjectsApi, CustomObjects, DataPrivacyApi, DataPrivacy, EventsApi, Events, FlowsApi, Flows, FormsApi, Forms, ImagesApi, Images, ListsApi, Lists, MetricsApi, Metrics, ProfilesApi, Profiles, ReportingApi, Reporting, ReviewsApi, Reviews, SegmentsApi, Segments, TagsApi, Tags, TemplatesApi, Templates, TextMessagingApi, TextMessaging, TrackingSettingsApi, TrackingSettings, TranslationsApi, Translations, WebFeedsApi, WebFeeds, WebhooksApi, Webhooks };

@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetListListResponseCollectionCompoundDocumentIncludedInner } from './getListListResponseCollectionCompoundDocumentIncludedInner';
 import { ListListResponseObjectResource } from './listListResponseObjectResource';
+import { ResponseMeta } from './responseMeta';
 export class GetListListResponseCollectionCompoundDocument {
     'data': Array<ListListResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<GetListListResponseCollectionCompoundDocumentIncludedInner>;
 
 
@@ -29,6 +31,11 @@ export class GetListListResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

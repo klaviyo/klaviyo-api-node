@@ -11,22 +11,29 @@
 
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
-import { PatchFlowActionEncodedResponseData } from './patchFlowActionEncodedResponseData';
+import { PostFlowActionEncodedResponseData } from './postFlowActionEncodedResponseData';
+import { ResponseMeta } from './responseMeta';
 export class PatchFlowActionEncodedResponse {
-    'data': PatchFlowActionEncodedResponseData;
+    'data': PostFlowActionEncodedResponseData;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
             "name": "data",
             "baseName": "data",
-            "type": "PatchFlowActionEncodedResponseData"
+            "type": "PostFlowActionEncodedResponseData"
         },
         {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

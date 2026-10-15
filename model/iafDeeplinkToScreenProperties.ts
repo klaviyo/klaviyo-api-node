@@ -12,6 +12,9 @@
 import { RequestFile } from './models';
 export class IafDeeplinkToScreenProperties {
     'deepLinkUrl'?: string = '';
+    'deepLinkUrlIos'?: string = '';
+    'deepLinkUrlAndroid'?: string = '';
+    'useSeparateDeepLinkUrls'?: boolean | null;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -19,6 +22,21 @@ export class IafDeeplinkToScreenProperties {
             "name": "deepLinkUrl",
             "baseName": "deep_link_url",
             "type": "string"
+        },
+        {
+            "name": "deepLinkUrlIos",
+            "baseName": "deep_link_url_ios",
+            "type": "string"
+        },
+        {
+            "name": "deepLinkUrlAndroid",
+            "baseName": "deep_link_url_android",
+            "type": "string"
+        },
+        {
+            "name": "useSeparateDeepLinkUrls",
+            "baseName": "use_separate_deep_link_urls",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

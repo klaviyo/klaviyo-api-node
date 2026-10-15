@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 import { ProfileMetricPropertyFilterFilter } from './profileMetricPropertyFilterFilter';
 export class ProfileMetricPropertyFilter {
     'property': string;
-    'filter'?: ProfileMetricPropertyFilterFilter | null;
+    'filter': ProfileMetricPropertyFilterFilter;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

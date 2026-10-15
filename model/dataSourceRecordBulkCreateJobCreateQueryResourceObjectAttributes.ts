@@ -12,7 +12,7 @@
 import { RequestFile } from './models';
 import { DataSourceRecordBulkCreateJobCreateQueryResourceObjectAttributesDataSourceRecords } from './dataSourceRecordBulkCreateJobCreateQueryResourceObjectAttributesDataSourceRecords';
 export class DataSourceRecordBulkCreateJobCreateQueryResourceObjectAttributes {
-    'dataSourceRecords'?: DataSourceRecordBulkCreateJobCreateQueryResourceObjectAttributesDataSourceRecords | null;
+    'dataSourceRecords': DataSourceRecordBulkCreateJobCreateQueryResourceObjectAttributesDataSourceRecords;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [

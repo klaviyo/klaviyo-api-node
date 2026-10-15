@@ -12,9 +12,10 @@
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
 import { ObjectSchemaResponseObjectResource } from './objectSchemaResponseObjectResource';
+import { ObjectSchemaResponseObjectResourceAttributes } from './objectSchemaResponseObjectResourceAttributes';
 import { ObjectSchemaResponseObjectResourceRelationships } from './objectSchemaResponseObjectResourceRelationships';
+import { ObjectTypeRelationshipMeta } from './objectTypeRelationshipMeta';
 import { ObjectTypeRelationshipResponseObjectResource } from './objectTypeRelationshipResponseObjectResource';
-import { ObjectTypeRelationshipResponseObjectResourceAttributes } from './objectTypeRelationshipResponseObjectResourceAttributes';
 import { ProfileObjectTypeEnum } from './profileObjectTypeEnum';
 import { ProfileTypeRelationshipResponseObjectResource } from './profileTypeRelationshipResponseObjectResource';
 

@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
 import { GetProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInner } from './getProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInner';
 import { ProfileResponsePluralConversationsObjectResourceExtended } from './profileResponsePluralConversationsObjectResourceExtended';
+import { ResponseMeta } from './responseMeta';
 export class GetProfileResponsePluralConversationsCollectionCompoundDocument {
     'data': Array<ProfileResponsePluralConversationsObjectResourceExtended>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<GetProfileResponsePluralConversationsCollectionCompoundDocumentIncludedInner>;
 
 
@@ -29,6 +31,11 @@ export class GetProfileResponsePluralConversationsCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

@@ -10,11 +10,14 @@
  */
 
 import { RequestFile } from './models';
+import { CustomObjectPropertyCondition } from './customObjectPropertyCondition';
 import { CustomObjectTriggerCondition } from './customObjectTriggerCondition';
-import { CustomObjectTriggerConditionFilter } from './customObjectTriggerConditionFilter';
 import { FlowsProfileMetricCondition } from './flowsProfileMetricCondition';
+import { LowInventoryCondition } from './lowInventoryCondition';
 import { MetricPropertyCondition } from './metricPropertyCondition';
+import { MetricPropertyConditionFilter } from './metricPropertyConditionFilter';
 import { NumericOperatorNumericFilter } from './numericOperatorNumericFilter';
+import { PriceDropCondition } from './priceDropCondition';
 import { ProfileHasCustomObjectCondition } from './profileHasCustomObjectCondition';
 import { ProfileHasCustomObjectFilter } from './profileHasCustomObjectFilter';
 import { ProfileHasGroupMembershipCondition } from './profileHasGroupMembershipCondition';
@@ -26,6 +29,7 @@ import { ProfileMarketingConsentCondition } from './profileMarketingConsentCondi
 import { ProfileMarketingConsentConditionConsent } from './profileMarketingConsentConditionConsent';
 import { ProfileMetricPropertyFilter } from './profileMetricPropertyFilter';
 import { ProfileNoGroupMembershipCondition } from './profileNoGroupMembershipCondition';
+import { ProfileNotInFlowCondition } from './profileNotInFlowCondition';
 import { ProfilePermissionsCondition } from './profilePermissionsCondition';
 import { ProfilePermissionsConditionPermission } from './profilePermissionsConditionPermission';
 import { ProfilePostalCodeDistanceCondition } from './profilePostalCodeDistanceCondition';
@@ -37,4 +41,4 @@ import { ProfilePredictiveAnalyticsStringCondition } from './profilePredictiveAn
 import { ProfilePropertyCondition } from './profilePropertyCondition';
 import { ProfileRandomSampleCondition } from './profileRandomSampleCondition';
 import { ProfileRegionCondition } from './profileRegionCondition';
-export type MultiBranchSplitBranchBranchFilterConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsDateCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfilePredictiveAnalyticsChannelAffinityPriorityCondition | ProfilePredictiveAnalyticsChannelAffinityRankCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition | ProfileHasCustomObjectCondition | ProfilePermissionsCondition | ProfileHasNotReceivedEmailMessageCondition | ProfileHasNotReceivedSmsMessageCondition | ProfileHasNotReceivedPushMessageCondition | MetricPropertyCondition | CustomObjectTriggerCondition;
+export type MultiBranchSplitBranchBranchFilterConditionGroupsInnerConditionsInner = ProfilePropertyCondition | ProfileHasGroupMembershipCondition | ProfileNoGroupMembershipCondition | ProfileRegionCondition | ProfilePostalCodeDistanceCondition | ProfilePredictiveAnalyticsDateCondition | ProfilePredictiveAnalyticsStringCondition | ProfilePredictiveAnalyticsNumericCondition | ProfilePredictiveAnalyticsChannelAffinityPriorityCondition | ProfilePredictiveAnalyticsChannelAffinityRankCondition | ProfileMarketingConsentCondition | FlowsProfileMetricCondition | ProfileRandomSampleCondition | ProfileHasCustomObjectCondition | ProfilePermissionsCondition | ProfileHasNotReceivedEmailMessageCondition | ProfileHasNotReceivedSmsMessageCondition | ProfileHasNotReceivedPushMessageCondition | ProfileNotInFlowCondition | MetricPropertyCondition | CustomObjectTriggerCondition | CustomObjectPropertyCondition | PriceDropCondition | LowInventoryCondition;

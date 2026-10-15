@@ -12,6 +12,8 @@
 import { RequestFile } from './models';
 import { BooleanFilter } from './booleanFilter';
 import { ExistenceOperatorExistenceFilter } from './existenceOperatorExistenceFilter';
+import { ListContainsOperatorListContainsFilter } from './listContainsOperatorListContainsFilter';
+import { ListLengthFilter } from './listLengthFilter';
 import { NumericOperatorNumericFilter } from './numericOperatorNumericFilter';
 import { NumericRangeFilter } from './numericRangeFilter';
 import { RelativeAnniversaryDateFilter } from './relativeAnniversaryDateFilter';
@@ -21,4 +23,4 @@ import { StaticDateFilter } from './staticDateFilter';
 import { StaticDateRangeFilter } from './staticDateRangeFilter';
 import { StringArrayOperatorStringArrayFilter } from './stringArrayOperatorStringArrayFilter';
 import { StringOperatorStringFilter } from './stringOperatorStringFilter';
-export type ProfileHasCustomObjectFilterFilter = StringOperatorStringFilter | StringArrayOperatorStringArrayFilter | NumericOperatorNumericFilter | NumericRangeFilter | BooleanFilter | StaticDateFilter | StaticDateRangeFilter | RelativeDateOperatorBaseRelativeDateFilter | RelativeAnniversaryDateFilter | RelativeDateRangeFilter | ExistenceOperatorExistenceFilter;
+export type ProfileHasCustomObjectFilterFilter = StringOperatorStringFilter | StringArrayOperatorStringArrayFilter | NumericOperatorNumericFilter | NumericRangeFilter | BooleanFilter | StaticDateFilter | StaticDateRangeFilter | RelativeDateOperatorBaseRelativeDateFilter | RelativeAnniversaryDateFilter | RelativeDateRangeFilter | ListContainsOperatorListContainsFilter | ListLengthFilter | ExistenceOperatorExistenceFilter;

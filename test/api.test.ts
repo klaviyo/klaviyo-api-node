@@ -1,12 +1,12 @@
-import { describe, expect, jest, test } from "@jest/globals";
+import { beforeEach, describe, expect, jest, test } from "@jest/globals";
 import {
   AccountsApi,
   ApiKeySession,
-  CampaignMessageCreateQueryResourceObjectAttributes,
-  CampaignResponseObjectResourceAttributes,
-  CampaignsEmailTrackingOptions,
-  EmailSendOptions,
+  CampaignDefinition,
+  CampaignCreateQueryResourceObjectAttributes,
   OAuthBasicSession,
+  OmniCampaignResponseObjectResourceAttributes,
+  SendSettings,
   ObjectSerializer,
   RetryWithExponentialBackoff,
 } from "../api";
@@ -86,31 +86,53 @@ describe("retry", () => {
 
 describe("Serialize", () => {
   test("an oneOf item serializes correctly", async () => {
-    let campaign: CampaignMessageCreateQueryResourceObjectAttributes = {
-      definition: {
-        label: "labelxyz",
-        channel: "email",
-        content: {
-          subject: "Hello",
-          fromEmail: "foo.bar@example.com",
-          fromLabel: "Foo Bar",
+    let campaign: CampaignCreateQueryResourceObjectAttributes = {
+      definition: { name: "Campaign" },
+      audiences: [{ temporaryId: "audience_1", included: ["TEST_ID"] }],
+      messages: [
+        {
+          audienceTemporaryId: "audience_1",
+          variations: [
+            {
+              definition: {
+                name: "labelxyz",
+                details: {
+                  channel: "email",
+                  subject: "Hello",
+                  fromEmail: "foo.bar@example.com",
+                  fromLabel: "Foo Bar",
+                },
+              },
+            },
+          ],
         },
-      },
+      ],
     };
     const serialized = ObjectSerializer.serialize(
       campaign,
-      "CampaignMessageCreateQueryResourceObjectAttributes"
+      "CampaignCreateQueryResourceObjectAttributes"
     );
     expect(serialized).toEqual({
-      definition: {
-        label: "labelxyz",
-        channel: "email",
-        content: {
-          subject: "Hello",
-          from_email: "foo.bar@example.com",
-          from_label: "Foo Bar",
+      definition: { name: "Campaign" },
+      audiences: [{ temporary_id: "audience_1", included: ["TEST_ID"] }],
+      messages: [
+        {
+          audience_temporary_id: "audience_1",
+          variations: [
+            {
+              definition: {
+                name: "labelxyz",
+                details: {
+                  channel: "email",
+                  subject: "Hello",
+                  from_email: "foo.bar@example.com",
+                  from_label: "Foo Bar",
+                },
+              },
+            },
+          ],
         },
-      },
+      ],
     });
   });
 });
@@ -118,45 +140,26 @@ describe("Serialize", () => {
 describe("deserialize", () => {
   test("an oneOf item deserializes correctly", async () => {
     const serialized = {
-      name: "Email",
-      status: "Draft",
-      archived: false,
-      audiences: {
-        included: ["TEST_ID"],
-        excluded: [],
-      },
-      send_options: {
-        use_smart_sending: true,
-        ignore_unsubscribes: false,
-      },
-      tracking_options: {
-        is_tracking_clicks: true,
-        is_tracking_opens: true,
-        add_tracking_params: true,
-        custom_tracking_params: [],
-      },
-      send_strategy: {
-        method: "static",
-        options: {
-          is_local: false,
-          send_past_recipients_immediately: null,
+      definition: {
+        name: "Email",
+        archived: false,
+        send_settings: {
+          send_timezone: "local",
+          send_strategy: "static",
+          send_passed_rltz_immediately: false,
         },
-        datetime: "2024-05-22T19:14:32+00:00",
       },
       created_at: "2024-05-22T19:14:32.047339+00:00",
-      scheduled_at: null,
       updated_at: "2024-05-22T19:14:32.140795+00:00",
-      send_time: null,
     };
-    const deserialize: CampaignResponseObjectResourceAttributes =
+    const deserialize: OmniCampaignResponseObjectResourceAttributes =
       ObjectSerializer.deserialize(
         serialized,
-        "CampaignResponseObjectResourceAttributes"
+        "OmniCampaignResponseObjectResourceAttributes"
       );
-    expect(deserialize.trackingOptions).toBeInstanceOf(
-      CampaignsEmailTrackingOptions
-    );
-    expect(deserialize.sendOptions).toBeInstanceOf(EmailSendOptions);
+    expect(deserialize.definition).toBeInstanceOf(CampaignDefinition);
+    expect(deserialize.definition.sendSettings).toBeInstanceOf(SendSettings);
+    expect(deserialize.definition.sendSettings?.sendPassedRltzImmediately).toBe(false);
   });
 });
 

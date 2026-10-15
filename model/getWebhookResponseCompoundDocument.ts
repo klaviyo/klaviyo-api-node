@@ -11,12 +11,14 @@
 
 import { RequestFile } from './models';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 import { WebhookResponseObjectResource } from './webhookResponseObjectResource';
 import { WebhookTopicResponseObjectResource } from './webhookTopicResponseObjectResource';
 export class GetWebhookResponseCompoundDocument {
     'data': WebhookResponseObjectResource;
     'included'?: Array<WebhookTopicResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetWebhookResponseCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { InputStyleOverrides } from './inputStyleOverrides';
 import { Padding } from './padding';
 export class CheckboxesStyles {
     'padding'?: Padding;
     'backgroundColor'?: string | null;
+    'inputStyles'?: InputStyleOverrides;
     /**
     * Arrangement enumeration.
     */
@@ -34,6 +36,11 @@ export class CheckboxesStyles {
             "name": "backgroundColor",
             "baseName": "background_color",
             "type": "string"
+        },
+        {
+            "name": "inputStyles",
+            "baseName": "input_styles",
+            "type": "InputStyleOverrides"
         },
         {
             "name": "arrangement",

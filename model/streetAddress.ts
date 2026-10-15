@@ -13,7 +13,7 @@ import { RequestFile } from './models';
 export class StreetAddress {
     'address1'?: string | null;
     'address2'?: string | null;
-    'city': string;
+    'city'?: string | null;
     /**
     * State, province, or region.
     */

@@ -11,6 +11,7 @@
 
 import { RequestFile } from './models';
 import { EventProfileCreateQueryResourceObjectAttributes } from './eventProfileCreateQueryResourceObjectAttributes';
+import { OnsiteProfileMeta } from './onsiteProfileMeta';
 import { ProfileEnum } from './profileEnum';
 export class EventProfileCreateQueryResourceObject {
     'type': ProfileEnum | 'profile';
@@ -19,6 +20,7 @@ export class EventProfileCreateQueryResourceObject {
     */
     'id'?: string | null;
     'attributes': EventProfileCreateQueryResourceObjectAttributes;
+    'meta'?: OnsiteProfileMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -36,6 +38,11 @@ export class EventProfileCreateQueryResourceObject {
             "name": "attributes",
             "baseName": "attributes",
             "type": "EventProfileCreateQueryResourceObjectAttributes"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "OnsiteProfileMeta"
         }    ];
 
     static getAttributeTypeMap() {

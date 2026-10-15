@@ -15,7 +15,7 @@ import { CampaignPartialUpdateQueryResourceObjectAttributes } from './campaignPa
 export class CampaignPartialUpdateQueryResourceObject {
     'type': CampaignEnum | 'campaign';
     /**
-    * The campaign ID to be retrieved
+    * The campaign ID to be updated
     */
     'id': string;
     'attributes': CampaignPartialUpdateQueryResourceObjectAttributes;

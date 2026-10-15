@@ -11,10 +11,12 @@
 
 import { RequestFile } from './models';
 import { CollectionLinks } from './collectionLinks';
+import { ResponseMeta } from './responseMeta';
 import { SegmentResponseObjectResource } from './segmentResponseObjectResource';
 export class GetSegmentResponseCollection {
     'data': Array<SegmentResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -27,6 +29,11 @@ export class GetSegmentResponseCollection {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

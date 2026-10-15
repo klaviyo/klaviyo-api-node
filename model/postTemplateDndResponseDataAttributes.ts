@@ -40,6 +40,10 @@ export class PostTemplateDndResponseDataAttributes {
     * The date the template was updated in ISO 8601 format (YYYY-MM-DDTHH:MM:SS.mmmmmm)
     */
     'updated'?: Date | null;
+    /**
+    * A presigned URL to an image of the rendered template, valid for 24 hours. `null` when no screenshot is currently available for the template.
+    */
+    'screenshotUrl'?: string | null;
     'definition'?: TemplateDefinition;
 
 
@@ -78,6 +82,11 @@ export class PostTemplateDndResponseDataAttributes {
             "name": "updated",
             "baseName": "updated",
             "type": "Date"
+        },
+        {
+            "name": "screenshotUrl",
+            "baseName": "screenshot_url",
+            "type": "string"
         },
         {
             "name": "definition",

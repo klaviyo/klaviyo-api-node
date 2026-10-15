@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { CountdownTimerPropertiesConfiguration } from './countdownTimerPropertiesConfiguration';
 export class CountdownTimerProperties {
     'displayDevice'?: Array<CountdownTimerProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     /**
     * Options for displaying a timer.
     */
@@ -22,6 +24,10 @@ export class CountdownTimerProperties {
     * Options for timer completion animations.
     */
     'animation'?: CountdownTimerProperties.AnimationEnum | 'flash' | 'heartbeat' | 'pulse' | null = CountdownTimerProperties.AnimationEnum.Heartbeat;
+    /**
+    * Label lengths for countdown timer units.
+    */
+    'labelFormat'?: CountdownTimerProperties.LabelFormatEnum | 'double_char' | 'full' | 'shortened' | 'single_char' | null;
     'configuration': CountdownTimerPropertiesConfiguration;
 
 
@@ -37,6 +43,11 @@ export class CountdownTimerProperties {
             "type": "string"
         },
         {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
+        },
+        {
             "name": "clockFace",
             "baseName": "clock_face",
             "type": "CountdownTimerProperties.ClockFaceEnum"
@@ -45,6 +56,11 @@ export class CountdownTimerProperties {
             "name": "animation",
             "baseName": "animation",
             "type": "CountdownTimerProperties.AnimationEnum"
+        },
+        {
+            "name": "labelFormat",
+            "baseName": "label_format",
+            "type": "CountdownTimerProperties.LabelFormatEnum"
         },
         {
             "name": "configuration",
@@ -71,5 +87,11 @@ export namespace CountdownTimerProperties {
         Flash = <any> 'flash',
         Heartbeat = <any> 'heartbeat',
         Pulse = <any> 'pulse'
+    }
+    export enum LabelFormatEnum {
+        DoubleChar = <any> 'double_char',
+        Full = <any> 'full',
+        Shortened = <any> 'shortened',
+        SingleChar = <any> 'single_char'
     }
 }

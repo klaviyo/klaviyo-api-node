@@ -13,9 +13,11 @@ import { RequestFile } from './models';
 import { CatalogItemResponseObjectResource } from './catalogItemResponseObjectResource';
 import { CatalogVariantResponseObjectResource } from './catalogVariantResponseObjectResource';
 import { CollectionLinks } from './collectionLinks';
+import { ResponseMeta } from './responseMeta';
 export class GetCatalogItemResponseCollectionCompoundDocument {
     'data': Array<CatalogItemResponseObjectResource>;
     'links'?: CollectionLinks;
+    'meta'?: ResponseMeta;
     'included'?: Array<CatalogVariantResponseObjectResource>;
 
 
@@ -29,6 +31,11 @@ export class GetCatalogItemResponseCollectionCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "CollectionLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         },
         {
             "name": "included",

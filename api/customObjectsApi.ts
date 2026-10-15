@@ -208,7 +208,7 @@ export class CustomObjectsApi {
      * Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source.json)
      * @summary Create Data Source
      * @param dataSourceCreateQuery Create data source
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async createDataSource (dataSourceCreateQuery: DataSourceCreateQuery, options: { fieldsDataSource?: Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: PostDataSourceResponse;  }> {
 
@@ -317,7 +317,7 @@ export class CustomObjectsApi {
      * Create an object schema.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema.json)
      * @summary Create Object Schema
      * @param objectSchemaCreateQuery Create an object schema
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async createObjectSchema (objectSchemaCreateQuery: ObjectSchemaCreateQuery, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: PostObjectSchemaResponse;  }> {
 
@@ -432,7 +432,7 @@ export class CustomObjectsApi {
      * Create an object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_type.json)
      * @summary Create Object Type
      * @param objectTypeCreateQuery Create an object type
-     * @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async createObjectType (objectTypeCreateQuery: ObjectTypeCreateQuery, options: { fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>,  } = {}): Promise<{ response: AxiosResponse; body: PostObjectTypeResponse;  }> {
 
@@ -767,7 +767,7 @@ export class CustomObjectsApi {
      * Get current schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_for_object_type.json)
      * @summary Get Current Schema for Object Type
      * @param id The ULID ID of the object type.
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getCurrentSchemaForObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponse;  }> {
 
@@ -877,7 +877,7 @@ export class CustomObjectsApi {
      * Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_source.json)
      * @summary Get Data Source
      * @param id The ID of the data source
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getDataSource (id: string, options: { fieldsDataSource?: Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponse;  }> {
 
@@ -934,9 +934,9 @@ export class CustomObjectsApi {
      * Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_sources.json)
      * @summary Get Data Sources
      
-     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param fieldsDataSource For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60; (string)* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
-    public async getDataSources (options: { fieldsDataSource?: Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponseCollection;  }> {
+    public async getDataSources (options: { fieldsDataSource?: Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>, filter?: string, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetDataSourceResponseCollection;  }> {
 
         const localVarPath = this.basePath + '/api/data-sources';
         let localVarQueryParameters: any = {};
@@ -951,6 +951,10 @@ export class CustomObjectsApi {
 
         if (options.fieldsDataSource !== undefined) {
             localVarQueryParameters['fields[data-source]'] = ObjectSerializer.serialize(options.fieldsDataSource, "Array<'description' | 'id' | 'namespace' | 'title' | 'visibility'>");
+        }
+
+        if (options.filter !== undefined) {
+            localVarQueryParameters['filter'] = ObjectSerializer.serialize(options.filter, "string");
         }
 
         if (options.pageCursor !== undefined) {
@@ -993,7 +997,7 @@ export class CustomObjectsApi {
      * Get draft schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_for_object_type.json)
      * @summary Get Draft Schema for Object Type
      * @param id The ULID ID of the object type.
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getDraftSchemaForObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponse;  }> {
 
@@ -1103,7 +1107,7 @@ export class CustomObjectsApi {
      * Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_log_ids_for_object_type.json)
      * @summary Get Ingestion Log IDs for Object Type
      * @param id The ULID ID of the object type.
-     * @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+     * @param filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;\&#39;error\&#39;&#x60;, &#x60;\&#39;warning\&#39;&#x60;, &#x60;\&#39;info\&#39;&#x60;)&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;\&#39;validation_error\&#39;&#x60;)&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60; (date-time)* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
      */
     public async getIngestionLogIdsForObjectType (id: string, options: { filter?: string, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeIngestionLogsRelationshipsResponseCollection;  }> {
 
@@ -1164,7 +1168,7 @@ export class CustomObjectsApi {
      * Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_logs_for_object_type.json)
      * @summary Get Ingestion Logs for Object Type
      * @param id The ULID ID of the object type.
-     * @param fieldsObjectIngestionLog For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+     * @param fieldsObjectIngestionLog For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;\&#39;error\&#39;&#x60;, &#x60;\&#39;warning\&#39;&#x60;, &#x60;\&#39;info\&#39;&#x60;)&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;\&#39;validation_error\&#39;&#x60;)&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60; (date-time)* @param include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
      */
     public async getIngestionLogsForObjectType (id: string, options: { fieldsObjectIngestionLog?: Array<'errors' | 'event_type' | 'id' | 'status' | 'summary' | 'timestamp'>, fieldsObjectRecord?: Array<'id' | 'record_properties'>, fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>, filter?: string, include?: Array<'object-record' | 'object-type'>, pageCursor?: string,  } = {}): Promise<{ response: AxiosResponse; body: GetIngestionLogResponseCollectionCompoundDocument;  }> {
 
@@ -1241,7 +1245,7 @@ export class CustomObjectsApi {
      * Get the object record with the given compound ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_record.json)
      * @summary Get Object Record
      * @param id The compound ID of the object record, formatted as object_type_id:::object_record_id
-     * @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getObjectRecord (id: string, options: { fieldsObjectRecord?: Array<'id' | 'record_properties'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectRecordResponse;  }> {
 
@@ -1298,9 +1302,9 @@ export class CustomObjectsApi {
      * Get the object schema with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema.json)
      * @summary Get Object Schema
      * @param id The ULID ID of the object schema.
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
      */
-    public async getObjectSchema (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsProfileObjectSchema?: Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>, fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>, include?: Array<'object-schemas' | 'profile-object-schemas' | 'source-mapping'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponseCompoundDocument;  }> {
+    public async getObjectSchema (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsProfileObjectSchema?: Array<'id'>, fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>, include?: Array<'object-schemas' | 'profile-object-schemas' | 'source-mapping'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/object-schemas/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1320,11 +1324,11 @@ export class CustomObjectsApi {
         }
 
         if (options.fieldsObjectSchema !== undefined) {
-            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
+            localVarQueryParameters['fields[object-schema]'] = ObjectSerializer.serialize(options.fieldsObjectSchema, "Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>");
         }
 
         if (options.fieldsProfileObjectSchema !== undefined) {
-            localVarQueryParameters['fields[profile-object-schema]'] = ObjectSerializer.serialize(options.fieldsProfileObjectSchema, "Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>");
+            localVarQueryParameters['fields[profile-object-schema]'] = ObjectSerializer.serialize(options.fieldsProfileObjectSchema, "Array<'id'>");
         }
 
         if (options.fieldsSourceMapping !== undefined) {
@@ -1420,9 +1424,9 @@ export class CustomObjectsApi {
      * Get the object type with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type.json)
      * @summary Get Object Type
      * @param id The ULID ID of the object type.
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsProfileObjectType For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
      */
-    public async getObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'namespace' | 'status' | 'title' | 'updated_at'>, fieldsProfileObjectType?: Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>, include?: Array<'current-schema' | 'draft-schema' | 'object-types' | 'profile-object-types' | 'schema-versions'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeResponseCompoundDocument;  }> {
+    public async getObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>, fieldsProfileObjectType?: Array<'id'>, include?: Array<'current-schema' | 'draft-schema' | 'object-types' | 'profile-object-types' | 'schema-versions'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeResponseCompoundDocument;  }> {
 
         const localVarPath = this.basePath + '/api/object-types/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
@@ -1446,11 +1450,11 @@ export class CustomObjectsApi {
         }
 
         if (options.fieldsObjectType !== undefined) {
-            localVarQueryParameters['fields[object-type]'] = ObjectSerializer.serialize(options.fieldsObjectType, "Array<'created_at' | 'description' | 'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id' | 'namespace' | 'status' | 'title' | 'updated_at'>");
+            localVarQueryParameters['fields[object-type]'] = ObjectSerializer.serialize(options.fieldsObjectType, "Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>");
         }
 
         if (options.fieldsProfileObjectType !== undefined) {
-            localVarQueryParameters['fields[profile-object-type]'] = ObjectSerializer.serialize(options.fieldsProfileObjectType, "Array<'id' | 'meta' | 'meta.description' | 'meta.name' | 'meta.relationship_id'>");
+            localVarQueryParameters['fields[profile-object-type]'] = ObjectSerializer.serialize(options.fieldsProfileObjectType, "Array<'id'>");
         }
 
         if (options.include !== undefined) {
@@ -1542,7 +1546,7 @@ export class CustomObjectsApi {
      * Get all object types in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_types.json)
      * @summary Get Object Types
      
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60;* @param include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param fieldsObjectType For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60; (string)* @param include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
      */
     public async getObjectTypes (options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>, fieldsObjectType?: Array<'created_at' | 'description' | 'id' | 'namespace' | 'status' | 'title' | 'updated_at'>, filter?: string, include?: Array<'current-schema' | 'draft-schema'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeResponseCollectionCompoundDocument;  }> {
 
@@ -1711,7 +1715,7 @@ export class CustomObjectsApi {
      * Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_record_ids_for_object_type.json)
      * @summary Get Record IDs for Object Type
      * @param id The ULID ID of the object type.
-     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getRecordIdsForObjectType (id: string, options: { pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectTypeRecordsRelationshipsResponseCollection;  }> {
 
@@ -1772,7 +1776,7 @@ export class CustomObjectsApi {
      * Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_records_for_object_type.json)
      * @summary Get Records for Object Type
      * @param id The ULID ID of the object type.
-     * @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
+     * @param fieldsObjectRecord For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets* @param pageCursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination* @param pageSize Default: 20. Min: 1. Max: 100.
      */
     public async getRecordsForObjectType (id: string, options: { fieldsObjectRecord?: Array<'id' | 'record_properties'>, pageCursor?: string, pageSize?: number,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectRecordResponseCollection;  }> {
 
@@ -1890,7 +1894,7 @@ export class CustomObjectsApi {
      * Get all schema versions for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_versions_for_object_type.json)
      * @summary Get Schema Versions for Object Type
      * @param id The ULID ID of the object type.
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getSchemaVersionsForObjectType (id: string, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: GetObjectSchemaResponseCollection;  }> {
 
@@ -1947,7 +1951,7 @@ export class CustomObjectsApi {
      * Get the source mapping with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping.json)
      * @summary Get Source Mapping
      * @param id The ID of the source mapping
-     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getSourceMapping (id: string, options: { fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSourceMappingResponse;  }> {
 
@@ -2004,7 +2008,7 @@ export class CustomObjectsApi {
      * Get source mapping for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_for_object_schema.json)
      * @summary Get Source Mapping for Object Schema
      * @param id The ULID ID of the object schema.
-     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async getSourceMappingForObjectSchema (id: string, options: { fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>,  } = {}): Promise<{ response: AxiosResponse; body: GetSourceMappingResponse;  }> {
 
@@ -2114,7 +2118,7 @@ export class CustomObjectsApi {
      * Update the object schema with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_object_schema.json)
      * @summary Update Object Schema
      * @param id The ULID ID of the object schema.* @param objectSchemaPartialUpdateQuery Update a object schema by ID
-     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsObjectSchema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async updateObjectSchema (id: string, objectSchemaPartialUpdateQuery: ObjectSchemaPartialUpdateQuery, options: { fieldsObjectSchema?: Array<'description' | 'id' | 'properties' | 'published_at' | 'required' | 'status' | 'title' | 'visibility'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchObjectSchemaResponse;  }> {
 
@@ -2293,7 +2297,7 @@ export class CustomObjectsApi {
      * Update the source mapping with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_source_mapping.json)
      * @summary Update Source Mapping
      * @param id The ULID ID of the source mapping* @param sourceMappingPartialUpdateQuery Update a source mapping by ID
-     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+     * @param fieldsSourceMapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
      */
     public async updateSourceMapping (id: string, sourceMappingPartialUpdateQuery: SourceMappingPartialUpdateQuery, options: { fieldsSourceMapping?: Array<'id' | 'property_mappings' | 'relationship_mappings'>,  } = {}): Promise<{ response: AxiosResponse; body: PatchSourceMappingResponse;  }> {
 

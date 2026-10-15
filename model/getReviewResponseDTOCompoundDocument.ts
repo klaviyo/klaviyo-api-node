@@ -12,11 +12,13 @@
 import { RequestFile } from './models';
 import { EventResponseObjectResource } from './eventResponseObjectResource';
 import { ObjectLinks } from './objectLinks';
+import { ResponseMeta } from './responseMeta';
 import { ReviewResponseDTOObjectResource } from './reviewResponseDTOObjectResource';
 export class GetReviewResponseDTOCompoundDocument {
     'data': ReviewResponseDTOObjectResource;
     'included'?: Array<EventResponseObjectResource>;
     'links'?: ObjectLinks;
+    'meta'?: ResponseMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -34,6 +36,11 @@ export class GetReviewResponseDTOCompoundDocument {
             "name": "links",
             "baseName": "links",
             "type": "ObjectLinks"
+        },
+        {
+            "name": "meta",
+            "baseName": "meta",
+            "type": "ResponseMeta"
         }    ];
 
     static getAttributeTypeMap() {

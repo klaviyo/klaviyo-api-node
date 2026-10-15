@@ -10,10 +10,12 @@
  */
 
 import { RequestFile } from './models';
+import { Animation } from './animation';
 import { SpinToWinSliceConfig } from './spinToWinSliceConfig';
 export class SpinToWinProperties {
     'displayDevice'?: Array<SpinToWinProperties.DisplayDeviceEnum> | Array<'both' | 'desktop' | 'mobile'>;
     'classname'?: string | null;
+    'blockAnimation'?: Animation;
     'duplicateSlices'?: boolean = false;
     'slices': Array<SpinToWinSliceConfig>;
 
@@ -28,6 +30,11 @@ export class SpinToWinProperties {
             "name": "classname",
             "baseName": "classname",
             "type": "string"
+        },
+        {
+            "name": "blockAnimation",
+            "baseName": "block_animation",
+            "type": "Animation"
         },
         {
             "name": "duplicateSlices",

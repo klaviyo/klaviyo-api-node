@@ -10,7 +10,6 @@
  */
 
 import { RequestFile } from './models';
-import { OnsiteProfileMeta } from './onsiteProfileMeta';
 import { ProfileLocation } from './profileLocation';
 export class EventProfileCreateQueryResourceObjectAttributes {
     /**
@@ -59,7 +58,6 @@ export class EventProfileCreateQueryResourceObjectAttributes {
     * An object containing key/value pairs for any custom properties assigned to this profile
     */
     'properties'?: object | null;
-    'meta'?: OnsiteProfileMeta;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
@@ -127,11 +125,6 @@ export class EventProfileCreateQueryResourceObjectAttributes {
             "name": "properties",
             "baseName": "properties",
             "type": "object"
-        },
-        {
-            "name": "meta",
-            "baseName": "meta",
-            "type": "OnsiteProfileMeta"
         }    ];
 
     static getAttributeTypeMap() {

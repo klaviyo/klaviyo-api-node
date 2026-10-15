@@ -16,7 +16,7 @@ import { DataSourceRecordCreateJobEnum } from './dataSourceRecordCreateJobEnum';
 export class DataSourceRecordCreateJobCreateQueryResourceObject {
     'type': DataSourceRecordCreateJobEnum | 'data-source-record-create-job';
     'attributes': DataSourceRecordCreateJobCreateQueryResourceObjectAttributes;
-    'relationships'?: DataSourceRecordBulkCreateJobCreateQueryResourceObjectRelationships;
+    'relationships': DataSourceRecordBulkCreateJobCreateQueryResourceObjectRelationships;
 
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
